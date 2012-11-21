@@ -1,0 +1,6 @@
+(function(){
+	<% @article_ids.each do |a| %>
+	  <% tr_id = "article_#{a}" %>
+	  $("#<%= tr_id  %>").remove();
+	<%end %>
+})();

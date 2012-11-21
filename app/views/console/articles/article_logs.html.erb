@@ -1,0 +1,25 @@
+<div class="sectionA">
+	<div class="title">
+		<h1><%= link_to @article.title, article_url(@article) %></h1>
+	</div>
+	<div class="content rightColCenter">
+		<table class="tableA">
+			<thead>
+				<tr>
+					<th>日期</th>
+					<th>操作人</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @logs.each do |log| %>
+				<tr>
+					<td><%= log.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+					<td><%= log.staff.real_name %></td>
+					<td><%= ArticleLog::ACTION[log.cmd] %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

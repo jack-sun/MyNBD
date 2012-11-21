@@ -1,0 +1,9 @@
+(function(){
+	_popWinForLoading.hide();
+	var editedBox = $("#article_<%= @child.id%>_<%= @child.children_id%>");
+	editedBox.removeClass("eidtChildBox");
+	editedBox.find("form").hide();
+	editedBox.find(".childTitle").show();
+	editedBox.find(".childLink").text('<%= @child.children_title %>');
+	editedBox.find(".childLink").attr('href','<%= @child.children_url %>');
+})();

@@ -1,0 +1,7 @@
+<%= simple_form_for [:console, @notice], :html => { :class => "formA" } do |f| %>
+
+  <%= f.input :content, :as => :text, :label => "内容:", :input_html => {:cols => 80, :rows => 15} %>
+  <p class="formRightAlign">
+    <a href="javascript:void(0)" onclick="$(this).closest('form').submit();return false;" class="btnBlueM"><span>提交</span></a>
+  </p>
+<% end %>

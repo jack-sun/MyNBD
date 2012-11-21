@@ -1,0 +1,23 @@
+<div class="sectionA">
+	<div class="title">
+		<h1>添加新报纸</h1>
+		<span class="opts">
+			<%= link_to '<span>取消</span>'.html_safe, console_newspapers_path, :class => "btnGray" %>
+		</span>
+	</div>
+	<div class="content rightColCenter">
+            <%= simple_form_for([:console, @newspaper], :html => {:multipart => true, :class => "formA"} ) do |f| %>
+
+                    <% if flash[:error]  %>
+                      <div class="alert_error"><b></b><%= flash[:error] %></div>
+                    <% end %>
+                    <p>
+                            <label for="file">日期:</label>
+                            <%= text_field_tag "n_index", @newspaper.n_index||Date.today.to_s(:db) %>
+                    </p>
+                    <p class="formRightAlign">
+                            <%= link_to "<span>下一步</span>".html_safe, "javascript:void(0)", :onclick => "$(this).closest('form').submit();return false;", :class => "btnBlueM" %>
+                    </p>
+            <% end %>
+	</div>
+</div>

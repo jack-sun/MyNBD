@@ -1,0 +1,42 @@
+<% require_js "console_selectAll" %>
+<div class="sortableTableMargin">
+	<table id="topicTable" class="tableA">
+		<thead>
+			<tr>
+				<th class="forHandler"></th>
+				<th><input class="selectAll" type="checkbox" /></th>
+				<th>标题</th>
+				<th>创建人</th>
+				<th>点击数</th>
+				<th>时间</th>
+				<th>状态</th>
+				<th>操作</th>
+			</tr>		
+		</thead>
+		<tbody id="sortableBox">
+			<% topics.each do |t| %>
+				<% next unless t.present? %>
+				<tr id="topic_<%= t.id %>">
+					<td class="forHandler"><span class="dragHandler"></span></td>
+                    <td class="forSelect"><input class="subSelect" type="checkbox" value="<%= t.id %>"/></td>
+					<td class="itemTitle"><%= link_to t.title, t %></td>
+					<td><%= t.staff.real_name %></td>
+					<td><%= t.click_count %></td>
+					<td class="itemDate"><%= t.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+					<td class="itemStatus_<%=t.status%>"><%= Topic::STATUS[t.status.to_i] %></td>
+					<td class="itemActions">
+						<%= link_to "<b></b>编辑".html_safe, edit_console_topic_url(t), :class=>'actionEdit' %>
+						<% if t.status == Topic::BANNDED %>
+							<%= link_to "<b></b>发布".html_safe, unban_console_topic_url(t), :confirm => "取消屏蔽？", :method => :post, :remote => true, :class=>'actionPublish' %>
+						<%else %>
+							<%= link_to "<b></b>屏蔽".html_safe, ban_console_topic_url(t), :confirm => "屏蔽这个话题？", :method => :delete, :remote => true, :class=>'actionBanned' %>
+						<%end%>
+						<%= link_to "<b></b>删除 ".html_safe, console_topic_url(t), :confirm => "删除这个话题？", :method => :delete, :remote => true, :class=>'actionDelete' %>
+						
+					</td>
+				</tr>
+			<%end%>
+		</tbody>
+	</table>
+</div><!-- table wrapper -->
+

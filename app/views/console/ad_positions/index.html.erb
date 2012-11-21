@@ -1,0 +1,45 @@
+<div class="sectionA">
+	<div class="title">
+		<h1>所有广告</h1>
+		<span class="opts"><%= link_to "<span>添加新广告</span>".html_safe, new_console_ad_path, :class => "btnBlueM" %></span>
+	</div>
+	<div class="content rightColCenter">
+		<table class="tableA">
+		  <thead>
+		    <tr>
+		      <th>编号</th>
+		      <th>位置</th>
+		      <th>详情</th>
+		      <th>操作</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <% @ad_positions.each do |ad_p| %>
+		      <% ad = ad_p.current_ad %>
+		      <tr>
+		        <td class="itemFixedS"><%= ad_p.name.capitalize %></td>
+		        <td class="itemFixedS"><%= ad_p.desc %></td>
+		        <td class="itemDesc">
+                    <strong>尺寸:</strong> <%= "#{ad_p.width}x#{ad_p.height}" %><br />
+                  <% if ad %>
+                    <strong>标题:</strong> <%= ad.title %><br />
+                    <strong>链接:</strong> <%= link_to ad.link, ad.link, :target => "_blank"%><br />
+                    <strong>缩略图:</strong> <br />
+		          <%= image_tag("/uploads/ads/display/#{ad_p.name}.gif", :style => "max-width:200px; max-height:100px;") %>
+                  <% else %>
+                     该广告位空缺
+                  <% end %>
+		        </td>
+		        <td class="itemActions">
+		          <%= link_to "<b></b>添加新广告".html_safe, new_console_ad_path(:ad_p_id => ad_p.id), :class => "actionNew" %>
+                  <% if ad %>
+		          <%= link_to "<b></b>编辑".html_safe, edit_console_ad_path(ad), :class => "actionEdit" %>
+                <% end %>
+		          <%= link_to "<b></b>历史".html_safe, console_ad_position_ads_path(ad_p), :class => "actionRecord" %>
+		        </td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+	</div>
+</div>

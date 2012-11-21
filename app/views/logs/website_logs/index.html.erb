@@ -1,0 +1,7 @@
+<ul>
+<% @logs.each do |log| %>
+<li><%= log.level %>  <%= link_to log.title, logs_website_log_url(log) %> <%= log.created_at.strftime("%m-%d %H:%M:%S") %></li>
+<%end%>
+</ul>
+
+<%= paginate @logs %>

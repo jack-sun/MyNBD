@@ -1,0 +1,9 @@
+<select id="columnSelectList">
+	<% @columns.each do |column| %>
+      <optgroup label="<%= column.name %>">
+        <% column.children.each do |c_column| %>
+          <option value="<%= c_column.id %>"><%= c_column.name %></option>
+        <% end %>
+      </optgroup>
+	<%end%>
+</select>

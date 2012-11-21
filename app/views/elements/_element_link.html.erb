@@ -1,0 +1,13 @@
+<% 
+    begin
+      links =  JSON.parse(element.content)["body"]
+    rescue Exception
+      links = []
+    end
+-%>
+
+<ul>
+	<% links.each do|link| %>
+		<li><%= link_to link["title"], link["url"], :target => "_blank" %></li>
+	<%end%>
+</ul>

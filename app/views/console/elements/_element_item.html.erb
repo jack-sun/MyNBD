@@ -1,0 +1,9 @@
+<% if elements[element_id] %>
+	<li id="<%= element_id %>" class="element <%= elements[element_id].class.name.underscore  %>">
+	    <span class="editElement">
+			<%= link_to "<b class='actionIcon edit'></b>编辑".html_safe, "javascript:void(0);" %>
+	    </span>
+	    <%= elements[element_id].title %>
+		<div class="clear"></div>
+	</li>
+<%end%>

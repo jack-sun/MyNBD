@@ -1,0 +1,3 @@
+class ElementText < Element
+  
+end

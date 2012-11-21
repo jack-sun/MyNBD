@@ -1,0 +1,93 @@
+<%
+=begin
+Parameters:
+        articles: Array
+        html_style: String (optional)
+        cache_fragment_id: String
+=end
+html_style = '' unless html_style
+cache_key = Article::HOT_COMMENT_ARTICLE_FRAGMENT_CACHE_KEY || "hot_articles_#{@first_column.try(:id) || 'uniq'}" unless cache_key
+%>
+<%= require_tabs %>
+<% cache(cache_key, :expire_in => 30*60) do %>
+  <% 
+    hot_articles = Article.hot_articles(20)[0..9] unless hot_articles
+    hot_comment_articles = Article.hot_comment_articles(20)[0..9]
+  %>
+  <div id="hotArticles" class="sectionA" style="<%=html_style%>">
+    <div class="title">
+      <h1>热门文章</h1>
+      <ul id="hotTabsIndex" class="opts">
+        <li class="first current"><a href="#hotArticle-1">最热点击</a></li>
+        <% if false %>
+        <li class="last"><a href="#hotArticle-2">最热评论</a></li>
+      <% end %>
+      </ul>
+    </div>
+      <div id="hotTabsContent" class="content">
+        <div id="hotArticle-1">
+          <ol class="articleList">
+            <% if hot_articles and hot_articles.size > 0 %>
+              <% hot_articles.each_with_index do |article, index|%>
+                <% if index == 0 %>
+                  <li class="articleRecommend">
+                    <h5 class='rcTitle'>
+                      <%= link_to article.list_title, article_url(article), {:target => "_blank"} %>
+                    </h5>
+                    <div class="rcDigest">
+                      <%= link_to image_tag(article_thumbnail_path(article, :small), :width => 80, :height => 60 ),  article_url(article), {:target => "_blank"} if article.image.present? %>
+                      <p class="restrict" >
+                        <%= article.show_digest %>
+                      </p>
+                    </div>
+                    <div class="clear"></div>
+                  </li>
+                <% else %>
+                  <li>
+                    <b><%=index+1%>.</b><%= link_to article.list_title, article_url(article), {:target => "_blank"} %>
+                </li>
+              <% end %>
+            <% end %>
+          <% end %>
+        </ol>
+      </div>
+      <% if false %>
+      <div id="hotArticle-2" style="display:none;">
+        <ol class="articleList">
+          <% if defined?(hot_comment_articles) and hot_comment_articles and hot_comment_articles.size > 0 %>
+            <% hot_comment_articles.each_with_index do |article, index|%>
+              <% if index == 0 %>
+                <li class="articleRecommend">
+                  <h5 class='rcTitle'>
+                    <%= link_to article.list_title, article_url(article), {:target => "_blank", :title => article.title} %>
+                  </h5>
+                  <div class="rcDigest">
+                    <%= link_to image_tag(article_thumbnail_path(article, :small), {:target => "_blank", :title => article.title, :width => 80, :height => 60 } ),  article_url(article) if article.image.present? %>
+                    <p class="restrict" >
+                      <%= article.show_digest %>
+                    </p>
+                  </div>
+                  <div class="clear"></div>
+                </li>
+              <% else %>
+                <li>
+                  <b><%=index+1%>.</b><%= link_to article.list_title, article_url(article), {:target => "_blank", :title => article.title} %>
+                </li>
+              <% end %>
+            <% end %>
+          <% end %>
+        </ol>
+      </div>
+    <% end %>
+    </div>
+  </div>
+<%end%>
+<script type="text/javascript">
+  $(function(){
+      $("#hotArticles").nbdtabs({
+        tabsDOM:"#hotTabsIndex",
+        contentDOM:"#hotTabsContent",
+        symbolIndex:"hotArticle"
+      });
+  });
+</script>

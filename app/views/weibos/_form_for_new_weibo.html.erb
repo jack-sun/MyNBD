@@ -1,0 +1,51 @@
+<% 
+title = "有什么好消息告诉大家?" unless title
+disable_add_top = false unless disable_add_top
+placeholder_text = nil unless placeholder_text
+if placeholder_text
+  placeholder_text = "##{placeholder_text}#"
+end
+%>
+
+
+<div class="logSpeak">
+	<h3><%= title %></h3>
+	<%= form_tag(weibos_path, :id => 'create_weibo_form', :class => "speakForm", :remote => true) do %>
+		<div class="speakSuccessTip">发送成功！</div>
+		<%=  text_area_tag :content, placeholder_text, :class => "textInput", :id => "newWeiboTextarea" %>
+		<div class="action"> 
+			<ul class="speakActions">
+				<%if false%><li class="add_img"><a href="javascript:void(0)"><b></b>图片</a></li><%end%>
+				<%unless disable_add_top%><li class="add_top"><a id="addNewTop" href="javascript:void(0)"><b></b>话题</a></li><%end%>
+				<%if false%><li class="add_video"><a href="javascript:void(0)"><b></b>视频</a></li><%end%>
+				<%if false%><li class="add_stock"><a href="javascript:void(0)"><b></b>股票</a></li><%end%>
+			</ul>
+			<%= link_to "<span>发 布</span>".html_safe, "javascript:void(0)", :class => "speakBtn btnBlueM" %>
+			<div class="clear"></div>
+		</div>
+	<% end %>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		var form = $('#create_weibo_form');
+		var $optTextarea = $("#newWeiboTextarea");
+		
+		//$optTextarea.focus();
+		
+		$("#addNewTop").click(function(){
+			var cursor = _nbd.cursorText;
+			var value = $optTextarea.val();
+			var reg = /#在这里输入你想要说的话题#/g;
+			
+			$optTextarea.focus();
+			var result = reg.exec(value);
+			if (result) {
+				cursor.selectPart($optTextarea[0],reg.lastIndex-result[0].length+1, reg.lastIndex-1);
+			}else {
+				cursor.addTxt($optTextarea[0],"#在这里输入你想要说的话题#");
+				cursor.selectPart($optTextarea[0],cursor.getCursorPos($optTextarea[0])-13,cursor.getCursorPos($optTextarea[0])-1);
+			}
+		});
+	});
+</script>

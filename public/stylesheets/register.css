@@ -1,0 +1,43 @@
+#weiboIntro h3{
+	font-size: 18px;
+	color: #0066cc;
+	font-weight: normal;
+	margin-bottom: .5em;
+}
+
+#weiboIntro ol{
+	margin-bottom: 2em;
+}
+
+#weiboIntro ol li{
+	line-height: 2;
+	margin-bottom: .5em;
+	color: #484848;
+}
+
+#weiboIntro ol li b{
+	margin-right: .8em;
+	background-color: #bb0000;
+	color: white;
+	font-style: italic;
+	float: left;
+	width: 22px;
+	height: 22px;
+	background: url(../images/sprite-icons.gif) -80px -160px no-repeat;
+	line-height: 22px;
+	font-size: 12px;
+	text-indent: 7px;
+	margin-top: 3px;
+}
+
+#weiboIntro ol li p{
+	color: #606060;
+	font-style: normal;
+	font-weight: normal;
+}
+
+#weiboIntro h4{
+	font-size: 16px;
+	color: #808080;
+	font-weight: normal;
+}

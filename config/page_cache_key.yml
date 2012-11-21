@@ -1,0 +1,57 @@
+column:
+  show_content:
+    parameters: "id"
+    uniq: false
+  collected_articles:
+    parameters: "id"
+    uniq: true
+  relate_articles:
+    parameters: "id"
+    uniq: true
+  sub_nav:
+    parameters: "id"
+    uniq: true
+  api_content:
+    parameters: "id"
+    uniq: false
+  rss_content:
+    parameters: "id"
+    uniq: true
+  rss_digest_content:
+    parameters: "id"
+    uniq: true
+article:
+  crumbs_nav:
+    parameters: "id"
+    uniq: true
+  page_content:
+    parameters: "id, page_id"
+    uniq: false
+  relate_articles:
+    parameters: "id"
+    uniq: true
+  recommend_articles:
+    parameters: "id"
+    uniq: true
+  comment_area:
+    parameters: "id"
+    uniq: true
+feature:
+  paginate_nav:
+    parameters: "id, page_id"
+    uniq: true
+  element_content:
+    parameters: "id, element_id"
+    uniq: true
+columnist:
+  articles:
+    parameters: "id"
+    uniq: false
+stock_live:
+  content:
+    parameters: "id"
+    uniq: false
+newspaper:
+  content:
+    parameters: "id"
+    uniq: false

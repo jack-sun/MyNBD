@@ -1,0 +1,11 @@
+<%= require_jqueryUI %>
+<div class="sectionA">
+	<div class="title"> 
+		<h1>文章评论</h1>
+	</div>
+	<div id="body_channel" class="content">
+		<%=render :partial => "console/comments/comment_operation_bar", :locals=>{ :comments => @comments } %>
+		<%=render :partial => "console/comments/comment_list", :locals=>{ :comments => @comments } %>
+		<%=render :partial => "console/comments/comment_operation_bar", :locals=>{ :comments => @comments } %>
+	</div>
+</div>

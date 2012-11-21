@@ -1,0 +1,26 @@
+<%= require_jqueryUI %>
+<% content_for :header_js do %>
+  <%=javascript_include_tag "chosen.jquery.min.js"   %>
+<%end %>
+<% content_for :header_css do%>
+  <%= stylesheet_link_tag "chosen.css" %>
+<%end %>
+<%if @sortable%>
+	<%= require_js "console_sortable.js" %>
+<%end%>
+
+		
+<div class="sectionA">
+	<div class="title">
+  <h1>我的文章 - <%= Article::STATUS[@category] %></h1>
+		<span class="opts">
+      <%= link_to "<span>添加新文章</span>".html_safe, new_console_article_url, :class => "btnBlueM" %>
+		</span>
+	</div>
+	<div id="body_channel" class="content">
+		<%=render :partial => "console/shared/article_operation_bar", :locals=>{ :articles => @articles} %>
+		<%=render :partial => "console/shared/articles", :locals=>{ :articles => @articles} %>
+		<%=render :partial => "console/shared/article_operation_bar", :locals=>{ :articles => @articles} %>
+	</div>
+</div>
+

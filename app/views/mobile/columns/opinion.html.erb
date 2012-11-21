@@ -1,0 +1,25 @@
+<% @title="智库频道" %>
+
+<% cache(column_show_content_key_by_id(@head_article[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "最新头条", :articles => @head_article[:articles].map(&:article).compact} %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@column[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "专栏", :articles => @column[:articles].map(&:article).compact} %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@comment[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "评论", :articles => @comment[:articles].map(&:article).compact} %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@note[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "记者手记", :articles => @note[:articles].map(&:article).compact} %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@blog[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "博客", :articles => @blog[:articles].map(&:article).compact} %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@yetan_column[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "叶檀每日评", :articles => @yetan_column[:articles].map(&:article).compact} %>
+<% end %>

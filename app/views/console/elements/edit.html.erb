@@ -1,0 +1,12 @@
+<p>edit element, <%= @element.title %></p>
+<%= simple_form_for([:console, @element], :html => {:id => "element_form", :class => "formA"}) do |f| %>
+	<p>
+		<%= f.input :title , :label => "标题:" %>
+	</p>
+	<p>
+		<%= f.input :slug , :label => "网址:",:input_html => {:style => "width:150px;" }%>
+		<span class="preurl">www.nbd.com.cn/</span>
+	<p class="formRightAlign">
+		<%= link_to "<span>添加新专题</span>".html_safe, "javascript:void(0);", :onclick => "$(this).closest('form').submit();return false;", :id => "create_new_feature", :class => "btnBlueM" %>
+	</p>
+<%end%>

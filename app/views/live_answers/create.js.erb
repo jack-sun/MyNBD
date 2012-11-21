@@ -1,0 +1,9 @@
+(function(){
+	// @question_page
+	var talk_div= $("li#talk_<%= @live_talk.id %>");
+	var form = talk_div.find("form");
+	form.find("textarea").val("");
+	_enableSubmit(form);
+	form.closest(".answerWrapper").hide();
+    $("<%= escape_javascript(render :partial => "/weibos/weibo_item_for_live_detail", :locals => {:weibo => @live_answer.weibo, :type => "answer", :answer => @live_answer}) %>").hide().prependTo(talk_div.find(".answersList")).fadeIn(1000);
+})();

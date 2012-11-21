@@ -1,0 +1,43 @@
+<% 
+#interviewee# 
+title = "有什么好消息告诉大家?" unless title
+%>
+
+<div class="logSpeak quickWeibo roundCorner">
+	<!--<h3><%= title %></h3>-->
+	<%= form_tag(weibos_path, :id => 'quick_weibo_form', :class => "speakForm", :remote => true) do %>
+		<div class="speakSuccessTip">发送成功！</div>
+		<%=  text_area_tag :content, nil, :class => "textInput" %>
+		<div class="action"> 
+			<%= link_to "<span>发 布</span>".html_safe, "javascript:void(0)", :class => "speakBtn btnBlue" %>
+			<div class="clear"></div>
+		</div>
+	<% end %>
+</div>
+
+<script type="text/javascript">
+	$(function(){
+		var nickname = "<%= interviewee.nickname %>";
+			placeHolderTxt = "有什么要告诉@"+nickname+" 的吗？",
+			optForm = $("#quick_weibo_form"),
+			optTextarea = optForm.find("textarea"),
+			action = optForm.find(".action");
+		
+		optTextarea.val(placeHolderTxt);
+		
+		optTextarea.focus(function(){
+			if($.trim($(this).val()) == placeHolderTxt){
+				$(this).val("@"+nickname+" ");
+			}
+			$(this).css({
+				"color":"#202020",
+				"height":80
+			});
+			action.show();
+		}).blur(function(){
+			$(this).css({
+				"color":"#808080"
+			});
+		});
+	});
+</script>

@@ -1,0 +1,62 @@
+<%@title="账号设置 - 基本信息"%>
+<%= require_css "account_settings.css" %>
+<div class="leftCol">
+	<div id="pageName"><h1>账号设置</h1></div>
+    <div class="tabs">
+        <ul>
+            <li class="current">
+                <%= link_to "基本信息", settings_user_url %>
+            </li>
+            <li>
+                <%= link_to "修改密码", change_password_user_url %>
+            </li>
+            <!--<li>
+                <%= link_to "绑定账号", weibo_accounts_user_url %>
+            </li>-->
+        </ul>
+    </div>
+
+    <%if params[:notice] %>
+		<div class="alert_done"><b></b><%= params[:notice] %></div>
+	<%end %>
+    <%= form_for(@user, :url => settings_user_url, :html => {:id => "user_form", :class => "formA roundCorner", :multipart => true}) do |f| %>
+    <p>
+        <label>
+            登录帐号: 
+        </label>
+        <span class="pureText"><%= @user.email %></span>
+    </p>
+    <p>
+        <%= f.label :nickname, "昵称：" %><br/>
+        <%= f.text_field :nickname, :class => "textInput #{@user.errors[:nickname].present? ? 'error' : ''}" %>
+		<%if @user.errors[:nickname].present? %><span class="tip error"><%= @user.errors[:nickname].last %></span><%end%>
+    </p>
+    <p>
+        <%= f.label :image, "头像：" %>
+        <% if @user.image.present? %>
+        <%= f.fields_for :image, @user.image do |image| %>
+        <%= image_tag(user_avatar_path(@user, :large)) %>
+        <%= image.file_field :avatar %>
+        <%= image.hidden_field :avatar_cache %>
+        <%end %>
+        <% else %>
+        <%= f.fields_for :image, Image.new do |image| %>
+        <%= image.file_field :avatar %>
+        <%= image.hidden_field :avatar_cache %>
+        <% end %>
+        <%end %>
+    </p>
+    <p>
+        <%= f.label :desc, "关于我：" %><br/>
+        <%= f.text_area :desc, :class => "textInput", :style => "width:300px;height:80px;"  %>
+    </p>
+    <p>
+    	<a href="javascript:void(0)" class="btnBlueM" onclick="$(this).parents('form').submit();return false;" ><span>保存</span></a>
+    </p>
+    <%end %>
+	
+</div>
+<div class="rightCol">
+</div>
+<div class="clear">
+</div>

@@ -1,0 +1,53 @@
+<%
+=begin
+Parameters:
+articles : Array article objects
+display_top: true | false (optional, default is true)
+=end
+display_top = true if (not defined?(display_top)) or display_top.nil?
+special_column = 'normal' if (not defined?(special_column)) or special_column.nil?
+logger.debug "----------special_column: #{special_column}"
+%>
+
+<table id="articleTable" class="tableA">
+  <thead>
+    <tr>
+      <th>标题</th>
+      <th>编辑</th>
+      <th>时间</th>
+      <th>状态</th>
+      <th>操作</th>
+    </tr>		
+  </thead>
+  <tbody id="sortableBox">
+    <% articles.each do |a| %>
+      <% next unless a.present? %>
+      <tr id="article_<%= a.id %>">
+        <td class="itemTitle">
+          <% if special_column == 'ntt' %>
+            <%= link_to a.title, ntt_article_url(a), {:target => "_blank"} %>
+          <% elsif special_column == 'west' %>
+            <%= link_to a.title, west_article_url(a), {:target => "_blank"} %>
+          <% else %>
+            <%= link_to a.title, article_url(a), {:target => "_blank"} %>
+          <% end %>
+        </td>
+        <td><%= a.staffs.map(&:real_name).join(",") %></td>
+        <td class="itemDate"><%= a.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+        <td class="itemStatus_<%=a.status%>"><%= Article::STATUS[a.status.to_i] %></td>
+        <td class="itemActions">
+          <%= link_to("<b></b>编辑".html_safe, edit_console_premium_mobile_news_url(a), :class=>'actionEdit') %>
+          <%= link_to("<b></b>删除 ".html_safe, console_premium_mobile_news_url(a), :confirm => "删除文章？", :method => :delete, :class=>'actionDelete') %>
+          <br/>
+
+          <% if a.published? %>
+            <%= link_to("<b></b>屏蔽".html_safe, "javascript:void(0);", :class=>'actionBanned') %>
+          <% else %>
+            <%= link_to("<b></b>发布".html_safe, "javascript:void(0);", :class=>'actionPublish') %>
+          <% end %>
+        </td>
+      </tr>
+    <%end%>
+  </tbody>
+</table>
+

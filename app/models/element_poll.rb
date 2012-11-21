@@ -1,0 +1,3 @@
+class ElementPoll < Element
+  
+end

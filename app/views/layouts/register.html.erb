@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title><%=@title%></title>
+  <%= stylesheet_link_tag "reset", "style_global", "style_website", "register" %>
+  <%= yield :header_css %>
+  <%= javascript_include_tag "jquery.min", "jquery_ujs", "nbdtools" %>
+  <%= yield :header_js %>
+  <%= csrf_meta_tag %>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+</head>
+
+<body id="body_register">
+
+<div id="top" class="dark"><div id="topStyle">
+	<div class="innerCenter">
+		<!--<span>张黎黎</span><a href="#">[登出]</a>|<a href="#">账户设置</a>|<a href="#">意见反馈</a>-->
+    </div>
+</div></div>
+
+<div id="header">
+	<div class="innerCenter" id="logo">
+		<a class="logo" id="logoSite" href="/" title="每经网">每经网</a>
+    </div>
+</div>
+
+<div id="wrapper">
+	<%= yield %>
+</div>
+<%= render :partial => "layouts/footer" %>
+<%= render :partial => "layouts/analytics" %>
+</body>
+</html>

@@ -1,0 +1,230 @@
+#body_weibo #main{
+	background-color: #fcfcfc;
+}
+#body_weibo #main .leftCol{
+	padding-top: 15px;
+}
+
+.tabs li { position: relative; }
+.tabs .newTip { position: absolute; display: none; right:-3px; top:-5px; width:15px; height:14px; color: white; font-size:12px; background:url(../images/new-message.gif) 0 0 no-repeat; }
+
+.liveStat{}
+.liveStat.theEnd{
+	
+}
+.liveStat.notStarted{
+	
+}
+.liveStat.inProgress{
+	
+}
+.liveDate{
+	font-size: 16px;
+	margin-right: 10px;
+}
+.liveTime{
+	font-size: 16px;
+}
+.answerWrapper { display:none; margin:0 55px; text-align:right; }
+.answerWrapper .answerForm { padding:10px; background:#f5f5f5; border:1px solid #eee; }
+.answerWrapper .answerForm textarea { margin:5px auto; width:98%; *width:425px; height:25px; }
+.weiboItemList li.liveComment, .weiboItemList li.qaComment{
+	*zoom:1;
+	border:none;
+	margin:0 15px 25px 1px;
+	padding:0;
+	width:auto;
+}
+.weiboItemList li.liveComment .itemContent, .weiboItemList li.qaComment .itemContent{
+	*zoom:1; 
+	padding:10px 15px; 
+	background-color: white;
+	margin:0;
+}
+.weiboItemList li .subComments .commentsList .itemContent {
+	margin-left: 50px;
+	padding: 0;
+	background: none;
+}
+.weiboItemList li .speakActions li {
+	*zoom:1;
+	border:none;
+	margin:0;
+	padding:0;
+	width:auto;
+}
+.weiboItemList li.liveComment .avatarWithName, .weiboItemList li.qaComment .avatarWithName{
+	margin-top:2px;
+}
+.liveTalks{
+	padding:20px 0 0 0;
+}
+
+.liveTalks .talkItemInner {
+	*zoom:1;
+	padding-bottom: 0;
+	background-color:#CFD6E5;
+	border:2px solid #f1f1f1;
+	padding: 0 1px 1px;
+	border-top-width: 1px;
+	border-top-color:#CFD6E5;
+	position: relative;
+}
+.weiboItemList .avatar img{
+	width: 40px;
+	height: 40px;
+}
+.liveTalks .talkItemInner{
+	margin: 0 55px 0 55px;
+}
+.answersList{
+	margin-top:3px;	
+}
+.answersList .avatarWithName{
+	float: right;
+	margin-top:2px;
+}
+.comment .subComments textarea { width:390px; }
+.qaComment .subComments textarea { width:390px; }
+.arrow{
+	position: absolute;
+	width: 6px;
+	height: 11px;
+}
+.comment .arrow, .question .arrow{
+	background: url(../images/arrow-s-left.gif) 0 0 no-repeat;
+	left: -5px;
+	top: 15px;
+}
+.answer .arrow{
+	background: url(../images/arrow-s-right.gif) 0 0 no-repeat;
+	right: -5px;
+	top: 15px;
+}
+
+#liveOpt { margin:10px 0; text-align:center; }
+#banner{
+	width: 610px;
+	height: 90px;
+	margin-bottom: 10px;
+}
+#pageName{
+	margin-bottom: 10px;
+}
+#pageName h1{
+	font-size: 20px;
+}
+#pageName .btnBlueM{
+}
+
+#askBox {
+	padding:10px 10px 5px 10px;
+}
+#askForm textarea{
+	width: 480px;
+}
+#askForm{
+	margin-bottom: 0;
+}
+
+#liveTalkList{
+}
+
+.editWeiboDiv textarea {
+	width:98%;
+	*width:425px;
+	height:150px;
+	overflow-x:hidden;
+	overflow-y:auto;
+}
+
+.editWeiboDiv .bottomEdit {
+	text-align:right;
+	margin:6px 0 0 0;
+}
+
+.editWeiboDiv .bottomEdit>a {
+	margin:0 0 0 10px;
+}
+
+#livesList dt{
+	font-weight: bold;
+	padding: 0 5px;
+	line-height: 24px;
+}
+
+#livesList dt .articleLabel{
+	float: right;
+}
+
+#livesList dd{
+	margin-bottom: 7px;
+	border-bottom: 1px dotted #CFD6E5;	
+	padding: 0 5px 7px;
+}
+
+.weiboItemList .avatarWithName{
+	width: 45px;
+}
+
+.logSpeak{
+	margin-bottom: 10px;
+}
+
+/*
+	selectAtGuest
+-------------------------------------*/
+
+#selectAtGuest{
+	*z-index:111;
+	position:relative;
+	float:right;
+	overflow:visible;
+}
+
+#selectAtGuest .btnGrayBlue{
+	margin-top:8px;
+}
+
+#atGuestList{
+	*zoom:1;
+	display:none;
+	position:absolute;
+	top:30px;
+	left:0;
+	border:1px solid #3d84d5;
+	background:#fff;
+	font-size:12px;
+	z-index:999;
+}
+
+#atGuestList li{
+	display:block;
+	padding:4px;
+	color:#3d84d5;
+	border-bottom:1px dotted #3d84d5; 
+	white-space:nowrap;
+}
+
+#atGuestList li.last{
+	border:none;
+}
+
+#atGuestList li:hover {
+	cursor:pointer;
+	background:#3d84d5;
+	color:#fff;
+}
+#atGuestList li:hover a{
+	text-decoration:none;
+	color:#fff;
+}
+
+#marketTable{
+	margin-bottom: 20px;
+}
+#body_weibo .rightCol #marketTable .content{
+	padding-left: 5px;
+	padding-bottom: 0;
+}
+

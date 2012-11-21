@@ -1,0 +1,26 @@
+<div class="title">
+	<h1>页面元素编辑 - 标题</h1>
+</div>
+
+<%= simple_form_for([:console, @owner, @element], :html => {:id => "element_form", :class => ""}) do |f| %>
+	<p>
+		<%= f.input :title , :label => "标题:" %>
+	</p>
+	<p>
+		<% unless @element.new_record? %>
+          <%= f.input :content ,:as => :hidden,:input_html => {:value => @body} %>
+		<%else%>
+			<%= f.input :content , :as => :hidden%>
+		<%end%>
+	</p>
+	<%= render "console/elements/element_editpage_actions" %>
+<%end%>
+
+<script type="text/javascript">
+	$("#createNewElement").click(function(){
+		var text = $("#element_<%= @k_name %>_title").val();
+		var body = {'body' : text};
+		$("#element_<%= @k_name %>_content").val(JSON.stringify(body));
+		$('form').submit();
+	});
+</script>

@@ -1,0 +1,21 @@
+<h1>Listing console_articles</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @articles.each do |console_article| %>
+  <tr>
+    <td><%= link_to 'Show', console_article %></td>
+    <td><%= link_to 'Edit', edit_console_article_url(console_article) %></td>
+    <td><%= link_to 'Destroy', console_article, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Article', new_console_article_url %>

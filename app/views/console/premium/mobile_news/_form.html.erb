@@ -1,0 +1,184 @@
+<%= require_tinymce %>
+<%= require_popWin %>
+<%= require_tabs %>
+
+<% 
+    url = ""
+    if @article.new_record?
+        url = console_premium_mobile_news_index_path
+    else
+      url = console_premium_mobile_news_path(@article)
+    end
+%>
+
+<%= simple_form_for([:console, @article],:url =>url, :html => {:id => "article_form", :multipart => true}) do |f| %>
+  <%= f.input :status, :as => :hidden, :default => 0 %>
+  <%= f.grouped_collection_select :column_ids, Column.basic_columns.includes(:children), :children, :name, :id, :name, {:selected => [Column::MOBILE_NEWS_COLUMN]}, {:multiple => true, :style => "display:none"} %>
+  <div class="subRightCol">
+    <fieldset class="formA roundCorner">
+
+      <% link_to "<span>预览文章</span>".html_safe, "javascript:void(0);", :id => "preview_article", :class => "btnGrayBlue rf"%>
+
+      <p>
+          <%= link_to "<span>#{(@article.banned? || @article.new_record? || @article.status == 0) ? '发布期刊' : '更新期刊'}</span>".html_safe, "javascript:void(0);", :id => "publish_article", :class => "btnBlueM rf" %>
+      </p>
+    </fieldset>
+  </div>
+  <div class="subLeftCol">
+    <table class="formC">
+      <tr>
+        <th>
+          <%= f.label :title, "期刊名:" %>
+        </th>
+        <td>
+          <%= f.input :title, :label => false %>
+          <%= f.input :status, :as => :hidden %>
+        </td>
+      </tr>
+    </table>
+    <div id="editPageContent">
+      <div class="tabs">
+        <ul>
+          <% unless @article.pages.blank? %>
+            <% (1..(@article.pages.size)).each do |page_index| %>
+              <% if page_index == 1 %>
+                <li class='current'>
+                  <a href="#tabs-<%= page_index %>">第<%= page_index %>页</a>
+                </li>
+                <% next %>
+              <% end %>
+              <li>
+                <a href="#tabs-<%= page_index %>">第<%= page_index %>页</a>
+              </li>
+            <% end %>
+          <% else %>
+            <li class='current'>
+              <a href="#tabs-1">第1页</a>
+            </li>
+          <% end %>
+          <li>
+            <a id="addTab" href="javascript:void(0)">新增</a>
+          </li>
+        </ul>
+      </div>
+      <div id="inputArea">
+        <% unless @article.pages.blank? %>
+          <% @article.pages.each_with_index do |page, index| %>
+            <%= f.fields_for :pages, page do |p| %>
+              <div id="tabs-<%= page.p_index %>">
+                <%= p.input :content, :as => :text,  :label => false, :input_html => {:cols => 30, :rows => 20} %>
+                <%= p.input :p_index, :as => :hidden %>
+                <%= p.input :_destroy, :as => :hidden, :input_html => {:class => "page_destroy"} %>
+              </div>
+            <% end %>
+          <% end %>
+        <% else %>
+          <%= f.fields_for :pages, @article.pages.new do |pages| %>
+            <div id="tabs-1">
+              <%= pages.input :content, :as => :text, :label => false, :input_html => {:cols => 30, :rows => 20, :class => "test"} %>
+              <%= pages.input :p_index, :as => :hidden, :input_html => {:value => 1} %>
+              <%= pages.input :_destroy, :as => :hidden, :input_html => {:class => "page_destroy"} %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+      <a href="javascript:void(0)" id="removePage" class="btnRed rf" style="margin:0 2px 0 auto"><span>删除此分页</span></a>
+      <div class="clear"></div>
+    </div>
+  </div>
+<% end %>
+
+
+<script type="text/javascript">
+  $(function(){
+    var isNewArticle = $("#article_pages_attributes_0_id").length == 0 ? true : false; 
+    var boxEditPage = $('#editPageContent');
+    var tinymceConfigs = {
+      // General options
+      theme: "advanced",
+      plugins:"media",
+      media_strict: false ,
+      language:"zh-cn",
+      relative_urls:false,
+      convert_urls:false,
+      // Theme options
+      theme_advanced_buttons1: "bold,link,unlink,removeformat,image,media,code",
+      theme_advanced_buttons2: "",
+      theme_advanced_buttons3: "",
+      theme_advanced_toolbar_location: "top",
+      theme_advanced_toolbar_align: "left",
+      invalid_elements : "iframe,script",
+
+      setup: function(ed){
+      // Add a custom button for image
+        ed.addButton('image', {
+          title: '插入图片',
+          onclick: function(){
+            var newWindowStatus = "width=700,height=700,top=200,left=" + ($(window).width() - 500) / 2 + ",toolbar=1,status=1,scrollbars=1";
+            var newWindowUrl = location.href.indexOf("nbd.com.cn") == -1 ? "http://www.nbd.cn/console/images/upload_images" : "http://www.nbd.com.cn/console/images/upload_images";
+            window.open(newWindowUrl, "imagesSelect", newWindowStatus);
+          }
+        });
+
+        ed.onExecCommand.add(function(ed, cmd, ui, val) {
+          if(cmd === "RemoveFormat"){
+            var content = ed.getContent();
+            content = content.replace(/\<p\>(\&nbsp\;\s*)+/g, "<p>");
+            ed.setContent(content);
+          }
+        });
+
+      }
+    }
+  // for init
+  var extendTinymceConfigs = $.extend({
+      oninit : function(){
+        boxEditPage.find("div[id^='tabs']").hide().filter(':first').show();
+      }
+  },tinymceConfigs);
+
+    boxEditPage.nbdtabs({
+      limitNum:20,
+      
+      addDOM:"#addTab",
+      removeDOM:"#removePage",
+      tabsDOM:"#editPageContent .tabs ul",
+      contentDOM:"#inputArea",
+      templateContent:"<textarea id='article_pages_attributes_$(id_textarea)_content' name='article[pages_attributes][$(id_textarea)][content]' cols='40' rows='20'></textarea><input class='hidden' id='article_pages_attributes_$(id_textarea)_p_index' name='article[pages_attributes][$(id_textarea)][p_index]' type='hidden' value='$(id)' /><input class='page_destroy' type='hidden' name='article[pages_attributes][$(id_textarea)][_destroy]' value='false'></input> ",
+      
+      readyEvent:function(tabLength){
+        textareaID = tabLength;
+      },
+      beforeAddEvent:function(templateContent){
+        textareaID++;
+        return templateContent.replace(/\$\(id_textarea\)/g, textareaID);
+      },
+      afterAddEvent:function(newContent){
+        newContent.find('textarea').tinymce(tinymceConfigs);
+      },
+      removeContentEvent:function(closeContent){
+        if(isNewArticle){
+          closeContent.remove();
+        }else {
+          closeContent.find("input.page_destroy").attr("value", "1");
+          closeContent.addClass("remove");
+          closeContent.attr("id", "");
+          closeContent.hide();
+        }
+
+      },
+      refreshContentEvent:function(content,index){
+        console.log(content);
+        content.children("input[id$='p_index']").val(index + 1);
+      }
+    });
+    
+    boxEditPage.find("div[id^='tabs']").show(); //for tinymce
+    boxEditPage.find('textarea').tinymce(extendTinymceConfigs);
+
+
+    $("#publish_article").click(function(){
+      $("form").submit();
+    });
+  });
+</script>

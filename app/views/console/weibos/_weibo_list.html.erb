@@ -1,0 +1,42 @@
+<% require_js "console_selectAll" %>
+<% require_popWin %>
+<div class="sortableTableMargin">
+	<table id="weiboTable" class="tableA">
+		<thead>
+			<tr>
+				<th class="forHandler"></th>
+				<th><input class="selectAll" type="checkbox" /></th>
+				<th>内容</th>
+				<th>发布者</th>
+				<th>转发/评论</th>
+				<th>时间</th>
+				<th>状态</th>
+				<th>操作</th>
+			</tr>		
+		</thead>
+		<tbody id="sortableBox">
+			<% weibos.each do |w| %>
+				<% next unless w.present? %>
+				<tr id="weibo_<%= w.id %>">
+					<td class="forHandler"><span class="dragHandler"></span></td>
+                    <td class="forSelect"><input class="subSelect" type="checkbox" value="<%= w.id %>"/></td>
+					<td><%= w.content %></td>
+					<td><%= link_to(w.owner.nickname, user_url(w.owner)) %></td>
+					<td><%= w.rt_count %> / <%= w.reply_count %></td>
+					<td class="itemDate"><%= w.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+					<td class="itemStatus_<%=w.status%>"><%= Weibo::STATUS[w.status.to_i] %></td>
+					<td class="itemActions">
+						<%= link_to "<b></b>查看".html_safe, weibo_url(w), :class=>'actionEdit' %>
+						<%= link_to "<b></b>删除 ".html_safe, console_weibo_url(w), :confirm => "删除这条微博？", :method => :delete, :remote => true, :class=>'actionDelete' %>
+						<% if !w.is_banned? %>
+						  <%= link_to("<b></b>屏蔽".html_safe, "javascript:void(0);", :class=>'actionBanned') %>
+	                    <% else %>
+						  <%= link_to("<b></b>发布".html_safe, "javascript:void(0);", :class=>'actionPublish') %>
+	                    <% end %>
+					</td>
+				</tr>
+			<%end%>
+		</tbody>
+	</table>
+</div><!-- table wrapper -->
+

@@ -1,0 +1,30 @@
+<% @title="公司频道" %>
+
+<% cache(column_show_content_key_by_id(@head_article[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "最新头条", :articles => @head_article[:articles].map(&:article).compact} %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@featured[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "频道精选", :articles => @featured[:articles].map(&:article).compact} %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@hot[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "热公司", :articles => @hot[:articles].map(&:article).compact} %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@sicence[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "科技", :articles => @sicence[:articles].map(&:article).compact} %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@property[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "房产", :articles => @property[:articles].map(&:article).compact} %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@consumable[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "消费品", :articles => @consumable[:articles].map(&:article).compact} %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@auto[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "汽车", :articles => @auto[:articles].map(&:article).compact} %>
+<% end %>
+

@@ -1,0 +1,33 @@
+<div class="sectionA">
+	<div class="title">
+		<h1>报纸管理</h1>
+		<span class="opts"><%= link_to "<span>添加新报纸</span>".html_safe, new_console_newspaper_path, :class => "btnBlueM" %>
+		</span>
+	</div>
+	<div class="content rightColCenter">
+		<table class="tableA">
+			<thead>
+				<tr>
+					<th>报纸期号</th>
+					<th>状态</th>
+					<th>操作</th>
+				</tr>		
+			</thead>
+			<tbody>
+				<% @newspapers.each do |newspaper| %>
+					<tr>
+					<td class="itemTitle"><%= link_to newspaper.n_index, console_newspaper_path(newspaper)%></td>
+		            <td><span class="<%=newspaper.status==1 ? 'green' : 'red'%>"><%=newspaper.status==1 ? '已发布' : '未发布'%></span></td>
+					<td class="itemActions">
+					<%= link_to '<b></b>文章管理'.html_safe, console_newspaper_path(newspaper), :class => "actionChilden" %>
+					<%= link_to '<b></b>删除'.html_safe, console_newspaper_path(newspaper), :confirm => '确定删除这期报纸吗?', :method => :delete, :class => "actionDelete" %>
+					</td>
+					</tr>
+				<%end%>
+			</tbody>
+		</table>
+		<div style="margin:10px 0 0 0;height:30px;"><%= paginate @newspapers %></div>
+	</div>
+</div>
+
+

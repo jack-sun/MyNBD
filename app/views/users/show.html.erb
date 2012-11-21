@@ -1,0 +1,39 @@
+<%= require_popWin %>
+<%= require_autoComplete %>
+<%= require_css "weibo_myhome.css" %>
+<%= require_js "weibo_mana" %>
+<%= require_js "speak_mana" %>
+<%= require_js "weibo_notify.js" %>
+
+<div class="leftCol">
+	
+	<%= render :partial => "weibos/form_for_new_weibo" %>
+	
+	<%= render :partial => "users/tab_navs", :locals => {:tab => "user_path"} %>
+	
+	<div id='newWeiboLoading' class='loading'><span>正在加载，请稍后</span></div>
+	
+	<%= render :partial => "users/notify" %>
+	
+	<ul class="weiboItemList withTabs" id="weibos_list">
+		<% @weibos.each_with_index do |weibo, index| %>
+			<%= render :partial => "weibos/weibo_item", :locals => {:weibos => @weibos, :weibo => weibo, :index => index, :interviewee => @interviewee, :is_same_user => true} %>
+		<% end %>
+	</ul>
+	
+	<%= paginate @weibos %>
+	
+
+</div>
+
+<div class="rightCol">
+	<%= render :partial => "users/user_profile", :locals => {:interviewee => @current_user} %>
+	<%= render :partial => "users/user_stats_details", :locals => {:interviewee => @current_user} %>
+	<% render :partial => "users/user_stocks", :locals => {:stocks => []} %>
+	<%= render :partial => "users/hot_topics", :locals => {:hot_topics => []} %>
+	<% render :partial => "users/breaking_news", :locals => {:breaking_news => []} %>
+	<% render :partial => "users/users_recommand", :locals => {:users => []} %>
+	<%= render :partial => "weibos/feedback", :locals => {:html_class => "sectionB"} %>
+</div>
+
+<div class="clear"></div>

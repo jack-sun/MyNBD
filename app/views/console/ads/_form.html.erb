@@ -1,0 +1,52 @@
+<%= simple_form_for [:console, @ad], :html => {:multipart => true, :id => "createAdForm", :class => "formA"} do |f| %>	
+	<p><%= f.input :sponsor, :label => "客户:" %></p>
+    <p><%= f.association :ad_position, :label => "位置:", :label_method => :value_for_select %></p>
+  <p><%= f.input :title, :label => "标题:" %></p>
+  <div class=""><%= f.label :image, "头像:" %>
+  <%= f.fields_for :image, (@ad.image ? @ad.image : Image.new) do |image| %>
+    <div class="formRightAlign">
+      <% if @ad.image && !@ad.image.ad.nil? %>
+        <div class="imageThumbs"><%= image_tag(@ad.image.ad_url(:subdomain => "www"))%></div>
+      <% end %>
+      <div>文件尺寸:
+        <span id="imageSize">
+          <% if ad_p = @ad.ad_position %>
+            <%= "#{ad_p.width}x#{ad_p.height}" %>
+          <% end %>
+        </span>
+      </div>
+      <%= image.file_field :ad %>
+      <%= image.hidden_field :ad_cache %>
+    </div>
+  <%end %>
+  </div>
+  <p><%= f.input :link, :label => "链接:", :input_html => { :id => "adLinkInput" } %></p>
+  <p class="formRightAlign">
+  	<a class="btnBlueM" href="javascript:void(0)" onclick="$(this).closest('form').submit();return false;"><span>提交</span></a>
+  </p>
+  
+<% end %>
+<script type="text/javascript">
+	$(function(){
+		var regUrl = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/; 
+		
+		$("#ad_ad_position_id").change(function(){
+			var ad_p_id = $(this).val();
+			$.get("<%= update_size_console_ad_positions_url %>",{ad_p_id:ad_p_id}, function(data){
+				$("#imageSize").text(data);
+			});
+		});
+		
+		$("#createAdForm").submit(function(){
+			if( $(".imageThumbs").length == 0 && $("input[type=file]").val() === "" ){
+				alert("请上传一张图片。");
+				return false;
+			}
+			
+			if( !regUrl.test( $("#adLinkInput").val() ) ){
+				alert("无效的广告链接。");
+				return false;
+			}
+		});
+	});
+</script>

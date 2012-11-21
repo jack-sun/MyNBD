@@ -1,0 +1,24 @@
+<div class="sectionA">
+  <div class="title">
+    <h1>图片库-添加新图片</h1>
+    <span class="opts">
+      <%= link_to '<span>取消</span>'.html_safe, console_images_path, :class => "btnGray" %>
+    </span>
+  </div>
+  <div class="content rightColCenter">
+		<%= render :partial =>'image_upload_form', :locals => {:url_method => "article", :image => Image.new} %>
+		<div class="rightAlignActions">
+			<%= link_to '<span>确定</span>'.html_safe, 'javascript:void(0)', :class => "btnBlueM", :id => "confirmUpdate" %>	
+		</div>
+  </div>
+</div>
+
+<script type="text/javascript">
+	$(function(){
+		$("#confirmUpdate").click(function(){
+			_updateImageData(function(){
+				window.location.href = "<%= console_images_url %>";
+			});
+		});
+	});
+</script>

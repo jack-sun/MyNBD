@@ -1,0 +1,51 @@
+<div class="sectionA">
+	<div class="title">
+		<h3>相关新闻</h3>
+	</div>
+	<div class="content">
+		<div class="horizonLayout">
+			<ul class="articleList unorderList">
+              <% articles.reject!{|x| x.id == @article.id} if @article %>
+              <% unless articles.count < 1 %>
+				<% articles[0..1].each_with_index do |article,index|%>
+					<li class="articleRecommend">
+						<h5 class='rcTitle'>
+							<%= link_to article.list_title, article_url(article), {:target => "_blank"} %>
+						</h5>
+						<div class="rcDigest">
+							<%= link_to image_tag(article_thumbnail_path(article, :small)),  article_url(article) if article.image.present? %>
+							<p class="restrict" >
+								<%= truncate(article.show_digest, :length => 50) %>
+							</p>
+							<div class="clear"></div>
+						</div>
+					</li>
+				<% end %>
+              <% end %>
+			</ul>
+		</div>
+		<div class="subLeftCol">
+			<ul class="articleList unorderList">
+              <% unless articles.count < 2 %>
+				<% articles[2..5].each_with_index do |article,index|%>
+					<li>
+						<%= link_to article.list_title, article_url(article) %>
+					</li>
+				<% end %>
+              <% end %>
+			</ul>
+		</div>
+		<div class="subRightCol">
+			<ul class="articleList unorderList">
+              <% unless articles.count < 6 %>
+				<% articles[6..articles.length].each_with_index do |article,index|%>
+					<li>
+						<%= link_to article.list_title, article_url(article) %>
+					</li>
+				<% end %>
+              <% end %>
+			</ul>
+		</div>
+		<div class="clear"></div>
+	</div><!--content-->
+</div>

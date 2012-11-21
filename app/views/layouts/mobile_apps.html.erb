@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title><%= @title.blank? ? "每经网移动客户端 | 每经网" : "每经网移动客户端 | #{@title} | 每经网"%></title>
+    <%= stylesheet_link_tag "reset", "style_global", "style_website", "mobile_apps" %>
+    <%= yield :header_css %>
+    <%= javascript_include_tag %>
+    <%= yield :header_js %>
+    <%= csrf_meta_tag %>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta name="keywords" content="每经网iPhone客户端, 每经网iPad客户端, 每经网Android客户端, 每经网BlackBerry客户端, 每经网windows7客户端, 每经网symbian客户端, 每经网wm客户端, 每经网java客户端, 每经网iPhone版, 每经网iPad版, 每经网Android版, 每经网BlackBerry版, 每经网windows7版, 每经网symbian版, 每经网wm版, 每经网java版, 每经网, 移动, 手机,客户端,App, 无线, 金融, mobile, android, iOS, iPhone, iPad, BlackBerry" />
+  </head>
+
+  <body>
+    <%= render :partial => "layouts/feature_top", :locals => { :html_class => "dark" } %>
+
+    <div id="mobileHeader">
+      <h1>每经网移动客户端</h1>
+      <p>掌上财经资讯专家</p>
+    </div>
+
+    <div id="mobileWrapper">
+      <div id="wrapperBgTop"></div>
+
+      <div id="mobileNavigation">
+        <ul>
+          <li class="current"><a href="#"><b class="android"></b>Android版</a></li>
+          <li><a href="http://itunes.apple.com/cn/app/id413082888?mt=8"><b class="iphone"></b>iPhone版</a></li>
+          <li><a href="http://itunes.apple.com/cn/app/id440680920?mt=8"><b class="ipad"></b>iPad版</a></li>
+          <li><a href="http://old.nbd.com.cn/mobile/"><b class="more"></b>更多</a></li>
+        </ul>
+        <div class="clear"></div>
+      </div>
+
+      <div id="mobileContainer">
+        <%= yield %>
+      </div>
+
+      <div id="wrapperBgBottom"></div>
+    </div>
+
+    <%= render :partial => "layouts/footer", :locals => { :color => "dark" } %>
+    <%= render :partial => "layouts/analytics" %>
+  </body>
+
+</html>

@@ -1,0 +1,6 @@
+<div class="subTabs">
+	<ul>
+		<li class="first <%= tab == "comments_to_me_user_user_path" ? 'current' : '' %>"><%= link_to "我收到的评论", comments_to_me_user_path(@current_user) %></li>
+		<li class="last <%= tab == "comments_user_path" ? 'current' : '' %>"><%= link_to "我发出的评论", comments_user_path(@current_user) %></li>
+	</ul>
+</div>

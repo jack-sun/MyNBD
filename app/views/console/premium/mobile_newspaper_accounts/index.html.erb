@@ -1,0 +1,86 @@
+<div class="sectionA">
+  <div class="title">
+    <h2>
+      用户管理
+    </h2>
+    <div style="margin-top:15px;" class="opts">
+      
+  <%= form_tag search_console_premium_mobile_newspaper_accounts_url, :method => :get, :class => "searchBoxSmall" do %>
+    <a href="javascript:void(0)" onclick="$(this).closest('form').submit();return false;" class="searchBtn"></a>
+    <%= text_field_tag "query", params[:query], :class => "searchInput", :placeholder => "搜索电话号码" %>
+    <%= submit_tag "", :class => "hiddenSubmit" %>
+  <% end %>
+    </div>
+  </div>
+
+  <div id="body_state" class="content rightColCenter">
+    <% if @stats_type == "active" %>
+    <% elsif @stats_type == "invalid_soon" %>
+      <div class="datePicker">
+        <ul>
+          <li <%= stats_class_helper(14) %>>
+            <%= link_to "半个月", console_premium_mobile_newspaper_accounts_url(:type => @stats_type, :filter => "14", :page => params[:page]) %>
+          </li>
+          <li <%= stats_class_helper(7) %>>
+            <%= link_to "一周", console_premium_mobile_newspaper_accounts_url(:type => @stats_type, :filter => "7", :page => params[:page]) %>
+          </li>
+          <li <%= stats_class_helper(3) %>>
+            <%= link_to "三天", console_premium_mobile_newspaper_accounts_url(:type => @stats_type, :filter => "3", :page => params[:page]) %>
+          </li>
+        </ul>
+      </div>
+    <% elsif @stats_type == "all" %>
+      <div class="datePicker">
+        <ul>
+          <li <%= stats_class_helper(1) %>>
+            <%= link_to "今日新增", console_premium_mobile_newspaper_accounts_url(:type => @stats_type, :filter => "1", :page => params[:page]) %>
+          </li>
+          <li <%= stats_class_helper(7) %>>
+            <%= link_to "本周新增", console_premium_mobile_newspaper_accounts_url(:type => @stats_type, :filter => "7", :page => params[:page]) %>
+          </li>
+          <li <%= stats_class_helper(0) %>>
+            <%= link_to "已经过期", console_premium_mobile_newspaper_accounts_url(:type => @stats_type, :filter => "0", :page => params[:page]) %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+    <table class="tableA">
+      <thead>
+        <tr>
+          <th>用户名</th>
+          <th>手机号码</th>
+          <th>有效期至</th>
+          <th>最后付款时间</th>
+          <th>最后付款类型</th>
+          <th>最近发送时间</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @result.each do |account| %>
+          <tr>
+            <td><%= account.user.nickname %></td>
+            <td><%= account.phone_no %></td>
+            <td><%= account.service_end_at && account.service_end_at.strftime("%Y/%m/%d") %></td>
+            <td><%= account.last_payment_at && account.last_payment_at.strftime("%Y/%m/%d") %></td>
+            <td><%= MnAccount::ACTIVE_FROM[account.last_active_from] %></td>
+            <td><%= account.last_sended_at && account.last_sended_at.strftime("%Y/%m/%d") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div style="margin-top:20px;">
+      <%= paginate @result %>
+    </div>
+    <% if @stats_type == "active" %>
+    <p>
+    下载手机号码: <%= link_to "所有有效用户.txt", plain_console_premium_mobile_newspaper_accounts_url(:type => @stats_type, :fileter => @filterer_type) %>
+    </p>
+    <% end %>
+    <% if @stats_type == "invalid_soon" %>
+    <p>
+    下载手机号码: <%= link_to "即将过期的用户.txt", plain_console_premium_mobile_newspaper_accounts_url(:type => @stats_type, :fileter => @filterer_type) %>
+    </p>
+      
+    <% end %>
+  </div>
+</div>

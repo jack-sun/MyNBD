@@ -1,0 +1,79 @@
+<%
+=begin
+Parameters:
+articles: Array
+list_title: String (optional, default '')
+column_id: Int (optional, default '')
+=end
+list_title = '' unless list_title
+column_id = '' unless column_id
+for_subdomain = false unless for_subdomain
+%>
+
+<div class="sectionA">
+  <% unless list_title == "" %>
+    <div class="title">
+      <h1 class="blue"><%= list_title %></h1>
+      <% if for_subdomain %>
+        <span class="opts"><%= link_to "更多", send("#{for_subdomain}_column_url", column_id) if column_id.present? %></span>
+      <% else %>
+        <span class="opts"><%= link_to "更多", column_path(column_id) if column_id.present? %></span>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="content">
+    <div class="slideImageWrapper">
+      <div class="slideImageInner" id="imageNewsInner">
+        <% if for_subdomain %>
+          <div id="imageNewsSlide" class="imageGroup">
+            <% articles.each do |article| %>
+              <%= link_to image_tag(article_thumbnail_path(article, :large_b)),  send("#{for_subdomain}_article_url", article), :target => "_blank" %>
+            <% end %>
+          </div>
+          <div class="bottomInfo">
+            <div class="bottomInfoBg"></div>
+            <div id="imageNewsInfo" class="imageInfo">
+              <% articles.each do |article| %>
+                <span><%= link_to article.title, send("#{for_subdomain}_article_url", article) %></span>
+              <%end %>
+            </div>
+            <span id="imageNewsIndex" class="imageIndex"><% articles.each_with_index do |article, index| %>
+                <a href="javascript:void(0)"><%= index %></a><%end %>
+            </span>
+          </div>
+        <% else %>
+          <div id="imageNewsSlide" class="imageGroup">
+            <% articles.each do |article| %>
+              <%= link_to image_tag(article_thumbnail_path(article, :large_b)),  article_url(article), :target => "_blank" %>
+            <% end %>
+          </div>
+          <div class="bottomInfo">
+            <div class="bottomInfoBg"></div>
+            <div id="imageNewsInfo" class="imageInfo">
+              <% articles.each do |article| %>
+                <span><%= link_to article.title, article_url(article) %></span>
+              <%end %>
+            </div>
+            <span id="imageNewsIndex" class="imageIndex"><% articles.each_with_index do |article, index| %>
+                <a href="javascript:void(0)"><%= index %></a><%end %>
+            </span>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="text/javascript">
+  $(function(){
+    $.nbdslide.init({
+      optDOMs:[{
+          selector:"#imageNewsSlide",
+          style:"slide-x"
+        },{
+          selector:"#imageNewsInfo",
+          style:"slide-y"
+        }],
+      indexDOM:"#imageNewsIndex"
+    });
+  });
+</script>

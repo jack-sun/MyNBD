@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title><%= @title.blank? ? "每经智库 | 每经网 | 新闻决定影响力 |《每日经济新闻》报社旗下网站" : "#{@title} | 每经网"%></title>
+  <%= stylesheet_link_tag "reset", "style_global", "style_website", "wishwall" %>
+  <%= yield :header_css %>
+  <%= javascript_include_tag "jquery.min", "jquery_ujs", "cookie" %>
+  <%= yield :header_js %>
+  <%= csrf_meta_tag %>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+</head>
+
+<body id="body_think_tank">
+<%= render :partial => "layouts/feature_top" %>
+
+<%= yield %>
+	
+</body>
+</html>

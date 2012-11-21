@@ -1,0 +1,9 @@
+<%
+    begin
+      body = JSON.parse(element.content)["body"]
+    rescue Exception
+      body = "".html_safe
+    end
+
+%>
+<p><%=raw body %></p>

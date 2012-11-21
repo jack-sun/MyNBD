@@ -1,0 +1,109 @@
+<%= require_slideShow %>
+
+<% content_for :header_ad do %>
+	<!-- 请置于所有广告位代码之前 -->
+	<script type="text/javascript">
+		BAIDU_CLB_preloadSlots("349118", "347417", "347428");
+	</script>
+	<!-- 广告位：全站_顶部四分之三通栏 -->
+	<%= render :partial => "ads/ad", :locals => { :id => "349118", :html_class => "header" } %>
+<% end %>
+
+<div class="leftCol">
+	<div id="clubShowBox">
+		<div id="clubContainer">
+			<div id="clubGroup">
+                          <% head_articles = @head_articles[:articles].map(&:article) %>
+                          <% head_articles.each do |article| %>
+                              <%= link_to image_tag(article_thumbnail_path(article, :x_large), {:alt => article.list_title, :width => 500 }),  article_url(article), {:target => "_blank"} if article.image.present? %>
+                          <% end %>
+			</div>
+			<div class="blackMask"></div>
+			<ul id="clubDesc">
+                          <% head_articles.each do |article| %>
+                            <li>
+                              <%= link_to article.list_title, article_url(article), {:target => "_blank", :title => article.title} %>
+                            </li>
+                          <% end %>
+			</ul>
+		</div>
+		<ul id="clubIndex">
+                    <% head_articles.each_with_index do |article, index| %>
+                      <li <% if index==head_articles.length-1%>class="last"<% end -%>>
+                        <%= image_tag(article_thumbnail_path(article, :middle), {:alt => article.list_title, :width => 120, :height => 90}) if article.image.present? %>
+                     </li>
+                    <% end %>
+		</ul>
+		<div class="clear"></div>
+	</div>
+	
+	<div class="subLeftCol">
+          <%= render :partial => "columns/article_list", :locals => {:list_title => "活动快讯", :articles => @kx_articles[:articles].map(&:article).compact, :column_id => @kx_articles[:id], :digest_number => 1, :digest_restrict => true, :for_subdomain => Settings.club_sub_domain, :for_article_subdomain => Settings.default_sub_domain} %>
+	</div>
+	<div class="subRightCol">
+          <%= render :partial => "columns/article_list", :locals => {:list_title => "品牌活动", :articles => @pp_articles[:articles].map(&:article).compact, :column_id => @pp_articles[:id], :digest_number => 1 ,:digest_restrict => true, :for_subdomain => Settings.club_sub_domain, :for_article_subdomain => Settings.default_sub_domain} %>
+	</div>
+	<div class="subLeftCol">
+		<%= render :partial => "columns/article_list", :locals => {:list_title => "每经沙龙", :articles => @sl_articles[:articles].map(&:article).compact, :column_id => @sl_articles[:id], :digest_number => 1 ,:digest_restrict => true, :for_subdomain => Settings.club_sub_domain, :for_article_subdomain => Settings.default_sub_domain} %>
+	</div>
+	<div class="subRightCol">
+		<%= render :partial => "columns/article_list", :locals => {:list_title => "每经公益", :articles => @gy_articles[:articles].map(&:article).compact, :column_id => @gy_articles[:id], :digest_number => 1 ,:digest_restrict => true, :for_subdomain => Settings.club_sub_domain, :for_article_subdomain => Settings.default_sub_domain} %>
+	</div>
+	<div class="clear"></div>
+</div>
+
+<div class="rightCol">
+	<div class="productExpo" id="newspapper">
+		<div class="title">《每日经济新闻》<span><%= Time.now.strftime("%Y年-%m月-%d日") %></span></div>
+		<ul>
+			<li><a target="_blank" href="http://www.nbd.cn/newspapers/today">文字版</a></li>
+			<li><a target="_blank" href="http://epaper.nbd.com.cn/">图文版</a></li>
+			<li><a target="_blank" href="http://old.nbd.com.cn/html/dingyue.html">订阅</a></li>
+		</ul>
+		<div class="clear"></div>
+	</div>
+	<div class="productExpo" id="mobile">
+		<div class="title">每经网移动客户端</div>
+		<ul>
+			<li><a target="_blank" href="http://itunes.apple.com/cn/app/id413082888?mt=8">iPhone版</a></li>
+			<li><a target="_blank" href="http://itunes.apple.com/cn/app/id440680920?mt=8">iPad版</a></li>
+			<li><a target="_blank" href="http://www.nbd.com.cn/mobiles/android">Android版</a></li>
+			<li><a target="_blank" href="http://old.nbd.com.cn/mobile/">更多</a></li>
+		</ul>
+		<div class="clear"></div>
+	</div>
+	<div style="background:#fff">
+	<iframe width="100%" height="360" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=360&fansRow=1&ptype=1&speed=0&skin=1&isTitle=0&noborder=1&isWeibo=1&isFans=1&uid=2133531534&verifier=1cf05faa&dpc=1"></iframe>
+	</div>
+</div>
+
+<div class="clear"></div>
+
+<!-- 广告位：首页_左通栏一 首页_右通栏一 -->
+<%= render :partial => "ads/ad", :locals => { :ids => [347417, 347428], :html_class => "col2" } %>
+
+<div class="sectionA" id="clubPartner">
+	<div class="title">
+		<h3>合作品牌</h3>
+		<span class="opts"><a href="http://home.nbd.com.cn/zhuanti/club_moer/" target="_blank">更多</a></span>
+	</div>
+	<div class="content">
+		<a id="partnerLink" href="http://home.nbd.com.cn/zhuanti/club_moer/" target="_blank">合作品牌</a>
+	</div>
+
+</div>
+
+<script type="text/javascript">
+	$(function(){
+	    $.nbdslide.init({
+	      optDOMs:[{
+	          selector:"#clubGroup",
+	          style:"fade"
+	        },{
+	          selector:"#clubDesc",
+	          style:"normal"
+	        }],
+	      indexDOM:"#clubIndex"
+	    });
+	});
+</script>

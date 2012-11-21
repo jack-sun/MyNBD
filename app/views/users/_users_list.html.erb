@@ -1,0 +1,31 @@
+<%
+html_style = "" unless html_style
+%>
+
+<ul class="weiboUserList <%= html_style %>">
+	<% users.each do|user|
+		next if user.blank? -%>
+	<li>
+		<%= link_to image_tag(user_avatar_path(user, :middle), :name => "userhead"), user_url(user), :class => "avatar" %>
+		<div class="itemContent">
+			<span class="itemOpts">
+				<%if @current_user %>
+					<% unless @current_user.is_same_user?(user) %>
+						<% if @current_user.is_followers_of?(user) %>
+							<%= link_to "<span>取消关注</span>".html_safe, unfollow_user_url(user), :method => :post, :confirm => "你确定要取消关注吗？", :class => "btnRed" %>
+						<%else %>
+							<%= link_to "<span>+加关注</span>".html_safe, follow_user_url(user), :method => :post, :class => "btnGreen" %>
+						<%end %>
+					<%end %>
+				<% else %>
+					<%= link_to "<span>+加关注</span>".html_safe, follow_user_url(user), :method => :post, :class => "btnGreen followManaBtn" %>
+				<% end %>
+			</span>
+			<%= link_to user.nickname, user_path(user) %>
+			<p>
+				<%= user.desc %>
+			</p>
+		</div>
+	</li>
+	<%end %>
+</ul>

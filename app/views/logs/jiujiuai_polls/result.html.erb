@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <%= stylesheet_link_tag "reset", "style_global"%>
+
+    <style>
+      body { padding:20px 10%; }
+      table { width: 100%; margin: 10px auto;}
+      table td { border: 1px solid #ddd; padding: 10px; }
+      ul li {margin-top: 15px;}
+      h1 { font-size:24px; margin: 10px 0; }
+    </style>
+    
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  </head>
+
+
+  <body>
+
+    <h1 id="">玖玖爱投票分时票数统计查询 <%= @date %></h1>
+    
+    <p>提醒: 每经网于 2012-05-04 ~ 2012-05-06 投票期间每半小时记录一次所有候选项的当前票数</p>
+
+    
+    <ul>
+      <% @option_ids.each_with_index do|option_id, index| %>
+        <li>
+          <% records = @polls_options_records[option_id]  %>
+          <div><strong>排名:</strong> <%= (index + 1).to_s %></div>
+          <div><strong>选项内容:</strong> <%= records.first.polls_option.content %></div>
+          <div><strong>最后一次记录的总票数:</strong> <%= records.last.current_vote_count.to_s %></div>
+          <table>
+            <tr>
+              <% records.each do |record| %>
+                <td>
+                  <strong><%= record.created_at.strftime("%H:%M") %></strong>
+                </td>
+              <% end %>
+              <tr>
+                <% records.each do |record| %>
+                  <td>
+                    <%= record.current_vote_count %>
+                  </td>
+                <%end%>
+              </tr>
+          </table>
+        </li>
+      <% end %>
+    </ul>
+
+  </body>
+
+</html>

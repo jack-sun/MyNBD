@@ -1,0 +1,25 @@
+<style type="text/css">
+	.leftCol{
+		width: 450px;
+	}
+	.rightCol{
+		width: 500px;
+		border: none;
+	}
+</style>
+<div class="leftCol">
+	<%= render :partial => "sessions/form_for_sign_in" %>
+</div>
+<div class="rightCol">
+	<div id="weiboIntro">
+		<h3>每经社区是一个专业的财经微博社区，在此您可以：</h3>
+		<ol>
+			<li><b>1</b>第一时间获得准确，独家，专业的财经资讯；</li>
+			<li><b>2</b>收看股市直播，与专家实时互动，实时解盘；</li>
+			<li><b>3</b>参与社区活动，结交志同道合的朋友，分享投资理财心得。</li>
+		</ol>
+		<h4>还没有每经微博账号？<%= link_to "<strong>立刻注册吧 &raquo;</strong>".html_safe, "/user/sign_up", {:class => "red", :style => "text-decoration:underline;"} %></h4>
+		
+	</div>
+</div>
+<div class="clear"></div>

@@ -1,0 +1,48 @@
+#pageName{
+	margin-bottom: 10px;
+}
+.leftCol{
+	background: #fcfcfc;
+	border: 1px #e5e5e5 solid;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	margin-bottom: 15px;
+	color: #101010;
+	padding: 10px 20px;
+	width: 630px;
+}
+.rightCol{
+	border: 0;
+	padding: 0;
+}
+.subRightCol{
+	margin: 15px 15px 0 0;
+	width: 80px;
+	float: right;
+}
+.subLeftCol{
+	width: 559px;
+	padding: 10px 20px;
+	margin: 0;
+}
+
+#datepicker { width:95%; }
+#ui-datepicker-div { font-size:17px; }
+
+.articleRecommend .rcDigest p{
+	height: 40px;
+	overflow: hidden;
+}
+
+.leftCol .sectionA{
+	margin-bottom: 10px;
+}
+
+.leftCol .sectionA .content{
+	padding-left: 10px;
+}
+
+.subNavi {
+	margin-bottom: 20px;
+}

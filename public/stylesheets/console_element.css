@@ -1,0 +1,44 @@
+body { min-width:0; }
+
+.formB { margin:20px; }
+.formB input[type="text"], .formB textarea { width:400px; }
+.formB input[type='text'], .formB textarea { display:block; }
+.formB .retractBox { padding-left:80px; }
+.win1-content-wrap .formB { margin:0; }
+.sortableList li { width:auto; }
+
+/*-----------------------------------
+	layout
+-----------------------------------*/
+#elementActions { margin-top:20px; }
+#elementActions .rf { margin-left:10px; }
+#elementActions .btnRed, #elementActions .btnGray { margin-top:5px; }
+
+#addLinkForm input { width:98%; }
+.thumbImage { max-width:400px; margin-bottom:10px; }
+
+/* element article */
+#elementKeywords { width:200px; }
+#previewBox { margin:5px 0 0 0; padding:10px; border:1px solid #bbb; }
+
+/* element feature */
+#keywordSearch {  }
+#keywordSearchResult { margin-top:10px; }
+.noResult { padding:10px 5px; margin:5px 0 0 0; border:1px solid #bbb; font-size:10px; text-align:center; color:#888; }
+.resultTip { display:none; margin:8px 0 0 0; font-size:10px; color:#888; }
+
+.toChooseArticleList { border:1px solid #dedede; }
+.toChooseArticleList li { padding:3px; border-bottom:1px dotted #eaeaea; }
+.toChooseArticleList li:hover { background:#eaeaea; }
+.toChooseArticleList li:last-child { border:none; }
+#chosenArticleList li { position: relative; }
+#chosenArticleList li:hover { background: #eee; }
+
+#popWinActions { margin:10px 0; }
+#popWinActions .rf { margin-right:10px; }
+
+/* element feature */
+#changeColNum { width:50px; text-align:center; }
+#gridBox .gridItem, .placeholder { float:left; margin:10px; width:100px; height:100px; border:1px solid #ddd; cursor:pointer; }
+#gridBox .gridItem img { width:100%; height:100%; }
+#addGridItem { text-align:center; line-height:102px; }

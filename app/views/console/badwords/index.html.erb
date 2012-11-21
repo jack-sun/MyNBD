@@ -1,0 +1,30 @@
+<div class="sectionA">
+	<div class="title">
+		<h1>敏感词管理</h1>
+		<span class="opts">
+        <%= link_to "<span>添加新敏感词</span>".html_safe, new_console_badword_path, :class => "btnBlueM" %>
+		</span>
+	</div>
+
+	<div class="searchBox operation">
+        <%= link_to "", search_console_badwords_path, :id => "searchButton", :class => "searchBtn" %>
+        <%= text_field_tag "keywordField", @q, :class => "searchInput" %>
+	</div>
+
+	<div id="body_channel" class="content rightColCenter">
+		<% render :partial => "console/badkeywords/keyword_operation_bar", :locals=>{ :keywords => @keywords } %>
+		<%=render :partial => "console/badkeywords/keyword_list", :locals=>{ :keywords => @keywords } %>
+		<% render :partial => "console/badkeywords/keyword_operation_bar", :locals=>{ :keywords => @keywords } %>
+                <%= paginate @keywords %>
+	</div>
+</div>
+
+<script type="text/javascript" language="javascript" charset="utf-8">
+$(function(){
+    $("#searchButton").click(function(){
+        var text = $("#keywordField").val();
+        var url = "<%= search_console_badwords_path %>?q=" + text;
+        $(this).attr("href", url);
+      });
+    });
+</script>

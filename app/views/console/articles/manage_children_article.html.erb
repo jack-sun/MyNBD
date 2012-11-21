@@ -1,0 +1,222 @@
+<%= require_jqueryUI %>
+<%= require_js "console_sortable.js" %>
+<%= require_popWin %>
+<div class="sectionA">
+	<div class="title">
+		<h1>配稿管理: <%= link_to @article.title, article_url(@article) %></h1>
+		<span class="opts">
+			<%= link_to "<span>编辑更多</span>".html_safe, edit_console_article_url(@article), :class => "btnGrayM" %>
+			<a href="javascript:history.go(-1);" class="btnBlueM"><span>完成</span></a>
+		</span>
+	</div>
+	<div id="body_childArtical" class="content">
+		<div id="childArticalsWrapper">
+			<h2>配稿:</h2>
+			<ul id="sortableBox" class="sortableList">
+				<% @children_articles.each do |article| %>
+				<%= render :partial => "child_article_form", :locals => {:article => article} %>
+				<% end %>
+			</ul>
+			<div id="createChildActions">
+				<%= link_to "<span>+文章配稿</span>".html_safe, "javascript:void(0)", :class => "btnBlue", :id => "outArticleBtn" %>
+				<%= link_to "<span>+链接配稿</span>".html_safe, "javascript:void(0)", :class => "btnGray", :id => "outLinkBtn" %>
+			</div>
+		</div>
+		<div class="subLeftCol">
+			<div id="searchAticleBox" class="searchBox">
+				<% form_tag(console_article_manage_children_article_url(@article), :method => "get") do%>
+					<%= link_to "", "javascript:void(0)", :onclick => "$(this).closest('form').submit();return false;", :class => "searchBtn" %>
+					<input type="hidden" name="from" value="search" />
+					<input type="text" name="q" value="<%= params[:q] %>" class="searchInput" />
+					<input type="submit" class="hiddenSubmit" />
+				<%end%>
+			</div>
+			<%if false #TODO %>
+			<h3>推荐配稿:<span>(根据文章关键字匹配)</span></h3>
+			<ul class="childArticals">
+				<li>
+					<a href="#" target="_blank">新婚姻法惹争议 "婆婆"战胜"丈母娘"?</a>
+					<a class="rf" href="javascript:void(0)">[加为配稿]</a>
+				</li>
+				<li>
+					<a href="#" target="_blank">被婚姻法颠覆的择偶观</a>
+					<a class="rf" href="javascript:void(0)">[加为配稿]</a>
+				</li>
+				<li>
+					<a href="#" target="_blank">婚姻法新解释引“AA制”热议</a>
+					<a class="rf" href="javascript:void(0)">[加为配稿]</a>
+				</li>
+			</ul>
+			<%end %>
+			<div class="tabs">
+				<ul>
+					<li class=<%= if @from  == "column" then "current" end %>>
+						<%= link_to "栏目文章", console_article_manage_children_article_url(@article, :from => :column, :column_id => (@column.try(:id)||1)) %>
+					</li>
+					<li class=<%= if @from  == "mine" then "current" end %>>
+						<%= link_to "我的文章", console_article_manage_children_article_url(@article, :from => :mine) %>
+					</li>
+				</ul>
+			</div>
+			<% if @current_column %>
+			<%= grouped_collection_select :article_column, :ids, Column.basic_columns.includes(:children), :children, :name, :id, :name, {:selected => (@current_column.id) ,:include_blank => "选择栏目..."},{:id => "column_articles"} %>
+			<% end %>
+			<ul class="childArticals">
+				<% @articles.each do |article_column| %>
+				<% article = if @from  != "search" then article_column.article else article_column end %>
+				<li id="article_<%= article.id %>">
+					<%= link_to article.list_title, article_url(article), {:target => "_blank"} %>
+					<a class="convertToChild rf" href="javascript:void(0)">[加为配稿]</a>
+				</li>
+				<%end %>
+			</ul>
+			<%= paginate @articles %>
+
+		</div>
+		<div class="subLeftCol">
+		</div>
+	</div>
+</div>
+<div id="article_link" style="display:none">
+	<%= simple_form_for(@article.relate_article_children.new, :url =>  console_articles_children_url, :html => {:remote => true, :class => "formB", :id => "addLinkForm"}) do |f| %>
+	  <p><%= f.input :children_title, :label => "配稿标题:" %></p>
+      <p><%= f.input :children_url, :label => "配稿链接:", :input_html => {:class => "childUrl"} %></p>
+	<%= f.input :article_id, :as => :hidden %>
+	<div id="createLinkChildActions">
+		<a href="javascript:void(0)" class="btnBlue" onclick="$(this).closest('form').submit();return false;"><span>添加配稿</span></a>
+		<a href="javascript:void(0)" id="closeLinkPopWin" class="btnGray"><span>取消</span></a>
+		<input type="submit" class="hiddenSubmit"/>
+	</div>
+	<%end %>
+</div>
+<%= render :partial => "/console/articles_children/form" %>
+<%if false %>
+<%= simple_form_for @article, :url => console_article_manage_children_article_url(@article), :html => {:method => "put"} do |f| %>
+<%= f.association :children_articles, :collection => Article.where(["id not in (?)", @article.id]) %>
+<%= f.submit %>
+<%end %>
+<%end %>
+<script type="text/javascript">
+	var _current_article_id = '<%= @article.id %>';
+	var _popWinForEidtChild;
+	$(function(){
+	
+		var regUrl = /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w- .\/?%&=]*)?/; 
+
+		_popWinForEidtChild = $.popWin.init({title: "添加配稿"});
+		_popWinForEidtChild.content.append($("#article_form")).append($("#article_link"));
+		
+		var template = '<span class="dragHandler">拖动</span>';
+		
+		$("#outLinkBtn").click(function(){
+			$("#article_form").hide();
+			$("#article_link").show();
+			_popWinForEidtChild.div.width(500);
+			_popWinForEidtChild.title.text("添加链接配稿");
+			_popWinForEidtChild.show();
+		});
+		
+		$("#outArticleBtn").click(function(){
+			$("#article_form").show();
+			$("#article_link").hide();
+			_popWinForEidtChild.div.width(800);
+			_popWinForEidtChild.title.text("添加文章配稿");
+			_popWinForEidtChild.show();
+		});
+		
+		$('.childArticals li .convertToChild').click(convertArticle2Child);
+		$("#column_articles").change(goToColumnArticles);
+		$("#sortableBox").delegate("li .remove", "click", removeChildArticle);
+		$("#sortableBox").delegate("li .edit", "click", eidtChildArticle);
+		$("#sortableBox").delegate(".cancelEditChild", "click", cancelEditChild);
+		
+		$(".childArticals li").hover(function(){
+			$(this).css("background","#efefef");
+		},function(){
+			$(this).css("background","#fff");
+		});
+		
+		function removeChildArticle(){
+			if(!confirm("确定要删除此配稿？")) return;
+			var li_element = $(this).closest('li');
+			var article_id = li_element.attr("id").split("_")[1];
+			var url = "/console/articles/" + _current_article_id + "/remove_child_article";
+			$.post(url, {
+				child_id: article_id
+			});
+			li_element.remove();
+		}
+		
+		function cancelEditChild(){
+			var item = $(this).closest("li");
+			item.find(".childTitle").show();
+			item.find("form").hide();
+			item.closest("li").toggleClass("eidtChildBox");
+		}
+		
+		function eidtChildArticle(){
+			var item = $(this).closest("li");
+			item.find(".childTitle").hide();
+			item.find("form").show();
+			item.closest("li").toggleClass("eidtChildBox");
+		}
+		
+		$("#closeLinkPopWin").click(function(){
+			_popWinForEidtChild.hide();
+		});
+		
+		// 将已有文章加为配稿
+		function convertArticle2Child(){
+			var li_element = $(this).closest('li');
+			var article_id = li_element.attr("id").split("_")[1];
+			var isCancel;
+			$("#sortableBox li").each(function(i,li){
+				var id = $(li).attr("id").split("_")[2];
+				if(id && id == article_id){
+					alert("该文章已经存在.");
+					isCancel = true;
+					return false;
+				}
+			});
+			if(isCancel) return false;
+			
+			var url = "/console/articles/" + _current_article_id + "/add_child_article";
+			_initLoadingWindow("正在添加配稿");
+			$.post(url, {
+				child_id: article_id
+			});
+		}
+		
+		function goToColumnArticles(){
+			var column_id = $(this).val();
+			var url = "/console/articles/<%= @article.id %>/manage_children_article?from=column&column_id=" + column_id;
+			document.location.href = url;
+		}
+		
+		$("#sortableBox").delegate(".updateForm", "submit", vertifyLinkChildForm);
+		$("#addLinkForm").submit(vertifyLinkChildForm);
+		
+		function vertifyLinkChildForm(){
+			var isCancel = false; 
+			$(this).find("input[type='text']").each(function(i,input){
+				if($(input).val() == ""){
+					alert("表单不能为空。");
+					isCancel = true;
+					return false;
+				}
+			});
+			if(isCancel) return false;
+			
+			if($(this).find(".childUrl").length>0){
+				var url = $(this).find(".childUrl").val();
+				if(!regUrl.test(url)) {
+					alert("无效的网址!");
+					return false;
+				}
+			}
+			
+			_initLoadingWindow("正在更新");
+		}
+		
+	});
+</script>

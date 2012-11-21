@@ -1,0 +1,14 @@
+<%= form_tag(:action => sign_in_path, :method => "post") do |user_form| %>
+  <div class="field">
+    <%= user_form.label :name %><br />
+    <%= user_form.text_field :name, :size => 40 %>
+  </div>
+  <div class="field">
+    <%= user_form.label :password %><br />
+    <%= user_form.text_field :password, :size => 40, :autocomplete => :off %>
+  </div>
+  
+  <div class="actions">
+    <%= user_form.submit :value => "登录" %>
+  </div>
+<% end %>

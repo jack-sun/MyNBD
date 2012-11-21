@@ -1,0 +1,822 @@
+body {
+    margin: 0px;
+}
+
+div {
+    background-repeat: no-repeat;
+}
+
+.raw_image {
+    width: 100%;
+    height: 100%;
+}
+
+.preload {
+    display: none;
+}
+div.main_container {
+}
+
+.form_sketch {
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.u0_original {
+    background-image: url('../NTT_Channel_files/u0_original.png');
+}
+
+.u0_container {
+    position:absolute;
+    left:100px;
+    top:50px;
+    width:800px;
+    height:1170px;
+}
+
+#u0_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:806px;
+    height:1176px;
+}
+
+.u1 {
+    position:absolute;
+    left:2px;
+    top:577px;
+    width:796px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u0 {
+    position:absolute;
+    left:100px;
+    top:50px;
+    width:800px;
+    height:1170px
+}
+
+.u2 {
+    position:absolute;
+    left:120px;
+    top:430px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u3_original {
+    background-image: url('../NTT_Channel_files/u3_original.png');
+}
+
+.u3_container {
+    position:absolute;
+    left:650px;
+    top:284px;
+    width:230px;
+    height:256px;
+}
+
+#u3_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:236px;
+    height:262px;
+}
+
+.u4 {
+    position:absolute;
+    left:2px;
+    top:120px;
+    width:226px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u3 {
+    position:absolute;
+    left:650px;
+    top:284px;
+    width:230px;
+    height:256px
+}
+
+.u5 {
+    position:absolute;
+    left:650px;
+    top:555px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u6_original {
+    background-image: url('../NTT_Channel_files/u6_original.png');
+}
+
+.u6_container {
+    position:absolute;
+    left:650px;
+    top:579px;
+    width:230px;
+    height:371px;
+}
+
+#u6_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:236px;
+    height:377px;
+}
+
+.u7 {
+    position:absolute;
+    left:2px;
+    top:178px;
+    width:226px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u6 {
+    position:absolute;
+    left:650px;
+    top:579px;
+    width:230px;
+    height:371px
+}
+
+.u8 {
+    position:absolute;
+    left:120px;
+    top:260px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u9_original {
+    background-image: url('../NTT_Channel_files/u9_original.png');
+}
+
+.u9_container {
+    position:absolute;
+    left:100px;
+    top:200px;
+    width:800px;
+    height:40px;
+}
+
+#u9_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:806px;
+    height:46px;
+}
+
+.u10 {
+    position:absolute;
+    left:2px;
+    top:12px;
+    width:796px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u9 {
+    position:absolute;
+    left:100px;
+    top:200px;
+    width:800px;
+    height:40px
+}
+
+.u11_image_sketch {
+    background-image: url('../NTT_Channel_files/u11_image_sketch.png');
+    position:absolute;
+    left:657px;
+    top:204px;
+    width:178px;
+    height:31px;
+}
+
+.u11 {
+    position:absolute;
+    left:660px;
+    top:207px;
+    width:172px;
+    height:25px;
+    ;
+    ;
+    text-align: left;;
+    font-family:'Heiti SC';
+    font-size: 13px;
+    color:#999999;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+
+.u12_image_sketch {
+    background-image: url('../NTT_Channel_files/u12_image_sketch.png');
+    position:absolute;
+    left:832px;
+    top:204px;
+    width:46px;
+    height:31px;
+}
+
+.u12 {
+    position:absolute;
+    left:835px;
+    top:207px;
+    width:40px;
+    height:25px;
+    ;
+    ;
+    text-align: center;;
+    font-family:'Heiti SC';
+    font-size: 13px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+
+.u13_original {
+    background-image: url('../NTT_Channel_files/u13_original.png');
+}
+
+.u13_container {
+    position:absolute;
+    left:100px;
+    top:50px;
+    width:800px;
+    height:30px;
+}
+
+#u13_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:806px;
+    height:36px;
+}
+
+.u14 {
+    position:absolute;
+    left:2px;
+    top:7px;
+    width:796px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u13 {
+    position:absolute;
+    left:100px;
+    top:50px;
+    width:800px;
+    height:30px
+}
+
+.u15 {
+    position:absolute;
+    left:581px;
+    top:59px;
+    width:310px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u16_original {
+    background-image: url('../NTT_Channel_files/u16_original.png');
+}
+
+.u16_container {
+    position:absolute;
+    left:109px;
+    top:55px;
+    width:92px;
+    height:20px;
+}
+
+#u16_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:92px;
+    height:20px;
+}
+
+.u17 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:88px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u16 {
+    position:absolute;
+    left:109px;
+    top:55px;
+    width:92px;
+    height:20px
+}
+
+.u18 {
+    position:absolute;
+    left:730px;
+    top:50px;
+    width:60px;
+    height:30px
+}
+
+.u19 {
+    position:absolute;
+    left:798px;
+    top:50px;
+    width:30px;
+    height:30px
+}
+
+.u20 {
+    position:absolute;
+    left:212px;
+    top:59px;
+    width:350px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u21_original {
+    background-image: url('../NTT_Channel_files/u21_original.png');
+}
+
+.u21_container {
+    position:absolute;
+    left:120px;
+    top:100px;
+    width:130px;
+    height:80px;
+}
+
+#u21_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:130px;
+    height:80px;
+}
+
+.u22 {
+    position:absolute;
+    left:2px;
+    top:32px;
+    width:126px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u21 {
+    position:absolute;
+    left:120px;
+    top:100px;
+    width:130px;
+    height:80px
+}
+
+.u23 {
+    position:absolute;
+    left:117px;
+    top:213px;
+    width:520px;
+    height:14px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u25_original {
+    background-image: url('../NTT_Channel_files/u25_original.png');
+}
+
+.u25_container {
+    position:absolute;
+    left:119px;
+    top:284px;
+    width:510px;
+    height:127px;
+}
+
+#u25_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:516px;
+    height:133px;
+}
+
+.u26 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:490px;
+    height:108px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u25 {
+    position:absolute;
+    left:119px;
+    top:284px;
+    width:510px;
+    height:127px
+}
+
+.u27 {
+    position:absolute;
+    left:650px;
+    top:260px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u28_original {
+    background-image: url('../NTT_Channel_files/u28_original.png');
+}
+
+.u28_container {
+    position:absolute;
+    left:119px;
+    top:453px;
+    width:510px;
+    height:687px;
+}
+
+#u28_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:516px;
+    height:693px;
+}
+
+.u29 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:490px;
+    height:684px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u28 {
+    position:absolute;
+    left:119px;
+    top:453px;
+    width:510px;
+    height:687px
+}
+
+.u30_original {
+    background-image: url('../NTT_Channel_files/u30_original.png');
+}
+
+.u30_container {
+    position:absolute;
+    left:260px;
+    top:1160px;
+    width:210px;
+    height:40px;
+}
+
+#u30_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:216px;
+    height:46px;
+}
+
+.u31 {
+    position:absolute;
+    left:2px;
+    top:12px;
+    width:206px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u30 {
+    position:absolute;
+    left:260px;
+    top:1160px;
+    width:210px;
+    height:40px
+}
+
+.u32_original {
+    background-image: url('../NTT_Channel_files/u32_original.png');
+}
+
+.u32_container {
+    position:absolute;
+    left:660px;
+    top:290px;
+    width:210px;
+    height:242px;
+}
+
+#u32_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:210px;
+    height:242px;
+}
+
+.u33 {
+    position:absolute;
+    left:2px;
+    top:113px;
+    width:206px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u32 {
+    position:absolute;
+    left:660px;
+    top:290px;
+    width:210px;
+    height:242px
+}
+
+.u34_original {
+    background-image: url('../NTT_Channel_files/u34_original.png');
+}
+
+.u34_container {
+    position:absolute;
+    left:660px;
+    top:590px;
+    width:210px;
+    height:80px;
+}
+
+#u34_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:210px;
+    height:80px;
+}
+
+.u35 {
+    position:absolute;
+    left:2px;
+    top:32px;
+    width:206px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u34 {
+    position:absolute;
+    left:660px;
+    top:590px;
+    width:210px;
+    height:80px
+}
+
+.u36_original {
+    background-image: url('../NTT_Channel_files/u34_original.png');
+}
+
+.u36_container {
+    position:absolute;
+    left:660px;
+    top:710px;
+    width:210px;
+    height:80px;
+}
+
+#u36_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:210px;
+    height:80px;
+}
+
+.u37 {
+    position:absolute;
+    left:2px;
+    top:32px;
+    width:206px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u36 {
+    position:absolute;
+    left:660px;
+    top:710px;
+    width:210px;
+    height:80px
+}
+
+.u38 {
+    position:absolute;
+    left:740px;
+    top:675px;
+    width:70px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u39 {
+    position:absolute;
+    left:740px;
+    top:797px;
+    width:70px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u40_original {
+    background-image: url('../NTT_Channel_files/u34_original.png');
+}
+
+.u40_container {
+    position:absolute;
+    left:660px;
+    top:832px;
+    width:210px;
+    height:80px;
+}
+
+#u40_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:210px;
+    height:80px;
+}
+
+.u41 {
+    position:absolute;
+    left:2px;
+    top:32px;
+    width:206px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u40 {
+    position:absolute;
+    left:660px;
+    top:832px;
+    width:210px;
+    height:80px
+}
+
+.u42 {
+    position:absolute;
+    left:740px;
+    top:919px;
+    width:70px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+

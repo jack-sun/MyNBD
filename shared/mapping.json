@@ -1,0 +1,66 @@
+{
+  "global": [
+    [
+      "/shared/uploads",
+      "#{release_path}/current/public/uploads"
+    ],
+    [
+      "/shared/page_caches",
+      "#{release_path}/current/public/page_caches"
+    ],
+    [
+      "/shared/corp",
+      "#{release_path}/current/public/corp"
+    ],
+    [
+       "/shared/bak_files_for_mobile_newspaper",
+       "#{release_path}/current/bak_files"
+    ]
+  ],
+  "local":  null,
+  "office": null,
+  "live": [
+    [
+      "#{release_path}/current/shared/etc/live/database.yml",
+      "#{release_path}/current/config/database.yml"
+    ],
+    [
+      "#{release_path}/current/shared/etc/live/resque.yml",
+      "#{release_path}/current/config/resque.yml"
+    ],
+    [
+      "#{release_path}/current/shared/etc/live/sphinx.yml",
+      "#{release_path}/current/config/sphinx.yml"
+    ],
+	[
+      "#{release_path}/current/shared/etc/live/settings.yml",
+      "#{release_path}/current/config/settings.yml"
+    ],
+    [
+      "#{release_path}/current/shared/etc/live/production.rb",
+      "#{release_path}/current/config/environments/production.rb"
+    ]
+  ],
+  "preview": [
+    [
+      "#{release_path}/current/shared/etc/preview/database.yml",
+      "#{release_path}/current/config/database.yml"
+    ],
+    [
+      "#{release_path}/current/shared/etc/preview/resque.yml",
+      "#{release_path}/current/config/resque.yml"
+    ],
+    [
+      "#{release_path}/current/shared/etc/preview/sphinx.yml",
+      "#{release_path}/current/config/sphinx.yml"
+    ],
+	[
+      "#{release_path}/current/shared/etc/live/settings.yml",
+      "#{release_path}/current/config/settings.yml"
+    ],
+    [
+      "#{release_path}/current/shared/etc/preview/production.rb",
+      "#{release_path}/current/config/environments/production.rb"
+    ]
+  ]
+}

@@ -1,0 +1,20 @@
+<%
+	color = "" unless color
+%>
+<div id="footer" <%= "class=#{color}" if color %>>
+	<div class="nav">
+		<%= link_to "关于我们", "#{Settings.old_host}/html/front/html/aboutus_new/index.htm", :class => "first" %>
+		<%= link_to "版权声明", copyright_url %>
+		<%= link_to "免责声明", disclaimer_url %>
+		<%= link_to "广告服务", advertisement_url %>
+		<%= link_to "联系我们", contact_url %>
+		<%= link_to "订阅中心", "http://www.nbd.com.cn/corp/2013dingyue/index.html" %>
+		<%= link_to "友情链接", links_url, :class => "last" %>
+		<%= link_to "网站地图", sitemap_url, :class => "last" %>
+	</div>
+	<p>
+		Copyright © 2011 每日经济新闻报社版权所有，未经许可不得转载使用，违者必究<br/>
+		读者热线：400-889-0008　合作联系电话：86-21-60900099转688分机<br/>
+		<%= link_to "沪ICP备09000473号", "http://www.miibeian.gov.cn/", :target => "_blank", :style => "margin-right: 10px; color:#787878" %> <span>带宽提供：<%= link_to "上海快网", "http://www.kwww.cn/", :target => "_blank", :style => "margin-right: 10px;" %></span> <span><a href=" http://top.chinaz.com" target="_blank">网站排行榜</a></span>
+	</p>
+</div>

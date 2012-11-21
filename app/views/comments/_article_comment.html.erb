@@ -1,0 +1,18 @@
+<%if comment.present? and comment.owner.present? %>
+<li id="weibo_comment_<%= comment.id %>">
+	<%= link_to image_tag(user_avatar_path(comment.owner, :middle)), user_url(comment.owner), :class => "avatar" %>
+	<div class="itemContent">
+		<p><%= link_to comment.owner.nickname, user_url(comment.owner), :class => "nickname" %>: <%= comment.content %> </p>
+		<div class="itemBottom">
+			<%= link_to "<span>回复</span>".html_safe, "javascript:void(0);", :style => "margin-left:7px", :class => "btnGrayBlue articlCommentsBtn rf" %>
+			<span class="rf">
+				<% if false and @current_user and @current_user.is_same_user?(comment.owner) %>
+					<%=link_to "删除",[@weibo, comment], :method => :delete, :confirm => "确定删除这条评论？", :remote => true, :style => "width:40px" %>
+				<%end%>
+			</span>
+			<span><%= nbd_time_f2(comment.created_at) %></span>
+		</div>
+	</div>
+	<div class="clear"></div>
+</li>
+<%end%>

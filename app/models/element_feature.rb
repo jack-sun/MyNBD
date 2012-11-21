@@ -1,0 +1,3 @@
+class ElementFeature < Element
+  
+end

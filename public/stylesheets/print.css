@@ -1,0 +1,12 @@
+body{
+	line-height: 1.5;
+}
+#pageName{
+	font-size: 1.5em;
+}
+#articleContact{
+	font-size: 0.8em;
+}
+#articleColumns{
+	margin-right: 1em;
+}

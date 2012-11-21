@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title><%= @title.blank? ? "西部频道-中国西部第一价值门户 | 每经网" : "#{@title} | 每经网西部频道" %></title>
+    <%= stylesheet_link_tag "reset", "style_global", "style_website", "homepage", "western_channel" %>
+    <%= yield :header_css %>
+    <%= javascript_include_tag "jquery.min", "jquery_ujs", "cookie", "baidu_m" %>
+    <%= yield :header_js %>
+    <%= csrf_meta_tag %>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <link rel="shortcut icon" href="http://static.nbd.com.cn/favicon.ico" type="image/x-icon"/>
+    <meta name="Keywords" content="财经新闻,财经报道,叶檀,道达,老法师看盘,股市直播,郑眼看盘,股市行情,财经证券,基金,荐股,股市内参,股吧,传闻,内幕,板块,个股,黑马,股市新闻,生活,汽车" />
+    <meta name="Description" content="西部第一价值门户，报道中国西部地区区域经济、公司发展、政府治理、招商投资，深度关注西部地区经济发展，搭建东西部地区合作的桥梁。" />
+  </head>
+
+  <body>
+    <%= render :partial => "layouts/feature_top", :locals=>{:html_class => "dark"} %>
+
+    <div id="header">
+      <div class="innerCenter" id="logo">
+        <a href="/" class="logo" id="logoWest" title="每经网-西部频道">每经网-西部频道</a>
+        <%= yield :header_ad %>
+      </div>
+      <div id="mainNav">
+        <div class="navWrapper">
+          <ul class="lf">
+            <li class="first"><%= link_to "首页", west_index_url, :class => "#{request.url.chomp("/") == west_index_url ? 'highlight' : ''}" %></li>
+            <li class="divider"></li>                            
+            <li><%= link_to "四川", west_column_url(:id => 151) %></li>  
+            <li><%= link_to "重庆", west_column_url(:id => 152) %></li>  
+            <li><%= link_to "陕西", west_column_url(:id => 153) %></li> 
+            <li><%= link_to "云南", west_column_url(:id => 154) %></li>
+            <li><%= link_to "贵州", west_column_url(:id => 155) %></li>  
+            <li class="divider"></li>                                            
+            <li><%= link_to "金融", west_column_url(:id => 162) %></li> 
+            <li><%= link_to "地产", west_column_url(:id => 163) %></li>  
+            <li><%= link_to "公司", west_column_url(:id => 164) %></li>  
+            <li><%= link_to "能源", west_column_url(:id => 165) %></li>  
+            <li><%= link_to "汽车", west_column_url(:id => 166) %></li>
+            <li><%= link_to "商业", west_column_url(:id => 167) %></li>
+            <li><%= link_to "快消", west_column_url(:id => 168) %></li>
+            <li><%= link_to "IT", west_column_url(:id => 169) %></li>
+          </ul>
+          <div class="searchBox rf">
+            <% form_tag(article_search_url, :method => "get") do%>
+              <%= link_to "", "javascript:void(0)", :onclick => "$(this).parents('form').submit();return false;", :class => "searchBtn" %>
+              <%= text_field_tag(:q, "", :class => "searchInput") %>
+            <%end%>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="wrapper">
+      <%= yield %>
+    </div>
+    <%= render :partial => "layouts/footer" %>
+    <%= render :partial => "layouts/analytics" %>
+  </body>
+</html>

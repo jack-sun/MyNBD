@@ -1,0 +1,98 @@
+<%= require_css "console_feature" %>
+<%= require_js "console_feature" %>
+<%= require_jqueryUI %>
+
+<div class="sectionA">
+	<div class="title">
+		<h1>专题:</h1><input type="text" class="featureNameInput textInput" size="36" value="<%= @feature.title %>" />
+		<span class="opts"><a class="btnGray" href="javascript:history.go(-1);"><span>取消</span></a></span>
+	</div>
+	<div class="content ">
+		<div class="subRightCol">
+			<div class="formA roundCorner">
+				<div id="themeSelect">
+					<a id="themeSelectFlag" href="javascript:void(0)">
+						<img class="themeImage" src="/images/article-miniature-default.gif" />
+						<div class="themeDescription">
+							<span>蓝色A</span><br/>
+							<span id="themeDetail">主色调：蓝色、灰色<br />适用于社会类专题</span>
+						</div>
+					</a>
+					<ul id="themeSelectList" class="roundCorner">
+						<li><a href="#">
+							<img class="themeImage" src="/images/article-miniature-default.gif" />
+							<div class="themeDescription">
+								<span>蓝色A</span><br/>
+								<span id="themeDetail">主色调：蓝色、灰色<br />适用于社会类专题</span>
+							</div>
+						</a></li>
+						<li><a href="#">
+							<img class="themeImage" src="/images/article-miniature-default.gif" />
+							<div class="themeDescription">
+								<span>蓝色A</span><br/>
+								<span id="themeDetail">主色调：蓝色、灰色<br />适用于社会类专题</span>
+							</div>
+						<a/></a></li>
+						<li><a href="#">
+							<img class="themeImage" src="/images/article-miniature-default.gif" />
+							<div class="themeDescription">
+								<span>蓝色A</span><br/>
+								<span id="themeDetail">主色调：蓝色、灰色<br />适用于社会类专题</span>
+							</div>
+						<a/></a></li>
+						<li><a href="#">
+							<img class="themeImage" src="/images/article-miniature-default.gif" />
+							<div class="themeDescription">
+								<span>蓝色A</span><br/>
+								<span id="themeDetail">主色调：蓝色、灰色<br />适用于社会类专题</span>
+							</div>
+						<a/></a></li>
+						<li><a href="#">
+							<img class="themeImage" src="/images/article-miniature-default.gif" />
+							<div class="themeDescription">
+								<span>蓝色A</span><br/>
+								<span id="themeDetail">主色调：蓝色、灰色<br />适用于社会类专题</span>
+							</div>
+						<a/></a></li>
+					</ul>
+				</div>
+				<a href="javascript:void(0)" id="submitBtn">提交</a>
+			</div>
+		</div>
+		<div class="subLeftCol">
+			<div id="urlActions">
+				专题网址：<%= Settings.host %>/feature/<span id="urlShow"></span>
+				<a id="urlEdit" href="javascript:void(0)">编辑</a>
+				<span id="urlEditBox">
+					<input id="urlInput" type="text" />
+					<a id="urlCancel" href="javascript:void(0)">取消</a>
+					<a id="urlConfirm" href="javascript:void(0)">确定</a>
+				</span>
+			</div>
+			<div id="featureEditWrapper">
+				<div id="featureEditBox">
+					
+					<% @sections.each do |section|
+						section.symbolize_keys! %>
+						<% if section[:section_code] == 'section_1_a' %>
+							<%= render :partial => section[:section_code], :locals => {:element_ids => section[:elements][0]} %>
+						<% elsif ['section_2_a', 'section_2_b'].include?(section[:section_code]) %>
+							<%= render :partial => section[:section_code], :locals => {:left_element_ids => section[:elements][0], :right_element_ids => section[:elements][1]} %>
+						<% elsif section[:section_code] == 'section_3_a' %>
+							<%= render :partial => section[:section_code], :locals => {:left_element_ids => section[:elements][0], :center_element_ids => section[:elements][1], :right_element_ids => section[:elements][2]} %>
+						<% end %>
+					<%end%>
+
+					<div class="addSection"><%= link_to "添加新区块", "javascript:void(0);" %></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	_choose_section_url = "<%= choose_section_console_feature_page_url(@page) %>";
+	_choose_element_url = "<%= console_feature_page_elements_url(@page) %>";
+	_edit_element_url = "<%= console_feature_page_elements_url(@page) %>/ELEMENT_ID/edit";
+	_update_layout_url = "<%= update_layout_console_feature_page_url(@page) %>";
+</script>	

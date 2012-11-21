@@ -1,0 +1,123 @@
+<%= require_css "weibo_live" %>
+<%= require_popWin %>
+<%= require_autoComplete %>
+<%= require_js "weibo_mana" %>
+<%= require_js "speak_mana" %>
+<%= require_js "weibo_live" %>
+<% @title = @live.title %>
+<div class="leftCol">
+	<div id="pageName">
+      <% if !@live.is_over? %>
+		<% unless @is_compere %>
+		<a href="javascript:void(0)" class="btnBlueM rf" id="showLivePopWinBtn"><span>我要提问</span></a>
+		<% end %>
+      <% end %>
+		<h1><%= @live.title %></h1>
+		<!--<%= link_to '返回', lives_url %>-->
+	</div>
+	
+      <% if !@live.is_over? %>
+        <div id="newTalk" class="logSpeak" style="<%= 'display:none' unless @is_compere %>">
+          <%= form_for @live_talk, :html => {:class => "speakForm", :remote => true} do |f| %>
+            <%= f.hidden_field :live_id %>
+            <%= f.hidden_field :live_type %>
+            <%= f.hidden_field :talk_type %>
+            <div class="speakSuccessTip">发送成功！</div>
+            <%= f.fields_for :weibo, Weibo.new do |w| %>
+            <%= w.text_area :content, :class => "textInput", 'autoComplete-disable' => true %>
+            <% end %>
+            <div class="action"> 
+                <%= link_to "<span>#{@is_compere ? "发布内容" : "提问"}</span>".html_safe, "javascript:void(0)", :class => "speakBtn btnBlueM" %>
+                <div class="clear"></div>
+            </div>
+            <% end %>
+        </div>
+      <% end %>
+      <% if @is_compere %>
+        <div id="editWeiboDiv" class="editWeiboDiv" style="display:none">
+          <%= form_for Weibo.new, :html => { :remote => true, :method => "put"} do |f| %>
+            <%= f.text_area :content, :class => "textInput" %>
+            <%= hidden_field_tag "talk_type" %>
+            <%= hidden_field_tag "live_id", @live.id %>
+			<div class="bottomEdit">
+				<%= link_to "<span>取消</span>".html_safe, 'javascript:void(0)', :class => "cancelEdit btnGray" %>
+	            <%= link_to "<span>提交</span>".html_safe, 'javascript:void(0)', :class => "submitEdit btnBlue" %>
+			</div>
+          <% end %>
+        </div>
+      <% end %>
+	
+	
+	<a href="javascript:void(0)" style="display:none" id="getNewTalksTip" class="alert_info">
+		<b></b>
+		有新的直播内容，点击查看。
+	</a>
+	<div id='newTalksLoading' class='loading'><span>正在加载，请稍后</span></div>
+	
+	<ul id="liveTalkList" class="weiboItemList liveTalks">
+		<% @live_talks.each do |talk| %>
+			<%= render :partial => "weibos/weibo_item_for_live", :locals => {:talk => talk} %>
+		<% end %>
+		<%= paginate @live_talks %>
+	</ul>
+</div>
+<div class="rightCol">
+	<div class="sectionB" id="liveDatetime" style="margin-top:0;">
+		<div class="title">
+			<h2>直播时间</h2>
+		</div>
+		<div class="content">
+			<span class="liveDate"><%= @live.start_at.strftime("%Y年%m月%d日") %></span> <span class="liveTime"><%= @live.start_at.strftime("%H:%M") %> - <%= @live.end_at.strftime("%H:%M") %></span>
+			<br/>
+			<% if @live.is_over? %><span class="articleLabel gray"><b>直播已结束</b></span><% end %>
+		</div>
+	</div>
+	<div class="sectionB">
+		<div class="title">
+			<h2>直播简介</h2>
+		</div>
+		<div class="content">
+			<%= auto_link(@live.desc.gsub(/\r*\n/,"<br/>")).html_safe if @live.desc.present? %>
+		</div>
+	</div>
+	<div class="sectionB">
+		<div class="title">
+			<h2>主持人</h2>
+		</div>
+		<div class="content">
+			<%= render :partial => "users/user_profile", :locals => {:interviewee => @live.user} %>
+		</div>
+	</div>
+	<div class="sectionB">
+		<div class="title">
+			<h2>嘉宾</h2>
+		</div>
+		<div class="content">
+          <% @live.guests.each do |guest| %>
+			<%= render :partial => "users/user_profile", :locals => {:interviewee => guest} %>
+          <% end %>
+		</div>
+	</div>
+	
+	<%= render :partial => "columns/market_table" %>
+	
+    <%= render :partial => "lives/live_list"%>
+        
+    <% cache(column_show_content_key_by_id(@market_express[:id])) do %>
+    	<%= render :partial => "columns/article_list", :locals => {:list_title => "行情快讯", :articles => @market_express[:articles].map(&:article).compact, :column_id => 12, :digest_number =>0, :display_datetime => true } %>
+    <% end %>
+    
+    <%= render :partial => "weibos/feedback", :locals => {:html_class => "sectionB"} %>
+    
+</div>
+<div class="clear"></div>
+
+<script type="text/javascript">
+	var _liveData = {
+		last_update_at : <%= Time.now.to_i %>,
+		isContinue : <%= !@live.is_over? ? "1" : "0" %>,
+		liveID : <%= @live.id %>,
+		isCompere : <%= @is_compere %>
+	};
+	
+</script>

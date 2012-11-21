@@ -1,0 +1,31 @@
+<div class="sectionA">
+  <div class="title">
+    <h1>图片库-所有图片</h1>
+    <span class="opts"><%= link_to "<span>添加新图片</span>".html_safe, new_console_image_path, :class => "btnBlueM" %>
+    </span>
+  </div>
+  <div class="content rightColCenter">
+    <table class="tableA">
+      <thead>
+        <tr>
+			    <th>缩略图</th>
+			    <th>描述</th>
+			    <th>操作</th>
+        </tr>		
+      </thead>
+      <tbody>
+				<% @images.each do |image| %>
+				  <tr>
+				    <td><%= image_tag image.url_for_search(:x_large, "www"), :width => 200 %></td>
+                                    <td><%= image.desc %></td>
+				    <td class="itemActions">
+				    	<%= link_to '<b></b>编辑'.html_safe, edit_console_image_path(image), :class => "actionEdit" %>
+							<%= link_to '<b></b>删除'.html_safe, [:console, image], :confirm => '删除该图片?', :method => :delete, :class => "actionDelete" %>
+						</td>
+				  </tr>
+				<% end %>
+      </tbody>
+    </table>
+		<%= paginate @images %>
+  </div>
+</div>

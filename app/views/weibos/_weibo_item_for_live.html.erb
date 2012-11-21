@@ -1,0 +1,28 @@
+<%if talk.weibo.present?%>
+<li id="talk_<%= talk.id %>" class="roundCorner <%= talk.talk_type == 0 ? 'liveComment' : 'qaComment' %>">
+	<% if talk.talk_type == 0 %>
+      <%= render :partial => "/weibos/weibo_item_for_live_detail", :locals => {:weibo => talk.weibo, :type => "comment", :talk => talk} %>
+	<% else %>
+		<%= render :partial => "/weibos/weibo_item_for_live_detail", :locals => {:weibo => talk.weibo, :type => "question", :talk => talk} %>
+		<% if @is_compere and !@live.is_over? %>
+			<div class="answerWrapper">
+              <%= form_for [talk, talk.live_answers.new], :html => {:class => "answerForm speakForm", :remote => true} do |answer| %>
+					<%= answer.hidden_field :live_talk_id %>
+					<%= answer.fields_for :weibo, Weibo.new do |w| %>
+						<%= w.text_area :content, :class => "textInput speakFlexibleTextarea", 'autoComplete-disable' => true %>
+						<%= w.hidden_field :comment_to_parent, :value => "1" %>
+					<% end %>
+					<a href="javascript:void(0)" class="btnBlue answerBtn speakBtn"><span>发布</span></a>
+				<% end %>
+			</div>
+		<% end %>
+      <% if !(@only_question and !@is_compere) %>
+        <div class="answersList">
+          <% talk.live_answers.each do |answer| %>
+            <%= render :partial => "/weibos/weibo_item_for_live_detail", :locals => {:weibo => answer.weibo, :type => "answer", :answer => answer} %>
+          <% end %>
+        </div>
+      <% end %>
+	<% end %>
+</li>
+<%end%>

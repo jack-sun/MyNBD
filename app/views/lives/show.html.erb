@@ -1,0 +1,213 @@
+<%= require_css "stock_live_2" %>
+<%= require_popWin %>
+<%= require_autoComplete %>
+<%= require_js "weibo_mana" %>
+<%= require_js "speak_mana" %>
+<% @title = @live.title %>
+<div class="leftCol">
+	<div id="pageName">
+      <% if !@live.is_over? %>
+		<% unless @is_compere %>
+		<a href="javascript:void(0)" class="btnBlueM rf" id="showLivePopWinBtn"><span>我要提问</span></a>
+		<% end %>
+      <% else %>
+        <span class="liveStat">直播已经结束</span>
+      <% end %>
+		<h1><%= @live.title %></h1>
+		<!--<%= link_to '返回', lives_url %>-->
+	</div>
+	
+      <% if !@live.is_over? %>
+        <div id="newTalk" class="logSpeak" style="<%= 'display:none' unless @is_compere %>">
+          <%= form_for @live_talk, :html => {:class => "speakForm", :remote => true} do |f| %>
+            <%= f.hidden_field :live_id %>
+            <%= f.hidden_field :live_type %>
+            <%= f.hidden_field :talk_type %>
+            <div class="speakSuccessTip">发送成功！</div>
+            <%= f.fields_for :weibo, Weibo.new do |w| %>
+            <%= w.text_area :content, :class => "textInput", 'autoComplete-disable' => true %>
+            <% end %>
+            <div class="action"> 
+                <%= link_to "<span>#{@is_compere ? "发布内容" : "提问"}</span>".html_safe, "javascript:void(0)", :class => "speakBtn btnBlueM" %>
+                <div class="clear"></div>
+            </div>
+            <% end %>
+        </div>
+      <% end %>
+      <% if @is_compere %>
+        <div id="editWeiboDiv" class="editWeiboDiv" style="display:none">
+          <%= form_for Weibo.new, :html => { :remote => true, :method => "put"} do |f| %>
+            <%= f.text_area :content, :class => "textInput" %>
+            <%= hidden_field_tag "talk_type" %>
+			<div class="bottomEdit">
+				<%= link_to "<span>取消</span>".html_safe, 'javascript:void(0)', :class => "cancelEdit btnGray" %>
+	            <%= link_to "<span>提交</span>".html_safe, 'javascript:void(0)', :class => "submitEdit btnBlue" %>
+			</div>
+          <% end %>
+        </div>
+      <% end %>
+	
+	
+	<div style="display:none" id="getNewTalksTip" class="alert_info">
+		<b></b>
+		<a href="javascript:void(0)">有新的直播内容，点击查看。</a>
+		<div class="clear"></div>
+	</div>
+	<div id='newTalksLoading' class='loading'><span>正在加载，请稍后</span></div>
+	
+	<ul id="liveTalkList" class="weiboItemList liveTalks">
+		<% @live_talks.each do |talk| %>
+			<%= render :partial => "weibos/weibo_item_for_live", :locals => {:talk => talk} %>
+		<% end %>
+		<%= paginate @live_talks %>
+	</ul>
+</div>
+<div class="rightCol">
+	<div class="sectionB">
+		<div class="title">
+			<h2>直播时间</h2>
+		</div>
+		<div class="content">
+			<%= @live.s_index %>
+			<br/>
+			<%= @live.start_at.strftime("%H:%M") %> 至 <%= @live.end_at.strftime("%H:%M") %>
+		</div>
+	</div>
+	<div class="sectionB">
+		<div class="title">
+			<h2>直播简介</h2>
+		</div>
+		<div class="content">
+			<%= @live.desc %>
+		</div>
+	</div>
+	<div class="sectionB">
+		<div class="title">
+			<h2>主持人</h2>
+		</div>
+		<div class="content">
+			<%= render :partial => "users/user_profile", :locals => {:interviewee => @live.user} %>
+		</div>
+	</div>
+	
+    <div id="livesList" class="sectionB">
+      <div class="title">
+        <h2>最近直播</h2>
+      </div>
+	  <div class="content">
+	  	<ul class="unorderList">
+        <% Live.stock_lives.select(:s_index, :id).order("id desc").limit(10).each do |s| %>
+          <li>
+            <%= link_to "股市直播#{s.s_index}", live_url(s) %>
+          </li>
+        <% end %>
+	  	</ul>
+
+	  </div>
+    </div>
+    
+    <%= render :partial => "weibos/feedback", :locals => {:html_class => "sectionB"} %>
+    
+</div>
+<div class="clear"></div>
+
+<script type="text/javascript">
+	var _last_update_at = <%= Time.now.to_i %>;
+	var _livePopWin;
+	$(function(){
+		var isCompere = <%= @is_compere %>,
+			isContinue = <%= !@live.is_over? ? "1" : "0" %>,
+			circleRequest;
+			
+		$("body").delegate(".answerBtn", "click", function(){
+			$(this).closest("li").find(".answerForm").show();
+		});
+
+		$("body").delegate(".editBtn", "click", function(){
+			var itemTalk = $(this).closest("div.talkItem"),
+				weiboId = itemTalk.attr("id").split("_")[1],
+				itemContent = $(this).closest("div.itemContent"),
+				backContent = itemContent.find(".itemText, .itemBottom"),
+				content = itemContent.find(".weiboText").text();
+			
+			var newFormDiv = itemContent.find(".editWeiboDiv"),
+				newFormDiv = newFormDiv.length ? newFormDiv : getEditForm(),
+				newForm = newFormDiv.find("form");
+			
+			backContent.hide();
+			newFormDiv.appendTo(itemContent).show();
+			
+			function getEditForm(){
+				var div = $("div#editWeiboDiv").clone().attr("id",""),
+					form = div.find("form");
+				form.find("textarea").val(content);
+				if(itemTalk.hasClass("comment")){
+					form.find("#talk_type").val("comment");
+				}else{
+					form.find("#talk_type").val("answer");
+				}
+				form.attr("action", form.attr("action") + "/" + weiboId);
+				
+				div.find("a.cancelEdit").click(function(){
+					div.hide();
+					backContent.show();
+				});
+				div.find("a.submitEdit").click(function(){
+					form.submit();
+					div.hide();
+					backContent.show();
+				});
+				
+				return div;
+			}
+			
+		});
+		  
+		$("#getNewTalksTip").click(function(e){
+			if($(e.target).is("a")){
+				$(this).hide();
+				requestNewTalks();
+				$("#newTalksLoading").show();
+				$.ajax({
+					method:"GET",
+                    url:"/lives/<%= @live.id %>/fetch_new",
+					data:{
+						timeline:_last_update_at
+					}
+				});
+			}
+		});
+
+		if(!isCompere){
+			_livePopWin = $.popWin.init({title:"直播提问", width:526});
+			$("#newTalk").appendTo(_livePopWin.content).show();
+			$("#showLivePopWinBtn").click(function(){
+				_livePopWin.show();
+			});
+		}
+		if(isContinue == "1"){
+			requestNewTalks();
+		}
+		
+		function requestNewTalks(){
+			circleRequest = setInterval(function(){
+				$.ajax({
+					method:"GET",
+                    url:"/lives/<%= @live.id %>/check_new",
+					data:{
+						timeline:_last_update_at
+					},
+					success:function(data){
+						if(data == '1'){
+							$("#getNewTalksTip").slideDown();
+                          }else if(data == "-1"){
+                          $("#showLivePopWinBtn").replaceWith('<span class="liveStat">直播已经结束</span>');
+                          clearInterval(circleRequest);
+                          }
+					}
+				});
+			},60000);
+		}
+		
+	});
+</script>

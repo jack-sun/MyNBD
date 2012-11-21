@@ -1,0 +1,395 @@
+<%= require_css "homepage.css" %>
+<%= require_loopScroll %>
+<%= require_slideShow %>
+
+<% content_for :sbblock do %>
+  <p id="sbblock">
+    <a id="sb_sh" class="sbItem" href="http://www.shjubao.cn/" target="_blank">上海举报中心</a>
+  </p>
+<% end %> 
+
+<% content_for :top_ad do %>
+  <%= stylesheet_link_tag "special_18th" %>
+	<!-- 广告位：首页_顶部头图 -->
+	<script type="text/javascript">
+		BAIDU_CLB_preloadSlots("331630","347411","347417","347421","347425","347426","347428","347430","347432","347433","347437");
+	</script>
+	<script type="text/javascript">BAIDU_CLB_fillSlot("331630");</script>
+<% end %>
+
+<% content_for :header_ad do %>
+	<!-- 广告位：首页_顶部四分之三通栏 -->
+	<%= render :partial => "ads/ad", :locals => { :id => "347411", :html_class => "header" } %>
+<% end %>
+
+<% render :partial => "columns/sub_navigation", :locals => {:column_id => 1 } %>
+
+
+<div class="leftCol">
+	<div id="scrollNewsHome" class="innerCenter">
+		<span class="label"><%= link_to "滚动新闻:", column_url(6), :target => "_blank" %></span>
+		<div id="scrollNewsHomeWrapper">
+			<ul id="scrollNewsHomeList">
+	          <% Article.rolling.order("id desc").limit(8).each do |article| %>
+	            <li>
+	            	<%if article.is_special?%><span class="articleLabel red"><b><%= Article::SPECIAL[article.special] %></b></span><%end%>
+	              	<%= link_to article.list_title, article_url(article), :target => "_blank" %>
+	            </li>
+	          <% end %>
+			</ul>
+		</div>
+	</div>
+	
+	<% cache(column_show_content_key_by_id(@head_article[:id])) do %>
+	  <%= render :partial => "columns/homepage_head_article", :locals => { :article => @head_article[:articles].map(&:article)[0], :column_id => 2 } %>
+	<% end %>
+		  
+  <div style="width:285px;margin-right:25px;" class="subLeftCol">
+    <% cache(column_show_content_key_by_id(@ntt_head_article[:id])) do %>
+      <%= render :partial => "columns/ntt_entry", :locals => {:list_title => "智库 &middot; 专栏".html_safe, :articles => (@ntt_head_article[:articles].map(&:article)||[]), :html_class => "nttEntry"}%>
+    <% end %>
+    <% cache(column_show_content_key_by_id(@yetan_update[:id])) do %>
+      <%= render :partial => "columns/ntt_entry", :locals => {:articles => @yetan_update[:articles].map(&:article).compact, :column_id => 89, :display_children => false, :digest_restrict => true, :html_class => "nttEntry" } %>
+    <% end %>
+    <div class="divider" style="margin-bottom:7px;"></div>
+    <% cache(column_show_content_key_by_id(@featured_articles[:id], true, "uniq")) do %>
+      <%= render :partial => "columns/article_feature", :locals => {:list_title => "每日精选", :articles => @featured_articles[:articles].map(&:article).compact, :column_id => 5, :digest_number => 4, :html_class => "articleWallWrapper", :html_style => "margin-bottom:0;"} %>
+    <%end %>
+  </div>
+  <div style="width:340px;" class="subRightCol">
+    <% cache column_show_content_key_by_id(@important_articles[:id]) do %>
+      <%= render :partial => "columns/focus_article_list", :locals => {:list_title => "要闻", :articles => @important_articles[:articles].map(&:article).compact, :column_id => 3} %>
+    <% end %>
+  </div>
+  <div class="clear"></div>
+</div>
+<div class="rightCol">
+
+	<% cache(column_show_content_key_by_id(@bulletin_articles[:id], true, "uniq")) do %>
+	    <%= render :partial => "columns/homepage_bulletin", :locals => {:articles => @bulletin_articles[:articles].map(&:article).compact, :column_id => @bulletin_articles[:id]} %>
+	<% end %>
+	<div class="divider" style="margin-bottom:2px;"></div>
+  <%= render :partial => "columns/tou_zi_bao" %>
+
+  <%= render :partial => "columns/nbd_promo", :locals => { :hide_clients => true } %>
+
+  <% cache(column_show_content_key_by_id(@nbd_special_articles[:id], true, "uniq")) do %>
+    <%= render :partial => "columns/article_list", :locals => {:list_title => "NBD特稿", :articles => @nbd_special_articles[:articles].map(&:article).compact, :column_id => 81, :digest_number => 1, :digest_restrict => true, :display_children => true, :display_special => true, :display_children_digest_restrict => "restrict2", :html_class => "NBDFeatures"} %>
+  <%end %>
+
+  <% cache(column_show_content_key_by_id(@ipo_articles[:id], true, "uniq")) do %>
+    <%= render :partial => "columns/article_list", :locals => {:list_title => "IPO调查", :articles => @ipo_articles[:articles].map(&:article).compact, :column_id => 31, :digest_number => 1, :digest_restrict => true, :display_children => true, :display_special => true, :display_children_digest_restrict => "restrict2", :html_class => "IPOResearch"} %>
+  <%end %>
+
+  <% cache(column_show_content_key_by_id(@consumer_articles[:id], true, "uniq")) do %>
+    <%= render :partial => "columns/article_list", :locals => {:list_title => "商业消费", :articles => @consumer_articles[:articles].map(&:article).compact, :column_id => 82, :digest_number => 1, :digest_restrict => true, :display_children => true, :display_special => true, :display_children_digest_restrict => "restrict2", :html_class => "NBDConsumer"} %>
+  <%end %>
+  
+  <% cache(column_show_content_key_by_id(@popular_features[:id], true, "uniq")) do %>
+    <%= render :partial => "columns/article_list", :locals => {:list_title => "专题精选", :articles => @popular_features[:articles].map(&:article).compact, :column_id => @popular_features[:id], :digest_number => 1, :digest_restrict => true, :display_children => true, :display_children_digest_restrict => "restrict2", :display_special => true, :html_class => "NBDConsumer"} %>
+  <%end %>
+  
+  <div class="divider" style="margin-bottom:0;"></div>
+  
+</div>
+<div class="clear">
+</div>
+
+<!-- 广告位：首页_左通栏一 首页_右通栏一 -->
+<%= render :partial => "ads/ad", :locals => { :ids => [347417, 347428], :html_class => "col2" } %>
+
+<div class="block">
+  <div class="blockTitle">
+    <h2><%= link_to "股票", customize_host_url('stock')%></h2>
+    <span class="opts">
+      <% sub_columns = Column::DIS_SUB_NAVS[10]
+      Column.find(sub_columns).sort_by{|e| sub_columns.index(e.id)}.each_with_index do |child_column, index| %>
+        <%= link_to child_column.name, column_path(child_column) %>		
+      <%end%>
+    </span>
+  </div>
+  <div class="blockContent" style="padding-right: 0;">
+    <div class="leftCol">
+      <div class="subLeftCol">
+        <% cache(column_show_content_key_by_id(Column::HOME_COMBINED_COLUMN_ID)) do %>
+          <%= render :partial => "columns/article_list", :locals => {:list_title => "市场综合", :articles => Column.aggregate_articles([23, 24, 25, 26, 27, 28], 10), :digest_number => 0, :digest_restrict => true, :display_column => true, :html_class => "marketIntegrate", :column_id => 10, :html_style => "margin-bottom:10px;" } %>
+        <% end %>
+
+      </div><div class="subRightCol">
+        <% cache(column_show_content_key_by_id(@market_express_articles[:id])) do %>
+          <%= render :partial => "columns/article_list", :locals => {:list_title => "行情快讯", :articles => @market_express_articles[:articles].map(&:article).compact, :column_id => 12, :digest_number =>0, :display_datetime => true} %>
+        <% end %>
+
+      </div>
+      <div class="clear"></div>
+      <div class="subLeftCol">
+        <% cache(column_show_content_key_by_id(@zhengbuchun_column[:id])) do %>
+          <%= render :partial => "columns/column_article_list.html", :locals => {:list_title => "郑眼看盘", :articles => @zhengbuchun_column[:articles].map(&:article).compact, :column_id => 86, :html_style => "margin-bottom:5px;"} %>
+        <% end %>
+      </div><div class="subRightCol">
+        <% cache(column_show_content_key_by_id(@laofashi_column[:id])) do %>
+          <%= render :partial => "columns/column_article_list.html", :locals => {:list_title => "老法师操盘手记", :articles => @laofashi_column[:articles].map(&:article).compact, :column_id => 85} %>
+        <% end %>
+      </div>
+      <div class="clear"></div>
+
+      <% cache(column_show_content_key_by_id(@analysis_articles[:id])) do %>
+        <% render :partial => "columns/article_list", :locals => {:list_title => "对策", :articles => @analysis_articles[:articles].map(&:article).compact, :column_id => 29, :digest_number => 4, :html_class => "horizonLayout", :digest_restrict => true } %>
+        <div class="sectionA">
+          <div class="title" style="margin-right:20px;">
+            <h3>对策</h3>
+            <span class="opts">
+            	<%= link_to "更多", ntt_column_url(@analysis_articles[:id])%>
+            </span>
+          </div>
+          <div class="content">
+            <div class="subLeftCol">
+              <%= render :partial => "columns/article_list", :locals => { :digest_number => 2, :digest_restrict => true, :articles => @analysis_articles[:articles].map(&:article)[0..1].compact, :column_id => @analysis_articles[:id]}%>
+            </div>
+            <div class="subRightCol">
+              <%= render :partial => "columns/article_list", :locals => { :digest_number => 2, :digest_restrict => true, :articles => @analysis_articles[:articles].map(&:article)[2..3].compact, :column_id => @analysis_articles[:id]}%>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </div><!-- sectionA -->
+      <%end %>
+
+    </div><!--leftCol-->
+    <div class="rightCol">
+
+      <% cache(column_show_content_key_by_id(@company_inv_articles[:id], true, "uniq")) do %>
+        <%= render :partial => "columns/article_feature", :locals => {:list_title => "上市公司调查", :articles => @company_inv_articles[:articles].map(&:article).compact, :column_id => 32, :digest_number => 1, :html_class => "articleWallWrapper", :html_style => "margin-bottom:10px;" } %>
+      <%end %>
+
+      <%= render :partial => "columns/market_chart", :locals => {:html_style => "margin-bottom:5px;"} %>
+
+      <% cache(Live::HOME_INDEX_FRAGMENT_KEY, :expire_in => 3*60) do %>
+        <%if false%>
+          <%= render :partial => "columns/market_live", :locals => {:compere => @stock_live[:compere], :live_talks => @stock_live[:live_talks]} %>
+        <%end%>
+        <%= render :partial => "columns/market_live", :locals => {:compere => @showed_live.user, :live_talks => @showed_live_talks, :live => @showed_live} %>
+      <% end %>
+    </div><!--right column-->
+    <div class="clear">
+    </div>
+  </div>
+</div>
+
+<!-- 广告位：首页_左通栏二 首页_右通栏二 -->
+<%= render :partial => "ads/ad", :locals => { :ids => [347421, 347430], :html_class => "col2" } %>
+
+<div class="block">
+  <div class="blockTitle">
+    <h2><%= link_to "公司", customize_host_url('company')%></h2>
+    <span class="opts">
+      <% sub_columns = Column::DIS_SUB_NAVS[33]
+      Column.find(sub_columns).sort_by{|e| sub_columns.index(e.id)}.each_with_index do |child_column, index| %>
+        <%= link_to child_column.name, column_path(child_column) %>		
+      <%end%>
+    </span>
+  </div>
+  <div class="blockContent" style="padding-right: 0;">
+    <div class="leftCol">
+      <div class="subLeftCol">
+        <% cache(column_show_content_key_by_id(@finace_articles[:id])) do %>
+          <%= render :partial => "columns/article_list", :locals => {:list_title => "热公司", :articles => @finace_articles[:articles].map(&:article).compact, :column_id => 35, :digest_number => 2, :digest_restrict => true } %>
+        <%end %>
+        <% cache(column_show_content_key_by_id(@sicence_articles[:id])) do %>
+          <%= render :partial => "columns/article_list", :locals => {:list_title => "科技", :articles => @sicence_articles[:articles].map(&:article).compact, :column_id => 39, :digest_number => 2, :digest_restrict => true } %>
+        <%end %>
+      </div>
+      <div class="subRightCol">
+        <% cache(column_show_content_key_by_id(@property_articles[:id])) do %>
+          <%= render :partial => "columns/article_list", :locals => {:list_title => "房产", :articles => @property_articles[:articles].map(&:article).compact, :column_id => 38, :digest_number => 2, :digest_restrict => true } %>
+        <%end %>
+        <% cache(column_show_content_key_by_id(@auto_articles[:id])) do %>
+          <%= render :partial => "columns/article_list", :locals => {:list_title => "汽车", :articles => @auto_articles[:articles].map(&:article).compact, :column_id => @auto_articles[:id], :digest_number => 2, :digest_restrict => true } %>
+        <%end %>
+      </div>
+      <div class="clear">
+      </div>
+    </div>
+    <div class="rightCol">
+
+      <% cache(column_show_content_key_by_id(@biz_featured_articles[:id])) do %>
+        <%= render :partial => "columns/article_feature", :locals => {:list_title => "商业精选", :articles => @biz_featured_articles[:articles].map(&:article).compact, :column_id => 36, :digest_number => 1, :html_class => "articleWallWrapper", :html_style => "margin-bottom:15px;" } %>
+      <%end %>
+
+          <%= render :partial => "columns/hot_articles" %>
+
+      <% cache(column_show_content_key_by_id(@campaign_articles[:id], true, "uniq")) do %>
+        <%= render :partial => "columns/article_list", :locals => {:list_title => "活动会议", :articles => @campaign_articles[:articles].map(&:article).compact, :column_id => 84} %>
+      <%end %>
+
+    </div>
+    <div class="clear">
+    </div>
+  </div>
+</div>
+
+<!-- 广告位：首页_左通栏三 首页_右通栏三 -->
+<%= render :partial => "ads/ad", :locals => { :ids => [347425, 347432], :html_class => "col2" } %>
+
+<div class="leftCol">
+  <div class="block">
+    <div class="blockTitle">
+      <h2><%= link_to "全球", column_path(47)%></h2>
+      <span class="opts">
+        <% sub_columns = Column::DIS_SUB_NAVS[47]
+        Column.find(sub_columns).sort_by{|e| sub_columns.index(e.id)}.each_with_index do |child_column, index| %>
+          <%= link_to child_column.name, column_path(child_column) %>		
+        <%end%>
+      </span>
+    </div>
+    <div class="blockContent">
+      <div class="subLeftCol">
+        <% cache(column_show_content_key_by_id(@global_express_articles[:id])) do %>
+          <%= render :partial => "columns/article_list", :locals => {:list_title => "全球快讯", :articles => @global_express_articles[:articles].map(&:article).compact, :column_id => 48, :digest_number => 2, :digest_restrict => true } %>
+        <%end %>
+      </div>
+      <div class="subRightCol">
+        <% cache(column_show_content_key_by_id(@global_featured_articles[:id])) do %>
+          <%= render :partial => "columns/article_list", :locals => {:list_title => "全球精选", :articles => @global_featured_articles[:articles].map(&:article).compact, :column_id => 55, :digest_number => 2, :digest_restrict => true } %>
+        <%end %>
+      </div>
+      <div class="clear">
+      </div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="blockTitle">
+      <h2><%= link_to "智库", ntt_index_url%></h2>
+      <span class="opts">
+        <% sub_columns = Column::DIS_SUB_NAVS[56]
+        Column.find(sub_columns).sort_by{|e| sub_columns.index(e.id)}.each_with_index do |child_column, index| %>
+          <%= link_to child_column.name, ntt_column_url(child_column.id) %>		
+        <%end%>
+      </span>
+    </div>
+    <div class="blockContent">
+      <% cache(columnist_articles_key_by_id("index_table")) do %>
+    	<%= render :partial => "ntt/columnists/columnist_table", :locals => { :title => "最近更新", :columnists => @columnists.select{|c| c.last_article and c.last_article.columns and !c.last_article.columns.map(&:id).include?(102)}[0..3] } %>
+      <% end %>
+    	
+      	<div class="sectionA">
+      	  <div class="title">
+      	    <h3>专家访谈</h3>
+      	    <span class="opts">
+      	    	<%= link_to "更多", ntt_column_url(@interview_articles[:id])%>
+      	    </span>
+      	  </div>
+      	  <div class="content">
+            <% cache(column_show_content_key_by_id(@interview_articles[:id])) do %>
+              <div class="subLeftCol">
+                <%= render :partial => "columns/article_list", :locals => { :digest_number => 1, :digest_restrict => true, :articles => [(@interview_articles[:articles].map(&:article)[0]||[])], :for_subdomain => Settings.ntt_sub_domain, :column_id => @interview_articles[:id]}%>
+              </div>
+              <div class="subRightCol">
+                <%= render :partial => "columns/article_list", :locals => { :digest_number => 1, :digest_restrict => true, :articles => [(@interview_articles[:articles].map(&:article)[1]||[])], :for_subdomain => Settings.ntt_sub_domain, :column_id => @interview_articles[:id]}%>
+              </div>
+            <% end %>
+      	    <div class="clear"></div>
+      	  </div>
+      	</div><!-- sectionA -->
+      	
+    </div>
+  </div>
+</div>
+<div class="rightCol">
+    
+  <% cache(column_show_content_key_by_id(@macro[:id], true, "uniq")) do %>
+    <%= render :partial => "columns/article_list", :locals => {:list_title => "宏观要闻", :articles => @macro[:articles].map(&:article).compact, :column_id => 44, :digest_number => 1, :display_children => false, :digest_restrict => true} %>
+  <% end %>
+
+  <% cache(column_show_content_key_by_id(@nbd_west[:id], true, "uniq")) do %>
+    <%= render :partial => "columns/west_entry", :locals => {:list_title => "西部频道", :articles => (@nbd_west[:articles].map(&:article).compact||[]), :html_class => "westEntry"} %> 
+  <%end%>
+
+  <iframe width="100%" height="450" style="margin-top:10px;" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=450&fansRow=1&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=1649173367&verifier=f479351c"></iframe>
+</div>
+<div class="clear">
+</div>
+
+<!-- 广告位：首页_左通栏四 首页_右通栏四 -->
+<%= render :partial => "ads/ad", :locals => { :ids => [347426, 347433], :html_class => "col2", :html_style => "margin-top:0;" } %>
+
+<div class="leftCol">
+  <div class="subLeftCol">
+    <div class="block">
+      <div class="blockTitle">
+        <h2><%= link_to "品味", customize_host_url('life')%></h2>
+        <span class="opts">
+          <% sub_columns = Column::DIS_SUB_NAVS[61]
+          Column.find(sub_columns).sort_by{|e| sub_columns.index(e.id)}.each_with_index do |child_column, index| %>
+            <%= link_to child_column.name, column_path(child_column) %>		
+          <%end%>
+        </span>
+      </div>
+      <div class="blockContent">
+        <% cache(column_show_content_key_by_id(@entertainment_articles[:id])) do %>
+          <%= render :partial => "columns/article_list", :locals => {:list_title => "娱乐", :articles => @entertainment_articles[:articles].map(&:article).compact, :column_id => 63, :digest_number => 2, :digest_restrict => true } %>
+        <%end %>
+        <% cache(column_show_content_key_by_id(@fashion_articles[:id])) do %>
+          <%= render :partial => "columns/article_list", :locals => {:list_title => "时尚", :articles => @fashion_articles[:articles].map(&:article).compact, :column_id => 64, :digest_number => 2, :digest_restrict => true } %>
+        <%end %>
+        <% cache(column_show_content_key_by_id(@travle_articles[:id])) do %>
+          <%= render :partial => "columns/article_list", :locals => {:list_title => "探索", :articles => @travle_articles[:articles].map(&:article).compact, :column_id => 65, :digest_number => 2, :digest_restrict => true } %>
+        <%end %>
+      </div>
+    </div>
+  </div>
+  <div class="subRightCol">
+    <div class="block">
+      <div class="blockTitle">
+        <h2><%= link_to "管理", customize_host_url('bschool')%></h2>
+        <span class="opts">
+          <% sub_columns = Column::DIS_SUB_NAVS[70]
+          Column.find(sub_columns).sort_by{|e| sub_columns.index(e.id)}.each_with_index do |child_column, index| %>
+            <%= link_to child_column.name, column_path(child_column) %>		
+          <%end%>
+        </span>
+      </div>
+      <div class="blockContent">
+        <% cache(column_show_content_key_by_id(@career_articles[:id])) do %>
+          <%= render :partial => "columns/article_list", :locals => {:list_title => "职场", :articles => @career_articles[:articles].map(&:article).compact, :column_id => 72, :digest_number => 2, :digest_restrict => true } %>
+        <%end %>
+        <% cache(column_show_content_key_by_id(@people_articles[:id])) do %>
+          <%= render :partial => "columns/article_list", :locals => {:list_title => "人物", :articles => @people_articles[:articles].map(&:article).compact, :column_id => 73, :digest_number => 2, :digest_restrict => true } %>
+        <%end %>
+        <% cache(column_show_content_key_by_id(@mba_articles[:id])) do %>
+          <%= render :partial => "columns/article_list", :locals => {:list_title => "商学院", :articles => @mba_articles[:articles].map(&:article).compact, :column_id => 74, :digest_number => 2, :digest_restrict => true } %>
+        <%end %>
+      </div>
+    </div>
+  </div>
+  <div class="clear">
+  </div>
+</div>
+<div class="rightCol">
+
+<% cache(column_show_content_key_by_id(@video_news[:id])) do %>
+  <%= render :partial => "columns/article_video", :locals => {:list_title => "视听-每经财讯", :articles => @video_news[:articles].map(&:article).compact, :column_id => @video_news[:id], :digest_number => 4, :html_class => "articleWallWrapper"} %>
+<% end %>
+
+<div class="divider" style="margin-bottom:15px;"></div>
+
+<% cache(column_show_content_key_by_id(@video_face_to_face[:id])) do %>
+  <%= render :partial => "columns/article_video", :locals => {:list_title => "视听-财经面对面", :articles => @video_face_to_face[:articles].map(&:article).compact, :column_id => @video_face_to_face[:id], :digest_number => 4, :html_class => "articleWallWrapper"} %>
+<% end %>
+
+<div class="divider" style="margin-bottom:15px;"></div>
+
+  <% cache(column_show_content_key_by_id(@image_news[:id])) do %>
+    <%= render :partial => "columns/article_feature", :locals => {:list_title => "图片新闻", :articles => @image_news[:articles].map(&:article).compact, :column_id => 4, :digest_number => 4, :html_class => "articleWallWrapper"} %>
+  <%end %>
+
+</div>
+<div class="clear"></div>
+
+<!-- 广告位：首页_底部通栏 -->
+<%= render :partial => "ads/ad", :locals => { :id => 347437, :html_class => "footer" } %>
+
+<script type="text/javascript">
+	$(function(){
+		$("#scrollNewsHomeList").loopScroll();
+	});
+</script>

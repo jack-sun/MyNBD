@@ -1,0 +1,34 @@
+<%
+=begin
+专家最新文章表格汇总
+Parameters:
+title: String (optional)
+columnist: Object 
+=end
+title = "" unless title
+%>
+
+<div class="sectionA">
+  <% unless title == "" %>
+    <div class="title">
+      <h3><%= title %></h3>
+      <!--<span class="opts"><%= link_to "更多", ntt_columnists_url %></span>-->
+    </div>
+  <% end %>
+  <div class="content">
+    <div class="columnistIntro">
+      <div class="avatar">
+        <%= image_tag(columnist_avatar_path(columnist), :width => "100", :height => "100", :alt => columnist.name) %>
+      </div>
+      <div class="itemContent" style="font-size:14px;">
+        <!--<span class="itemOpts"><a href="" class="btnGrayBlue"><span>加关注</span></a></span>-->
+        <strong><%= link_to columnist.name, ntt_columnist_url(columnist) %></strong>
+        <p>
+          <%= auto_link(columnist.desc.gsub(/\r*\n/,"<br/>")).html_safe if columnist.desc.present? %>
+        </p>
+      </div>
+    </div>
+    <div class="clear">
+    </div>
+  </div>
+</div>

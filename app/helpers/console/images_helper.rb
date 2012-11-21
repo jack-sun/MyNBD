@@ -1,0 +1,2 @@
+module Console::ImagesHelper
+end

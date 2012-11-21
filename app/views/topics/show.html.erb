@@ -1,0 +1,71 @@
+<%= require_popWin %>
+<%= require_autoComplete %>
+<%= require_css "topic" %>
+<%= require_js "weibo_mana" %>
+<%= require_js "speak_mana" %>
+<%= require_js "feature_poll" %>
+
+<% 
+@title = @topic.title
+elements = @topic.elements_dict
+section = JSON.parse(@topic.layout).first
+left_element_ids, right_elment_ids = section['elements'] 
+%>
+
+<div class="leftCol">
+  <% if @topic.image.present? %>
+    <div id="topicImage">
+      <%= image_tag(topic_image_path(@topic, :x_large)) %>
+    </div>
+  <% end %>
+  <div id="topicDescibe">
+    <h1><%= @topic.title %></h1>
+    <p><%= auto_link(@topic.desc.gsub(/\r*\n/,"<br/>")).html_safe if @topic.desc.present? %></p>
+  </div>
+
+  <% if @current_user.present? %>
+    <% left_element_ids.each do|element_id|
+      element =  elements[element_id]
+      next if element.blank?
+      -%>
+      <div class="element">
+        <div class="element_content">
+          <%= render(:partial => "elements/" + element.class.name.underscore, :locals => {:element => element}) %>
+        </div>
+      </div>
+    <%end%>
+
+    <div class="clear"></div>
+  <% else %>
+    <%= render :partial => "sessions/guide_to_sign_in" %>
+  <% end %>
+</div>
+
+
+<div class="rightCol">
+  <%right_elment_ids.each do|element_id|
+    element =  elements[element_id]
+    next if element.blank?
+    -%>
+    <div class="sectionB">
+      <div class="title">
+        <h2><%= element.title %></h2>
+        <!--<span class="opts"><a href="">...</a></span>-->
+      </div>
+
+      <div class="content">
+        <%= render(:partial => "elements/" + element.class.name.underscore, :locals => {:element => element}) %>
+      </div>
+    </div>
+  <%end%>
+  <div class="clear"></div>
+</div>
+
+<div class="clear"></div>
+
+<script type="text/javascript">
+  $(function(){
+    $("#newWeiboTextarea").val("#"+"<%= @tag %>"+"#");
+  });
+</script>
+

@@ -1,0 +1,35 @@
+<%
+colors = ['#F96487', '#C4746D', '#94BA65', '#3A89C9', '#F26C4F']
+%>
+
+<div class="pollResultBox">
+	<div class="tip">
+      <% if success %>
+		投票成功，感谢您的参与。
+      <% end %>
+	</div>
+	<ul class="pollResultList <% if success %>votedList <% end %>">
+		<% poll.polls_options.order("vote_count desc").each_with_index do |option, index| %>
+		<% 
+			if index > colors.length - 1
+			color_index = index%colors.length 
+			else
+			color_index = index
+			end
+		%>
+		<li <% if params[:vote_option_ids] and params[:vote_option_ids].index(option.id.to_s)%>class="votedItem"<% end %>>
+			<span class="votedLabel"></span>
+			<div>
+				<p><strong><%= index+1 %>. <%= raw option.content %></strong></p>
+				<div class="proportion">
+	              <div class="inner" style='background:<%= colors[color_index] %>; width:<%= minimal_percentage(option.vote_count.to_f / poll.total_vote_count * 100, 1)  %>'></div>
+                      <span><%= option.vote_count %></span>
+                        票
+                  (<span><%= number_percentage(option.vote_count, poll.total_vote_count, 3) %></span>)
+				</div>
+			</div>
+		</li>
+		<% end %>
+	</ul>
+	<div class="pollBottomInfo">目前共有<%= poll.total_vote_count %>票。<% unless success %><a href="javascript:void(0)" class="jumpToPollOpt">返回投票</a><% end %></div>
+</div>

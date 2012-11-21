@@ -1,0 +1,146 @@
+<%= require_popWin %>
+<%= require_autoComplete %>
+<%= require_js "weibo_mana" %>
+<%= require_js "speak_mana" %>
+
+<div class="leftCol">
+	<div class="sectionA">
+		<div class="title">
+			<h4>海通集团 (沪A SH_A: 600537)</h4>
+		</div>
+		<div style="border:1px solid #ddd;height:500px;">
+			<iframe style="width:100%;height:100px;border:none;" src="http://q.stock.sohu.com/cn/600537/bnet_stock.shtml"></iframe>
+		</div>
+	</div>
+	<div class="tabs">
+		<ul>
+			<li class="current"><a href="#">相关微博</a></li>
+			<li><a href="#">最新资讯</a></li>
+			<li><a href="#">公司公告</a></li>
+			<li><a href="#">公司概况</a></li>
+			<li><a href="#">更多</a></li>
+		</ul>
+	</div>
+		
+	<ul class="weiboItemList">
+		<li>
+		<a href="#" class="avatar"><img src="/images/avatar-default.gif" alt="" /></a>
+		<div class="itemContent">
+		<p><a href="">用户名</a>: 微薄内容。。。</p>
+		<blockquote>
+		<p>微薄原文内容。。。</p>
+		<div class="quoteBottom">
+		<span class="rf">
+		<a href="">原文转发(200)</a>
+		<span class="divider">|</span><a href="">原文评论(300)</a>
+		</span>
+		<a href="">1分钟前</a>
+		</div>
+		</blockquote>
+		<div class="itemBottom">
+		<span class="rf">
+		<a href="">删除</a>
+		<span class="divider">|</span><a href="">转发(94)</a>
+		<span class="divider">|</span><a href="">评论(3)</a>
+		</span>
+		<a href="">1分钟前</a>
+		</div>
+		</div>
+		</li>
+	</ul>
+	
+	<div class="pagination">
+	<b>1</b>
+	<a href="">2</a>
+	<a href="">3</a>
+	<a href="">4</a>
+	<a href="">5</a>
+	<a href="">6</a>
+	<span>...</span>
+	<a href="">50</a>
+	<a href="">下一页</a>
+	</div>
+	<div class="clear"></div>
+
+	
+
+</div>
+
+<div class="rightCol">
+	<a href="#" class="btnGreen"><span>+加关注</span></a>
+	<div class="userAtten">
+		<ul>
+			<li>
+				<div class="num">2132</div>
+				<%= link_to "关注", "#" %>
+			</li>
+			<li>
+				<div class="num">122223</div>
+				<%= link_to "粉丝", "#" %>
+			</li>
+			<li>
+				<div class="num">23</div>
+				<%= link_to "微博", "#" %>
+			</li>
+		</ul>
+		<div class="clear"></div>
+	</div>
+	<div class="sidebarNews sectionB">
+		<div class="title">
+			<h4>最新资讯</h4>
+			<span class="opts"><a href="#">更多</a> </span>	
+		</div>
+		<div class="content">
+			<ul class="weiboItemList">
+				<li>
+					<a href="#" class="avatar"><img src="/images/avatar-default.gif" alt="" /></a>
+					<div class="itemContent">
+						<p><a href="">每经新闻</a>:俄罗斯已向中国提供9架卡-31型无人直升机。这些卡-31很可能装备瓦良格号航母。卡-31预警直升机主要用于为舰队提供防空预警，兼具通讯中继制导功能。</p>
+						<div class="itemBottom">
+							<a href="">30秒前</a>
+						</div>
+					</div>
+				</li>
+				<li>
+					<a href="#" class="avatar"><img src="/images/avatar-default.gif" alt="" /></a>
+					<div class="itemContent">
+						<p><a href="">每经证券</a>:一切都会随时间和空间的改变而改变</p>
+						<div class="itemBottom">
+							<a href="">1分钟前</a>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</div>	
+	<div class="sectionB">
+		<div class="title">
+			<h4>关注该股的会员</h4>	
+		</div>
+		<div class="content">
+			<ul class="userWall">
+					<li>
+						<%= link_to image_tag("avatar-default.gif", :name => "userhead"), "#", :class => "avatar" %>
+						<div class="name">nihaoma</div>
+					</li>
+					<div class="clear"></div>
+			</ul>
+		</div>
+	</div>
+	<div class="sectionB">
+		<div class="title">
+			<h4>持有该股的会员</h4>	
+		</div>
+		<div class="content">
+			<ul class="userWall">
+					<li>
+						<%= link_to image_tag("avatar-default.gif", :name => "userhead"), "#", :class => "avatar" %>
+						<div class="name">nihaoma</div>
+					</li>
+					<div class="clear"></div>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<div class="clear"></div>

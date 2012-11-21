@@ -1,0 +1,25 @@
+(function(){
+	<% if @weibo.errors.blank? %>
+	if($("#weibos_list").length > 0){
+		$("<%=escape_javascript(render :partial => "weibo_item", :locals => {:weibo => @weibo, :interviewee => @current_user, :is_same_user => true}) %>").hide().prependTo('#weibos_list').fadeIn(1000);
+	}
+	if($('#create_weibo_form').length > 0){
+		$('#create_weibo_form').find('textarea').val('');
+		_enableSubmit($('#create_weibo_form'));
+	}else if($('#quick_weibo_form').length > 0){
+		$('#quick_weibo_form').find('textarea').val('');
+		_enableSubmit($('#quick_weibo_form'));
+	}
+	
+	<% case @from %>
+	<% when "wishwall" %>
+		$("#inputMyWish").val("#散户心愿墙#");
+		_enableSubmit($('#myWishForm'));
+		$("<%=escape_javascript(render :partial => "specials/weibo_item_for_wish", :locals => {:weibo => @weibo}) %>").hide().prependTo('.wallCol:eq(0)').fadeIn(1000);
+	<% else %>
+	<% end %>
+	
+	<% else %>
+		alert("<%= raw @weibo.errors.values.join(",") %>")
+	<% end %>
+})();

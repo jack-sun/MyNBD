@@ -1,0 +1,19 @@
+<%= form_tag(user_sign_in_path, :method => "post", :id => "bindSigninFormWrapper", :class => "formA roundCorner") do  %>
+	<p>已有每经帐号？直接绑定</p>
+
+	<p>
+		<%= label_tag :email, "邮箱" %><br />
+		<%= text_field_tag :email, nil, :class => "textInput", :size => 20 %>
+	</p>
+  
+  	<p>
+  		<%= label_tag :password, "密码" %><br />
+  		<%= password_field_tag :password, nil, :class => "textInput", :size => 20, :autocomplete => :off %>
+  	</p>
+  
+  	<p class="btnRowM">
+  		<input type="submit" class="hiddenSubmit" />
+  		<%= link_to "<span>绑定</span>".html_safe, "javascript:void(0);", :onclick => "$(this).closest('form').submit();return false;",  :class => "btnBlueM"%>
+		<div class="clear"></div>
+	</p>
+<% end %>

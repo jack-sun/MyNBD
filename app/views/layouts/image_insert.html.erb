@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>插入图片</title>
+		<%= stylesheet_link_tag "reset", "style_global", "style_console", "console_image_insert" %>
+		<%= yield :header_css %>
+		<%= javascript_include_tag "jquery.min", "jquery_ujs", "nbdtools" %>
+		<%= yield :header_js %>
+		<script type="text/javascript">
+			document.domain = _nbd.domain;
+		</script>
+		<%= csrf_meta_tag %>
+		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+	</head>
+	<body>
+		<div class="formB roundCorner">
+			<%= yield %>
+		</div>
+	</body>
+</html>
+	

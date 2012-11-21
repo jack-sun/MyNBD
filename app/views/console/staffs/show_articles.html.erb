@@ -1,0 +1,109 @@
+<div class="sectionA">
+	<div class="title">
+		<h1><%= @stat.real_name %></h1>
+	</div>
+	<div id="subColumnTab" class="tabs">
+			<ul>
+				<li <%= stats_class_helper(Article::PUBLISHED) %>>
+					<%= link_to '发布',show_articles_console_staff_url(@stat.name,:status => 1, :filter => @filter_type, :page => params[:page]) %>
+				</li>
+				<li <%= stats_class_helper(Article::BANNDED) %>>
+						<%= link_to '屏蔽',show_articles_console_staff_url(@stat.name,:status => 2, :filter => @filter_type, :page => params[:page]) %>
+				</li>
+				<li <%= stats_class_helper(Article::DRAFT) %>>
+						<%= link_to '草稿',show_articles_console_staff_url(@stat.name,:status => 0, :filter => @filter_type, :page => params[:page]) %>
+				</li>
+
+			</ul>
+	</div>
+	<div class="content" id="body_state">
+
+		<%=render :partial => "console/shared/article_operation_bar", :locals=>{ :articles => @articles} %>
+<%
+require_js "console_selectAll"
+=begin
+Parameters:
+articles : Array article objects
+display_top: true | false (optional, default is true)
+=end
+display_top = true if (not defined?(display_top)) or display_top.nil?
+special_column = 'normal' if (not defined?(special_column)) or special_column.nil?
+logger.debug "----------special_column: #{special_column}"
+%>
+
+<%= require_popWin %>
+	<div class="sortableTableMargin">
+	  <table id="articleTable" class="tableA">
+	    <thead>
+	      <tr>
+	        <th class="forHandler"></th>
+	        <th><input class="selectAll" type="checkbox" /></th>
+	        <th>标题</th>
+	        <th>栏目</th>
+	        <th>点击/评论</th>
+	        <th>时间
+	        	<div class="sort_link">
+	        	<%= link_to '升序',show_articles_console_staff_url(@stat.name,:status => @status,:order => "asc", :filter => @filter_type, :page => params[:page]),:id => "asc_link" %>
+
+	        	<%= link_to '降序',show_articles_console_staff_url(@stat.name,:status => @status,:order => "desc", :filter => @filter_type, :page => params[:page]) ,:id => "desc_link" %>
+	       
+	        	</div>
+	        </th>
+	        <th>状态</th>
+	        <th>操作</th>
+	      </tr>		
+	    </thead>
+	    <tbody id="sortableBox">
+	      <% @articles.each do |a| %>
+	        <% next unless a.present? %>
+	        <tr id="article_<%= a.id %>">
+	          <td class="forHandler"><span class="dragHandler"></span></td>
+	          <td class="forSelect"><input class="subSelect" type="checkbox" value="<%= a.id %>"/></td>
+	          <td class="itemTitle">
+	            <% if special_column == 'ntt' %>
+	              <%= link_to a.title, ntt_article_url(a), {:target => "_blank"} %>
+	            <% elsif special_column == 'west' %>
+	              <%= link_to a.title, west_article_url(a), {:target => "_blank"} %>
+	            <% else %>
+	              <%= link_to a.title, article_url(a), {:target => "_blank"} %>
+	            <% end %>
+	          </td>
+	          <td class="itemColumns">
+	            <% a.columns.each do |c| %>
+	               <%= link_to "#{c.parent.try(:name)}-#{c.name}", console_column_path(c) %>
+	            <% end %>
+	          </td>
+	          <td><%= "#{a.click_count} / #{(w=a.weibo) ? w.reply_count : 0}" %></td>
+	          <td class="itemDate"><%= a.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+	          <td class="itemStatus_<%=a.status%>"><%= Article::STATUS[a.status.to_i] %></td>
+	          <td class="itemActions">
+	            <%= link_to("<b></b>编辑".html_safe, edit_console_article_url(a, :column_id => @current_column.present? ? @current_column.id : nil), :class=>'actionEdit') %>
+	            <%= link_to("<b></b>删除 ".html_safe, console_article_url(a), :confirm => "删除文章？", :method => :delete, :class=>'actionDelete') %>
+	            <br/>
+	            <%= link_to("<b></b>管理配稿".html_safe, console_article_manage_children_article_url(a), :class=>'actionChilden') %>
+
+	            <%if display_top%>
+	              <%= link_to("<b></b>置顶".html_safe, "javascript:void(0);", :class=>'actionUp') %>
+	            <%end%>
+
+	            <% if a.published? %>
+	              <%= link_to("<b></b>屏蔽".html_safe, "javascript:void(0);", :class=>'actionBanned') %>
+	            <% else %>
+	              <%= link_to("<b></b>发布".html_safe, "javascript:void(0);", :class=>'actionPublish') %>
+	            <% end %>
+
+	            <%if true%>
+	              <%= link_to("<b></b>操作记录".html_safe, article_logs_console_article_url(a), :class=>'actionRecord')%>
+	            <%end%>
+	          </td>
+	        </tr>
+	      <%end%>
+	    </tbody>
+	  </table>
+	</div><!-- table wrapper -->
+	<div id="body_channel" class="content">
+		<%=render :partial => "console/shared/article_operation_bar", :locals=>{ :articles => @articles} %>
+	</div>
+
+</div>
+</div>

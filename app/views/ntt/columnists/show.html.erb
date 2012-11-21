@@ -1,0 +1,23 @@
+<% @title="智库专家 - #{@columnist.name}" %>
+<%= require_css "article_list.css" %>
+
+<% content_for :header_ad do %>
+	<script type="text/javascript">
+		BAIDU_CLB_preloadSlots("347589");
+	</script>
+	<!-- 广告位：西部_顶部四分之三通栏 -->
+	<%= render :partial => "ads/ad", :locals => { :id => "347589", :html_class => "header" } %>
+<% end %>
+
+<div class="leftCol">
+  <% cache(columnist_articles_key_by_id(@columnist.id), :expire_in => Columnist::EXPIRE_IN) do %>
+    <%= render :partial => "columns/article_list_for_search", :locals => {:list_title => "专家文章", :articles => @columnist_articles, :digest_restrict => true, :for_subdomain => Settings.ntt_sub_domain, :show_article_image => true, :no_title_prefix => "："} %>
+    <%= paginate @columnist_articles %>
+  <% end %>
+</div>
+
+<div class="rightCol">
+	<%= render :partial => "ntt/columnists/columnist_intro", :locals => { :title => "专家介绍", :columnist => @columnist } %>
+</div>
+
+<div class="clear"></div>

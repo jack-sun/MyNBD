@@ -1,0 +1,11 @@
+<%if comment.present? and comment.weibo.present? and comment.weibo.owner.present?%>
+<li id="atme_comment_<%= comment.id  %>">
+	<div class="itemContent" style="margin-left:0;">
+		<p><%= comment.content %> (<span><%= nbd_time_f(comment.created_at) %></span>)</p>
+		<p>
+			<span>评论 <%= link_to comment.weibo.owner.nickname, user_path(comment.weibo.owner) %> 的 <%= link_to "微博", weibo_path(comment.weibo) %></span>
+			“<%= comment.weibo.content %>” 
+		</p>
+	</div>
+</li>
+<%end%>

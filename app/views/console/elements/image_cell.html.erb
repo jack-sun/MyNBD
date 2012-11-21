@@ -1,0 +1,155 @@
+<%= require_jqueryUI %>
+<%= require_popWin %>
+<%
+  @body = {"content" => []} unless @body
+%>
+
+<script type="text/javascript">
+  window.moveTo((screen.availWidth - 1000)/2, 0);
+  window.resizeTo(1000, 700);
+</script>
+
+<div class="title">
+	<h1>页面元素编辑 - 图片格子</h1>
+</div>
+
+<iframe id="imageElementPage" src="<%= image_cell_frame_console_features_url%>" width="786" height="560" frameborder="0"></iframe>
+
+<%= simple_form_for([:console, @owner, @element], :html => {:id => "element_form", :class => ""}) do |f| %>
+<%= f.input :content, :as => :hidden %>
+<p>
+  <%= f.input :title , :label => "标题:" %>
+</p>
+
+每行放 <input type="text" id="changeColNum" class="clearInputStyle" value="<%= @body["count"] || '3' %>" /> 张图片。
+<span style="display:none;" id="recommendColWidth"></span>
+
+<ul id="gridBox">
+  <% @body["content"].each do |content| %>
+    <li class="gridItem">
+      <%= image_tag Image.find(content["source"]).feature_url %>
+    </li>
+  <% end %>
+  <li class="gridItem" id="addGridItem">
+    新增图片
+  </li>
+</ul>
+
+<div class="clear"></div>
+<%= render "console/elements/element_editpage_actions" %>
+<% end %>
+
+<script type="text/javascript">
+  window._editedItem = null;
+  window._popWinForAddItem = null;
+  window._updateGrid = function(data, src){
+    if(_editedItem){
+      _editedItem.data("imageData", data);
+      _editedItem.find("img").attr("src", src);
+    }else {
+      var itemToInsert = $("<li class='gridItem'><img src='" + src + "'' /></li>");
+      $("#addGridItem").before(itemToInsert.data("imageData", data));
+    }
+    _popWinForAddItem.hide();
+  }
+
+  $(function(){
+
+    // Some DOM
+    var inputColNum = $("#changeColNum");
+    var boxGrid = $("#gridBox");
+    var btnAddItem = $("#addGridItem");
+    var ifmImage = $("#imageElementPage");
+    var inputFormData = $("#element_image_cell_content");
+    var elemColWidth = $("#recommendColWidth");
+
+    var initData = inputFormData.val();
+    var initItemsData;
+    var url = "<%= image_cell_frame_console_features_url %>";
+    if( initData !== "" ){
+      initItemsData = JSON.parse( inputFormData.val() ).body.content;
+    }
+
+    _popWinForAddItem = $.popWin.init({
+      follow:true,
+      title:"新增图片",
+      width:800,
+      closeCallback:function(){
+        ifmImage.attr("src", "about:blank");
+      }
+    });
+
+
+    _popWinForAddItem.content.append(ifmImage);
+
+    // Init
+    if(initItemsData){
+      getItems().each(function(index){
+        $(this).data("imageData", initItemsData[index]);
+      });
+    }
+
+    $("#gridBox").sortable({
+      opacity: '0.4',
+      tolerance: 'pointer',
+      cursor: 'move',
+      placeholder: "placeholder",
+      items: ".gridItem:not(#addGridItem)"
+    });
+
+
+    // Set col number
+    inputColNum.change(function(){
+      refresh();
+    });
+
+    refresh();
+
+    function refresh(){
+      var cols = inputColNum.val();
+      var width = Math.floor( window.opener._layoutOpts.currentColWidth / cols );
+      boxGrid.width( $(".gridItem", boxGrid).outerWidth(true) * cols );
+      elemColWidth.text("每个格子所占宽度: " + width + "px").show();
+    }
+
+    // add item
+    btnAddItem.click(function(){
+      _popWinForAddItem.show();
+      ifmImage.attr("src", url);
+      _editedItem = false;
+    });
+
+    // edit item
+    boxGrid.delegate(".gridItem:not(#addGridItem)", "click", function(){
+      var data = $(this).data("imageData");
+      _editedItem = $(this);
+      _popWinForAddItem.show();
+      ifmImage.attr("src", url + "?content=" + JSON.stringify(data));
+    });
+
+    // submit form
+    $("#createNewElement").click(function(){
+      var formData = {body:{ count:inputColNum.val(), content:[] }};
+      var dataArray = formData.body.content;
+      getItems().each(function(index){
+        var itemData = $(this).data("imageData");
+        console.log(itemData);
+        dataArray.push(itemData);
+      });
+
+      if(dataArray.length == 0){
+        alert("length = 0");
+        return;
+      }
+
+      inputFormData.val( JSON.stringify(formData) );
+      $("form").submit();
+    })
+
+    // Some func
+    function getItems(){
+      return $(".gridItem:not(#addGridItem)");
+    }
+  });
+</script>
+

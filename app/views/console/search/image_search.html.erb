@@ -1,0 +1,18 @@
+<div class="leftCol">
+  <%= paginate @images %>
+  
+  <ul>
+    <% @images.each do |image|%>
+    <li><%= image.id %>, <%= image.desc %></li>
+    <% end %>
+  </ul>
+  
+  <%= image_search_console_search_url(:q => "test") %>
+  
+</div>
+
+<div class="rightCol">
+</div>
+
+<div class="clear"></div>
+

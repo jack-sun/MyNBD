@@ -1,0 +1,20 @@
+<ul class="weiboItemList">
+	<% articles.each do|article| %>
+	<li>
+		<h4 class="fromArticleTitle"><%= link_to(article.title, article_url(article), :target => "_blank") %></h4>
+		<% if article.comments.present? and article.comments.last.present? and article.comments.last.owner.present? %>
+		<%= link_to image_tag(user_avatar_path(article.comments.last.owner, :middle), {:alt => article.comments.last.owner.nickname, :width => "30", :height => "30"}), article.comments.last.owner, :class => "avatar" %>
+		<div class="itemContent">
+			<p><%= link_to article.comments.last.owner.nickname, article.comments.last.owner %>: <%= article.comments.last.content %></p>
+			<div class="itemBottom">
+				<span class="rf">
+					<%= link_to "<span>更多评论 &raquo;</span>".html_safe, article_url(article)+'#articleComments' %>
+				</span>
+				<span><%= nbd_time_f(article.comments.last.created_at) %></span>
+			</div>
+		</div>
+		<%end %>
+		<div class="clear"></div>
+	</li>
+	<%end %>
+</ul>

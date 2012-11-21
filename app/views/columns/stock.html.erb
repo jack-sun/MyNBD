@@ -1,0 +1,111 @@
+<% @title="股票频道" %>
+<%= require_css "channel.css" %>
+<%= require_slideShow %>
+
+<% content_for :header_ad do %>
+	<script type="text/javascript">
+		BAIDU_CLB_preloadSlots("347540","350299","349119","349120");
+	</script>
+	<!-- 广告位：股票_顶部四分之三通栏 -->
+	<%= render :partial => "ads/ad", :locals => { :id => "347540", :html_class => "header" } %>
+<% end %>
+
+<%= render :partial => "columns/sub_navigation", :locals => {:column_id => 10 } %>
+<div class="leftCol">
+  <% cache(column_show_content_key_by_id(@head_article[:id])) do %>
+	<%= render :partial => "columns/scroll_head_article", :locals => { :articles => @head_article[:articles].map(&:article).compact, :column_id => 11 } %>
+  <% end %>
+	<div class="subLeftCol">
+		
+		<% cache(column_show_content_key_by_id(@zhengbuchun_column[:id])) do %>
+		<%= render :partial => "columns/column_article_list.html", :locals => {:list_title => "郑眼看盘", :articles => @zhengbuchun_column[:articles].map(&:article).compact, :column_id => 86} %>
+		<% end %>
+		
+		<% cache(column_show_content_key_by_id(@laofashi_column[:id])) do %>
+		<%= render :partial => "columns/column_article_list.html", :locals => {:list_title => "老法师操盘手记", :articles => @laofashi_column[:articles].map(&:article).compact, :column_id => 85} %>
+		<% end %>
+	</div>
+	<div class="subRightCol">	
+		<% cache(column_show_content_key_by_id(@finace[:id])) do %>
+			<%= render :partial => "columns/article_list", :locals => {:list_title => "金融", :articles => @finace[:articles].map(&:article).compact, :column_id => 37, :digest_number => 2, :display_children => false, :digest_restrict => true} %>
+		<% end %>		
+	</div>
+	
+	<div class="clear"></div>
+	
+	<div class="subLeftCol">
+		<% cache(column_show_content_key_by_id(@macro_stock[:id])) do %>
+		<%= render :partial => "columns/article_list.html", :locals => {:list_title => "大盘", :articles => @macro_stock[:articles].map(&:article).compact, :column_id => 27, :digest_number =>3, :display_children => false, :digest_restrict => true} %>
+		<% end %>
+	</div>
+	<div class="subRightCol">
+		<% cache(column_show_content_key_by_id(@analysis[:id])) do %>
+		<%= render :partial => "columns/article_list", :locals => {:list_title => "对策", :articles => @analysis[:articles].map(&:article).compact, :column_id => 29, :digest_number =>3, :display_children => false, :digest_restrict => true } %>
+		<% end %>
+	</div>
+	
+	<div class="clear"></div>
+	
+	<!-- 广告位：全站_左通栏一 -->
+	<%= render :partial => "ads/ad", :locals => { :id => "350299", :html_class => "left_bar" } %>
+	
+	<div class="subLeftCol">
+		<% cache(column_show_content_key_by_id(@individual_stock[:id])) do %>
+		<%= render :partial => "columns/article_list.html", :locals => {:list_title => "个股", :articles => @individual_stock[:articles].map(&:article).compact, :column_id => 23, :digest_number =>3, :display_children => false, :digest_restrict => true} %>
+		<% end %>
+		
+		<% cache(column_show_content_key_by_id(@fund[:id])) do %>
+		<%= render :partial => "columns/article_list.html", :locals => {:list_title => "基金", :articles => @fund[:articles].map(&:article).compact, :column_id => 23, :digest_number =>3, :display_children => false, :digest_restrict => true} %>
+		<% end %>
+	</div>
+	
+	<div class="subRightCol">
+		
+		<% cache(column_show_content_key_by_id(@bulletin[:id])) do %>
+		<%= render :partial => "columns/article_list.html", :locals => {:list_title => "公告", :articles => @bulletin[:articles].map(&:article).compact, :column_id => 28, :digest_number =>3, :display_children => false, :digest_restrict => true} %>
+		<% end %>
+		
+		<% cache(column_show_content_key_by_id(@exchange[:id])) do %>
+		<%= render :partial => "columns/article_list.html", :locals => {:list_title => "外汇", :articles => @exchange[:articles].map(&:article).compact, :column_id => 26, :digest_number =>3, :display_children => false, :digest_restrict => true} %>
+		<% end %>
+		
+	</div>
+	<div class="clear">
+	</div>
+</div>
+<div class="rightCol">
+	
+	<% cache(column_show_content_key_by_id(@market_express[:id], true, "uniq")) do %>
+		<%= render :partial => "columns/article_list", :locals => {:list_title => "行情快讯", :articles => @market_express[:articles].map(&:article).compact, :column_id => 12, :digest_number =>0, :display_datetime => true } %>
+	<% end %>
+		
+	
+	<% cache(column_show_content_key_by_id(@ipo_articles[:id], true, "uniq")) do %>
+	<%= render :partial => "columns/article_list", :locals => {:list_title => "IPO调查", :articles => @ipo_articles[:articles].map(&:article).compact, :column_id => 31, :digest_number => 1, :digest_restrict => true, :display_children => true, :display_special => true, :display_children_digest_restrict => "restrict2", :html_class => "IPOResearch"} %>
+	<%end %>
+	
+	<% cache(column_show_content_key_by_id(@company_inv_articles[:id], true, "uniq")) do %>
+	<%= render :partial => "columns/article_feature", :locals => {:list_title => "上市公司调查", :articles => @company_inv_articles[:articles].map(&:article).compact, :column_id => 32, :digest_number => 1, :html_class => "articleWallWrapper", :html_style => "margin-bottom:10px;" } %>
+	<%end %>
+	
+	<%= render :partial => "columns/market_table" %>
+
+	<!-- 广告位：全站_右边栏一 -->
+	<%= render :partial => "ads/ad", :locals => { :id => "349119", :html_class => "right_box" } %>
+	
+	<% cache(column_show_content_key_by_id(@hk_stock[:id], true, "uniq")) do %>
+	<%= render :partial => "columns/article_list.html", :locals => {:list_title => "港股", :articles => @hk_stock[:articles].map(&:article).compact, :column_id => 30, :digest_number =>0, :display_children => false, :digest_restrict => true} %>
+	<% end %>
+	<div class="divider" style="margin-bottom:5px;"></div>
+	
+	
+        <%= render :partial => "columns/hot_articles" %>
+		<%= render :partial => "columns/nbd_promo", :locals => {:hide_newspappers => true, :title => "移动客户端"} %>
+	
+</div>
+<div class="clear">
+</div>
+
+<!-- 广告位：全站_底部通栏 -->
+<%= render :partial => "ads/ad", :locals => { :id => "349120", :html_class => "footer" } %>
+

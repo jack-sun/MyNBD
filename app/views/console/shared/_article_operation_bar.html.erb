@@ -1,0 +1,19 @@
+<%
+=begin
+Parameters:
+display_column_action: true | false (optional, default is true)
+=end
+display_column_action = true if (not defined?(display_column_action)) or display_column_action.nil?
+%>
+
+<div class="operation">
+  <%= paginate articles %>
+  <div class='lOpt'>
+    <span>批量操作:</span>
+    <%= grouped_collection_select :article_column, :ids, Column.basic_columns.includes(:children), :children, :name, :id, :name,  {:include_blank => "添加到栏目..."},{:class => "columnSelector"} %>
+      <%= link_to "<span>屏蔽选中文章</span>".html_safe, "javascript:void(0);", :class => "btnGray banArticles" %>
+    <%if display_column_action && @current_column %>
+      <%= link_to "<span>从本栏目移除</span>".html_safe, "javascript:void(0);", :class => "btnGray removeFromColumn" %>
+    <%end%>
+  </div>
+</div>

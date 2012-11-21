@@ -1,0 +1,36 @@
+<%@title="账号信息 - 每经资讯产品"%>
+<%= require_css "account_settings.css" %>
+<div class="leftCol">
+  <div id="pageName"><h1>账号信息</h1></div>
+  <% if @account %>
+  
+  <div class="formA">
+    <p>
+      <%= label_tag "mobile_no", "订阅手机号码:"%>
+      <span class="pureText"><%= @account.phone_no %></span>
+    </p>
+    <p>
+      <%= label_tag "end_time", "有效期至:"%>
+      <span class="pureText">
+        <% if @current_user.is_premium_overdue? %>
+          <%= @account.service_end_at && @account.service_end_at.strftime("%Y-%m-%d") %>
+          <span class="red b">
+            (已过期)
+          </span>
+        <% else %>
+          <%= @account.service_end_at && @account.service_end_at.strftime("%Y-%m-%d") %>
+        <% end %>
+      </span>
+    </p>
+    <p>
+      <%= link_to "<span>订阅续费</span>".html_safe, new_premium_mobile_newspaper_account_url, :class => "btnBlueM" %>
+    </p>
+  </div>
+    
+  <% else %>
+    <%= link_to "每经资讯产品介绍", introduce_premium_mobile_newspaper_account_url %>
+  <% end %>
+  
+</div>
+<div class="rightCol"></div>
+<div class="clear"></div>

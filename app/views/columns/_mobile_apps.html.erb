@@ -1,0 +1,21 @@
+<%
+=begin
+Parameters:
+	html_style: String (optional)
+=end
+html_style = '' unless html_style
+%>
+<div id="mobileAppsBox" class="sectionA" style="<%=html_style%>">
+	<div class="title">
+		<h1>移动客户端</h1>
+	</div>
+	<div class="content">
+		<dl>
+			<dt><img src="/images/nbd-clients.png" alt="" /></dt>
+			<dd class="last">
+				<h3>随时，随地，每经网</h3>
+				<%= link_to("iPhone", "http://itunes.apple.com/cn/app/id413082888?mt=8", {:class => "first", :target => "_blank"})%> | <%= link_to("iPad", "http://itunes.apple.com/cn/app/id440680920?mt=8", :target => "_blank")%> | <%= link_to("Android", "#{Settings.old_host}/mobile/NBD_2_1_1_Android.apk", :target => "_blank")%> | <%= link_to("其他", "#{Settings.old_host}/mobile/", :target => "_blank")%>
+			</dd>
+		</dl>
+	</div>
+</div>

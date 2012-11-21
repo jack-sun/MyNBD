@@ -1,0 +1,26 @@
+<div class="title">
+	<h1>新增区块 - 选择新区块的类型</h1>
+</div>
+<ul>
+	<% FeaturePage::SECTION_TYPES.each_with_index do |e, index| %>
+		<li><input type="radio" name="section_code" id="section_code_<%= index %>" value="<%= e %>"/><label for="section_code_<%= index %>" class="clearLabelStyle"><%= FeaturePage::TYPES_HASH[e] %></label></li>
+	<%end%>
+</ul>
+<p class="rightAlignActions">
+	<%= link_to '<span>取消</span>'.html_safe, 'javascript:window.close();', :class => "btnGrayM" %>	
+	<%= link_to '<span>确认</span>'.html_safe, 'javascript:void(0);', :id => "confirm_section", :class => "btnBlueM" %>	
+</p>
+
+<script type="text/javascript">
+	$(function(){
+		$("#confirm_section").click(function(){
+			var sectionCode = $(":radio:checked").val();
+			if(!sectionCode){
+				alert("请选择一个类型。");
+				return;
+			}
+			window.opener._layoutOpts.addSectioncallback(sectionCode);
+			window.close();
+		});
+	});
+</script>

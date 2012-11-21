@@ -1,0 +1,105 @@
+#wishIntroWrapper{
+	padding: 1px 0 0 0 ;
+	height: 664px;
+	background: url(../images/wishwall-header-bg.png) 0 0 repeat-x;
+}
+#wishIntro{
+	margin: 0 auto;
+	padding: 1px 0 0 0;
+	width: 979px;
+	height: 643px;
+	background: url(../images/wishwall-container-bg.png) 0 0 no-repeat;
+}
+#introContent{
+	margin:55px 20px 0 85px;
+	color:#FFF;
+	text-indent:20px;
+	line-height:2;
+	font-size:16px;
+}
+#introContent p{
+	margin:10px 0;
+}
+
+#myWishBox{
+	margin: -2px auto 0;
+	padding: 40px 40px 0;
+	width: 900px;
+	height: 161px;
+	background: url(../images/wishwall-mywish-bg.png) 0 0 no-repeat;
+}
+#myWishBox .inputArea{
+	margin-left: 65px;
+}
+#myWishBox .inputArea textarea{
+	width: 823px;
+	*width:820px;
+	height: 90px;
+	color:#808080;
+}
+#myWishBox .inputArea .bottomActions{
+	margin: 5px 0;
+	text-align: right;
+}
+#myWishBox .avatar{
+	float: left;
+	border: 1px #ccc solid;
+	padding: 1px;
+	background: #fff;
+}
+
+#wishWallWrapper{
+	padding: 1px 0 60px 0;
+	background: url(../images/wishwall-wall-bg.png) 0 0 repeat;
+}
+#wishWallContainer{
+	margin: 0 auto;
+	width: 980px;
+	overflow:hidden;
+}
+#wishwall{
+	width: 1000px;
+}
+#wishwall .wallCol{
+	float: left;
+	margin-right: 20px;
+	width: 230px;
+}
+#wishwall .wishItem{
+	padding: 60px 0 0;
+	background: url(../images/wishwall-wish-top.png) #ffeabd 0 0 no-repeat;
+}
+#wishwall .wishItem .itemShadow {
+	height: 12px;
+	overflow:hidden;
+	background: url(../images/wishwall-wish-bottom.png) 0 0 no-repeat;
+}
+#wishwall .wishContent{
+	margin: 0 10px;
+	overflow:hidden;
+}
+#wishwall .wishContent p{
+	word-break:break-all;
+	word-wrap:break-word;
+	margin-bottom: 20px;
+}
+.wishUserInfo{
+	font-size: 12px;
+	line-height: 15px;
+	margin-bottom: 10px;
+}
+.wishUserInfo .avatar{
+	float: left;
+	margin-right: 5px;
+}
+.wishUserInfo .name{
+	font-weight: bold;
+}
+
+#myWishBox form { position:relative; }
+.speakSuccessTip { top:36px; left:324px; }
+
+#restCharNum { float:left; margin:7px 0 0 0; }
+
+#footer { margin-top:0; border:none; color:#787878 !important; background:#000; }
+#footer a { color:#fff; }

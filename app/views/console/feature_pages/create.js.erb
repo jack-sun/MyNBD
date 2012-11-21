@@ -1,0 +1,6 @@
+(function(){
+	$("<div id='tabs-<%= @page.pos + 1 %>'><label for='feature_feature_pages_attributes_<%= @page.pos %>_title'>页面名称：</label><%= escape_javascript(text_field_tag("feature[feature_pages_attributes][#{@page.pos}][title]", "index", :id => "feature_feature_pages_attributes_#{@page.pos}_slug", :class=>"textInput", :size=>20)) %><%= escape_javascript(hidden_field_tag("feature[feature_pages_attributes][#{@page.pos}][layout]", @page.layout, :id => "feature_feature_pages_attributes_#{@page.pos}_layout")) %><%= escape_javascript(hidden_field_tag("feature[feature_pages_attributes][#{@page.pos}][id]", @page.id, :id => "feature_feature_pages_attributes_#{@page.pos}_id")) %><%= escape_javascript(render :partial => "feature_pages", :locals => {:page => @page}) %></div>").appendTo("#inputArea");
+	$(".tabs ul li:last").before("<li><a href='#tabs-<%= @page.pos + 1 %>'>第<%= @page.pos + 1 %>页</a></li>");
+	$(".tabs ul li:nth(<%= @page.pos %>) a").trigger("click");
+})();
+

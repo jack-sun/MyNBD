@@ -1,0 +1,22 @@
+<% for_subdomain = false unless for_subdomain %>
+<% if first_column %>
+  <div class="subNavi">
+    <ul id="crumb">
+      <li class="first">您所在位置:</li>
+      <li><%= link_to "每经网", index_url %></li>
+        <% if for_subdomain %>
+          <li><%= link_to Column::SUBDOMAIN_NAME[for_subdomain], send("#{for_subdomain}_index_url") %></li>
+          <li><%= link_to first_column.name, send("#{for_subdomain}_column_url", first_column) %></li>
+        <% else %>
+          <li><%= link_to first_column.root.name, column_url(first_column.root) %></li>
+          <li><%= link_to first_column.name, column_url(first_column) %></li>
+        <% end %>
+      <li class="last"><strong>正文</strong></li>
+    </ul>
+  </div>
+  <style type="text/css">
+    #body_site #wrapper {
+      margin-top: 0;
+    }
+  </style>
+<% end %>

@@ -1,0 +1,7 @@
+<% article = articles.first %>
+<% if article %>
+<div id="bulletin" class="roundCorner">
+	<a href="<%= column_url(column_id) %>" target="_blank" title="公告" class="label"><b class="icon16 bugle" style="margin-top:4px;"></b>公告:</a> 
+	<%= link_to article.list_title, article_url(article), {:target => "_blank", :title => article.title} %>
+</div>
+<% end %>

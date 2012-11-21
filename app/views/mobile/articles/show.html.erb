@@ -1,0 +1,44 @@
+<% @title = @article.title %>
+
+<% cache(article_page_content_key_by_id_and_page_id(@article.id, @page.p_index), :expire_in => Article::EXPIRE_IN) do %>
+    <%= render :partial => "mobile/articles/crumb", :locals=>{:first_column => @first_column, :show_column => true}%>
+	
+<div id="articalMain">
+		<h1 class="articleTitle"><%= @article.title %></h1>
+		<p class="articleTime">
+		<% if @reporters.present? %>每经记者：<% @reporters.each do|reporter| %><%= reporter.real_name %><%end%><%end%> <span><%= @article.created_at.strftime("%Y-%m-%d %H:%M") %></span> <% if @article.ori_source.present? %>来源: <%= @article.ori_source %><%end%> </p>		
+		<% if @article.digest.present? %>
+			<p id="articleDigest" class="articleFontSize_medium"><b>核心提示：</b><%= @article.digest.html_safe %></p>
+		<%end%>
+		
+		<%= image_tag(@page.image.article_url(:x_large), :class => "artcileAddimg") if @page.image.present?  %>
+		
+		<div id="articleContent" ><%= @page.content.html_safe %></div>
+
+			<div class="childrenArticles">
+				<ul class="unorderList">
+                      <% @article.relate_article_children.order("pos desc").limit(2).each do |a| %>
+					<li>
+						<%= link_to a.children_title, a.children_url, {:target => "_blank"} %>
+					</li>
+					<%end %>
+				</ul>
+			</div>
+
+		
+		<% if @article.pages.count > 1 %>
+	    	<div class="pagination"><%= article_paginate_mobile(@article, @page) %></div><div class="clear"></div>
+		<%end%>
+		
+		<% if @article.copyright? %>
+		  <%= render :partial => "/articles/copyright" %>
+		<% end %>
+		
+		<div id="articleInfo">
+			<span id="articleColumns">归类于: <% @article.columns.each do|column| %><%= link_to column.name, column_path(column) %><%end%></span>
+		<span style="margin-right:20px;"><%if @article.ori_author.present?%><%= @article.ori_author %><%end%> <% if @article.ori_source.present? %>来源: <%= @article.show_ori_source %><%end%></span> 责任编辑: <% @editors_in_charge.each do|editor| %><%= editor.real_name %><%end%></div>
+    <% end %>
+				
+</div><!--article content wrapper -->
+		
+		

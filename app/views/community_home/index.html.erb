@@ -1,0 +1,240 @@
+<% @title = "微博社区" %>
+<%= require_css "community_home.css" %>
+<%= require_autoComplete %>
+<%= require_popWin %>
+<%= require_loopScroll %>
+<%= require_js "weibo_mana" %>
+<%= require_js "speak_mana" %>
+
+<%= render :partial => "sessions/pop_register_box" %>
+
+<% content_for :header_ad do %>
+	<script type="text/javascript">
+		BAIDU_CLB_preloadSlots("349118","349120");
+	</script>
+	<!-- 广告位：全站_顶部四分之三通栏 -->
+	<%= render :partial => "ads/ad", :locals => { :id => "349118", :html_class => "header" } %>
+<% end %>
+
+<div class="leftCol">
+	<% head_topic = @hot_topics.shift %>
+	<div class="slideImageWrapper">
+		<div class="slideImageInner" id="topicImageInner">
+			<div class="imageGroup">
+				<% if head_topic.present? %>
+					<%= link_to(image_tag(topic_image_path(head_topic, :x_large)), topic_url(head_topic)) %>
+				<%end%>
+			</div>
+			<% if head_topic.present? %>
+			<h3 class="topicTitle">
+				<div class="bottomInfoBg"></div>
+				<%= link_to(head_topic.title, topic_url(head_topic))%>
+				<% if head_topic.desc.present? %>
+				<span> - <%= strip_html_tag(head_topic.desc, 45-head_topic.title.length) %> <%= link_to("查看详情 &raquo;".html_safe, topic_url(head_topic))%></span>
+				<% end %>
+			</h3>
+			<% end %>
+		</div>
+	</div>
+	
+	<div id="hotTopics" class="roundCorner">
+		<div class="bottomInfoLabel"><b class="icon16 bugle" style="margin-top:7px;"></b>热门话题: </div>
+		<div id="scrollTopicWrapper">
+			<ul id="scrollTopic">
+				<% @hot_topics.each do |topic| %>
+					<li><%= link_to topic.title, topic_url(topic)%></li>
+				<%end%>
+			</ul>
+		</div>
+	</div>
+
+	<div class="subLeftCol">
+      <% cache(Live::COMMUNITY_INDEX_FRAGMENT_KEY, :expire_in => 3*60) do %>
+        <%= render :partial => "columns/market_live", :locals => {:compere => @showed_live.user, :live_talks => @showed_live_talks, :live => @showed_live} %>
+      <% end %>
+	</div>
+	<div class="subRightCol">
+		<div class="sectionA" >
+          <% cache(Weibo::NEWEST_WEIBO_FRAGMENT_KEY, :expire_in => 3*60) do %>
+			<div class="title"><h1>最新微博</h1></div>
+			<div id="scrollWeibosWrapper" class="content">
+				<ul id="scrollWeibos" class="weiboItemList">
+                  <% @comment_articles = Weibo.comment_articles(@newest_weibos.map(&:ori_weibo_id)) %>
+					<% @newest_weibos.each_with_index do |weibo, index|
+						next if weibo.blank? -%>
+                      <%= render :partial => "weibos/weibo_item", :locals => {:weibo => weibo, :index => index, :hideOpts => true, :stripAndTruncate => true, :is_same_user => false, :showArticle => true} %>
+					<% end %>
+				</ul>
+			</div>
+          <% end %>
+		</div>
+	</div>
+	<div class="clear"></div>
+	
+	<div class="block" style="margin-top:20px;">
+		<div class="blockTitle">
+			<h4>热门转发</h4>	
+		</div>
+		<div class="blockContent">
+			<ul class="weiboItemList" id="weiboListForHome">
+			<% @hot_rt_weibos.each_with_index do |weibo, index|
+				next if weibo.blank? -%>
+				<%= render :partial => "weibos/weibo_item_for_home", :locals => {:weibo => weibo, :index => index, :is_same_user => false} %>
+			<% end %>
+			</ul>
+		</div>
+	</div>
+
+</div>
+
+<div class="rightCol">
+	<div id="loginEntry">
+		<%if @current_user.blank? %>
+			<div class="regTop">
+				<%= link_to "", user_sign_up_url, :class => "regBtn" %>
+			</div>
+			<%= form_tag(user_sign_in_url, :method => "post") do %>
+				<p>
+					<%= text_field_tag :email, nil, :size => 40, :class => 'textInput', :id => "entryEmail" %>
+				</p>
+				<p class="placeHolder">
+					<%= password_field_tag :password, nil, :size => 40, :class => 'textInput', :id => "entryPwd", :autocomplete => :off %>
+					<input type="text" id="password_text" class="textInput" style="color:#666" value="请输入密码" />
+				</p>
+				<p>
+					<span class="lf">
+						<%= check_box_tag :remember_me, "1", false %>
+						<%= label_tag :remember_me, "下次自动登录" %>
+					</span>
+					<%= link_to "忘记密码?", new_password_reset_url, :class => "rf" %>
+					<div class="clear"></div>
+				</p>
+				<div class="loginBtm">
+					<%= submit_tag "", :class => "loginBtn" %>
+				</div>
+			<% end %>
+			<div class="otherAccess">
+				<p>或使用合作网站账号登录</p>
+				<p>
+					<span class="sinaAccess"><b></b><%= link_to "用新浪微博登录", auth_provider_path('weibo') %></span>
+           			<span class="qqAccess"><b></b><%= link_to "用QQ登录", auth_provider_path('qq_connect') %></span>
+				</p>
+			</div>
+		<%else%>
+			<%= render :partial => "users/user_profile", :locals => {:interviewee => @current_user} %>
+			<p><%= link_to "<strong>进入我的首页&raquo;</strong>".html_safe, user_url(@current_user) %></p>
+		<%end%>
+	</div>
+	
+	<div class="sectionA">
+		<div class="title">
+			<h4>活跃用户</h4>	
+		</div>
+		<div class="content">
+			<%= render :partial => "users/users_wall", :locals => {:users => @active_users} %>
+			<div class="clear"></div>
+		</div>
+	</div>
+
+
+    
+    <% cache(Live::COMMUNITY_INDEX_QA_FRAGMENT_KEY, :expire_in => 3*60) do %>
+      <%= render :partial => "columns/market_qa", :locals => {:compere => @stock.user, :live_questions => @qa_live_talks} %>  
+    <% end %>
+    
+	
+    <% if false %>
+	<div class="sectionA" id="hotComments">
+		<div class="title">
+			<h4>精彩评论</h4>	
+		</div>
+		<div class="content">
+			<%= render :partial => "comments/article_with_comments", :locals => {:articles => @hot_comment_articles} %>
+		</div>
+	</div>
+      <% end %>
+	
+	<%= render :partial => "weibos/feedback", :locals => {:html_class => "sectionA"} %>
+	
+</div>
+
+<div class="clear"></div>
+
+<!-- 广告位：全站_底部通栏 -->
+<%= render :partial => "ads/ad", :locals => { :id => "349120", :html_class => "footer" } %>
+
+
+<script type="text/javascript">
+	$(function(){
+		var entryPwd = $("#entryPwd"),
+			entryEmail = $("#entryEmail"),
+			pwdText = $("#password_text");
+			
+		if(entryPwd.length == 0) return;
+
+		_nbd.setPlaceholder(entryEmail, "请输入邮箱");
+
+		// password input
+		entryPwd.hide();
+		entryPwd[0].style.color = "#000";
+		pwdText[0].style.color = "#888";
+		pwdText.focus(function(){
+			$(this).hide();
+			entryPwd.show();
+			entryPwd.focus();
+		});
+		entryPwd.blur(function(){
+			if(this.value == ""){
+				$(this).hide();
+				pwdText.show();
+			}
+		});
+	});
+	
+	//话题的自动滚动 和 微博的自动滚动
+	$(function(){
+		//话题
+		$("#scrollTopic").loopScroll();
+		
+		//微博
+		var $scrollWeibos = $("#scrollWeibos");
+		var toShowBox, readyToCircle, isPauseScroll= false;
+		function autoScrollWeibos(){
+			readyToCircle = true;
+			toShowBox = $scrollWeibos.children(":last");
+			var height = toShowBox.height();
+			toShowBox.css({
+				"opacity":0
+			}).hide().prependTo($scrollWeibos).animate({
+				height:"show",
+				marginTop:"show",
+				marginBottom:"show",
+				paddingTop:"show",
+				paddingBottom:"show"
+				},height*10).animate({opacity:1},500,function(){
+					setTimeout(function(){
+						if(!isPauseScroll){
+							autoScrollWeibos();
+						}else {
+							readyToCircle = false;
+						}
+					},3000);
+				});
+		}
+		if($scrollWeibos.parent().outerHeight() < $scrollWeibos.outerHeight()){
+			autoScrollWeibos();
+			$scrollWeibos.mouseenter(function(){
+				isPauseScroll = true;
+			}).mouseleave(function(){
+				isPauseScroll = false;
+				if(!readyToCircle){
+					autoScrollWeibos();
+				}
+			});
+		}
+
+	});
+</script>
+
+
+

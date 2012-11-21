@@ -1,0 +1,58 @@
+<%= require_jqueryUI %>
+<%= require_popWin %>
+<%= require_js "console_sortable.js" %>
+
+<% if flash[:notice]  %>
+  <div class="alert_done" style="margin:20px 20px 10px;"><b></b> <%= flash[:notice] %></div>
+<% end %>
+<div class="sectionA">
+	<div class="title">
+          <h1><%= link_to "期刊管理", console_premium_touzibaos_path %></a> - 每经投资宝(<%=@touzibao.t_index%>)</h1>
+		<span class="opts">
+              <% if @touzibao.published? %>
+            	<%= link_to '<span>取消发布</span>'.html_safe, unpublish_console_premium_touzibao_path(@touzibao), :confirm=>"确定取消该期刊的发布吗？", :style => "margin-left:10px;", :class => "btnRed rf", :method => :put %>
+          	<% else %>
+                <%= link_to '<span>发布期刊</span>'.html_safe, publish_console_premium_touzibao_path(@touzibao), :confirm=>"确定发布该期刊吗？", :style => "margin-left:10px;", :class => "btnGreen rf", :method => :put %>
+            <% end %>
+            <%= link_to '<span>添加内容</span>'.html_safe, new_console_premium_touzibao_article_path(@touzibao), :style => "margin-left:10px;", :class => "btnBlue rf" %>
+		</span>				
+	</div>
+
+	<div id="body_tzb_form" class="content">
+    <div class="sortableTableMargin">
+          <table id="articleTable" class="tableA">
+            <thead>
+              <tr>
+                <th class="forHandler"></th>
+                <th>栏目</th>
+                <th>内容摘要</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody id="sortableBox">
+              <% @article_touzibaos.each do |article_touzibao| %>
+                <% article = article_touzibao.article %>
+                <tr id="article_<%= article.id %>">
+                  <td class="forHandler"><span class="dragHandler"></span></td>
+                  <td class="itemTitle"><%= article_touzibao.section %></td>
+                  <td> <%= article.show_digest.truncate(30)%></td>
+                  <td class="itemActions">
+                    <%= link_to '<b></b>编辑'.html_safe, edit_console_premium_touzibao_article_path(@touzibao, article), :class => "actionChilden" %>
+                    <%= link_to '<b></b>删除'.html_safe, console_premium_touzibao_article_path(@touzibao, article), :confirm => '确定删除这篇文章吗?', :method => :delete, :class => "actionDelete" %>
+                    <% if article.published? %>
+                      <%= link_to("<b></b>屏蔽".html_safe, "javascript:void(0);", :class=>'actionBanned') %>
+                    <% else %>
+                      <%= link_to("<b></b>发布".html_safe, "javascript:void(0);", :class=>'actionPublish') %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+    </div>
+    <div style="margin:10px 0 0 0;height:30px;"><%= paginate @article_touzibaos %></div>
+	</div>
+</div>
+<script type="text/javascript">
+  var _touzibao_id = <%= @touzibao.id %>;
+</script>

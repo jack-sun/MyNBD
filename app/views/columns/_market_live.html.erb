@@ -1,0 +1,38 @@
+<%
+=begin
+Parameters:
+	compere: User
+	live_talks: Talk
+=end
+live = nil unless live
+current_live_url = live.nil? ? today_lives_url : live_url(live)
+%>
+<div class="sectionA" id="weiboLive">
+	<div class="title">
+		<h1>每经直播间</h1>
+	</div>
+	<div class="content">
+		<div class="weiboLiveCompereProfile">
+			<%= link_to(image_tag(user_avatar_path(compere, :middle), {:alt => compere.nickname, :width => "50", :height => "50"}), current_live_url, {:class => "avatar lf"}) %>
+			<%= link_to(compere.nickname, current_live_url, {:class => "nickname"}) %><br/>
+			<%= link_to "<span>收看直播</span>".html_safe, current_live_url, :class => "btnGreen", :style => "margin-top:5px;" %>
+			<div class="clear"></div>
+		</div>
+		<ul class="weiboItemList">
+			<%
+			 last_index = live_talks.length - 1
+			 live_talks.each_with_index do |talk, index|
+			next if talk.weibo.blank? %>
+				<li <% if index == last_index %>class="last"<% end %> >
+					<div class="itemContent"> 
+						<p><%= strip_html_tag(talk.weibo.content, 120) %></p>
+					</div>
+					<div class="itemBottom">
+						<%= link_to nbd_time_f(talk.weibo.created_at), current_live_url %>
+					</div>
+				</li>
+			<%end%>
+		</ul>
+	</div><!--content-->
+</div>
+

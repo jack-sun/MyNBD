@@ -1,0 +1,122 @@
+<%= require_slideShow %>
+<% content_for :header_ad do %>
+	<%= render :partial => "ads/common_ad", :locals => { :pos => "c-1" } %>
+<% end %>
+<div class="leftCol">
+	<div style="width:285px;margin-right:25px;" class="subLeftCol">
+		<%= render :partial => "columns/image_news", :locals => { :articles => (@ntt_head_article[:articles].map(&:article)||[]) } %>
+		<% cache(fragment_column_key(@ntt_head_article[:id])) do %>
+		<%= render :partial => "columns/ntt_entry", :locals => {:list_title => "智库 &middot; 专栏".html_safe, :articles => (@ntt_head_article[:articles].map(&:article)||[]), :html_class => "nttEntry"} %>
+		<% end %>
+		<% cache(fragment_column_key(@yetan_update[:id])) do %>
+		<%= render :partial => "columns/ntt_entry", :locals => {:articles => @yetan_update[:articles].map(&:article).compact, :column_id => 89, :display_children => false, :digest_restrict => true, :html_class => "nttEntry" } %>
+		<% end %>
+	</div>
+	<div style="width:340px;" class="subRightCol">
+		<% cache(fragment_column_key(@head_article[:id])) do %>
+		<%= render :partial => "columns/homepage_head_article", :locals => { :article => @head_article[:articles].map(&:article)[0], :column_id => 2, :hide_image => true } %>
+		<% end %>
+		<% cache fragment_column_key(@important_articles[:id]) do %>
+		<%= render :partial => "columns/article_list", :locals => {:list_title => "要闻", :articles => @important_articles[:articles].map(&:article).compact, :digest_number => 4, :digest_restrict_2 => true, :hide_image => true, :column_id => 3} %>
+		<% end %>
+	</div>
+	<div class="clear">
+	</div>
+</div>
+<div class="rightCol">
+	<% cache(fragment_column_key(@nbd_special_articles[:id])) do %>
+	<%= render :partial => "columns/article_list", :locals => {:list_title => "每经访谈", :articles => @nbd_special_articles[:articles].map(&:article).compact, :column_id => 81, :digest_number => 1, :digest_restrict => true, :display_children => true, :display_special => true, :display_children_digest_restrict => "restrict2", :html_class => "NBDFeatures"} %>
+	<%end %>
+	<% cache(fragment_column_key(@ipo_articles[:id])) do %>
+	<%= render :partial => "columns/article_list", :locals => {:list_title => "专题策划", :articles => @ipo_articles[:articles].map(&:article).compact, :column_id => 31, :digest_number => 1, :digest_restrict => true, :display_children => true, :display_special => true, :display_children_digest_restrict => "restrict2", :html_class => "IPOResearch"} %>
+	<%end %>
+</div>
+<div class="clear">
+</div>
+<%= render :partial => "ads/common_ad", :locals => { :pos => "a-2" } %>
+<div class="block">
+	<div class="blockTitle">
+		<h2>区域经济</h2>
+		<span class="opts"><% sub_columns = Column::DIS_SUB_NAVS[10]
+			Column.find(sub_columns).sort_by{|e| sub_columns.index(e.id)}.each_with_index do |child_column, index| %>
+			<%= link_to child_column.name, column_path(child_column) %>
+			<%end %>
+		</span>
+	</div>
+	<div class="blockContent">
+		<div class="leftCol">
+			<div class="subLeftCol">
+				<%= render :partial => "columns/article_list", :locals => {:list_title => "两江新区", :articles => Column.aggregate_articles([23, 24, 25, 26, 27, 28], 6), :digest_number => 1, :digest_restrict => true, :html_class => "marketIntegrate", :column_id => 10, :html_style => "margin-bottom:10px;" } %>
+				<%= render :partial => "columns/article_list", :locals => {:list_title => "天府新区", :articles => Column.aggregate_articles([23, 24, 25, 26, 27, 28], 6), :digest_number => 1, :digest_restrict => true, :html_class => "marketIntegrate", :column_id => 10, :html_style => "margin-bottom:10px;" } %>
+				<%= render :partial => "columns/article_list", :locals => {:list_title => "西咸新区", :articles => Column.aggregate_articles([23, 24, 25, 26, 27, 28], 6), :digest_number => 1, :digest_restrict => true, :html_class => "marketIntegrate", :column_id => 10, :html_style => "margin-bottom:10px;" } %>
+			</div>
+			<div class="subRightCol">
+				<%= render :partial => "columns/article_list", :locals => {:list_title => "四川", :articles => @market_express_articles[:articles].map(&:article).compact, :column_id => 12, :digest_number =>0, :display_datetime => true} %>
+				<%= render :partial => "columns/article_list", :locals => {:list_title => "重庆", :articles => @market_express_articles[:articles].map(&:article).compact, :column_id => 12, :digest_number =>0, :display_datetime => true} %>
+				<%= render :partial => "columns/article_list", :locals => {:list_title => "陕西", :articles => @market_express_articles[:articles].map(&:article).compact, :column_id => 12, :digest_number =>0, :display_datetime => true} %>
+				<%= render :partial => "columns/article_list", :locals => {:list_title => "云南", :articles => @market_express_articles[:articles].map(&:article).compact, :column_id => 12, :digest_number =>0, :display_datetime => true} %>
+				<%= render :partial => "columns/article_list", :locals => {:list_title => "贵州", :articles => @market_express_articles[:articles].map(&:article).compact, :column_id => 12, :digest_number =>0, :display_datetime => true} %>
+			</div>
+			<div class="clear">
+			</div>
+		</div>
+		<!--leftCol-->
+		<div class="rightCol">
+			<%= render :partial => "columns/article_list", :locals => { :list_title => "工业园区", :digest_number => 2, :digest_restrict => true, :articles => @analysis_articles[:articles].map(&:article)[0..6].compact, :column_id => @analysis_articles[:id]} %>
+			<%= render :partial => "columns/article_list", :locals => {:list_title => "招商项目", :articles => @analysis_articles[:articles].map(&:article).compact, :column_id => 29, :digest_number => 0, :digest_restrict => true } %>
+		</div>
+		<!--right column-->
+		<div class="clear">
+		</div>
+	</div>
+</div>
+<%= render :partial => "ads/common_ad", :locals => { :pos => "a-3" } %>
+<div class="block">
+	<div class="blockTitle">
+		<h2>西部产业</h2>
+		<span class="opts"><% sub_columns = Column::DIS_SUB_NAVS[33]
+			Column.find(sub_columns).sort_by{|e| sub_columns.index(e.id)}.each_with_index do |child_column, index| %>
+			<%= link_to child_column.name, column_path(child_column) %>
+			<%end %>
+		</span>
+	</div>
+	<div class="blockContent">
+		<div class="leftCol">
+			<div class="subLeftCol">
+		          <%= render :partial => "columns/article_list", :locals => {:list_title => "金融", :articles => @entertainment_articles[:articles].map(&:article).compact, :column_id => 63, :digest_number => 1, :digest_restrict => true } %>
+		          <%= render :partial => "columns/article_list", :locals => {:list_title => "公司", :articles => @fashion_articles[:articles].map(&:article).compact, :column_id => 64, :digest_number => 1, :digest_restrict => true } %>
+		          <%= render :partial => "columns/article_list", :locals => {:list_title => "汽车", :articles => @travle_articles[:articles].map(&:article).compact, :column_id => 65, :digest_number => 1, :digest_restrict => true } %>
+				<%= render :partial => "columns/article_list", :locals => {:list_title => "快消", :articles => @travle_articles[:articles].map(&:article).compact, :column_id => 65, :digest_number => 1, :digest_restrict => true } %>
+		        
+			</div>
+			<div class="subRightCol">
+		        <% cache(fragment_column_key(@career_articles[:id])) do %>
+		          <%= render :partial => "columns/article_list", :locals => {:list_title => "地产", :articles => @career_articles[:articles].map(&:article).compact, :column_id => 72, :digest_number => 1, :digest_restrict => true } %>
+		        <%end %>
+		        <% cache(fragment_column_key(@people_articles[:id])) do %>
+		          <%= render :partial => "columns/article_list", :locals => {:list_title => "能源", :articles => @people_articles[:articles].map(&:article).compact, :column_id => 73, :digest_number => 1, :digest_restrict => true } %>
+		        <%end %>
+		        <% cache(fragment_column_key(@mba_articles[:id])) do %>
+		          <%= render :partial => "columns/article_list", :locals => {:list_title => "商业", :articles => @mba_articles[:articles].map(&:article).compact, :column_id => 74, :digest_number => 1, :digest_restrict => true } %>
+		        <%end %>
+				<%= render :partial => "columns/article_list", :locals => {:list_title => "IT", :articles => @travle_articles[:articles].map(&:article).compact, :column_id => 65, :digest_number => 1, :digest_restrict => true } %>
+			</div>
+			<div class="clear">
+			</div>
+		</div>
+		<div class="rightCol">
+			<% cache(fragment_column_key(@biz_featured_articles[:id])) do %>
+			<%= render :partial => "columns/article_feature", :locals => {:list_title => "商务会议", :articles => @biz_featured_articles[:articles].map(&:article).compact, :column_id => 36, :digest_number => 1, :html_class => "articleWallWrapper", :html_style => "margin-bottom:15px;" } %>
+			<%end %>
+			<% cache(fragment_column_key(@campaign_articles[:id])) do %>
+			<%= render :partial => "columns/article_list", :locals => {:list_title => "商务旅行", :articles => @campaign_articles[:articles].map(&:article).compact, :column_id => 84} %>
+			<%end %>
+			<%= render :partial => "columns/nbd_promo" %>
+		</div>
+		<div class="clear">
+		</div>
+	</div>
+</div>
+<%= render :partial => "ads/common_ad", :locals => { :pos => "a-4" } %>
+<div class="clear">
+</div>

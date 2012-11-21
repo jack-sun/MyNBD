@@ -1,0 +1,39 @@
+<!--<div id="addNewArticle">
+	<%= link_to "<span>添加新文章</span>".html_safe, new_console_article_url, :class => "btnBlue" %>
+</div>-->
+
+
+<dl id="navList">
+	<dt>
+		我的内容
+	</dt>
+	<dd <% if defined?(@topics_navs) and @topics_navs == Topic::PUBLISHED %>class="current"<%end%>>
+		<%= link_to "已发布", published_console_topics_url %>
+	</dd>
+	<dd <% if defined?(@topics_navs) and @topics_navs == Topic::DRAFT %>class="current"<%end%>>
+		<%= link_to "草稿箱", draft_console_topics_url %>
+	</dd> <dd <% if defined?(@topics_navs) and @topics_navs == Topic::BANNDED %>class="current"<%end%>>
+		<%= link_to "已屏蔽", banned_console_topics_url %>
+	</dd>
+	<dt>
+		社区内容
+	</dt>
+	<dd <% if defined?(@weibos_navs) %>class="current"<%end%> >
+		<%= link_to "所有微博", console_weibos_url %>
+	</dd>
+	<dd <% if defined?(@topics_navs) and @topics_navs == "hot_tags" %>class="current"<%end%>>
+		<%= link_to "热门标签", hot_tags_console_topics_url %>
+	</dd>
+	<dd <% if defined?(@topics_navs) and @topics_navs == "hot_topics" %>class="current"<%end%>>
+		<%= link_to "热门话题", console_topics_url %>
+	</dd>
+	<dd <% if defined?(@topics_navs) and @topics_navs == "stock_lives" %>class="current"<%end%>>
+		<%= link_to "股市直播", stock_console_lives_url %>
+	</dd>
+	<dd <% if defined?(@topics_navs) and @topics_navs == "origin_lives" %>class="current"<%end%>>
+		<%= link_to "活动直播", origin_console_lives_url %>
+	</dd>
+	<dd <% if defined?(@badkeywords_navs) and @badkeywords_navs %>class="current"<%end%>>
+		<%= link_to "敏感词", console_badkeywords_url %>
+	</dd>
+</dl>

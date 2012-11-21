@@ -1,0 +1,2 @@
+module Logs::JiujiuaiPollsHelper
+end

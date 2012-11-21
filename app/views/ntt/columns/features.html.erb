@@ -1,0 +1,44 @@
+<% content_for :header_ad do %>
+  <script type="text/javascript">
+    BAIDU_CLB_preloadSlots("347589");
+  </script>
+  <!-- 广告位：西部_顶部四分之三通栏 -->
+  <%= render :partial => "ads/ad", :locals => { :id => "347589", :html_class => "header" } %>
+<% end %>
+
+<div class="equalCol">
+	<% cache(column_show_content_key_by_id(@house_observe[:id], true, "uniq")) do %>
+	  <%= render :partial => "columns/article_list", :locals => {:list_title => "楼市观察", :articles => @house_observe[:articles].map(&:article).compact, :column_id => 184, :digest_number => 1, :digest_restrict => true, :for_subdomain => "ntt", :list_title_tail => "?type=feature"} %>
+	<%end %>
+	<% cache(column_show_content_key_by_id(@china_reform[:id], true, "uniq")) do %>
+	  <%= render :partial => "columns/article_list", :locals => {:list_title => "改革方向论", :articles => @china_reform[:articles].map(&:article).compact, :column_id => 144, :digest_number => 1, :digest_restrict => true, :for_subdomain => "ntt", :list_title_tail => "?type=feature"} %>
+	<%end %>
+	<% cache(column_show_content_key_by_id(@feature_taiwan[:id], true, "uniq")) do %>
+	  <%= render :partial => "columns/article_list", :locals => {:list_title => "走读台湾", :articles => @feature_taiwan[:articles].map(&:article).compact, :column_id => 114, :digest_number => 1, :digest_restrict => true, :for_subdomain => "ntt", :list_title_tail => "?type=feature"} %>
+	<%end %>
+</div>
+
+<div class="equalCol">
+	<% cache(column_show_content_key_by_id(@internet_observe[:id], true, "uniq")) do %>
+	  <%= render :partial => "columns/article_list", :locals => {:list_title => "互联网观察", :articles => @internet_observe[:articles].map(&:article).compact, :column_id => 182, :digest_number => 1, :digest_restrict => true, :for_subdomain => "ntt", :list_title_tail => "?type=feature"} %>
+	<%end %>
+	<% cache(column_show_content_key_by_id(@double_meeting[:id], true, "uniq")) do %>
+	  <%= render :partial => "columns/article_list", :locals => {:list_title => "经济学家看“两会”", :articles => @double_meeting[:articles].map(&:article).compact, :column_id => 143, :digest_number => 1, :digest_restrict => true, :for_subdomain => "ntt", :list_title_tail => "?type=feature"} %>
+	<%end %>
+	<% cache(column_show_content_key_by_id(@feature_2012[:id], true, "uniq")) do %>
+          <%= render :partial => "columns/article_list", :locals => {:list_title => "2012经济展望", :articles => @feature_2012[:articles].map(&:article).compact, :column_id => 113, :digest_number => 1, :digest_restrict => true, :for_subdomain => "ntt", :list_title_tail => "?type=feature"} %>
+	<%end %>	
+</div>
+
+<div class="equalCol man">
+	<% cache(column_show_content_key_by_id(@reform_logic[:id], true, "uniq")) do %>
+	  <%= render :partial => "columns/article_list", :locals => {:list_title => "转型的逻辑", :articles => @reform_logic[:articles].map(&:article).compact, :column_id => 174, :digest_number => 1, :digest_restrict => true, :for_subdomain => "ntt", :list_title_tail => "?type=feature"} %>
+	<%end %>
+	<% cache(column_show_content_key_by_id(@feature_southAsia[:id], true, "uniq")) do %>
+          <%= render :partial => "columns/article_list", :locals => {:list_title => "南亚投资观察", :articles => @feature_southAsia[:articles].map(&:article).compact, :column_id => 115, :digest_number => 1, :digest_restrict => true, :for_subdomain => "ntt", :list_title_tail => "?type=feature"} %>
+	<%end %>
+	<% cache(column_show_content_key_by_id(@feature_wall_street[:id], true, "uniq")) do %>
+	  <%= render :partial => "columns/article_list", :locals => {:list_title => "靓眼看华尔街", :articles => @feature_wall_street[:articles].map(&:article).compact, :column_id => 173, :digest_number => 1, :digest_restrict => true, :for_subdomain => "ntt", :list_title_tail => "?type=feature"} %>
+	<%end %>
+</div>
+<div class="clear"></div>

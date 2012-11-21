@@ -1,0 +1,108 @@
+<% @title = "今日报纸 : #{@newspaper.n_index}" %>
+<%= require_css "newspaper.css" %>
+<%= require_fixedPosition %>
+<%= require_jqueryUI %>
+<div class="subNavi">
+	<ul id="crumb">
+		<li class="first">您所在位置:</li>
+	  	<li><%= link_to "每经网", index_url %></li>
+	  	<li class="last"><strong>今日报纸</strong></li>
+	</ul>
+</div>
+<style type="text/css">
+#body_site #wrapper {
+	margin-top: 0;
+}
+</style>
+
+<% content_for :header_ad do %>
+	<script type="text/javascript">
+		BAIDU_CLB_preloadSlots("349118");
+	</script>
+	<!-- 广告位：全站_顶部四分之三通栏 -->
+	<%= render :partial => "ads/ad", :locals => { :id => "349118", :html_class => "header" } %>
+<% end %>
+
+<div class="leftCol">
+  <% @articles_newspapers = @articles_newspapers.group_by{|e| e.page.to_s + " - " + e.section} %>
+  <% cache(newspaper_content_key_by_id(@newspaper.id)) do %>
+	<div id="pageName"><h1>今日报纸 : <%= @newspaper.n_index %></h1></div>
+		<% @articles_newspapers.each do|section, article_newspaper| %>
+          <%= render :partial => "columns/article_list", :locals => {:list_title => "<a name='#{section}'>#{section}</a>".html_safe, :articles => article_newspaper.map(&:article).compact.find_all{|x|x.status == Article::PUBLISHED}, :digest_number => "max" } %>
+		<%end %>
+  <% end %>
+</div>
+<div class="rightCol">
+	<div class="sectionA">
+		<div class="title"><h3>新闻索引</h3></div>
+		<div class="content">
+			<ul class="indexBox roundCorner">
+				<% @articles_newspapers.keys.each do|section| %>
+				<li><a href="#<%= section %>"><%= section %></a></li>
+				<%end %>
+			</ul>
+		</div>
+	</div>
+	<div class="sectionA" style="margin-bottom:10px;">
+		<div class="title"><h3>往期查询</h3></div>
+		<div class="content">
+			<input id="datepicker" class="textInput" type="text" />
+		</div>
+	</div>
+	
+	<%= render :partial => "columns/subscription", :locals => {:html_style => ""} %>
+	
+</div>
+<div class="clear"></div>
+
+<a href="javascript:void(0)" id="toTop" title="返回顶部" >返回顶部</a>
+
+<script type="text/javascript">
+	
+	$(function(){
+		/*$("#newspapperOpts").fixedPosition({
+			referenceObj:".block",
+			top: 10,
+			left: 0,
+			start:$(".blockContent").position().top+20
+		});
+		*/
+		$.datepicker.setDefaults($.datepicker.regional['zh-CN']);
+		$( "#datepicker" ).datepicker({
+			yearSuffix:"",
+			//closeText:"done",
+			showButtonPanel: true,
+			autoSize:true,
+			changeMonth: true,
+			changeYear: true,
+			showWeek: true,
+			firstDay: 1,
+			dateFormat: 'yy-mm-dd',
+			gotoCurrent: false ,
+			currentText: '今天',
+			defaultDate: '<%= @newspaper.n_index %>',
+			//altField: '#dateInput',
+			navigationAsDateFormat: true ,
+			onSelect: function(dateText, inst) {
+				var newspaper_url = '<%= newspaper_url('n_index') %>';
+				window.location = newspaper_url.replace('n_index', dateText);
+			}
+		});
+		
+	
+		$("#toTop").fixedPosition({
+			right:20,
+			bottom:20,
+			hideBefore:700,
+			readyFunc:function(obj){
+				obj.hide();
+			},
+			clickFunc:function(){
+				$("html,body").animate({scrollTop:0},400);
+			}
+		});
+		
+	});
+</script>
+
+

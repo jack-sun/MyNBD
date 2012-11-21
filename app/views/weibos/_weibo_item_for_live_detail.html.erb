@@ -1,0 +1,62 @@
+<%
+=begin
+Parameters:
+	weibo: Array
+	type: String ('question', 'answer', 'comment')
+=end
+talk = nil unless talk
+answer = nil unless answer
+%>
+<%if weibo.present?%>
+<div id="weibo_<%= weibo.id  %>" class="talkItem <%= type %>">
+	<div class="avatarWithName">
+		<%= link_to(image_tag(user_avatar_path(weibo.owner, :middle), {:alt => weibo.owner.nickname, :width => 40, :height => 40}), user_path(weibo.owner), :class=>"avatar") %>
+		<% if user_job(weibo.owner).present? %><div class="talkUserJob"><%= user_job(weibo.owner) %></div><% end %>
+	</div>
+	<div class="talkItemInner">
+		<span class="arrow"></span>
+		<div class="itemContent">
+			<p class="itemText"><%= link_to weibo.owner.nickname, user_path(weibo.owner) %>: 
+			<% if type == 'question'%><b class="itemType"></b><% end %>
+			<% if type == 'answer'%><b class="itemType"></b><% end %>
+			<span class="weiboText"><%= weibo.content %></span></p>
+			<div class="itemBottom">
+				<% if @current_user.present? %>
+				<span class="rf">
+					<% unless @is_compere %>
+						<%= link_to "转发#{weibo.rt_count > 0 ? '(' + weibo.rt_count.to_s + ')': ''}", rt_weibo_path(weibo), :remote => true, :class => "weiboRetweet" %>
+						<span class="divider">|</span>
+						<%= link_to "评论#{weibo.reply_count > 0 ? '(' + weibo.reply_count.to_s + ')' : ''}",  'javascript:void(0)',  :class => "weiboComment", :id => "weibo_comments_#{weibo.id}" %>
+					<% end %>
+					<% if @is_compere && !@live.is_over? %>
+	                  <% if talk && !answer %>
+	                    <% if type == "question" %>
+                          <% if weibo.owner != @current_user %>
+	                      <a href="javascript:void(0)" class="btnGrayBlue answerBtn"><span>回答</span></a>
+						  <span class="divider">|</span>
+                          <% end %>
+	                      <% if talk.is_ban?  %>
+	                        <%= link_to "解除屏蔽", unban_live_talk_url(talk), :remote => true, :class => "banButton" %>
+	                      <% else %>
+	                        <%= link_to "屏蔽", ban_live_talk_url(talk), :remote => true, :class => "banButton" %>
+	                      <% end %>
+	                    <% else %>
+	                      <a href="javascript:void(0)" class="editBtn">编辑</a>
+	                    <% end %>
+						<span class="divider">|</span>
+						<%= link_to "删除", live_talk_url(talk), :method => :delete, :remote => true, :confirm => "确认删除？" %>
+	                  <% elsif !talk && answer %>
+	                    <a href="javascript:void(0)" class="editBtn">编辑</a>
+						<span class="divider">|</span>
+						<%= link_to "删除", live_answer_url(answer), :method => :delete, :remote => true, :confirm => "确认删除？" %>
+	                  <% end %>
+					<% end %>
+				</span>
+				<% end %>
+				<%= link_to nbd_time_f(weibo.created_at), weibo_url(weibo) %>
+			</div><!-- item bottom -->
+		</div><!-- item content -->
+	</div><!--talk item inner -->
+</div><!--talk item -->
+<!--<div class="clear"></div>-->
+<%end%>

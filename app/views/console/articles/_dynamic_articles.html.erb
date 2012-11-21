@@ -1,0 +1,9 @@
+<% articles = (params[:article_ids].present? or (@article_source == ElementArticle::ARTICLE_SOURCE_COLUMN)) ? @articles.map(&:article).compact : @articles %>
+<%if @display_type == ElementArticle::DISPLAY_TYPE_LIST%>
+	<%= render :partial => "columns/article_list", :locals => {:list_title => '', :articles => articles, :digest_number => "max" } %>
+        <% if @article_source == ElementArticle::ARTICLE_SOURCE_TAG and @articles.total_entries > params[:count] %>
+          <p style="text-align: right;"><%= link_to "更多文章 &raquo;".html_safe, article_tag_search_url(:q => params[:value].split(",").first) %></p>
+        <%end%>
+<%elsif @display_type == ElementArticle::DISPLAY_TYPE_SLIDE %>
+	<%= render :partial => "columns/image_news", :locals => {:list_title => "", :articles => articles, :column_id => ''} %>
+<%end%>

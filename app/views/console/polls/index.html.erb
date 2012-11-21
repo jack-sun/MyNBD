@@ -1,0 +1,30 @@
+<div class="sectionA">
+	<div class="title">
+		<h1>投票</h1>
+		<span class="opts"><%= link_to "<span>添加新投票</span>".html_safe, new_console_poll_path, :class => "btnBlueM" %>
+		</span>
+	</div>
+	<div class="content rightColCenter">
+		<table class="tableA">
+			<thead>
+				<tr>
+					<th>标题</th>
+					<th>内容</th>
+					<th>操作</th>
+				</tr>		
+			</thead>
+			<tbody>
+				<% @polls.each do |poll| %>
+					<tr>
+					<td class="itemTitle"><%= poll.title %></td>
+					<td><%= poll.desc %></td>
+					<td class="itemActions">
+					<%= link_to '<b></b>编辑'.html_safe, edit_console_poll_path(poll), :class => "actionEdit" %>
+					<%= link_to '<b></b>删除'.html_safe, console_poll_path(poll), :confirm => '确实要删除该投票？', :method => :delete, :class => "actionDelete" %>
+					</td>
+					</tr>
+				<%end%>
+			</tbody>
+		</table>
+	</div>
+</div>

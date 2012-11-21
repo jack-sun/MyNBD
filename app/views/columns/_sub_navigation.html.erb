@@ -1,0 +1,76 @@
+<% for_subdomain = false unless for_subdomain %>
+<div class="subNavi">
+<% if column_id == 1 %>
+	<ul id="hotKeywords">
+		<li class="first"><a href="">热门话题</a><b>:</b></li>
+		<li><a href="">"占领华尔街"运动</a></li>
+		<li><a href="">中东剧变</a></li>
+		<li><a href="">美债危机</a></li>
+		<li><a href="">聚焦中国高铁</a></li>
+		<li class="last"><a href="">关注地方债</a></li>
+	</ul>
+	<!--<div id="stockNews">
+		<div id="stockNewsArrows">
+			<a id="downArrow" href="javascript:void(0);"></a>
+			<a id="upArrow" href="javascript:void(0);"></a>
+		</div>
+		<ul id="stockNewsContainer">
+			<li><a href="">上证指数</a>2,451<span class="green">-2.48%</span> <a href="">上证指数</a>2,451<span class="green">-2.48%</span></li>
+			<li><a href="">成都钢铁</a>20,012<span class="green">-4.18%</span> <a href="">深证成指</a>18,019<span class="green">-4.28%</span></li>
+			<li><a href="">深证成指</a>30,013<span class="green">-2.23%</span> <a href="">深证成指</a>18,019<span class="green">-4.28%</span></li>
+			<li><a href="">合肥化工</a>1,014<span class="green">-1.23%</span> <a href="">深证成指</a>18,019<span class="green">-4.28%</span></li>
+			<li><a href="">上海神红</a>18,115<span class="green">-5.28%</span> <a href="">深证成指</a>18,019<span class="green">-4.28%</span></li>
+		</ul>
+	</div>-->
+<% else -%>
+<% column = Column.find(column_id) -%>
+	<ul>
+		<li class="first <%= Column::DIS_SUB_NAVS.keys.include?(column.id) ? 'current' : '' %>">
+			<%if Column::DIS_SUB_NAVS.keys.include?(column.id) -%>
+				<%=  link_to column.name, column_path(column)%><b>/</b>
+			<%else -%>
+				<%= link_to column.root.name, column_path(column.root)%><b>/</b>
+			<%end -%>
+		</li>
+        <% if for_subdomain %>
+          <% Column.where(:id => Column::SUBDOMAIN_CHILD_COLUMN[for_subdomain]).each_with_index do |c, index| %>
+            <li class="<%= c.id == column.id ? 'current' : '' %> <%= index == Column::SUBDOMAIN_CHILD_COLUMN[for_subdomain].length ? 'last' : '' %>">
+              <%= link_to c.name, send("#{for_subdomain}_column_path", c) %>
+            </li>
+          <% end %>
+        <% else %>
+          <% sub_columns = Column::DIS_SUB_NAVS[column.root.id] %>
+          <% if sub_columns.present? %>
+            <% Column.find(sub_columns).sort_by{|e| sub_columns.index(e.id)}.each_with_index do |child_column, index| %>
+              <li class="<%= child_column.id == column.id ? 'current' : '' %> <%= index == sub_columns.length-1 ? 'last' : '' %>">
+                <%= link_to child_column.name, column_path(child_column) %>
+              </li>
+            <% end %>
+          <%end -%>
+        <%end -%>
+	</ul>
+<% end -%>
+</div>
+<style type="text/css">
+#body_site #wrapper {
+	margin-top: 0;
+}
+</style>
+
+<script type="text/javascript">
+/*
+	$(function(){
+		if($("#stockNewsContainer").length != 0){
+			$.nbdslide.init({
+				optDOMs:["#stockNewsContainer"],
+				prevDOM:"#upArrow",
+				nextDOM:"#downArrow",
+				style:"slide-y",
+				scrollSameTend:true,
+				speed:500,
+				interval:3000
+			});
+		}
+	});
+*/
+</script>

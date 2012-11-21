@@ -1,0 +1,2 @@
+module Console::ArticlesHelper
+end

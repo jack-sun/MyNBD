@@ -1,0 +1,54 @@
+<%
+=begin
+Parameters:
+	articles: Array
+	list_title: String (optional)
+	html_class: String (optional)
+	html_style: String (optional)
+	column_id: Int (optional, default '')
+=end
+html_class = '' unless html_class
+html_style = '' unless html_style
+column_id = '' unless column_id
+list_title = '' unless list_title
+%>
+<div class="sectionA columnSection <%=html_class%>" style="<%=html_style%>">
+	<% unless list_title == '' %>
+	<div class="title">
+		<h3>
+			<%if column_id.present? %>
+			<%= link_to list_title, column_path(column_id)%>
+			<%else%>
+			<%=list_title%>
+			<%end%>
+		</h3>
+		<%if column_id.present? %>
+		<span class="opts"><%= link_to "更多", column_path(column_id)%></span>
+		<%elsif opt_content.present? %>
+		<span class="opts"><%= opt_content.html_safe %></span>
+		<%end%>
+	</div>
+	<% end %>
+	<div class="content">
+		<ul class="articleList unorderList">
+			<% articles.each_with_index do |article,index|
+				next if article.blank? -%>
+				<% if index == 0 %>
+				<li class="articleRecommend">
+					<div class="rcDigest">
+						<%= link_to image_tag("/images/column-#{column_id}.png"), column_path(column_id), {:target => "_blank", :title => article.title} %>
+						<p class="restrict">
+							<strong><%= link_to article.list_title, article_url(article), {:target => "_blank", :title => article.title} %></strong><br/>
+							<%= article.show_digest %>
+						</p>
+						<div class="clear"></div>
+					</div>
+				</li>
+				<% else %>
+					<li><%= link_to article.list_title, article_url(article), {:target => "_blank", :title => article.title} %></li>
+				<% end %>
+			<% end %>
+		</ul>
+		<div class="clear"></div>
+	</div><!--content-->
+</div>

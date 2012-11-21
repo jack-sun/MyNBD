@@ -1,0 +1,108 @@
+<%= require_jqueryUI %>
+<%= require_tinymce %>
+<%= require_fileUpload %>
+
+<style type="text/css">
+  .formB { margin:0; min-height:516px; }
+</style>
+
+<% 
+    title = ""
+    url = ""
+    position = "0"
+    desc = ""
+        if !params[:new] && params[:content] && (content = JSON.parse(params[:content]))
+                image_id = content["source"]
+		image = Image.where(:id => image_id).first || Image.new
+                title = content["title"]
+                url = content["url"]
+                position = content["position"]
+                desc = content["desc"]
+	else
+		image = Image.new
+	end
+%>
+<%= render :partial => "console/images/image_upload_form", :locals => {:image => image, :url_method => "feature"} %>
+
+
+<script type="text/javascript" charset="utf-8">
+    $(function () {
+        // Initialize the jQuery File Upload widget:
+        $('#fileupload').fileupload({
+					maxNumberOfFiles:1
+				});
+				
+        // Load existing files:
+        $.getJSON($('#fileupload form').prop('action'), function (files) {
+            var fu = $('#fileupload').data('fileupload');
+            fu._adjustMaxNumberOfFiles(-files.length);
+            fu._renderDownload(files)
+                .appendTo($('#fileupload .files'))
+                .fadeIn(function () {
+                    // Fix for IE7 and lower:
+                    $(this).show();
+                });
+        });
+    });
+</script>
+  <%= form_tag "", :id => "element_form" do %>
+<!-- 	<p>
+          <%= label_tag "element_title", "图片标题:" %>
+          <%= text_field_tag "element_title", title %>
+	</p> -->
+        <p>
+          <%= label_tag "element_link", "图片链接:" %>
+          <%= text_field_tag :element_link, url  %>
+        </p>
+        <p>
+          <%= label_tag "element_desc", "图片描述:" %>
+          <%= text_area_tag :element_desc, desc  %>
+        </p>
+        <p>
+          <%= label_tag "element_position", "图片位置:" %>
+          <%= select_tag "element_position", options_for_select([["居上", "0"], ["居下", "1"], ["居左", "2"], ["居右", "3"]], position) %>
+        </p>
+<%end%>
+
+<div class="rightAlignActions">
+  <a href="javascript:void(0);" id="createNewElement" class="btnBlueM"> <span>确定</span> </a>
+</div>
+
+<script type="text/javascript">
+	$(function(){
+    // console.log("frame:"+document.domain);
+		var txtaDesc = $("#element_desc");
+
+ 		var tinymceConfigs = {
+      // General options
+      theme: "advanced",
+      plugins:"media",
+      media_strict: false ,
+      language:"zh-cn",
+      relative_urls:false,
+      convert_urls:false,
+      // Theme options
+      theme_advanced_buttons1: "bold,link,unlink,removeformat,media,code",
+      theme_advanced_buttons2: "",
+      theme_advanced_buttons3: "",
+      theme_advanced_toolbar_location: "top",
+      theme_advanced_toolbar_align: "left",
+      invalid_elements : "iframe,script"
+    }
+
+		txtaDesc.tinymce(tinymceConfigs);
+
+		$("#createNewElement").click(function(){
+			function submit(imagesData){
+				var link = $("#element_link").val();
+				var image_id = parseInt($(".image_id").val()) || parseInt($("#old_image_id").val());
+	      var position = $("#element_position").val();
+	      var desc = txtaDesc.val();
+				var body = {'url' : link, 'source' :image_id, 'desc' : desc, 'position' : position}
+        window.parent._updateGrid(body, imagesData[0].src);
+			}
+			
+			_updateImageData(submit);
+		});
+	});
+</script>

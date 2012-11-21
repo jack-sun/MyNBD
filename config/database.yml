@@ -1,0 +1,20 @@
+development:
+  adapter: mysql2
+  database: nbd
+  port: 3306
+  host: db.nbd.cn
+  username: 'nbddog'
+  password: 'nbd5290cd'
+
+test:
+  adapter: sqlite3
+  database: ":memory:"
+  verbosity: quiet
+
+production:
+  adapter: mysql2
+  database: nbd
+  port: 3306
+  host: db.nbd.cn
+  username: 'nbddog'
+  password: 'nbd5290cd'

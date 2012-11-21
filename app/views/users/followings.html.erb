@@ -1,0 +1,20 @@
+<%= require_css "weibo_userprofile.css" %>
+
+<div class="leftCol">
+	<div id="pageName">
+		<h1><%= @is_same_user ? "我" : @interviewee.nickname %> 关注了<%= @interviewee.followings_count %>人</h1>
+	</div>
+	<%= render :partial => "users/users_list", :locals => {:users => @followings} %>
+	
+	<%if false%><div class="pagination"> <b>1</b> <a href="">2</a> <a href="">3</a> <a href="">4</a> <a href="">5</a> <a href="">6</a> <span>...</span> <a href="">50</a> <a href="">下一页</a> </div><%end%>
+	<div class="clear"></div>
+</div>
+
+<div class="rightCol">
+	<%= render :partial => "users/user_profile", :locals => {:interviewee => @interviewee} %>
+	<%= render :partial => "users/user_stats_details", :locals => {:interviewee => @interviewee} %>
+</div>
+
+<div class="clear"></div>
+
+

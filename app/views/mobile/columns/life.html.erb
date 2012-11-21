@@ -1,0 +1,62 @@
+<% @title="品味频道" %>
+<%= require_css "channel.css" %>
+<%= require_slideShow %>
+<% content_for :header_ad do %>
+	<%= render :partial => "ads/c_1" %>
+<% end %>
+<%= render :partial => "columns/sub_navigation", :locals => {:column_id => 61 } %>
+<div class="leftCol">
+  <% cache(column_show_content_key_by_id(@head_article[:id])) do %>
+  	<%= render :partial => "columns/scroll_head_article", :locals => { :articles => @head_article[:articles].map(&:article).compact, :column_id => 62 } %>
+  <% end %>
+	<div class="subLeftCol">
+      <% cache(column_show_content_key_by_id(@entertainment[:id])) do %>
+		<%= render :partial => "columns/article_list", :locals => {:list_title => "娱乐", :articles => @entertainment[:articles].map(&:article).compact, :column_id => 63, :digest_number => 3, :display_children => false, :digest_restrict => true } %>
+      <% end %>
+      <% cache(column_show_content_key_by_id(@fashion[:id])) do %>
+		<%= render :partial => "columns/article_list", :locals => {:list_title => "时尚", :articles => @fashion[:articles].map(&:article).compact, :column_id => 64, :digest_number => 3, :display_children => false, :digest_restrict => true } %>
+      <% end %>
+      <% cache(column_show_content_key_by_id(@travel[:id])) do %>
+		<%= render :partial => "columns/article_list", :locals => {:list_title => "旅行", :articles => @travel[:articles].map(&:article).compact, :column_id => 65, :digest_number => 3, :display_children => false, :digest_restrict => true } %>
+      <% end %>
+	</div>
+	<div class="subRightCol">
+      <% cache(column_show_content_key_by_id(@taste[:id])) do %>
+		<%= render :partial => "columns/article_list", :locals => {:list_title => "奢侈品", :articles => @taste[:articles].map(&:article).compact, :column_id => 66, :digest_number => 3, :display_children => false, :digest_restrict => true } %>
+      <% end %>
+      <% cache(column_show_content_key_by_id(@money[:id])) do %>
+		<%= render :partial => "columns/article_list", :locals => {:list_title => "理财", :articles => @money[:articles].map(&:article).compact, :column_id => 67, :digest_number => 3, :display_children => false, :digest_restrict => true } %>
+      <% end %>
+      <% cache(column_show_content_key_by_id(@book[:id])) do %>
+		<%= render :partial => "columns/article_list", :locals => {:list_title => "读书", :articles => @book[:articles].map(&:article).compact, :column_id => 68, :digest_number => 3, :display_children => false, :digest_restrict => true } %>
+      <% end %>
+	</div>
+	<div class="clear"></div>
+</div>
+<div class="rightCol">
+  <% cache(column_show_content_key_by_id(@featured[:id], true, "uniq")) do %>
+	<%= render :partial => "columns/article_feature", :locals => {:list_title => "生活精选", :articles => @featured[:articles].map(&:article).compact, :column_id => 69, :digest_number => 4, :html_class => "articleWallWrapper" } %>
+  <% end %>
+  
+  <div class="divider" style="margin-bottom:15px"></div>
+  
+  <% cache(column_show_content_key_by_id(@focus_articles[:id]), true, "uniq") do %>
+  	<%= render :partial => "columns/article_list", :locals => {:list_title => "媒体聚焦", :articles => @focus_articles[:articles].map(&:article).compact, :column_id => 8, :digest_number =>1, :display_datetime => true, :digest_restrict => true } %>
+  <%end %>
+    
+  <%= render :partial => "ads/c_3"%>
+  
+    
+        <%= render :partial => "columns/hot_articles" %>
+    <% if @hot_topics[:topics].present? %>
+        <% cache(Topic::HOT_TOPIC_FRAGMENT_CACHE_KEY) do %>
+    	<%= render :partial => "columns/hot_weibo_topic_entry", :locals => {:topic => @hot_topics[:topics].first}%>
+      	<% end %>
+    <%end%>
+	
+	
+	<%= render :partial => "columns/subscription", :locals => {:html_style => ""} %>
+</div>
+<div class="clear"></div>
+
+<%= render :partial => "ads/c_4" %>

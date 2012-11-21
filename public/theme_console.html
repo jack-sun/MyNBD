@@ -1,0 +1,447 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>NBD-Theme-Console</title> 
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" /> 
+<link rel="stylesheet" type="text/css" href="./stylesheets/reset.css" /> 
+<link rel="stylesheet" type="text/css" href="./stylesheets/style_global.css" /> 
+<link rel="stylesheet" type="text/css" href="./stylesheets/style_console.css" /> 
+<link rel="stylesheet" type="text/css" href="./stylesheets/theme_demo.css" />
+<link rel="stylesheet" type="text/css" href="./utilities/popWin/popWin.css" />
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.2.min.js"></script>  
+<script type="text/javascript" src="./utilities/popWin/popManager.js"></script>  
+<script type="text/javascript" src="./utilities/popWin/popWin.js"></script>  
+</head> 
+<body> 
+<div id="column">
+	<div id="leftColumn">
+		<h1 style="text-align:center;">NBD-Theme-Console</h1>
+		<p style="text-align:center;">版本:1.0 最后更新于：2011-10-18</p>
+		<div class="demoSection">
+			<h2 class="demoSectionTitle">DOCTYPE</h2>
+			<div class="demoSectionContent">
+				<code>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;<br/>
+				&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;</code>
+			</div>
+		</div>
+	
+		<div class="demoSection">
+			<h2 class="demoSectionTitle">样式和脚本</h2>
+			<div class="demoSectionContent">
+				<p>使用NBD-Theme请先引用：</p>
+				<table>
+					<tr><th>样式重置</th><td><code>&lt;link rel="stylesheet" type="text/css" href="/stylesheets/reset.css" /&gt;</code></td></tr>
+					<tr><th>主样式</th><td><code>&lt;link rel="stylesheet" type="text/css" href="/stylesheets/style_console.css" /&gt;</code></td></tr>
+					<tr><th>jQuery<br/>(可选)</th><td><code>&lt;script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.2.min.js"&gt;&lt;/script&gt;</code></td></tr>
+					<tr><th>jQuery UI<br/>(可选)</th><td><code>&lt;script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.8.13/jquery-ui.min.js"&gt;&lt;/script&gt;</code></td></tr>
+				</table>
+				<ul class="demoUnorderList">
+				<li>其余jQuery文件请参看：<a href="http://www.asp.net/ajaxlibrary/cdn.ashx">Microsoft Ajax Content Delivery Network</a></li>
+				<li>为什么要使用微软提供的支持？请阅读此文：<a href="http://encosia.com/3-reasons-why-you-should-let-google-host-jquery-for-you/">3 reasons why you should let Google host jQuery for you</a>，经过尝试，国内的网站使用微软提供的，速度要更快一些。
+				</li>
+				</ul>
+			</div>
+		</div>
+	
+		<div class="demoSection">
+			<h2 class="demoSectionTitle">通用的</h2>
+			<div class="demoSectionContent">
+				<table>
+					<tr><th>Heading</th><td>
+					<h1>Heading 1</h1>
+					<h2>Heading 2</h2>
+					<h3>Heading 3</h3>
+					<h4>Heading 4</h4>
+					<h5>Heading 5</h5>
+					<h6>Heading 6</h6></td></tr>
+					<tr><th>Hyperlink</th><td><ol>
+						<li><a href="#" class="link">a:link</a></li>
+						<li><a href="#" class="visited">a:visited</a></li>
+						<li><a href="#" class="hover">a:hover</a></li>
+						<li><a href="#" class="active">a:active</a></li>
+					</ol></td></tr>
+				</table>
+			</div>
+		</div>
+		
+		<div class="demoSection">
+			<h2 class="demoSectionTitle">字体</h2>
+			<div class="demoSectionContent">
+				<code>14px/1.5 "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif</code>
+			</div>
+		</div>
+		
+		<div class="demoSection">
+			<h2 class="demoSectionTitle">块和章节</h2>
+			<div class="demoSectionContent">
+				<table>
+					<tr><th>章节A</th><td>
+						<div class="sectionA">
+							<div class="title">
+								<h3>章节标题</h3>
+								<span class="opts"><a href="#" class="btnBlue"><span>添加新文章</span></a></span>
+							</div>
+							<div class="content">
+								内容。。。
+							</div>
+						</div>
+						<code style="margin-top:10px;">
+							&lt;div class="sectionA"&gt;<br/>
+								<div class="tabIndent">
+									&lt;div class="title"&gt;<br/>
+									<div class="tabIndent">
+										&lt;h1-h6 class="red"&gt;章节标题&lt;/h1-h6&gt;<br/>
+										&lt;span class="opts"&gt;&lt;a href="#" style="width:80px;" class="btnBlue"&gt;&lt;span&gt;添加新文章&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;<br/>
+									</div>
+									&lt;/div&gt;<br/>
+									&lt;div class="content"&gt;<br/>
+									<div class="tabIndent">
+										内容。。。<br/>
+									</div>
+									&lt;/div&gt;<br/>
+								</div>
+							&lt;/div&gt;
+						</code>
+					</td></tr>
+					<tr><th>章节B</th><td>
+						<div class="sectionB">
+							<div class="title">
+								<h4>章节标题</h4>
+								<span class="opts"><a href="">更多</a></span>
+							</div>
+							<div class="content">
+								内容。。。
+							</div>
+						</div>
+						<code style="margin-top:10px;">
+							&lt;div class="sectionB"&gt;<br/>
+								<div class="tabIndent">
+									&lt;div class="title"&gt;<br/>
+									<div class="tabIndent">
+										&lt;h1-h6&gt;章节标题&lt;/h1-h6&gt;<br/>
+										&lt;span class="opts"&gt;&lt;a href=""&gt;...&lt;/a&gt;&lt;/span&gt;<br/>
+									</div>
+									&lt;/div&gt;<br/>
+									&lt;div class="content"&gt;<br/>
+									<div class="tabIndent">
+										内容。。。<br/>
+									</div>
+									&lt;/div&gt;<br/>
+								</div>
+							&lt;/div&gt;
+						</code>
+					</td></tr>
+				</table>
+			</div>
+		</div>
+		
+		<div class="demoSection">
+			<h2 class="demoSectionTitle">页签栏</h2>
+			<div class="demoSectionContent">
+				<div class="tabs">
+					<ul>
+						<li class="current"><a href="">页签一</a></li>
+						<li><a href="">页签二</a></li>
+						<li><a href="">页签三</a></li>
+						<li><a href="">页签四</a></li>
+					</ul>
+				</div>
+				<code>
+					&lt;div class="tabs"&gt;<br/>
+						<div class="tabIndent">
+						&lt;ul&gt;<br/>
+							<div class="tabIndent">
+							&lt;li class="current"&gt;&lt;a href=""&gt;页签一&lt;/a&gt;&lt;/li&gt;<br/>
+							&lt;li&gt;&lt;a href=""&gt;页签二&lt;/a&gt;&lt;/li&gt;<br/>
+							&lt;li&gt;&lt;a href=""&gt;页签三&lt;/a&gt;&lt;/li&gt;<br/>
+							&lt;li&gt;&lt;a href=""&gt;页签四&lt;/a&gt;&lt;/li&gt;<br/>
+							</div>
+						&lt;/ul&gt;<br/>
+						</div>
+					&lt;/div&gt;
+				</code>
+			</div>
+		</div>
+		
+		<div class="demoSection">
+			<h2 class="demoSectionTitle">无序列表</h2>
+			<div class="demoSectionContent">
+				<ul class="unorderList">
+					<li><a href="">条目一</a></li>
+					<li><a href="">条目二</a></li>
+					<li><a href="">条目三</a></li>
+					<li><a href="">条目四</a></li>
+					<li><a href="">更多...</a></li>
+				</ul>
+				<code style="margin-top:10px;">
+					&lt;ul class="unorderList" &gt;<br/>
+						<div class="tabIndent">
+						&lt;li&gt;&lt;a href=""&gt;条目一&lt;/a&gt;&lt;/li&gt;<br/>
+						&lt;li&gt;&lt;a href=""&gt;条目二&lt;/a&gt;&lt;/li&gt;<br/>
+						&lt;li&gt;&lt;a href=""&gt;更多...&lt;/a&gt;&lt;/li&gt;<br/>
+						</div>
+					&lt;/ul&gt;<br/>
+				</code>
+			</div>
+		</div>
+		
+		<div class="demoSection">
+			<h2 class="demoSectionTitle">按钮</h2>
+			<div class="demoSectionContent">
+				<table>
+					<tr><th>Red</th><td>
+						<a class="btnRed" href="javascript:void(0)"><span>取消发布</span></a>
+						<code style="margin-top:10px;">
+							&lt;a class="btnRed"&gt;&lt;span&gt;按钮名称&lt;/span&gt;&lt;/a&gt;
+						</code>
+					</td></tr>
+					<tr><th>Gray</th><td>
+						<a class="btnGray" href="javascript:void(0)"><span>删除选中</span></a>
+						<code style="margin-top:10px;">
+							&lt;a class="btnGray"&gt;&lt;span&gt;按钮名称&lt;/span&gt;&lt;/a&gt;
+						</code>
+					</td></tr>
+					<tr><th>GrayBlue</th><td>
+						<a class="btnGrayBlue" href="javascript:void(0)"><span>参与评论</span></a>
+						<code style="margin-top:10px;">
+							&lt;a class="btnGrayBlue"&gt;&lt;span&gt;按钮名称&lt;/span&gt;&lt;/a&gt;
+						</code>
+					</td></tr>
+					<tr><th>Blue</th><td>
+						<a class="btnBlue" href="javascript:void(0)"><span>请教专家</span></a>
+						<code style="margin-top:10px;">
+							&lt;a class="btnBlue"&gt;&lt;span&gt;按钮名称&lt;/span&gt;&lt;/a&gt;
+						</code>
+					</td></tr>
+					<tr><th>Blue Medium</th><td>
+						<a class="btnBlueM" href="javascript:void(0)"><span>发布微薄</span></a>
+						<code style="margin-top:10px;">
+							&lt;a class="btnBlueM"&gt;&lt;span&gt;按钮名称&lt;/span&gt;&lt;/a&gt;
+						</code>
+					</td></tr>
+					<tr><th>Green</th><td>
+						<a class="btnGreen" href="javascript:void(0)"><span>加关注</span></a>
+						<code style="margin-top:10px;">
+							&lt;a class="btnGreen"&gt;&lt;span&gt;按钮名称&lt;/span&gt;&lt;/a&gt;
+						</code>
+					</td></tr>
+				</table>
+			</div>
+		</div>
+		
+		<div class="demoSection">
+			<h2 class="demoSectionTitle">
+				表单A
+			</h2> 
+			<div class="demoSectionContent">
+				<form class="formA">
+					
+					<p>
+						<label for="name">邮箱:</label>
+						<input type="text" class="textInput" size="36" />
+					</p>
+					<p>
+						<label for="name">昵称:</label>
+						<input type="text" class="textInput" size="36" /> 
+					</p>
+					
+					<p>
+						<label for="name">密码:</label>
+						<input type="text" class="textInput" size="36" /> 
+					</p>
+
+					<p>
+						<label for="name">确认密码:</label>
+						<input type="text" class="textInput" size="36" />
+					</p>
+				</form>
+				
+				<code style="margin-top:10px;">
+					&lt;form class="formA"&gt;
+						<div class="tabIndent">
+						&lt;p&gt;
+							<div class="tabIndent">
+							&lt;label for="name"&gt;字段一：&lt;/label&gt;<br/>
+							&lt;input type="text" size="36" /&gt;
+							</div>
+						&lt;/p&gt;<br/>
+						&lt;p&gt;
+							<div class="tabIndent">
+							&lt;label for="name"&gt;字段二：&lt;/label&gt;<br/>
+							&lt;input type="text" size="36" /&gt;
+							</div>
+						&lt;/p&gt;<br/>
+						</div>
+					&lt;/form&gt;
+				</code>
+			</div>
+		</div>
+		
+		<div class="demoSection">
+			<h2 class="demoSectionTitle">
+				表单B
+			</h2> 
+			<div class="demoSectionContent">
+				<form class="formB roundCorner">
+					<div class="title">
+						<h2>填写账户信息</h2>
+						<span class="titleOpts">我已是会员, <a href="">登录</a></span>
+					</div>
+					<p>
+						<label for="name">邮箱：</label><br/>
+						<input type="text" size="36" />
+					</p>
+					<p>
+						<label for="name">昵称：</label><br/>
+						<input type="text" size="36" /> <span class="tip">4-20个字符，一个汉字为两个字符。</span>
+					</p>
+					<p>
+						<label for="name">密码：</label><br/>
+						<input class="error" type="text" size="36" /> <span class="tip error">6-16个字母加数字或字符的组合。</span>
+					</p>
+					<p>
+						<label for="name">确认密码：</label><br/>
+						<input type="text" size="36" />
+					</p>
+					<p>
+						<label>选择性别：</label>
+						<input class="" type="radio" name="male" />
+						<label class="clearLabelStyle" for="male">男</label>
+						<input type="radio" name="female" />
+						<label class="clearLabelStyle" for="female">女</label>
+					</p>
+					<p class="btnRowM">
+						<a href="javascript:void(0)" class="btnBlueM" style="width:180px;"><span>注册 并同意以下条款</span></a>
+						<a href="javascript:void(0)" class="btnCancel">取消</a>
+						<div class="clear"></div>
+					</p>
+					<p>
+						<a href="">《每经会员隐私保护条款》</a>
+					</p>
+				</form>
+				
+				<code style="margin-top:10px;">
+					&lt;form class="formB roundCorner"&gt;
+						<div class="tabIndent">
+						&lt;div class="title"&gt;
+							<div class="tabIndent">
+								&lt;h1-h6&gt;填写账户信息&lt;/h1-h6&gt;<br/>
+								&lt;span class="titleOpts"&gt;我已是会员&lt;/span&gt;
+							</div>
+						&lt;/div&gt;<br/>
+						&lt;p&gt;
+							<div class="tabIndent">
+							&lt;label for="name"&gt;字段一：&lt;/label&gt;&lt;br/&gt;<br/>
+							&lt;input type="text" class="textInput" size="36" /&gt; &lt;span class="tip"&gt;字段一提示信息&lt;/span&gt;
+							</div>
+						&lt;/p&gt;<br/>
+						&lt;p&gt;
+							<div class="tabIndent">
+							&lt;label for="name"&gt;字段二：&lt;/label&gt;&lt;br/&gt;<br/>
+							&lt;input type="text" class="textInput" size="36" /&gt;
+							</div>
+						&lt;/p&gt;<br/>
+						&lt;p class="btnRowM"&gt;
+							<div class="tabIndent">
+							&lt;a href="javascript:void(0)" class="btnBlueM" style="width:180px;"&gt;&lt;span&gt;提交按钮&lt;/span&gt;&lt;/a&gt;
+							&lt;a href="javascript:void(0)" class="btnCancel"&gt;取消&lt;/a&gt;
+							&lt;div class="clear"&gt;&lt;/div&gt;
+							</div>
+						&lt;/p&gt;<br/>
+						&lt;p&gt;
+							<div class="tabIndent">
+							&lt;a href=""&gt;补充链接&lt;/a&gt;
+							</div>
+						&lt;/p&gt;
+						</div>
+					&lt;/form&gt;
+				</code>
+			</div>
+		</div>
+		
+		
+		<div class="demoSection">
+			<h2 class="demoSectionTitle">提醒(完成/错误/信息)</h2>
+			<div class="demoSectionContent">
+				<div class="alert_done"> 
+                    <b></b>恭喜您，注册成功！
+                </div>
+                <code style="margin-bottom:20px;">&lt;div class="alert_done"&gt;&lt;b&gt;&lt;/b&gt; Aler Content&lt;/div&gt;</code> 
+                <div class="alert_error"> 
+                    <b></b>提交失败，请稍后重试，或联系我们
+                </div>
+                <code style="margin-bottom:20px;">&lt;div class="alert_error"&gt;&lt;b&gt;&lt;/b&gt; Aler Content&lt;/div&gt;</code>  
+                <div class="alert_info"> 
+                    <b></b>有新微薄，点击查看
+                </div> 
+                <code style="margin-bottom:20px;">&lt;div class="alert_info"&gt;&lt;b&gt;&lt;/b&gt; Aler Content&lt;/div&gt;</code>
+			</div>
+		</div>
+		
+		<div class="demoSection">
+			<h2 class="demoSectionTitle">分页控件</h2>
+			<div class="demoSectionContent">
+				<div class="pagination">
+					<b>1</b>
+					<a href="">2</a>
+					<a href="">3</a>
+					<a href="">4</a>
+					<a href="">5</a>
+					<a href="">6</a>
+					<span class="gap">…</span>
+					<a href="">50</a>
+					<a href="">下一页</a>
+				</div>
+				<div class="clear"></div>
+				<code style="margin-top:10px;">
+					&lt;div class="pagination"&gt;
+						<div class="tabIndent">
+						&lt;b&gt;1&lt;/b&gt;<br/>
+						&lt;a href=""&gt;2&lt;/a&gt;<br/>
+						&lt;a href=""&gt;3&lt;/a&gt;<br/>
+						&lt;a href=""&gt;4&lt;/a&gt;<br/>
+						&lt;a href=""&gt;5&lt;/a&gt;<br/>
+						&lt;a href=""&gt;6&lt;/a&gt;<br/>
+						&lt;span class="gap"&gt;...&lt;/span&gt;<br/>
+						&lt;a href=""&gt;50&lt;/a&gt;<br/>
+						&lt;a href=""&gt;下一页&lt;/a&gt;
+						</div>
+					&lt;/div&gt;<br/>
+					&lt;div class="clear"&gt;&lt;/div&gt;
+				</code>
+			</div>
+		</div>
+						
+	</div><!--leftColumn-->
+	<div id="rightColumn">
+		<p><strong>目录</strong></p>
+		<ul id="pageNavi">
+			
+		</ul>
+	</div><!--rightColumn-->
+	<div class="clear"></div>
+</div>
+<script type="text/javascript">
+function scrollToSection(){
+}
+function generatePageNavi(){
+	var pageNavi = $('#pageNavi');
+	var sections = $('h2.demoSectionTitle');
+	$.each(sections, function(index, section){
+		var title = section.innerHTML;
+		var id = title.replace(/[\s\(\)\/\:]/g, '_');
+		section.setAttribute('id', id);
+		var a = $('<a href="javascript:void(0);">'+title+'</a>');
+		a.bind('click', {sectionId: id}, function(event){
+			$('html,body').animate({scrollTop:$('#'+event.data.sectionId).position().top-10},500)
+		});
+		pageNavi.append($('<li></li>').append(a));
+	});
+}
+$(document).ready(function(){
+	generatePageNavi(); 
+});
+</script>
+</body>
+</html>

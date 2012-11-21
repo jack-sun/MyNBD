@@ -1,0 +1,164 @@
+body { background:#004080 url(../images/special-column-bg.gif) repeat-x 0 30px; }
+.leftCol { width:610px; }
+
+.subRightCol, .subLeftCol { width:295px; }
+.subLeftCol { margin-right:20px; }
+
+.equalCol { float: left; width:300px; margin-right:25px; }
+
+#adFooterWrapper { width:990px; margin:0px auto; }
+
+/*==========================================================
+ *	feature
+ =========================================================*/
+#footer { background:none; border:none; }
+#footer * { color:#fff !important; }
+#logo #logoNtt.logo { margin:10px 0 0 0; background:url(../images/logo-think-tank.gif); width:230px; height:70px; }
+#mainNav { margin:0 auto; width:1000px; height:45px; border:none; background:url(../images/column-navi.gif); }
+#mainNav li a { line-height:40px; font-size: 15px; padding: 0 10px; }
+#mainNav .searchBox { padding-top: 6px; }
+#wrapper { margin:0 auto; padding:10px 20px 20px 20px; width:950px; background:#fff; }
+
+/*==========================================================
+ *	article detail
+ =========================================================*/
+#body_think_tank #articalMain .leftCol { width:630px;}
+#body_think_tank #myComment .itemContent textarea { width:521px; *width:515px; }
+#body_think_tank #relatedArticlesWrapper .subLeftCol { width:274px; padding-right:6px; }
+#body_think_tank #relatedArticlesWrapper .subRightCol { width:274px; }
+
+/*==========================================================
+ *	others
+ =========================================================*/
+.columnistIntro { padding: 10px 0; }
+.columnistIntro .avatar { float: left; margin:0 10px 0 0; }
+.columnistIntro .avatar img {background-color: white; }
+.columnistIntro .itemContent { /*margin-left:115px;*/ font-size: 12px; }
+.columnistIntro .columnistName { font-size:16px; }
+.columnistIntro p {font-size: 13px;}
+
+.tankArticlesBox { width:100%; }
+.tankArticlesBox td { padding:10px 10px 5px 5px; width:25%; }
+.tankArticlesBox .thinkTitle { display:block; height:42px; word-wrap:break-word; text-align:center; color:#303030; font-weight:bolder; overflow:hidden;}
+.tankArticlesBox .thinkTitle:hover{
+	color: #303030;
+}
+.expertAvatar { display:block; margin:0 auto; width:100px; text-align: center; color: gray; }
+.expertAvatar img{
+	margin-bottom: 5px;
+}
+
+.newestExperts .content{
+	padding: 0;
+}
+
+.newestExperts .nameLink{
+	color: #303030;
+}
+
+#howToJoinContainer .btmSubmitBtn { text-align:center; }
+#howToJoinList li.howToJoinListItem { margin:0 0 10px 0; }
+#howToJoinList li.howToJoinListItem h3 { font-size:14px; }
+#howToJoinList li.howToJoinListItem ol { margin-left:15px; }
+
+.articleDigest{
+	font-size: 13px;
+	line-height: 20px;
+	color: gray;
+	height: 80px;
+	overflow:hidden;
+}
+/* Override */
+
+#headArticle2{
+	height: auto;
+	padding: 0;
+	border: none;
+	margin-bottom: 10px;
+}
+#headArticle2 .paragraph{
+	margin-left: 240px;
+}
+#headArticle2 .paragraph p{
+	font-size: 14px;
+	line-height: 22px;
+	height: 66px;
+}
+#headArticle2 .headline{
+	height: 30px;
+	line-height: 30px;
+	margin-bottom: 3px;
+	font-size: 18px;
+}
+#headArticle2 .relativeImage{
+	width: 240px;
+}
+#body_think_tank #headArticle2 .content{
+	border: 1px solid #ECEFF5;
+	border-top: none;
+	padding: 1px;
+}
+#headArticle2 .innerContent{
+	height: 120px;
+	overflow: hidden;
+}
+
+.weiboUserList li{
+	height: auto;
+	padding: 5px 0;
+	*zoom:1;
+}
+
+.weiboUserList .avatar img{
+	border:none;
+	padding:0;
+}
+
+#body_think_tank .leftCol .sectionA .title{
+	margin-left:0;
+}
+
+#body_think_tank .sectionA .content{
+	padding:5px 0;
+}
+
+.weiboUserList .itemContent{
+	font-size: 14px;
+}
+
+.weiboUserList .itemContent p{
+	font-size: 13px;
+}
+
+#body_think_tank .feature .content{
+	padding: 1px 10px 10px;
+	background-color: #eceff5;
+}
+
+
+/* Editor Selected */
+#editorSelected{
+	background:#004080;
+	font-size:12px;
+	line-height: 35px;
+	height: 34px;
+	overflow: hidden;
+}
+#editorSelected ul li{
+	float: left;
+	margin: 0 5px 0 10px;
+	padding-left: 12px;
+	background-image: url(../images/dot-medium-blue.gif);
+}
+#editorSelected ul li a{
+	color: #f5f5f5;
+}
+#editorSelected ul li.first{
+	background: none;
+	padding-left: 0;
+	margin-left: 15px;
+}
+
+
+/* columnist name list */
+#columnistNameList a { float:left; width:50px; padding:3px 0; text-align:center; color:#333; }

@@ -1,0 +1,34 @@
+<%
+=begin
+Parameters:
+	articles: Array
+	list_title: String
+	html_class: String (optional)
+	html_style: String (optional)
+	column_id: Int (optional, default '')
+=end
+html_class = '' unless html_class
+html_style = '' unless html_style
+column_id = '' unless column_id
+%>
+<div class="sectionA  <%=html_class%>" style="<%=html_style%>">
+	<div class="title">
+		<h3><%if column_id.present? %><%= link_to list_title, column_path(column_id)%><%else%><%=list_title%><%end%></h3>
+		<%if column_id.present? %><span class="opts"><%= link_to "更多", column_path(column_id)%></span><%end%>
+	</div>
+	<div class="content">
+		<ul class="articleList unorderList">
+			<% articles.each_with_index do |article,index| %>
+				<li class="articleWall">
+					<%= link_to(image_tag(article_thumbnail_path(article, :middle), :alt => article.list_title), article_url(article), {:class => "miniture", :target => "_blank", :title => article.title}) %>
+					<p class="headline">
+						<%= link_to "<b class=\"video\"></b>#{article.list_title}".html_safe, article_url(article), {:target => "_blank", :title => article.title} %>
+					</p>
+				</li>
+			<% end %>
+		</ul>
+		<div class="clear">
+		</div>
+	</div>
+	<!--content-->
+</div>

@@ -1,0 +1,60 @@
+<style type="text/css">
+  .tzbContainerTop { padding:2px 0 0 20px; height:50px; background:url(/images/tou_zi_bao/box_top_with_navigation.png) 0 0 no-repeat; }
+</style>
+
+<% content_for :tzbHeader do %>
+<div id="header">
+  <div class="innerCenter">
+    <% if false %><img id="tzbBanner" src="/images/tou_zi_bao/banner.jpg" alt="" /><% end %>
+    <p id="quickIntro">
+      <strong>《每日经济新闻》</strong>是一份全国发行、影响力巨大的财经类报纸。<br/>每经证券资讯产品由一个对证券市场经验丰富的研发团队专门负责开发，该团队成员有多年从事证券市场研究的券商高级研究员和高级投顾，有多年行业公司采访经验的高级记者、编辑，有多年征战股市战绩显著的私募高手，有对宏观经济和政策研究较深的专家学者。
+    </p>
+  </div>
+</div>
+<% end %>
+
+<% content_for :tzbNav do %>
+<ul class="tzbNav">
+  <li><%= link_to "每经投资宝", introduce_premium_mobile_newspaper_account_url %></li>
+  <li class="current"><%= link_to "每经投资快讯", introduce_premium_mobile_news_index_url %></li>
+</ul>
+<% end %>
+
+<div class="phoneContainer">
+  <div class="phone">
+    <div class="phoneScreen">
+      <div id="magazineContent">
+        <% if @article %>
+        <%= @article.title %>
+        <%= @article.pages.map(&:content).join("<\br>").html_safe %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <p style="text-align:center;"><a href="/columns/<%=Column::MOBILE_NEWS_COLUMN%>">每经投资快讯 往期查询&raquo;</a></p>
+</div>
+
+<div class="tzbInfo">
+  <p class="slogan">
+    <img src="/images/tou_zi_bao/touzikuaixun.png" alt="每经投资快讯"><br>
+    <span>"源于每经报，精于每经报"</span>
+  </p>
+  <p>
+<strong>产品介绍：</strong><br>根据第二天每经报的精华内容，选取能够对市场以及板块个股产生直接影响的信息，进行再加工，“源于每经报，精于每经报”，财经证券资讯信息一网打尽。是广大普通投资者获取有效财经证券资讯信息的好途径。
+  </p>
+  <p>
+  	<strong>栏目设置：</strong><br>每经独家、头条精选、投资三人行、主力动向解码、机构内参、重磅公告解读等。
+  </p>
+    <p>
+  <strong>发送时间：</strong>每个交易日早上8点前。
+    </p>
+  <p>
+<strong>产品资费：</strong><strong class="highlightRed">5元/月</strong>
+  </p>
+  <p>
+    <strong>订购方式：</strong>
+    <strong class="highlightGray">
+      移动用户发送短信 <span class="highlightRed">MRJJXW</span> 至 <span class="highlightRed">10658000</span>
+    </strong>
+  </p>
+</div>

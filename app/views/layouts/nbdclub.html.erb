@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title><%= @title.blank? ? "每经会 | 每经网 | 新闻决定影响力 |《每日经济新闻》报社旗下网站" : "#{@title} | 每经会" %></title>
+    <%= stylesheet_link_tag "reset", "style_global", "style_website", "nbdclub" %>
+    <%= yield :header_css %>
+    <%= javascript_include_tag "jquery.min", "jquery_ujs", "cookie", "baidu_m" %>
+    <%= yield :header_js %>
+    <%= csrf_meta_tag %>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  </head>
+
+  <body>
+    <%= yield :top_ad %>
+    <%= render :partial => "layouts/feature_top", :locals => { :html_class => "dark" } %>
+
+    <div id="wrapper">
+      
+      <div id="header">
+        <div id="logo">
+          <a id="logoClub" class="logo" href="/" title="每经会">每经会</a>
+          <%= yield :header_ad %>
+        </div>
+        <% unless @editor_selected.blank? %>
+          <div class="innerCenter" id="editorSelected">
+            <ul class="unorderList">
+              <% (@editor_selected[:articles].map(&:article)||[]).each do |article| %>
+                <li><%= link_to article.list_title, ntt_article_url(article), {:target => "_blank", :title => article.title} %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+        
+        <div id="mainNav">
+          
+            <ul class="lf">
+              <li <%= current_page?(:action => "nbdclub", :controller => "club/columns") ? "class=current" : "" %>>
+                <%= link_to "首页", club_index_url %>
+              </li>
+              <li <%= current_page?(:action => "show", :controller => "club/columns", :id => 176) ? "class=current" : "" %>>
+                <%= link_to "品牌活动", club_column_path(:id => 178) %>
+              </li>
+              <li <%= current_page?(:action => "show", :controller => "club/columns", :id => 179) ? "class=current" : "" %>>
+                <%= link_to "每经沙龙", club_column_path(:id => 179) %>
+              </li>
+              <li <%= current_page?(:action => "show", :controller => "club/columns", :id => 180) ? "class=current" : "" %>>
+                <%= link_to "每经公益", club_column_path(:id => 180) %>
+              </li>
+              <li <%= current_page?(:action => "show", :controller => "club/columns", :id => 181) ? "class=current" : "" %>>
+                <%= link_to "每经讲堂", ntt_column_path(:id => 181) %>
+              </li>
+            </ul>
+
+            <div class="searchBoxSmall rf">
+              <% form_tag(article_search_url, :method => "get") do%>
+                <%= link_to "", "javascript:void(0)", :onclick => "$(this).parents('form').submit();return false;", :class => "searchBtn" %>
+                <%= text_field_tag(:q, "", :class => "searchInput") %>
+              <%end%>
+            </div>
+
+        </div>
+      </div>
+
+      <div id="nbdclubContainer">
+        <%= yield %>
+      </div>
+
+    </div>
+		
+    <%= render :partial => "layouts/footer", :locals => { :color => "dark" } %>
+    <%= render :partial => "layouts/analytics" %>
+  </body>
+
+</html>

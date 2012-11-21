@@ -1,0 +1,6 @@
+<div class="subTabs">
+	<ul>
+		<li class="first <%= tab == "atme_user_path" ? 'current' : '' %>"><%= link_to "提到我的微博", atme_user_path(@current_user) %></li>
+		<li class="last <%= tab == "atme_comments_user_path" ? 'current' : '' %>"><%= link_to "提到我的评论", atme_comments_user_path(@current_user) %></li>
+	</ul>
+</div>

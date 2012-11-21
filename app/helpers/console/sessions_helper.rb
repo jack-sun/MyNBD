@@ -1,0 +1,2 @@
+module Console::SessionsHelper
+end

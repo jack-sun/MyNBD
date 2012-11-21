@@ -1,0 +1,10 @@
+<div class="tabs">
+	<ul>
+		<li class="<%= tab == "user_path" ? 'current' : ''  %>"><%= link_to "全部微博", user_path(@current_user) %></li>
+		<%if false%><li class="<%= tab == "user_stock_path" ? 'current' : ''  %>"><%= link_to "我的自选股", "#" %></li><%end%>
+		<li class="<%= tab == "atme_user_path" ? 'current' : ''  %>"><%= link_to "@提到我的",  atme_user_path(@current_user)%></li>
+		<%if false%><li class="<%= tab == "message_user_path" ? 'current' : ''  %>"><%= link_to "我的消息", "#" %></li><%end%>
+		<li class="<%= tab == "comments_to_me_user_user_path" || tab == "comments_user_path" ? 'current' : ''  %>"><%= link_to "我的评论", comments_to_me_user_path(@current_user) %></li>
+		<%if false%><li class="<%= tab == "favs_user_path" ? 'current' : ''  %>"><%= link_to "我的收藏", "#" %></li><%end%>
+	</ul>
+</div> 

@@ -1,0 +1,35 @@
+<!--<div id="addNewArticle">
+<%= link_to "<span>添加新文章</span>".html_safe, new_console_article_url, :class => "btnBlue" %>
+</div>-->
+
+
+<dl id="navList">
+  <dt>文章统计</dt>
+  <dd <% if defined?(@common_navs) and @common_navs == "stats" %>class="current" <%end%>>
+    <%= link_to "文章统计", stats_console_articles_url %>
+  </dd>
+  <dd <% if defined?(@common_navs) and @common_navs == "top_stats" %>class="current" <%end%>>
+    <%= link_to "文章排行", top_stats_console_articles_url %>
+  </dd>
+  <dd <% if defined?(@common_navs) and @common_navs == "top_stats" %>class="current" <%end%>>
+    <%= link_to "编辑文章排行", editor_console_z_editor_index_url %>
+  </dd>
+  <dt>公告管理</dt>
+  <dd <% if defined?(@common_navs) and @common_navs == "notice" %>class="current" <%end%>><%= link_to "所有公告", console_notices_url %></dd>
+  <dt>广告管理</dt>
+  <dd <% if defined?(@common_navs) and @common_navs == "ads" %>class="current" <%end%>><%= link_to "所有广告", console_ad_positions_url %></dd>
+  <dd <% if defined?(@common_navs) and @common_navs == "new_ads" %>class="current" <%end%>><%= link_to "添加新广告", new_console_ad_url %></dd>
+  <dt>文章操作记录</dt>
+  <dd <% if defined?(@common_navs) and @common_navs.blank? %>class="current" <% end %>><%= link_to "所有操作", console_article_logs_path %></dd>
+  <dd <% if defined?(@common_navs) and @common_navs == ArticleLog::BAN %>class="current"<%end%> ><%= link_to "屏蔽操作", banned_console_article_logs_path %></dd>
+  <dd <% if defined?(@common_navs) and @common_navs == ArticleLog::DELETE %>class="current"<%end%> ><%= link_to "删除操作", deleted_console_article_logs_path %></dd>
+  <dd <% if defined?(@common_navs) and @common_navs == ArticleLog::UPDATE %>class="current"<%end%> ><%= link_to "更新操作", updated_console_article_logs_path %></dd>
+  <dd <% if defined?(@common_navs) and @common_navs == ArticleLog::PUBLISH %>class="current"<%end%> ><%= link_to "发布操作", published_console_article_logs_path %></dd>
+
+  <dt>用户管理</dt>
+  <dd <% if defined?(@common_navs) and @common_navs.blank? %>class="current" <% end %>><%= link_to "所有用户", console_article_logs_path %></dd>
+  <dd <% if defined?(@common_navs) and @common_navs == ArticleLog::BAN %>class="current"<%end%> ><%= link_to "屏蔽操作", banned_console_article_logs_path %></dd>
+  <dd <% if defined?(@common_navs) and @common_navs == ArticleLog::DELETE %>class="current"<%end%> ><%= link_to "删除操作", deleted_console_article_logs_path %></dd>
+  <dd <% if defined?(@common_navs) and @common_navs == ArticleLog::UPDATE %>class="current"<%end%> ><%= link_to "更新操作", updated_console_article_logs_path %></dd>
+  <dd <% if defined?(@common_navs) and @common_navs == ArticleLog::PUBLISH %>class="current"<%end%> ><%= link_to "发布操作", published_console_article_logs_path %></dd>
+</dl>

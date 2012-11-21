@@ -1,0 +1,59 @@
+<%
+=begin
+Parameters:
+	articles: Array
+	list_title: String
+	title_icon: Enum String (optional), check out theme_website.html to get icon name.
+	more_link: String (optional)
+	html_class: String (optional)
+	html_style: String (optional)
+	digest_number: Int (optional, default 1)
+	column_id: Int (optional, default '')
+=end
+title_icon = '' unless title_icon
+html_class = '' unless html_class
+html_style = '' unless html_style
+more_link = '' unless more_link
+digest_number = 1 unless digest_number 
+column_id = '' unless column_id
+%>
+<div class="sectionA  <%=html_class%>" style="<%=html_style%>">
+	<div class="title">
+		<h3><%if column_id.present? %><%= link_to list_title, column_path(column_id)%><%else%><%=list_title%><%end%></h3>
+		<%if column_id.present? %><span class="opts"><%= link_to "更多", column_path(column_id)%></span><%end%>
+	</div>
+	<div class="content">
+		<ul class="articleList unorderList">
+			<% articles.each_with_index do |article,index| %>
+			<% if digest_number>index %>
+				<% if digest_number == 1 %>
+				<li class="articleFeature">
+					<h3 class='fTitle'>
+						<%= link_to article.list_title, article_url(article), {:target => "_blank", :title => article.title} %>
+					</h3>
+					<%= link_to image_tag(article_thumbnail_path(article, :large_b), {:alt => article.list_title, :width => "280", :height => "168"}), article_url(article), {:target => "_blank", :class => "fImageLink", :title => article.title} if article.image.present? %>
+					
+					<p class="fDigest" >
+						<%= truncate(article.show_digest, :length => 70) %>
+					</p>
+				</li>
+				<% else %>
+				<li class="articleWall">
+					<%= link_to(image_tag(article_thumbnail_path(article, :middle), {:alt => article.list_title, :width => "120", :height => "90"}), article_url(article), {:class => "miniture", :target => "_blank", :title => article.title}) %>
+					<p class="headline">
+						<%= link_to article.list_title, article_url(article), {:target => "_blank", :title => article.title} %>
+					</p>
+				</li>
+				<% end %>
+			<% else %>
+			<li>
+				<%= link_to article.list_title, article_url(article), {:target => "_blank", :title => article.title} %>
+			</li>
+			<% end %>
+			<% end %>
+		</ul>
+		<div class="clear">
+		</div>
+	</div>
+	<!--content-->
+</div>

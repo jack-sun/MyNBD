@@ -1,0 +1,9 @@
+<div class="operation">
+	<%= paginate @articles_newspapers %>
+	<div class='lOpt'>
+		<span>批量操作:</span>
+        <%= grouped_collection_select :article_column, :ids, Column.basic_columns.includes(:children), :children, :name, :id, :name, {:include_blank => "添加到栏目..."}, {:class => "columnSelector"} %>
+		<%= link_to "<span>删除</span>".html_safe, "javascript:void(0);", :class => "btnGray deleteArticles" %>
+	</div>
+	<%= link_to "<span>创建文章</span>".html_safe, new_article_console_newspaper_path(@newspaper), :class => "btnBlue rf" %>
+</div>

@@ -1,0 +1,207 @@
+<%= require_css "weibo_live" %>
+<%= require_popWin %>
+<%= require_autoComplete %>
+<%= require_tabs %>
+<%= require_tinymce %>
+<%= require_js "weibo_mana" %>
+<%= require_js "speak_mana" %>
+<%= require_js "weibo_live" %>
+<% @title = @live.title %>
+
+<div class="leftCol">
+	<div id="pageName">
+		<% if @live.is_pending? or not @live.is_over? %>
+			<div id="selectAtGuest">
+                            <% if !(@is_compere and @only_question) %>
+				<a href="javascript:void(0)" class="<%= @is_compere ? 'btnGrayBlue' : 'btnBlueM' %>" id="showLivePopWinBtn"><span>我要提问</span></a>
+                            <% end %>
+				<ul id="atGuestList">
+					<% @live.important_user.select{|e| e.id != @current_user.id}.each_with_index do|guest, index| %>
+						<li <%= "class='last'" if index == @live.important_user.length-1 %>>
+							<a href="javascript:void(0)"><%= "向#{user_job(guest)} @#{guest.nickname} 提问" %></a>
+						</li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
+		<h1><%= @live.title %></h1>
+		<!--<%= link_to '返回', lives_url %>-->
+	</div>
+	<div class="tabs">
+		<ul>
+          <li class="<%= 'current' unless @only_question %>">
+          		<% wording = if @live.is_pending?
+					"直播预热中"
+				elsif @live.is_going?
+					"直播进行时"
+				else
+					"直播回顾"
+				end -%>
+                <%= link_to wording, live_url(@live) %>
+                <span class="newTip"></span>
+			</li>
+			<li class="<%= 'current' if @only_question %>">
+                <%= link_to "网友提问", questions_live_url(@live) %>
+                <span class="newTip"></span>
+			</li>
+		</ul>
+	</div>
+
+
+	<div id="livesTabContent">
+
+		<!-- ask form -->
+		<% if @live.is_pending? or not @live.is_over? %>
+		<div id="newTalkComment" class="logSpeak" style="display:none;">
+			<%= form_for @live_talk, :html => {:class => "speakForm newTalkForm", :id => "answerForm", :remote => true} do |f| %>
+			<%= f.hidden_field :live_id %>
+			<%= f.hidden_field :live_type %>
+			<%= f.hidden_field :talk_type %>
+			<%= f.hidden_field :question_page %>
+			<div class="speakSuccessTip">
+				发送成功！
+			</div>
+			<%= f.fields_for :weibo, Weibo.new do |w| %>
+			<%= w.text_area :content, :class => "textInput", 'autoComplete-disable' => true, "id" => "" %>
+			<% end %>
+			<div class="action">
+				<ul class="speakActions">
+					<li><a href="#" class="insertImgBtn add_img"><b></b>插入图片</a></li>
+				</ul>
+				<%= link_to "<span>#{@is_compere ? "发布内容" : "提问"}</span>".html_safe, "javascript:void(0)", :class => "speakBtn logSubmitBtn btnBlueM" %>
+				<div class="clear">
+				</div>
+			</div>
+			<% end %>
+		</div>
+		<% end %>
+		<!-- ask form end -->
+		
+		<a href="javascript:void(0)" style="display:none" id="getNewTalksTip" class="alert_info">
+			<b></b>
+			有新的直播内容，点击查看.
+		</a>
+		<div id='newTalksLoading' class='loading'>
+			<span>正在加载，请稍后</span>
+		</div>
+		<ul id="liveTalkList" class="weiboItemList liveTalks">
+			<% @live_talks.each do |talk| %>
+      <%= render :partial => "weibos/weibo_item_for_live", :locals => {:talk => talk} %>
+			<% end %>
+		</ul>
+		<%= paginate @live_talks %>
+
+		<!-- edit weibo -->
+		<% if @is_compere %>
+		<div id="editWeiboDiv" class="editWeiboDiv" style="display:none">
+			<%= form_for Weibo.new, :html => { :remote => true, :method => "put"} do |f| %>
+			<%= f.text_area :content, :class => "textInput" %>
+			<%= hidden_field_tag "talk_type" %>
+      <%= hidden_field_tag "live_id", @live.id %>
+			<div class="bottomEdit">
+				<ul class="speakActions">
+					<li><a href="#" class="insertImgBtn add_img"><b></b>插入图片</a></li>
+				</ul>
+				<%= link_to "<span>取消</span>".html_safe, 'javascript:void(0)', :class => "cancelEdit btnGray" %>
+				<%= link_to "<span>提交</span>".html_safe, 'javascript:void(0)', :class => "submitEdit btnBlue" %>
+			</div>
+			<% end %>
+		</div>
+		<% end %>
+		<!-- edit weibo - end -->
+
+	</div>
+</div>
+
+
+<div class="rightCol">
+	<div class="sectionB">
+		<div class="title">
+			<h2>直播时间</h2>
+		</div>
+		<div class="content">
+			<span class="liveDate"><%= @live.start_at.strftime("%Y年%m月%d日") %></span> <span class="liveTime"><%= @live.start_at.strftime("%H:%M") %> - <%= @live.end_at.strftime("%H:%M") %></span>
+			<div id="liveStatLabel">
+				<% if @live.is_pending? %>
+					<span class="articleLabel green"><b>直播未开始</b></span>
+				<% elsif @live.is_going? %>
+					<span class="articleLabel orange"><b>直播进行中</b></span>
+				<% elsif @live.is_over? %>
+					<span class="articleLabel gray"><b>直播已结束</b></span>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<div class="sectionB">
+		<div class="title">
+			<h2>直播简介</h2>
+		</div>
+		<div class="content">
+			<%= auto_link(@live.desc.gsub(/\r*\n/,"<br/>")).html_safe if @live.desc.present? %>
+		</div>
+	</div>
+	<% if @live.guests.present? %>
+	<div class="sectionB">
+		<div class="title">
+			<h2>嘉宾</h2>
+		</div>
+		<div class="content">
+          <% @live.guests.each do |guest| %>
+			<%= render :partial => "users/user_profile", :locals => {:interviewee => guest} %>
+          <% end %>
+		</div>
+	</div>
+	<%end%>
+	<div class="sectionB">
+		<div class="title">
+			<h2>主持人</h2>
+		</div>
+		<div class="content">
+			<%= render :partial => "users/user_profile", :locals => {:interviewee => @live.user} %>
+		</div>
+	</div>
+	
+	<%= render :partial => "lives/live_list"%>
+	
+	<%= render :partial => "weibos/feedback", :locals => {:html_class => "sectionB"} %>
+</div>
+<div class="clear">
+</div>
+<script type="text/javascript">
+	var _liveData = {
+		only_question : <%= @only_question ? true : false %>,
+		last_talk_update_at : <%= Time.now.to_i %>,
+		last_question_update_at : <%= Time.now.to_i %>,
+		isContinue : <%= (!@live.is_over? or @live.is_pending?) ? "1" : "0" %>,
+		liveID : <%= @live.id %>,
+		isCompere : <%= @is_compere %>,
+                onlyQuestion : <%= @only_question ? "1" : "0" %>,
+                askType : <%= @is_compere ? "2" : "1" %>
+	};
+	
+	// tab-2 quick weibo
+	// ===================================================
+	// $(function(){
+	// 	var liveQuickWeibo = $("#liveQuickWeibo");
+			
+	// 	var liveTitle = "#<%= @live.tags %>#", 
+	// 		placeHolderTxt = "大家一起来谈论" + liveTitle + "吧！",
+	// 		formAction = liveQuickWeibo.closest("form").find(".action");
+			
+	// 	liveQuickWeibo.val(placeHolderTxt);
+	// 	liveQuickWeibo.focus(function(){
+	// 		if ($.trim($(this).val()) == placeHolderTxt || $.trim($(this).val()) == "") {
+	// 			$(this).val(liveTitle);
+	// 		}
+	// 		$(this).css({
+	// 			"color": "#202020",
+	// 			"height": 80
+	// 		});
+	// 		formAction.show();
+	// 	}).blur(function(){
+	// 		$(this).css({
+	// 			"color": "#808080"
+	// 		});
+	// 	});
+	// });
+</script>

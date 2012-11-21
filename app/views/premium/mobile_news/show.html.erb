@@ -1,0 +1,31 @@
+<%= select_tag "mobile_news", options_from_collection_for_select(Column.find(Column::MOBILE_NEWS_COLUMN).articles, "id", "title", @article.id) %>
+<div class="content">
+  <%= @article.pages.map(&:content).join("<\br>") %>
+</div>
+
+产品详细介绍。。。。
+
+栏目
+
+内容简介
+ 
+ 
+ 
+ 
+
+产品栏目介绍：
+
+订阅价格：5元/月
+
+每经投资快讯
+
+每经投资宝
+
+订阅方式：发送短信MRJJXW 到 10658000
+<script type="text/javascript">
+  var url_prefix = "<%= premium_mobile_news_index_url %>";
+  $("#mobile_news").change(function(){
+    var _temp_url = url_prefix + "/" + $("#mobile_news").val();
+    document.location.href = _temp_url;
+  });
+</script>

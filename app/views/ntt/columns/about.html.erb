@@ -1,0 +1,83 @@
+<% content_for :header_ad do %>
+	<script type="text/javascript">
+		BAIDU_CLB_preloadSlots("347589");
+	</script>
+	<!-- 广告位：西部_顶部四分之三通栏 -->
+	<%= render :partial => "ads/ad", :locals => { :id => "347589", :html_class => "header" } %>
+<% end %>
+
+<div class="leftCol">
+	<div class="sectionA" style="margin-bottom:5px;">
+		<div class="title">
+			<h2>关于智库</h2>
+		</div>
+		<div class="content">
+			<p style="text-indent:30px;">NTT（NBD THINK TANK）是每经智库的英文缩写。每经智库是每日经济新闻报社致力于中国经济可持续发展而与全国众多经济学家、财经学者共同营造的智库意见平台。</p>
+			<p style="text-indent:30px;">借助每日经济新闻在全国经济界的媒体影响力，每经智库主要联合全国主要区域发展专家、经济学家、政策研究专家、品牌策划专家、机构分析师、知名财经记者，建设中国经济首席策略平台，为企业投资、地区发展、经济政策研究提供思想参考。</p>
+		</div>
+	</div>
+	<div class="sectionA">
+		<div class="title">
+			<h2>如何加入</h2>
+		</div>
+		<div id="howToJoinContainer" class="content">
+			<ol id="howToJoinList">
+				<li class="howToJoinListItem">
+					<h3>1.智库原则：</h3>
+					<ol>
+						<li>（1）遵守中华人民共和国宪法及其法律相关规定，如因文章内容本身引起的政治与法律纠纷，由文章作者自行承担，每经网与每经智库对此不承担任何法律责任；</li>
+						<li>（2）提倡自由讨论，独立思考，理性且富有建设性的发展讨论；</li>
+						<li>（3）引用他人著作成果，尊重他人的知识产权保护权利；</li>
+						<li>（4）在享受智库交流权利时，尊重每经智库小组作出的决定。</li>
+					</ol>
+				</li>
+				<li class="howToJoinListItem">
+					<h3>2.如果加入成功，您将享受以下权益：</h3>
+					<ol>
+						<li>（1）优先邀请您参加高质量的全国性高端发展论坛；</li>
+						<li>（2）每年不少于三次专访；</li>
+						<li>（3）优先吸收您的研究性文章集结成智库学术读物；</li>
+						<li>（4）每日经济新闻网系列信息化媒体将开辟每经智库专家博客，包装策划与推广您的博客；</li>
+						<li>（5）负责搭建地方政府与您的交流平台；</li>
+						<li>（6）在每经智库专栏和《每日经济新闻》报纸上发表独家观点文章，将获得稿费，并享有知识保护权利；</li>
+						<li>（7）在参加商业活动后，得到应有的经济报酬。</li>
+					</ol>
+				</li>
+				<li class="howToJoinListItem">
+					<h3>3.作为每经智库建设者，我们将请您做如下事情：</h3>
+					<ol>
+						<li>（1）优先参加每日经济新闻报社组织的各种经济发展论坛；</li>
+						<li>（2）有权发表您的公开性观点和研究报告；</li>
+						<li>（3）优先接受每日经济新闻记者的专访；</li>
+						<li>（4）优先接受每日经济新闻的专题性研究邀请，为每日经济新闻专栏撰写评论。</li>
+					</ol>
+				</li>
+				<li class="howToJoinListItem">
+					<h3>4.加入条件：</h3>
+					<ol>
+						<li>（1）致力于中国经济研究5年以上，在业界较有影响力；</li>
+						<li>（2）有独到的学术研究，并有经济发展、公共政策等领域的专著发布；</li>
+						<li>（3）愿意定期发布专栏文章，或者认可由每经智库小组成员协助整理的相关评论；</li>
+					</ol>
+				</li>
+				<li class="howToJoinListItem">
+					<h3>5.加入流程：</h3>
+					<ol>
+						<li>（1）同意上述加盟原则，并符合相关加盟条件，请<%= link_to "<strong>联系我们</strong>".html_safe, "mailto:ntt@nbd.com.cn" %>(ntt@nbd.com.cn)；</li>
+						<li>（2）每经智库小组组织全国主要专家组建学术委员会，审核通过；</li>
+						<li>（3）如审核通过，每经智库将发送邮件确认，开通智库个人空间；</li>
+						<li>（4）加入成功后，将开始享受每经智库为专家成员提供的优质学术服务。</li>
+					</ol>
+				</li>
+			</ol>
+			<p>咨询电话：028-86510815，联系人：刘女士，赵女士</p>
+			<!--<div class="btmSubmitBtn">
+				<a href="#" class="btnBlueM"><span>申请加入每经智库</span></a>
+			</div>-->
+		</div>
+	</div>
+</div>
+<div class="rightCol">
+	<%= render :partial => "ntt/columnists/columnist_list", :locals => { :columnists => @newest_columnists }%>
+</div>
+<div class="clear"></div>

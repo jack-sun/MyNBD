@@ -1,0 +1,11 @@
+(function(){
+	var tempContainer = "";
+	<% @weibos.each_with_index do |weibo, index| %>
+	  if($("#weibo_<%= weibo.id %>").length == 0){
+	  	tempContainer += "<%=escape_javascript(render :partial => 'weibo_item', :locals => {:weibo => weibo, :interviewee => @interviewee, :is_same_user => true})  %>"
+	  }
+	<% end %>
+	$(tempContainer).hide().prependTo($("#weibos_list")).fadeIn(1000);
+	$("#newWeiboLoading").hide();
+})();
+

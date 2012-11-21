@@ -1,0 +1,61 @@
+<%= require_popWin %>
+<%= require_autoComplete %>
+<%= require_js "weibo_mana" %>
+<%= require_js "speak_mana" %>
+
+<div class="leftCol">
+  <div class="originalTxt">
+    <p class="txtContent"><%= @weibo.content %></p>
+    <div class="infoBottom">
+      <div class="itemBottom">
+        <span class="rf">
+          <%= link_to "转发#{'(' + @weibo.rt_count.to_s + ')' if @weibo.rt_count > 0}", rt_weibo_path(@weibo), :class => "weiboRetweet", :remote => true %>
+          <span class="divider">|</span>
+					评论(<%= @weibo.reply_count %>)
+        </span>
+        <%= nbd_time_f(@weibo.created_at) %>
+      </div>
+    </div>
+  </div>
+  <% if @current_user.present? %>
+    <div id="newCommentInWeiboPage" class="logSpeak">
+      <h3>评论</h3>
+      <%= form_for [@weibo,@comments.build], :html => {:remote => true, :class => "speakForm", :id => "weibo_#{@weibo.id}_new_comment"} do |f| %>
+        <div class="speakSuccessTip">发送成功！</div>
+        <%=  f.text_area :content %>
+        <div class="action"> 
+          <div class="lf">
+            <%= f.hidden_field :parent_comment_id %>
+            <%= f.check_box :rt_weibo %>
+            <%= f.label :rt_weibo, "同时转发到我的微博"%>
+          </div>
+          <%= link_to "<span>发评论</span>".html_safe, "javascript:void(0)", :class => "speakBtn btnBlueM" %>
+          <div class="clear"></div>
+        </div>
+      <% end %>
+    </div>
+
+    <ul class="weiboItemList" id="weibo_<%= @weibo.id %>_comments">
+      <%@comments.each do |comment|%>
+        <%= render :partial => "comments/comment", :locals => {:comment => comment} %>
+      <%end%>
+    </ul>
+
+    <%= paginate @comments %>
+
+    <div class="clear"></div>
+  <% else %>
+    <%= render :partial => "sessions/guide_to_sign_in" %>
+  <% end %>
+</div>
+
+<div class="rightCol">
+  <%= render :partial => "users/user_profile", :locals => {:interviewee => @weibo.owner} %>
+  <%= render :partial => "users/user_stats_details", :locals => {:interviewee => @weibo.owner} %>
+  <% render :partial => "users/user_stocks", :locals => {:stocks => []} %>
+  <% render :partial => "users/breaking_news", :locals => {:breaking_news => []} %>
+  <% render :partial => "users/users_recommand", :locals => {:users => []} %>
+</div>
+
+<div class="clear"></div>
+

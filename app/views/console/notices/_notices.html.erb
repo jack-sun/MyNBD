@@ -1,0 +1,36 @@
+<%
+=begin
+Parameters:
+notices : Array article objects
+view_only: true | false (optional, default is false)
+=end
+view_only = false if (not defined?(view_only)) or view_only.nil?
+%>
+<table class="tableA">
+  <thead>
+    <tr>
+      <th>内容</th>
+      <th>创建人</th>
+      <th>日期</th>
+      <%unless view_only%>
+        <th>操作</th>
+      <%end%>
+    </tr>		
+  </thead>
+  <tbody>
+    <% @notices.each do |notice| %>
+      <tr>
+        <td><%= auto_link(notice.content.gsub(/\r*\n/,"<br/>")).html_safe if notice.content.present? %></td>
+        <td><%= notice.staff.real_name %></td>
+        <td class="itemDate"><%= notice.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+        <%unless view_only%>
+          <td class="itemActions">
+            <%= link_to "<b></b>编辑".html_safe, edit_console_notice_url(notice), :class => "actionEdit" %>
+            <%= link_to '<b></b>删除'.html_safe, console_notice_url(notice), :confirm => '确定删除公告吗?', :method => :delete, :class => "actionDelete" %>
+          </td>
+        <%end%>
+      </tr>
+    <%end%>
+  </tbody>
+</table>
+<div style="margin:10px 0 0 0;height:30px;"><%= paginate @notices %></div>

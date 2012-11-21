@@ -1,0 +1,1658 @@
+body {
+    margin: 0px;
+}
+
+div {
+    background-repeat: no-repeat;
+}
+
+.raw_image {
+    width: 100%;
+    height: 100%;
+}
+
+.preload {
+    display: none;
+}
+div.main_container {
+}
+
+.form_sketch {
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.u0_original {
+    background-image: url('../Someone_s_Weibo_files/u0_original.png');
+}
+
+.u0_container {
+    position:absolute;
+    left:100px;
+    top:40px;
+    width:800px;
+    height:1270px;
+}
+
+#u0_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:806px;
+    height:1276px;
+}
+
+.u1 {
+    position:absolute;
+    left:2px;
+    top:627px;
+    width:796px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u0 {
+    position:absolute;
+    left:100px;
+    top:40px;
+    width:800px;
+    height:1270px
+}
+
+.u2_original {
+    background-image: url('../Someone_s_Weibo_files/u2_original.png');
+}
+
+.u2_container {
+    position:absolute;
+    left:120px;
+    top:164px;
+    width:760px;
+    height:980px;
+}
+
+#u2_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:766px;
+    height:986px;
+}
+
+.u3 {
+    position:absolute;
+    left:2px;
+    top:482px;
+    width:756px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u2 {
+    position:absolute;
+    left:120px;
+    top:164px;
+    width:760px;
+    height:980px
+}
+
+.u4_original {
+    background-image: url('../Someone_s_Weibo_files/u4_original.png');
+}
+
+.u4_container {
+    position:absolute;
+    left:100px;
+    top:1190px;
+    width:800px;
+    height:40px;
+}
+
+#u4_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:806px;
+    height:46px;
+}
+
+.u5 {
+    position:absolute;
+    left:2px;
+    top:12px;
+    width:796px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u4 {
+    position:absolute;
+    left:100px;
+    top:1190px;
+    width:800px;
+    height:40px
+}
+
+.u6 {
+    position:absolute;
+    left:120px;
+    top:1201px;
+    width:770px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u7_original {
+    background-image: url('../Someone_s_Weibo_files/u7_original.png');
+}
+
+.u7_container {
+    position:absolute;
+    left:100px;
+    top:1230px;
+    width:800px;
+    height:80px;
+}
+
+#u7_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:806px;
+    height:86px;
+}
+
+.u8 {
+    position:absolute;
+    left:2px;
+    top:19px;
+    width:796px;
+    height:42px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u7 {
+    position:absolute;
+    left:100px;
+    top:1230px;
+    width:800px;
+    height:80px
+}
+
+.u10_original {
+    background-image: url('../Someone_s_Weibo_files/u10_original.png');
+}
+
+.u10_container {
+    position:absolute;
+    left:100px;
+    top:40px;
+    width:800px;
+    height:30px;
+}
+
+#u10_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:806px;
+    height:36px;
+}
+
+.u11 {
+    position:absolute;
+    left:2px;
+    top:7px;
+    width:796px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u10 {
+    position:absolute;
+    left:100px;
+    top:40px;
+    width:800px;
+    height:30px
+}
+
+.u12 {
+    position:absolute;
+    left:150px;
+    top:49px;
+    width:741px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u13_original {
+    background-image: url('../Someone_s_Weibo_files/u13_original.png');
+}
+
+.u13_container {
+    position:absolute;
+    left:120px;
+    top:90px;
+    width:230px;
+    height:40px;
+}
+
+#u13_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:230px;
+    height:40px;
+}
+
+.u14 {
+    position:absolute;
+    left:2px;
+    top:12px;
+    width:226px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u13 {
+    position:absolute;
+    left:120px;
+    top:90px;
+    width:230px;
+    height:40px
+}
+
+.u15 {
+    position:absolute;
+    left:110px;
+    top:50px;
+    width:350px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u16 {
+    position:absolute;
+    left:110px;
+    top:40px;
+    width:60px;
+    height:30px
+}
+
+.u17 {
+    position:absolute;
+    left:190px;
+    top:40px;
+    width:60px;
+    height:30px
+}
+
+.u18 {
+    position:absolute;
+    left:600px;
+    top:40px;
+    width:30px;
+    height:30px
+}
+
+.u19_menu {
+    background-image: url('../Someone_s_Weibo_files/u19_menu.png');
+}
+
+.u19_menu {
+    position:absolute;
+    left:447px;
+    top:97px;
+    width:250px;
+    height:35px;
+}
+
+#u20 {
+    position:absolute;
+    left:3px;
+    top:3px;
+    width:240px;
+    height:25px
+}
+
+.u20_table {
+    background-image: url('../Someone_s_Weibo_files/u20_table.png');
+}
+
+.u20_table {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:244px;
+    height:29px;
+}
+
+.u21_original {
+    background-image: url('../Someone_s_Weibo_files/u21_original.png');
+}
+
+.u21_container {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:83px;
+    height:20px;
+}
+
+.u22 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:79px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u21 {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:83px;
+    height:20px
+}
+
+.u23_original {
+    background-image: url('../Someone_s_Weibo_files/u21_original.png');
+}
+
+.u23_container {
+    position:absolute;
+    left:83px;
+    top:0px;
+    width:83px;
+    height:20px;
+}
+
+.u24 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:79px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u23 {
+    position:absolute;
+    left:83px;
+    top:0px;
+    width:83px;
+    height:20px
+}
+
+.u25_original {
+    background-image: url('../Someone_s_Weibo_files/u25_original.png');
+}
+
+.u25_container {
+    position:absolute;
+    left:166px;
+    top:0px;
+    width:69px;
+    height:20px;
+}
+
+.u26 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:65px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u25 {
+    position:absolute;
+    left:166px;
+    top:0px;
+    width:69px;
+    height:20px
+}
+
+.u27_image_sketch {
+    background-image: url('../Someone_s_Weibo_files/u27_image_sketch.png');
+    position:absolute;
+    left:698px;
+    top:97px;
+    width:159px;
+    height:31px;
+}
+
+.u27 {
+    position:absolute;
+    left:701px;
+    top:100px;
+    width:153px;
+    height:25px;
+    ;
+    ;
+    text-align: left;;
+    font-family:'Heiti SC';
+    font-size: 13px;
+    color:#999999;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+
+.u27_text_sketch {
+    font-family: 'Arial Black';
+}
+
+.u28_image_sketch {
+    background-image: url('../Someone_s_Weibo_files/u28_image_sketch.png');
+    position:absolute;
+    left:854px;
+    top:97px;
+    width:40px;
+    height:31px;
+}
+
+.u28 {
+    position:absolute;
+    left:857px;
+    top:100px;
+    width:34px;
+    height:25px;
+    ;
+    ;
+    text-align: center;;
+    font-family:'Heiti SC';
+    font-size: 13px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+
+.u28_text_sketch {
+    font-family: 'Arial Black';
+}
+
+.u29 {
+    position:absolute;
+    left:450px;
+    top:100px;
+    width:80px;
+    height:20px
+}
+
+.u30 {
+    position:absolute;
+    left:540px;
+    top:100px;
+    width:80px;
+    height:20px
+}
+
+.u32_original {
+    background-image: url('../Someone_s_Weibo_files/u32_original.png');
+}
+
+.u32_container {
+    position:absolute;
+    left:620px;
+    top:164px;
+    width:260px;
+    height:980px;
+}
+
+#u32_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:266px;
+    height:986px;
+}
+
+.u33 {
+    position:absolute;
+    left:2px;
+    top:482px;
+    width:256px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u32 {
+    position:absolute;
+    left:620px;
+    top:164px;
+    width:260px;
+    height:980px
+}
+
+.u34_original {
+    background-image: url('../Someone_s_Weibo_files/u34_original.png');
+}
+
+.u34_container {
+    position:absolute;
+    left:300px;
+    top:290px;
+    width:100px;
+    height:25px;
+}
+
+#u34_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:31px;
+}
+
+.u35 {
+    position:absolute;
+    left:2px;
+    top:4px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u34 {
+    position:absolute;
+    left:300px;
+    top:290px;
+    width:100px;
+    height:25px
+}
+
+.u36_menu {
+    background-image: url('../Someone_s_Weibo_files/u36_menu.png');
+}
+
+.u36_menu {
+    position:absolute;
+    left:137px;
+    top:351px;
+    width:181px;
+    height:35px;
+}
+
+#u37 {
+    position:absolute;
+    left:3px;
+    top:3px;
+    width:171px;
+    height:25px
+}
+
+.u37_table {
+    background-image: url('../Someone_s_Weibo_files/u37_table.png');
+}
+
+.u37_table {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:175px;
+    height:29px;
+}
+
+.u38_original {
+    background-image: url('../Someone_s_Weibo_files/u21_original.png');
+}
+
+.u38_container {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:83px;
+    height:20px;
+}
+
+.u39 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:79px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u38 {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:83px;
+    height:20px
+}
+
+.u40_original {
+    background-image: url('../Someone_s_Weibo_files/u21_original.png');
+}
+
+.u40_container {
+    position:absolute;
+    left:83px;
+    top:0px;
+    width:83px;
+    height:20px;
+}
+
+.u41 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:79px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u40 {
+    position:absolute;
+    left:83px;
+    top:0px;
+    width:83px;
+    height:20px
+}
+
+.u42_original {
+    background-image: url('../Someone_s_Weibo_files/u42_original.png');
+}
+
+.u42_container {
+    position:absolute;
+    left:140px;
+    top:394px;
+    width:460px;
+    height:540px;
+}
+
+#u42_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:466px;
+    height:546px;
+}
+
+.u43 {
+    position:absolute;
+    left:2px;
+    top:262px;
+    width:456px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u42 {
+    position:absolute;
+    left:140px;
+    top:394px;
+    width:460px;
+    height:540px
+}
+
+.u44_original {
+    background-image: url('../Someone_s_Weibo_files/u44_original.png');
+}
+
+.u44_container {
+    position:absolute;
+    left:380px;
+    top:954px;
+    width:220px;
+    height:30px;
+}
+
+#u44_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:226px;
+    height:36px;
+}
+
+.u45 {
+    position:absolute;
+    left:2px;
+    top:8px;
+    width:216px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u44 {
+    position:absolute;
+    left:380px;
+    top:954px;
+    width:220px;
+    height:30px
+}
+
+.u46_original {
+    background-image: url('../Someone_s_Weibo_files/u46_original.png');
+}
+
+.u46_container {
+    position:absolute;
+    left:140px;
+    top:180px;
+    width:140px;
+    height:140px;
+}
+
+#u46_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:140px;
+    height:140px;
+}
+
+.u47 {
+    position:absolute;
+    left:2px;
+    top:62px;
+    width:136px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u46 {
+    position:absolute;
+    left:140px;
+    top:180px;
+    width:140px;
+    height:140px
+}
+
+.u48 {
+    position:absolute;
+    left:300px;
+    top:186px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u49 {
+    position:absolute;
+    left:300px;
+    top:218px;
+    width:150px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u50 {
+    position:absolute;
+    left:640px;
+    top:190px;
+    width:230px;
+    height:14px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u51 {
+    position:absolute;
+    left:640px;
+    top:220px;
+    width:230px;
+    height:14px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u52_original {
+    background-image: url('../Someone_s_Weibo_files/u52_original.png');
+}
+
+.u52_container {
+    position:absolute;
+    left:640px;
+    top:460px;
+    width:220px;
+    height:170px;
+}
+
+#u52_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:226px;
+    height:176px;
+}
+
+.u53 {
+    position:absolute;
+    left:2px;
+    top:77px;
+    width:216px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u52 {
+    position:absolute;
+    left:640px;
+    top:460px;
+    width:220px;
+    height:170px
+}
+
+.u54 {
+    position:absolute;
+    left:300px;
+    top:245px;
+    width:150px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u55_original {
+    background-image: url('../Someone_s_Weibo_files/u55_original.png');
+}
+
+.u55_container {
+    position:absolute;
+    left:640px;
+    top:284px;
+    width:220px;
+    height:210px;
+}
+
+#u55_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:226px;
+    height:216px;
+}
+
+.u56 {
+    position:absolute;
+    left:2px;
+    top:97px;
+    width:216px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u55 {
+    position:absolute;
+    left:640px;
+    top:284px;
+    width:220px;
+    height:210px
+}
+
+.u57_original {
+    background-image: url('../Someone_s_Weibo_files/u57_original.png');
+}
+
+.u57_container {
+    position:absolute;
+    left:644px;
+    top:289px;
+    width:211px;
+    height:205px;
+}
+
+#u57_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:211px;
+    height:205px;
+}
+
+.u58 {
+    position:absolute;
+    left:2px;
+    top:94px;
+    width:207px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u57 {
+    position:absolute;
+    left:644px;
+    top:289px;
+    width:211px;
+    height:205px
+}
+
+.u59 {
+    position:absolute;
+    left:640px;
+    top:260px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u61_original {
+    background-image: url('../Someone_s_Weibo_files/u61_original.png');
+}
+
+.u61_container {
+    position:absolute;
+    left:640px;
+    top:650px;
+    width:220px;
+    height:290px;
+}
+
+#u61_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:226px;
+    height:296px;
+}
+
+.u62 {
+    position:absolute;
+    left:2px;
+    top:137px;
+    width:216px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u61 {
+    position:absolute;
+    left:640px;
+    top:650px;
+    width:220px;
+    height:290px
+}
+
+.u63 {
+    position:absolute;
+    left:650px;
+    top:660px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u64_original {
+    background-image: url('../Someone_s_Weibo_files/u64_original.png');
+}
+
+.u64_container {
+    position:absolute;
+    left:660px;
+    top:690px;
+    width:41px;
+    height:47px;
+}
+
+#u64_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:41px;
+    height:47px;
+}
+
+.u65 {
+    position:absolute;
+    left:2px;
+    top:16px;
+    width:37px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u64 {
+    position:absolute;
+    left:660px;
+    top:690px;
+    width:41px;
+    height:47px
+}
+
+.u67_original {
+    background-image: url('../Someone_s_Weibo_files/u64_original.png');
+}
+
+.u67_container {
+    position:absolute;
+    left:730px;
+    top:690px;
+    width:41px;
+    height:47px;
+}
+
+#u67_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:41px;
+    height:47px;
+}
+
+.u68 {
+    position:absolute;
+    left:2px;
+    top:16px;
+    width:37px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u67 {
+    position:absolute;
+    left:730px;
+    top:690px;
+    width:41px;
+    height:47px
+}
+
+.u70_original {
+    background-image: url('../Someone_s_Weibo_files/u64_original.png');
+}
+
+.u70_container {
+    position:absolute;
+    left:800px;
+    top:690px;
+    width:41px;
+    height:47px;
+}
+
+#u70_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:41px;
+    height:47px;
+}
+
+.u71 {
+    position:absolute;
+    left:2px;
+    top:16px;
+    width:37px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u70 {
+    position:absolute;
+    left:800px;
+    top:690px;
+    width:41px;
+    height:47px
+}
+
+.u73 {
+    position:absolute;
+    left:662px;
+    top:744px;
+    width:50px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u74 {
+    position:absolute;
+    left:730px;
+    top:744px;
+    width:50px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u75 {
+    position:absolute;
+    left:800px;
+    top:744px;
+    width:50px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u76_original {
+    background-image: url('../Someone_s_Weibo_files/u64_original.png');
+}
+
+.u76_container {
+    position:absolute;
+    left:660px;
+    top:773px;
+    width:41px;
+    height:47px;
+}
+
+#u76_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:41px;
+    height:47px;
+}
+
+.u77 {
+    position:absolute;
+    left:2px;
+    top:16px;
+    width:37px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u76 {
+    position:absolute;
+    left:660px;
+    top:773px;
+    width:41px;
+    height:47px
+}
+
+.u79_original {
+    background-image: url('../Someone_s_Weibo_files/u64_original.png');
+}
+
+.u79_container {
+    position:absolute;
+    left:730px;
+    top:773px;
+    width:41px;
+    height:47px;
+}
+
+#u79_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:41px;
+    height:47px;
+}
+
+.u80 {
+    position:absolute;
+    left:2px;
+    top:16px;
+    width:37px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u79 {
+    position:absolute;
+    left:730px;
+    top:773px;
+    width:41px;
+    height:47px
+}
+
+.u82_original {
+    background-image: url('../Someone_s_Weibo_files/u64_original.png');
+}
+
+.u82_container {
+    position:absolute;
+    left:800px;
+    top:773px;
+    width:41px;
+    height:47px;
+}
+
+#u82_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:41px;
+    height:47px;
+}
+
+.u83 {
+    position:absolute;
+    left:2px;
+    top:16px;
+    width:37px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u82 {
+    position:absolute;
+    left:800px;
+    top:773px;
+    width:41px;
+    height:47px
+}
+
+.u85 {
+    position:absolute;
+    left:662px;
+    top:827px;
+    width:50px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u86 {
+    position:absolute;
+    left:730px;
+    top:827px;
+    width:50px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u87 {
+    position:absolute;
+    left:800px;
+    top:827px;
+    width:50px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u88_original {
+    background-image: url('../Someone_s_Weibo_files/u64_original.png');
+}
+
+.u88_container {
+    position:absolute;
+    left:660px;
+    top:854px;
+    width:41px;
+    height:47px;
+}
+
+#u88_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:41px;
+    height:47px;
+}
+
+.u89 {
+    position:absolute;
+    left:2px;
+    top:16px;
+    width:37px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u88 {
+    position:absolute;
+    left:660px;
+    top:854px;
+    width:41px;
+    height:47px
+}
+
+.u91_original {
+    background-image: url('../Someone_s_Weibo_files/u64_original.png');
+}
+
+.u91_container {
+    position:absolute;
+    left:730px;
+    top:854px;
+    width:41px;
+    height:47px;
+}
+
+#u91_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:41px;
+    height:47px;
+}
+
+.u92 {
+    position:absolute;
+    left:2px;
+    top:16px;
+    width:37px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u91 {
+    position:absolute;
+    left:730px;
+    top:854px;
+    width:41px;
+    height:47px
+}
+
+.u94_original {
+    background-image: url('../Someone_s_Weibo_files/u64_original.png');
+}
+
+.u94_container {
+    position:absolute;
+    left:800px;
+    top:854px;
+    width:41px;
+    height:47px;
+}
+
+#u94_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:41px;
+    height:47px;
+}
+
+.u95 {
+    position:absolute;
+    left:2px;
+    top:16px;
+    width:37px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u94 {
+    position:absolute;
+    left:800px;
+    top:854px;
+    width:41px;
+    height:47px
+}
+
+.u97 {
+    position:absolute;
+    left:662px;
+    top:908px;
+    width:50px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u98 {
+    position:absolute;
+    left:730px;
+    top:908px;
+    width:50px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u99 {
+    position:absolute;
+    left:800px;
+    top:908px;
+    width:50px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u101 {
+    position:absolute;
+    left:630px;
+    top:190px;
+    width:50px;
+    height:50px
+}
+
+.u102 {
+    position:absolute;
+    left:705px;
+    top:190px;
+    width:50px;
+    height:50px
+}
+
+.u103 {
+    position:absolute;
+    left:773px;
+    top:190px;
+    width:50px;
+    height:50px
+}
+

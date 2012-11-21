@@ -1,0 +1,87 @@
+<!--<div id="addNewArticle">
+<%= link_to "<span>添加新文章</span>".html_safe, new_console_article_url, :class => "btnBlue" %>
+</div>-->
+
+
+<dl id="navList">
+  <dt>
+		我的文章
+  </dt>
+  <dd <% if defined?(@category) and @category == Article::PUBLISHED %>class="current"<%end%>>
+    <%= link_to "已发布", published_console_articles_path %>
+  </dd>
+  <dd <% if defined?(@category) and @category == Article::DRAFT %>class="current"<%end%>>
+    <%= link_to "草稿箱", draft_console_articles_path %>
+  </dd>
+  <dd <% if defined?(@category) and @category == Article::BANNDED %>class="current"<%end%>>
+    <%= link_to "已屏蔽", banned_console_articles_path %>
+  </dd>
+  <dd>
+    <%= link_to "添加新文章", new_console_article_url %>
+  </dd>
+  <dt>新闻文章</dt>
+  <%if false%>
+    <dd>
+      <%= link_to "所有文章", console_articles_url %>
+    </dd>
+  <%end%>
+  <% Column.basic_columns.displaied_columns.each do |c| %>
+    <dd class="<%= c == @column ? 'current' : '' %>">
+      <%= link_to c.name, console_column_path(c) %>
+    </dd>
+  <% end %>
+  <dd <% if defined?(@comments_mana_nvs) and @comments_mana_nvs %>class="current"<%end%>> <%= link_to "文章评论", console_comments_url %>
+  </dd>
+  <dd <% if defined?(@fragment_mana_nvs) and @fragment_mana_nvs %>class="current"<%end%>>
+    <%= link_to "缓存管理", fragment_cache_manage_console_columns_url %>
+  </dd>
+  <%if false%>
+    <dd>
+      <a href="#">文章关键字</a>
+    </dd>
+  <%end%>
+  <!--<dd>
+		<a href="#">文章评论</a>
+	</dd>-->
+   <dt>图片库</dt>
+   <dd><%= link_to "所有图片", console_images_path %></dd>
+	 <dd><%= link_to "添加新图片", new_console_image_path %></dd>
+  <dt>
+		专题
+	</dt>
+	<dd>
+  <%= link_to "所有专题", console_features_path %>
+	</dd>
+	<dd>
+  <%= link_to "添加新专题", new_console_feature_path %>
+	</dd>
+  <dt>今日报纸</dt>
+  <dd>
+    <%= link_to "报纸管理", console_newspapers_path %>
+  </dd>
+  <dd>
+    <%= link_to "添加新报纸", new_console_newspaper_path %>
+  </dd>
+  <dt>新闻敏感词</dt>
+  <dd <% if defined?(@badwords_navs) and @badwords_navs %>class="current"<%end%>> <%= link_to "所有敏感词", console_badwords_url %> </dd>
+  <dd <% if defined?(@badwords_navs) and @badwords_navs %>class="current"<%end%>> <%= link_to "添加敏感词", new_console_badword_url %> </dd>
+  <dt>智库专家</dt>
+  <dd>
+    <%= link_to "所有专家", console_columnists_path %>
+  </dd>
+  <dt>公告</dt>
+  <dd <% if defined?(@notice_list_navs) and @notice_list_navs %>class="current"<%end%>>
+    <%= link_to "所有公告", list_console_notices_url %>
+  </dd>
+   <dt>投票</dt> 
+   <dd><%= link_to "所有投票", console_polls_path %></dd>
+  <%if false%>
+    <dt>多媒体</dt>
+    <dd>
+      <a href="#">添加新文件</a>
+    </dd>
+    <dd>
+      <a href="#">媒体库</a>
+    </dd>
+  <%end%>
+</dl>

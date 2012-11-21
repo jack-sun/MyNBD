@@ -1,0 +1,15 @@
+   <% @weibolist.each do |list| %>
+          <div  class="msgBox">
+              <div class="txt">
+					<div id="a">用户名<br /><span class="red"><%= list.owner.nickname%></span></div>
+               <div id="b"><%= list.content %></div>
+              </div>
+                <div class="toolbar">
+                          <div class="left" ><a href="#"><%= list.created_at.strftime('%Y-%m-%d %H:%M')  %></a></div>
+                          <div style="float:right"><a href="#"><%= link_to '删除',home_path( :id=>list.id ),:method=>:delete%></a> | <a href="#">转发</a><%= link_to '转发',repaste_path(:id=>2) %> | <a href="#">评论</a></div>
+                </div>
+          </div>
+
+			<%end %>
+
+                  <div class="page"><%=  paginate_string @weibolist  %></div>

@@ -1,0 +1,30 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  recipient_id: 1
+  target_id: 1
+  target_type: MyString
+  unread: 1
+  type: MyString
+
+two:
+  recipient_id: 1
+  target_id: 1
+  target_type: MyString
+  unread: 1
+  type: MyString
+
+# == Schema Information
+#
+# Table name: notifications
+#
+#  id           :integer(4)      not null, primary key
+#  recipient_id :integer(4)      not null
+#  target_id    :integer(4)      not null
+#  target_type  :string(255)     not null
+#  unread       :integer(4)      default(1)
+#  type         :string(255)
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+

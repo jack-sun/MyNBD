@@ -1,0 +1,16 @@
+(function(){
+	var pollbox = $("#poll_<%= @poll.id %>");
+	var resultbox = $(".pollResultContainer", pollbox);
+	$(".pollOpt", pollbox).hide();
+	<% if @poll.show_result == Poll::HIDE_RESULT_AFTER_VOTE %>
+		resultbox.append("<div class='tip'>投票成功，感谢您的参与！</div>");
+	<% else %>
+      <% if @voted_success %>
+        var result = $("<%= escape_javascript(render(:partial => "polls/vote_result", :locals => {:poll => @poll, :success => true})) %>");
+      <% else %>
+        var result = $("<%= escape_javascript(render(:partial => "polls/vote_result", :locals => {:poll => @poll, :success => false})) %>");
+      <% end %>
+		resultbox.empty().append(result);
+	<% end %>
+})();
+

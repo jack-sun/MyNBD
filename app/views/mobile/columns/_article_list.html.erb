@@ -1,0 +1,91 @@
+<%
+=begin
+Parameters:
+	articles: Array
+	list_title: String (optional)
+	title_icon: Enum String (optional), check out theme_website.html to get icon name.
+	more_link: String (optional)
+	html_class: String (optional)
+	html_style: String (optional)
+	digest_number: Int (optional, default 0)
+	digest_restrict: true | false (optional)
+	display_datetime: true | false (optional, default is false)
+	display_children: true | false (optional, default is false)
+	display_column: true | false (optional, default is false)
+	column_id: Int (optional, default '')
+	opt_content: String | Html (optional)
+=end
+title_icon = '' unless title_icon
+html_class = '' unless html_class
+html_style = '' unless html_style
+digest_number = 0 unless digest_number
+digest_number = articles.length if digest_number == 'max'
+digest_restrict = false unless digest_restrict
+display_datetime = false unless display_datetime
+display_children = false unless display_children
+display_column = false unless display_column
+column_id = '' unless column_id
+list_title = '' unless list_title
+opt_content = '' unless opt_content
+%>
+<div class="sectionA <%=html_class%>" style="<%=html_style%>">
+	<% unless list_title == '' %>
+	<div class="title">
+		<h3>
+			<%if column_id.present? %>
+			<%= link_to list_title, column_path(column_id)%>
+			<%else%>
+			<%=list_title%>
+			<%end%>
+		</h3>
+		<%if column_id.present? %>
+		<span class="opts"><%= link_to "更多", column_path(column_id)%></span>
+		<%elsif opt_content.present? %>
+		<span class="opts"><%= opt_content.html_safe %></span>
+		<%end%>
+	</div>
+	<% end %>
+	<div class="content">
+		<ul class="articleList unorderList">
+			<% articles.each_with_index do |article,index|
+				next if article.blank? -%>
+				<% if digest_number>index %>
+				<li class="articleRecommend <% if index == articles.length-1%>last<%end%>">
+					<h5 class='rcTitle'>
+						<% if display_column %>
+						<%=link_to "<span>#{article.columns.first.name}</span>".html_safe, column_path(article.columns.first), :class => "columnLabel2" %>
+						<% end %>
+						<%= link_to article.list_title, article_url_mobile(article) %>
+					</h5>
+					<div class="rcDigest">
+						<%= link_to image_tag(article_thumbnail_path(article, :small)),  article_url_mobile(article) if article.image.present? %>
+						<p <%if digest_restrict%>class="restrict"<%end%> >
+							<%= article.show_digest %>
+						</p>
+						<% if display_children %>
+								<div class="childrenArticles">
+									<ul class="unorderList">
+                                    <% article.relate_article_children.order("pos desc").limit(2).each do |a| %>
+										<li>
+											<%= link_to a.children_title, a.children_url %>
+										</li>
+										<%end %>
+									</ul>
+								</div>
+							<% end %>
+						<div class="clear"></div>
+					</div>
+				</li>
+				<% else %>
+				<li <%if index == (articles.length/2-1) && digest_number == 0 && articles.length >5 %>class="divider"<%end%> >
+					<%if display_datetime%><span class="articleOpt"><%=article.created_at.strftime("%H:%M")%></span><%end%>
+					<% if display_column %>
+					<%=link_to "<span>#{article.columns.first.name}</span>".html_safe, column_path(article.columns.first), {:class => "columnLabel2"} %>
+					<% end %>
+					<%= link_to article.list_title, article_url_mobile(article) %></li>
+				<% end %>
+			<% end %>
+		</ul>
+		<div class="clear"></div>
+	</div><!--content-->
+</div>

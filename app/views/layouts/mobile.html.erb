@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title><%= @title.blank? ? "每经网 | 新闻决定影响力 |《每日经济新闻》报社旗下网站" : "#{@title} | 每经网"%></title>
+  <%= stylesheet_link_tag "reset", "style_mobile" %>
+  <%= javascript_include_tag "baidu_m" %>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  <meta name="Keywords" content="财经新闻,财经报道,叶檀,道达,老法师看盘,股市直播,郑眼看盘,股市行情,财经证券,基金,荐股,股市内参,股吧,传闻,内幕,板块,个股,黑马,股市新闻,生活,汽车" />
+  <meta name="Description" content="24小时财经资讯平台，依托新锐财经日报《每日经济新闻》，打造中国最具影响力的经济、股票网站。覆盖宏观、股票、基金、期货、股指期货、外汇、债券、保险、银行、黄金、理财等全方位财经新闻。" />
+</head>
+
+<body id="body_mobile">
+
+	<!-- 广告位：移动_顶部头图 -->
+	<script type="text/javascript">
+		BAIDU_CLB_fillSlot("397315");
+	</script>
+
+	<div id="header">
+		<%= link_to image_tag("/images/logo-blue.png"), mobile_column_url(1), {:title => "每经网", :id => "logo"} %>
+	</div>
+	<div id="navi">
+		<%= link_to "首页", mobile_column_url(1) %>
+		<%= link_to "资讯", mobile_column_url(6) %>
+		<%= link_to "股票", mobile_column_url(10) %>
+		<%= link_to "公司", mobile_column_url(33) %>
+		<%= link_to "智库", mobile_column_url(56) %>
+	</div>
+	<div id="wrapper">
+		<%= yield %>
+	</div>
+
+	<div id="footer">
+		<p>
+			Copyright © 2011 每日经济新闻报社版权所有，未经许可不得转载使用，违者必究<br/>
+			读者热线：400-889-0008　合作联系电话：86-21-60900099转688分机　<%= link_to "沪ICP备09000473号", "http://www.miibeian.gov.cn/" %>
+		</p>
+	</div>
+	<%= render :partial => "layouts/analytics" %>
+</body>
+</html>

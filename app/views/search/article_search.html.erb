@@ -1,0 +1,36 @@
+<% @title="文章搜索 - #{@keyword}" %>
+<%= require_css "article_list.css" %>
+
+<% content_for :header_ad do %>
+	<script type="text/javascript">
+		BAIDU_CLB_preloadSlots("349120", "349118", "349119");
+	</script>
+	<!-- 广告位：全站_顶部四分之三通栏 -->
+	<%= render :partial => "ads/ad", :locals => { :id => "349118", :html_class => "header" } %>
+<% end %>
+
+<div class="leftCol">
+	<% if @articles.length == 0 %>
+	<%= render :partial => "search/no_search_result", :locals => { :keyword => @keyword } %>
+	<% else %>
+	<%= render :partial => "columns/article_list_for_search", :locals => {:list_title => '搜索 "' + @keyword + '" 的结果', :articles => @articles, :opt_content => "共 #{@articles.total_entries} 个结果"} %>
+	<%= paginate @articles %>
+	<% end %>
+</div>
+
+<div class="rightCol">
+	
+        <%= render :partial => "columns/hot_articles" %>
+	<!-- 广告位：全站_右边栏一 -->
+	<%= render :partial => "ads/ad", :locals => { :id => "349119", :html_class => "right_box" } %>
+	
+	<%= render :partial => "columns/nbd_promo", :locals => {:hide_newspappers => true, :title => "移动客户端"} %>
+	<div class="divider" style="margin-bottom:10px"></div>
+
+<%= render :partial => "columns/subscription", :locals => {:html_style => ""} %>
+</div>
+
+<div class="clear"></div>
+
+<!-- 广告位：全站_底部通栏 -->
+<%= render :partial => "ads/ad", :locals => { :id => "349120", :html_class => "footer" } %>

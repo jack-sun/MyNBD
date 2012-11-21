@@ -1,0 +1,44 @@
+<% @title="管理频道" %>
+<%= require_css "channel.css" %>
+<%= require_slideShow %>
+<% content_for :header_ad do %>
+	<%= render :partial => "ads/c_1" %>
+<% end %>
+<%= render :partial => "columns/sub_navigation", :locals => {:column_id => 70 } %>
+<div class="leftCol">
+  <% cache(column_show_content_key_by_id(@head_article[:id])) do %>
+  	<%= render :partial => "columns/scroll_head_article", :locals => { :articles => @head_article[:articles].map(&:article).compact, :column_id => 71 } %>
+  <% end %>
+	<div class="subLeftCol">
+      <% cache(column_show_content_key_by_id(@career[:id])) do %>
+		<%= render :partial => "columns/article_list", :locals => {:list_title => "职场", :articles => @career[:articles].map(&:article).compact, :column_id => 72, :digest_number => 3, :display_children => false, :digest_restrict => true } %>
+      <% end %>
+      <% cache(column_show_content_key_by_id(@people[:id])) do %>
+		<%= render :partial => "columns/article_list", :locals => {:list_title => "人物", :articles => @people[:articles].map(&:article).compact, :column_id => 73, :digest_number => 3, :display_children => false, :digest_restrict => true } %>
+      <% end %>
+	</div>
+	<div class="subRightCol">
+      <% cache(column_show_content_key_by_id(@mba[:id])) do %>
+		<%= render :partial => "columns/article_list", :locals => {:list_title => "商学院", :articles => @mba[:articles].map(&:article).compact, :column_id => 74, :digest_number => 3, :display_children => false, :digest_restrict => true } %>
+      <% end %>
+      <% cache(column_show_content_key_by_id(@front[:id])) do %>
+		<%= render :partial => "columns/article_list", :locals => {:list_title => "管理前沿", :articles => @front[:articles].map(&:article).compact, :column_id => 75, :digest_number => 3, :display_children => false, :digest_restrict => true } %>
+      <% end %>
+	</div>
+	<div class="clear"></div>
+</div>
+<div class="rightCol">
+  <% cache(column_show_content_key_by_id(@featured[:id])) do %>
+	<%= render :partial => "columns/article_feature", :locals => {:list_title => "管理精选", :articles => @featured[:articles].map(&:article).compact, :column_id => 76, :digest_number => 4, :html_class => "articleWallWrapper" } %>
+  <% end %>
+  
+  <%= render :partial => "ads/c_3"%>
+  
+	
+        <%= render :partial => "columns/hot_articles" %>
+	
+	<%= render :partial => "columns/subscription", :locals => {:html_style => ""} %>
+</div>
+<div class="clear"></div>
+
+<%= render :partial => "ads/c_4" %>

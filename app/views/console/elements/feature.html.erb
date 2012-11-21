@@ -1,0 +1,245 @@
+<% require_jqueryUI %>
+<% require_popWin %>
+<% require_tabs %>
+<% require_slideShow %>
+
+<div class="title">
+  <h1>页面元素编辑 - 手动文章列表</h1>
+</div>
+
+<% 
+unless @element.new_record?
+  article_ids = @body["articles"] ? @body["articles"] : []
+  articles = article_ids.present? ? Article.find(article_ids).sort_by{|e| article_ids.index(e.id)} : []
+  display_type = (@body["display_type"] || 3).to_i
+end
+-%>
+
+<%= simple_form_for([:console, @owner, @element], :html => {:id => "element_form", :class => ""}) do |f| %>
+  <%= f.input :content, :as => :hidden %>
+  <p>
+    <%= f.input :title , :label => "标题:" %>
+  </p>
+  <div class="block">
+    <label>文章列表:</label>
+    <ul id="chosenArticleList" class="sortableList">
+      <% unless @element.new_record? %>
+        <% articles.each do |article| %>
+          <li id="<%= "article_#{article.id}" %>">
+            <span class="dragHandler">拖动</span>
+            <%= link_to article.title, article_url(article), :id => article.id, :class => "chosenItem" %>
+            <a class='removeArticleItem rf' href='javascript:void(0)'>删除</a>
+          </li>	
+        <%end%>
+      <%end%>
+    </ul>
+    <%= link_to ' <span>添加新链接</span>'.html_safe, "javascript:void(0);", :id => "addAticle", :class => "btnGray", :style => "margin-top:15px;" %>
+  </div>
+
+  <div id="addAticleForm"></div>
+
+  <p>
+    <label>展现方式:</label>
+    <% unless @element.new_record? %>
+      <input type="radio" id="list" name="display_type" value="<%= ElementArticle::DISPLAY_TYPE_LIST %>" <%if display_type == ElementArticle::DISPLAY_TYPE_LIST %>checked="checked"<%end%> /><label class="clearLabelStyle" for="list">文字列表</label>
+      <input type="radio" id="slide" name="display_type" value="<%= ElementArticle::DISPLAY_TYPE_SLIDE %>" <%if display_type == ElementArticle::DISPLAY_TYPE_SLIDE %>checked="checked"<%end%> /><label class="clearLabelStyle" for="slide">滚动图片</label>
+    <%else%>
+      <input type="radio" id="list" name="display_type" value="<%= ElementArticle::DISPLAY_TYPE_LIST %>" checked="checked" /><label class="clearLabelStyle" for="list">文字列表</label>
+      <input type="radio" id="slide" name="display_type" value="<%= ElementArticle::DISPLAY_TYPE_SLIDE %>"  /><label class="clearLabelStyle" for="slide">滚动图片</label>
+    <%end%>
+  </p>
+
+  <div class="block">
+    <a href="javascript:void(0)" id="refreshPreviewBtn" class="btnGrayBlue"><span>预览</span></a>
+    <div id="previewBox">
+      <div style="display:block;" class="loading">请选择条件并点击预览。</div>
+    </div>
+  </div>
+
+  <%= render "console/elements/element_editpage_actions" %>
+<%end%>
+
+
+<div id="sourseTabs">
+  <div class="tabs">
+    <ul>
+      <li class="current"><a href="#tabs-1">我的文章</a></li>
+      <li><a href="#tabs-2">搜索文章</a></li>
+    </ul>
+  </div>
+  <div id="sourceContentTabs">
+    <div id="tabs-1">
+      <div style="display:block;" class="loading"><span>正在接收数据</span></div>
+    </div>
+    <div id="tabs-2">
+      <div id="keywordSearch">
+        <span class="resultTip rf">搜索 <b></b> 结果如下：</span>
+        <%= text_field_tag "keywords", "", :class => "textInput" %>
+        <%= link_to "<span>搜索</span>".html_safe, "javascript:void(0)", :id => :searchButton, :class => "btnBlue" %>	
+      </div>
+      <div id="keywordSearchResult">
+        <p class='noResult'>请搜索以取得文章列表。</p>
+      </div>
+    </div>
+    <div id="popWinActions">
+      <a href="javascript:void(0)" class="btnBlue rf" id="confirmChosen"><span>添加</span></a>
+      <a href="javascript:void(0)" class="btnBlue rf" id="cancelChosen"><span>取消</span></a>
+      <div class="clear"></div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    var articleurl = "<%= staff_articles_console_articles_url %>";
+    var searchurl = "<%= dynamic_search_console_articles_url %>";
+    var liDOM = "<li><a href='{url}'>{name}</a></li>";
+		
+    var currentKeyword;
+		
+    // dom
+    var chosenArticleList = $("#chosenArticleList");
+		
+    var popWinForChooseList = $.popWin.init({
+      follow:true,
+      title:"请选择文章",
+      height:500
+    });
+		
+    $("#sourseTabs").nbdtabs({
+      tabsDOM:".tabs ul",
+      contentDOM:"#sourceContentTabs"
+    });
+		
+    popWinForChooseList.div.appendTo("body");
+    $("#sourseTabs").appendTo(popWinForChooseList.content);
+		
+    $("#createNewElement").click(function(){
+      var links = [], body;
+      $("li a.chosenItem",chosenArticleList).each(function(index,link){
+        var articleID = parseInt($(link).attr("id"));
+        links.push(articleID);
+      });
+      body = {
+        'body': {
+          'articles': links,
+          'display_type': parseInt($(":radio:checked").val())
+        }
+      };
+			
+      $("#element_<%= @k_name %>_content").val(JSON.stringify(body));
+      $('form').submit();
+    });
+		
+    $("#addAticle").click(function(){
+      popWinForChooseList.show();
+      if($("#tabs-1").children('ul').length == 0){
+        $.ajax({
+          type:"POST",
+          data:"",
+          url:articleurl,
+          success:function(msg){
+            var result = $(msg);
+            if($("li", result).length == 0){
+              $("#tabs-1").find(".noResult").text("没有数据。");
+            }else {
+              $("#tabs-1").empty().append(result);
+            }
+          }
+        });
+      }
+    });
+		
+    $("#confirmChosen").click(function(){
+      var checkedItems = $("#sourceContentTabs div:visible input:checked");
+      checkedItems.each(function(index,checkbox){
+        var add = true;
+        var toChooseLi = $(checkbox).closest("li");
+        $("li",chosenArticleList).each(function(index,item){
+          if($(item).find("a").attr("id") == toChooseLi.find("a").attr("id")){
+            add = false;
+          }
+        });
+        if(add){
+          toChooseLi.clone().find(":checkbox").remove().end()
+          .find("a").attr("class", "chosenItem").end()
+          .append("<a class='removeArticleItem rf' href='javascript:void(0)'>删除</a>")
+          .prepend("<span class='dragHandler'>拖动</span>")
+          .appendTo(chosenArticleList);
+        }
+        $(checkbox).attr("checked",false);
+      });
+      popWinForChooseList.hide();
+    });
+		
+    $("#cancelChosen").click(function(){
+      popWinForChooseList.hide();
+    });
+		
+    $(".removeArticleItem").live("click",function(){
+      $(this).closest("li").remove();
+    });
+		
+    chosenArticleList.sortable({
+      axis:'y',
+      opacity:'0.4',
+      handle:'span',
+      tolerance:'pointer',
+      cursor:'move',
+      placeholder:"dragPlaceHolder"
+    });
+
+    $("#searchButton").click(function(){
+      currentKeyword = $("#keywords").val();
+      if(currentKeyword == "") {
+        alert("请输入关键字！");
+        return false;
+      }
+      $(".resultTip").show().text("搜索中...请稍后");
+      $.get(searchurl, {q:currentKeyword}, function(data){
+        $("#keywordSearchResult").empty().append(data);
+        if($("#tabs-2 .toChooseArticleList").length == 0){
+          $(".resultTip").hide();
+        }else {
+          $(".resultTip").show().text("搜索关于 "+currentKeyword+" 的文章，结果如下");;
+        }
+      });
+    });
+		
+    $("#refreshPreviewBtn").click(function(){
+      $(this).find("span").text("刷新预览");
+      refreshPreview();
+      return false;
+    });
+		
+    function refreshPreview(){
+      if(chosenArticleList.children().length == 0){
+        alert("请选择文章。");
+        return false;
+      }
+      // data
+      var displayType = $(":radio[name=display_type]:checked").val();
+      var articleIDs = $.map($("li", chosenArticleList), function(li){
+        return $(li).attr("id").split("_")[1];
+      });
+      var data = {article_ids:articleIDs,display_type:displayType};
+      var articleurl = "<%= dynamic_articles_console_articles_url %>";
+			
+      // ajax request
+      $.ajax({
+        type:"POST",
+        data:data,
+        url:articleurl,
+        success:function(msg){
+          if(msg){
+            $("#previewBox").empty().append(msg).show();
+          }else {
+            $("#previewBox").append("<p>暂无数据</p>");
+          }
+					
+        }
+      });
+      $("<div class='loading'><span>正在更新预览</span></div>").appendTo($("#previewBox").empty()).show();
+    }
+  });
+</script>

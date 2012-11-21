@@ -1,0 +1,20 @@
+<div class="leftCol">
+	<div class="formA roundCorner">
+		<div class="title">
+			<h3>激活用户</h3>
+		</div>
+		<p>我们已向您的邮箱<%= @current_user.email %>发送了一封激活信<br/>
+		请查收邮件并根据提示激活您的账户。 </p>
+		<p><%= link_to "<span>前往邮箱</span>".html_safe, @current_user.resolve_email_host, :class => "btnBlueM"%></p>
+		<p>
+			<span>温馨提示：</span>
+			如果5分钟后仍未收到邮件，请确认邮件是否被你提供的邮箱系统自动拦截，或被误认为垃圾邮件放到垃圾箱了。您也可以直接<a href="#">联系我们</a>。
+		</p>
+	</div>
+</div>
+
+<div class="rightCol">
+</div>
+
+<div class="clear"></div>
+

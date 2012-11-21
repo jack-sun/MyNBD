@@ -1,0 +1,24 @@
+<div section_id="section_2_b" class="section">
+	<ul class="inner2ColsBLeft sortable">
+		<li id="topic_banner">
+	    	话题头部
+		    <div id="topic_banner_edit">
+				<%= link_to "编辑", "javascript:void(0);" %>
+		    </div>
+		</li>
+		
+		<% left_element_ids.each do |element_id| %>
+			<%= render :partial => 'console/elements/element_item', :locals => {:element_id => element_id, :elements => elements} %>
+		<%end%>
+		
+		<%= render "console/elements/add_element_action" %>
+	</ul>
+	<ul class="inner2ColsBRight sortable">
+		<% right_element_ids.each do |element_id| %>
+			<%= render :partial => 'console/elements/element_item', :locals => {:element_id => element_id, :elements => elements} %>
+		<%end%>
+		
+		<%= render "console/elements/add_element_action" %>
+	</ul>
+	<div class="clear"></div>
+</div>

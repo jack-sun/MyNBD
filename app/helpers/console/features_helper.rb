@@ -1,0 +1,2 @@
+module Console::FeaturesHelper
+end

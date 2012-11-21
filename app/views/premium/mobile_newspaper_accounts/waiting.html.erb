@@ -1,0 +1,19 @@
+<div class="leftCol">
+  <div class="formA ">
+		<div class="alert_info">
+			<b></b>请您在新打开的页面完成支付：<br />
+			- 支付完成前，请不要关闭此窗口<br />
+			- 支付完成后，请根据结果选择
+		</div>
+		<div id="mnBottomActions">
+			<%= link_to "<span>支付成功</span>".html_safe, success_premium_mobile_newspaper_account_url, :class => "btnBlueM" %>
+			<%= link_to "<span>支付失败，重试</span>".html_safe, new_premium_mobile_newspaper_account_url, :class => "btnGrayM" %>
+		</div>
+
+  </div>
+</div>
+
+<div class="rightCol">
+</div>
+
+<div class="clear"></div>

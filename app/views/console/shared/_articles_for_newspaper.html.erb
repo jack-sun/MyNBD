@@ -1,0 +1,57 @@
+<% require_js "console_selectAll" %>
+
+<div class="rightColCenter">
+	<table class="tableA" id="articleTable">
+		<thead>
+			<tr>
+				<th><input class="selectAll" type="checkbox" /></th>
+				<th>版次/版名</th>		
+				<th>标题</th>
+				<th>栏目</th>
+				<th>编辑</th>
+				<th>点击/评论</th>
+				<th>时间</th>
+				<th>状态</th>
+				<th>操作</th>
+			</tr>		
+		</thead>
+		<tbody id="sortableBox">
+			<% articles_newspapers.each do |newspaper| %>
+			<% a = newspaper.article %>
+				<% next unless a.present? %>
+				<tr id="article_<%= a.id %>">
+	           		<td class="forSelect"><input class="subSelect" type="checkbox" value="<%= a.id %>"/></td>
+					<td class="noWrap"><%= "#{newspaper.page} / #{newspaper.section}" %></td>
+					<td class="itemTitle"><%= link_to a.title, article_url(a), {:target => "_blank"} %></td>
+		            <td class="itemColumns">
+		              <% a.columns.each do |c| %>
+		                <%= link_to "#{c.parent.try(:name)}-#{c.name}", console_column_path(c) %>
+		              <% end %>
+		            </td>
+					<td><%= a.staffs.map(&:real_name).join(",") %></td>
+					<td><%= "#{a.click_count} / #{(w=a.weibo) ? w.reply_count : 0}" %></td>
+					<td class="itemDate"><%= a.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+					<td class="itemStatus_<%=a.status%>"><%= Article::STATUS[a.status.to_i] %></td>
+					<td class="itemActions">
+					<%= link_to(edit_console_article_url(a), :class=>'actionEdit') do %>
+						<b></b>编辑
+					<% end %>
+					<%= link_to(console_article_url(a), :confirm => "删除文章？", :method => :delete, :class=>'actionDelete') do %>
+						<b></b>删除 
+					<% end %>
+					<br/><%= link_to(console_article_manage_children_article_url(a), :class=>'actionChilden') do %>
+						<b></b>管理配稿
+					<% end %>
+                  <% if a.published? %>
+                    <%= link_to("<b></b>屏蔽".html_safe, "javascript:void(0);", :class=>'actionBanned') %>
+                  <% else %>
+                    <%= link_to("<b></b>发布".html_safe, "javascript:void(0);", :class=>'actionPublish') %>
+                  <% end %>
+					<!--<%=  link_to "屏蔽", "javascript:void(0);" %><br/>-->
+					</td>
+				</tr>
+			<%end%>
+		</tbody>
+	</table>
+</div>
+

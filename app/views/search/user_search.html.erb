@@ -1,0 +1,12 @@
+<div class="leftCol">
+	<%= render :partial => "columns/article_list", :locals => {:list_title => '搜索 "' + @keyword + '" 的结果：', :articles => @articles, :digest_number => "max" } %>
+	<%= paginate @articles %>
+</div>
+
+<div class="rightCol">
+        <%= render :partial => "columns/hot_articles" %>
+	<%= render :partial => "columns/image_news", :locals => {:list_title => "热门文章", :articles => @articles } %>
+</div>
+
+<div class="clear"></div>
+

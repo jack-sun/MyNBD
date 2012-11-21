@@ -1,0 +1,38 @@
+<%= form_for(:user, :action => sign_up_path, :method => "post") do |user_form| %>
+
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= user_form.label :name %><br />
+    <%= user_form.text_field :name, :size => 40 %>
+  </div>
+  <div class="field">
+    <%= user_form.label :password %><br />
+    <%= user_form.password_field :password, :size => 40, :autocomplete => :off %>
+  </div>
+  
+  <div class="field">
+  	<%= user_form.label :password_confirmation, 'Confirm' %>:<br />
+	<%= user_form.password_field :password_confirmation, :size => 40, :autocomplete => :off %>
+  </div>
+  
+  <div class="field">
+    <%= user_form.label :email %><br />
+    <%= user_form.text_field :email, :size => 40, :autocomplete => :off %>
+  </div>
+
+  
+  <div class="actions">
+    <%= user_form.submit :value => "创建" %>
+  </div>
+<% end %>

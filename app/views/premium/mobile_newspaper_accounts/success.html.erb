@@ -1,0 +1,28 @@
+<div class="leftCol">
+  <div class="formA ">
+		<% if @payment.try("success?") %>
+                    <div class="alert_done">
+                      <b></b>
+                      <% if !@payment.active_from_alipay? %>
+                        恭喜，您已经成功激活了每经XX卡：<%= @payment.service_card.card_no %>
+                      <% end %>
+                        恭喜，您已经完成购买！您的账号:<%= @current_user.nickname %> 已经成功订阅了"<%= @account.plan_type_str %>"的每经手机报产品
+                    </div>
+                    <div id="mnBottomActions">
+                            <%= link_to "<span>查看详情</span>".html_safe, premium_mobile_newspaper_account_url, :class => "btnBlueM" %>
+                    </div>
+		<% else %>
+		<div class="alert_info">
+		  <b></b>我们还未收到支付宝返回的支付成功信息，请检查您的支付宝交易记录，完成支付后再刷新此页面。
+		</div>
+		<div id="mnBottomActions">
+		  <%= link_to "<span>刷新</span>".html_safe, success_premium_mobile_newspaper_account_url, :class => "btnBlueM"  %>
+		</div>
+		<% end %>
+  </div>
+</div>
+
+<div class="rightCol">
+</div>
+
+<div class="clear"></div>

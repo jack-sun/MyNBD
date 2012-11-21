@@ -1,0 +1,9 @@
+<p>Step 2: 推荐用户</p>
+
+<ul>
+<% @recommend_users.each do|user| %>
+	<li><%= link_to user.nickname, user_url(user) %></li>
+<% end %>
+</ul>
+
+<%= link_to "到我的微博首页", user_url(@user) %>

@@ -1,0 +1,5 @@
+<% @title=@column.name %>
+<%= render :partial => "mobile/articles/crumb", :locals=>{:first_column => @column}%>
+<% cache(column_show_content_key_by_id(@articles_columns[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => @column.name, :articles => @articles_columns[:articles].map(&:article).compact} %>
+<% end %>

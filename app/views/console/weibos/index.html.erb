@@ -1,0 +1,14 @@
+<%= require_jqueryUI %>
+
+<div class="sectionA">
+	<div class="title">
+		<h1>社区微博</h1>
+	</div>
+	<div id="subColumnTab" class="tabs"><%= render :partial => "console/shared/list_weibo_tabs"  %></div>
+	<div id="body_channel" class="content">
+		<%=render :partial => "console/weibos/weibo_operation_bar", :locals=>{ :weibos => @weibos} %>
+		<%=render :partial => "console/weibos/weibo_list", :locals=>{ :weibos => @weibos} %>
+		<%=render :partial => "console/weibos/weibo_operation_bar", :locals=>{ :weibos => @weibos} %>
+	</div>
+</div>
+

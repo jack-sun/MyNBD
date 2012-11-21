@@ -1,0 +1,79 @@
+<div class="leftCol">
+  <%= form_for [:premium, @feedback], :html => {:class => "formA "} do |f| %>
+    <p>
+      <%= f.label :body, "反馈内容:" %><br />
+      <%= f.text_area :body, :size => "60x7", :style => "vertical-align:middle;", :class => "textInput #{@feedback.errors[:body].present? ? 'error' : ''}" %> <br>
+    <span style="vertical-align:middle;" class="tip <%if @feedback.errors[:body].present?%>error<%end%>"><%if @feedback.errors[:body].present?%><%= @feedback.errors[:body].first %><%end%></span> 
+    </p>
+
+    <div class="hr1"></div>
+
+    <p class="pureText">
+      请输入您的真实信息，以便我们可以联系到您
+    </p>
+
+    <p>
+      <%= label_tag "nickname", "每经网帐号:" %><br />
+      <span class="pureText">
+        <%= @feedback.user.nickname %>
+        <%= f.hidden_field :user_id %>
+      </span>
+    </p>
+
+    <p>
+      <%= f.label :phone_no, "电话号码:" %><br />
+      <%= f.text_field :phone_no, :size => 30, :datavalidtype => "number", :class => "textInput #{@feedback.errors[:phone_no].present? ? 'error' : ''}" %>
+    <span class="tip <%if @feedback.errors[:phone_no].present?%>error<%end%>"><%if @feedback.errors[:phone_no].present?%><%= @feedback.errors[:phone_no].first %><%end%></span> 
+    </p>
+
+    <p>
+      <%= f.label :real_name, "真实姓名:" %><br />
+      <%= f.text_field :real_name, :size => 30, :class => "textInput #{@feedback.errors[:real_name].present? ? 'error' : ''}" %>
+    <span class="tip <%if @feedback.errors[:real_name].present?%>error<%end%>"><%if @feedback.errors[:real_name].present?%><%= @feedback.errors[:real_name].first %><%end%></span> 
+    </p>
+
+    <p>
+      <%= f.label :email, "邮箱地址:" %><br />
+      <%= f.text_field :email, :size => 30, :datavalidtype => "email", :class => "textInput #{@feedback.errors[:email].present? ? 'error' : ''}" %>
+    <span class="tip <%if @feedback.errors[:email].present?%>error<%end%>"><%if @feedback.errors[:email].present?%><%= @feedback.errors[:email].first %><%end%></span> 
+    </p>
+
+    <div class="block">
+      <label for="captcha">验证码:</label>
+        <div id="simple_captcha">
+          <%= text_field_tag "captcha", "", :class => "textInput captchaInput" %>
+          <span class="captchaImage">
+          </span>
+          <span class="tip error"><%= flash[:captcha_error] %></span>
+        </div>
+    </div>
+    <%= f.submit "提交反馈", :class => "hiddenSubmit" %>
+    <a href="javascript:void(0)" onclick="$(this).closest('form').submit();return false;" class="btnBlueM"><span>提交</span></a>
+  <% end %>
+</div>
+
+<div class="rightCol"></div>
+
+<div class="clear"></div>
+
+<script type="text/javascript">
+	$(function(){
+    var reloadCaptchaUrl = "<%= reload_captcha_url(:id => 'simple_captcha') %>";
+    var loadingHtml = "<span style='display:inline;margin:0;' class='loading'><span>正在获取验证码</span></span>";
+
+		$("#user_email").focus();
+
+    $(".captchaInput").one("focus", function(){
+      $(".captchaImage").html(loadingHtml);
+      $.get(reloadCaptchaUrl, function(){
+        $("#simple_captcha .error").hide();
+      });
+    });
+
+    $("body").delegate(".changeCaptchaBtn", "click", function(){
+      $(this).closest(".captchaImage").html(loadingHtml);
+    });
+
+    _nbd.setPlaceholder($(".captchaInput"), "请输入验证码")
+	});
+</script>

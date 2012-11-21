@@ -1,0 +1,70 @@
+<% require_popWin %>
+
+<div class="title">
+	<h1>页面元素编辑 - 链接</h1>
+</div>
+
+<%= simple_form_for([:console, @owner, @element], :html => {:id => "element_form", :class => ""}) do |f| %>
+	<%= f.input :content, :as => :hidden %>
+	<p>
+		<%= f.input :title , :label => "标题:" %>
+	</p>
+	
+	<div class="block">
+		<label>链接列表:</label>
+		<ul id="linkList" class="unorderList">
+          <% if !@element.new_record?
+				links = @body.blank? ? [] : @body -%>
+				<% links.each do |link| %>
+					<li><%= link_to link["title"], link["url"] %></li>	
+				<%end%>
+			<%else%>
+				
+			<%end%>
+		</ul>
+	</div>
+	<%= link_to '<span>+添加新链接</span>'.html_safe, "javascript:void(0);", :id => "addlink", :class => "btnBlue" %>
+	<%= render "console/elements/element_editpage_actions" %>
+<%end%>
+
+<div id="addLinkForm" class="formB">
+	<label for="linkname">链接名称：</label><input id="linkname" type="text" />
+	<label for="linkurl">链接url：</label><input id="linkurl" type="text" />
+	<p class="rightAlignActions">
+		<a id="saveLink" class="btnBlue" href="javascript:void(0);"><span>保存链接</span></a>
+	</p>
+</div>
+
+<script type="text/javascript">
+	var liDOM = "<li><a href='{url}'>{name}</a></li>";
+	var popWinForAddLink = $.popWin.init({
+			follow:true,
+			title:"新增链接",
+	});
+	
+	$("#addLinkForm").appendTo(popWinForAddLink.content);
+	
+	$("#createNewElement").click(function(){
+		var links = [], body;
+		$("#linkList li a").each(function(index,link){
+			var url = $(link).attr("href");
+			var name = $(link).text();
+			links.push({'title':name, 'url':url});
+		});
+		body = JSON.stringify({'body' : links});
+		
+		$("#element_<%= @k_name %>_content").val(body);
+		$('form').submit();
+	});
+	
+	$("#addlink").click(function(){
+		popWinForAddLink.show();
+	});
+	
+	$("#saveLink").click(function(){
+		var name = $("#linkname").val();
+		var url = $("#linkurl").val();
+		$("#linkList").append(liDOM.replace("{url}",url).replace("{name}",name));
+		popWinForAddLink.hide();
+	});
+</script>

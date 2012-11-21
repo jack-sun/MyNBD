@@ -1,0 +1,25 @@
+<%= stylesheet_link_tag "reset", "style_global", "style_website", "weibo_live"  %>
+<%= javascript_include_tag "jquery.min" %>
+
+<style type="text/css">
+  .pagination { margin:0 10px 10px 0; }
+</style>
+
+<%= paginate @live_talks %>
+<div class="clear"></div>
+
+<ul id="liveTalkList" class="weiboItemList liveTalks">
+    <% @live_talks.each do |talk| %>
+    <%= render :partial => "weibos/weibo_item_for_live", :locals => {:talk => talk} %>
+    <% end %>
+</ul>
+
+<%= paginate @live_talks %>
+
+<script type="text/javascript">
+  $(function(){
+      setTimeout(function(){
+          location.reload();
+        }, 120000);
+    });
+</script>

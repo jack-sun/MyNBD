@@ -1,0 +1,10 @@
+<div class="sectionA">
+	<div class="title">
+		<h1>广告 - 编辑广告</h1>
+		<span class="opts"><%=link_to "<span>取消</span>".html_safe, console_ad_positions_url, :class => "btnGray" %></span>
+	</div>
+	<div class="content rightColCenter">
+		<%= render "form", :ad => @ad %>
+	</div>
+</div>
+

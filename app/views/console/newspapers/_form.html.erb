@@ -1,0 +1,122 @@
+<%= require_jqueryUI %>
+<%= require_fileUpload %>
+
+<div id='upload_files'>
+  <div style="margin:10px 0;">
+    <div id="fileupload" style="margin-bottom:10px">
+      <%= form_tag(upload_file_console_newspapers_url, :multiaprt => true) do %>
+        <div class="fileupload-buttonbar">
+          <label class="fileinput-button">
+          	<span>添加文件</span>
+            <%= file_field_tag :temp_file %>
+            <%= hidden_field_tag :newspaper_id, newspaper.id %>
+          </label>
+        </div>
+      <% end %>
+
+      <div class="fileupload-content">
+        <table id="newspaperFiles" class="files">
+        	<% newspaper.file_status.each do |k,v| %>
+        	<tr>
+        		<td class="fileName"><%= k %></td>
+						<td class="fileStat" filestat="<%=v.to_i%>" filename="<%= k %>"><%= Newspaper::STATUS[v.to_i] %> <%= link_to "请手动上传", new_article_console_newspaper_path(newspaper) if v.to_i == Newspaper::STATUS_PARSE_ERROR %></td>
+        	</tr>
+					<% end %>
+        </table>
+      </div>
+    </div>
+
+
+    <script id="template-upload" type="text/x-jquery-tmpl">
+    	<tr>
+    		<td>${name}</td>
+      {{if error}}
+				<td>未知错误</td>
+      {{else}}
+				<td>上传中</td>
+      {{/if}}
+			</tr>
+    </script>
+
+    <script id="template-download" type="text/x-jquery-tmpl">
+    	<tr>
+				{{if error}}
+				<td>${name}</td>
+				<td class="red">上传失败</td>
+	      {{else}}
+					{{if repeat}}
+					{{else}}
+					<td class="fileName">${name}</td>
+					<td class="fileStat parsing" filestat="0" filename="${name}">解析中</td>
+					{{/if}}
+	      {{/if}}
+    	</tr>
+    </script>
+
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+		var ajaxReq; //jqXHR
+                var uploadUrlManner = "<%= new_article_console_newspaper_path(newspaper) %>";
+		
+    $('#fileupload').fileupload({
+			autoUpload:true
+		});
+		
+		$('#fileupload').bind("fileuploaddone", function(e,data){
+			var curName = data.files[0].fileName;
+			$(".fileStat").each(function(i){
+				var that = $(this);
+				var name = that.attr("filename");
+				var stat = that.attr("filestat");
+				if( name == curName && stat != "-1" ){
+					var oldColor = that.css("backgroundColor")
+					that.prev().animate({backgroundColor:'#67aaf0',color:"white"},function(){$(this).delay(1000).animate({backgroundColor:oldColor, color:"#222"})});
+					return false;
+				}
+			});
+			requestStat();
+		});
+		
+		function requestStat(){
+			if(ajaxReq) ajaxReq.abort();
+			
+			ajaxReq = $.ajax({
+				url:"<%= check_status_console_newspaper_path(newspaper) %>",
+				type:"GET",
+				success:function(data){
+					var isContinue = true;
+					data = JSON.parse(data);
+					$.each(data, function(name,stat){
+						var statText;
+						switch (stat){
+							case "-1":
+                                                        statText = "解析失败 <a href='" + uploadUrlManner + "'>请手动上传</a>";
+								break;
+							case "0":
+								statText = "解析中";
+								if(isContinue){
+									setTimeout(function(){
+										requestStat();
+									},10000);
+									isContinue = false;
+								}
+								break;
+							case "1":
+								statText = "解析成功";
+								break;
+							default:
+								break;
+						}
+						$("[filename='"+name+"']").html(statText).attr("filestat", stat);
+					});
+				}
+			});
+		}
+		
+		requestStat();
+		
+  });
+</script>

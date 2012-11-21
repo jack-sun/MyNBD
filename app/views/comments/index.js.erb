@@ -1,0 +1,4 @@
+(function(){
+	//在微博页面（非文章页面）获取某条微博的评论，点击“评论”后触发
+	$("#weibo_<%= @weibo.id %> .itemBottom").after("<%=escape_javascript(render "show") %>")
+})();

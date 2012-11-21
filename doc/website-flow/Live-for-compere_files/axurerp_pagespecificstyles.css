@@ -1,0 +1,1737 @@
+body {
+    margin: 0px;
+}
+
+div {
+    background-repeat: no-repeat;
+}
+
+.raw_image {
+    width: 100%;
+    height: 100%;
+}
+
+.preload {
+    display: none;
+}
+div.main_container {
+}
+
+.form_sketch {
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.u0_original {
+    background-image: url('../Live-for-compere_files/u0_original.png');
+}
+
+.u0_container {
+    position:absolute;
+    left:100px;
+    top:40px;
+    width:800px;
+    height:1440px;
+}
+
+#u0_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:806px;
+    height:1446px;
+}
+
+.u1 {
+    position:absolute;
+    left:2px;
+    top:712px;
+    width:796px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u0 {
+    position:absolute;
+    left:100px;
+    top:40px;
+    width:800px;
+    height:1440px
+}
+
+.u2_original {
+    background-image: url('../Live-for-compere_files/u2_original.png');
+}
+
+.u2_container {
+    position:absolute;
+    left:120px;
+    top:310px;
+    width:760px;
+    height:980px;
+}
+
+#u2_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:766px;
+    height:986px;
+}
+
+.u3 {
+    position:absolute;
+    left:2px;
+    top:482px;
+    width:756px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u2 {
+    position:absolute;
+    left:120px;
+    top:310px;
+    width:760px;
+    height:980px
+}
+
+.u4_original {
+    background-image: url('../Live-for-compere_files/u4_original.png');
+}
+
+.u4_container {
+    position:absolute;
+    left:100px;
+    top:1360px;
+    width:800px;
+    height:40px;
+}
+
+#u4_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:806px;
+    height:46px;
+}
+
+.u5 {
+    position:absolute;
+    left:2px;
+    top:12px;
+    width:796px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u4 {
+    position:absolute;
+    left:100px;
+    top:1360px;
+    width:800px;
+    height:40px
+}
+
+.u6 {
+    position:absolute;
+    left:120px;
+    top:1371px;
+    width:770px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u7_original {
+    background-image: url('../Live-for-compere_files/u7_original.png');
+}
+
+.u7_container {
+    position:absolute;
+    left:100px;
+    top:1400px;
+    width:800px;
+    height:80px;
+}
+
+#u7_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:806px;
+    height:86px;
+}
+
+.u8 {
+    position:absolute;
+    left:2px;
+    top:19px;
+    width:796px;
+    height:42px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u7 {
+    position:absolute;
+    left:100px;
+    top:1400px;
+    width:800px;
+    height:80px
+}
+
+.u10_original {
+    background-image: url('../Live-for-compere_files/u10_original.png');
+}
+
+.u10_container {
+    position:absolute;
+    left:100px;
+    top:40px;
+    width:800px;
+    height:30px;
+}
+
+#u10_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:806px;
+    height:36px;
+}
+
+.u11 {
+    position:absolute;
+    left:2px;
+    top:7px;
+    width:796px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u10 {
+    position:absolute;
+    left:100px;
+    top:40px;
+    width:800px;
+    height:30px
+}
+
+.u12 {
+    position:absolute;
+    left:150px;
+    top:49px;
+    width:741px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u13_original {
+    background-image: url('../Live-for-compere_files/u13_original.png');
+}
+
+.u13_container {
+    position:absolute;
+    left:120px;
+    top:90px;
+    width:230px;
+    height:40px;
+}
+
+#u13_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:230px;
+    height:40px;
+}
+
+.u14 {
+    position:absolute;
+    left:2px;
+    top:12px;
+    width:226px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u13 {
+    position:absolute;
+    left:120px;
+    top:90px;
+    width:230px;
+    height:40px
+}
+
+.u15 {
+    position:absolute;
+    left:110px;
+    top:50px;
+    width:350px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u16 {
+    position:absolute;
+    left:110px;
+    top:40px;
+    width:60px;
+    height:30px
+}
+
+.u17 {
+    position:absolute;
+    left:190px;
+    top:40px;
+    width:60px;
+    height:30px
+}
+
+.u18 {
+    position:absolute;
+    left:600px;
+    top:40px;
+    width:30px;
+    height:30px
+}
+
+.u19_menu {
+    background-image: url('../Live-for-compere_files/u19_menu.png');
+}
+
+.u19_menu {
+    position:absolute;
+    left:447px;
+    top:97px;
+    width:250px;
+    height:35px;
+}
+
+#u20 {
+    position:absolute;
+    left:3px;
+    top:3px;
+    width:240px;
+    height:25px
+}
+
+.u20_table {
+    background-image: url('../Live-for-compere_files/u20_table.png');
+}
+
+.u20_table {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:244px;
+    height:29px;
+}
+
+.u21_original {
+    background-image: url('../Live-for-compere_files/u21_original.png');
+}
+
+.u21_container {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:83px;
+    height:20px;
+}
+
+.u22 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:79px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u21 {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:83px;
+    height:20px
+}
+
+.u23_original {
+    background-image: url('../Live-for-compere_files/u21_original.png');
+}
+
+.u23_container {
+    position:absolute;
+    left:83px;
+    top:0px;
+    width:83px;
+    height:20px;
+}
+
+.u24 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:79px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u23 {
+    position:absolute;
+    left:83px;
+    top:0px;
+    width:83px;
+    height:20px
+}
+
+.u25_original {
+    background-image: url('../Live-for-compere_files/u25_original.png');
+}
+
+.u25_container {
+    position:absolute;
+    left:166px;
+    top:0px;
+    width:69px;
+    height:20px;
+}
+
+.u26 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:65px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u25 {
+    position:absolute;
+    left:166px;
+    top:0px;
+    width:69px;
+    height:20px
+}
+
+.u27_image_sketch {
+    background-image: url('../Live-for-compere_files/u27_image_sketch.png');
+    position:absolute;
+    left:698px;
+    top:97px;
+    width:159px;
+    height:31px;
+}
+
+.u27 {
+    position:absolute;
+    left:701px;
+    top:100px;
+    width:153px;
+    height:25px;
+    ;
+    ;
+    text-align: left;;
+    font-family:'Heiti SC';
+    font-size: 13px;
+    color:#999999;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+
+.u27_text_sketch {
+    font-family: 'Arial Black';
+}
+
+.u28_image_sketch {
+    background-image: url('../Live-for-compere_files/u28_image_sketch.png');
+    position:absolute;
+    left:854px;
+    top:97px;
+    width:40px;
+    height:31px;
+}
+
+.u28 {
+    position:absolute;
+    left:857px;
+    top:100px;
+    width:34px;
+    height:25px;
+    ;
+    ;
+    text-align: center;;
+    font-family:'Heiti SC';
+    font-size: 13px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+
+.u28_text_sketch {
+    font-family: 'Arial Black';
+}
+
+.u29 {
+    position:absolute;
+    left:450px;
+    top:100px;
+    width:80px;
+    height:20px
+}
+
+.u30 {
+    position:absolute;
+    left:540px;
+    top:100px;
+    width:80px;
+    height:20px
+}
+
+.u32_original {
+    background-image: url('../Live-for-compere_files/u32_original.png');
+}
+
+.u32_container {
+    position:absolute;
+    left:620px;
+    top:310px;
+    width:260px;
+    height:980px;
+}
+
+#u32_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:266px;
+    height:986px;
+}
+
+.u33 {
+    position:absolute;
+    left:2px;
+    top:482px;
+    width:256px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u32 {
+    position:absolute;
+    left:620px;
+    top:310px;
+    width:260px;
+    height:980px
+}
+
+.u34 {
+    position:absolute;
+    left:140px;
+    top:330px;
+    width:310px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u35_image_sketch {
+    background-image: url('../Live-for-compere_files/u35_image_sketch.png');
+    position:absolute;
+    left:137px;
+    top:421px;
+    width:466px;
+    height:86px;
+}
+
+.u35 {
+    position:absolute;
+    left:140px;
+    top:424px;
+    width:460px;
+    height:80px;
+    ;
+    ;
+    text-align: left;;
+    font-family:'Arial';
+    font-size: 13px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+
+.u35_text_sketch {
+    font-family: 'Arial Black';
+}
+
+.u36_original {
+    background-image: url('../Live-for-compere_files/u36_original.png');
+}
+
+.u36_container {
+    position:absolute;
+    left:500px;
+    top:515px;
+    width:100px;
+    height:25px;
+}
+
+#u36_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:106px;
+    height:31px;
+}
+
+.u37 {
+    position:absolute;
+    left:2px;
+    top:4px;
+    width:96px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u36 {
+    position:absolute;
+    left:500px;
+    top:515px;
+    width:100px;
+    height:25px
+}
+
+.u38_original {
+    background-image: url('../Live-for-compere_files/u38_original.png');
+}
+
+.u38_container {
+    position:absolute;
+    left:640px;
+    top:356px;
+    width:220px;
+    height:74px;
+}
+
+#u38_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:226px;
+    height:80px;
+}
+
+.u39 {
+    position:absolute;
+    left:2px;
+    top:29px;
+    width:216px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u38 {
+    position:absolute;
+    left:640px;
+    top:356px;
+    width:220px;
+    height:74px
+}
+
+.u40_original {
+    background-image: url('../Live-for-compere_files/u40_original.png');
+}
+
+.u40_container {
+    position:absolute;
+    left:640px;
+    top:474px;
+    width:220px;
+    height:106px;
+}
+
+#u40_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:226px;
+    height:112px;
+}
+
+.u41 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:200px;
+    height:80px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u40 {
+    position:absolute;
+    left:640px;
+    top:474px;
+    width:220px;
+    height:106px
+}
+
+.u42_original {
+    background-image: url('../Live-for-compere_files/u42_original.png');
+}
+
+.u42_container {
+    position:absolute;
+    left:380px;
+    top:1154px;
+    width:220px;
+    height:30px;
+}
+
+#u42_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:226px;
+    height:36px;
+}
+
+.u43 {
+    position:absolute;
+    left:2px;
+    top:8px;
+    width:216px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u42 {
+    position:absolute;
+    left:380px;
+    top:1154px;
+    width:220px;
+    height:30px
+}
+
+.u45_original {
+    background-image: url('../Live-for-compere_files/u45_original.png');
+}
+
+.u45_container {
+    position:absolute;
+    left:145px;
+    top:565px;
+    width:50px;
+    height:50px;
+}
+
+#u45_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:50px;
+    height:50px;
+}
+
+.u46 {
+    position:absolute;
+    left:2px;
+    top:17px;
+    width:46px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u45 {
+    position:absolute;
+    left:145px;
+    top:565px;
+    width:50px;
+    height:50px
+}
+
+.u47 {
+    position:absolute;
+    left:205px;
+    top:565px;
+    width:400px;
+    height:65px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u48_text {
+    position:absolute;
+    left:205px;
+    top:658px;
+    width:72px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u48 {
+    position:absolute;
+    left:205px;
+    top:658px;
+    width:72px;
+    height:13px
+}
+
+.u49 {
+    position:absolute;
+    left:140px;
+    top:560px;
+    width:20px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u51 {
+    position:absolute;
+    left:640px;
+    top:333px;
+    width:70px;
+    height:14px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u52 {
+    position:absolute;
+    left:790px;
+    top:333px;
+    width:70px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u53 {
+    position:absolute;
+    left:783px;
+    top:397px;
+    width:100px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u54 {
+    position:absolute;
+    left:650px;
+    top:366px;
+    width:190px;
+    height:56px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u55 {
+    position:absolute;
+    left:640px;
+    top:450px;
+    width:70px;
+    height:14px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u56 {
+    position:absolute;
+    left:640px;
+    top:600px;
+    width:70px;
+    height:14px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u57_original {
+    background-image: url('../Live-for-compere_files/u57_original.png');
+}
+
+.u57_container {
+    position:absolute;
+    left:640px;
+    top:620px;
+    width:220px;
+    height:100px;
+}
+
+#u57_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:226px;
+    height:106px;
+}
+
+.u58 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:200px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u57 {
+    position:absolute;
+    left:640px;
+    top:620px;
+    width:220px;
+    height:100px
+}
+
+.u59_original {
+    background-image: url('../Live-for-compere_files/u59_original.png');
+}
+
+.u59_container {
+    position:absolute;
+    left:659px;
+    top:638px;
+    width:41px;
+    height:47px;
+}
+
+#u59_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:41px;
+    height:47px;
+}
+
+.u60 {
+    position:absolute;
+    left:2px;
+    top:16px;
+    width:37px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u59 {
+    position:absolute;
+    left:659px;
+    top:638px;
+    width:41px;
+    height:47px
+}
+
+.u62 {
+    position:absolute;
+    left:660px;
+    top:692px;
+    width:40px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u63_original {
+    background-image: url('../Live-for-compere_files/u63_original.png');
+}
+
+.u63_container {
+    position:absolute;
+    left:120px;
+    top:150px;
+    width:760px;
+    height:140px;
+}
+
+#u63_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:760px;
+    height:140px;
+}
+
+.u64 {
+    position:absolute;
+    left:2px;
+    top:62px;
+    width:756px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u63 {
+    position:absolute;
+    left:120px;
+    top:150px;
+    width:760px;
+    height:140px
+}
+
+.u65_line {
+    background-image: url('../Live-for-compere_files/u65_line.png');
+}
+
+.u65_line {
+    position:absolute;
+    left:140px;
+    top:363px;
+    width:460px;
+    height:5px;
+}
+
+.u65 {
+    position:absolute;
+    left:140px;
+    top:363px;
+    width:460px;
+    height:5px
+}
+
+.u66_original {
+    background-image: url('../Live-for-compere_files/u45_original.png');
+}
+
+.u66_container {
+    position:absolute;
+    left:145px;
+    top:694px;
+    width:50px;
+    height:50px;
+}
+
+#u66_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:50px;
+    height:50px;
+}
+
+.u67 {
+    position:absolute;
+    left:2px;
+    top:17px;
+    width:46px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u66 {
+    position:absolute;
+    left:145px;
+    top:694px;
+    width:50px;
+    height:50px
+}
+
+.u68 {
+    position:absolute;
+    left:205px;
+    top:694px;
+    width:400px;
+    height:65px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u69_text {
+    position:absolute;
+    left:205px;
+    top:787px;
+    width:72px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u69 {
+    position:absolute;
+    left:205px;
+    top:787px;
+    width:72px;
+    height:13px
+}
+
+.u70 {
+    position:absolute;
+    left:140px;
+    top:689px;
+    width:20px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u72_original {
+    background-image: url('../Live-for-compere_files/u45_original.png');
+}
+
+.u72_container {
+    position:absolute;
+    left:145px;
+    top:820px;
+    width:50px;
+    height:50px;
+}
+
+#u72_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:50px;
+    height:50px;
+}
+
+.u73 {
+    position:absolute;
+    left:2px;
+    top:17px;
+    width:46px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u72 {
+    position:absolute;
+    left:145px;
+    top:820px;
+    width:50px;
+    height:50px
+}
+
+.u74 {
+    position:absolute;
+    left:205px;
+    top:820px;
+    width:400px;
+    height:65px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u75_text {
+    position:absolute;
+    left:205px;
+    top:913px;
+    width:72px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u75 {
+    position:absolute;
+    left:205px;
+    top:913px;
+    width:72px;
+    height:13px
+}
+
+.u76 {
+    position:absolute;
+    left:140px;
+    top:815px;
+    width:20px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u77_image_sketch {
+    background-image: url('../Live-for-compere_files/u77_image_sketch.png');
+    position:absolute;
+    left:552px;
+    top:905px;
+    width:46px;
+    height:26px;
+}
+
+.u77 {
+    position:absolute;
+    left:555px;
+    top:908px;
+    width:40px;
+    height:20px;
+    ;
+    ;
+    text-align: center;;
+    font-family:'Heiti SC';
+    font-size: 12px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+
+.u77_text_sketch {
+    font-family: 'Arial Black';
+}
+
+.u79_original {
+    background-image: url('../Live-for-compere_files/u45_original.png');
+}
+
+.u79_container {
+    position:absolute;
+    left:145px;
+    top:947px;
+    width:50px;
+    height:50px;
+}
+
+#u79_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:50px;
+    height:50px;
+}
+
+.u80 {
+    position:absolute;
+    left:2px;
+    top:17px;
+    width:46px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u79 {
+    position:absolute;
+    left:145px;
+    top:947px;
+    width:50px;
+    height:50px
+}
+
+.u81 {
+    position:absolute;
+    left:205px;
+    top:947px;
+    width:400px;
+    height:65px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u82_text {
+    position:absolute;
+    left:205px;
+    top:1040px;
+    width:72px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u82 {
+    position:absolute;
+    left:205px;
+    top:1040px;
+    width:72px;
+    height:13px
+}
+
+.u83 {
+    position:absolute;
+    left:140px;
+    top:942px;
+    width:20px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u84_image_sketch {
+    background-image: url('../Live-for-compere_files/u84_image_sketch.png');
+    position:absolute;
+    left:552px;
+    top:1032px;
+    width:46px;
+    height:26px;
+}
+
+.u84 {
+    position:absolute;
+    left:555px;
+    top:1035px;
+    width:40px;
+    height:20px;
+    ;
+    ;
+    text-align: center;;
+    font-family:'Heiti SC';
+    font-size: 12px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+
+.u84_text_sketch {
+    font-family: 'Arial Black';
+}
+
+.u86_menu {
+    background-image: url('../Live-for-compere_files/u86_menu.png');
+}
+
+.u86_menu {
+    position:absolute;
+    left:137px;
+    top:381px;
+    width:215px;
+    height:35px;
+}
+
+#u87 {
+    position:absolute;
+    left:3px;
+    top:3px;
+    width:205px;
+    height:25px
+}
+
+.u87_table {
+    background-image: url('../Live-for-compere_files/u87_table.png');
+}
+
+.u87_table {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:209px;
+    height:29px;
+}
+
+.u88_original {
+    background-image: url('../Live-for-compere_files/u88_original.png');
+}
+
+.u88_container {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100px;
+    height:20px;
+}
+
+.u89 {
+    position:absolute;
+    left:2px;
+    top:4px;
+    width:96px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u88 {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:100px;
+    height:20px
+}
+
+.u90_original {
+    background-image: url('../Live-for-compere_files/u88_original.png');
+}
+
+.u90_container {
+    position:absolute;
+    left:100px;
+    top:0px;
+    width:100px;
+    height:20px;
+}
+
+.u91 {
+    position:absolute;
+    left:2px;
+    top:4px;
+    width:96px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u90 {
+    position:absolute;
+    left:100px;
+    top:0px;
+    width:100px;
+    height:20px
+}
+
+.u92 {
+    position:absolute;
+    left:640px;
+    top:740px;
+    width:70px;
+    height:14px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u93_original {
+    background-image: url('../Live-for-compere_files/u93_original.png');
+}
+
+.u93_container {
+    position:absolute;
+    left:640px;
+    top:760px;
+    width:220px;
+    height:140px;
+}
+
+#u93_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:226px;
+    height:146px;
+}
+
+.u94 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:200px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u93 {
+    position:absolute;
+    left:640px;
+    top:760px;
+    width:220px;
+    height:140px
+}
+
+.u95_original {
+    background-image: url('../Live-for-compere_files/u59_original.png');
+}
+
+.u95_container {
+    position:absolute;
+    left:659px;
+    top:778px;
+    width:41px;
+    height:47px;
+}
+
+#u95_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:41px;
+    height:47px;
+}
+
+.u96 {
+    position:absolute;
+    left:2px;
+    top:16px;
+    width:37px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u95 {
+    position:absolute;
+    left:659px;
+    top:778px;
+    width:41px;
+    height:47px
+}
+
+.u98 {
+    position:absolute;
+    left:660px;
+    top:832px;
+    width:40px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u99_original {
+    background-image: url('../Live-for-compere_files/u99_original.png');
+}
+
+.u99_container {
+    position:absolute;
+    left:655px;
+    top:855px;
+    width:50px;
+    height:20px;
+}
+
+#u99_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:56px;
+    height:26px;
+}
+
+.u100 {
+    position:absolute;
+    left:2px;
+    top:4px;
+    width:46px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u99 {
+    position:absolute;
+    left:655px;
+    top:855px;
+    width:50px;
+    height:20px
+}
+

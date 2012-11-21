@@ -1,0 +1,2 @@
+module Console::TopicsHelper
+end

@@ -1,0 +1,133 @@
+<%= require_css "console_feature" %>
+<%= require_js "console_feature" %>
+<%= require_jqueryUI %>
+<div class="sectionA">
+	<div class="title">
+		<h1>专题:</h1><input type="text" class="featureNameInput textInput" size="36" value="<%= @feature.title %>" />
+		<span class="opts"><a class="btnGray" href="javascript:history.go(-1);"><span>取消</span></a></span>
+	</div>
+	<div class="content ">
+		<div class="subRightCol">
+			<div class="formA roundCorner">
+				<div id="themeSelect">
+					<a id="themeSelectFlag" href="javascript:void(0)">
+						<img class="themeImage" src="/images/article-miniature-default.gif" />
+						<div class="themeDescription">
+							<span>蓝色A</span><br/>
+							<span id="themeDetail">主色调：蓝色、灰色<br />适用于社会类专题</span>
+						</div>
+					</a>
+					<ul id="themeSelectList" class="roundCorner">
+						<li><a href="#">
+							<img class="themeImage" src="/images/article-miniature-default.gif" />
+							<div class="themeDescription">
+								<span>蓝色A</span><br/>
+								<span id="themeDetail">主色调：蓝色、灰色<br />适用于社会类专题</span>
+							</div>
+						</a></li>
+						<li><a href="#">
+							<img class="themeImage" src="/images/article-miniature-default.gif" />
+							<div class="themeDescription">
+								<span>蓝色A</span><br/>
+								<span id="themeDetail">主色调：蓝色、灰色<br />适用于社会类专题</span>
+							</div>
+						<a/></a></li>
+						<li><a href="#">
+							<img class="themeImage" src="/images/article-miniature-default.gif" />
+							<div class="themeDescription">
+								<span>蓝色A</span><br/>
+								<span id="themeDetail">主色调：蓝色、灰色<br />适用于社会类专题</span>
+							</div>
+						<a/></a></li>
+						<li><a href="#">
+							<img class="themeImage" src="/images/article-miniature-default.gif" />
+							<div class="themeDescription">
+								<span>蓝色A</span><br/>
+								<span id="themeDetail">主色调：蓝色、灰色<br />适用于社会类专题</span>
+							</div>
+						<a/></a></li>
+						<li><a href="#">
+							<img class="themeImage" src="/images/article-miniature-default.gif" />
+							<div class="themeDescription">
+								<span>蓝色A</span><br/>
+								<span id="themeDetail">主色调：蓝色、灰色<br />适用于社会类专题</span>
+							</div>
+						<a/></a></li>
+					</ul>
+				</div>
+				<a href="javascript:void(0)" id="submitBtn">提交</a>
+			</div>
+		</div>
+		<div class="subLeftCol">
+			<div id="urlActions">
+				专题网址：<%= Settings.old_host %>/feature/<span id="urlShow">guwangzhengba3</span>
+				<a id="urlEdit" href="javascript:void(0)">编辑</a>
+				<span id="urlEditBox">
+					<input id="urlInput" type="text" />
+					<a id="urlCancel" href="javascript:void(0)">取消</a>
+					<a id="urlConfirm" href="javascript:void(0)">确定</a>
+				</span>
+			</div>
+			<div id="featureEditWrapper">
+				<h2>内容：</h2>
+				<div id="featureEditBox">
+					<div id="section_1_a" class="section">
+						<ul class="editSection">
+							<li><a class="upSection" href="#">上移</a></li>
+							<li><a class="downSection" href="#">下移</a></li>
+							<li><a class="delSection" href="#">删除</a></li>
+						</ul>
+						<ul class="sortable">
+							<li id="e_header" class="element">
+								<div>header</div>
+								<div class="editElement"><a href="#">编辑</a></div>
+							</li>
+							<li class="addElement"><a href="#">add+</a></li>
+						</ul>
+					</div>
+					<div id="section_2_b" class="section">
+						<ul class="editSection">
+							<li><a class="upSection" href="#">上移</a></li>
+							<li><a class="downSection" href="#">下移</a></li>
+							<li><a class="delSection" href="#">删除</a></li>
+						</ul>
+						<ul class="inner2ColsBLeft sortable">
+							<li id="e_news1" class="element">news</li>
+							<li class="addElement"><a href="#">add+</a></li>
+						</ul>
+						<ul class="inner2ColsBRight sortable">
+							<li id="e_poll1" class="element">poll</li>
+							<li id="e_text1" class="element">text</li>
+							<li id="e_image1" class="element">image</li>
+							<li class="addElement"><a href="#">add+</a></li>
+						</ul>
+						<div class="clear"></div>
+					</div>
+					<div id="section_3_a" class="section">
+						<ul class="editSection">
+							<li><a class="upSection" href="#">上移</a></li>
+							<li><a class="downSection" href="#">下移</a></li>
+							<li><a class="delSection" href="#">删除</a></li>
+						</ul>
+						<ul class="inner3ColsEqual sortable">
+							<li id="e_news2" class="element">news</li>
+							<li class="addElement"><a href="#">add+</a></li>
+						</ul>
+						<ul class="inner3ColsEqual sortable">
+							<li id="e_poll2" class="element">poll</li>
+							<li id="e_text2" class="element">text</li>
+							<li id="e_image2" class="element">image</li>
+							<li class="addElement"><a href="#">add+</a></li>
+						</ul>
+						<ul style="margin:0" class="inner3ColsEqual sortable">
+							<li id="e_news2" class="element">news</li>
+							<li class="addElement"><a href="#">add+</a></li>
+						</ul>
+						<div class="clear"></div>
+					</div>
+					<div class="addSection"><a href="#">add section</a></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

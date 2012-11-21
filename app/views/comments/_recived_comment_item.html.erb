@@ -1,0 +1,21 @@
+<li id="atme_comment_<%= comment.id  %>">
+	<%= link_to(image_tag(user_avatar_path(comment.owner, :middle)), user_path(comment.owner), :class=>"avatar") %>
+	<div class="itemContent">
+		<p><%= link_to comment.owner.nickname, user_path(comment.owner) %>: <%= comment.content %></p>
+		<p>
+			<%if comment.weibo.owner.is_same_user?(@current_user)%>
+				<span>评论 我 的微博</span>：
+			<%else%>
+				<span>回复 我 评论</span>：
+			<%end%>
+			“<%= link_to comment.weibo.raw_content, weibo_path(comment.weibo) %>” 
+		</p>
+
+		<div class="itemBottom">
+			<span class="rf">
+                <%= link_to "回复", rt_weibo_path(comment.weibo), :remote => true %>
+			</span>
+			<span><%= nbd_time_f(comment.created_at) %></span>
+		</div>
+	</div>
+</li>

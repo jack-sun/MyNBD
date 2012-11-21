@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title><%= @title.blank? ? "每经网移动客户端 | 每经网" : "每经网移动客户端 | #{@title} | 每经网"%></title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta name="format-detection" content="telephone=no" />
+    <style type="text/css">
+	    html *{padding: 0; margin: 0;}
+	    body{background-color:#f9f9f9; color:#303030; padding: 50px 20px; font:14px/1.5 "Lucida Grande", "Lucida Sans Unicode", Helvetica, Arial, Verdana, sans-serif;}
+	    a{color: #0044cc;}
+	    body.theme_night{background-color: #282828; color: #ddd;}
+	    body.theme_night a{color: #0086cc;}
+	    body.theme_night #articleDatetime{color: #909090;}
+	    body.theme_night #articleDigest{color: #eee;}
+	    body.theme_night #articleDigest strong{color: #ff7700;}
+	    .fontSize_normal #articleDigest, .fontSize_normal #articleContent{font-size: 16px;}	
+	    .fontSize_small #articleDigest, .fontSize_small #articleContent{font-size: 14px;}
+	    .fontSize_large #articleDigest, .fontSize_large #articleContent{font-size: 20px;}
+	    h1{font-size: 20px; font-weight: bold; text-align: center;}
+	    #articleDatetime{text-align: center; color: #606060;}
+	    #articleDigest{margin: 20px 0; padding: 10px 0; border-top: 1px dotted #ccc; border-bottom: 1px dotted #ccc;}
+	    #articleDigest strong{color: #bb0000; font-weight: normal;}
+	    #articleContent p{text-indent: 2em; margin-bottom: 1em;}
+	    #articleContent img{max-width: 80%;}
+	    #articleInfo{margin-top:15px;}
+	    img.artcileAddimg {display: block;margin: 0 auto 25px;}
+    </style>
+    <script type="text/javascript">
+      // size: normal, small, large
+      function setFontSize(size){
+      	var className = document.body.className.replace(/fontSize_\w+/g, '');
+      	document.body.className = className + " fontSize_"+size;
+      }
+      // day and night
+      function setTheme(theme) {
+      	var className = document.body.className.replace(/theme_\w+/g, '');
+      	document.body.className = className + " theme_"+theme;
+      }
+      document.addEventListener('click', function(e){
+            	NBDWebInterface.toggleFullScreen();
+      }, false);
+    </script>
+  </head>
+  <body>
+    <h1>每经网移动客户端</h1>
+
+    <div id="articleContent"><%= yield %></div>
+
+    <div id="articleInfo">
+    </div>
+  </body>
+</html>

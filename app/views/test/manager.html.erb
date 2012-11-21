@@ -1,0 +1,39 @@
+<%= require_jqueryUI %>
+<%= require_js "console_sortable.js" %>
+
+<div class="sectionA">
+	<div class="title">
+		<h1>配稿管理</h1>
+		<span class="opts"><a href="#" style="width:80px;" class="btnBlue"><span>完成</span></a></span>
+	</div>
+	<div id="body_childArtical" class="content">
+		<div>
+			<h2 class="blue">最高法院发布《婚姻法》新司法解释：父母给儿女买房</h2>
+			<h6>配稿:</h6>
+			<ul style="width:400px" id="sortableBox" class="childArticals">
+				<li><span class="dragHandler">拖动</span><a href="#" target="_blank">老公给小三的分手费 老婆有权要</a><a class="rf" href="javascript:void(0)">[移除]</a></li>
+				<li><span class="dragHandler">拖动</span><a href="#" target="_blank">老公给小三的分手费 老婆有权要</a><a class="rf" href="javascript:void(0)">[移除]</a></li>
+				<li><span class="dragHandler">拖动</span><a href="#" target="_blank">老公给小三的分手费 老婆有权要</a><a class="rf" href="javascript:void(0)">[移除]</a></li>
+			</ul>
+		</div>
+		<hr />
+		<div class="subRightCol">
+			<h6>搜索配稿:</h6>
+			<input type="text" /><input type="button" value="搜索" />
+		</div>
+		<div class="subLeftCol">
+			<h6>推荐配稿:<span>(根据文章关键字匹配)</span></h6>
+			<ul class="childArticals">
+				<li><a href="#" target="_blank">新婚姻法惹争议 "婆婆"战胜"丈母娘"?</a><a class="rf" href="javascript:void(0)">[加为配稿]</a></li>
+				<li><a href="#" target="_blank">被婚姻法颠覆的择偶观</a><a class="rf" href="javascript:void(0)">[加为配稿]</a></li>
+				<li><a href="#" target="_blank">婚姻法新解释引“AA制”热议</a><a class="rf" href="javascript:void(0)">[加为配稿]</a></li>
+			</ul>
+			<h6>我的文章:<span>(最近几篇文章)</span></h6>
+			<ul class="childArticals">
+				<li><a href="#" target="_blank">老公给小三的分手费 老婆有权要</a><a class="rf" href="javascript:void(0)">[加为配稿]</a></li>
+				<li><a href="#" target="_blank">老公给小三的分手费 老婆有权要</a><a class="rf" href="javascript:void(0)">[加为配稿]</a></li>
+				<li><a href="#" target="_blank">老公给小三的分手费 老婆有权要</a><a class="rf" href="javascript:void(0)">[加为配稿]</a></li>
+			</ul>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,10 @@
+<%
+=begin
+		用于替换页面中的 #simple_captcha 或 #captcha_poll_#{poll.id} 中 span.captchaImage 占位
+=end
+%>
+<span class="captchaImage">
+  <%= simple_captcha_options[:image] %>
+  <%= link_to "换张图片", reload_captcha_url(:id => simple_captcha_options[:other_options][:session_key]), :remote => true, :class => "changeCaptchaBtn" %>
+</span>
+

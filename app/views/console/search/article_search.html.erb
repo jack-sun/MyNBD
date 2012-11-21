@@ -1,0 +1,31 @@
+<%= require_jqueryUI %>
+
+<div class="sectionA">
+	<div class="title">
+		<h1>文章搜索</h1>
+	</div>
+	<div id="body_channel" class="content">
+		<div id="searchDetail" class="searchBox">
+			<% form_tag(article_search_console_search_url, :method => "get") do%>
+				<%= text_field_tag(:q, params[:q], :class => "searchInput") %>
+				<%= link_to "", "javascript:void(0)", :onclick => "$(this).parents('form').submit();return false;", :class => "searchBtn" %>
+				<!--a class="btnGray" id="showSearchTimeBtn"><span>选择时间段</span></a-->
+				<div class="clear"></div>
+				<div id="searchTimeCutoff">
+					详细时间段选择。
+				</div>
+			<%end%>
+		</div>
+		<%=render :partial => "console/shared/article_operation_bar", :locals=>{ :articles => @articles, :display_column_action => false} %>
+		<%=render :partial => "console/shared/articles", :locals=>{ :articles => @articles, :display_top => false} %>
+		<%=render :partial => "console/shared/article_operation_bar", :locals=>{ :articles => @articles, :display_column_action => false} %>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(function(){
+		$("#showSearchTimeBtn").click(function(){
+			$("#searchTimeCutoff").toggle();
+		});
+	});
+</script>

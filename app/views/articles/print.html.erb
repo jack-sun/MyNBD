@@ -1,0 +1,23 @@
+<% @title = @article.title %>
+
+<div id="pageName">每经网</div>
+
+<h1 class="articleTitle"><%= @article.title %></h1>
+<p><%= link_to article_url(@article), article_url(@article) %></p>
+<p class="articleTime"><% if @reporters.present? %>每经记者：<% @reporters.each do|reporter| %><%= reporter.real_name %><%end%><%end%> <span><%= @article.created_at.strftime("%Y-%m-%d %H:%M") %></span> <% if @article.ori_source.present? %>来源: <%= @article.ori_source %><%end%> </p>
+	
+<% if @article.digest.present? %>
+	<p id="articleDigest" class="articleFontSize_medium"><b class="red">核心提示：</b><%= @article.digest.html_safe %></p>
+<%end%>
+
+<%= image_tag(article_thumbnail_path(@article, :x_large), :class => "artcileAddimg") if @article.image.present? %>
+
+<div id="articleContent"><%= @pages.map{|e| e.content}.join("").html_safe %></div>
+
+<div id="articleInfo">
+	<span id="articleColumns">归类于：<% @article.columns.each do|column| %><%= link_to column.name, column_path(column) %>&nbsp<%end%></span>
+	责任编辑：<% @editors_in_charge.each do|editor| %><%= editor.real_name %>&nbsp<%end%>
+</div>
+
+<%= render :partial => "contact" %>
+		

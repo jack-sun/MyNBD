@@ -1,0 +1,4 @@
+<div class="feedbackEntry <%=html_class%>">
+<div class="title"><h4>意见反馈</h4></div>
+<div class="content">欢迎使用每经网社区并提出宝贵建议，如果您在使用中有任何问题或意见，请向<%= link_to "@每经网客服", user_url('每经网客服') %>反馈。</a></div>
+</div>

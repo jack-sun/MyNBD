@@ -1,0 +1,68 @@
+<div class="sectionA">
+	<div class="title">
+		<% if @live.new_record? %>
+		<h1>添加新直播:</h1>
+		<% else %>
+		<h1>编辑直播:</h1>
+		<% end %>
+		<span class="opts"><%= link_to '<span>取消</span>'.html_safe, origin_console_lives_path ,:class => "btnGray" %></span>
+	</div>
+	<div class="content rightColCenter">
+		<%= simple_form_for([:console, @live], :html => {:class => "formA"}) do |f| %>
+		<p>
+			<%= f.label :title, :label => "标题:" %>
+			<%= f.text_field :title %>
+		</p>
+		<p>
+			<%= f.label :desc, :label => "简介:" %>
+			<%= f.input :desc, :as => :text, :label => false, :input_html => {:cols => 50, :rows => 10} %>
+		</p>
+		<p>
+			<%= f.label :start_at, :label => "开始时间:" %>
+			<%= f.datetime_select :start_at %>
+		</p>
+		<p>
+			<%= f.label :end_at, :label => "结束时间:" %>
+			<%= f.datetime_select :end_at %>
+		</p>
+		<p>
+			<%= f.label :tags, :label => "关键词:" %>
+			<%= f.text_field :tags %>
+		</p>
+		<%= f.hidden_field :l_type %>
+		<p>
+			<%= f.label :user, :label => "主持人:" %>
+			<%= f.association :user,:collection => User.where(:id => User::SYSTEM_USER_IDS), :label_method => :nickname, :label => false %>
+		</p>
+      <%= hidden_field_tag "live[guest_ids][]", "" %>
+		<div>
+			<%= f.label :guests, :label => "嘉宾:" %>
+			<div class="formRightAlign">
+				<% @live.guests.each do |guest| %>
+				<%= render :partial => "/users/guest_profile", :locals => {:guest => guest} %>
+				<% end %>
+                <%= text_field_tag :guest_name, "", :placeholder => '输入嘉宾昵称，点击添加', :size => 20 %>
+				<%= link_to "<span>添加</span>".html_safe, "javascript:void(0)", :class => "btnBlue", :id => "addGuest" %>
+			</div>
+		</div>
+		<p class="formRightAlign">
+			<%= link_to "<span>提交</span>".html_safe, "javascript:void(0)", :onclick => "$(this).closest('form').submit();return false;", :class => "btnBlueM" %>
+		</p>
+		<% end %>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function(){
+		$("#addGuest").click(function(){
+			var guest_name = $("#guest_name").val();
+			if (guest_name.length == 0) 
+				return false
+			$.get("/console/lives/add_guest", {
+				guest_name: guest_name
+			})
+		});
+		$(".deleteGuest").live("click", function(){
+			$(this).closest("div").remove();
+		});
+	});
+</script>

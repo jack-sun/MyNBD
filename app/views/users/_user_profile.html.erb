@@ -1,0 +1,12 @@
+<div class="userProfile smallProfile">
+	<%= link_to image_tag(user_avatar_path(interviewee, :middle), :name => "userhead"), profile_user_path(interviewee), :class => "avatar" %>
+	<div class="userInfo">
+		<% if @current_user.present? && @current_user.id == interviewee.id %>
+		<h6><%= interviewee.nickname %></h6>
+		<% else %>
+		<%= link_to interviewee.nickname, profile_user_path(interviewee) %>
+		<% end %>
+		<p class="introduction"><%if interviewee.desc.present? %><%= interviewee.desc %><%else%>还没有添加任何信息。<%end%></p>
+	</div>
+	<div class="clear"></div>
+</div>

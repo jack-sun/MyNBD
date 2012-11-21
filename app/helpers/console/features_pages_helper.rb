@@ -1,0 +1,2 @@
+module Console::FeaturesPagesHelper
+end

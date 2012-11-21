@@ -1,0 +1,7 @@
+<ul>
+  <% @sub_columns.each do |c| %>
+    <li class='<%= c == @current_column ? "current" : "" %>'>
+        <%= link_to c.name, console_column_url(c) %>
+    </li>
+  <% end %>
+</ul>

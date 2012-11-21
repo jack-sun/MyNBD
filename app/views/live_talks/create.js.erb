@@ -1,0 +1,14 @@
+(function(){
+	
+  <% if @is_compere or @question_page %>
+	$("<%= escape_javascript(render :partial => "weibos/weibo_item_for_live", :locals => {:talk => @live_talk}) %>").hide().prependTo($("#liveTalkList")).fadeIn(1000);
+  <% end %>
+
+	<% if @live_talk.is_a_question? %>
+		var form = $("#askForm");
+	<% else %>
+		var form = $("#answerForm");
+	<% end %>
+	form.find("textarea").val("");
+	_enableSubmit(form);
+})();

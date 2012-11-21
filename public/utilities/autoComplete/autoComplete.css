@@ -1,0 +1,11 @@
+.autoDiv { display:none; z-index:22000; position:absolute; top:0px; left:0px; background:#fff; border:1px solid #b0b0b0; }
+.autoDiv h6 { color:#999; padding:5px; } 
+.autoDiv ul { padding:0px 5px 5px 5px; }
+.autoDiv ul li a { display:block; margin:3px 0; padding:2px 4px; color:#666; white-space:nowrap; }
+.autoDiv ul li a:hover { text-decoration:none; }
+.autoDiv ul li.highlight a { background-color:#cee2ff; }
+.autoDiv ul li strong { font-weight:bold; color:#333; }
+
+.space { white-space:pre-wrap; *white-space:pre; }
+
+/*.beforeText, .afterText { white-space:pre-wrap; }*/

@@ -1,0 +1,11 @@
+<% json =  JSON.parse(element.content)["body"]
+   article_ids = json["articles"]
+   display_type = json["display_type"]
+   articles = Article.where(:id => article_ids).includes(:pages => :image).sort_by{|e| article_ids.index(e.id)}
+-%>
+
+<%if display_type == ElementArticle::DISPLAY_TYPE_LIST%>
+	<%= render :partial => "columns/article_list", :locals => { :articles => articles, :digest_number => "max" } %>
+<%elsif display_type == ElementArticle::DISPLAY_TYPE_SLIDE %>
+	<%= render :partial => "columns/image_news", :locals => { :articles => articles, :column_id => ''} %>
+<%end%>

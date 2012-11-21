@@ -1,0 +1,86 @@
+#mainNav {
+	height: 40px;
+	background: #ECEFF5 url(../images/navi-red-bg.png) left top repeat-x;
+	border: none;
+}
+#logo #logoWest.logo{
+	margin-top: 14px;
+	background:url(../images/logo-western.png) 0 0 no-repeat;
+	width:260px;
+	height:70px;
+}
+
+.block .blockTitle{
+	border-top: 2px solid #991900;
+	background-color: #fff2f2;
+}
+#mainNav li{
+	padding: 0;
+	font-weight: normal;
+}
+#mainNav li a {
+	color: #f1f1f1;
+	padding: 0 12px;
+}
+
+#mainNav li a:hover{
+	color: #fff;
+	text-decoration: underline;
+}
+#mainNav li.divider{
+	padding: 0 1px;
+	background: url(../images/navi-red-divider.png) 0 2px no-repeat;
+	height: 40px;
+}
+
+#mainNav .searchBox{
+	padding-top: 7px;
+}
+
+.searchBox .searchInput{
+	width: 160px;
+	height: 22px;
+	line-height: 22px;
+}
+
+.searchBox .searchBtn{
+	height: 24px;
+	background-position-y: -161px;
+}
+
+#wrapper{
+	margin-top: 20px!important;
+}
+
+.slideImageWrapper{
+	margin-bottom: 7px;
+}
+
+#westLinks{
+	font-family: Arial, sans-serif;
+	padding-bottom: 10px;
+}
+#westLinks caption{
+	font-weight: bold;
+	text-align: left;
+	color: #bb0000;
+	padding-bottom: 3px;
+	border-bottom: 1px solid #bbb;
+}
+#westLinks table{
+	width: 100%;
+	border: 1px solid #ddd;
+}
+#westLinks tbody a{
+	font-size: 12px;
+}
+#westLinks td{
+	padding: 10px 10px 7px 15px;
+	border-right: 1px solid #ddd;
+}
+#westLinks td li{
+	margin-bottom: 3px;
+}
+#westLinks tbody{
+	background-color: #f9f9f9;
+}

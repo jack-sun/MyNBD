@@ -1,0 +1,72 @@
+<div class="sectionA">
+	<div class="title">
+      <% if @live.new_record? %>
+		<h1>添加新股市直播:</h1>
+      <% else %>
+		<h1>编辑股市直播:</h1>
+      <% end %>
+		<span class="opts"><%= link_to '<span>取消</span>'.html_safe, stock_console_lives_path ,:class => "btnGray" %></span>
+	</div>
+	<div class="content rightColCenter">
+      <%= simple_form_for([:console, @live], :html => {:class => "formA"}) do |f| %>
+        <%= f.hidden_field :user_id, :value => @compere.id %>
+        <p>
+          <%= f.label :title, :label => "标题:"%>
+          <%= f.text_field :title %>
+        </p>
+        <p>
+          <%= f.label :desc, :label => "简介:"%>
+          <%= f.input :desc, :as => :text, :label => false, :input_html => {:cols => 50, :rows => 10} %>
+        </p>
+        <p>
+          <%= f.label :start_at, :label => "开始时间:" %>
+          <%= f.datetime_select :start_at %>
+        </p>
+        <p>
+          <%= f.label :end_at, :label => "结束时间:" %>
+          <%= f.datetime_select :end_at %>
+        </p>
+        <p>
+          <%= f.label :order_by_type, :label => "排序方式:" %>
+          <%= select("live", "order_by_type" ,options_for_select({ "更新时间" => "#{Live::ORDER_BY_UPDATED_AT}", "创建时间" => "#{Live::ORDER_BY_CREATED_AT}" },"#{@live.order_by_type}")) %>
+        </p>        
+        <%= f.hidden_field :l_type %>
+        <p>
+          <label>主持人:</label>
+          <%= link_to (image_tag(user_avatar_path(@compere, :middle))), user_url(@compere) %>
+          <%= @compere.nickname %>
+        </p>
+      <%= hidden_field_tag "live[guest_ids][]", "" %>
+		<div>
+			<%= f.label :guests, :label => "嘉宾:" %>
+			<div class="formRightAlign">
+				<% @live.guests.each do |guest| %>
+				<%= render :partial => "/users/guest_profile", :locals => {:guest => guest} %>
+				<% end %>
+                <%= text_field_tag :guest_name, "", :placeholder => '输入嘉宾昵称，点击添加', :size => 20 %>
+				<%= link_to "<span>添加</span>".html_safe, "javascript:void(0)", :class => "btnBlue", :id => "addGuest" %>
+			</div>
+		</div>
+        
+          <p class="formRightAlign">
+              <%= link_to "<span>提交</span>".html_safe, "javascript:void(0)", :onclick => "$(this).closest('form').submit();return false;", :class => "btnBlueM" %>
+          </p>
+        
+      <% end %>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function(){
+		$("#addGuest").click(function(){
+			var guest_name = $("#guest_name").val();
+			if (guest_name.length == 0) 
+				return false
+			$.get("/console/lives/add_guest", {
+				guest_name: guest_name
+			})
+		});
+		$(".deleteGuest").live("click", function(){
+			$(this).closest("div").remove();
+		});
+	});
+</script>

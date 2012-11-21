@@ -1,0 +1,28 @@
+<div id="featureEditWrapper">
+	<div id="featureEditBox">
+		<% JSON.parse(page.layout).each do |section|
+		section.symbolize_keys! %>
+		<% if section[:section_code] == 'section_1_a' %>
+		<%= render :partial => "/console/feature_pages/#{section[:section_code]}", :locals => {:element_ids => section[:elements][0], :elements => page.elements_dict} %>
+		<% elsif ['section_2_a', 'section_2_b', 'section_2_c'].include?(section[:section_code]) %>
+		<%= render :partial => "/console/feature_pages/#{section[:section_code]}", :locals => {:left_element_ids => section[:elements][0], :right_element_ids => section[:elements][1], :elements => page.elements_dict} %>
+		<% elsif section[:section_code] == 'section_3_a' %>
+		<%= render :partial => "/console/feature_pages/#{section[:section_code]}", :locals => {:left_element_ids => section[:elements][0], :center_element_ids => section[:elements][1], :right_element_ids => section[:elements][2], :elements => page.elements_dict} %>
+		<% end %>
+
+		<%end %>
+		<div class="addSection">
+			<%= link_to "<b class='actionIcon add'></b>添加新区块".html_safe, "javascript:void(0);" %>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	_all_urls["<%= page.pos + 1 %>"] = {
+		choose_section_url: "<%= choose_section_console_feature_page_url(page) %>",
+		choose_element_url: "<%= console_feature_page_elements_url(page) %>",
+		edit_element_url: "<%= console_feature_page_elements_url(page) %>/ELEMENT_ID/edit",
+		update_layout_url: "<%= update_layout_console_feature_page_url(page) %>",
+		delete_section_url: "<%= delete_section_console_feature_page_url(page) %>"
+	};
+</script>
+<%= link_to "<span>删除本页</span>".html_safe, [:console, @feature, page], :method => :delete, :confirm => "确定删除本页？", :class => "deletePage btnRed", :style => "margin:10px 0 0 0;#{@feature.feature_pages.count > 1 ? '' : 'display:none'}" %>

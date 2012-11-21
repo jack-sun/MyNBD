@@ -1,0 +1,21 @@
+<div class="leftCol">
+	<div id="resetPwFormWrapper">
+		<%= form_for @user, :url => password_reset_path(params[:id]), :method => "put", :html => {:class => "formA roundCorner"} do |f| %>
+			<div class="title"><h1>重置密码</h1></div>
+			
+			<p>
+				<%= f.label :password, "新密码:" %> <br />  
+				<%= f.password_field :password, :size => 40, :class => 'textInput', :autocomplete => :off %>
+			</p>
+			<p>
+				<%= f.label :password_confirmation, "再输入一遍:" %> <br />
+				<%= f.password_field :password_confirmation, :size => 40, :class => 'textInput', :autocomplete => :off %>  
+			</p>
+			<p class="btnRowM">
+				<a href="javascript:$('form')[0].submit()" class="btnBlueM"><span>提交</span></a><div class="clear"></div>
+			</p>
+		<% end %>
+	</div>
+</div>
+<div class="rightCol"></div>
+<div class="clear"></div>

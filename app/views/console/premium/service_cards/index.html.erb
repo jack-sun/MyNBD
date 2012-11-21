@@ -1,0 +1,56 @@
+<div class="sectionA">
+  <div class="title">
+    <h2>
+      卡号管理
+    </h2>
+    <span class="opts"><%= link_to "<span>导入新卡号</span>".html_safe, upload_file_console_premium_service_cards_url, :class => "btnBlueM" %></span>
+    
+  </div>
+  <div id="body_state" class="content rightColCenter">
+    <div class="tabs">
+      <ul>
+        <li <%= stats_class_helper("0") %>>
+          <%= link_to "未使用", console_premium_service_cards_url(:type => "0", :page => params[:page]) %>
+        </li>
+        <li <%= stats_class_helper("1") %>>
+          <%= link_to "已使用", console_premium_service_cards_url(:type => "1", :page => params[:page]) %>
+        </li>
+      </ul>
+    </div>
+    <table class="tableA">
+      <thead>
+        <tr>
+          <th>卡号</th>
+          <th>套餐时长</th>
+          <th>创建时间</th>
+          <th>状态</th>
+          <% if @stats_type == "0" %>
+            <th>创建编辑</th>
+          <% else %>
+            <th>使用时间</th>
+            <th>使用用户</th>
+          <% end %>
+        </tr>
+      </thead>
+      <tbody>
+        <% @service_cards.each do |card| %>
+          <tr>
+            <td><%= format_service_card card.card_no %></td>
+            <td><%= card.time_length_str %></td>
+            <td><%= card.created_at.strftime("%Y/%m/%d") %></td>
+            <td><%= card.status_str %></td>
+            <% if @stats_type == "0" %>
+              <td><%= card.staff && card.staff.real_name %></td>
+            <% else %>
+              <td><%= card.activated_at && card.activated_at.strftime("%Y/%m/%d") %></td>
+              <td><%= card.payment && card.payment.user && "#{card.payment.user.nickname}(#{card.payment.user.mn_account && card.payment.user.mn_account.phone_no})" %></td>
+            <% end %>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div style="margin-top:20px;">
+      <%= paginate @service_cards %>
+    </div>
+  </div>
+</div>

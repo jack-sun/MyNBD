@@ -1,0 +1,101 @@
+<%= require_css "console_feature" %>
+<%= require_css "console_topic" %>
+<%= require_js "console_interact" %>
+<%= require_jqueryUI %>
+
+<script type="text/javascript">
+	var _all_urls = []
+	_all_urls[1] = {
+		choose_element_url: "<%= console_topic_elements_url(@topic) %>",
+		edit_element_url: "<%= console_topic_elements_url(@topic) %>/ELEMENT_ID/edit",
+		update_layout_url: "<%= update_layout_console_topic_url(@topic) %>",
+		edit_topic_banner_url : "<%= edit_banner_console_topic_url(@topic) %>"
+	};
+</script>
+
+
+<div class="sectionA">
+	<%= simple_form_for([:console, @topic], :html => { :id => "topic_form"}) do |f| %>
+	<%= f.input :status, :as => :hidden %>
+	
+	<div class="title">
+		<h1>话题:</h1>
+		<%= f.input :title, :label => false, :input_html => {:id => "topicNameInput", :class => "featureNameInput textInput", :size => 36} %>
+		<span id="restTipForTitle"></span>
+		<span class="opts"><a class="btnGray" href="javascript:history.go(-1);"><span>取消</span></a></span>
+	</div>
+	
+	<div class="content ">
+		<div class="subRightCol">
+			<div class="formA roundCorner">
+				<p>
+					<%= link_to "<span>存为草稿</span>".html_safe, "javascript:void(0);", :id => "draft_topic", :class => "btnGrayBlue lf" %>
+					<%= link_to "<span>预览文章</span>".html_safe, "javascript:void(0);", :id => "preview_topic", :class => "btnGrayBlue rf" %>
+					<div class="clear">
+					</div>
+				</p>
+				<hr/>
+				<div>
+					<%= link_to "<span>#{@topic.status.to_i==1 ? '完成' : '发布' }</span>".html_safe, "javascript:void(0);", :id => "publish_topic", :class => "btnBlueM rf" %>
+					<div class="clear"></div>
+				</div>
+				
+			</div>
+		</div>
+		<div class="subLeftCol">
+			<div id="tabs-1">
+				<div id="featureEditWrapper">
+					<div id="featureEditBox">
+						<% JSON.parse(@topic.layout).each do |section|
+						section.symbolize_keys! %>
+							<% if ['section_2_a', 'section_2_b'].include?(section[:section_code]) %>
+								<%= render :partial => "/console/topics/#{section[:section_code]}", :locals => {:left_element_ids => section[:elements][0], :right_element_ids => section[:elements][1], :elements => @topic.elements_dict} %>
+							<%end%>
+						<%end%>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<% end %>
+</div>
+
+
+
+<script type="text/javascript">
+	$(function(){
+		var popWindowStatus = "width=700,height=700,top=200,left=" + ($(window).width() - 500) / 2 + ",toolbar=1,status=1,scrollbars=1";
+		_layoutOpts.bindSortable();
+		$(".editElement a").live("click", function(){
+			var elemID = $(this).closest("li").attr("id");
+			window.open(_all_urls[1].edit_element_url.replace("ELEMENT_ID", elemID), "editElement", popWindowStatus);
+		});
+		$(".addElement").live("click", function(){
+			window.open(_all_urls[1].choose_element_url, "addElement", popWindowStatus);
+			_layoutOpts.addElement = this;
+		});
+		
+		$("#topic_banner_edit").click(function(){
+			window.open(_all_urls[1].edit_topic_banner_url, "topicBanner", popWindowStatus);
+		});
+		
+		$('#publish_topic').click(function(){
+			$("#topic_status").val(<%= Topic::PUBLISHED %>);
+			$('#topic_form').submit();
+		});
+	
+		$("#draft_topic").click(function(){
+			$("#topic_status").val(<%= Topic::DRAFT %>);
+			$('#topic_form').submit();
+		});
+		
+		$('#topic_form').submit(function(){
+			//getLayoutResult();
+		});
+		
+		_nbd.restCharNum("topicNameInput", 10, "restTipForTitle");
+	});
+</script>
+
+
+

@@ -1,0 +1,56 @@
+<%case @section_code%>
+<% when 'section_1_a' %>
+	<div section_id="section_1_a" class="section">
+		<%= render 'console/feature_pages/section_actions' %>
+		<ul class="sortable">
+			<%= render "console/elements/add_element_action" %>
+		</ul>
+	</div>
+<% when 'section_2_a' %>
+	<div section_id="section_2_a" class="section">
+		<%= render 'console/feature_pages/section_actions' %>
+		<ul class="inner2ColsALeft sortable">
+			<%= render "console/elements/add_element_action" %>
+		</ul>
+		<ul class="inner2ColsARight sortable">
+			<%= render "console/elements/add_element_action" %>
+		</ul>
+		<div class="clear"></div>
+	</div>
+<% when 'section_2_b' %>
+	<div section_id="section_2_b" class="section">
+		<%= render 'console/feature_pages/section_actions' %>
+		<ul class="inner2ColsBLeft sortable">
+			<%= render "console/elements/add_element_action" %>
+		</ul>
+		<ul class="inner2ColsBRight sortable">
+			<%= render "console/elements/add_element_action" %>
+		</ul>
+		<div class="clear"></div>
+	</div>
+<% when 'section_2_c' %>
+	<div section_id="section_2_c" class="section">
+		<%= render 'console/feature_pages/section_actions' %>
+		<ul class="inner2ColsCEqual sortable">
+			<%= render "console/elements/add_element_action" %>
+		</ul>
+		<ul style="margin:0" class="inner2ColsCEqual sortable">
+			<%= render "console/elements/add_element_action" %>
+		</ul>
+		<div class="clear"></div>
+	</div>
+<% when 'section_3_a' %>
+	<div section_id="section_3_a" class="section">
+		<%= render 'console/feature_pages/section_actions' %>
+		<ul class="inner3ColsEqual sortable">
+			<%= render "console/elements/add_element_action" %>
+		</ul>
+		<ul class="inner3ColsEqual sortable">
+			<%= render "console/elements/add_element_action" %>
+		</ul>
+		<ul style="margin:0" class="inner3ColsEqual sortable">
+			<%= render "console/elements/add_element_action" %>
+		</ul>
+		<div class="clear"></div>
+	</div>
+<%end%>

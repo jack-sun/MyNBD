@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title><%=@title%> | 每经网</title>
+  <%= stylesheet_link_tag "reset", "style_global", "style_website", "feature_layout", "feature_theme/#{@feature.feature_theme}/style" %>
+  <%= yield :header_css %>
+  <%= javascript_include_tag "jquery.min", "jquery_ujs", "feature_poll", "nbdtools" %>
+  <%= yield :header_js %>
+  <%= csrf_meta_tag %>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  <style type="text/css">
+  	body{
+  		<% unless @feature.feature_bg_color.blank? %>
+      background-image:none;
+      background-color:<%= @feature.feature_bg_color %>;
+  		<% end %>
+  		
+  		<% if @feature.bg_image && @feature.bg_image.feature_url.present? %>
+  		background-image:url(<%= @feature.bg_image.feature_url %>);
+  		background-repeat:repeat;
+  		<% end %>
+  	}
+  </style>
+</head>
+
+<body id="body_feature">
+
+	<% @_come_back = true %>
+	<%= render :partial => "sessions/pop_register_box" %>
+	
+	<%= render :partial => "layouts/feature_top" %>
+
+	<%
+    banner_height = @feature.image.nil? ? 0 : @feature.image.nbd_image_height(:feature)
+    banner_width = @feature.image.nil? ? 0 : @feature.image.nbd_image_width(:feature)
+  %>
+  <div id="bannerImage" style="height:<%= banner_height %>px; background-image:url(<%= @feature.image.try(:feature_url) %>)"></div>
+  <script type="text/javascript">
+    if(<%= banner_width %> > 980){
+      $("#bannerImage").css("marginTop", "0px");
+    }
+  </script>
+  
+	<div id="wrapper">
+		<div id="featureContent">
+			<%= yield %>
+		</div>
+	</div>
+	<%= render :partial => "layouts/footer" %>
+	<%= render :partial => "layouts/analytics" %>
+</body>
+</html>

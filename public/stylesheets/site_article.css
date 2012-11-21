@@ -1,0 +1,369 @@
+#articalMain {
+	margin-bottom: 20px;
+}
+
+#articalMain .leftCol{
+	width: 670px;
+	overflow:hidden;
+}
+
+#articalContentWrapper{
+	padding: 10px 20px 20px;
+	background: #f2f5fa;
+	border: 1px #d5dceb solid;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	margin-bottom: 15px;
+	color: #101010;
+}
+
+#relatedArticlesWrapper{
+	padding: 10px 15px;
+	background: white;
+	border: 2px solid #CFD6E5;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+#articalMain .rightCol {
+	border: none;
+}
+
+h1.articleTitle {
+	text-align: center;
+	font-size:24px;
+	color: black;
+	margin-bottom: 5px;
+	padding: 15px 20px 0;
+	border-top: 1px solid #f9f9f9;
+}
+
+.articleTime {
+	text-align: center;
+	color: #606060;
+	margin-bottom: 20px;
+}
+
+.articleTime a{
+	color: #606060;
+}
+
+.articleTime span{
+	margin: 0 10px;
+}
+
+.articleInfo {
+	margin: 10px 0;
+}
+
+#articleDigest {
+	padding: 10px 20px;
+	background: white;
+	border: 2px solid #CFD6E5;
+	line-height:1.8;
+	margin: 0 20px 2em;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+
+#articleContent{
+	line-height:1.8;
+	padding: 0 20px;
+	margin-bottom: 2em;
+}
+
+.articleFontSize_small{
+	font-size: 12px;
+}
+
+.articleFontSize_medium{
+	font-size: 14px;
+}
+
+.articleFontSize_large{
+	font-size: 16px;
+}
+
+#articleContent p{
+	margin-bottom: 1em;
+	text-indent: 2em;
+}
+
+#articleContent img, #articleContent object, #articleContent embed, #articleContent {
+	display:block;
+	margin:0 auto;
+} 
+
+.artcileAddimg{
+	display:block;
+	margin:0 auto 25px;
+}
+.childrenArticles{
+	font-size:14px;
+	margin-bottom: 2em;
+}
+.childrenArticles li{
+	float: none;
+	margin: 0 0 5px 20px;
+}
+
+.articleDeclare {
+	margin: 10px 0;
+	padding: 10px 0;
+	border-top: 1px #ccc dotted;
+	color: #9f9f9f;
+	text-align: center;
+}
+.weiboItemList .itemBottom{
+	line-height: 22px;
+	font-family: Arial, sans-serif;
+}
+.block .blockTitle .opts{
+	color: #808080;
+}
+
+#articalContentWrapper textarea {
+	width: 290px;
+	height: 120px;
+	margin: 0 0 10px 0;
+	border: 1px solid #9e9e9e;
+	border-bottom-color: #bebebe;
+	background: white url(../images/pixel-gray.gif) left top repeat-x;
+	font-size: 14px;
+	padding: 5px;
+}
+
+.articleShare {	
+	padding-top: 12px;
+	border-top: 1px solid #f9f9f9;
+	margin-bottom: 20px;
+}
+
+#commentsBlock{
+	font-family: Arial, sans-serif;
+}
+
+#commentsBlock .blockTitle{
+	border: none;
+	height: 36px;
+	line-height: 36px;
+	padding: 0 1px;
+	border: none;
+	background: none;
+	margin-bottom: 0;
+}
+
+#commentsBlock .blockContent{
+	border: 1px #d5dceb solid;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	background: #f2f5fa;
+	padding: 15px;
+}
+
+#myComment {
+	position:relative;
+	margin:0 0 15px 0;
+	padding:0 0 20px 0;
+	border-bottom:1px dotted #D5DCEB;
+}
+
+#myComment .avatar{
+	float: left;
+	border: 1px solid #CCC;
+	padding: 1px;
+	background-color: white;
+}
+
+#myComment .itemContent{
+	margin-left: 65px;
+	font-size: 14px;
+	color: #303030;
+}
+
+#myComment .itemContent textarea {
+	width:560px;
+	*width:555px;
+	height:66px;
+	margin-bottom:7px;
+}
+
+#articleContact {
+	margin-top: 20px;
+	font-size: 12px;
+	font-family: Arial, sans-serif;
+	line-height: 1.8;
+	color: #606060;
+}
+
+#articleTools{
+	font-size: 12px;
+	font-family: Arial, sans-serif;
+	height: 28px;
+	border-bottom: 1px solid #CFD6E5;
+}
+
+#articleTools .lf li{
+	float: left;
+	margin-right: 20px;
+}
+
+#articleTools .rf li{
+	float: right;
+	margin-left: 10px;
+}
+#aticleFontSize a{
+	padding: 0 3px;
+}
+#aticleFontSize .current{
+	font-weight: bold;
+	color: #000;
+	background-color: #f9f9f9;
+}
+.printLink{
+	float: left;
+}
+.printLink b{
+	float: left;
+	width: 16px;
+	height: 16px;
+	margin-right: 2px;
+	background: url(../images/action-icons.png) -48px 0 no-repeat;
+	opacity: 0.5;
+}
+.printLink:hover b{
+	opacity: 1;
+}
+#articleInfo{
+	text-align: right;
+	font-size: 12px;
+	font-family: Arial, sans-serif;
+	padding-bottom: 10px;
+	border-bottom: 1px solid #CFD6E5;
+}
+#articleColumns a{
+	margin-right: 0.5em;
+}
+#articleColumns{
+	float: left;
+}
+
+.leftCol .sectionA .content{
+	padding-bottom: 0;
+}
+
+.subNavi{
+	margin-bottom: 20px;
+}
+
+/* Related Articles */
+.moreTitle{
+	font-family: arial;
+	font-size: 18px;
+	color: #ACB2BF;
+	margin-bottom: 5px;
+	font-weight: normal;
+}
+#relatedArticlesWrapper .subLeftCol{
+	width: 270px;
+	margin-right: 0;
+	padding-right: 30px;
+}
+#relatedArticlesWrapper .subRightCol{
+	width: 290px;
+}
+
+#relatedArticlesWrapper .horizonLayout .articleRecommend .rcTitle{
+	padding-right: 20px;
+}
+
+/* Related Features */
+#releatedFeatures li{
+	float: left;
+	width: 45%;
+	padding: 7px 25px 7px 0;
+	border: none;
+}
+
+#releatedFeatures .content{
+	background: none;
+}
+
+#releatedFeatures .fDigest{
+}
+
+.rightCol .sectionA.articleWallWrapper .content{
+	padding: 10px 0 5px;
+}
+
+.leftCol .sectionA.articleWallWrapper .content{
+	padding: 5px 0 5px;
+}
+
+.leftCol .articleList li.articleWall{
+	width: 20%;
+}
+
+/* Bottom Navigation */
+.jumpNav { height:20px; padding:10px; background:#F2F5FA; margin: 20px 0 0;
+-webkit-border-radius: 3px;
+-moz-border-radius   : 3px;
+border-radius        : 3px;
+}
+
+.jumpNav .toHome{
+	float: left;
+}
+.jumpNav a b{
+	width: 20px; 
+	height: 20px;
+	opacity: 0.7;
+	background:url(../images/sprite-icons.gif) 0 0 no-repeat;
+}
+.jumpNav a:hover b{
+	opacity: 1;
+}
+.jumpNav .toHome b{ float:left; background-position: -139px -160px; margin-right: 5px;}
+.jumpNav .toTop2 { float: right; *width:90px; }
+.jumpNav .toTop2 b{ float:right; background-position: -139px -178px; margin-left: 5px; }
+/*.jumpNav .toNext { float: right; *width:128px; }
+.jumpNav .toNext b{ float:right; background-position: -139px -178px; margin-left: 5px; }*/
+
+.itemContent label{
+	font-size: 12px;
+	color: #808080;
+}
+
+#body_site .weiboItemList li{
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+	border-bottom-color: #D5DCEB;
+}
+.articleCopyright{
+	line-height: 1.6;
+	margin-bottom: 2em;
+	padding: 0 20px;
+}
+.articleCopyright p{
+	margin-bottom: 1em;
+}
+.articleCopyright span{
+	margin-right: 20px;
+}
+.paginationWrapper {
+	text-align:center;
+}
+.pagination{
+	float:none;
+	display:inline-block;
+	*display:inline;
+	*zoom:1;
+	margin-bottom: 3em;
+}
+.pagination a {
+	background-color: white;
+}

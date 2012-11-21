@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title><%= @title.blank? ? "每经智库 | 每经网 | 新闻决定影响力 |《每日经济新闻》报社旗下网站" : "#{@title} | 每经智库"%></title>
+    <%= stylesheet_link_tag "reset", "style_global", "style_website", "think_tank" %>
+    <%= yield :header_css %>
+    <%= javascript_include_tag "jquery.min", "jquery_ujs", "cookie", "baidu_m", "/utilities/loopScroll/loopScroll"%>
+    <%= yield :header_js %>
+    <%= csrf_meta_tag %>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <link rel="shortcut icon" href="http://static.nbd.com.cn/favicon.ico" type="image/x-icon"/>
+    <meta name="Keywords" content="财经新闻,财经报道,叶檀,道达,老法师看盘,股市直播,郑眼看盘,股市行情,财经证券,基金,荐股,股市内参,股吧,传闻,内幕,板块,个股,黑马,股市新闻,生活,汽车" />
+    <meta name="Description" content="24小时财经资讯平台，依托新锐财经日报《每日经济新闻》(National Business Daily)，打造中国最具影响力的经济、股票网站。覆盖宏观、股票、基金、期货、股指期货、外汇、债券、保险、银行、黄金、理财等全方位财经新闻。" />
+  </head>
+
+  <body id="body_think_tank">
+
+    <%= render :partial => "columns/favorite_tip" %>
+
+    <%= render :partial => "layouts/feature_top" %>
+
+    <div id="scrollNewsTop">
+      <div class="innerCenter">
+        <span class="label">滚动新闻:</span>
+        <div id="scrollNewsWrapper">
+          <ul id="scrollNewsList">
+            <% Article.rolling.order("id desc").limit(8).each do |article| %>
+              <li>
+                <%if article.is_special?%><span class="articleLabel red"><b><%= Article::SPECIAL[article.special] %></b></span><%end%>
+                <%= link_to article.title, article_url(article), :target => "_blank" %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="header">
+      <div class="innerCenter" id="logo">
+        <a class="logo" id="logoNtt" href="/" title="每经智库">每经智库</a>
+        <%= yield :header_ad %>
+      </div>
+      <% unless @editor_selected.blank? %>
+        <div class="innerCenter" id="editorSelected">
+          <ul class="unorderList">
+            <% (@editor_selected[:articles].map(&:article)||[]).each do |article| %>
+              <li><%= link_to article.list_title, ntt_article_url(article), {:target => "_blank", :title => article.title} %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div id="mainNav">
+        <div class="navWrapper">
+          <ul class="lf">
+            <li <%= current_page?(:action => "index", :controller => "ntt/columns") ? "class=current" : "" %>>
+              <%= link_to "智库首页", ntt_index_url %>
+            </li>
+            <li <%= current_page?(:action => "index", :controller => "ntt/columnists") ? "class=current" : "" %>>
+              <%= link_to "智库专家", ntt_columnists_url %>
+            </li>
+            <li <%= current_page?(:action => "features", :controller => "ntt/columns") ? "class=current" : "" %>>
+              <%= link_to "专题策划", features_ntt_columns_path %>
+            </li>
+            <li <%= current_page?(:action => "show", :controller => "ntt/columns", :id => 109) ? "class=current" : "" %>>
+              <%= link_to "研究报告", ntt_column_path(:id => 109)+'?type=research' %>
+            </li>
+            <li <%= current_page?(:action => "show", :controller => "ntt/columns", :id => 110) ? "class=current" : "" %>>
+              <%= link_to "市场数据", ntt_column_path(:id => 110)+'?type=market' %>
+            </li>
+            <li <%= current_page?(:action => "show", :controller => "ntt/columns", :id => 111) ? "class=current" : "" %>>
+              <%= link_to "投资研究", ntt_column_path(:id => 111)+'?type=invest' %>
+            </li>
+            <li>
+              <%= link_to "关于智库", "/about" %>
+            </li>
+          </ul>
+          <div class="searchBox rf">
+            <% form_tag(article_search_url, :method => "get") do%>
+              <%= link_to "", "javascript:void(0)", :onclick => "$(this).parents('form').submit();return false;", :class => "searchBtn" %>
+              <%= text_field_tag(:q, "", :class => "searchInput") %>
+            <%end%>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="wrapper">
+      <%= yield %>
+    </div>
+
+    <div id="adFooterWrapper">
+      <%= yield :footer_ad %>
+    </div>
+
+
+    <%= render :partial => "layouts/footer" %>
+    <%= render :partial => "layouts/analytics" %>
+  </body>
+
+  <script type="text/javascript">
+    $(function(){
+      $("#scrollNewsList").loopScroll();
+    });
+  </script>
+</html>

@@ -1,0 +1,201 @@
+<%= require_tabs %>
+
+<div >
+	<div class="tabs">
+		<ul id="imageIndex" class="tabs">
+			<li class="current"><a href="#imageTab-1">上传图片</a></li>
+			<li><a href="#imageTab-2">外链图片</a></li>
+			<li><a href="#imageTab-3">图片库</a></li>
+		</ul>
+	</div>
+	<div id="imageContent">
+		<div id="imageTab-1">
+       <%= render :partial => "console/images/image_upload_form", :locals => {:image => Image.new, :url_method => "article" }%>
+		</div>
+		
+		<div id="imageTab-3">
+			<div id="searchImageBox">
+	      <%= text_field_tag "searchValue", @keyword %>
+	      <%= link_to "<span>搜索</span>".html_safe, "javascript:void(0)", :id => "searchImageBtn", :class => "btnBlue" %>
+				<%= link_to "<span>重置</span>".html_safe, "javascript:void(0)", :id => "resetSearchBtn", :class => "btnGray" %>
+			</div>
+			<div id="imageLib">
+        <% @images.each do |image| %>
+					<div class="imageLibItem">
+          	<%= image_tag image.url_for_search(:x_large, "www"), :id => "image_#{image.id}", :alt => image.desc %>
+					</div>
+        <% end %>
+				<div class="clear"></div>
+			</div>
+      <%= paginate(@images)%>
+			<div class="clear"></div>
+		</div>
+		
+		<div id="imageTab-2">
+      <%= simple_form_for([:console, Image.new]) do |f| %>
+        <p>
+        	<%= f.input :remote_article_url, :label => "图片地址：", :input_html => { :id => "outlinkSrc" } %>
+        </p>
+				<p>
+					<%= f.input :desc, :label => "图片描述：", :input_html => { :id => "outlinkDesc" } %>
+				</p>
+      <% end %>
+		</div>
+	</div>
+</div>
+
+<div class="rightAlignActions">
+	<%= link_to "<span>取消</span>".html_safe, "javascript:void(0)", :id => "cancelUploadBtn", :class => "btnGrayM" %>
+	<%= link_to "<span>确定</span>".html_safe, "javascript:void(0);", :id => "uploadImageBtn", :class => "btnBlueM"%>
+</div>
+
+<div id="tempBox"></div>
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+		var search_url = "<%= upload_images_console_images_url %>";
+		var imageReady = _nbd.imageReady;
+		var limitWidth = 500;
+		var jumpToLib = "<%= @current_tab %>";
+		
+		var tempBox = $("#tempBox");
+		
+    // Initialize the jQuery File Upload widget:
+    $('#fileupload').fileupload({
+			maxNumberOfFiles:1
+		});
+		
+		// search
+    $("#searchImageBtn").click(function(){
+      window.location.href = search_url + "?q=" + $("#searchValue").val();
+    });
+		$("#resetSearchBtn").click(function(){
+			window.location.href = search_url + "?q=";
+		});
+		
+		// tabs init
+		$.nbdtabs({
+			tabsDOM:"#imageIndex",
+			contentDOM:"#imageContent",
+			symbolIndex:"imageTab"
+		});
+		
+		if(jumpToLib){
+			$("a[href='#imageTab-3']").click();
+		}
+		
+		// choose from library
+		$("#imageLib").delegate(".imageLibItem", "click", function(){
+			$(this).toggleClass("choosen");
+		})
+		
+		// close this window
+		function confirmAndClose(data){
+			window.opener._insertImage(data);
+			setTimeout(function(){window.close();}, 500); // 避免编辑框刷不出图片的情况，不过具体原因不明
+		}
+		
+		// confirm upload
+		$("#uploadImageBtn").bind("click", function(){
+			var index = $("#imageIndex .current a").attr("href").slice(-1);
+			uploadEvent(index);
+		});
+		
+		function uploadEvent(index){
+			switch(parseInt(index)){
+				case 1:
+					directUpload();
+					break;
+				case 3:
+					uploadFromLibrary();
+					break;
+				case 2:
+					outlinkUpload();
+					break;
+			}
+			
+			function directUpload(){
+				// insert image
+				function afterUpdateImageData(){
+					
+					var image = $(".uploadedImage img").clone();
+					var desc = $(".uploadedImageDesc").val();
+					var imageStr;
+					
+					image.attr("alt", desc);
+					tempBox.empty();
+					cleanImage(image);
+					
+					imageStr = tempBox.html();
+					confirmAndClose(imageStr);
+				}
+				
+				// call update image in the partial
+				_updateImageData(afterUpdateImageData);
+			}
+			
+			function uploadFromLibrary(){
+				var imageStr;
+				var imgArray = $("#imageLib .choosen img").map(function(){
+					return $(this);
+				});
+				
+				tempBox.empty();
+				imgArray.each(function(i, img){
+					cleanImage(img.clone());
+				});
+				
+				imageStr = tempBox.html();
+				confirmAndClose(imageStr);
+			}
+			
+			function outlinkUpload(){
+				var src = $("#outlinkSrc").val();
+				var desc = $("#outlinkDesc").val();
+				if( $.trim(src) && $.trim(desc) ){
+				}else {
+					alert("请补完信息。");
+					return;
+				}
+				
+				imageReady(src,function(){
+					this.width = this.width > limitWidth ? limitWidth : this.width;
+					this.alt = desc;
+					
+					var imageStr = tempBox.empty().append(this).html();
+					confirmAndClose(imageStr);
+				});
+			}
+		}
+		
+		// cancel upload
+		$("#cancelUploadBtn").bind("click", function(){
+			window.close();
+		});
+		
+		function imageSource(img){
+			var i = _nbd.random(2);
+			if(i == 0) {
+				i = "";
+			}
+			return $(img).attr("src", $(img).attr("src").replace(/http:\/\/www\./, "http://image"+i+"."));
+		}
+		
+		// clean image
+		function cleanImage(image){
+			image.removeAttr("id");
+			image.removeAttr("style");
+			image.removeAttr("width");
+			image.removeAttr("height");
+			image.removeClass();
+			imageSource(image);
+			
+			if(image[0].width > limitWidth){
+				image[0].width = limitWidth;
+			}
+			
+			tempBox.append(image);
+			tempBox.append("<br />");
+		}
+  });
+</script>

@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title>NBD</title>
+  <%= stylesheet_link_tag "reset", "style" %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+</head>
+
+<body>
+
+<div id="top">
+	<div class="topStatus">
+		<span>张黎黎</span><a href="#">[登出]</a>|<a href="#">账户设置</a>|<a href="#">意见反馈</a>
+    </div>
+</div>
+
+<div id="header">
+	<div id="logo">
+		<img src="/images/advertise.jpg" name="logo" />
+    </div>
+	<div class="info">
+		<p>
+			上市指数 上市指数 上市指数 上市指数 上市指数 上市指数 上市指数 上市指数
+		</p>
+	</div>
+	<div id="mainNav">
+		<div class="navWrapper">
+			<ul class="lf">
+				<li><a href="javascript:(0)" >首页</a></li>
+				<li><a href="javascript:(0)" >新闻</a></li>
+				<li><a href="javascript:(0)" >市场</a></li>
+				<li><a href="javascript:(0)" >商业</a></li>
+				<li><a href="javascript:(0)" >全球</a></li>
+				<li><a href="javascript:(0)" >观点</a></li>
+				<li><a href="javascript:(0)" >生活</a></li>
+				<li><a href="javascript:(0)" >管理</a></li>
+				<li><a class="highlight" href="javascript:(0)" >社区</a></li>
+			</ul>
+			<div class="searchBox rf">
+				<a class="searchBtn" href="javascript:(0)" ></a> 
+				<input class="searchInput" type="text" />
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="wrapper">
+	<%= yield %>
+</div>
+
+<div id="footer">
+	<div class="nav">
+		<a class="first" href="#">关于每经</a><a href="#">版权申明</a><a href="#">广告服务</a><a href="#">联系我们</a><a href="#">订阅中心</a><a href="#">网站地图</a><a href="#">友情链接</a><a class="last" href="#">人才招聘</a>
+	</div>
+	<p>
+		Copyright © 2011 每日经济新闻报社版权所有，未经许可不得转载使用，违者必究<br/>
+		联系电话：86-21-60900099转688分机　读者热线：400-889-0008<br/>
+		沪ICP备09000473号<br/>
+	</p>
+</div>
+
+</body>
+</html>

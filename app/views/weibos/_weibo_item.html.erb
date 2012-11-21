@@ -1,0 +1,53 @@
+<%
+hideOpts = false unless hideOpts
+interviewee = nil unless interviewee
+showArticle = false unless showArticle
+stripAndTruncate = false unless stripAndTruncate
+%>
+
+<li id="weibo_<%= weibo.id  %>">
+	<%= link_to(image_tag(user_avatar_path(weibo.owner, :middle), {:alt => weibo.owner.nickname, :width => "50", :height => "50"}), user_url(weibo.owner), :class=>"avatar", :target => "_blank") %>
+	<div class="itemContent">
+		<p><%= link_to weibo.owner.nickname, user_url(weibo.owner), :target => "_blank" %> : <%= stripAndTruncate ? weibo.content(:length => 120, :strip_break => true) : weibo.content %></p>
+			<%unless hideOpts%>
+			<%if weibo.ori_weibo_id != 0 and (_ori_weibo = weibo.ori_weibo).present?%>
+				<blockquote>
+					<p><%= link_to "@#{_ori_weibo.owner.nickname}:", user_url(_ori_weibo.owner), :target => "_blank" %> <%= _ori_weibo.content %></p>
+					<div class="quoteBottom">
+					<span class="rf">
+					<%= link_to "原文转发#{'('+_ori_weibo.rt_count.to_s+')' if _ori_weibo.rt_count > 0}", weibo_path(_ori_weibo) %><span class="divider">|</span>
+					<%= link_to "原文评论#{'('+_ori_weibo.reply_count.to_s+')'  if _ori_weibo.reply_count > 0}", weibo_path(_ori_weibo) %>
+					</span>
+					<%= link_to nbd_time_f(_ori_weibo.created_at), weibo_url(_ori_weibo) %>
+					</div>
+				</blockquote>
+			<%elsif weibo.ori_weibo_id != 0%>
+				<blockquote>
+					<p>原文已删除</p>
+				</blockquote>
+			<%end%> 
+			<%end%>
+
+		<div class="itemBottom">
+			<%unless hideOpts%>
+			<span class="rf">
+				<%if false and @current_user and @current_user.is_supper_user? %>
+					<%= link_to "屏蔽", ban_weibo_url(weibo), :method => :delete, :confirm => "是否屏蔽这条微博？", :remote => true %><span class="divider">|</span>
+				<%end%>
+				<%if interviewee and interviewee.is_weibo_owner?(weibo) and is_same_user %>
+					<%= link_to "删除", weibo_url(weibo), :method => :delete, :confirm => "是否删除这条微博？", :remote => true %><span class="divider">|</span>
+				<%end%>
+				<%= link_to "转发#{'(' + weibo.rt_count.to_s + ')' if weibo.rt_count > 0}", rt_weibo_url(weibo), :remote => true, :class => "weiboRetweet" %><span class="divider">|</span>
+				<%= link_to "评论#{"(#{weibo.reply_count})" if weibo.reply_count > 0}", "javascript:void(0);",  :class => "weiboComment", :id => "weibo_comments_#{weibo.id}" %>
+			</span>
+			<%end%>
+			<%= link_to nbd_time_f(weibo.created_at), weibo_url(weibo) %>
+            	<% if showArticle and (article = @comment_articles[weibo.ori_weibo_id].try(:first)) %>
+                    <span class="itemFrom">评论于: <%= link_to article.title, article_url(article), {:target => "_blank"}%></span>
+               	<% end %>
+		</div>
+	</div>
+	<div class="clear"></div>
+</li>
+
+

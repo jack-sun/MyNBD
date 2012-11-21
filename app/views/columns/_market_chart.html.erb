@@ -1,0 +1,15 @@
+<%
+=begin
+Parameters:
+	html_style: String (optional)
+=end
+html_style = '' unless html_style
+%>
+<div class="sectionA" style="<%=html_style%>">
+	<div class="title">
+		<h1>市场行情</h1>
+	</div>
+	<div class="content">
+          <embed src="<%= Settings.asset_host %>/media/market.swf?flashdzh_theme=White&amp;font=0&amp;flashdzh_aveLine=0&amp;stk_list=上证,1,000001,1,0;深市,2,399001,1,0;恒指,3,HSI,1,0&amp;resource_root=http://flashhq.gw.com.cn/" quality="high" width="300" height="210" align="middle" allowScriptAccess="always" allowFullScreen="true" mode="transparent" type="application/x-shockwave-flash"></embed>
+	</div>
+</div>

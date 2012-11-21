@@ -1,0 +1,37 @@
+<% @title="股票频道" %>
+
+<% cache(column_show_content_key_by_id(@head_article[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "最新头条", :articles => @head_article[:articles].map(&:article).compact} %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@market_express[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "行情快讯", :articles => @market_express[:articles].map(&:article).compact} %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@zhengbuchun_column[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "郑眼看盘", :articles => @zhengbuchun_column[:articles].map(&:article).compact} %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@laofashi_column[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "老法师操盘手记", :articles => @laofashi_column[:articles].map(&:article).compact} %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@ipo_articles[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "IPO调查", :articles => @ipo_articles[:articles].map(&:article).compact} %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@company_inv_articles[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "上市公司调查", :articles => @company_inv_articles[:articles].map(&:article).compact} %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@finace[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "金融", :articles => @finace[:articles].map(&:article).compact} %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@macro_stock[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "大盘", :articles => @macro_stock[:articles].map(&:article).compact} %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@analysis[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "对策", :articles => @analysis[:articles].map(&:article).compact} %>
+<% end %>

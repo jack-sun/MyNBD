@@ -1,0 +1,32 @@
+<%
+  body = JSON.parse(element.content)["body"]
+  tag = body["tag"]  
+  keywords = body["keywords"]
+  count = body["count"]
+  @weibos = Weibo.search(keywords, :page => 1, :per_page => count, :order => :id, :sort_mode => :desc, :with => {:status => 1})
+%>
+
+<%= render :partial => "weibos/form_for_new_weibo", :locals => {:title => "", :disable_add_top => true, :placeholder_text => tag} %>
+
+<ul class="weiboItemList" id="weibos_list">
+	<% @weibos.each_with_index do |weibo, index|
+			next if weibo.blank? 
+		-%>
+		<%= render :partial => "weibos/weibo_item", :locals => {:weibos => @weibos, :weibo => weibo, :index => index, :interviewee => @current_user, :is_same_user => true} %>
+	<% end %>
+</ul>
+<%= link_to "查看更多&raquo;".html_safe, community_search_url(:type => "weibo", :q => keywords), :class => "moreWeiboLink" %>
+<div class="clear"></div>
+
+<script type="text/javascript">
+	$(function(){
+		$("#newWeiboTextarea").focus(function(){
+			_popRegisterBox();
+		});
+		$("#weibos_list").delegate(".weiboRetweet, .weiboComment", "click", function(){
+			if(_popRegisterBox()){
+				return false;
+			}
+		});
+	});
+</script>

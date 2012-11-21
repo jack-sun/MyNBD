@@ -1,0 +1,3 @@
+class UploaderError < StandardError
+  
+end

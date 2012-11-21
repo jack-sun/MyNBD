@@ -1,0 +1,1111 @@
+# Logfile created on 2012-03-15 15:39:21 +0800 by logger.rb/31641
+------------- cache callback cost time 0.001849  -----------------
+------------- cache callback cost time 0.001146  -----------------
+------------- cache callback cost time 0.035711  -----------------
+------------- cache callback cost time 0.009856  -----------------
+------------- cache callback cost time 0.006538  -----------------
+------------- cache callback cost time 0.005124  -----------------
+------------- cache callback cost time 0.015387  -----------------
+------------- cache callback cost time 0.00583  -----------------
+------------- cache callback cost time 0.005526  -----------------
+------------- cache callback cost time 0.059316  -----------------
+------------- cache callback cost time 0.009174  -----------------
+------------- cache callback cost time 0.006589  -----------------
+------------- cache callback cost time 0.008172  -----------------
+------------- cache callback cost time 0.008591  -----------------
+------------- cache callback cost time 0.003077  -----------------
+------------- cache callback cost time 0.003276  -----------------
+------------- cache callback cost time 0.006653  -----------------
+------------- cache callback cost time 0.019652  -----------------
+------------- cache callback cost time 0.003666  -----------------
+------------- cache callback cost time 0.013962  -----------------
+------------- cache callback cost time 0.005036  -----------------
+------------- cache callback cost time 0.004564  -----------------
+------------- cache callback cost time 0.014041  -----------------
+------------- cache callback cost time 0.003056  -----------------
+------------- cache callback cost time 0.002564  -----------------
+------------- cache callback cost time 0.003326  -----------------
+------------- cache callback cost time 0.017936  -----------------
+------------- cache callback cost time 0.002829  -----------------
+------------- cache callback cost time 0.003156  -----------------
+------------- cache callback cost time 0.004239  -----------------
+------------- cache callback cost time 0.012558  -----------------
+------------- cache callback cost time 0.006977  -----------------
+------------- cache callback cost time 0.002596  -----------------
+------------- cache callback cost time 0.009426  -----------------
+------------- cache callback cost time 0.016497  -----------------
+------------- cache callback cost time 0.004967  -----------------
+------------- cache callback cost time 0.003319  -----------------
+------------- cache callback cost time 0.003793  -----------------
+------------- cache callback cost time 0.008215  -----------------
+------------- cache callback cost time 0.00588  -----------------
+------------- cache callback cost time 0.00597  -----------------
+------------- cache callback cost time 0.014821  -----------------
+------------- cache callback cost time 0.006008  -----------------
+------------- cache callback cost time 0.019002  -----------------
+------------- cache callback cost time 0.005458  -----------------
+------------- cache callback cost time 0.009987  -----------------
+------------- cache callback cost time 0.001117  -----------------
+------------- cache callback cost time 0.001043  -----------------
+------------- cache callback cost time 0.001301  -----------------
+------------- cache callback cost time 0.050051  -----------------
+------------- cache callback cost time 0.057891  -----------------
+------------- cache callback cost time 0.05406  -----------------
+------------- cache callback cost time 0.072815  -----------------
+------------- cache callback cost time 0.001349  -----------------
+------------- cache callback cost time 0.001465  -----------------
+------------- cache callback cost time 0.000519  -----------------
+------------- cache callback cost time 0.000581  -----------------
+------------- cache callback cost time 0.000355  -----------------
+------------- cache callback cost time 0.00123  -----------------
+------------- cache callback cost time 0.001351  -----------------
+------------- cache callback cost time 0.003847  -----------------
+------------- cache callback cost time 0.009007  -----------------
+------ start add up user data -------
+------ start add up user data -------
+------ start add up user data -------
+------ start add up user data -------
+------ start add up user data -------
+------------start------------------------
+------------  current_last_prefix_key    ------------------------
+------- push new frag 489 id to list ----------
+---------------- start get hot rt weibo ----------------
+-------------------- start get hot article ---------------------
+------------------  start get hot tag ---------------------
+----------------- start get active user -------------------
+---------------- finish -----------------
+------------start------------------------
+------------  current_last_prefix_key    hot_cache:489------------------------
+------- push new frag 489 id to list ----------
+---------------- start get hot rt weibo ----------------
+-------------------- start get hot article ---------------------
+------ start add up user data -------
+------ start add up user data -------
+------ start add up user data -------
+------ 10340  13.0  -------
+------ start add up user data -------
+------ 10340  13.0  -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ start add up user data -------
+------ 10340  13.0  -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ start add up user data -------
+------ 10340  13.0  -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ start add up user data -------
+------ 10340  13.0  -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ start add up user data -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ end add up article data -------
+------ start add up user data -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ 641994  1.0509294837173142e-18  -------
+------ end add up article data -------
+------ start add up user data -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ 642136  1.0806598622663318e-18  -------
+------ 641994  2.1016868160102933e-18  -------
+------ end add up article data -------
+------ start add up user data -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ 642136  3.2418744248489792e-18  -------
+------ 641994  2.10161969390968e-18  -------
+------ end add up article data -------
+------------- cache callback cost time 0.003022  -----------------
+------------- cache callback cost time 0.019078  -----------------
+------ start add up user data -------
+------ 10340  13.0  -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ start add up user data -------
+------ 10340  13.0  -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ start add up user data -------
+------ 10340  13.0  -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ 42394  1.0507392606503558e-18  -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ 642136  3.2416502596875874e-18  -------
+------ 641994  3.1522149225784926e-18  -------
+------ 641994  1.0507383075161646e-18  -------
+------ end add up article data -------
+------------- cache callback cost time 0.002789  -----------------
+------------- cache callback cost time 0.010268  -----------------
+------------- cache callback cost time 0.013217  -----------------
+------------- cache callback cost time 0.008211  -----------------
+------ start add up user data -------
+------ 10340  39.0  -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ 42581  2.160998374104084e-18  -------
+------ 42394  1.0506890994348562e-18  -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ 642136  4.321990777142467e-18  -------
+------ 642136  2.160995388557308e-18  -------
+------ 641994  3.152064439044339e-18  -------
+------ 641994  1.050688146340971e-18  -------
+------ end add up article data -------
+------------- cache callback cost time 0.069893  -----------------
+------------- cache callback cost time 0.009299  -----------------
+------ start add up user data -------
+------ 10340  52.0  -------
+------ end add up user data -------
+------ start add up tag data -------
+------ start add up user data -------
+------ 10340  52.0  -------
+------ end add up user data -------
+------ start add up tag data -------
+------ 什么情况  13.0  -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ 42581  2.1608168864786266e-18  -------
+------ 42394  2.101204439874878e-18  -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ 642136  4.3216278023235154e-18  -------
+------ 642136  2.160813901148828e-18  -------
+------ 641994  3.1518038007970245e-18  -------
+------ 641994  2.101202533853257e-18  -------
+------ end add up article data -------
+------------- cache callback cost time 0.002553  -----------------
+------------- cache callback cost time 0.002385  -----------------
+------------- cache callback cost time 0.002403  -----------------
+------------- cache callback cost time 0.002592  -----------------
+------ start add up user data -------
+------ 10340  52.0  -------
+------ 10360  40.0  -------
+------ end add up user data -------
+------ start add up tag data -------
+------ 什么情况  13.0  -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ 42581  2.1606576544441625e-18  -------
+------ 42394  2.1010519884525226e-18  -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ 642136  4.32130933898274e-18  -------
+------ 642136  2.1606546694774485e-18  -------
+------ 641994  3.1515751241603872e-18  -------
+------ 641994  2.1010500827621664e-18  -------
+------ end add up article data -------
+------------- cache callback cost time 0.002536  -----------------
+------------- cache callback cost time 0.00263  -----------------
+------ start add up user data -------
+------ 10340  52.0  -------
+------ 10360  60.0  -------
+------ end add up user data -------
+------ start add up tag data -------
+------ 什么情况  13.0  -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ 42581  2.1606178180665278e-18  -------
+------ 42394  2.1010138484878342e-18  -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ 642136  4.32122966615208e-18  -------
+------ 642136  2.1606148330561526e-18  -------
+------ 641994  3.1515179137514115e-18  -------
+------ 641994  2.101011942487613e-18  -------
+------ end add up article data -------
+------------- cache callback cost time 0.008799  -----------------
+------------- cache callback cost time 0.001058  -----------------
+------ start add up user data -------
+------ 10340  52.0  -------
+------ 10360  73.0  -------
+------ end add up user data -------
+------ start add up tag data -------
+------ 什么情况  13.0  -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ 42581  2.1604486588777633e-18  -------
+------ 42838  6.732397579662766e-11  -------
+------ 42394  2.1008516400406228e-18  -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ 642136  4.320890821762991e-18  -------
+------ 642136  2.1604454108655873e-18  -------
+------ 641994  3.151274601636695e-18  -------
+------ 641994  2.1008497344111367e-18  -------
+------ end add up article data -------
+------ start add up user data -------
+------ 10340  52.0  -------
+------ 10360  73.0  -------
+------ end add up user data -------
+------ start add up tag data -------
+------ 什么情况  13.0  -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ 42581  2.7450091691466605e-11  -------
+------ 42838  2.868885015010816e-07  -------
+------ 42394  2.6984864049644592e-11  -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ 642136  5.49001370374667e-11  -------
+------ 642136  2.7450068518640716e-11  -------
+------ 641994  4.0477273641496474e-11  -------
+------ 641994  2.6984849094241318e-11  -------
+------ end add up article data -------
+------ start add up user data -------
+------ 10340  52.0  -------
+------ 10360  73.0  -------
+------ end add up user data -------
+------ start add up tag data -------
+------ 什么情况  13.0  -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ 42581  2.840550417213146e-10  -------
+------ 42838  1.0684493311248195e-06  -------
+------ 42394  2.79675166474418e-10  -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ 642136  5.681096473892545e-10  -------
+------ 642136  2.840548236936106e-10  -------
+------ 641994  4.1951253831911624e-10  -------
+------ 641994  2.7967502554466956e-10  -------
+------ end add up article data -------
+------ start add up user data -------
+------ 10340  52.0  -------
+------ 10360  73.0  -------
+------ end add up user data -------
+------ start add up tag data -------
+------ 什么情况  13.0  -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ 42581  0.0018289738360860212  -------
+------ 42838  2.0  -------
+------ 42394  0.001798017898337358  -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ 642136  0.0036579476721720424  -------
+------ 642136  0.0018289738360860212  -------
+------ 641994  0.002697026847506037  -------
+------ 641994  0.001798017898337358  -------
+------ end add up article data -------
+------ start add up user data -------
+------ 10340  52.0  -------
+------ 10360  73.0  -------
+------ end add up user data -------
+------ start add up tag data -------
+------ 什么情况  13.0  -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ 42581  0.0018289738360860212  -------
+------ 42838  2.0  -------
+------ 42394  0.001798017898337358  -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ 642136  0.0036579476721720424  -------
+------ 642136  0.0018289738360860212  -------
+------ 641994  0.002697026847506037  -------
+------ 641994  0.001798017898337358  -------
+------ end add up article data -------
+------------- cache callback cost time 0.003522  -----------------
+------------- cache callback cost time 0.009506  -----------------
+------ start add up user data -------
+------ 10340  52.0  -------
+------ 10360  91.0  -------
+------ end add up user data -------
+------ start add up tag data -------
+------ 什么情况  13.0  -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ 42581  0.0018289738360860212  -------
+------ 42838  2.0  -------
+------ 42394  0.001798017898337358  -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ 642136  0.0036579476721720424  -------
+------ 642136  0.0018289738360860212  -------
+------ 641994  0.002697026847506037  -------
+------ 641994  0.001798017898337358  -------
+------ end add up article data -------
+------------- cache callback cost time 0.002665  -----------------
+------------- cache callback cost time 0.05549  -----------------
+------ start add up user data -------
+------ 10340  52.0  -------
+------ 10360  104.0  -------
+------ end add up user data -------
+------ start add up tag data -------
+------ 什么情况  13.0  -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ 42838  2.0  -------
+------ 42840  2.0  -------
+------ 42394  0.001798017898337358  -------
+------ 42581  0.0018289738360860212  -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ 642136  0.0036579476721720424  -------
+------ 642136  0.0018289738360860212  -------
+------ 641994  0.002697026847506037  -------
+------ 641994  0.001798017898337358  -------
+------ end add up article data -------
+------------- cache callback cost time 0.024156  -----------------
+------ start add up user data -------
+------ 10340  52.0  -------
+------ 10360  109.0  -------
+------ end add up user data -------
+------ start add up tag data -------
+------ 什么情况  13.0  -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ 42840  2.0  -------
+------ 42394  0.001798017898337358  -------
+------ 42581  0.0018289738360860212  -------
+------ 42838  4.0  -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ 642136  0.0036579476721720424  -------
+------ 642136  0.0018289738360860212  -------
+------ 641994  0.002697026847506037  -------
+------ 641994  0.001798017898337358  -------
+------ end add up article data -------
+------------- cache callback cost time 0.003518  -----------------
+------------- cache callback cost time 0.008591  -----------------
+------------- cache callback cost time 0.010477  -----------------
+------------- cache callback cost time 0.001241  -----------------
+------------- cache callback cost time 0.004184  -----------------
+------------- cache callback cost time 0.012801  -----------------
+------ start add up user data -------
+------ 10340  52.0  -------
+------ 10360  148.0  -------
+------ end add up user data -------
+------ start add up tag data -------
+------ 什么情况  13.0  -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ 42581  0.0018289738360860212  -------
+------ 42790  0.004472961854073807  -------
+------ 42394  0.001798017898337358  -------
+------ 42838  4.0  -------
+------ 42840  2.0  -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ 642136  0.0036579476721720424  -------
+------ 642136  0.0018289738360860212  -------
+------ 642274  0.0029819745693825377  -------
+------ 642274  0.0014909872846912689  -------
+------ 641994  0.002697026847506037  -------
+------ 641994  0.001798017898337358  -------
+------ end add up article data -------
+------------- cache callback cost time 0.002564  -----------------
+------------- cache callback cost time 0.002623  -----------------
+------------- cache callback cost time 0.002424  -----------------
+------ start add up user data -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ 642050  0.000345602746383653  -------
+------ 642140  0.000695570163289418  -------
+------ 642053  0.000691205492767306  -------
+------ 642172  0.00765731393617421  -------
+------ 638006  0.0015515368496263745  -------
+------ 642173  0.00348059724371555  -------
+------ 642164  0.00417671669245866  -------
+------ 642175  0.00139223889748622  -------
+------ 642068  0.006220849434905754  -------
+------ 642168  0.00069611944874311  -------
+------ 641439  0.0012957401794289867  -------
+------ 642099  0.0013900434093748137  -------
+------ 641947  0.0013705775483571396  -------
+------ 641994  0.0013727146739510425  -------
+------ end add up article data -------
+------ start add up user data -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ 641994  0.0034317866848776065  -------
+------ end add up article data -------
+------ start add up user data -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ 641377  0.0006426388857748842  -------
+------ 641994  0.004118144021853128  -------
+------ end add up article data -------
+------ start add up user data -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ 641377  0.0032131944288744207  -------
+------ 641994  0.004118144021853128  -------
+------ end add up article data -------
+------ start add up user data -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ 641377  0.005783749971973957  -------
+------ 641994  0.004118144021853128  -------
+------ end add up article data -------
+------ start add up user data -------
+------ error :wrong number of arguments (2 for 3) -------
+------ start add up tag data -------
+------ error :wrong number of arguments (2 for 3) -------
+------ start add up weibo data -------
+------ error :wrong number of arguments (2 for 3) -------
+------ start add up article data -------
+------ error :wrong number of arguments (2 for 3) -------
+------ start add up user data -------
+------ error :wrong number of arguments (2 for 3) -------
+------ start add up tag data -------
+------ error :wrong number of arguments (2 for 3) -------
+------ start add up weibo data -------
+------ error :wrong number of arguments (2 for 3) -------
+------ start add up article data -------
+------ error :wrong number of arguments (2 for 3) -------
+------ start add up user data -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ 641377  0.0025630262906803  -------
+------ end add up article data -------
+------ start add up user data -------
+------ error :wrong number of arguments (2 for 3) -------
+------ start add up tag data -------
+------ error :wrong number of arguments (2 for 3) -------
+------ start add up weibo data -------
+------ error :wrong number of arguments (2 for 3) -------
+------ start add up article data -------
+------ error :wrong number of arguments (2 for 3) -------
+------ start add up user data -------
+------ error :wrong number of arguments (2 for 3) -------
+------ start add up tag data -------
+------ error :wrong number of arguments (2 for 3) -------
+------ start add up weibo data -------
+------ error :wrong number of arguments (2 for 3) -------
+------ start add up article data -------
+------ error :wrong number of arguments (2 for 3) -------
+------ start add up user data -------
+------ error :wrong number of arguments (2 for 3) -------
+------ start add up tag data -------
+------ error :wrong number of arguments (2 for 3) -------
+------ start add up weibo data -------
+------ error :wrong number of arguments (2 for 3) -------
+------ start add up article data -------
+------ error :wrong number of arguments (2 for 3) -------
+------ start add up user data -------
+------ error :wrong number of arguments (2 for 3) -------
+------ backtrace :["/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/redis-2.2.2/lib/redis.rb:619:in `zremrangebyrank'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:537:in `clear_result_list'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:404:in `block in add_up_object_data'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:403:in `each'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:403:in `add_up_object_data'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:384:in `add_up_active_user'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:309:in `perform'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/job.rb:127:in `perform'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/worker.rb:163:in `perform'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/worker.rb:130:in `block in work'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/worker.rb:116:in `loop'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/worker.rb:116:in `work'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/tasks.rb:27:in `block (2 levels) in <top (required)>'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:205:in `call'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:205:in `block in execute'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:200:in `each'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:200:in `execute'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:158:in `block in invoke_with_call_chain'", "/Users/jasontai/.rvm/rubies/ruby-1.9.3-p125/lib/ruby/1.9.1/monitor.rb:211:in `mon_synchronize'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:151:in `invoke_with_call_chain'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:144:in `invoke'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:112:in `invoke_task'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:90:in `block (2 levels) in top_level'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:90:in `each'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:90:in `block in top_level'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:129:in `standard_exception_handling'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:84:in `top_level'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:62:in `block in run'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:129:in `standard_exception_handling'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:59:in `run'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/bin/rake:32:in `<top (required)>'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/bin/rake:19:in `load'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/bin/rake:19:in `<main>'"] -------
+------ start add up tag data -------
+------ error :wrong number of arguments (2 for 3) -------
+------ backtrace :["/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/redis-2.2.2/lib/redis.rb:619:in `zremrangebyrank'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:537:in `clear_result_list'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:404:in `block in add_up_object_data'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:403:in `each'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:403:in `add_up_object_data'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:370:in `add_up_hot_tag'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:310:in `perform'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/job.rb:127:in `perform'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/worker.rb:163:in `perform'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/worker.rb:130:in `block in work'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/worker.rb:116:in `loop'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/worker.rb:116:in `work'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/tasks.rb:27:in `block (2 levels) in <top (required)>'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:205:in `call'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:205:in `block in execute'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:200:in `each'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:200:in `execute'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:158:in `block in invoke_with_call_chain'", "/Users/jasontai/.rvm/rubies/ruby-1.9.3-p125/lib/ruby/1.9.1/monitor.rb:211:in `mon_synchronize'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:151:in `invoke_with_call_chain'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:144:in `invoke'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:112:in `invoke_task'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:90:in `block (2 levels) in top_level'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:90:in `each'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:90:in `block in top_level'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:129:in `standard_exception_handling'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:84:in `top_level'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:62:in `block in run'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:129:in `standard_exception_handling'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:59:in `run'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/bin/rake:32:in `<top (required)>'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/bin/rake:19:in `load'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/bin/rake:19:in `<main>'"] -------
+------ start add up weibo data -------
+------ error :wrong number of arguments (2 for 3) -------
+------ backtrace :["/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/redis-2.2.2/lib/redis.rb:619:in `zremrangebyrank'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:537:in `clear_result_list'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:404:in `block in add_up_object_data'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:403:in `each'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:403:in `add_up_object_data'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:356:in `add_up_hot_rt_weibo'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:311:in `perform'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/job.rb:127:in `perform'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/worker.rb:163:in `perform'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/worker.rb:130:in `block in work'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/worker.rb:116:in `loop'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/worker.rb:116:in `work'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/tasks.rb:27:in `block (2 levels) in <top (required)>'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:205:in `call'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:205:in `block in execute'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:200:in `each'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:200:in `execute'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:158:in `block in invoke_with_call_chain'", "/Users/jasontai/.rvm/rubies/ruby-1.9.3-p125/lib/ruby/1.9.1/monitor.rb:211:in `mon_synchronize'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:151:in `invoke_with_call_chain'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:144:in `invoke'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:112:in `invoke_task'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:90:in `block (2 levels) in top_level'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:90:in `each'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:90:in `block in top_level'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:129:in `standard_exception_handling'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:84:in `top_level'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:62:in `block in run'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:129:in `standard_exception_handling'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:59:in `run'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/bin/rake:32:in `<top (required)>'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/bin/rake:19:in `load'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/bin/rake:19:in `<main>'"] -------
+------ start add up article data -------
+------ error :wrong number of arguments (2 for 3) -------
+------ backtrace :["/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/redis-2.2.2/lib/redis.rb:619:in `zremrangebyrank'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:537:in `clear_result_list'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:404:in `block in add_up_object_data'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:403:in `each'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:403:in `add_up_object_data'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:341:in `add_up_hot_article'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:312:in `perform'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/job.rb:127:in `perform'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/worker.rb:163:in `perform'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/worker.rb:130:in `block in work'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/worker.rb:116:in `loop'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/worker.rb:116:in `work'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/tasks.rb:27:in `block (2 levels) in <top (required)>'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:205:in `call'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:205:in `block in execute'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:200:in `each'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:200:in `execute'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:158:in `block in invoke_with_call_chain'", "/Users/jasontai/.rvm/rubies/ruby-1.9.3-p125/lib/ruby/1.9.1/monitor.rb:211:in `mon_synchronize'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:151:in `invoke_with_call_chain'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:144:in `invoke'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:112:in `invoke_task'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:90:in `block (2 levels) in top_level'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:90:in `each'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:90:in `block in top_level'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:129:in `standard_exception_handling'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:84:in `top_level'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:62:in `block in run'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:129:in `standard_exception_handling'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:59:in `run'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/bin/rake:32:in `<top (required)>'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/bin/rake:19:in `load'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/bin/rake:19:in `<main>'"] -------
+------ start add up user data -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ end add up weibo data -------
+------ start add up article data -------
+ -------- ["641377", "0.0025630262906803001"] ---------
+------ 641377  0.0025630262906803  -------
+------ end add up article data -------
+------ start add up user data -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ end add up weibo data -------
+------ start add up article data -------
+ -------- ["641377", "0.0025630262906803001"] ---------
+------ end add up article data -------
+------ start add up user data -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ end add up article data -------
+------ start add up user data -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ 641377  0.000640756572670075  -------
+------ end add up article data -------
+------ start add up user data -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ end add up weibo data -------
+------ start add up article data -------
+ -------- ["641377", "0.00064075657267007502"] ---------
+------ 641377  0.0003203782863350375  -------
+------ end add up article data -------
+------ start add up user data -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ end add up weibo data -------
+------ start add up article data -------
+ -------- ["641377", "0.00032037828633503751"] ---------
+------ end add up article data -------
+------ start add up user data -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ 641377  0.000640756572670075  -------
+------ end add up article data -------
+------ start add up user data -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ end add up weibo data -------
+------ start add up article data -------
+ -------- ["641377", "0.00064075657267007502"] ---------
+------ 641377  0.0003203782863350375  -------
+------ 641994  0.0006842233828631499  -------
+------ end add up article data -------
+------ start add up user data -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ end add up weibo data -------
+------ start add up article data -------
+ -------- ["641377", "0.00032037828633503751"] ---------
+ -------- ["641994", "0.0006842233828631499"] ---------
+------ error :ERR Operation against a key holding the wrong kind of value -------
+------ backtrace :["/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/redis-2.2.2/lib/redis/client.rb:47:in `call'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/redis-2.2.2/lib/redis.rb:635:in `block in zrem'", "/Users/jasontai/.rvm/rubies/ruby-1.9.3-p125/lib/ruby/1.9.1/monitor.rb:211:in `mon_synchronize'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/redis-2.2.2/lib/redis.rb:634:in `zrem'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:400:in `block in add_up_object_data'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:390:in `each'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:390:in `add_up_object_data'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:341:in `add_up_hot_article'", "/Users/jasontai/Project/nbd/app/models/cache_callback/base_callback.rb:312:in `perform'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/job.rb:127:in `perform'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/worker.rb:163:in `perform'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/worker.rb:130:in `block in work'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/worker.rb:116:in `loop'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/worker.rb:116:in `work'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/resque-1.17.1/lib/resque/tasks.rb:27:in `block (2 levels) in <top (required)>'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:205:in `call'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:205:in `block in execute'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:200:in `each'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:200:in `execute'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:158:in `block in invoke_with_call_chain'", "/Users/jasontai/.rvm/rubies/ruby-1.9.3-p125/lib/ruby/1.9.1/monitor.rb:211:in `mon_synchronize'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:151:in `invoke_with_call_chain'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/task.rb:144:in `invoke'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:112:in `invoke_task'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:90:in `block (2 levels) in top_level'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:90:in `each'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:90:in `block in top_level'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:129:in `standard_exception_handling'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:84:in `top_level'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:62:in `block in run'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:129:in `standard_exception_handling'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/lib/rake/application.rb:59:in `run'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/gems/rake-0.9.2/bin/rake:32:in `<top (required)>'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/bin/rake:19:in `load'", "/Users/jasontai/.rvm/gems/ruby-1.9.3-p125@3.0.9/bin/rake:19:in `<main>'"] -------
+------ start add up user data -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ end add up weibo data -------
+------ start add up article data -------
+ -------- ["641377", "0.00032037828633503751"] ---------
+ -------- ["641994", "0.0006842233828631499"] ---------
+------ 641994  0.0006842233828631499  -------
+------ end add up article data -------
+------ start add up user data -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ end add up weibo data -------
+------ start add up article data -------
+ -------- ["641994", "0.0006842233828631499"] ---------
+------ 641377  0.000640756572670075  -------
+------ end add up article data -------
+------ start add up user data -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ end add up weibo data -------
+------ start add up article data -------
+ --- backup ----- ["641377", "0.00064075657267007502"] ---------
+------ 641377  0.000640756572670075  -------
+------ end add up article data -------
+------------- cache callback cost time 0.00285  -----------------
+------------- cache callback cost time 0.001088  -----------------
+------------- cache callback cost time 0.002525  -----------------
+------------- cache callback cost time 0.003537  -----------------
+------------- cache callback cost time 0.002766  -----------------
+------------- cache callback cost time 0.002679  -----------------
+------------- cache callback cost time 0.002756  -----------------
+------------- cache callback cost time 0.002365  -----------------
+------------- cache callback cost time 0.002388  -----------------
+------------- cache callback cost time 0.002435  -----------------
+------------- cache callback cost time 0.002982  -----------------
+------------- cache callback cost time 0.002995  -----------------
+------------- cache callback cost time 0.003743  -----------------
+------------- cache callback cost time 0.002545  -----------------
+------------- cache callback cost time 0.002691  -----------------
+------------- cache callback cost time 0.00318  -----------------
+------------- cache callback cost time 0.003432  -----------------
+------------- cache callback cost time 0.0026  -----------------
+------------- cache callback cost time 0.002987  -----------------
+------------- cache callback cost time 0.003531  -----------------
+------------- cache callback cost time 0.002726  -----------------
+------------- cache callback cost time 0.002469  -----------------
+------------- cache callback cost time 0.00236  -----------------
+------------- cache callback cost time 0.002433  -----------------
+------------- cache callback cost time 0.00314  -----------------
+------------- cache callback cost time 0.002523  -----------------
+------------- cache callback cost time 0.003731  -----------------
+------------- cache callback cost time 0.002419  -----------------
+------------- cache callback cost time 0.002427  -----------------
+------------- cache callback cost time 0.002475  -----------------
+------------- cache callback cost time 0.00253  -----------------
+------------- cache callback cost time 0.002429  -----------------
+------------- cache callback cost time 0.00929  -----------------
+------------- cache callback cost time 0.001372  -----------------
+------------- cache callback cost time 0.013481  -----------------
+------------- cache callback cost time 0.001668  -----------------
+------------- cache callback cost time 0.009294  -----------------
+------------- cache callback cost time 0.000994  -----------------
+------------- cache callback cost time 0.00304  -----------------
+------------- cache callback cost time 0.002614  -----------------
+------------- cache callback cost time 0.002708  -----------------
+------------- cache callback cost time 0.002471  -----------------
+------------- cache callback cost time 0.002988  -----------------
+------------- cache callback cost time 0.002544  -----------------
+------------- cache callback cost time 0.003221  -----------------
+------------- cache callback cost time 0.002702  -----------------
+------------- cache callback cost time 0.002866  -----------------
+------------- cache callback cost time 0.002462  -----------------
+------------- cache callback cost time 0.003164  -----------------
+------------- cache callback cost time 0.002726  -----------------
+------------- cache callback cost time 0.002511  -----------------
+------------- cache callback cost time 0.003296  -----------------
+------------- cache callback cost time 0.003522  -----------------
+------------- cache callback cost time 0.003806  -----------------
+------------- cache callback cost time 0.00375  -----------------
+------------- cache callback cost time 0.003182  -----------------
+------------- cache callback cost time 0.004048  -----------------
+------------- cache callback cost time 0.00297  -----------------
+------------- cache callback cost time 0.002736  -----------------
+------------- cache callback cost time 0.002644  -----------------
+------------- cache callback cost time 0.002479  -----------------
+------------- cache callback cost time 0.004159  -----------------
+------------- cache callback cost time 0.002536  -----------------
+------------- cache callback cost time 0.003171  -----------------
+------------- cache callback cost time 0.003006  -----------------
+------------- cache callback cost time 0.002588  -----------------
+------------- cache callback cost time 0.0031  -----------------
+------------- cache callback cost time 0.002573  -----------------
+------------- cache callback cost time 0.00297  -----------------
+------------- cache callback cost time 0.002614  -----------------
+------------- cache callback cost time 0.003464  -----------------
+------------- cache callback cost time 0.002574  -----------------
+------------- cache callback cost time 0.003342  -----------------
+------------- cache callback cost time 0.003061  -----------------
+------------- cache callback cost time 0.003364  -----------------
+------------- cache callback cost time 0.002471  -----------------
+------------- cache callback cost time 0.003685  -----------------
+------------- cache callback cost time 0.003311  -----------------
+------------- cache callback cost time 0.002967  -----------------
+------------- cache callback cost time 0.000693  -----------------
+------------- cache callback cost time 0.000669  -----------------
+------------- cache callback cost time 0.00053  -----------------
+------------- cache callback cost time 0.002418  -----------------
+------------- cache callback cost time 0.000763  -----------------
+------------- cache callback cost time 0.000454  -----------------
+------------- cache callback cost time 0.000465  -----------------
+------------- cache callback cost time 0.043295  -----------------
+------------- cache callback cost time 0.000558  -----------------
+------------- cache callback cost time 0.000971  -----------------
+------------- cache callback cost time 0.000525  -----------------
+------------- cache callback cost time 0.002719  -----------------
+------------- cache callback cost time 0.002737  -----------------
+------------- cache callback cost time 0.002869  -----------------
+------ start add up user data -------
+------ 10348  38.0  -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ end add up weibo data -------
+------ start add up article data -------
+ --- backup ----- ["641377", "0.00064075657267007502"] ---------
+------ 642030  0.00023304295495172472  -------
+------ 642112  0.0009357631046615113  -------
+------ 642060  0.0016313006846620732  -------
+------ 641540  0.00022417640609750258  -------
+------ 642126  0.0007022087268334104  -------
+------ 641172  0.00021975196657857398  -------
+------ 642136  0.00046813915122227354  -------
+------ 641542  0.003138469685365036  -------
+------ 642172  0.001639389573520076  -------
+------ 642155  0.000468397021005736  -------
+------ 642362  7.453017485435749e-07  -------
+------ 641462  0.003786936358727146  -------
+------ 642083  0.003495644324275871  -------
+------ 642166  0.000234198510502868  -------
+------ 641717  0.00022828165865193791  -------
+------ 641484  0.0008919827333675432  -------
+------ 641377  0.00044272496553331544  -------
+------ 642099  0.001169703880826889  -------
+------ 642199  0.0002623825303046488  -------
+------ 641977  0.00023189823568459396  -------
+------ 639349  0.00020011022384586093  -------
+------ 641996  0.0004637964713691879  -------
+------ end add up article data -------
+------ start add up user data -------
+------ 10354  175.2  -------
+------ 10355  30.0  -------
+------ 10347  76.0  -------
+------ 10340  25.0  -------
+------ 10348  14.0  -------
+------ 10360  8.0  -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ 43096  0.008533064894673646  -------
+------ 43098  0.008533064894673646  -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ 642030  0.00046608590990344944  -------
+------ 642040  0.00023304295495172472  -------
+------ 642050  0.00046608590990344944  -------
+------ 642134  0.00023406957561113677  -------
+------ 642053  0.0009321718198068989  -------
+------ 642172  0.0046839702100573595  -------
+------ 642136  0.0007022087268334104  -------
+------ 641542  0.00044835281219500516  -------
+------ 642370  0.0035658230673061946  -------
+------ 642083  0.00046608590990344944  -------
+------ 641449  0.0004455219245561348  -------
+------ 641359  0.00044272496553331544  -------
+------ 642099  0.00046788155233075564  -------
+------ 639823  0.00040860095475014793  -------
+------ 639267  0.00039926723245669  -------
+------ 641887  0.00023114103580376092  -------
+------ 639397  0.0008015889297517143  -------
+------ end add up article data -------
+------ start add up user data -------
+ --- backup ----- ["10360", "8"] ---------
+ --- backup ----- ["10348", "14"] ---------
+ --- backup ----- ["10340", "25"] ---------
+ --- backup ----- ["10355", "30"] ---------
+ --- backup ----- ["10347", "76"] ---------
+ --- backup ----- ["10354", "175.19999999999999"] ---------
+------ 10354  175.2  -------
+------ 10355  30.0  -------
+------ 10347  76.0  -------
+------ 10340  25.0  -------
+------ 10348  14.0  -------
+------ 10360  8.0  -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+ --- backup ----- ["43096", "0.0085330648946736459"] ---------
+ --- backup ----- ["43098", "0.0085330648946736459"] ---------
+------ 43096  0.008533064894673646  -------
+------ 43098  0.008533064894673646  -------
+------ end add up weibo data -------
+------ start add up article data -------
+ --- backup ----- ["641887", "0.00023114103580376092"] ---------
+ --- backup ----- ["642040", "0.00023304295495172472"] ---------
+ --- backup ----- ["642134", "0.00023406957561113677"] ---------
+ --- backup ----- ["639267", "0.00039926723245668999"] ---------
+ --- backup ----- ["639823", "0.00040860095475014793"] ---------
+ --- backup ----- ["641359", "0.00044272496553331544"] ---------
+ --- backup ----- ["641449", "0.00044552192455613482"] ---------
+ --- backup ----- ["641542", "0.00044835281219500516"] ---------
+ --- backup ----- ["642030", "0.00046608590990344944"] ---------
+ --- backup ----- ["642050", "0.00046608590990344944"] ---------
+ --- backup ----- ["642083", "0.00046608590990344944"] ---------
+ --- backup ----- ["642099", "0.00046788155233075564"] ---------
+ --- backup ----- ["642136", "0.00070220872683341036"] ---------
+ --- backup ----- ["639397", "0.00080158892975171431"] ---------
+ --- backup ----- ["642053", "0.00093217181980689888"] ---------
+ --- backup ----- ["642370", "0.0035658230673061946"] ---------
+ --- backup ----- ["642172", "0.0046839702100573595"] ---------
+------ 642030  0.00046608590990344944  -------
+------ 642040  0.00023304295495172472  -------
+------ 642050  0.00046608590990344944  -------
+------ 642134  0.00023406957561113677  -------
+------ 642053  0.0009321718198068989  -------
+------ 642172  0.0046839702100573595  -------
+------ 642136  0.0007022087268334104  -------
+------ 641542  0.00044835281219500516  -------
+------ 642370  0.0035658230673061946  -------
+------ 642083  0.00046608590990344944  -------
+------ 641449  0.0004455219245561348  -------
+------ 641359  0.00044272496553331544  -------
+------ 642099  0.00046788155233075564  -------
+------ 639823  0.00040860095475014793  -------
+------ 639267  0.00039926723245669  -------
+------ 641887  0.00023114103580376092  -------
+------ 639397  0.0008015889297517143  -------
+------ end add up article data -------
+------------- cache callback cost time 0.002403  -----------------
+------------- cache callback cost time 0.000448  -----------------
+------------- cache callback cost time 0.000682  -----------------
+------------- cache callback cost time 0.000642  -----------------
+------------- cache callback cost time 0.003485  -----------------
+------------- cache callback cost time 0.011844  -----------------
+------------- cache callback cost time 0.070755  -----------------
+------------- cache callback cost time 0.00819  -----------------
+------------- cache callback cost time 0.005435  -----------------
+------------- cache callback cost time 0.011221  -----------------
+------------- cache callback cost time 0.003896  -----------------
+------------- cache callback cost time 0.009311  -----------------
+------------- cache callback cost time 0.003425  -----------------
+------------- cache callback cost time 0.010315  -----------------
+------------- cache callback cost time 0.002779  -----------------
+------------- cache callback cost time 0.007761  -----------------
+------------- cache callback cost time 0.003858  -----------------
+------------- cache callback cost time 0.008962  -----------------
+------------- cache callback cost time 0.003448  -----------------
+------------- cache callback cost time 0.008584  -----------------
+------------- cache callback cost time 0.002935  -----------------
+------------- cache callback cost time 0.010639  -----------------
+------------- cache callback cost time 1.148403  -----------------
+------------- cache callback cost time 0.05652  -----------------
+------------- cache callback cost time 0.00297  -----------------
+------------- cache callback cost time 0.00365  -----------------
+------------- cache callback cost time 0.003271  -----------------
+------------- cache callback cost time 0.00369  -----------------
+------------- cache callback cost time 0.097719  -----------------
+------------- cache callback cost time 0.003446  -----------------
+------------- cache callback cost time 0.002804  -----------------
+------------- cache callback cost time 0.002527  -----------------
+############# cache callback cost time : 1.008114
+############# cache callback cost time : 0.002732
+############# cache callback cost time : 0.002938
+------ start add up user data -------
+------ end add up user data -------
+------ start add up tag data -------
+------ end add up tag data -------
+------ start add up weibo data -------
+------ end add up weibo data -------
+------ start add up article data -------
+------ 642173  0.0022636943731176216  -------
+------ 630649  0.00024436376841259656  -------
+------ 642166  0.0007545647910392072  -------
+------ end add up article data -------
+############# cache callback cost time : 0.05419
+############# cache callback cost time : 0.005266
+------------- cache callback cost time 0.016166  -----------------
+############# cache callback cost time : 0.001556
+------------- cache callback cost time 0.0018  -----------------
+############# cache callback cost time : 0.002446
+------------- cache callback cost time 0.002963  -----------------
+############# cache callback cost time : 0.002031
+------------- cache callback cost time 0.002322  -----------------
+############# cache callback cost time : 0.001888
+------------- cache callback cost time 0.002268  -----------------
+############# cache callback cost time : 0.001686
+------------- cache callback cost time 0.001962  -----------------
+############# cache callback cost time : 0.002534
+------------- cache callback cost time 0.00286  -----------------
+############# cache callback cost time : 0.002494
+------------- cache callback cost time 0.002807  -----------------
+############# cache callback cost time : 0.001945
+------------- cache callback cost time 0.002277  -----------------
+############# cache callback cost time : 0.003259339
+############# cache callback cost time : 0.00345637
+############# cache callback cost time : 0.002494412
+------------- cache callback cost time 0.002679844  -----------------
+############# cache callback cost time : 0.003549688
+############# cache callback cost time : 0.003503979
+############# cache callback cost time : 0.003420336
+############# cache callback cost time : 0.003401124
+############# cache callback cost time : 0.003696409
+############# cache callback cost time : 0.003304809
+############# cache callback cost time : 0.003405407
+############# cache callback cost time : 0.003594476
+############# cache callback cost time : 0.002655865
+############# cache callback cost time : 0.000674531
+############# cache callback cost time : 0.000951799
+------------- cache callback cost time 0.008981676  -----------------
+############# cache callback cost time : 0.003430303
+############# cache callback cost time : 0.013312123
+############# cache callback cost time : 0.003116486
+############# cache callback cost time : 0.078361556
+------------- cache callback cost time 0.092411222  -----------------
+------------- cache callback cost time 0.002849421  -----------------
+############# cache callback cost time : 0.002554235
+------------- cache callback cost time 0.002750673  -----------------
+############# cache callback cost time : 0.003228228
+############# cache callback cost time : 0.002402212
+------------- cache callback cost time 0.002626556  -----------------
+############# cache callback cost time : 0.000914407
+############# cache callback cost time : 0.000878318
+------------- cache callback cost time 0.002067159  -----------------
+############# cache callback cost time : 0.0023222
+------------- cache callback cost time 0.002564534  -----------------
+############# cache callback cost time : 0.002698723
+------------- cache callback cost time 0.003002908  -----------------
+############# cache callback cost time : 0.002507319
+############# cache callback cost time : 0.00313539
+############# cache callback cost time : 0.011265976
+############# cache callback cost time : 0.002748721
+------------- cache callback cost time 0.002972291  -----------------
+############# cache callback cost time : 0.081728217
+------------- cache callback cost time 0.081952097  -----------------
+############# cache callback cost time : 0.00236785
+############# cache callback cost time : 0.001224845
+------------- cache callback cost time 0.01454441  -----------------
+############# cache callback cost time : 0.002294561
+############# cache callback cost time : 0.000724217
+############# cache callback cost time : 0.000718555
+------------- cache callback cost time 0.00404124  -----------------
+############# cache callback cost time : 0.001244947
+############# cache callback cost time : 0.001301202
+------------- cache callback cost time 0.007280106  -----------------
+############# cache callback cost time : 0.002180144
+------------- cache callback cost time 0.002464585  -----------------
+############# cache callback cost time : 0.002139903
+############# cache callback cost time : 0.000798676
+------------- cache callback cost time 0.007164466  -----------------
+############# cache callback cost time : 0.002197069
+############# cache callback cost time : 0.000785179
+------------- cache callback cost time 0.008394737  -----------------
+############# cache callback cost time : 0.003196415
+############# cache callback cost time : 0.002060635
+############# cache callback cost time : 0.001158604
+------------- cache callback cost time 0.015202607  -----------------
+############# cache callback cost time : 0.002538382
+------------- cache callback cost time 0.002714024  -----------------
+############# cache callback cost time : 0.002981445
+############# cache callback cost time : 0.00358862
+############# cache callback cost time : 0.003651781
+############# cache callback cost time : 0.003483829
+------------- cache callback cost time 0.003883995  -----------------
+############# cache callback cost time : 0.000925175
+############# cache callback cost time : 0.000764604
+------------- cache callback cost time 0.001913935  -----------------
+############# cache callback cost time : 0.000928282
+############# cache callback cost time : 0.000857003
+------------- cache callback cost time 0.001985515  -----------------
+############# cache callback cost time : 0.0008909
+############# cache callback cost time : 0.000863434
+------------- cache callback cost time 0.0019672  -----------------
+############# cache callback cost time : 0.079258894
+############# cache callback cost time : 0.01824532
+############# cache callback cost time : 0.076495296
+############# cache callback cost time : 0.011467592
+############# cache callback cost time : 0.012036028
+############# cache callback cost time : 0.002633887
+------------- cache callback cost time 0.010027307  -----------------
+############# cache callback cost time : 0.001162795
+############# cache callback cost time : 0.000917183
+------------- cache callback cost time 0.002333417  -----------------
+############# cache callback cost time : 0.002206601
+############# cache callback cost time : 0.000841889
+------------- cache callback cost time 0.003368423  -----------------
+############# cache callback cost time : 0.002307839
+############# cache callback cost time : 0.000753213
+############# cache callback cost time : 0.001150619
+------------- cache callback cost time 0.008705067  -----------------
+############# cache callback cost time : 0.001151641
+############# cache callback cost time : 0.000954854
+------------- cache callback cost time 0.002353821  -----------------
+############# cache callback cost time : 0.002639681
+############# cache callback cost time : 0.00073271
+------------- cache callback cost time 0.003621164  -----------------
+############# cache callback cost time : 0.000741377
+############# cache callback cost time : 0.000701456
+------------- cache callback cost time 0.005661389  -----------------
+############# cache callback cost time : 0.00280472
+############# cache callback cost time : 0.000728842
+############# cache callback cost time : 0.000619414
+############# cache callback cost time : 0.000861482
+------------- cache callback cost time 0.00966774  -----------------
+############# cache callback cost time : 0.002356046
+############# cache callback cost time : 0.000701322
+------------- cache callback cost time 0.007356819  -----------------
+############# cache callback cost time : 0.002224726
+############# cache callback cost time : 0.00077296
+############# cache callback cost time : 0.001073997
+------------- cache callback cost time 0.008802177  -----------------
+############# cache callback cost time : 0.002174964
+############# cache callback cost time : 0.000816606
+############# cache callback cost time : 0.000621366
+############# cache callback cost time : 0.001333756
+------------- cache callback cost time 0.010218857  -----------------
+############# cache callback cost time : 0.011217212
+############# cache callback cost time : 0.003528363
+############# cache callback cost time : 0.000923305
+############# cache callback cost time : 0.00070955
+------------- cache callback cost time 0.012115335  -----------------
+############# cache callback cost time : 0.001353103
+############# cache callback cost time : 0.000747131
+############# cache callback cost time : 0.000611947
+------------- cache callback cost time 0.003006297  -----------------
+############# cache callback cost time : 0.011448132
+############# cache callback cost time : 0.002192411
+------------- cache callback cost time 0.019984291  -----------------
+############# cache callback cost time : 0.002516273
+############# cache callback cost time : 0.00078449
+------------- cache callback cost time 0.015868976  -----------------
+############# cache callback cost time : 0.002047807
+------------- cache callback cost time 0.002245509  -----------------
+############# cache callback cost time : 0.002072441
+------------- cache callback cost time 0.002270173  -----------------
+############# cache callback cost time : 0.001915124
+############# cache callback cost time : 0.000626799
+------------- cache callback cost time 0.006964502  -----------------
+############# cache callback cost time : 0.000892503
+############# cache callback cost time : 0.000631578
+------------- cache callback cost time 0.001749956  -----------------
+############# cache callback cost time : 0.002022342
+############# cache callback cost time : 0.000635471
+------------- cache callback cost time 0.007192791  -----------------
+############# cache callback cost time : 0.000741325
+############# cache callback cost time : 0.000582805
+------------- cache callback cost time 0.001483355  -----------------

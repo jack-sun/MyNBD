@@ -1,0 +1,69 @@
+<%
+=begin
+Parameters:
+	articles: Array
+	list_title: String (optional, default '')
+	column_id: Int (optional, default '')
+=end
+list_title = "头条" unless list_title
+column_id = "" unless column_id
+%>
+
+<div id="headArticle">
+	<ul id="headArticleIndex">
+		<% articles.each_with_index do |article, index| %>
+		<li><a href="javascript:void(0)"><%= index+1 %></a></li>
+		<% end %>
+		<li slide-index-disable=true><a title="更多头条" href="/columns/<%=column_id%>">…</a></li>
+	</ul>
+	<div id="headArticleContainer">
+		<% articles.each_with_index do |article, index|%>
+		<div>
+			<%= link_to image_tag(article_thumbnail_path(article, :large_a), :class => "relativeImage", :alt => article.list_title),  article_url(article), {:target => "_blank"} if article.image.present? %>
+			<div class="paragraph">
+				<h2 class="headline" <%if article.is_special? -%>style="font-size:15px;"<% end -%>>
+					<%if article.is_special?%><span class="articleLabel red"><b><%= Article::SPECIAL[article.special] %></b></span><%end%>
+					<%= link_to article.list_title, article_url(article), {:target => "_blank", :title => article.title} %>
+				</h2>
+				<p id="headArticleDigest_<%=index%>">
+					<%= article.show_digest %>
+				</p>
+				<div id="articleChildrenBox_<%=index%>" class="additionalOpt">
+					<ul id="articleChildren_<%=index%>" class="unorderList">
+						<% article.relate_article_children.order("pos desc").each do |a| %>
+							<li>
+								<%= link_to a.children_title, a.children_url, {:target => "_blank", :title => a.children_title} %>
+							</li>
+						<%end %>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<% end %>
+	</div>
+	<div class="clear">
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	$(function(){
+		//autoSize digest height
+		for(var i = 0;i < $("#headArticle .paragraph").length;i++){
+			var fixedHeight = $('#articleChildrenBox_'+i).height();
+			var realHeight = $('#articleChildren_'+i).height();
+			if(fixedHeight > realHeight){
+				var digestHeight = $('#headArticleDigest_'+i).height();
+				$('#headArticleDigest_'+i).height(digestHeight + fixedHeight - realHeight);
+			}
+		}
+		
+		$.nbdslide.init({
+			optDOMs:["#headArticleContainer"],
+			indexDOM:"#headArticleIndex",
+			style:"slide-y",
+			interval:8000
+		});
+		
+	});
+</script>

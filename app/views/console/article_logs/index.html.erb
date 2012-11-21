@@ -1,0 +1,39 @@
+<div class="sectionA">
+  <div class="title">
+    <%case @common_navs%>
+    <%when ArticleLog::UPDATE%>
+      <h1>操作记录-更新文章</h1>
+    <%when ArticleLog::BAN%>
+      <h1>操作记录-屏蔽文章</h1>
+    <%when ArticleLog::DELETE%>
+      <h1>操作记录-删除文章</h1>
+    <%when ArticleLog::PUBLISH%>
+      <h1>操作记录-发布文章</h1>
+    <%else%>
+      <h1>操作记录-所有操作</h1>
+    <%end%>
+  </div>
+  <div class="content rightColCenter">
+    <table class="tableA">
+      <tr>
+        <th>标题</th>
+        <th>最后操作人</th>
+        <th>最后操作</th>
+        <th>最后修改时间</th>
+      </tr>
+
+      <% @article_ids.each do |article_id| %>
+        <% article = @article_logs[article_id.article_id] %>
+        <tr>
+          <td><%= link_to article.article_title, detail_console_article_logs_path(:article_id => article_id.article_id) %></td>
+          <td><%= article.cmd_type %></td>
+          <td><%= article.staff.real_name %></td>
+          <td><%= article.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="operation">
+    <%= paginate(@article_ids) %>
+  </div>
+</div>

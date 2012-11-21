@@ -1,0 +1,6 @@
+<ul>
+    <li <% if defined?(@weibos_navs) and @weibos_navs == "all" %>class="current"<%end%> ><%= link_to "用户微薄", console_weibos_url %></li>
+	<li <% if defined?(@weibos_navs) and @weibos_navs == "sys" %>class="current"<%end%> ><%= link_to "系统微薄", sys_weibos_console_weibos_url %></li>
+	<li <% if defined?(@weibos_navs) and @weibos_navs == "hot_rt" %>class="current"<%end%> ><%= link_to "热门转发", hot_rt_console_weibos_url %></li>
+	<li <% if defined?(@weibos_navs) and @weibos_navs == "banned" %>class="current"<%end%> ><%= link_to "已屏蔽", banned_console_weibos_url %></li>
+</ul>

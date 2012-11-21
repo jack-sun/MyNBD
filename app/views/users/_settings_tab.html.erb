@@ -1,0 +1,13 @@
+<div class="tabs">
+	<ul>
+		<li <% if index == "general"%>class="current"<%end%> >
+			<%= link_to "基本信息", settings_user_url %>
+		</li>
+		<li <% if index == "password"%>class="current"<%end%> >
+			<%= link_to "修改密码", change_password_user_url %>
+		</li>
+        <li <% if index == "weibo_account"%>class="current"<%end%> >
+            <%= link_to "绑定账号", weibo_accounts_user_url %>
+        </li>
+	</ul>
+</div>

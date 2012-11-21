@@ -1,0 +1,193 @@
+#wrapper { margin-top:10px !important; }
+
+.bannerAd{
+	margin-top: 0;
+}
+
+.marketIntegrate .unorderList li{
+	padding-left: 0;
+	background: none;
+	line-height: 28px;
+}
+
+.leftCol .columnSection .articleList li.articleRecommend{
+	padding: 5px 5px 0 5px;
+	background-color: #F2F5FA;
+	width: 295px;
+	margin-bottom: 10px;
+	border-bottom: 1px dotted #e5e5e5;
+}
+
+.columnSection .articleRecommend .rcDigest p.restrict{
+	height: 80px;
+}
+
+.leftCol .columnSection.yetanUpdate .articleList li.articleRecommend{
+	width: 275px;
+	margin-bottom: 5px;
+}
+
+.columnSection .articleRecommend .rcDigest img{
+	width: 60px;
+	height: 75px;
+}
+
+.sectionA.columnSection .content{
+	padding-top: 0;
+}
+#weiboLive .avatar{
+	display: block;
+	border: 1px solid #ccc;
+	padding: 1px;
+	width: 50px;
+	height: 50px;
+	float: left;
+	margin-right: 8px;
+}
+#weiboLive .weiboItemList .itemContent{
+	margin-left: 0;
+}
+
+#weiboLive .weiboItemList .itemContent p{
+	margin-bottom: 0;
+	height: 63px;
+	overflow: hidden;
+	padding: 0 5px;
+}
+#weiboLive .weiboItemList{
+	background-color: white;
+}
+#weiboLive .weiboItemList .itemBottom{
+	margin-top: 3px;
+	padding: 0 5px;
+}
+#weiboLive .weiboItemList li{
+	margin-bottom: 0;
+	padding: 7px 0;
+}
+#weiboLive{
+	font-family: Arial, sans-serif;
+}
+#weiboLive .content{
+	padding: 5px;
+	background-color: #f2f5fa;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.weiboLiveCompereProfile{
+	padding-bottom: 5px;
+	margin-bottom: 0;
+	background-color: #F2F5FA;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+/* Hot Comments */
+
+#hotComments .weiboItemList .itemContent p{
+	height: 38px;
+	overflow: hidden;
+}
+
+#hotComments .weiboItemList .avatar img{
+	width: 30px;
+	height: 30px;
+}
+
+#hotComments .weiboItemList .itemContent{
+	margin-left: 45px;
+	font-size: 13px;
+	font-family: Arial, sans-serif;
+}
+
+.block .blockTitle .opts a{
+	margin-left: 10px;
+}
+
+
+.focusArticle img{
+	float: left;
+	width: 80px;
+	height: 60px;
+}
+
+.focusArticle .rcDigest {
+	height: 60px;
+	overflow: hidden;
+}
+
+.focusArticle .rcDigest p.restrict{
+	height: 40px;
+}
+
+.focusArticle .childrenArticles{
+	margin-top: 0;
+}
+
+.rolling{
+	font-size: 13px;
+}
+.NBDFeatures, .IPOResearch, .NBDConsumer{
+	margin-bottom: 4px;
+}
+.NBDFeatures .rcDigest, .IPOResearch .rcDigest, .NBDConsumer .rcDigest{
+	height: 60px;
+	overflow: hidden;
+}
+
+.tankArticlesBox { width:100%; }
+.tankArticlesBox td { padding:10px 10px 5px 5px; width:25%; }
+.tankArticlesBox .thinkTitle { display:block; height:42px; word-wrap:break-word; text-align:center; color:#303030; font-weight:bolder; overflow:hidden;}
+.tankArticlesBox .thinkTitle:hover{
+	color: #303030;
+}
+.expertAvatar { display:block; margin:0 auto; width:100px; text-align: center; color: gray; }
+.expertAvatar img{
+	margin-bottom: 5px;
+}
+.tankArticlesBox .articleDigest{
+	font-size: 13px;
+	line-height: 20px;
+	color: gray;
+	height: 80px;
+	overflow:hidden;
+}
+
+#scrollNewsHome { line-height:24px; font-size:12px; border-bottom:1px solid #eee; margin-bottom:15px; width: 650px; }
+#scrollNewsHome .label { float:left; padding-right:10px; }
+#scrollNewsHomeWrapper { position:relative; overflow:hidden; height:24px; }
+#scrollNewsHomeList { position:absolute; top:0; left:0; }
+#scrollNewsHomeList li { float:left; margin:0 20px 0 0; }
+#scrollNewsHome a{
+	color: #303030;
+}
+
+/* NTT Entry */
+.nttEntry .articleRecommend .rcDigest p.restrict{
+	font-size: 12px;
+	line-height: 18px;
+	height: 54px;
+}
+.nttEntry .articleList li.articleRecommend{
+	padding-bottom: 5px;
+}
+.nttEntry .articleList li.articleRecommend.last{
+	padding-bottom: 0;
+}
+.nttEntry .content{
+	padding-bottom: 0;
+}
+
+#bulletin{
+	font-size: 12px;
+	height: 22px;
+	line-height: 22px;
+	margin-bottom: 2px;
+}
+#bulletin .moreLink{
+	float: right;
+	font-family: Arial, sans-serif;
+	color: #808080;
+}
+#bulletin .label{
+	color:#303030;
+}

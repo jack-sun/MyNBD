@@ -1,0 +1,138 @@
+<div class="sectionA">
+	<div class="title">
+		<h1>文章管理 - 文章统计</h1>
+		<div class="opts">
+			<%if Weibo.content_check_needed? %>
+				<%= link_to "<span>社区 - 已关闭</span>".html_safe, toggle_content_check_status_console_weibos_url, :method => :post, :confirm => "你确定要开启‘社区’吗", :class => "btnGreen followManaBtn", :id => "switchStatBtn" %>
+			<%else%>
+				<%= link_to "<span>社区 - 已开启</span>".html_safe, toggle_content_check_status_console_weibos_url, :method => :post, :confirm => "你确定要关闭‘社区’吗？用户产生的所有内容，将是‘屏蔽/待审核’状态", :class => "btnGrayBlue" %>
+			<%end%>
+			<div class="clear"></div>
+		</div>
+	</div>
+	<div class="content rightColCenter" id="body_state">
+		<div class="tabs">
+			<ul>
+				<li <%= stats_class_helper("staff") %>>
+					<%= link_to "编辑", stats_console_articles_url(:type => "staff", :filter => @filter_type, :page => params[:page]) %>
+				</li>
+				<li <%= stats_class_helper("channel") %>>
+					<%= link_to "频道", stats_console_articles_url(:type => "channel", :filter => @filter_type, :page => params[:page]) %>
+				</li>
+				<li <%= stats_class_helper("column") %>>
+					<%= link_to "栏目", stats_console_articles_url(:type => "column", :filter => @filter_type, :page => params[:page]) %>
+				</li>
+				<li <%= stats_class_helper("newspaper") %>>
+					<%= link_to "今日报纸", stats_console_articles_url(:type => "newspaper", :filter => @filter_type, :page => params[:page]) %>
+				</li>
+			</ul>
+		</div>
+		<div class="datePicker">
+			<ul>
+				<li <%= stats_class_helper("today") %>>
+					<%= link_to "今天", stats_console_articles_url(:type => @stats_type, :filter => "today", :page => params[:page]) %>
+				</li>
+				<li <%= stats_class_helper("yesterday") %>>
+					<%= link_to "昨天", stats_console_articles_url(:type => @stats_type, :filter => "yesterday", :page => params[:page]) %>
+				</li>
+				<li <%= stats_class_helper("this_week") %>>
+					<%= link_to "本周", stats_console_articles_url(:type => @stats_type, :filter => "this_week", :page => params[:page]) %>
+				</li>
+				<li <%= stats_class_helper("last_week") %>>
+					<%= link_to "上周", stats_console_articles_url(:type => @stats_type, :filter => "last_week", :page => params[:page]) %>
+				</li>
+				<li <%= stats_class_helper("this_month") %>>
+					<%= link_to "本月 (#{Time.now.strftime('%Y-%m')})", stats_console_articles_url(:type => @stats_type, :filter => "this_month", :page => params[:page]) %>
+				</li>
+				<li <%= stats_class_helper("pre_month") %>>
+					<%= link_to "上月 (#{(Time.now.beginning_of_month - 1.months).strftime('%Y-%m')})", stats_console_articles_url(:type => @stats_type, :filter => "pre_month", :page => params[:page]) %>
+				</li>
+                                <li <%= stats_class_helper("last_month") %>>
+					<%= link_to "前月 (#{(Time.now.beginning_of_month - 2.months).strftime('%Y-%m')})", stats_console_articles_url(:type => @stats_type, :filter => "last_month", :page => params[:page]) %>
+				</li>
+			</ul>
+		</div>
+		<table class="tableA">
+			<thead>
+				<tr>
+					<th><%= Article::STATS_NAME[@stats_type] %></th>
+					<th>文章总数</th>
+					<th>点击总数</th>
+                    <% if @stats_type == "staff" %>
+                      <th>目标设定</th>
+                    <% end %>
+				</tr>
+			</thead>
+			<tbody>
+				<% @stats.each do |stat| %>
+				<tr>
+					<td>
+						<%= @stats_type == "staff" ? stat.real_name : stat.name%>
+					</td>
+					<td>
+						<%= @record[stat.id].first %>
+					</td>
+					<td>
+						<%= @record[stat.id].last %>
+					</td>
+                    <% if @stats_type == "staff" %>
+					<td class="targetBox">
+						<span class="targetShow">
+                          <span class="targetData"><b><%= stat.target_per_day %></b>/天</span> - <a class="setTargetBtn" href="javascript:void(0)">[设置]</a>
+						</span>
+						<span class="setTargetForm" style="display:none;">
+							<input type="text" />
+							<a href="javascript:void(0)" class="confirmSet">确定</a>
+							<a href="javascript:void(0)"  class="cancelSet">取消</a>
+						</span>
+					</td>
+                  <% end %>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<% unless @stats_type == "channel" %>
+		<div style="margin-top:20px;">
+			<%= paginate @stats %>
+		</div>
+		<% end %>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	$(function(){
+		
+		$(".setTargetBtn, .cancelSet").click(function(){
+			toggleFormShow($(this));
+		});
+		
+		$(".confirmSet").click(function(){
+			var $that = $(this)
+			var url = "<%= update_target_console_staff_url %>";
+			var name =$that.closest("tr").find("td:first-child").text().trim();
+			var number = $that.siblings("input").val();
+			
+			if( isNaN(Number(number)) ) {
+				alert("请输入数字。");
+				return;
+			}
+			
+
+          $.post(url,{editor_name:name, target:number},function(data){
+            if(data == "true")
+              $that.closest("td").find(".targetData b").text(number);
+            });
+			toggleFormShow($that);
+		});
+		
+		function toggleFormShow(t){
+			var box = t.closest(".targetBox");
+			var show = box.find(".targetShow");
+			var form = box.find(".setTargetForm");
+			
+			show.toggle();
+			form.toggle();
+		}
+	});
+</script>

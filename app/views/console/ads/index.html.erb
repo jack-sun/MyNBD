@@ -1,0 +1,43 @@
+<div class="sectionA">
+	<div class="title">
+		<h1><%= link_to "所有广告", console_ad_positions_path %> - <%= @ad_p.name.capitalize %></h1>
+		<span class="opts"><%= link_to "<span>添加新广告</span>".html_safe, new_console_ad_path(:ad_p_id => @ad_p.id), :class => "btnBlueM" %></span>
+	</div>
+	<div class="content rightColCenter">
+		<table class="tableA">
+		  <thead>
+		    <tr>
+		      <th>ID</th>
+		      <th>详情</th>
+		      <th>状态</th>
+		      <th>操作</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <% @ads.each do |ad| %>
+		      <tr>
+		      <td class="itemFixedS">#<%= ad.id  %></td>
+		      <td class="itemDesc">
+		        <strong>标题:</strong> <%= ad.title %><br />
+                <strong>尺寸:</strong> <%= "#{@ad_p.width}x#{@ad_p.height}" %><br />
+		        <strong>链接:</strong> <%= link_to ad.link, ad.link, :target => "_blank"%><br />
+		        <strong>缩略图:</strong><br />
+                        <%= image_tag(ad.image.ad_url(:subdomain => "www"), :style => "max-width:200px; max-height:100px;") %>
+		      </td>
+	        <% if @ad_p.current_ad_id == ad.id %>
+	          <td class="itemStatus_1">展示中</td>
+	        <% else %>
+	          <td class="itemStatus_2">未展示
+	          <%= link_to "激活展示", active_console_ad_path(ad), :confirm => "确认激活?", :remote => true %></td>
+	        <% end %>
+		      <td class="itemActions">
+		        <%= link_to "<b></b>编辑".html_safe, edit_console_ad_path(ad), :class => "actionEdit" %>
+		        <%= link_to "<b></b>删除".html_safe, console_ad_path(ad), :method => :delete, :confirm => "确认删出？", :class => "actionDelete" %>
+		      </td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+
+	</div>
+</div>

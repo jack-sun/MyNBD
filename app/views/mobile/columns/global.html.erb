@@ -1,0 +1,63 @@
+<% @title="全球频道" %>
+<%= require_css "channel.css" %>
+<% content_for :header_ad do %>
+	<%= render :partial => "ads/c_1" %>
+<% end %>
+<% cache(column_sub_nav_key_by_id(params[:id])) do%>
+<%= render :partial => "columns/sub_navigation", :locals => {:column_id => 47 } %>
+<% end %>
+<div class="leftCol">
+	<div class="subLeftCol">
+		<% cache(column_show_content_key_by_id(@express[:id])) do %>
+			<%= render :partial => "columns/article_list", :locals => {:list_title => "全球快讯", :articles => @express[:articles].map(&:article).compact, :column_id => 48, :digest_number => 3, :digest_restrict => true, :display_children => false } %>
+		<% end %>
+	</div><div class="subRightCol">
+		<% cache(column_show_content_key_by_id(@us[:id])) do %>
+			<%= render :partial => "columns/article_list", :locals => {:list_title => "美国", :articles => @us[:articles].map(&:article).compact, :column_id => 49, :digest_number => 3, :digest_restrict => true, :display_children => false} %>
+		<% end %>
+	</div>
+	
+	<div class="clear"></div>
+	
+	<%= render :partial => "ads/c_5"%>
+	
+	<div class="subLeftCol">
+		  <% cache(column_show_content_key_by_id(@euro[:id])) do %>
+			<%= render :partial => "columns/article_list", :locals => {:list_title => "欧洲", :articles => @euro[:articles].map(&:article).compact, :column_id => 51, :digest_number => 3, :digest_restrict => true, :display_children => false} %>
+		  <% end %>
+		
+			<% cache(column_show_content_key_by_id(@america[:id])) do %>
+				<%= render :partial => "columns/article_list", :locals => {:list_title => "美洲", :articles => @america[:articles].map(&:article).compact, :column_id => 53, :digest_number => 3, :digest_restrict => true, :display_children => false} %>
+			<% end %>
+	</div><div class="subRightCol">
+	
+      <% cache(column_show_content_key_by_id(@asia[:id])) do %>
+		<%= render :partial => "columns/article_list", :locals => {:list_title => "亚洲", :articles => @asia[:articles].map(&:article).compact, :column_id => 54, :digest_number => 3, :digest_restrict => true, :display_children => false} %>
+      <% end %>
+      
+      <% cache(column_show_content_key_by_id(@others[:id])) do %>
+      	<%= render :partial => "columns/article_list", :locals => {:list_title => "其他", :articles => @others[:articles].map(&:article).compact, :column_id => 87, :digest_number => 3, :digest_restrict => true, :display_children => false} %>
+      <% end %>
+
+	</div>
+	<div class="clear"></div>
+</div>
+<div class="rightCol">
+  <% cache(column_show_content_key_by_id(@featured[:id])) do %>
+	<%= render :partial => "columns/article_feature", :locals => {:list_title => "全球精选", :articles => @featured[:articles].map(&:article).compact, :column_id => 3, :digest_number => 4, :html_class => "articleWallWrapper" } %>
+  <% end %>
+  <div class="divider" style="margin-bottom:10px;"></div>
+  <% cache(column_show_content_key_by_id(@focus_articles[:id], true, "uniq")) do %>
+  	<%= render :partial => "columns/article_list", :locals => {:list_title => "媒体聚焦", :articles => @focus_articles[:articles].map(&:article).compact, :column_id => 8, :digest_number =>1, :display_datetime => true, :digest_restrict => true } %>
+  <%end %>
+  
+  <%= render :partial => "ads/c_3"%>
+  
+	
+        <%= render :partial => "columns/hot_articles" %>
+	
+	<%= render :partial => "columns/subscription", :locals => {:html_style => ""} %>
+</div>
+<div class="clear"></div>
+
+<%= render :partial => "ads/c_4" %>

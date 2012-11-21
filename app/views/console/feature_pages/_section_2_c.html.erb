@@ -1,0 +1,18 @@
+<div section_id="section_2_c" class="section">
+	<%= render '/console/feature_pages/section_actions' %>
+	<ul col_width="470" class="inner2ColsCEqual sortable">
+		<% left_element_ids.each do |element_id| %>
+			<%= render :partial => 'console/elements/element_item', :locals => {:element_id => element_id, :elements => elements} %>
+		<%end%>
+		
+		<%= render "console/elements/add_element_action" %>
+	</ul>
+	<ul col_width="470" style="margin:0" class="inner2ColsCEqual sortable">
+		<% right_element_ids.each do |element_id| %>
+			<%= render :partial => 'console/elements/element_item', :locals => {:element_id => element_id, :elements => elements} %>
+		<%end%>
+		
+		<%= render "console/elements/add_element_action" %>
+	</ul>
+	<div class="clear"></div>
+</div>

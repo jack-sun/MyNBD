@@ -1,0 +1,22 @@
+<% json =  JSON.parse(element.content)["body"]
+type = json["type"].to_i
+value = json["value"]
+display_type = json["display_type"]
+count = (json["count"] > 50) ? 50 : json["count"] 
+sort = json["sort"]
+title = json["title"]
+articles = if type == ElementArticle::ARTICLE_SOURCE_COLUMN
+  ArticlesColumn.where(:column_id => value, :status => Article::PUBLISHED).select([:article_id]).order("id DESC").includes(:article => {:pages => :image}).page(0).per(count).map(&:article).compact
+elsif type == ElementArticle::ARTICLE_SOURCE_TAG
+  articles = Article.search(:conditions => {:tags => value.split(",").first}, :page => 1, :per_page => count, :order => :id, :sort_mode => :desc, :with => {:status => Article::PUBLISHED})
+end
+-%>
+
+<%if display_type == ElementArticle::DISPLAY_TYPE_LIST%>
+  <%= render :partial => "columns/article_list", :locals => { :articles => articles, :digest_number => "max" } %>
+  <%if type == ElementArticle::ARTICLE_SOURCE_TAG and articles.total_entries > count %>
+    <p style="text-align: right;"><%= link_to "更多文章 &raquo;".html_safe, article_tag_search_url(:q => value.split(",").first) %></p>
+  <%end%>
+<%elsif display_type == ElementArticle::DISPLAY_TYPE_SLIDE %>
+  <%= render :partial => "columns/image_news", :locals => { :articles => articles, :column_id => '', :list_title => title } %>
+<%end%>

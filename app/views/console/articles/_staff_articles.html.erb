@@ -1,0 +1,9 @@
+<% if @articles.length == 0 %>
+<p class='noResult'>没有搜索结果。</p>
+<% else %>
+<ul class="toChooseArticleList">
+	<% @articles.each do |article| %>
+		<li id="article_<%= article.id %>" ><input type="checkbox" /><%= link_to article.list_title, article_url(article), :id => article.id %></li>
+	<%end%>
+</ul>
+<% end %>

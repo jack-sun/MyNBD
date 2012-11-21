@@ -1,0 +1,780 @@
+body {
+    margin: 0px;
+}
+
+div {
+    background-repeat: no-repeat;
+}
+
+.raw_image {
+    width: 100%;
+    height: 100%;
+}
+
+.preload {
+    display: none;
+}
+div.main_container {
+}
+
+.form_sketch {
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.u0_original {
+    background-image: url('../Poll_files/u0_original.png');
+}
+
+.u0_container {
+    position:absolute;
+    left:305px;
+    top:160px;
+    width:460px;
+    height:560px;
+}
+
+#u0_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:466px;
+    height:566px;
+}
+
+.u1 {
+    position:absolute;
+    left:2px;
+    top:272px;
+    width:456px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u0 {
+    position:absolute;
+    left:305px;
+    top:160px;
+    width:460px;
+    height:560px
+}
+
+.u2 {
+    position:absolute;
+    left:325px;
+    top:185px;
+    width:150px;
+    height:19px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u3_line {
+    background-image: url('../Poll_files/u3_line.png');
+}
+
+.u3_line {
+    position:absolute;
+    left:325px;
+    top:213px;
+    width:420px;
+    height:5px;
+}
+
+.u3 {
+    position:absolute;
+    left:325px;
+    top:213px;
+    width:420px;
+    height:5px
+}
+
+.u4 {
+    position:absolute;
+    left:350px;
+    top:240px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u5_image_sketch {
+    background-image: url('../Poll_files/u5_image_sketch.png');
+    position:absolute;
+    left:397px;
+    top:232px;
+    width:356px;
+    height:31px;
+}
+
+.u5 {
+    position:absolute;
+    left:400px;
+    top:235px;
+    width:350px;
+    height:25px;
+    ;
+    ;
+    text-align: left;;
+    font-family:'Arial';
+    font-size: 13px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+
+.u6 {
+    position:absolute;
+    left:350px;
+    top:282px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u7_original {
+    background-image: url('../Poll_files/u7_original.png');
+}
+
+.u7_container {
+    position:absolute;
+    left:690px;
+    top:669px;
+    width:60px;
+    height:35px;
+}
+
+#u7_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:66px;
+    height:41px;
+}
+
+.u8 {
+    position:absolute;
+    left:2px;
+    top:10px;
+    width:56px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u7 {
+    position:absolute;
+    left:690px;
+    top:669px;
+    width:60px;
+    height:35px
+}
+
+.u9_original {
+    background-image: url('../Poll_files/u9_original.png');
+}
+
+.u9_container {
+    position:absolute;
+    left:620px;
+    top:669px;
+    width:56px;
+    height:35px;
+}
+
+#u9_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:62px;
+    height:41px;
+}
+
+.u10 {
+    position:absolute;
+    left:2px;
+    top:10px;
+    width:52px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u9 {
+    position:absolute;
+    left:620px;
+    top:669px;
+    width:56px;
+    height:35px
+}
+
+.u11_original {
+    background-image: url('../Poll_files/u11_original.png');
+}
+
+.u11_container {
+    position:absolute;
+    left:325px;
+    top:669px;
+    width:55px;
+    height:35px;
+}
+
+#u11_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:61px;
+    height:41px;
+}
+
+.u12 {
+    position:absolute;
+    left:2px;
+    top:10px;
+    width:51px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u11 {
+    position:absolute;
+    left:325px;
+    top:669px;
+    width:55px;
+    height:35px
+}
+
+.u13_container {
+    position:absolute;
+    left:400px;
+    top:279px;
+    width:40px;
+    height:20px;
+}
+
+#u13_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:40px;
+    height:20px;
+}
+
+.u14 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:36px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u13 {
+    position:absolute;
+    left:400px;
+    top:279px;
+    width:40px;
+    height:20px
+}
+
+.u15_container {
+    position:absolute;
+    left:400px;
+    top:318px;
+    width:40px;
+    height:20px;
+}
+
+#u15_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:40px;
+    height:20px;
+}
+
+.u16 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:36px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u15 {
+    position:absolute;
+    left:400px;
+    top:318px;
+    width:40px;
+    height:20px
+}
+
+.u17_container {
+    position:absolute;
+    left:400px;
+    top:353px;
+    width:40px;
+    height:20px;
+}
+
+#u17_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:40px;
+    height:20px;
+}
+
+.u18 {
+    position:absolute;
+    left:2px;
+    top:2px;
+    width:36px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u17 {
+    position:absolute;
+    left:400px;
+    top:353px;
+    width:40px;
+    height:20px
+}
+
+.u19_image_sketch {
+    background-image: url('../Poll_files/u19_image_sketch.png');
+    position:absolute;
+    left:427px;
+    top:274px;
+    width:286px;
+    height:31px;
+}
+
+.u19 {
+    position:absolute;
+    left:430px;
+    top:277px;
+    width:280px;
+    height:25px;
+    ;
+    ;
+    text-align: left;;
+    font-family:'Heiti SC';
+    font-size: 13px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+
+.u20_image_sketch {
+    background-image: url('../Poll_files/u20_image_sketch.png');
+    position:absolute;
+    left:427px;
+    top:310px;
+    width:286px;
+    height:31px;
+}
+
+.u20 {
+    position:absolute;
+    left:430px;
+    top:313px;
+    width:280px;
+    height:25px;
+    ;
+    ;
+    text-align: left;;
+    font-family:'Heiti SC';
+    font-size: 13px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+
+.u21_image_sketch {
+    background-image: url('../Poll_files/u21_image_sketch.png');
+    position:absolute;
+    left:427px;
+    top:347px;
+    width:286px;
+    height:31px;
+}
+
+.u21 {
+    position:absolute;
+    left:430px;
+    top:350px;
+    width:280px;
+    height:25px;
+    ;
+    ;
+    text-align: left;;
+    font-family:'Heiti SC';
+    font-size: 13px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+
+.u22 {
+    position:absolute;
+    left:430px;
+    top:389px;
+    width:150px;
+    height:15px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u23 {
+    position:absolute;
+    left:325px;
+    top:424px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u25 {
+    position:absolute;
+    left:16px;
+    top:0px;
+    width:82px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u27 {
+    position:absolute;
+    left:16px;
+    top:0px;
+    width:82px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u28 {
+    position:absolute;
+    left:405px;
+    top:455px;
+    width:75px;
+    height:14px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u29 {
+    position:absolute;
+    left:723px;
+    top:355px;
+    width:150px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u30 {
+    position:absolute;
+    left:723px;
+    top:319px;
+    width:150px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u31 {
+    position:absolute;
+    left:723px;
+    top:283px;
+    width:150px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u32 {
+    position:absolute;
+    left:325px;
+    top:492px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u33_image_sketch {
+    background-image: url('../Poll_files/u33_image_sketch.png');
+    position:absolute;
+    left:404px;
+    top:487px;
+    width:66px;
+    height:28px;
+}
+
+.u33 {
+    position:absolute;
+    left:407px;
+    top:490px;
+    width:60px;
+    height:22px;
+    ;
+    ;
+    ;
+    font-family:'Arial';
+    font-size: 13px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+
+.u34 {
+    position:absolute;
+    left:325px;
+    top:533px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u35_image_sketch {
+    background-image: url('../Poll_files/u35_image_sketch.png');
+    position:absolute;
+    left:403px;
+    top:527px;
+    width:116px;
+    height:28px;
+}
+
+.u35 {
+    position:absolute;
+    left:406px;
+    top:530px;
+    width:110px;
+    height:22px;
+    ;
+    ;
+    ;
+    font-family:'Arial';
+    font-size: 13px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+
+.u36 {
+    position:absolute;
+    left:325px;
+    top:573px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u37_image_sketch {
+    background-image: url('../Poll_files/u37_image_sketch.png');
+    position:absolute;
+    left:403px;
+    top:567px;
+    width:116px;
+    height:28px;
+}
+
+.u37 {
+    position:absolute;
+    left:406px;
+    top:570px;
+    width:110px;
+    height:22px;
+    ;
+    ;
+    ;
+    font-family:'Arial';
+    font-size: 13px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+
+.u38 {
+    position:absolute;
+    left:340px;
+    top:608px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u40 {
+    position:absolute;
+    left:16px;
+    top:0px;
+    width:82px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u42 {
+    position:absolute;
+    left:16px;
+    top:0px;
+    width:82px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u43_image_sketch {
+    background-image: url('../Poll_files/u43_image_sketch.png');
+    position:absolute;
+    left:469px;
+    top:448px;
+    width:55px;
+    height:28px;
+}
+
+.u43 {
+    position:absolute;
+    left:472px;
+    top:451px;
+    width:49px;
+    height:22px;
+    ;
+    ;
+    ;
+    font-family:'Arial';
+    font-size: 13px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+

@@ -1,0 +1,64 @@
+body { background:#daecf2; color:#808080; font-size:12px; font-family: Arial, sans-serif; }
+
+#footer { margin-top:50px; }
+
+#mobileHeader { text-align:center; padding:42px 0 20px; } 
+#mobileHeader h1 { text-indent:-9999px; width:332px; height:41px; margin:0 auto; background:url(../images/mobile_apps/pagename.gif) 0 0 no-repeat; }
+#mobileHeader p { color:#606060; margin-top:6px; font-size: 16px;}
+
+#mobileWrapper { margin:0 auto; width:810px; background: url(../images/mobile_apps/wrapper-middle.gif) 0 0 repeat-y; }
+#wrapperBgTop { height:3px; background: url(../images/mobile_apps/wrapper-top.gif) 0 0 no-repeat; }
+#wrapperBgBottom { height:6px; background: url(../images/mobile_apps/wrapper-bottom.gif) 0 0 no-repeat; overflow: hidden; }
+#mobileContainer { padding: 5px 5px 10px; }
+
+/* Navigation
+-------------------------------------*/
+#mobileNavigation { margin:10px auto 0; width:320px; }
+#mobileNavigation li, #mobileNavigation li a { float:left; width:80px; height:80px; text-align:center; }
+#mobileNavigation li a { color: #808080; }
+#mobileNavigation li a:hover { color: #606060; text-decoration:none; }
+#mobileNavigation li.current a { color: #303030; }
+#mobileNavigation li a b { display: block; margin:0 auto 5px; width:50px; height:50px; background:url(../images/mobile_apps/navi-buttons.png) 0 0 no-repeat; }
+
+#mobileNavigation li a b.android { background-position: 0 0; }
+#mobileNavigation li a:hover b.android { background-position: 0 -50px; }
+#mobileNavigation li.current a b.android { background-position: 0 -100px; }
+
+#mobileNavigation li a b.iphone { background-position: -50px 0; }
+#mobileNavigation li a:hover b.iphone { background-position: -50px -50px; }
+#mobileNavigation li.current a b.iphone { background-position: -50px -100px; }
+
+#mobileNavigation li a b.ipad { background-position: -100px 0; }
+#mobileNavigation li a:hover b.ipad { background-position: -100px -50px; }
+#mobileNavigation li.current a b.ipad { background-position: -100px -100px; }
+
+#mobileNavigation li a b.more { background-position: -150px 0; }
+#mobileNavigation li a:hover b.more { background-position: -150px -50px; }
+#mobileNavigation li.current a b.more { background-position: -150px -100px; }
+
+/* Download
+-------------------------------------*/
+#mobileDownload { position:relative; height:405px; background:url(../images/mobile_apps/focus-section-bottom.png) left bottom no-repeat; }
+#mobileDownload #downloadTopShadow { height:110px; background:url(../images/mobile_apps/focus-section-top.png) 0 0 no-repeat; }
+
+#deviceImg, #QRcode, #downloadOpt { position:absolute; text-align:center; }
+
+#mobileDownload #deviceImg {  bottom:0; left:80px; }
+#mobileDownload #QRcode {  top:75px; left:515px; }
+#mobileDownload #QRcode p { margin: 5px 0; }
+#mobileDownload #downloadOpt {  top:284px; left:470px; width:240px; }
+#mobileDownload #downloadOpt a#downloadBtn { text-indent:-9999px; display: block; height:70px; background:url(../images/mobile_apps/download-button.png) 0 0 no-repeat; }
+#mobileDownload #downloadOpt a#downloadBtn:hover { display: block; height:70px; background-position: 0 -70px; }
+
+/* Expo
+-------------------------------------*/
+#mobileAppExpo { padding: 40px 0 0 0; }
+#mobileAppExpo .appExpoItem { display: inline; float: left; margin:0 0 30px 40px; width:360px;  }
+#mobileAppExpo .appExpoItem h2 { font-size:16px; color: #cc0000; line-height:30px; font-size:18px; }
+#mobileAppExpo .appExpoItem h2 span.dot { display: inline-block; margin:0 5px; width: 3px; height: 3px; border-radius: 4px; background: #ccc; overflow: hidden; vertical-align: middle; }
+#mobileAppExpo .appExpoItem h2 b { float:left; margin-right:5px; width:30px; height:30px; background:url(../images/mobile_apps/circle.gif) 0 0 no-repeat; line-height:30px; text-align: center; color: #808080; }
+#mobileAppExpo .appExpoItem .appExpoDetail { padding-left:34px; }
+#mobileAppExpo .appExpoItem .appExpoInfo { height:45px; line-height:20px; }
+#mobileAppExpo .appExpoItem .appExpoImg { padding: 25px 7px 5px; width:244px; height:384px; background:url(../images/mobile_apps/screenshot-frame.png) 0 0 no-repeat; }
+
+.divider { clear: both; margin:30px 0; height:1px; background:url(../images/mobile_apps/divider.png) 0 0 no-repeat; }

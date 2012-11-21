@@ -1,0 +1,29 @@
+<% @title="智库专家" %>
+
+<% content_for :header_ad do %>
+	<script type="text/javascript">
+		BAIDU_CLB_preloadSlots("347589");
+	</script>
+	<!-- 广告位：西部_顶部四分之三通栏 -->
+	<%= render :partial => "ads/ad", :locals => { :id => "347589", :html_class => "header" } %>
+<% end %>
+
+<div class="leftCol">
+  <% cache(columnist_articles_key_by_id("index_table"), :expire_in => Columnist::EXPIRE_IN) do %>
+	<%= render :partial => "ntt/columnists/columnist_table", :locals => { :title => "智库专家", :columnists => @columnists.select{|c| c.last_article and c.last_article.is_published? and c.last_article.columns and !c.last_article.columns.map(&:id).include?(102)} } %>
+  <% end %>
+</div>
+
+<div class="rightCol">
+  <% cache(column_show_content_key_by_id(@activities_articles[:id])) do %>
+	<%= render :partial => "columns/article_list", :locals => {:list_title => "专家活动", :digest_number => 0, :digest_restrict => true, :articles => (@activities_articles[:articles].map(&:article)||[]), :for_subdomain => Settings.ntt_sub_domain, :column_id => @activities_articles[:id]}%>
+  <% end %>
+	<div class="divider" style="margin-bottom:10px;"></div>
+	
+  <% cache(column_show_content_key_by_id(@interview_articles[:id])) do %>
+	<%= render :partial => "columns/article_list", :locals => {:list_title => "专家访谈", :digest_number => 1, :digest_restrict => true, :articles => (@interview_articles[:articles].map(&:article)||[]), :for_subdomain => Settings.ntt_sub_domain, :column_id => @interview_articles[:id]}%>
+  <% end %>
+	
+</div>
+
+<div class="clear"></div>

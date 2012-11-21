@@ -1,0 +1,38 @@
+
+<% cache(column_show_content_key_by_id(@head_article[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "最新头条", :articles => @head_article[:articles].map(&:article).compact} %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@rolling_articles[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "滚动", :articles => @rolling_articles[:articles], :display_datetime => true, :html_class => "rolling" } %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@important_articles[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "热点", :articles => @important_articles[:articles].map(&:article).compact} %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@macro[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "宏观要闻", :articles => @macro[:articles].map(&:article).compact} %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(Column::HOME_COMBINED_COLUMN_ID)) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "市场综合", :articles => Column.aggregate_articles([23, 24, 25, 26, 27, 28], 5)} %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@finace_articles[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "热公司", :articles => @finace_articles[:articles].map(&:article).compact} %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@yetan_update[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "叶檀每日评", :articles => @yetan_update[:articles].map(&:article).compact} %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@zhengbuchun_column[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "郑眼看盘", :articles => @zhengbuchun_column[:articles].map(&:article).compact} %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@laofashi_column[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "老法师操盘手记", :articles => @laofashi_column[:articles].map(&:article).compact} %>
+<% end %>
+
+

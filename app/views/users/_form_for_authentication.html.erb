@@ -1,0 +1,36 @@
+<%= form_for(@user, :url => user_sign_up_path, :html => {:id => "registerFormWrapper"}, :method => "post") do |user_form| %>
+  <p>
+    <%= user_form.label :email, "邮箱" %><br />
+    <%= user_form.text_field :email, :size => 30, :datavalidtype => "mail", :class => "textInput #{@user.errors[:email].present? ? 'error' : ''}" %>
+	<span class="tip <%if @user.errors[:email].present?%>error<%end%>"><%if @user.errors[:email].present?%><%= @user.errors[:email].first %><%else%>请输入真实有效的邮箱，以便找回密码<%end%></span> 
+  </p>
+  
+  <p>
+    <%= user_form.label :nickname, "昵称" %><br />
+    <%= user_form.text_field :nickname, :size => 30, :class => "textInput #{@user.errors[:nickname].present? ? 'error' : ''}", :datavalidtype => "nickname", :autocomplete => :off %> 
+	<span class="tip <%if @user.errors[:nickname].present?%>error<%end%>"><%if @user.errors[:nickname].present?%><%= @user.errors[:nickname].first %><%else%>4-20个字符，一个汉字为两个字符<%end%></span>
+	
+  </p>
+  <p>
+    <%= user_form.label :password, "密码" %><br />
+    <%= user_form.password_field :password, :size => 30, :class => "textInput #{@user.errors[:password].present? ? 'error' : ''}", :datavalidtype => "password", :autocomplete => :off %> 
+	<span class="tip <%if @user.errors[:password].present?%>error<%end%>"><%if @user.errors[:password].present? and @user.errors[:password].size > 1%><%= @user.errors[:password].first %><%else%>6-16个字母加数字或字符的组合<%end%></span> 
+  </p>
+  
+    <p>
+  	<%= user_form.label :password_confirmation, '密码确认' %>:<br />
+	<%= user_form.password_field :password_confirmation, :class => "textInput #{@user.errors[:password].present? ? 'error' : ''}", :datavalidtype => "password", :size => 30, :autocomplete => :off %>
+	<%if @user.errors[:password].present?%><span class="tip error"><%= @user.errors[:password].last %></span><%end%>
+  </p>
+    
+	<p class="btnRowM">
+		<input type="submit" class="hiddenSubmit" />
+		<%= link_to "<span>注册 并同意以下条款</span>".html_safe, "javascript:void(0);", :onclick=>"$(this).closest('form').submit();return false;",
+		 :class=>"btnBlueM" %>
+		<div class="clear"></div>
+	</p>
+
+	<p>
+	<a href="#">《每经会员隐私保护条款》</a>
+	</p>	
+<% end %>

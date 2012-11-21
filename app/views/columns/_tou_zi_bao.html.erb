@@ -1,0 +1,10 @@
+<div class="tzbPromo mts mbm f12">
+	<div class="hd b">
+          <a href="<%= Touzibao::TOUZIBAO_INTRODUCE_URL %>" target="_blank">每经投资宝·精彩推荐</a>
+	</div>
+	<div class="bd">
+          <% cache(column_show_content_key_by_id(Column::TOUZIBAO_CASE_COLUMN)) do %>
+          <%= link_to truncate(Touzibao.lastest_cases.show_digest, :length => 100), Touzibao::TOUZIBAO_INTRODUCE_URL, {:target => "_blank"} %>
+        <% end %>
+	</div>
+</div>

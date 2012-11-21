@@ -1,0 +1,51 @@
+<%= require_jqueryUI %>
+<% require_js "console_selectAll" %>
+
+<div class="sectionA">
+  <div class="title">
+    <h1>专题-所有专题</h1>
+    <span class="opts"><%= link_to "<span>添加新专题</span>".html_safe, new_console_feature_path, :class => "btnBlueM" %>
+  </div>
+  <div id="body_channel" class="content">
+    <div class="operation">
+      <%= paginate @features %>
+    </div>
+    <div class="rightColCenter">
+      <table id="featureTable" class="tableA">
+        <thead>
+          <tr>
+            <!--<th><input class="selectAll" type="checkbox" /></th>-->
+            <th>专题名称</th>
+            <th>创建者</th>
+            <th>状态</th>
+            <th>点击数</th>
+            <th>创建时间</th>
+            <th>操作</th>
+          </tr>		
+        </thead>
+        <tbody id="sortableBox">
+          <% @features.each do |f| %>
+            <% next unless f.present? %>
+            <tr id="feature_<%= f.id %>">
+                    <!--<td class="forSelect"><input class="subSelect" type="checkbox" value="<%= f.id %>"/></td>-->
+              <td class="itemTitle"><%= link_to f.title, feature_url(f), :target => "_blank" %></td>
+              <td><%= f.staff.real_name %></td>
+              <td class="itemStatus_<%=f.status%>"><%= Feature::STATUS[f.status.to_i] %></td>
+              <td><%= f.click_count %></td>
+              <td class="itemDate"><%= f.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+              <td class="itemActions">
+                <%= link_to(edit_console_feature_url(f), :class=>'actionEdit') do %>
+                  <b></b>编辑
+                <% end %>
+                <%= link_to(console_feature_path(f), :confirm => "删除专题？", :method => :delete, :class=>'actionDelete') do %>
+                  <b></b>删除 
+                <% end %>
+              <%end%>
+        </tbody>
+      </table>
+    </div><!-- table wrapper -->
+    <div class="operation">
+      <%= paginate @features %>
+    </div>
+  </div>
+</div>

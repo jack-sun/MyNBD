@@ -1,0 +1,78 @@
+<%
+=begin
+Parameters:
+	articles: Array
+	list_title: String (optional)
+	html_class: String (optional)
+	html_style: String (optional)
+	digest_restrict: true | false (optional)
+	display_datetime: true | false (optional, default is false)
+	column_id: Int (optional, default '')
+	opt_content: String | Html (optional)
+	no_title_prefix: String (optional)
+=end
+html_class = '' unless html_class
+html_style = '' unless html_style
+digest_restrict = false unless digest_restrict
+display_datetime = false unless display_datetime
+column_id = '' unless column_id
+list_title = '' unless list_title
+opt_content = '' unless opt_content
+for_subdomain = false unless for_subdomain
+show_article_image = false unless show_article_image
+no_title_prefix = nil unless no_title_prefix
+%>
+<div class="sectionA <%=html_class%>" style="<%=html_style%>">
+	<% unless list_title == '' %>
+	<div class="title">
+		<h3>
+			<%if column_id.present? %>
+			<%= link_to list_title, column_path(column_id)%>
+			<%else%>
+			<%=list_title%>
+			<%end%>
+		</h3>
+		<%if opt_content.present? %>
+		<span class="opts"><%= opt_content.html_safe %></span>
+		<%end%>
+	</div>
+	<% end %>
+	<div class="content">
+		<ul class="articleList unorderList">
+			<% articles.each_with_index do |article,index|
+				next if article.blank? -%>
+				<li class="articleRecommend">
+					<h5 class='rcTitle'>
+                      <% if for_subdomain %>
+          				<% if no_title_prefix %>
+                          <%= link_to article.list_title.split(no_title_prefix).last, send("#{for_subdomain}_article_url", article), {:target => "_blank", :title => article.title} %>
+          				<% else %>
+                          <%= link_to article.list_title, send("#{for_subdomain}_article_url", article), {:target => "_blank", :title => article.title} %>
+						<% end %>
+                      <% else %>
+						<%= link_to article.list_title, article_url(article), {:target => "_blank", :title => article.title} %>
+                      <% end %>
+					</h5>
+					<p class="articleTime">
+					<% if article.staffs.reporters.present? %>每经记者：<% article.staffs.reporters.each do|reporter| %><%= reporter.real_name %><%end%><%end%> <span><%= article.created_at.strftime("%Y-%m-%d %H:%M") %></span></p>
+					<div class="rcDigest">
+                      <% if for_subdomain %>
+                        <% if show_article_image %>
+                          <%= link_to image_tag(article_thumbnail_path(article, :small), {:alt => article.list_title, :width => 80, :height => 60}),  send("#{for_subdomain}_article_url", article) if article.image.present? %>
+                        <% elsif for_subdomain == Settings.ntt_sub_domain and(columnist = article.columnists.first) and columnist.image %>
+                          <%= link_to image_tag(columnist_avatar_path(columnist), {:alt => columnist.name, :width => 60, :height => 60}),  ntt_columnist_url(columnist), {:target => "_blank"}%>
+                        <% end %>
+                      <% else %>
+						<%= link_to image_tag(article_thumbnail_path(article, :small), {:alt => article.list_title, :width => 80, :height => 60}),  article_url(article) if article.image.present? %>
+                      <% end %>
+						<p <%if digest_restrict%>class="restrict2"<%end%> >
+							<%= article.show_digest %>
+						</p>
+						<div class="clear"></div>
+					</div>
+				</li>
+			<% end %>
+		</ul>
+		<div class="clear"></div>
+	</div><!--content-->
+</div>

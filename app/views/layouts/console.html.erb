@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>每经网后台管理系统</title>
+    <%= stylesheet_link_tag "reset", "style_global", "style_console" %>
+    <%= yield :header_css %>
+    <%= javascript_include_tag "jquery.min", "jquery_ujs", "console_mana", "nbdtools" %>
+    <%= yield :header_js %>
+    <%= csrf_meta_tag %>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  </head>
+  <body style="display:none">
+    <!--[if lt IE 8]>  <div style='border: 1px solid #F7941D; background: #FEEFDA; text-align: center; clear: both; height: 75px; position: relative;'>    <div style='position: absolute; right: 3px; top: 3px; font-family: courier new; font-weight: bold;'><a href='#' onclick='javascript:this.parentNode.parentNode.style.display="none"; return false;'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-cornerx.jpg' style='border: none;' alt='Close this notice'/></a></div>    <div style='width: 640px; margin: 0 auto; text-align: left; padding: 0; overflow: hidden; color: black;'>      <div style='width: 75px; float: left;'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-warning.jpg' alt='Warning!'/></div>      <div style='width: 275px; float: left; font-family: Arial, sans-serif;'>        <div style='font-size: 14px; font-weight: bold; margin-top: 8px;'>你的浏览器弱爆了!!</div>        <div style='font-size: 12px; margin-top: 0px; line-height: 14px;'>本控制台不支持ie6、ie7这样古老的浏览器，为了更好的体验，请及时更新您的浏览器。这是我们的推荐：</div>      </div>      <div style='width: 75px; float: left;'><a href='http://www.firefox.com' target='_blank'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-firefox.jpg' style='border: none;' alt='Get Firefox 3.5'/></a></div>      <div style='width: 75px; float: left;'><a href='http://www.browserforthebetter.com/download.html' target='_blank'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-ie8.jpg' style='border: none;' alt='Get Internet Explorer 8'/></a></div>      <div style='width: 73px; float: left;'><a href='http://www.apple.com/safari/download/' target='_blank'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-safari.jpg' style='border: none;' alt='Get Safari 4'/></a></div>      <div style='float: left;'><a href='http://www.google.com/chrome' target='_blank'><img src='http://www.ie6nomore.com/files/theme/ie6nomore-chrome.jpg' style='border: none;' alt='Get Google Chrome'/></a></div>    </div>  </div>  <![endif]-->
+    <div id="top">
+      <div class="innerCenter">
+        <ul class="lf">
+          <li class="first last"><a href="/">&laquo; 返回每经网</a></li>
+        </ul>
+        <ul class="rf">
+          <%if @current_staff.present?%>
+            <li><span><%= @current_staff.real_name %></span> <%= link_to "[登出]", console_sign_out_path, :method => :delete %></li>
+            <li class="last"><%= link_to "修改密码", change_password_console_staff_url(@staff) %></li>
+          <%end%>
+        </ul>
+      </div>
+    </div>
+    <div id="header">
+      <div class="innerCenter">
+        <div id="logo">
+          <img src="/images/console-logo.gif" alt="每经网" />
+        </div>
+        <div id="searchAticleBox" class="searchBox">
+          <% form_tag(article_search_console_search_url, :method => "get") do%>
+            <%= link_to "", "javascript:void(0)", :onclick => "$(this).closest('form').submit();return false;", :class => "searchBtn" %>
+            <%= text_field_tag(:q, if defined?(params[:q]) and params[:q].present? then params[:q] else "" end, :class => "searchInput") %>
+            <input type="submit" class="hiddenSubmit" />
+          <%end%>
+        </div>
+        <div id="navSelect">
+          <%if @news_console%>
+            <a id="navSelectFlag" href="javascript:void(0)">新闻控制台</a>
+            <ul id="navSelectList" class="roundCorner">
+              <% if @current_staff and @current_staff.authority_of_community? %>
+                <li>
+                  <%= link_to "社区控制台", console_weibos_url %>
+                </li>
+              <% end %>
+              <%if @current_staff and @current_staff.authority_of_common?%>
+                <li>
+                  <%= link_to "通用控制台", stats_console_articles_url %>
+                </li>
+              <%end%>
+              <%if @current_staff and @current_staff.authority_of_mobile_news?%>
+                <li>
+                  <%= link_to "手机报控制台", console_premium_mobile_newspaper_accounts_url %>
+                </li>
+              <%end%>
+            </ul>
+          <%elsif @community_console%>
+            <a id="navSelectFlag" href="javascript:void(0)">社区控制台</a>
+            <ul id="navSelectList" class="roundCorner">
+              <% if @current_staff and @current_staff.authority_of_news? %>
+                <li>
+                  <%= link_to "新闻控制台", published_console_articles_url %>
+                </li>
+              <% end %>
+              <%if @current_staff and @current_staff.authority_of_common?%>
+                <li>
+                  <%= link_to "通用控制台", stats_console_articles_url %>
+                </li>
+              <%end%>
+              <%if @current_staff and @current_staff.authority_of_mobile_news?%>
+                <li>
+                  <%= link_to "手机报控制台", console_premium_mobile_newspaper_accounts_url %>
+                </li>
+              <%end%>
+            </ul>
+          <%elsif @common_console %>
+            <a id="navSelectFlag" href="javascript:void(0)">通用控制台</a>
+            <ul id="navSelectList" class="roundCorner">
+              <% if @current_staff and @current_staff.authority_of_news? %>
+                <li>
+                  <%= link_to "新闻控制台", published_console_articles_url %>
+                </li>
+              <% end %>
+              <% if @current_staff and @current_staff.authority_of_community? %>
+                <li>
+                  <%= link_to "社区控制台", console_weibos_url %>
+                </li>
+              <% end %>
+              <%if @current_staff and @current_staff.authority_of_mobile_news?%>
+                <li>
+                  <%= link_to "手机报控制台", console_premium_mobile_newspaper_accounts_url %>
+                </li>
+              <%end%>
+            </ul>
+          <% elsif @mobile_newspaper_console  %>
+            <a id="navSelectFlag" href="javascript:void(0)">手机报控制台</a>
+            <ul id="navSelectList" class="roundCorner">
+              <% if @current_staff and @current_staff.authority_of_news? %>
+                <li>
+                  <%= link_to "新闻控制台", published_console_articles_url %>
+                </li>
+              <% end %>
+              <% if @current_staff and @current_staff.authority_of_community? %>
+                <li>
+                  <%= link_to "社区控制台", console_weibos_url %>
+                </li>
+              <% end %>
+              <%if @current_staff and @current_staff.authority_of_common?%>
+                <li>
+                  <%= link_to "通用控制台", stats_console_articles_url %>
+                </li>
+              <%end%>
+            </ul>
+          <%end%>
+        </div>
+      </div>
+    </div>
+
+    <div id="bulletin" >
+      <% if (notices = Notice.order("id DESC").limit(3)) %>
+        <b style="float:left;">最新公告：</b>
+        <ul class="unorderList">
+          <%notices.each do|notice|%>
+            <li style="float:left;margin-right: 8px;" >
+              <%= truncate(notice.content, :length => 30) if notice.content.present? %> 
+            </li>
+          <%end%>
+        </ul>
+        <%= link_to "查看更多 &raquo;".html_safe, list_console_notices_url, :style => "margin-left:10px; float:left;" %>
+        <div class="clear"></div>  
+
+      <% end %>
+    </div>
+
+    <div id="wrapper">
+      <div id="container">
+        <div id="rightCol">				
+          <%= yield %>
+        </div>
+        <div id="leftCol">
+          <%if @news_console %>
+            <%= render "console/shared/left_navs_news_console" %>
+          <%elsif @community_console%>
+            <%= render "console/shared/left_navs_community_console" %>
+          <%elsif @common_console%>
+            <%= render "console/shared/left_navs_common_console" %>
+          <%elsif @mobile_newspaper_console%>
+            <%= render "console/shared/left_navs_mobile_newspaper_console" %>
+          <%end%>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+
+  </body>
+
+  <!--<script type="text/javascript">
+      $(function(){
+        var bulletin = $("#bulletin"),
+        more = bulletin.find(".more");
+        content = bulletin.find(".noticeTxt");
+        console.log(bulletin.height());
+        if(bulletin.height() == 18){
+          more.hide();
+        }else {
+          var oriTxt = content.html();
+          var showTxt = content.html().substring(0,90)+"...";
+          bulletin.height(18);
+          content.html(showTxt);
+          bulletin.toggle(function(){
+            more.hide();
+            $(this).css("height","auto")
+            content.html(oriTxt);
+          },function(){
+            more.show();
+            content.html(showTxt);
+            $(this).height(18);
+          });  
+        }
+      });
+      
+    </script>-->
+
+</html>

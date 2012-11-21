@@ -1,0 +1,100 @@
+.pageName{
+	margin-bottom: 1.5em;
+	margin-left: 15px;
+	font-family: Arial, sans-serif;
+}
+.section{
+	margin-bottom: 2em;
+	width: 650px;
+	margin-left: 15px;
+}
+.section h2{
+	font-size: 18px;
+	margin-bottom: 0.5em;
+	font-family: Arial, sans-serif;
+}
+.section p{
+	margin-bottom: 1em;
+}
+.section ul{
+	padding-left: 20px;
+	list-style-type: disc;
+}
+.section ul li{
+	margin-bottom: 1em;
+}
+.section ol{
+	padding-left: 20px;
+	list-style-type: decimal;
+}
+.section ul ol li{
+	margin-bottom: 0;
+}
+#sitemap{
+	margin-bottom: 4em;
+}
+#sitemap dt{
+	margin-bottom: .5em;
+	font-weight: bold;
+}
+#sitemap dt a{
+	color: #bb0000;
+}
+#sitemap dd{
+	margin-bottom: 2em;
+}
+#sitemap dd a{
+	margin-left: 1em;
+}
+
+.adPriceTable{
+	width: 100%;
+	text-align: left;
+	margin-bottom: 2em;
+	color: #303030;
+	font-size: 13px;
+}
+
+.adPriceTable caption{
+	font-size: 16px;
+	font-weight: bold;
+	font-family: Arial, sans-serif;
+	text-align: left;
+	line-height: 30px;
+	color: #bb0000;
+}
+
+.adPriceTable th, .adPriceTable td{
+	border: 1px solid #ddd;
+	padding: 7px 12px;
+}
+
+.adPriceTable th{
+	background-color: #f2f5fa;
+}
+
+.linksTable{
+	width: 100%;
+	text-align: left;
+	margin-bottom: 2em;
+	color: #303030;
+	font-size: 13px;
+}
+
+.linksTable caption{
+	font-size: 16px;
+	font-weight: bold;
+	font-family: Arial, sans-serif;
+	text-align: left;
+	line-height: 30px;
+	color: #bb0000;
+}
+
+.linksTable th, .linksTable td{
+	border: 1px solid #ddd;
+	padding: 7px 12px;
+}
+
+.linksTable th{
+	background-color: #f2f5fa;
+}

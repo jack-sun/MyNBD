@@ -1,0 +1,20 @@
+<div class="hotTop sectionB">
+	<div class="title">
+		<h4>热门话题</h4>
+		<!--<span class="opts"><a href="">更多</a></span>-->
+	</div>
+	<div class="content">
+		<ul class="topList">
+			<% @hot_topics.each do|topic| %>
+			<li>
+				<h3><%= link_to topic.title, topic_url(topic) %></h3>
+				<blockquote class="roundCorner">
+					<span class="arrow"></span>
+					<%= truncate(strip_tags(topic.desc), :length => 50) %>
+				</blockquote>
+				<div class="clear"></div>
+			</li>
+			<%end%>
+		</ul>
+	</div>
+</div>

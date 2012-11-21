@@ -1,0 +1,6 @@
+尊敬的每经网会员(<%= @user.nickname %>)，请点击下面的链接激活用户：
+
+<%= "#{Settings.host}/user/activate/#{@user.activate_token}" %>
+-----------------------------
+每经网 
+<%= Settings.host %>

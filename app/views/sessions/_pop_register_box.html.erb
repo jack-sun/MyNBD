@@ -1,0 +1,22 @@
+<div id="popwinLoginFormWrapper" style="display:none">
+	<%= render :partial => "sessions/form_for_sign_in" %>
+</div>
+</body>
+<script type="text/javascript">
+	var _registerPopWin;
+	function _popRegisterBox (){
+		var user_signed_in = <%= @current_user.present? %>;
+		if (!user_signed_in) {
+			if(!_registerPopWin){
+				_registerPopWin = $.popWin.init({
+					follow:true,
+					title:"请先登录"
+				});
+				$('#popwinLoginFormWrapper').appendTo(_registerPopWin.content).show();
+			}
+			_registerPopWin.show();
+			return true;
+		}
+		return false;
+	}
+</script>

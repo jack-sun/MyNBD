@@ -1,0 +1,21 @@
+<div class="leftCol">
+	<div class="formA roundCorner">
+		<p>忘记密码了？请告诉我们您在每经网里使用的邮箱，我们会发送相关信息到您的邮箱：</p>
+		<%= form_tag password_resets_path, :class=>"formA", :style=>"border:0;padding:0", :method => :post do %>
+			<p>
+				<%= label_tag :email, "邮箱:" %><br/>
+				<%= text_field_tag :email, nil, :class => "textInput", :style => "width:335px" %>
+			</p>
+			<p class="btnRowM">
+				<%= link_to "<span>提交</span>".html_safe, "javascript:$('form')[0].submit();", :class => "btnBlueM"%>
+				<%= link_to "返回登录", user_sign_in_path, :class => "btnCancel" %>
+				<div class="clear"></div>
+			</p>
+		<% end %>
+	</div>
+</div>
+
+<div class="rightCol">
+</div>
+
+<div class="clear"></div>

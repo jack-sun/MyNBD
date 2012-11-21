@@ -1,0 +1,76 @@
+<% 
+  poll_id = JSON.parse(element.content)["body"] 
+  poll = Poll.find(poll_id)  
+%>
+
+<div id="poll_<%= poll_id %>" class="pollBox">
+	
+  <% if poll.desc != "" %>
+	<p class="pollDesc"><%= raw poll.desc %></p>
+	<% end %>
+
+    <% if poll.expiried? %>
+      <div class="pollResultContainer">
+        <% if poll.show_result == Poll::SHOW_RESULT_TO_ALL %>
+          该投票已结束，以下是投票结果：
+          <%= render(:partial => "polls/vote_result", :locals => {:poll => poll, :success => false}) %>
+        <% else %>
+          该投票已结束，投票结果将与近期公布，敬请关注。
+        <% end %>
+      </div>
+    <% else %>
+      <div class="pollResultContainer">
+      </div>
+      <div class="pollOpt">
+          <ul class="pollList">
+            <% if poll.max_choice_count > 1 %>
+              <% poll.polls_options.order("pos asc").each_with_index do |option, index| %>
+              <li>
+                  <%= check_box_tag "option_#{option.id}", option.id %>
+                  <%= label_tag "option_#{option.id}", option.content.html_safe %>
+              </li>
+              <% end %>
+            <% else %>
+              <% poll.polls_options.order("pos asc").each do |option| %>
+              <li>
+                <%= radio_button_tag "option", option.id, false, :id => "option_#{option.id}" %>
+                  <%= label_tag "option_#{option.id}", option.content.html_safe %>
+              </li>
+              <% end %>
+            <% end %>
+          </ul>
+          <%= form_tag(vote_poll_url(poll), {:remote => true, :class => "captchaForm"}) do %>
+            <%= hidden_field_tag "vote_option_ids", nil, :class => "vote_option_ids", :id => "" %>
+            <% if poll.need_capcha? %>
+              <div id="<%= "captcha_poll_#{poll.id}" %>">
+                <%= text_field_tag "captcha", "", :class => "textInput captchaInput" %>
+                <span class="captchaImage">
+                </span>
+              </div>
+            <% end %>
+            <div class="bottomActions">
+              <%= link_to "<span>投票</span>".html_safe, "javascript:void(0);", :class => "submitPollBtn btnBlueM lf"%>
+              <span class="linkToResult">
+                    <% if poll.show_result == Poll::SHOW_RESULT_TO_ALL %>
+                      <%= link_to "查看投票结果", result_poll_path(poll), :remote => true %>
+                    <% elsif poll.show_result == Poll::SHOW_RESULT_AFTER_VOTE %>
+                      <span>投票后显示结果</span>
+                    <% end %>
+              </span>
+            </div>
+          <% end %>
+		  <div class="clear"></div>
+      </div>
+    <% end %>
+</div>
+<script type="text/javascript">
+	new Poll({
+    captchaUrl : "<%= reload_captcha_url(:id => "captcha_poll_#{poll.id}") %>",
+		pollID: <%= poll_id %>,
+		voteUrl : '<%= vote_poll_url(poll) %>',
+		maxChoiceCount : <%= poll.max_choice_count %>, // 最大头片数
+		repeatsVerifyType : <%= poll.repeats_verify_type %>, // 验证类型
+		isNeedLogin : <%= poll.repeats_verify_type == Poll::VERIFY_TYPE_LOGIN %> ,// 是否需要登录
+    isMandatory : <%= poll.mandatory == 1 %>
+	});
+</script>

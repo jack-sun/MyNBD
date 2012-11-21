@@ -1,0 +1,32 @@
+<div class="reTweetForm">
+	<%= form_for @new_weibo, :url => rt_weibo_path, :as => :weibo, :html => {:remote => true, :class => "rtTextarea speakForm", :id => "rt_weibo_#{@weibo.id}"} do |f| %>
+		<blockquote class="roundCorner">
+			<div class="rtOriginText">
+				<%if @weibo.is_ori_weibo?%>
+					<%= link_to "@#{@weibo.owner.nickname}:" %>: <span class="content"><%= @weibo.content %></span>
+				<%elsif @weibo.ori_weibo.present?%>
+					<%= link_to "@#{@weibo.ori_weibo.owner.nickname}:" %>: <span class="content"><%= @weibo.ori_weibo.content %></span>
+				<%elsif @weibo.ori_weibo_id != 0%>
+					<span class="content">原文微博已删除</span>
+				<%end%>
+				<a href="javascript:void(0)" class="expandText">[查看更多]</a>
+			</div>
+		</blockquote>
+		<div class="speakSuccessTip">转发成功！</div>
+		<%=  f.text_area :content ,:class => "textInput" %>
+		<div style="width:100%; margin-top:5px;"><!--this for ie6-->
+			<div class="lf">
+				  <%= f.check_box :comment_to_parent %>
+				  <%= f.label :comment_to_parent, "同时评论给#{@weibo.owner.nickname}" %>
+				  <% if not @weibo.is_ori_weibo? and @weibo.ori_weibo.present? %>
+				  	<br/>
+				    <%= f.check_box :comment_to_ori %>
+				    <%= f.label :comment_to_ori, "同时评论给原文作者#{@weibo.ori_weibo.owner.nickname}" %>
+				  <% end %>
+			</div>
+			<a href="javascript:void(0)" class="speakBtn btnBlue rf" style="margin-right:5px;"><span>转发</span></a>
+			<div class="clear"></div>
+		</div>
+	<% end %>
+</div>
+

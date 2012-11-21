@@ -1,0 +1,31 @@
+<%= simple_form_for([:console, @live], :html => {:class => "formA"}) do |f| %>
+  <%= f.hidden_field :user_id, :value => @compere.id %>
+  <p>
+    <%= f.label :title, :label => "标题:"%>
+    <%= f.text_field :title %>
+  </p>
+  <p>
+    <%= f.label :desc, :label => "简介:"%>
+    <%= f.input :desc, :as => :text, :label => false, :input_html => {:cols => 50, :rows => 10} %>
+  </p>
+  <p>
+    <%= f.label :start_at, :label => "开始时间:" %>
+    <%= f.time_select :start_at %>
+  </p>
+  <p>
+    <%= f.label :end_at, :label => "结束时间:" %>
+    <%= f.time_select :end_at %>
+  </p>
+
+  <%= f.hidden_field :l_type %>
+  <p>
+  	<label>主持人:</label>
+	<%= link_to (image_tag(user_avatar_path(@compere, :middle))), user_url(@compere) %>
+	<%= @compere.nickname %>
+  </p>
+  
+	<p class="formRightAlign">
+		<%= link_to "<span>提交</span>".html_safe, "javascript:void(0)", :onclick => "$(this).closest('form').submit();return false;", :class => "btnBlueM" %>
+	</p>
+  
+<% end %>

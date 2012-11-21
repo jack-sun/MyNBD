@@ -1,0 +1,14 @@
+<%= require_popWin %>
+
+<div class="sectionA">
+  <div class="title">
+    <h1>每经投资快讯 - 期刊管理</h1>
+    <span class="opts">
+      <%= link_to "<span>添加新期刊</span>".html_safe, new_console_premium_mobile_news_path, :class => "btnBlueM" %>
+    </span>
+  </div>
+  <div class="content rightColCenter">
+    <%=render :partial => "article_list", :locals=>{ :articles => @articles_columns.map{|a|a.article}, :special_column => @current_column.special_column} %>
+  </div>
+  <%= paginate @articles_columns %>
+</div>

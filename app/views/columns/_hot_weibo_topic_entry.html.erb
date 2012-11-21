@@ -1,0 +1,10 @@
+<div class="sectionA" id="hotTopicEntry">
+	<div class="title">
+		<h1><%= link_to "社区热议", weibo_host_url%></h1>
+	</div>
+	<div class="content">
+		<%= link_to "<span>参与热议</span>".html_safe, topic_url(topic), {:class => "discussTopic", :style => ""} %>
+		<h3><%= link_to(topic.title, topic_url(topic), {:target => "_blank", :title => topic.title})%></h3>
+		<p><%= strip_html_tag(topic.desc, 40) %></p>
+	</div>
+</div>

@@ -1,0 +1,21 @@
+<%
+	full_file_name = "#{@file_name}.xls"
+%>
+<div class="sectionA">
+  <div class="title">
+    <h2>
+      卡号管理 -- 卡号生成器
+    </h2>
+  </div>
+  <div id="body_state" class="content rightColCenter">
+
+<div class="alert_done"><b></b>您已成功生成<%= @count %>个新卡号, 请详细阅读卡号管理步骤.</div>
+<p>
+<span class="red">第一步：<strong>卡号下载</strong> 点击"<%= link_to "#{@file_name}.xls", download_file_console_premium_service_cards_url(:file_name => @file_name) %>"文件, 下载并保存 </span><br> 
+第二步：<strong>卡片制作</strong> 按照文件中的内容制成实体卡 <br> 
+第三步：<strong>卡片激活</strong> 在实体卡销售之前，确保卡号文件已入库。具体操作: “卡号管理“ > “实体卡管理”> 点击 " 导入新卡号"  <br> <br> 
+完成以上三步后，实体卡才可以开始销售，在实体卡管理页面可以跟踪查看实体卡的使用状态。
+</p>
+
+  </div>
+</div>

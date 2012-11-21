@@ -1,0 +1,3 @@
+class ElementLink < Element
+  
+end

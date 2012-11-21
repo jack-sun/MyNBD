@@ -1,0 +1,52 @@
+<%= require_jqueryUI %>
+<%if defined?(@sortable) and @sortable%>
+  <%= require_js "console_sortable.js" %>
+<%end%>
+<script type="text/javascript">
+  var _current_column = <%= @current_column.id %>;
+</script>
+
+
+<div class="sectionA">
+  <div class="title">
+    <h1><%=@column.name%></h1>
+    <span class="opts">
+      <%= link_to "<span>添加新文章</span>".html_safe, new_console_article_url(:column_id => @current_column.id), :class => "btnBlueM" %>
+    </span>
+  </div>
+  <div id="subColumnTab" class="tabs"><%= render :partial => "console/shared/list_sub_columns"  %></div>
+  <div id="body_channel" class="content">
+    <%=render :partial => "console/shared/article_operation_bar", :locals=>{ :articles => @articles_columns} %>
+    <%=render :partial => "console/shared/articles", :locals=>{ :articles => @articles_columns.map{|a|a.article}, :special_column => @current_column.special_column} %>
+    <%=render :partial => "console/shared/article_operation_bar", :locals=>{ :articles => @articles_columns} %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    $('.selectAll').click(function(){
+      var checkStatus = $(this)[0].checked;
+      $('.subSelect',$(this).closest('table')).each(function(i){
+        this.checked = checkStatus;
+      });
+    });
+    $('.subSelect').click(function(){
+      var $selectAll = $('.selectAll',$(this).closest('table'));
+      var checkStatus = $(this)[0].checked;
+      var f = false;
+      if (!checkStatus) {
+        $selectAll[0].checked = false;
+      } else {
+        $('.subSelect',$(this).closest('table')).each(function(i){
+          //console.log(this.checked);
+          if (!this.checked) {
+            f = true;
+          }
+        });
+        if(f == false){
+          $selectAll[0].checked = true;
+        }
+      }
+    });
+  });
+</script>

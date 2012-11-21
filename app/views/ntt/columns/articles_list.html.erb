@@ -1,0 +1,39 @@
+<% list_title = @column.root.id == @column.id ? @column.name : "#{@column.root.name} - #{@column.name}" %>
+<% @title=list_title %>
+<%= require_css "article_list.css" %>
+
+<% content_for :header_ad do %>
+	<script type="text/javascript">
+		BAIDU_CLB_preloadSlots("349118", "349119", "349120");
+	</script>
+	<!-- 广告位：全站_顶部四分之三通栏 -->
+	<%= render :partial => "ads/ad", :locals => { :id => "349118", :html_class => "header" } %>
+<% end %>
+
+<div class="leftCol">
+	<% if params[:type] == 'research' %>
+		<p style="margin-bottom:7px;">研究报告是每经智库开发的经济研究专栏，对经济热点、商业模式、资本运营、改革探讨等领域进行独立研究。研究报告目前仅限每经网高级用户使用。</p>
+		<p>详情咨询: <strong>028-86510815</strong>，合作洽谈请<%= link_to "<strong>联系我们</strong>".html_safe, "mailto:ntt@nbd.com.cn" %>(ntt@nbd.com.cn)</p>
+	<% elsif params[:type] == 'market' %>
+		<p style="margin-bottom:7px;">市场数据是每经智库开发的数据库，涉及资本市场、公司运营、宏观经济等多种领域，包含每日经济新闻报社独家研究市场数据，与学术机构共同研究数据，与专业数据公司商业合作数据。“每经智库市场数据”目前仅限每经网高级用户使用。</p>
+		<p>详情咨询: <strong>028-86510815</strong>，合作洽谈请<%= link_to "<strong>联系我们</strong>".html_safe, "mailto:ntt@nbd.com.cn" %>(ntt@nbd.com.cn)</p>
+	<% elsif params[:type] == 'invest' %>
+		<p style="margin-bottom:7px;">投资研究是每经智库提供的投资策略报告专栏，对行业投资、区域投资、投资风险、资本市场板块趋势等领域进行解析。投资研究目前仅限每经网高级用户使用。</p>
+		<p>详情咨询: <strong>028-86510815</strong>，合作洽谈请<%= link_to "<strong>联系我们</strong>".html_safe, "mailto:ntt@nbd.com.cn" %>(ntt@nbd.com.cn)</p>
+	<% else %>
+		<% if @is_premium_user %>
+			<% cache(column_show_content_key_by_id(@column.id,"#{request[:controller]}_#{request[:action]}_#{params[:id]}_#{params[:page]}")) do %>
+			  <%= render :partial => "columns/article_list_for_search", :locals => {:list_title => list_title, :articles => @articles_columns.map(&:article).compact, :digest_restrict => true ,:for_subdomain => Settings.ntt_sub_domain} %>
+			  <%= paginate @articles_columns %>
+			<% end %>
+		<% else %>
+			<p>。。。</p>
+		<% end %>
+  	<% end %>
+</div>
+
+<div class="rightCol">
+</div>
+
+<div class="clear"></div>
+

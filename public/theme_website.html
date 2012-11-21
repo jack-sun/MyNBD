@@ -1,0 +1,602 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>NBD-Theme-Website</title> 
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon" /> 
+<link rel="stylesheet" type="text/css" href="./stylesheets/reset.css" /> 
+<link rel="stylesheet" type="text/css" href="./stylesheets/style_global.css" /> 
+<link rel="stylesheet" type="text/css" href="./stylesheets/style_website.css" /> 
+<link rel="stylesheet" type="text/css" href="./stylesheets/theme_demo.css" />
+<link rel="stylesheet" type="text/css" href="./utilities/popWin/popWin.css" />
+<script type="text/javascript" src="./javascripts/jquery.min.js"></script>  
+<script type="text/javascript" src="./utilities/popWin/popManager.js"></script>  
+<script type="text/javascript" src="./utilities/popWin/popWin.js"></script>  
+</head> 
+<body> 
+<div id="column">
+	<div id="leftColumn">
+		<h1 style="text-align:center;">NBD-Theme-Website</h1>
+		<p style="text-align:center;">版本:1.1 最后更新于：2011-10-23</p>
+		<div class="demoSection">
+			<h2 class="demoSectionTitle">DOCTYPE</h2>
+			<div class="demoSectionContent">
+				<code>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt;<br/>
+				&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;</code>
+			</div>
+		</div>
+	
+		<div class="demoSection">
+			<h2 class="demoSectionTitle">样式和脚本</h2>
+			<div class="demoSectionContent">
+				<p>使用NBD-Theme请先引用：</p>
+				<table>
+					<tr><th>样式重置</th><td><code>&lt;link rel="stylesheet" type="text/css" href="/stylesheets/reset.css" /&gt;</code></td></tr>
+					<tr><th>主样式</th><td><code>&lt;link rel="stylesheet" type="text/css" href="/stylesheets/style_website.css" /&gt;</code></td></tr>
+				</table>
+			</div>
+		</div>
+	
+		<div class="demoSection">
+			<h2 class="demoSectionTitle">通用的</h2>
+			<div class="demoSectionContent">
+				<table>
+					<tr><th>Heading</th><td>
+					<h1>Heading 1</h1>
+					<h2>Heading 2</h2>
+					<h3>Heading 3</h3>
+					<h4>Heading 4</h4>
+					<h5>Heading 5</h5>
+					<h6>Heading 6</h6></td></tr>
+					<tr><th>Hyperlink</th><td><ol>
+						<li><a href="#" class="link">a:link</a></li>
+						<li><a href="#" class="visited">a:visited</a></li>
+						<li><a href="#" class="hover">a:hover</a></li>
+						<li><a href="#" class="active">a:active</a></li>
+					</ol></td></tr>
+				</table>
+			</div>
+		</div>
+				
+		<div class="demoSection">
+			<h2 class="demoSectionTitle">二级导航</h2>
+			<div class="demoSectionContent">
+				<div class="subNavi">
+					<ul>
+						<li class="first current"><a href="">观点</a><b>/</b></li>
+						<li><a href="">专栏</a></li>
+						<li><a href="">评论</a></li>
+						<li class="last"><a href="">研报</a></li>
+					</ul>
+				</div>
+				<code style="margin-top:10px">
+					&lt;div class="subNavi"&gt;
+						<div class="tabIndent">
+						&lt;ul&gt;
+							<div class="tabIndent">
+							&lt;li class="first current"&gt;&lt;a href=""&gt;观点&lt;/a&gt;&lt;b&gt;/&lt;/b&gt;&lt;/li&gt;<br/>
+							&lt;li&gt;&lt;a href=""&gt;专栏&lt;/a&gt;&lt;/li&gt;<br/>
+							&lt;li&gt;&lt;a href=""&gt;评论&lt;/a&gt;&lt;/li&gt;<br/>
+							&lt;li class="last"&gt;&lt;a href=""&gt;研报&lt;/a&gt;&lt;/li&gt;<br/>
+							</div>
+						&lt;/ul&gt;
+						</div>
+					&lt;/div&gt;
+				</code>
+			</div>
+		</div>
+				
+		<div class="demoSection">
+			<h2 class="demoSectionTitle">块和章节</h2>
+			<div class="demoSectionContent">
+				<table>
+					<tr><th>块</th><td>
+						<div class="block">
+							<div class="blockTitle">
+								<h2>块标题</h2>
+								<span class="opts"><a href="">分类一</a> / <a href="">分类二</a> / <a href="">分类三</a> / <a href="">更多</a></span>
+							</div>
+							<div class="blockContent">
+								内容。。。
+							</div>
+						</div>
+						<code style="margin-top:10px;">
+							&lt;div class="block"&gt;<br/>
+								<div class="tabIndent">
+									&lt;div class="blockTitle"&gt;<br/>
+									<div class="tabIndent">
+										&lt;h1-h6&gt;块标题&lt;/h1-h6&gt;<br/>
+										&lt;span class="opts"&gt;&lt;a href=""&gt;...&lt;/a&gt;&lt;/span&gt;<br/>
+									</div>
+									&lt;/div&gt;<br/>
+									&lt;div class="blockContent"&gt;<br/>
+									<div class="tabIndent">
+										内容。。。<br/>
+									</div>
+									&lt;/div&gt;<br/>
+								</div>
+							&lt;/div&gt;
+						</code>
+					</td></tr>
+					<tr><th>章节A</th><td>
+						<div class="sectionA">
+							<div class="title">
+								<h3>章节标题</h3>
+								<span class="opts"><a href="">更多</a></span>
+							</div>
+							<div class="content">
+								该样式，仅用于文章列表
+							</div>
+						</div>
+						<code style="margin-top:10px;">
+							&lt;div class="sectionA"&gt;<br/>
+								<div class="tabIndent">
+									&lt;div class="title"&gt;<br/>
+									<div class="tabIndent">
+										&lt;h1-h6&gt;章节标题&lt;/h1-h6&gt;<br/>
+										&lt;span class="opts"&gt;&lt;a href=""&gt;...&lt;/a&gt;&lt;/span&gt;<br/>
+									</div>
+									&lt;/div&gt;<br/>
+									&lt;div class="content"&gt;<br/>
+									<div class="tabIndent">
+										内容。。。<br/>
+									</div>
+									&lt;/div&gt;<br/>
+								</div>
+							&lt;/div&gt;
+						</code>
+					</td></tr>
+					<tr><th>章节B</th><td>
+						<div class="sectionB">
+							<div class="title">
+								<h4>章节标题</h4>
+								<span class="opts"><a href="">更多</a></span>
+							</div>
+							<div class="content">
+								该样式，仅用于微博页面的右边栏
+							</div>
+						</div>
+						<code style="margin-top:10px;">
+							&lt;div class="sectionB"&gt;<br/>
+								<div class="tabIndent">
+									&lt;div class="title"&gt;<br/>
+									<div class="tabIndent">
+										&lt;h1-h6&gt;章节标题&lt;/h1-h6&gt;<br/>
+										&lt;span class="opts"&gt;&lt;a href=""&gt;...&lt;/a&gt;&lt;/span&gt;<br/>
+									</div>
+									&lt;/div&gt;<br/>
+									&lt;div class="content"&gt;<br/>
+									<div class="tabIndent">
+										内容。。。<br/>
+									</div>
+									&lt;/div&gt;<br/>
+								</div>
+							&lt;/div&gt;
+						</code>
+					</td></tr>
+				</table>
+			</div>
+		</div>
+		
+		<div class="demoSection">
+			<h2 class="demoSectionTitle">页签栏</h2>
+			<div class="demoSectionContent">
+				<div class="tabs">
+					<ul>
+						<li class="current"><a href="">页签一</a></li>
+						<li><a href="">页签二</a></li>
+						<li><a href="">页签三</a></li>
+						<li><a href="">页签四</a></li>
+					</ul>
+				</div>
+				<code>
+					&lt;div class="tabs"&gt;<br/>
+						<div class="tabIndent">
+						&lt;ul&gt;<br/>
+							<div class="tabIndent">
+							&lt;li class="current"&gt;&lt;a href=""&gt;页签一&lt;/a&gt;&lt;/li&gt;<br/>
+							&lt;li&gt;&lt;a href=""&gt;页签二&lt;/a&gt;&lt;/li&gt;<br/>
+							&lt;li&gt;&lt;a href=""&gt;页签三&lt;/a&gt;&lt;/li&gt;<br/>
+							&lt;li&gt;&lt;a href=""&gt;页签四&lt;/a&gt;&lt;/li&gt;<br/>
+							</div>
+						&lt;/ul&gt;<br/>
+						</div>
+					&lt;/div&gt;
+				</code>
+			</div>
+		</div>
+		
+		<div class="demoSection">
+			<h2 class="demoSectionTitle">无序列表</h2>
+			<div class="demoSectionContent">
+				<ul class="unorderList">
+					<li><a href="">条目一</a></li>
+					<li><a href="">条目二</a></li>
+					<li><a href="">条目三</a></li>
+					<li><a href="">条目四</a></li>
+					<li><a href="">更多...</a></li>
+				</ul>
+				<code style="margin-top:10px;">
+					&lt;ul class="unorderList" &gt;<br/>
+						<div class="tabIndent">
+						&lt;li&gt;&lt;a href=""&gt;条目一&lt;/a&gt;&lt;/li&gt;<br/>
+						&lt;li&gt;&lt;a href=""&gt;条目二&lt;/a&gt;&lt;/li&gt;<br/>
+						&lt;li&gt;&lt;a href=""&gt;更多...&lt;/a&gt;&lt;/li&gt;<br/>
+						</div>
+					&lt;/ul&gt;<br/>
+				</code>
+			</div>
+		</div>
+		
+		<div class="demoSection">
+			<h2 class="demoSectionTitle">按钮</h2>
+			<div class="demoSectionContent">
+				<table>
+					<tr><th>Red</th><td>
+						<a class="btnRed" href="javascript:void(0)"><span>取消发布</span></a>
+						<code style="margin-top:10px;">
+							&lt;a class="btnRed"&gt;&lt;span&gt;按钮名称&lt;/span&gt;&lt;/a&gt;
+						</code>
+					</td></tr>
+					<tr><th>Gray</th><td>
+						<a class="btnGray" href="javascript:void(0)"><span>删除选中</span></a>
+						<code style="margin-top:10px;">
+							&lt;a class="btnGray"&gt;&lt;span&gt;按钮名称&lt;/span&gt;&lt;/a&gt;
+						</code>
+					</td></tr>
+					<tr><th>GrayBlue</th><td>
+						<a class="btnGrayBlue" href="javascript:void(0)"><span>参与评论</span></a>
+						<code style="margin-top:10px;">
+							&lt;a class="btnGrayBlue"&gt;&lt;span&gt;按钮名称&lt;/span&gt;&lt;/a&gt;
+						</code>
+					</td></tr>
+					<tr><th>Blue</th><td>
+						<a class="btnBlue btnDisabled" href="javascript:void(0)"><span>请教专家</span></a>
+						<code style="margin-top:10px;">
+							&lt;a class="btnBlue btnDisabled"&gt;&lt;span&gt;按钮名称&lt;/span&gt;&lt;/a&gt;
+						</code>
+					</td></tr>
+					<tr><th>Blue Medium</th><td>
+						<a class="btnBlueM btnDisabled" href="javascript:void(0)"><span>发布微薄</span></a>
+						<code style="margin-top:10px;">
+							&lt;a class="btnBlueM btnDisabled"&gt;&lt;span&gt;按钮名称&lt;/span&gt;&lt;/a&gt;
+						</code>
+					</td></tr>
+					<tr><th>Green</th><td>
+						<a class="btnGreen" href="javascript:void(0)"><span>加关注</span></a>
+						<code style="margin-top:10px;">
+							&lt;a class="btnGreen"&gt;&lt;span&gt;按钮名称&lt;/span&gt;&lt;/a&gt;
+						</code>
+					</td></tr>
+				</table>
+			</div>
+		</div>
+		
+		<div class="demoSection">
+			<h2 class="demoSectionTitle">
+				表单A
+			</h2> 
+			<div class="demoSectionContent">
+				<form class="formA roundCorner">
+					<div class="title">
+						<h2>填写账户信息</h2>
+						<span class="titleOpts">我已是会员, <a href="">登录</a></span>
+					</div>
+					<p>
+						<label for="name">邮箱：</label><br/>
+						<input type="text" class="textInput" size="36" />
+					</p>
+					<p>
+						<label for="name">昵称：</label><br/>
+						<input type="text" class="textInput" size="36" /> <span class="tip">4-20个字符，一个汉字为两个字符。</span>
+					</p>
+					<p>
+						<label for="name">密码：</label><br/>
+						<input class="textInput error" type="text" size="36" /> <span class="tip error">6-16个字母加数字或字符的组合。</span>
+					</p>
+					<p>
+						<label for="name">确认密码：</label><br/>
+						<input type="text" class="textInput" size="36" />
+					</p>
+					<p>
+						<label>选择性别：</label>
+						<input class="" type="radio" name="male" />
+						<label class="clearLabelStyle" for="male">男</label>
+						<input type="radio" name="female" />
+						<label class="clearLabelStyle" for="female">女</label>
+					</p>
+					<p class="btnRowM">
+						<a href="javascript:void(0)" class="btnBlueM" style="width:180px;"><span>注册 并同意以下条款</span></a>
+						<a href="javascript:void(0)" class="btnCancel">取消</a>
+						<div class="clear"></div>
+					</p>
+					<p>
+						<a href="">《每经会员隐私保护条款》</a>
+					</p>
+				</form>
+				
+				<code style="margin-top:10px;">
+					&lt;form class="formA roundCorner"&gt;
+						<div class="tabIndent">
+						&lt;div class="title"&gt;
+							<div class="tabIndent">
+								&lt;h1-h6&gt;填写账户信息&lt;/h1-h6&gt;<br/>
+								&lt;span class="titleOpts"&gt;我已是会员&lt;/span&gt;
+							</div>
+						&lt;/div&gt;<br/>
+						&lt;p&gt;
+							<div class="tabIndent">
+							&lt;label for="name"&gt;字段一：&lt;/label&gt;&lt;br/&gt;<br/>
+							&lt;input type="text" class="textInput" size="36" /&gt; &lt;span class="tip"&gt;字段一提示信息&lt;/span&gt;
+							</div>
+						&lt;/p&gt;<br/>
+						&lt;p&gt;
+							<div class="tabIndent">
+							&lt;label for="name"&gt;字段二：&lt;/label&gt;&lt;br/&gt;<br/>
+							&lt;input type="text" class="textInput" size="36" /&gt;
+							</div>
+						&lt;/p&gt;<br/>
+						&lt;p class="btnRowM"&gt;
+							<div class="tabIndent">
+							&lt;a href="javascript:void(0)" class="btnBlueM" style="width:180px;"&gt;&lt;span&gt;提交按钮&lt;/span&gt;&lt;/a&gt;
+							&lt;a href="javascript:void(0)" class="btnCancel"&gt;取消&lt;/a&gt;
+							&lt;div class="clear"&gt;&lt;/div&gt;
+							</div>
+						&lt;/p&gt;<br/>
+						&lt;p&gt;
+							<div class="tabIndent">
+							&lt;a href=""&gt;补充链接&lt;/a&gt;
+							</div>
+						&lt;/p&gt;
+						</div>
+					&lt;/form&gt;
+				</code>
+			</div>
+		</div>
+		
+		<div class="demoSection">
+			<h2 class="demoSectionTitle">提醒(完成/错误/信息)</h2>
+			<div class="demoSectionContent">
+				<div class="alert_done"> 
+                    <b></b>恭喜您，注册成功！
+                </div>
+                <code style="margin-bottom:20px;">&lt;div class="alert_done"&gt;&lt;b&gt;&lt;/b&gt; Aler Content&lt;/div&gt;</code> 
+                <div class="alert_error"> 
+                    <b></b>提交失败，请稍后重试，或联系我们
+                </div>
+                <code style="margin-bottom:20px;">&lt;div class="alert_error"&gt;&lt;b&gt;&lt;/b&gt; Aler Content&lt;/div&gt;</code>  
+                <div class="alert_info"> 
+                    <b></b>有新微薄，点击查看
+                </div> 
+                <code style="margin-bottom:20px;">&lt;div class="alert_info"&gt;&lt;b&gt;&lt;/b&gt; Aler Content&lt;/div&gt;</code>
+			</div>
+		</div>
+		
+		<div class="demoSection">
+			<h2 class="demoSectionTitle">分页控件</h2>
+			<div class="demoSectionContent">
+				<div class="pagination">
+					<b>1</b>
+					<a href="">2</a>
+					<a href="">3</a>
+					<a href="">4</a>
+					<a href="">5</a>
+					<a href="">6</a>
+					<span class="gap">…</span>
+					<a href="">50</a>
+					<a href="">下一页</a>
+				</div>
+				<div class="clear"></div>
+				<code style="margin-top:10px;">
+					&lt;div class="pagination"&gt;
+						<div class="tabIndent">
+						&lt;b&gt;1&lt;/b&gt;<br/>
+						&lt;a href=""&gt;2&lt;/a&gt;<br/>
+						&lt;a href=""&gt;3&lt;/a&gt;<br/>
+						&lt;a href=""&gt;4&lt;/a&gt;<br/>
+						&lt;a href=""&gt;5&lt;/a&gt;<br/>
+						&lt;a href=""&gt;6&lt;/a&gt;<br/>
+						&lt;span class="gap"&gt;...&lt;/span&gt;<br/>
+						&lt;a href=""&gt;50&lt;/a&gt;<br/>
+						&lt;a href=""&gt;下一页&lt;/a&gt;
+						</div>
+					&lt;/div&gt;<br/>
+					&lt;div class="clear"&gt;&lt;/div&gt;
+				</code>
+			</div>
+		</div>
+		
+		<div class="demoSection">
+			<h2 class="demoSectionTitle">微薄: 条目列表</h2>
+			<div class="demoSectionContent">
+				<ul class="weiboItemList">
+					<li>
+						<a href="#" class="avatar"><img src="./images/avatar-default.gif" alt="" /></a>
+						<div class="itemContent">
+							<p><a href="">每经快递</a>:【全国生猪价格涨至历史新高】今年以来，北京市场上的猪肉价格持续大幅
+							攀升，白条猪平均批发价陡涨至12.25元/斤，猪肉的零售价蹿到20元/斤，均达到历史最
+							高。部分老百姓面对猪肉价格一涨再涨表现出不满情绪，一些人认为食品价格涨得离谱。</p>
+							<blockquote>
+								<p>“难点不在于没有新思维，而在于无法摆脱陈旧思想的束缚”。禁锢创新的正是循规蹈矩的旧思想。</p>
+								<div class="quoteBottom">
+									<span class="rf">
+										<a href="">原文转发(200)</a><span class="divider">|</span><a href="">原文评论(300)</a>				
+									</span>
+									<a href="">1分钟前</a>	
+								</div>
+							</blockquote>
+							<div class="itemBottom">
+								<span class="rf">
+									<a href="">删除</a><span class="divider">|</span><a  href="">转发(94)</a><span class="divider">|</span><a href="">评论(3)</a>
+								</span>
+								<a href="">1分钟前</a>	
+							</div>
+						</div>
+					</li>
+				</ul>
+				<code style="margin-top:10px">
+					&lt;ul class="weiboItemList"&gt;
+						<div class="tabIndent">
+						&lt;li&gt;
+							<div class="tabIndent">
+							&lt;a href="#" class="avatar"&gt;&lt;img src="./images/avatar-default.gif" alt="" /&gt;&lt;/a&gt;<br/>
+							&lt;div class="itemContent"&gt;
+								<div class="tabIndent">
+								&lt;p&gt;&lt;a href=""&gt;用户名&lt;/a&gt;: 微薄内容。。。&lt;/p&gt;<br/>
+								&lt;blockquote&gt;
+									<div class="tabIndent">
+									&lt;p&gt;微薄原文内容。。。&lt;/p&gt;<br/>
+									&lt;div class="quoteBottom"&gt;
+										<div class="tabIndent">
+										&lt;span class="rf"&gt;
+											<div class="tabIndent">
+											&lt;a href=""&gt;原文转发(200)&lt;/a&gt;<br/>&lt;span class="divider"&gt;|&lt;/span&gt;&lt;a href=""&gt;原文评论(300)&lt;/a&gt;	
+											</div>			
+										&lt;/span&gt;<br/>
+										&lt;a href=""&gt;1分钟前&lt;/a&gt;	
+										</div>
+									&lt;/div&gt;
+									</div>
+								&lt;/blockquote&gt;<br/>
+								&lt;div class="itemBottom"&gt;
+									<div class="tabIndent">
+									&lt;span class="rf"&gt;
+										<div class="tabIndent">
+										&lt;a href=""&gt;删除&lt;/a&gt;<br/>&lt;span class="divider"&gt;|&lt;/span&gt;&lt;a href=""&gt;转发(94)&lt;/a&gt;<br/>&lt;span class="divider"&gt;|&lt;/span&gt;&lt;a href=""&gt;评论(3)&lt;/a&gt;
+										</div>
+									&lt;/span&gt;<br/>
+									&lt;a href=""&gt;1分钟前&lt;/a&gt;
+									</div>
+								&lt;/div&gt;
+								</div>
+							&lt;/div&gt;
+							</div>
+						&lt;/li&gt;
+						</div>
+					&lt;/ul&gt;
+				</code>
+			</div>
+		</div>
+		
+		<div class="demoSection">
+			<h2 class="demoSectionTitle">微薄: 用户列表</h2>
+			<div class="demoSectionContent">
+				<ul class="weiboUserList">
+					<li>
+						<a href="#" class="avatar"><img src="./images/avatar-default.gif" alt="" /></a>
+						<div class="itemContent">
+							<span class="itemOpts"><a href="" class="btnGrayBlue"><span>加关注</span></a></span>
+							<p><a href="">张小明</a><br/>用户介绍。。。<br/>一些内容。。。</p>
+						</div>
+					</li>
+				</ul>
+				<code style="margin-top:10px;">
+					&lt;ul class="weiboUserList"&gt;
+						<div class="tabIndent">
+						&lt;li&gt;
+							<div class="tabIndent">
+							&lt;a href="#" class="avatar"&gt;&lt;img src="./images/avatar-default.gif" alt="" /&gt;&lt;/a&gt;<br/>
+							&lt;div class="itemContent"&gt;
+								<div class="tabIndent">
+								&lt;span class="itemOpts"&gt;&lt;a href="" class="btnGrayBlue"&gt;&lt;span&gt;加关注&lt;/span&gt;&lt;/a&gt;&lt;/span&gt;<br/>
+								&lt;p&gt;&lt;a href=""&gt;张小明&lt;/a&gt;&lt;br/&gt;用户介绍。。。&lt;br/&gt;一些内容。。。&lt;/p&gt;
+								</div>
+							&lt;/div&gt;
+							</div>
+						&lt;/li&gt;
+						</div>
+					&lt;/ul&gt;
+				</code>
+			</div>
+		</div>
+		
+		<div class="demoSection">
+			<h2 class="demoSectionTitle">文章标签</h2>
+			<div class="demoSectionContent">
+				<table>
+					<tr><th>红色</th><td>
+						<span class="articleLabel red" href="javascript:void(0)"><b>重磅</b></span>
+						<div class="clear"></div>
+						<code style="margin-top:10px;">
+							&lt;span class="articleLabel red"&gt;&lt;b&gt;重磅&lt;/b&gt;&lt;/span&gt;
+						</code>
+					</td></tr>
+					<tr><th>绿色</th><td>
+						<span class="articleLabel green" href="javascript:void(0)"><b>独家</b></span>
+						<div class="clear"></div>
+						<code style="margin-top:10px;">
+							&lt;span class="articleLabel green"&gt;&lt;b&gt;独家&lt;/b&gt;&lt;/span&gt;
+						</code>
+					</td></tr>
+					<tr><th>蓝色</th><td>
+						<span class="articleLabel blue" href="javascript:void(0)"><b>专题</b></span>
+						<div class="clear"></div>
+						<code style="margin-top:10px;">
+							&lt;span class="articleLabel blue"&gt;&lt;b&gt;专题&lt;/b&gt;&lt;/span&gt;
+						</code>
+					</td></tr>
+					<tr><th>橙色</th><td>
+						<span class="articleLabel orange" href="javascript:void(0)"><b>专题</b></span>
+						<div class="clear"></div>
+						<code style="margin-top:10px;">
+							&lt;span class="articleLabel orange"&gt;&lt;b&gt;专题&lt;/b&gt;&lt;/span&gt;
+						</code>
+					</td></tr>
+					<tr><th>灰色</th><td>
+						<span class="articleLabel gray" href="javascript:void(0)"><b>专题</b></span>
+						<div class="clear"></div>
+						<code style="margin-top:10px;">
+							&lt;span class="articleLabel gray"&gt;&lt;b&gt;专题&lt;/b&gt;&lt;/span&gt;
+						</code>
+					</td></tr>
+				</table>
+			</div>
+		</div>
+		
+		<div class="demoSection">
+			<h2 class="demoSectionTitle">图标</h2>
+			<div class="demoSectionContent">
+				<table>
+					<tr><th>股市行情</th><td>
+						<b class="icon16 stock"></b>
+						<div class="clear"></div>
+						<code style="margin-top:10px;">
+							&lt;b class="icon16 stock"&gt;&lt;/b&gt;
+						</code>
+					</td></tr>
+				</table>
+			</div>
+		</div>
+				
+	</div><!--leftColumn-->
+	<div id="rightColumn">
+		<p><strong>目录</strong></p>
+		<ul id="pageNavi">
+			
+		</ul>
+	</div><!--rightColumn-->
+	<div class="clear"></div>
+</div>
+<script type="text/javascript">
+function scrollToSection(){
+}
+function generatePageNavi(){
+	var pageNavi = $('#pageNavi');
+	var sections = $('h2.demoSectionTitle');
+	$.each(sections, function(index, section){
+		var title = section.innerHTML;
+		var id = title.replace(/[\s\(\)\/\:]/g, '_');
+		section.setAttribute('id', id);
+		var a = $('<a href="javascript:void(0);">'+title+'</a>');
+		a.bind('click', {sectionId: id}, function(event){
+			$('html,body').animate({scrollTop:$('#'+event.data.sectionId).position().top-10},500)
+		});
+		pageNavi.append($('<li></li>').append(a));
+	});
+}
+$(document).ready(function(){
+	generatePageNavi(); 
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<%@title="账号设置 - 微博帐号"%>
+<%= require_css "account_settings.css" %>
+<div class="leftCol">
+	<div id="pageName"><h1>账号设置</h1></div>
+    <%= render(:partial => "users/settings_tab", :locals => {:index => 'weibo_account'})  %>
+
+    <%if params[:notice] %>
+		<div class="alert_done"><b></b><%= params[:notice] %></div>
+	<%end %>
+    <% if @accounts.size > 0 %>
+      <% @accounts.each_with_index do |account, index| %>
+        <div id="<%= account.provider %>">
+          <ul>
+            <li><%=  account.provider %></li>
+            <li><%=  account.nickname %></li>
+            <li><%=  link_to "解除绑定", authentication_url(account), :method => :delete, :remote => true %></li>
+          </ul>
+        </div>
+      <% end %>
+    <% end %>
+</div>
+<div class="rightCol">
+</div>
+<div class="clear">
+</div>

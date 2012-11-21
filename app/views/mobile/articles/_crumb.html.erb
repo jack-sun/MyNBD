@@ -1,0 +1,9 @@
+<% if first_column %>
+<div class="subNavi">
+<%= link_to "每经网", mobile_column_url(1) %> &gt;
+<%= link_to first_column.root.name, mobile_column_url(first_column.root) %> &gt;
+<%= link_to first_column.name, mobile_column_url(first_column) %> 
+&gt;
+<strong>正文</strong>
+</div>
+<% end %>

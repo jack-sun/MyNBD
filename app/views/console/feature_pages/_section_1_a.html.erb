@@ -1,0 +1,9 @@
+<div section_id="section_1_a" class="section">
+	<%= render '/console/feature_pages/section_actions' %>
+	<ul col_width="950" class="sortable">
+		<% element_ids.each do|element_id| %>
+          <%= render :partial => 'console/elements/element_item', :locals => {:element_id => element_id, :elements => elements} %>
+		<%end%>
+		<%= render "console/elements/add_element_action" %>
+	</ul>
+</div>

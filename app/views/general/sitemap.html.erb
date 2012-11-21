@@ -1,0 +1,23 @@
+<% @title = "网站地图" %>
+<%= require_css "about.css" %>
+<div class="pageName"><h1>网站地图</h1></div>
+<div class="section">
+<dl id="sitemap">
+	<% Column.where(:id => Column::DIS_MAIN_NAVS).each_with_index do|column, index| %>
+	<dt><%= link_to column.name, column_url(column) %></dt>
+	<dd>
+		<% Column.find(Column::DIS_SUB_NAVS_FOR_SITEMAP[column.root.id]).each_with_index do |child_column, index| %>
+			<%= link_to child_column.name, column_url(child_column) %>
+		<%end%>
+	</dd>
+	<% end %>
+	<dt>
+		<%= link_to "西部", west_index_url %>
+		<dd>
+			<% Column.find(Column::DIS_SUB_NAVS_FOR_SITEMAP[145]).each_with_index do |child_column, index| %>
+			<%= link_to child_column.name, west_column_url(child_column) %>
+		<%end%>
+		</dd>
+	</dt>
+</dl>
+</div>

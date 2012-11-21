@@ -1,0 +1,35 @@
+<div class="sectionA">
+  <div class="title">
+    <h2>
+      历史记录
+    </h2>
+    
+  </div>
+  <div id="body_state" class="content rightColCenter">
+    <table class="tableA">
+      <thead>
+        <tr>
+          <th>编号</th>
+          <th>日期</th>
+          <th>用户个数</th>
+          <th>操作人</th>
+          <th>数据文件</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @records.each do |record| %>
+          <tr>
+            <td><%= record.id %></td>
+            <td><%= record.updated_at.strftime("%Y-%m-%d") %></td>
+            <td><%= record.count %></td>
+            <td><%= record.staff.real_name %></td>
+            <td><%= link_to "每经网手机报有效用户-#{record.created_at.strftime("%Y-%m-%d")}.txt", download_console_premium_activated_user_record_path(record) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div style="margin-top:20px;">
+      <%= paginate @records %>
+    </div>
+  </div>
+</div>

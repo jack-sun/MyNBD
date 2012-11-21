@@ -1,0 +1,24 @@
+<%
+=begin
+Parameters:
+	article: Article instance
+	list_title: String (optional, default '')
+	column_id: Int (optional, default '')
+=end
+list_title = "头条" unless list_title
+column_id = "" unless column_id
+%>
+<div class="sectionA" id="headArticle2">
+	<div class="title"><h3>智库头条</h3><span class="opts"><%= link_to "更多", ntt_column_url(57)%></span></div>
+	<div class="content">
+		<%= link_to image_tag(article_thumbnail_path(article, :large_a), :class => "relativeImage"),  ntt_article_url(article), {:target => "_blank"} %>
+		<h2 class="headline">
+			<%= link_to article.list_title, ntt_article_url(article), {:target => "_blank", :title => article.title} %>
+		</h2>
+		<div class="digest">
+			<p><%= article.show_digest %></p>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+

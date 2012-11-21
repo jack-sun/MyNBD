@@ -1,0 +1,77 @@
+<div class="sectionA">
+	<div class="title">
+		<h1>用户列表</h1>
+	</div>
+
+	<div class="content rightColCenter" id="body_state">
+		<div class="tabs">
+			<ul>
+				<li <%= stats_class_helper(Staff::TYPE_EDITOR,"staff_type") %>>
+					<%= link_to "网站编辑", console_staffs_url(:type => Staff::TYPE_EDITOR,:status => @stats_type, :page => params[:page]) %>
+				</li>
+				<li <%= stats_class_helper(Staff::TYPE_EDITOR_ADMIN,"staff_type") %>>
+					<%= link_to "网站编辑管理", console_staffs_url(:type => Staff::TYPE_EDITOR_ADMIN,:status => @stats_type, :page => params[:page]) %>
+				</li>
+				<li <%= stats_class_helper(Staff::TYPE_ADMIN,"staff_type") %>>
+					<%= link_to "网站技术人员", console_staffs_url(:type => Staff::TYPE_ADMIN,:status => @stats_type, :page => params[:page]) %>
+				</li>
+
+			</ul>
+
+		</div>
+                        <div class="datePicker">
+			<ul>
+				<li <%= stats_class_helper(Staff::STATUS_ACTIVE,"staff_status") %>>
+					<%= link_to "有效用户", console_staffs_url(:status => "1", :type => @staff_type, :page => params[:page]) %>
+				</li>
+				<li <%= stats_class_helper(Staff::STATUS_BAN,"staff_status") %>>
+					<%= link_to "失效用户", console_staffs_url(:status => "2", :type => @staff_type, :page => params[:page]) %>
+				</li>
+			</ul>
+                        </div>
+		<table class="tableA">
+			<thead>
+				<tr>
+					<th>姓名</th>
+					<th>帐号</th>
+					<th>创建时间</th>
+					<th>用户类型</th>
+					<th>状态</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @stats.each do |stat| %>
+				<tr>
+					<td>
+						<%= link_to stat.real_name,show_articles_console_staff_url(stat.name) %>
+					</td>
+					<td>
+						<%= stat.name %>
+					</td>
+					<td>
+						<%= stat.created_at.strftime("%Y-%m-%d %H:%M:%S") %>
+					</td>
+					<td>
+						<%= Staff::STAFF_TYPE[stat.user_type.to_i] %>
+					</td>
+					<td>
+						<%= Staff::STATUS_TYPE[stat.status.to_i] %>
+					</td>
+					<td>
+						<% if stat.status == 1 %>
+                                                  <%= link_to "禁用",ban_staff_console_staff_url(stat),:method => :post, :confirm => "确认要禁用此编辑?" %>
+						<% elsif stat.status == 2 %>
+							<%= link_to "启用",active_staff_console_staff_url(stat),:method => :post %>
+						<% end %>
+						<%= link_to "编辑",edit_console_staff_url(stat) %>
+					</td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<div style="margin-top:20px;">
+			<%= paginate @stats %>
+		</div>
+	</div>
+</div>

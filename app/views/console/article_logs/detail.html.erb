@@ -1,0 +1,25 @@
+<div class="sectionA">
+	<div class="title">
+		<h1>操作记录</h1>
+		<span class="opts"><%= link_to "<span>返回</span>".html_safe, console_article_logs_path, :class => "btnGray" %>
+		</span>
+	</div>
+	<div class="content rightColCenter">
+		<table class="tableA">
+		  <tr>
+		    <th>当时标题</th>
+		    <th>操作类型</th>
+                    <th>操作人</th>
+		    <th>操作时间</th>
+		  </tr>
+		<% @article_logs.each do |log| %>
+		  <tr>
+		    <td><%= log.article_title %></td>
+		    <td><%= log.cmd_type %></td>
+                    <td><%= log.staff.real_name %></td>
+		    <td><%= log.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+		  </tr>
+		<% end %>
+		</table>
+	</div>
+</div>

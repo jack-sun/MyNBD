@@ -1,0 +1,224 @@
+<%= javascript_include_tag "nested_form" %>
+<%= require_jqueryUI %>
+
+<%
+  if @element.new_record?
+    @poll = Poll.new
+  else
+    poll_id = JSON.parse(@element.content)["body"]
+    @poll = poll_id && Poll.where(:id => poll_id).first || Poll.new 
+  end
+%>
+
+<div class="title">
+	<h1>页面元素编辑 - 投票</h1>
+</div>
+<% if @element.new_record? %>
+
+<div id="createPollMode" class="tabs">
+	<ul>
+		<li class="current"><a href="javascript:void(0)">新增投票</a></li>
+		<li><a href="javascript:void(0)">使用已有投票</a></li>
+	</ul>
+</div>
+
+<div style="display:none;" id="existedPollWrapper">
+  <p>
+<%= select_tag "current_poll_id", options_from_collection_for_select(Poll.order("id desc").select([:id, :title]).map{|x|[x.id, x.title]}, :first, :last) %>
+  </p>
+
+  <p>
+  <%= label_tag "", "显示标题:" %>
+  <%= check_box_tag "poll_show_title", "1", true %>
+  <%= label_tag "poll_show_title", "显示" %>
+  </p>
+</div>
+
+<% end %>
+
+<div id="newPollWrapper">
+	<%= simple_form_for [:console, @owner, @element], :html => {:id => "element_form"} do |f| %>
+	  <%= f.input :content, :label => false,  :input_html => {:style => "display:none"} %>
+	  <p>
+	    <%= f.input :title, :label => "标题:" %>
+	  </p>
+
+      <p>
+        <%= f.label :show_title, "显示标题:" %>
+        <%= f.check_box :show_title %>
+        <%= label_tag "element_poll_show_title", "显示", :class => "clearLabelStyle" %>
+      </p>
+	<% end %>
+	<%= simple_nested_form_for [:console, @poll], :html => {:remote => true, :id => "poll_form", "data-type" => "text"} do |f| %>
+	  <p>
+	    <%= f.input :title, :label => "标题:", :as => :hidden, :input_html => {:value => ""} %>
+	  </p>
+	  <p>
+	    <%= f.input :desc, :label => "描述:", :as => :text, :input_html => { :rows => 10 } %>
+	  </p>
+		
+		<div class="block">
+			<label>选项:</label>
+			<div id="pollItemsList">
+				<%= f.fields_for :polls_options, @poll.polls_options.order("pos asc") do |p| %>
+					<span class="dragHandler">拖动</span>
+					<%= p.text_field :content %>
+					<%= p.hidden_field :pos %>
+					<%= p.link_to_remove "删除" %>
+				<% end %>
+				<%= f.link_to_add "添加选项..", :polls_options, :class => "addPollItemBtn" %>
+			</div>
+		</div>
+
+	<p>
+		<%= f.label :max_choice_count, "允许最多投票数:" %>
+	    <% if @poll.new_record? || @poll.polls_options.count == 0 %>
+	      <%= f.collection_select :max_choice_count, (1..1).to_a, :to_i, :to_i %>
+	    <% else %>
+	      <%= f.collection_select :max_choice_count, (1..@poll.polls_options.count).to_a, :to_i, :to_i %>
+	    <% end %>
+	</p>
+	<p>
+	    <%= f.label :need_capcha, "强制用户投票:" %>
+	    <%= f.check_box :mandatory %>
+	    <%= label_tag "poll_mandatory", "开启", :class => "clearLabelStyle" %>
+	</p>
+
+	<p>
+		<%= f.label :end_time, "截止日期:" %>
+	    <%= f.datetime_select :expired_at, :year_prepend => "年 ", :month_prepend => "月 ", :day_prepend => "日 ", :hour_prepend => "时 ", :minute_prepend => "分", :time_separator => ""%>
+	</p>
+
+	<p>
+		<%= f.label :show_result, "结果查看:" %>
+	    <%= f.collection_select :show_result, [[2, "投票前可见"], [0, "投票后可见"], [1, "都不可见"]], :first, :last%>
+	</p>
+
+	<p>
+		<%= f.label :repeats_verify_type, "重复判定:" %>
+		<%= f.collection_select :repeats_verify_type, [[0, "IP地址"], [1, "每经帐号"], [2, "使用cookie"]], :first, :last %>
+	</p>
+
+	<p>
+		<%= f.label :need_capcha, "验证码:" %>
+	    <%= f.check_box :need_capcha %>
+	    <%= label_tag "poll_need_capcha", "开启", :class => "clearLabelStyle" %>
+	</p>
+	<% end %>
+
+	<%= simple_form_for [:console, @owner, @element], :html => {:style => "display:none", :id => "element_form"} do |f| %>
+	<%= f.input :content %>
+	<% end %>
+</div>
+	<%= render "console/elements/element_editpage_actions" %>
+<script type="text/javascript">
+	$(function(){
+		var createNewPoll = true;
+
+		var pollItemsList = $("#pollItemsList");
+		var pollForm = $("#poll_form");
+		var pollMaxCount = $("#poll_max_choice_count");
+		var elemPollMode = $("#createPollMode");
+		var boxExistedPoll = $("#existedPollWrapper");
+		var boxNewPoll = $("#newPollWrapper");
+		var selExistedPoll = $("#current_poll_id");
+		
+		function getCountOptions(){
+			return $("option", pollMaxCount);
+		}
+		function totalfieldsLength(){
+			return $(".fields:visible").length;
+		}
+		function refreshFieldPos(){
+			$(".fields:visible input[name*=pos]", pollItemsList).each(function(i, v){
+				$(v).val(i+1);
+			});
+		}
+		function submitBodyForm(data){
+      var body = {
+          'body': parseInt(data)
+      };
+
+      $("#element_<%= @k_name %>_content").val(JSON.stringify(body));
+      $("#element_form").submit();
+		}
+
+		elemPollMode.delegate("a", "click", function(){
+			var curItem = $(this).closest("li");
+			if(curItem.index() === 0){
+				createNewPoll = true;
+			}else {
+				createNewPoll = false;
+			}
+			curItem.addClass("current").siblings().removeClass("current");
+			boxExistedPoll.toggle();
+			boxNewPoll.toggle();
+
+			return false;
+		});
+		
+    pollForm.live("nested:fieldAdded", function(e){
+		var options = getCountOptions();
+		// fields
+		$("input[name*=pos]", e.field).val(totalfieldsLength());
+		
+		// options
+		if(totalfieldsLength() == 1 && options.size() == 1){
+			return;
+		}
+        var current_count = options.size() + 1;
+        var clone_option = options.first().clone();
+        clone_option.text(current_count)
+			.val(current_count)
+			.attr("selected", false)
+			.appendTo(pollMaxCount);
+    });
+    
+    pollForm.live("nested:fieldRemoved", function(e){
+		if(totalfieldsLength() == 0 && getCountOptions().size() == 1){
+			return;
+		}
+        getCountOptions().last().remove();
+        refreshFieldPos();
+    });
+    
+    pollForm.live("ajax:success", function(xhr, data, status){
+      submitBodyForm(data);
+    }).live("ajax:error", function(xhr, status, error){
+      alert(error);
+    });
+		
+		// sortable poll items list
+		pollItemsList.sortable({
+			axis:'y',
+			opacity:'0.4',
+			handle:'span',
+			tolerance:'pointer',
+			cursor:'move',
+			items:'.fields',
+			placeholder:"dragPlaceHolder",
+			update:function(event, ui){
+				refreshFieldPos();
+			}
+		});
+	    
+    $("#createNewElement").click(function(){
+    	if(createNewPoll){
+
+				if(totalfieldsLength() == 0){
+					alert("请添加投票选项！");
+					return false;
+				}
+				$("#poll_title").val($("#element_poll_title").val());
+        pollForm.submit();
+
+    	}else {
+    		var option = $(selExistedPoll[0].options[selExistedPoll[0].options.selectedIndex]);
+    		$("#element_poll_title").val(option.text());
+                $("#element_poll_show_title")[0].checked = $("poll_show_title").is(":checked");
+                submitBodyForm(selExistedPoll.val());
+    	}
+    });
+	});
+	
+</script>

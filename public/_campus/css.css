@@ -1,0 +1,28 @@
+body,ul,li,dl,dt,dd,p,blockquote,h3{margin:0; padding:0; color:#585858;}
+body{background:#f2f2f2;}
+table,tr,td{border:1px solid #cccccc; border-collapse:collapse;}
+.blue{color:#039;}
+a{text-decoration:none;}
+li{float:left; list-style-type:none;} 
+.top,.tab,.main,.footer{width:958px; margin:auto; clear:both;}
+.top{height:334px; background:url(images/main.gif) no-repeat 0 0;}
+.top .flash{width:958px; height:277px;}
+.top ul{width:908px; padding-left:50px; line-height:57px; font-size:14px; font-weight:bold; }
+.top ul li{margin:0 20px 0 10px; display:inline; text-align:center;}
+.top ul li a{color:#ffffff; width:100px; height:57px; display:block;}
+.top ul li a:hover{background:url(images/main.gif) no-repeat 0 -374px; color:#c5e4f8;}
+.top ul li.hover{background:url(images/main.gif) no-repeat 0 -374px; color:#c5e4f8;}
+.tab{height:40px; margin-top:10px; background:url(images/main.gif) no-repeat 0 -334px;}
+.tab strong{padding:16px 0 0 25px; display:block; font-size:14px; color:#ffffff; float:left;}
+.tab ul{font-size:12px; float:left; padding:10px 0 0 45px;}
+.tab ul li a{color:#ffffff; padding:0 15px}
+.tab ul li a:hover{color:#acdbff;}
+.main{width:854px; padding:0 50px 20px 50px; border-bottom:1px solid #cacaca; border-left:1px solid #cacaca; border-right:1px solid #cacaca; font-size:12px; background:#ffffff;}
+.main p{text-indent:2em;}
+.main .about{width:854px; padding:30px 0 10px 0; border-bottom:1px dashed #a0a0a0;}
+.main .about dt{font-size:14px;}
+.main .about dd{padding:10px 0 0 0; line-height:25px;}
+.main .about dd h3{padding:0px 25px 0 25px; color:#000000; font-size:14px;}
+.main .about dd blockquote{padding:0 25px 10px 25px;}
+.main .about dd img{border:5px solid #cecece; margin:15px; display:inline;}
+.footer{text-align:right; padding:21px 0; color:#808080; font-size:12px;}

@@ -1,0 +1,20 @@
+<table class="tableA">
+	<tr>
+		<th>标题</th>
+		<th>微博数量</th>
+		<th>评论数量</th>
+		<th>评论的原微博数量</th>
+		<th>转发数</th>
+		<th class="itemActions">操作</th>
+	</tr>
+	<% @tags.each do |tag| %>
+	<tr>
+		<td class="itemTitle"><%= link_to tag["name"], new_console_topic_url(:tag => tag["name"]) %></td>
+		<td><%= tag["ori_weibo_count"] || 0 %></td>
+		<td><%= tag["comment_count"] || 0 %></td>
+		<td><%= tag["ori_comment_weibo_count"] || 0 %></td>
+		<td><%= tag["rt_weibo_count"] || 0 %></td>
+		<td>暂无</td>
+	</tr>
+	<% end %>
+</table>

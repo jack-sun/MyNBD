@@ -1,0 +1,11 @@
+<div class="sectionA">
+  <div class="title">
+    <h1>公告管理</h1>
+    <span class="opts"><%= link_to "<span>添加新公告</span>".html_safe, new_console_notice_path, :class => "btnBlueM" %>
+    </span>
+  </div>
+  <div class="content rightColCenter">
+   <%=render :partial => "notices", :locals=>{ :notices => @notices, :view_only => false} %>
+  </div>
+</div>
+

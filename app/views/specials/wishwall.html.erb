@@ -1,0 +1,98 @@
+<% @title = "散户心愿墙" %>
+<%= require_js "weibo_mana" %>
+<%= require_js "speak_mana" %>
+<%= require_popWin %>
+
+<% @_come_back = true %>
+<%= render :partial => "sessions/pop_register_box" %>
+
+<div id="wishIntroWrapper">
+	<div id="wishIntro">
+		<div id="introContent">
+			<p>“十年股市涨幅零，两泪茫茫哥输清。”</p>
+			<p>在2011的早春，那个小小的牛市，还一度让上海小散户王小虎发了一笔小财，他辞去了工作，专职开始了自己的职业炒股生涯。他以为自己能够在早春开始的牛市中赚得盆满钵满。在广州的李兰，也拿出自己做服装生意攒下的50万元，杀入了早春的股市。然而，初夏开始，股市却没有像天气一样转入火热之中，而是进入了一个长达半年的下挫阶段。到11月的时候，王小虎竟然从年初的赚得30万，变成了12月份的亏损20万。李兰也在亏掉了20多万元后，逃离股市。</p>
+			<p>这是何等的悲凉，正如这个冬天的寒意。但王小虎感到的是比别人更冷，因为在他入市十年来，股市的风风雨雨，让他总是充满了期望，又充满了诸多的伤痛。</p>
+			<p>上证指数十年来，彻底跌破了2001年6月24日的2245点的指数水准。有多少股民在十年前的期待中圆梦，有多少股民从圆梦开始到破梦结束，又有多少股民为了改善家庭生活质量而投入到风险跌宕的股市中，有多少股民尝到了股市的腥风血雨。十年之前，作为散户，有的是国企下岗职工，有的是小小的个体户，有的是工薪阶层，他们为了致富的梦想，纷纷加入股市。但是，十年之后，他们有的忍痛割肉逃离股市，有的被深深套牢无法抽身。</p>
+			<p>有多少股民泪满面，有多少散户咽不下饭。正如每日经济新闻报社常务副总编辑李伟所言：“股市十年成圆点，犹如股民一滴泪”。</p>
+			<p>您作为散户，有多少眼泪需要哭诉，有多少心酸没有倾诉，即日起，请来到每日经济新闻“散户心愿墙”，道出您的十年股市心声，说出您的未来心愿。我们一起缅怀过去的十年，龙年股市共风雨。</p>
+		</div>
+	</div>
+</div>
+
+<div id="wishWallWrapper">
+  <div id="myWishBox">
+    <% if @current_user %>
+		<%= link_to(image_tag(user_avatar_path(@current_user, :middle), :width => 50, :height => 50), user_url(@current_user), :class=>"avatar") %>
+    <% else %>
+		<%= link_to(image_tag('avatar-default.gif'), "", :class=>"avatar") %>
+    <% end %>
+    <div class="inputArea">
+      <%= form_tag(weibos_path, :id => "myWishForm", :class => "speakForm", :remote => true) do %>
+	    <input type='hidden' name="from" value="wishwall"/>
+        <div class="speakSuccessTip">发送成功！</div>
+        <%= text_area_tag :content, nil, :class => "textInput", :id => "inputMyWish" %>
+		<span id="restCharNum"></span>
+        <p class="bottomActions">
+          <%= link_to "<span>许个心愿</span>".html_safe, "javascript:void(0)", :id => "wishBtn", :class => "speakBtn btnBlueM" %>
+        </p>
+      <%end%>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div id="wishWallContainer">
+    <div id="wishwall">
+      <ul class="wallCol">
+      	<% @weibos_0.each do |weibo| %>
+			<%= render :partial => "specials/weibo_item_for_wish", :locals => {:weibo => weibo} %>
+		<% end %>
+      </ul>
+      <ul class="wallCol">
+      	<% @weibos_1.each do |weibo| %>
+			<%= render :partial => "specials/weibo_item_for_wish", :locals => {:weibo => weibo} %>
+		<% end %>
+      </ul>
+      <ul class="wallCol">
+      	<% @weibos_2.each do |weibo| %>
+			<%= render :partial => "specials/weibo_item_for_wish", :locals => {:weibo => weibo} %>
+		<% end %>
+      </ul>
+      <ul class="wallCol">
+      	<% @weibos_3.each do |weibo| %>
+			<%= render :partial => "specials/weibo_item_for_wish", :locals => {:weibo => weibo} %>
+		<% end %>
+      </ul>
+    </div>
+  </div>
+  <div class="clear"></div>
+</div>
+
+<%= render :partial => "layouts/footer" %>
+
+<script type="text/javascript">
+	$(function(){
+		var placeholder = "道出股市心声，许下龙年心愿！";
+		var keyword = "#散户心愿墙#";
+		var cursorMana = _nbd.cursorText;
+		$("#inputMyWish").val(placeholder).focus(function(){
+			if(!_popRegisterBox()){
+				if($(this).val() == placeholder){
+					$(this).val(keyword).css("color", "#202020");
+					cursorMana.setCursorPosition($(this)[0], keyword.length);
+				}
+			}
+		}).blur(function(){
+			if($(this).val() == keyword || $(this).val() == ""){
+				$(this).val(placeholder).css("color", "#808080");
+			}
+		});
+		
+		_nbd.restCharNum('inputMyWish',140,'restCharNum');
+		
+		$("#myWishForm").submit(function(){
+			if($("#inputMyWish").val().length > 140){
+				alert("所输入内容不能超过140个字。");
+				return false;
+			}
+		});
+	});
+</script>

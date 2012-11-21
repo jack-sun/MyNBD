@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title><%= @title.blank? ? "每经网 | 新闻决定影响力 |《每日经济新闻》报社旗下网站" : "#{@title} | 每经网"%></title>
+    <%= stylesheet_link_tag "reset", "style_global", "style_website" %>
+    <%= yield :header_css %>
+    <%= javascript_include_tag "jquery.min", "jquery_ujs", "cookie", "nbdtools", "baidu_m" %>
+    <%= yield :header_js %>
+    <%= csrf_meta_tag %>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <link rel="shortcut icon" href="http://static.nbd.com.cn/favicon.ico" type="image/x-icon"/>
+    <meta name="Keywords" content="财经新闻,财经报道,叶檀,道达,老法师看盘,股市直播,郑眼看盘,股市行情,财经证券,基金,荐股,股市内参,股吧,传闻,内幕,板块,个股,黑马,股市新闻,生活,汽车" />
+    <meta name="Description" content="24小时财经资讯平台，依托新锐财经日报《每日经济新闻》(National Business Daily)，打造中国最具影响力的经济、股票网站。覆盖宏观、股票、基金、期货、股指期货、外汇、债券、保险、银行、黄金、理财等全方位财经新闻。" />
+  </head>
+
+  <body id="body_site">
+
+		<%= yield :top_ad %>
+		
+    <%= render :partial => "columns/favorite_tip" %>
+
+    <div id="top" class="dark"><div id="topStyle">
+      <div class="innerCenter">
+        <ul id="headerEntries">
+          <li class="first"><%= link_to "今日报纸 (#{Time.now.strftime("%m月%d日")})", today_newspapers_url %></li>
+          <li><%= link_to "移动客户端", "#{android_mobiles_url}" %></li>
+          <li><%= link_to "每经会", "#{Settings.club_host}" %></li>
+          <li><a href="http://www.nbd.com.cn/html/dingyue.html">订阅服务</a></li>
+          <li class="last"><%= link_to "每经增值服务", "#{Settings.host}/premium/mobile_newspaper_account/introduce", :style=>"color:#f60;font-weight:bold;" %></li>
+        </ul>
+        <ul class="rf">
+          <%if @current_user.present?%>
+            <li><span><%= @current_user.nickname %></span> <%= link_to "[退出]", user_sign_out_url, :method => :delete %></li>
+            <li><%= link_to "我的首页", user_url(@current_user) %></li>
+            <li><%= link_to "账户设置", settings_user_url %></li>
+            <li class="last"><%= link_to "意见反馈", user_url('每经网客服') %></li>
+          <%else%>
+            <li><%= link_to "登录社区", user_sign_in_url %></li>
+            <li class="last"><%= link_to "意见反馈", user_url('每经网客服') %></li>
+          <%end%>
+        </ul>
+      </div>
+    </div></div>
+
+    <div id="header">
+      <div class="innerCenter" id="logo">
+        <a id="logoSite" class="logo" href="/" title="每经网">每经网</a>
+        <%= yield :header_ad %>
+      </div>
+      <div id="mainNav">
+        <div class="navWrapper">
+          <ul class="lf">
+            <li class="first"><%= link_to "首页", Settings.host, :class => "#{request.url.chomp("/") == Settings.host ? 'highlight' : ''}" %></li>
+            <li><%= link_to "资讯", customize_host_url('news'), :class => "#{request.url.chomp("/") == customize_host_url('news') ? 'highlight' : ''}" %></li>  
+            <li><%= link_to "股票", customize_host_url('stock'), :class => "#{request.url.chomp("/") == customize_host_url('stock') ? 'highlight' : ''}" %></li>  
+            <li><%= link_to "公司", customize_host_url('company'), :class => "#{request.url.chomp("/") == customize_host_url('company') ? 'highlight' : ''}" %></li> 
+            <li><%= link_to "金融", customize_host_url('finance'), :class => "#{request.url.chomp("/") == customize_host_url('finance') ? 'highlight' : ''}" %></li>
+            <li><%= link_to "汽车", customize_host_url('auto'), :class => "#{request.url.chomp("/") == customize_host_url('auto') ? 'highlight' : ''}" %></li>   
+            <li><%= link_to "全球", column_url(47), :class => "#{request.url.chomp("/") == column_url(47) ? 'highlight' : ''}" %></li>  
+            <li><%= link_to "智库", Settings.ntt_host, :class => "#{request.url.chomp("/") == Settings.ntt_host ? 'highlight' : ''}" %></li>  
+            <li><%= link_to "品味", customize_host_url('life'), :class => "#{request.url.chomp("/") == customize_host_url('life') ? 'highlight' : ''}" %></li>  
+            <li><%= link_to "管理", customize_host_url('bschool'), :class => "#{request.url.chomp("/") == customize_host_url('bschool') ? 'highlight' : ''}" %></li>  
+            <li><%= link_to "社区", weibo_host_url, :class => "#{@community_home_nav ? 'highlight' : ''}" %></li>
+            <li><%= link_to "西部", Settings.western_host %></li>
+          </ul>
+          <div class="searchBox rf">
+            <% form_tag(article_search_url, :method => "get") do%>
+              <%= link_to "", "javascript:void(0)", :onclick => "$(this).parents('form').submit();return false;", :class => "searchBtn" %>
+              <%= text_field_tag(:q, "", :class => "searchInput") %>
+            <%end%>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="wrapper">
+      <%= yield %>
+    </div>
+
+    <%= render :partial => "layouts/footer" %>
+    <%= yield :sbblock %>
+    <%= render :partial => "layouts/analytics" %>
+  </body>
+
+</html>

@@ -1,0 +1,68 @@
+<%= form_for(:user, :html => {:class => "formA roundCorner"}, :action => user_sign_up_path, :method => "post") do |user_form| %>
+  <div class="title"><h1>填写账户信息</h1><span class="titleOpts">已有每经微博账号？<%= link_to "登录 &raquo;".html_safe, user_sign_in_path, {:style => "font-weight:bold;"} %></span></div>
+  
+  <p>
+    <%= user_form.label :email, "邮箱:" %><br />
+    <%= user_form.text_field :email, :size => 30, :datavalidtype => "mail", :class => "textInput #{@user.errors[:email].present? ? 'error' : ''}" %>
+	<span class="tip <%if @user.errors[:email].present?%>error<%end%>"><%if @user.errors[:email].present?%><%= @user.errors[:email].first %><%else%>请输入真实有效的邮箱，以便找回密码<%end%></span> 
+  </p>
+  
+  <p>
+    <%= user_form.label :nickname, "昵称:" %><br />
+    <%= user_form.text_field :nickname, :size => 30, :class => "textInput #{@user.errors[:nickname].present? ? 'error' : ''}", :datavalidtype => "nickname", :autocomplete => :off %>
+	<span class="tip <%if @user.errors[:nickname].present?%>error<%end%>"><%if @user.errors[:nickname].present?%><%= @user.errors[:nickname].first %><%else%>4-20个字符，一个汉字为两个字符<%end%></span>
+	
+  </p>
+  <p>
+    <%= user_form.label :password, "密码:" %><br />
+    <%= user_form.password_field :password, :size => 30, :class => "textInput #{@user.errors[:password].present? ? 'error' : ''}", :datavalidtype => "password", :autocomplete => :off %>
+	<span class="tip <%if @user.errors[:password].present?%>error<%end%>"><%if @user.errors[:password].present? and @user.errors[:password].size > 1%><%= @user.errors[:password].first %><%else%>6-16个字母加数字或字符的组合<%end%></span> 
+  </p>
+  
+    <p>
+  	<%= user_form.label :password_confirmation, '密码确认:' %><br />
+	<%= user_form.password_field :password_confirmation, :class => "textInput #{@user.errors[:password].present? ? 'error' : ''}", :datavalidtype => "password", :size => 30, :autocomplete => :off %>
+	<%if @user.errors[:password].present?%><span class="tip error"><%= @user.errors[:password].last %></span><%end%>
+  </p>
+ 
+  <div class="block">
+    <label for="captcha">验证码:</label>
+      <span class="error"><%= flash[:captcha_error] %></span>
+      <div id="simple_captcha">
+        <%= text_field_tag "captcha", "", :class => "textInput captchaInput" %>
+        <span class="captchaImage">
+        </span>
+      </div>
+  </div>
+    
+	<p class="btnRowM">
+		<input type="submit" class="hiddenSubmit" />
+		<a href="javascript:void(0)" class="btnBlueM" onclick="$(this).parents('form').submit();return false;"><span>注册 并同意以下条款</span></a><div class="clear"></div>
+	</p>
+
+	<p>
+	<a href="/privacy" target="_blank">《每经会员隐私保护条款》</a>
+	</p>	
+<% end %>
+
+<script type="text/javascript">
+	$(function(){
+    var reloadCaptchaUrl = "<%= reload_captcha_url(:id => 'simple_captcha') %>";
+    var loadingHtml = "<span style='display:inline;margin:0;' class='loading'><span>正在获取验证码</span></span>";
+
+		$("#user_email").focus();
+
+    $(".captchaInput").one("focus", function(){
+      $(".captchaImage").html(loadingHtml);
+      $.get(reloadCaptchaUrl, function(){
+        $("#simple_captcha .error").hide();
+      });
+    });
+
+    $("body").delegate(".changeCaptchaBtn", "click", function(){
+      $(this).closest(".captchaImage").html(loadingHtml);
+    });
+
+    _nbd.setPlaceholder($(".captchaInput"), "请输入验证码")
+	});
+</script>

@@ -1,0 +1,33 @@
+<div class="subComments roundCorner">
+	<% if @current_user %>
+	  <%= form_for [@weibo,@comments.build], :html => {:remote => true, :class => "speakForm", :id => "weibo_#{@weibo.id}_new_comment"} do |f| %>
+	     <p>
+		    <%= f.text_area(:content, :class => "speakFlexibleTextarea textInput") %>
+            <%= f.hidden_field :article_id, :value => Weibo.weibo_article_id[@weibo.ori_weibo_id_or_self_id] %>
+		    <div class="validation-error"></div>
+	    </p>
+		<div class="lf">
+		    <%= f.check_box :rt_weibo %>
+			<%= f.label :rt_weibo, "同时转发到我的微博"%>
+            <%= f.hidden_field :parent_comment_id %>
+		    <% if @weibo.ori_weibo.present?  %>
+		      <br/>
+		      	<%= f.check_box :comment_to_ori_weibo %>
+			  	<%= f.label :comment_to_ori_weibo, "同时评论给原文作者 #{@weibo.ori_weibo.owner.nickname}"%>
+		    <% end %>
+	    </div>
+		<a href="javascript:void(0)" class="speakBtn btnBlue rf"><span>评论</span></a>
+		<div class="clear"></div>
+	  <% end %>
+	<% end %>
+	
+	<ul class="commentsList weiboItemList" id="weibo_<%=  @weibo.id %>_comments">
+	  <% @comments.pop if @comments.last.try(:new_record?) %>
+	  <% @comments.each do |c| %>
+		 <%= render "comment", :comment => c %>
+	  <% end %>
+      <% if (count=@weibo.comments.count) > 5 %>
+        <%= link_to "查看更多评论(#{count})", weibo_url(@weibo) %>
+      <% end %>
+	</ul>
+</div>

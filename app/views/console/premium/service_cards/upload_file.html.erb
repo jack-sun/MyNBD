@@ -1,0 +1,35 @@
+
+<div class="sectionA">
+  <div class="title">
+    <h2>
+      卡号管理 - 导入新卡号
+    </h2>
+    <span class='opts'>
+      <%= link_to "<span>返回</span>".html_safe, console_premium_service_cards_url, :class => "btnGray" %>
+    </span>
+  </div>
+  <div id="body_state" class="content rightColCenter">
+    
+<div class="alert_info">
+	<b></b>该步骤是卡号管理的第三个步骤
+</div>
+
+第一步：<strong>卡号下载</strong> 点击".xls"文件下载并保存 <br> 
+第二步：<strong>卡片制作</strong> 按照文件中的内容制成实体卡 <br> 
+<span class="red">第三步：<strong>卡片激活</strong> 在实体卡销售之前，确保将文件导入到“卡号管理 > 实体卡管理” </span><br> <br> 
+
+完成以上三步后，实体卡才可以开始销售，在实体卡管理页面可以跟踪查看实体卡的使用状态。
+
+<%= form_tag upload_console_premium_service_cards_url, :multipart => true, :class => "formA" do %>
+  <p>
+    <%= file_field_tag "accounts_file" %>
+  </p>
+  <p>
+    <a href="javascript:void(0)" onclick="$(this).closest('form').submit();return false;" class="btnBlueM"><span>导入新卡号</span></a>
+    <%= submit_tag "导入新卡号", :class => "hiddenSubmit" %>  
+  </p>
+  
+ 
+<% end %>
+  </div>
+</div>

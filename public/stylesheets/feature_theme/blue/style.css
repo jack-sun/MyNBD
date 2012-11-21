@@ -1,0 +1,26 @@
+body{
+	background: #004080 url(./body-bg.gif) left top repeat-x;
+}
+
+
+/* Navigation */
+/*#nav {
+	background: #b30000;
+}
+#nav li a{
+	color: white;
+}
+#nav li.current a{
+	background: #980000;
+	padding-right: 15px;
+	border-left: 1px solid #c3241f;
+	border-right: 1px solid #c3241f;
+}
+#nav li.current a span{
+	padding-left: 15px;
+}
+*/
+
+.element_title .title{
+	background: #003267 url(./title-bg.gif) left top repeat-x;
+}

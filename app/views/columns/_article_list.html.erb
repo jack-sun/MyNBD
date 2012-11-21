@@ -1,0 +1,136 @@
+<%
+=begin
+Parameters:
+articles: Array
+list_title: String (optional)
+more_title: String (optional)
+title_icon: Enum String (optional), check out theme_website.html to get icon name.
+more_link: String (optional)
+html_class: String (optional)
+html_style: String (optional)
+digest_number: Int (optional, default 0)
+digest_restrict: true | false (optional), 60px
+digest_restrict_2: true | false (optional), 40px
+display_datetime: true | false (optional, default is false)
+display_children: true | false (optional, default is false)
+display_children_digest_restrict: String (optional, default is "restrict")
+display_column: true | false (optional, default is false)
+display_special: true | false (optional, default is false)
+column_id: Int (optional, default '')
+opt_content: String | Html (optional)
+ntt: true | false(option, default is false)
+hide_image: true | false (optional, default is false)
+=end
+title_icon = '' unless title_icon
+html_class = '' unless html_class
+html_style = '' unless html_style
+digest_number = 0 unless digest_number
+digest_number = articles.length if digest_number == 'max'
+digest_restrict = false unless digest_restrict
+digest_restrict_2 = false unless digest_restrict_2
+display_datetime = false unless display_datetime
+display_children = false unless display_children
+display_children_digest_restrict = 'restrict' unless display_children_digest_restrict
+display_column = false unless display_column
+for_subdomain = false unless for_subdomain
+for_article_subdomain = for_subdomain unless for_article_subdomain
+display_special = false unless display_special
+column_id = '' unless column_id
+list_title = '' unless list_title
+list_title_tail = '' unless list_title_tail
+more_title = '更多' unless more_title
+more_title_tail = list_title_tail unless more_title_tail
+opt_content = '' unless opt_content
+hide_image = false unless hide_image
+%>
+<div class="sectionA <%=html_class%>" style="<%=html_style%>">
+  <% unless list_title == '' %>
+    <div class="title">
+      <h3>
+        <%if column_id.present? %>
+          <% if for_subdomain %>
+            <%= link_to list_title, send("#{for_subdomain}_column_url", column_id)+list_title_tail%>
+          <% else %>
+            <%= link_to list_title, column_url(column_id)+list_title_tail%>
+          <% end %>
+        <%else%>
+          <%=list_title%>
+        <%end%>
+      </h3>
+      <%if column_id.present? %>
+        <span class="opts">
+          <% if for_subdomain %>
+            <%= link_to more_title, send("#{for_subdomain}_column_url", column_id)+more_title_tail%>
+          <% else %>
+            <%= link_to more_title, column_url(column_id)+more_title_tail%>
+          <% end %>
+        </span>
+      <%elsif opt_content.present? %>
+        <span class="opts"><%= opt_content.html_safe %></span>
+      <%end%>
+    </div>
+  <% end %>
+  <div class="content">
+    <ul class="articleList unorderList">
+      <% articles.each_with_index do |article,index|
+        next if article.blank? -%>
+        <% if digest_number>index %>
+          <li class="articleRecommend <% if index == articles.length-1%>last<%end%>">
+            <h5 class='rcTitle'>
+              <%if display_special and article.is_special? -%><span class="articleLabel red"><b><%= Article::SPECIAL[article.special] %></b></span><%end -%>
+              <% if display_column -%>
+                <%=link_to "<span>#{article.columns.first.name}</span>".html_safe, column_url(article.columns.first), :class => "columnLabel2" %>
+              <% end -%>
+              <% if for_article_subdomain and for_article_subdomain != Settings.default_sub_domain %>
+                <%= link_to article.list_title, send("#{for_article_subdomain}_article_url", article), {:target => "_blank", :title => article.title} %>
+              <% else %>
+                <%= link_to article.list_title, article_url(article), {:target => "_blank", :title => article.title} %>
+              <% end %>
+            </h5>
+            <div class="rcDigest">
+            	<% unless hide_image %>
+              <% if for_subdomain == Settings.ntt_sub_domain and (columnist = article.columnists.first) and columnist.image %>
+                <%= link_to image_tag(columnist_avatar_path(columnist), {:alt => columnist.name, :width => 60, :height => 60}),  ntt_columnist_url(columnist), {:target => "_blank"}%>
+              <% else %>
+                <%= link_to image_tag(article_thumbnail_path(article, :small), {:alt => article.list_title, :width => 80, :height => 60}),  article_url(article), {:target => "_blank"} if article.image.present? %>
+              <% end %>
+			  <% end %>
+
+              <% if display_children and article.relate_article_children.length > 0%>
+                <p <%= "class=#{display_children_digest_restrict}" if display_children_digest_restrict.present? %> >
+                  <%= article.show_digest %>
+                </p>
+                <div class="childrenArticles">
+                  <ul class="unorderList">
+                    <% article.relate_article_children.order("pos desc").limit(2).each do |a| %>
+                      <li>
+                        <%= link_to a.children_title, a.children_url, {:target => "_blank", :title => a.children_title} %>
+                      </li>
+                    <%end %>
+                  </ul>
+                </div>
+              <% else %>
+                <p <%if digest_restrict%>class="restrict"<% elsif digest_restrict_2 %> class="restrict2" <%end%> >
+                  <%= article.show_digest %>
+                </p>
+              <% end %>
+              <div class="clear"></div>
+            </div>
+          </li>
+        <% else %>
+          <li <%if index == (articles.length/2-1) && digest_number == 0 && articles.length >5 %>class="divider"<%end%> >
+            <%if display_datetime%><span class="articleOpt"><%=article.created_at.strftime("%H:%M")%></span><%end%>
+            <% if display_column %>
+              <%=link_to "<span>#{article.columns.first.name}</span>".html_safe, column_path(article.columns.first), {:class => "columnLabel2", :target => "_blank"} %>
+            <% end %>
+            <% if for_article_subdomain and for_article_subdomain != Settings.default_sub_domain %>
+              <%= link_to article.list_title, send("#{for_article_subdomain}_article_url", article), {:target => "_blank", :title => article.title} %></li>
+          <% else %>
+              <%= link_to article.list_title, article_url(article), {:target => "_blank", :title => article.title} %></li>
+            <% end %>
+          <% end %>
+        <% end %>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>

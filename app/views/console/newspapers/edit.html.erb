@@ -1,0 +1,11 @@
+<div class="sectionA">
+	<div class="title">
+          <h1>上传管理: <%= @newspaper.n_index %></h1><span>(当前报纸期刊号)</span>
+		<span class="opts">
+			<%= link_to '<span>文章管理</span>'.html_safe, console_newspaper_path(@newspaper), :class => "btnGray" %>
+		</span>
+	</div>
+	<div class="content rightColCenter">
+          <%= render 'form', {:newspaper => @newspaper} %>
+	</div>
+</div>

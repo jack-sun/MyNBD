@@ -1,0 +1,45 @@
+<% require_js "console_selectAll" %>
+<div class="sortableTableMargin">
+	<table id="commentTable" class="tableA">
+		<thead>
+			<tr>
+				<th class="forHandler"></th>
+				<th><input class="selectAll" type="checkbox" /></th>
+				<th>content</th>
+				<th>创建人</th>
+				<th>标题</th>
+				<th>时间</th>
+				<th>状态</th>
+				<th>操作</th>
+			</tr>		
+		</thead>
+		<tbody id="sortableBox">
+			<% comments.each do |c|
+			next if c.blank? or c.owner.blank? -%>
+				<tr id="comment_<%= c.id %>">
+					<td class="forHandler"><span class="dragHandler"></span></td>
+                    <td class="forSelect"><input class="subSelect" type="checkbox" value="<%= c.id %>"/></td>
+                    <td><%= c.content %></td>
+					<td><%= link_to c.owner.nickname, user_url(c.owner) %></td>
+                    <% unless c.article.nil? %>
+                      <td><%= link_to c.article.title, c.article %></td>
+                    <% else %>
+                      <td>the file is deleted</td>
+                    <% end %>
+					<td class="itemDate"><%= c.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+					<td class="itemStatus_<%=c.status%>"><%= Comment::STATUS[c.status.to_i] %></td>
+					<td class="itemActions">
+						<% if c.status == Comment::BANNDED %>
+							<%= link_to "<b></b>取消屏蔽".html_safe, unban_console_comment_url(c), :confirm => "取消屏蔽？", :method => :post, :remote => true, :class=>'actionEdit' %>
+						<%else %>
+							<%= link_to "<b></b>屏蔽".html_safe, ban_console_comment_url(c), :confirm => "屏蔽这个话题？", :method => :post, :remote => true, :class=>'actionEdit' %>
+						<%end%>
+						<%= link_to "<b></b>删除 ".html_safe, console_comment_url(c), :confirm => "删除这个话题？", :method => :delete, :remote => true, :class=>'actionDelete' %>
+						
+					</td>
+				</tr>
+			<%end%>
+		</tbody>
+	</table>
+</div><!-- table wrapper -->
+

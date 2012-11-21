@@ -1,0 +1,5 @@
+$("#article_form").find("input[type='text']").val("");
+$("#article_link").find("input[type='text']").val("");
+$("#sortableBox").prepend("<%= escape_javascript(render :partial => "/console/articles/child_article_form", :locals => {:article => @child}) %>")
+_popWinForEidtChild.hide();
+_popWinForLoading.hide();

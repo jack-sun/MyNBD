@@ -1,0 +1,48 @@
+<%
+  image_id = image_data["source"]
+  image = image_id.nil? ? nil : Image.where(:id => image_id).first
+  url = image_data["url"]
+  position = image_data["position"] || "0"
+  desc = image_data["desc"] || element.title
+
+
+  if position == "0"
+    pos_class = "imagePos_up"
+  elsif position == "1"
+    pos_class = "imagePos_down"
+  elsif position == "2"    
+    pos_class = "imagePos_left"
+  elsif position == "3"    
+    pos_class = "imagePos_right" 
+  end
+-%>
+
+<div class="imageItem">
+  <% if position == "0" %>
+  <div class="<%= pos_class %>">
+    <%= feature_image_tag(url, image) %>
+    <%= link_to_desc(desc, url) %>
+    <div class="clear"></div>
+  </div>
+  <% elsif position == "1" %>
+  <div class="<%= pos_class %>">
+    <%= link_to_desc(desc, url) %>
+    <%= feature_image_tag(url, image) %>
+    <div class="clear"></div>
+  </div>
+  <% elsif position == "2" %>
+  <table class="imagePos_table <%= pos_class %>">
+    <tr>
+      <td><%= feature_image_tag(url, image) %></td>
+      <td class="imageDesc"><%= link_to_desc(desc, url) %></td>
+    </tr>
+  </table>
+  <% elsif position == "3" %>
+  <table class="imagePos_table <%= pos_class %>">
+    <tr>
+      <td><%= link_to_desc(desc, url) %></td>
+      <td class="imageDesc"><%= feature_image_tag(url, image) %></td>
+    </tr>
+  </table>
+  <% end %>
+</div>

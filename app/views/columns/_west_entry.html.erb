@@ -1,0 +1,37 @@
+<%
+=begin
+Parameters:
+articles: Array
+list_title: String (optional)
+more_title: String (optional)
+html_class: String (optional)
+html_style: String (optional)
+=end
+list_title = '' unless list_title
+html_class = '' unless html_class
+html_style = '' unless html_style
+more_title = '更多' unless more_title
+%>
+<div class="sectionA <%=html_class%>" style="<%=html_style%>">
+  <% if list_title.present? %>
+    <div class="title">
+      	<h3>
+      		<%= link_to list_title, west_index_url%>
+      	</h3>
+       	<span class="opts">
+            <%= link_to more_title, west_index_url%>
+    	</span>
+    </div>
+  <% end %>
+  <div class="content">
+    <ul class="articleList unorderList">
+      <% articles.each_with_index do |article,index|
+        next if article.blank? -%>
+          	<li class="<% if index == articles.length-1%>last<%end%>">
+          		<%= link_to article.list_title, west_article_url(article), {:target => "_blank", :title => article.title} %>
+            </li>
+       <% end %>
+   	</ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>

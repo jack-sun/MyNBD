@@ -1,0 +1,30 @@
+<%= require_jqueryUI %>
+<% content_for :header_js do %>
+  <%=javascript_include_tag "chosen.jquery.min.js"   %>
+<%end %>
+<% content_for :header_css do%>
+  <%= stylesheet_link_tag "chosen.css" %>
+<%end %>
+<%if @sortable%>
+	<%= require_js "console_sortable.js" %>
+<%end%>
+
+		
+<div class="sectionA">
+	<div class="title">
+          <h1> 批量搜索文章</h1>
+	</div>
+        <% if flash[:success] %>
+          <%= flash[:success] %>
+        <% end %>
+        <%= form_tag(search_by_ids_console_articles_path, :method => :get) do %>
+            <%= label_tag "文章id（以逗号分隔）:" %>
+            <%= text_field_tag "ids", @ids %>
+            <%= submit_tag "搜索" %>
+          <% end %>
+	<div id="body_channel" class="content">
+		<%=render :partial => "console/shared/article_operation_bar", :locals=>{ :articles => @articles} %>
+		<%=render :partial => "console/shared/articles", :locals=>{ :articles => @articles} %>
+		<%=render :partial => "console/shared/article_operation_bar", :locals=>{ :articles => @articles} %>
+	</div>
+</div>

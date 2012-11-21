@@ -1,0 +1,47 @@
+<%
+=begin
+Parameters:
+	articles:Array
+=end
+%>
+<div id="scrollNews" class="sectionA">
+	<div class="title">
+		<h1 class="red">滚动</h1>
+	</div>
+	<div class="content">
+		<ul>
+			<% articles.each do |article|
+				next if article.blank? or article.columns.last.blank?
+			-%>
+			<li class="articleRecommend">
+				<h5 class='rcTitle'>
+					<span class="rcOpt roundCorner"><%= article.created_at.strftime("%H:%M") %></span>
+					<%=link_to "<span>#{article.columns.last.name}</span>".html_safe, column_path(article.columns.last), :class => "columnLabel2" %>
+					<%= link_to article.title, article_url(article), {:target => "_blank", :title => article.title} %> 
+				</h5>
+				<div class="rcDigest">
+				<% if article.pages.first.image.present? %>
+					<%= link_to image_tag(article_thumbnail_path(article, :small)), article_url(article), {:target => "_blank", :title => article.title}%>
+					<% if article.show_digest.present? %>
+					<p class="restrict">
+						<%= article.show_digest %>
+					</p>
+					<% end %>
+				<% else %>
+					<% if article.show_digest.present? %>
+					<p class="restrict2">
+						<%= article.show_digest %>
+					</p>
+					<% end %>
+				<% end %>
+					<div class="clear"></div>
+				</div>
+			</li>
+			<% end %>
+		</ul>
+		<div class="clear">
+		</div>
+	</div>
+</div>
+
+<%= paginate articles %>

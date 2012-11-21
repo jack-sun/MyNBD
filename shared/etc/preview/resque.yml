@@ -1,0 +1,3 @@
+development: cache.nbd.cn:6379
+test: cache.nbd.cn:6379
+production: cache.nbd.cn:6379

@@ -1,0 +1,176 @@
+<%= require_slideShow %>
+
+<div class="title">
+  <h1>页面元素编辑 - 动态文章</h1>
+</div>
+
+<% 
+type = nil
+unless @element.new_record?
+  display_type = (@body["display_type"]||0).to_i
+  sort = @body["sort"] || 0
+  type = @body["type"] || 0
+  value = @body["value"] || 0
+  count = @body["count"] || 5
+end
+-%>
+<%= simple_form_for([:console, @owner, @element], :html => {:id => "element_form", :class => ""}) do |f| %>
+  <%= f.input :content, :as => :hidden %>
+  <p>
+    <%= f.input :title , :label => "标题:" %>
+  </p>
+
+  <div class="block">
+    <label>显示条数：<span class="clearLabelStyle">(最大不要超过50)</span></label>
+	<div class="retractBox">
+		<%= text_field_tag "articleNum" , count, :style => "width:200px;" %>
+	</div>
+  </div>
+  <div id="articleSourceEditBox" class="block">
+    <label>选择条件：</label>
+    <%= radio_button_tag("article_source", ElementArticle::ARTICLE_SOURCE_COLUMN, type == ElementArticle::ARTICLE_SOURCE_COLUMN, :id => "articleSourceColumn") %>
+    <label class="clearLabelStyle" for="articleSourceColumn">栏目</label>
+    <%= radio_button_tag("article_source", ElementArticle::ARTICLE_SOURCE_TAG, type == ElementArticle::ARTICLE_SOURCE_TAG, :id => "articleSourceTag") %>
+    <label class="clearLabelStyle" for="articleSourceTag">关键词</label>
+    <div class="retractBox">
+      <% if !@element.new_record? %>
+        <% if type == ElementArticle::ARTICLE_SOURCE_COLUMN %>
+          <%= select_tag "columnSelectList", option_groups_from_collection_for_select(Column.basic_columns.includes(:children), :children, :name, :id, :name, value.to_i) %>
+          <%= text_field_tag "elementKeywords", "", :style => "display:none" %>
+        <% else %>
+          <%= text_field_tag "elementKeywords", value %>
+        <% end %>
+      <% else %>
+        <%= text_field_tag "elementKeywords", "", :style => "display:none" %>
+      <% end %>
+    </div>
+  </div>	
+
+  <p>
+    <label>排序方式：</label>
+    <% unless @element.new_record? %>
+      <%= select_tag "sortType", options_for_select([["文章创建时间倒序", "0"], ["文章创建时间顺序", "1"]], sort) %>
+    <% else %>
+      <select id="sortType">
+        <option value="0" selected="true">文章创建时间倒序</option>
+        <option value="1">文章创建时间顺序</option>
+      </select>
+    <% end %>
+  </p>
+
+  <p>
+    <label>展现方式：</label>
+    <% unless @element.new_record? %>
+      <input type="radio" id="list" name="display_type" value="<%= ElementArticle::DISPLAY_TYPE_LIST %>" <%if display_type == ElementArticle::DISPLAY_TYPE_LIST %>checked="checked"<%end%> /><label class="clearLabelStyle" for="list">文字列表</label>
+      <input type="radio" id="slide" name="display_type" value="<%= ElementArticle::DISPLAY_TYPE_SLIDE %>" <%if display_type == ElementArticle::DISPLAY_TYPE_SLIDE %>checked="checked"<%end%> /><label class="clearLabelStyle" for="slide">滚动图片</label>
+    <%else%>
+      <input type="radio" id="list" name="display_type" value="<%= ElementArticle::DISPLAY_TYPE_LIST %>" checked="checked" /><label class="clearLabelStyle" for="list">文字列表</label>
+      <input type="radio" id="slide" name="display_type" value="<%= ElementArticle::DISPLAY_TYPE_SLIDE %>"  /><label class="clearLabelStyle" for="slide">滚动图片</label>
+    <%end%>
+  </p>
+
+
+  <div class="block">
+    <a href="javascript:void(0)" id="refreshPreviewBtn" class="btnGrayBlue"><span>预览</span></a>
+    <div id="previewBox">
+      <div style="display:block;" class="loading">请选择条件并点击预览。</div>
+    </div>
+  </div>
+
+  <%= render "console/elements/element_editpage_actions" %>
+<%end%>
+
+<script type="text/javascript">
+  //{:body => {:type,  :value, :display_type, :count,  :sort }}
+	
+  $(function(){
+    var columnurl = "<%= column_list_console_columns_url %>";
+    var articleurl = "<%= dynamic_articles_console_articles_url %>";
+    var newRecord = "<%= @element.new_record? %>";
+    var requestState; // ajax state
+		
+    if(newRecord == 'false'){
+      $("#refreshPreviewBtn").find("span").text("刷新预览");
+      refreshPreview();
+    }
+		
+    $("#refreshPreviewBtn").click(function(){
+      $(this).find("span").text("刷新预览");
+      refreshPreview();
+      return false;
+    });
+		
+    $("#articleSourceColumn").click(function(){
+      $("#elementKeywords").hide();
+      if($("#columnSelectList").length > 0){
+        $("#columnSelectList").show();
+      }else {
+        $.ajax({
+          type:"POST",
+          data:"",
+          url:columnurl,
+          success:function(selectDom){
+            $(selectDom).appendTo($("#articleSourceEditBox .retractBox")).show();
+          }
+        });
+      }
+      $("#articleSourceEditBox").height(50);
+    });
+		
+    $("#articleSourceTag").click(function(){
+      $("#elementKeywords").show();
+      $("#columnSelectList").hide();
+      $("#articleSourceEditBox").height(50);
+    });
+		
+    $("#createNewElement").click(function(){
+      var articleSource = $(":radio[name=article_source]:checked").val();
+      var displayType = $(":radio[name=display_type]:checked").val();
+      var body = {
+        body:{
+          type:parseInt(articleSource),
+          value:(articleSource == '<%= ElementArticle::ARTICLE_SOURCE_COLUMN %>'? parseInt($("#columnSelectList").val()):$("#elementKeywords").val()),
+          display_type:parseInt(displayType),
+          count:parseInt($("#articleNum").val()),
+          sort:parseInt($("#sortType").val())
+        }
+
+      };
+      $("#element_<%= @k_name %>_content").val(JSON.stringify(body));
+      $('form').submit();
+    });
+		
+    function refreshPreview(){
+      var articleSource = $(":radio[name=article_source]:checked").val();
+      var displayType = $(":radio[name=display_type]:checked").val();
+			
+      var data = 	{
+        article_source:parseInt(articleSource),
+        value:(articleSource == '<%= ElementArticle::ARTICLE_SOURCE_COLUMN %>'? parseInt($("#columnSelectList").val()):$("#elementKeywords").val()),
+        display_type:parseInt(displayType),
+        count:parseInt($("#articleNum").val()),
+        sort:parseInt($("#sortType").val())
+      }
+			
+      if(!data.value){
+        alert("请选择条件。");
+        return false;
+      }
+			
+      requestState = $.ajax({
+        type:"POST",
+        data:data,
+        url:articleurl,
+        success:function(msg){
+          if(msg){
+            $("#previewBox").empty().append(msg).show();
+          }else {
+            $("#previewBox").append("<p>暂无数据</p>");
+          }
+					
+        }
+      });
+      $("<div class='loading'><span>正在更新预览</span></div>").appendTo($("#previewBox").empty()).show();
+    }
+  });
+</script>

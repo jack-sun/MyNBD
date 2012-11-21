@@ -1,0 +1,21 @@
+<%= simple_form_for [:console, @columnist] , :html => {:class => "formA", :multipart => true} do |f|%>
+  <p>
+    <%= f.input :name, :label => "姓名:" %>
+  </p>
+  <p>
+  <%= f.input :desc, :as => :text, :label => "简介:", :input_html => {:cols => 80, :rows => 15} %>
+  </p>
+  <%= f.label :image, "头像:" %>
+  <%= f.fields_for :image, (@columnist.image ? @columnist.image : Image.new) do |image| %>
+    <div class="formRightAlign">
+      <% if @columnist.image && !@columnist.image.article.nil? %>
+        <div class="imageThumbs"><%= image_tag(columnist_avatar_path(@columnist, :small))%></div>
+      <% end %>
+      <%= image.file_field :columnist %>
+      <%= image.hidden_field :columnist_cache %>
+    </div>
+  <%end %>
+  <p class="formRightAlign">
+    <a href="javascript:void(0)" onclick="$(this).closest('form').submit();return false;" class="btnBlueM"><span>提交</span></a>
+  </p>
+<% end %>

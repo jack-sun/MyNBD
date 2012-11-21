@@ -1,0 +1,30 @@
+<%
+=begin
+	columnists
+=end
+%>
+
+<div class="sectionA newestExperts">
+	<div class="title">
+		<h3>最新加入</h3>
+	</div>
+	<div class="content">
+		<ul class="weiboUserList">
+			<% columnists.each do |c| %>
+			<li>
+				<%= link_to image_tag(columnist_avatar_path(c), :width => "60", :height => "60"), ntt_columnist_url(c), :class => "avatar", :target => "_blank" %>
+				<div class="itemContent">
+					<strong><%= link_to c.name, ntt_columnist_url(c), :target => "_blank", :class => "nameLink" %></strong>
+					<p>
+						<%= truncate(c.desc, :length => 50) %>
+					</p>
+				</div>
+				<div class="clear">
+				</div>
+			</li>
+			<% end %>
+		</ul>
+		<div class="clear">
+		</div>
+	</div>
+</div>

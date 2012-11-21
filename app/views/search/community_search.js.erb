@@ -1,0 +1,6 @@
+var str = "";
+<% @weibos.each do |talk| %>
+  str += '<%= escape_javascript(render :partial => "weibos/weibo_item", :locals => {:weibo => weibo, :index => index, :is_same_user => false})  %>';
+<% end %>
+str += '<%= escape_javascript(paginate @weibos, :params => {:controller => "search", :action => "community_search", :q => @live.tags}, :remote => true) %>'
+$("#weibos_list").html($(str));

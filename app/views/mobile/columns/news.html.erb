@@ -1,0 +1,13 @@
+<% @title="资讯频道" %>
+
+<% cache(column_show_content_key_by_id(@head_article[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "最新头条", :articles => @head_article[:articles].map(&:article).compact} %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@rolling_articles[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "滚动", :articles => @rolling_articles[:articles], :display_datetime => true, :html_class => "rolling" } %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(@featured_articles[:id])) do %>
+<%= render :partial => "mobile/columns/article_list", :locals => {:list_title => "频道精选", :articles => @featured_articles[:articles].map(&:article).compact} %>
+<% end %>

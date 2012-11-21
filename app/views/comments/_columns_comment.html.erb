@@ -1,0 +1,43 @@
+<%
+=begin
+Parameters:
+	articles: Array
+	list_title: String
+	html_class: String (optional)
+	title_icon: Enum String (optional), check out theme_website.html to get icon name.
+	more_link: String (optional)
+=end
+title_icon = '' unless title_icon
+html_class = '' unless html_class
+more_link = '' unless more_link
+%>
+
+<div class="sectionA <%=html_class%>" id="hotComments">
+	<div class="title">
+		<% unless title_icon.blank? %><b class="icon16 <%=title_icon%>"></b><%end%><%if defined?(list_title) and list_title.present?%><h3><%= list_title %></h3><%end%>
+		<%if more_link.present? %><span class="opts"><a href="<%=more_link%>">更多</a></span><%end%>
+	</div>
+	<div class="content">
+		<ul class="weiboItemList">
+			<% articles.each do |article| %>
+			<li>
+				<h4 class="fromArticleTitle"><%= link_to(article.title, article, :target => "_blank") %></h4>
+				<% if article.comments.present? and article.comments.last.present? and article.comments.last.owner.present? %>
+				<%= link_to image_tag(user_avatar_path(article.comments.last.owner, :middle)), article.comments.last.owner, :class => "avatar", :target => "_blank" %>
+				<div class="itemContent">
+					<p><%= link_to article.comments.last.owner.nickname, article.comments.last.owner, :target => "_blank" %>: <%= article.comments.last.content %></p>
+					<div class="itemBottom">
+						<span class="rf">
+							<%= link_to "更多评论 &raquo;".html_safe, article_url(article)+'#articleComments', :target => "_blank" %>
+						</span>
+						<span><%= nbd_time_f(article.comments.last.created_at) %></span>
+						<!--<%= article.comments.last.created_at %>-->
+					</div>
+				</div>
+				<%end %>
+				<div class="clear"></div>
+			</li>
+			<% end %>
+		</ul>
+	</div>
+</div>

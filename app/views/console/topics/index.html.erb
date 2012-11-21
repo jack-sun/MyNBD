@@ -1,0 +1,15 @@
+<%= require_jqueryUI %>
+<%if defined?(@sortable) and @sortable%>
+	<%= require_js "console_topic_sortable.js" %>
+<%end%>
+<div class="sectionA">
+	<div class="title"> 
+		<h1>热门话题</h1>
+		<span class="opts"><%= link_to "<span>添加新话题</span>".html_safe, new_console_topic_url, :class => "btnBlueM"%>
+	</div>
+	<div id="body_channel" class="content">
+		<%=render :partial => "console/topics/topic_operation_bar", :locals=>{ :topics => @topics } %>
+		<%=render :partial => "console/topics/topic_list", :locals=>{ :topics => @topics } %>
+		<%=render :partial => "console/topics/topic_operation_bar", :locals=>{ :topics => @topics } %>
+	</div>
+</div>

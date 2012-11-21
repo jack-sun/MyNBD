@@ -1,0 +1,3 @@
+class ElementTitle < Element
+  
+end

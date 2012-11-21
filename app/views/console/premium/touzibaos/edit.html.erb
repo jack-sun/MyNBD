@@ -1,0 +1,20 @@
+<%= require_jqueryUI %>
+<%= require_popWin %>
+
+<% if flash[:notice]  %>
+  <div class="alert_done" style="margin:20px 20px 10px;"><b></b> <%= flash[:notice] %></div>
+<% end %>
+<div class="sectionA">
+	<div class="title">
+          <h1><%= link_to "所有报纸", console_newspapers_path %></a>-<%=@newspaper.n_index%></h1> <span> (当前报纸期刊号)</span>
+		<span class="opts">
+              <% if @touzibao.pubslied? %>
+            	<%= link_to '<span>取消发布</span>'.html_safe, unpublish_console_newspaper_path(@newspaper), :confirm=>"确定取消该期报纸的发布吗？", :style => "margin-left:10px;", :class => "btnRed rf", :method => :put %>
+          	<% else %>
+                <%= link_to '<span>发布报纸</span>'.html_safe, publish_console_newspaper_path(@newspaper), :confirm=>"确定发布该期报纸吗？", :style => "margin-left:10px;", :class => "btnBlue rf", :method => :put %>
+            <% end %>
+		</span>				
+	</div>
+	<div class="content">
+	</div>
+</div>

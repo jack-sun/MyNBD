@@ -1,0 +1,40 @@
+<div class="sectionA">
+  <div class="title">
+    <h2>
+      反馈记录
+    </h2>
+    
+  </div>
+  <div id="body_state" class="content rightColCenter">
+    <table class="tableA">
+      <thead>
+        <tr>
+          <th>编号</th>
+          <th>反馈内容</th>
+          <th>用户信息</th>
+          <th>提交日期</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @feedbacks.each do |feedback| %>
+          <tr>
+            <td><%= feedback.id %></td>
+            <td>
+              <%= feedback.body %>
+            </td>
+            <td>
+              <%= "用户昵称:#{feedback.user.nickname}" %><br>
+              <%= "用户姓名:#{feedback.real_name}" %><br>
+              <%= "联系电话:#{feedback.phone_no}" %><br>
+              <%= "联系邮箱:#{feedback.email}" %><br>
+            </td>
+            <td><%= feedback.created_at.strftime("%Y-%m-%d") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div style="margin-top:20px;">
+      <%= paginate @feedbacks %>
+    </div>
+  </div>
+</div>

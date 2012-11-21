@@ -1,0 +1,38 @@
+<%
+=begin
+专家最新文章表格汇总
+Parameters:
+title: String (optional)
+columnists: Array 
+=end
+title = "" unless title
+%>
+
+<div class="sectionA">
+  <% unless title == "" %>
+    <div class="title">
+      <h3><%= title %></h3>
+      <% unless params[:controller] == "ntt/columnists" and params[:action] == "index" %>
+        <span class="opts"><%= link_to "更多", ntt_columnists_url %></span>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="content" style="padding:0;">
+    <table class="tankArticlesBox">
+      <% columnists.each_slice(4) do |c_array| %>
+        <tr>
+          <% c_array.each do |c| %>
+            <% next if c.last_article.nil? %>
+            <td>
+              <%= link_to image_tag(columnist_avatar_path(c), :width => 100, :height => 100 , :alt => c.name), ntt_columnist_url(c), :class => "expertAvatar", :target => "_blank" %>
+              <%= link_to c.last_article.list_title, ntt_article_url(c.last_article), :class => "thinkTitle", :target => "_blank" %>
+              <p class="articleDigest"><%= c.last_article.show_digest %></p>
+            </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </table>
+    <div class="clear">
+    </div>
+  </div>
+</div>

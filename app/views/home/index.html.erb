@@ -1,0 +1,32 @@
+<div id="column">
+	<div id="leftColumn"  >
+
+		<h1>每经社区-微博 </h1>
+          <p >Welcome <%= @current_user.nickname %> <%= link_to " [登出]", sign_out_path, :method => :delete %> </p>
+
+          <%= form_for :weibo,@weibo,  new_home_path do |form| %>
+
+         <table class="postBox">
+				<tr ><td colspan="2"><%= form.text_area :content %></td></tr>
+				<tr >
+				<td align="left">你可以输入<span class="big">350</span>字</td>
+				<td align="right"><input type="submit" value="发布" class="postBut"></td>
+				</tr>
+			</table>
+         <%  end %>
+            <%= render "weibolist" %>
+	</div>
+	<div id="rightColumn"  >
+		<p><strong>目录</strong></p>
+		<ul id="pageNavi">
+
+		</ul>
+	</div>
+
+	<div class="clear"></div>
+
+
+</div>
+
+
+

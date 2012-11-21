@@ -1,0 +1,46 @@
+<%= require_css "reset.css" %>
+<%= require_css "style_console.css" %>
+<div id="body_signin">
+	<div id="fixedTop">
+		<div id="top">
+			<div class="lf">
+				<a href="#">返回每经网</a>
+			</div>
+			<div class="rf">
+				<a href="#">登录</a>
+			</div>
+		</div>
+		<div id="header">
+			<div id="logo">
+				<a href="/"><img src="/images/console-logo.gif" alt="每经网" /></a>
+			</div>
+		</div>
+	</div>
+	<div id="wrapper">
+		<form class="formB roundCorner" action="post">
+			<div class="title roundCorner">
+				<h1>账户信息</h1>
+			</div>
+			<p>
+				<%= label_tag :email, "用户名" %>
+				<br/>
+				<%= text_field_tag :email, nil, :size => 40, :class => 'textInput' %>
+			</p>
+			<p>
+				<%= label_tag :password, "密码" %>
+				<br/>
+				<%= password_field_tag :password, nil, :size => 40, :class => 'textInput', :autocomplete => :off %>
+			</p>
+			<p style="width:220px;">
+				<span class="lf"><input type="checkbox" />下次自动登陆</span><%= link_to "忘记密码", new_password_reset_path, :class => "rf" %>
+				<div class="clear">
+				</div>
+			</p>
+			<p class="btnRowM">
+				<input type="submit" style="visibility:hidden;width:0;height:0;"/><a href="javascript:void(0)" onclick="$(this).parents('form').submit();return false;" class="btnBlueM" style="width:100px;"><span>登陆</span></a>
+				<div class="clear">
+				</div>
+			</p>
+		</form>
+	</div>
+</div>

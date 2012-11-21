@@ -1,0 +1,24 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  user_id: 1
+  target_id: 1
+  target_type: MyString
+
+two:
+  user_id: 1
+  target_id: 1
+  target_type: MyString
+
+# == Schema Information
+#
+# Table name: mentions
+#
+#  id          :integer(4)      not null, primary key
+#  user_id     :integer(4)      not null
+#  target_id   :integer(4)      not null
+#  target_type :string(255)     not null
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+

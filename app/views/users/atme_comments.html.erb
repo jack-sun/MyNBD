@@ -1,0 +1,35 @@
+<%= require_popWin %>
+<%= require_autoComplete %>
+<%= require_css "weibo_myhome.css" %>
+<%= require_js "weibo_mana" %>
+<%= require_js "speak_mana" %>
+<%= require_js "weibo_notify.js" %>
+
+<div class="leftCol">
+	
+	<%= render :partial => "weibos/form_for_new_weibo" %>
+	
+	<%= render :partial => "users/tab_navs", :locals => {:tab => "atme_user_path"} %>
+	
+	<%= render :partial => "users/atme_sub_tab_navs", :locals => {:tab => "atme_comments_user_path"} %>
+	
+	<ul class="weiboItemList withTabs">
+		<% @comments.each do |comment| %>
+			<%= render :partial => "comments/atme_comment_item", :locals => {:comment => comment.target} %>
+		<% end %>
+	</ul>
+	
+	<%= paginate @comments %>
+
+</div>
+
+<div class="rightCol">
+	<%= render :partial => "users/user_profile", :locals => {:interviewee => @current_user} %>
+	<%= render :partial => "users/user_stats_details", :locals => {:interviewee => @current_user} %>
+	<% render :partial => "users/user_stocks", :locals => {:stocks => []} %>
+	<%# render :partial => "users/hot_topics", :locals => {:hot_topics => []} %>
+	<% render :partial => "users/breaking_news", :locals => {:breaking_news => []} %>
+	<% render :partial => "users/users_recommand", :locals => {:users => []} %>
+</div>
+
+<div class="clear"></div>

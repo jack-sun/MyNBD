@@ -1,0 +1,58 @@
+<%= require_css "account_settings.css" %>
+<div class="leftCol">
+	<%= form_for(@current_user, :url => {:action => 'step_1'}, :html => {:id => "user_form", :class => "formA roundCorner", :multipart => true}) do |f| %>
+	<div class="alert_done"><b></b>恭喜你，你已经加入每经网，你可以选择进一步完善资料或跳过。</div>
+	<div class="title">
+		<h1>
+			完善个人资料
+		</h1>
+		<!--<span class="titleOpts">我已是会员</span>-->
+	</div>
+    <% if @user.errors %>
+    <% @user.errors.each do |k ,v| %>
+      <%= "#{k}:  #{v}" %>
+    <% end %>
+    <% end %>
+	<p>
+		<%= f.label :image, "上传头像：" %>
+		<br/>
+		<% if @current_user.image.present? %>
+			<%= f.fields_for :image, @current_user.image do |image| %>
+              <% unless @current_user.image.avatar.nil? %>
+				<%= image_tag(@current_user.image.avatar_url(:large)) %><br/>
+              <% end %>
+				<%= image.file_field :avatar %><br/>
+				<%= image.hidden_field :avatar_cache %>
+			<%end %>
+		<% else %>
+			<%= f.simple_fields_for :image, @image do |image| %>
+	    		<% if @image.remote_avatar_url %>
+	      			<%= image_tag(@image.remote_avatar_url) %>
+	      			<%= image.input :remote_avatar_url, :as => :hidden %>
+	    		<% else %>
+	      			<%= image.file_field :avatar %>
+	      			<%= image.hidden_field :avatar_cache %>
+	    		<% end %>
+			<% end %>
+		<%end %>
+		<br/>
+	</p>
+	<p>
+		<%= f.label "关于我：" %>
+		<br/>
+		<%= f.text_area :desc, :class => "textInput", :style => "width:300px;height:80px;" %>
+	</p>
+	<p class="btnRowM">
+		<a href="javascript:void(0)" class="btnBlueM" onclick="$(this).parents('form').submit();return false;"><span>保存</span></a>
+		<%= link_to "跳过并继续&raquo;".html_safe, user_url(@user), :class => "btnCancel" %>
+        <% if @jumpto_url %>
+          <%= link_to "跳到注册前的页面&raquo;", @jumpto_url, :class => "btnCancel" %>
+        <% end %>
+		<div class="clear"></div>
+	</p>
+	<% end %>
+</div>
+<div class="rightCol">
+</div>
+<div class="clear">
+</div>

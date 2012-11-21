@@ -1,0 +1,30 @@
+<div class="title">
+	<h1>页面元素编辑 - 话题头部</h1>
+</div>
+
+<%= simple_form_for(@topic, :url => edit_banner_console_topic_url(@topic), :html => {:id => "element_form", :class => "", :multipart => true}) do |f| %>
+	<p>
+		<%= f.label :image, "话题背景图片：" %>
+		
+		<% if @topic.image.present? %>
+			<%= f.fields_for :image, @topic.image do |image| %>
+				<%= image_tag(@topic.image.topic_url(:x_large, :subdomain => "www"), :style => "width:100%" )%><br/>
+				<%= image.file_field :topic %><br/>
+				<%= image.hidden_field :topic_cache %>
+			<%end %>
+		<% else %>
+			<%= f.fields_for :image, Image.new do |image| %>
+			<%= image.file_field :topic %>
+			<%= image.hidden_field :topic_cache %>
+			<% end %>
+		<%end %>
+	</p>
+	<p>
+		<%= f.input :desc , :as => :text, :label => "话题介绍：" %>
+	</p>
+	<div id="elementActions">
+		<%= link_to "<span>保存</span>".html_safe, "javascript:void(0);", :onclick => "$(this).closest('form').submit();return false;", :class => "btnBlueM rf"%>
+		<%= link_to "<span>取消</span>".html_safe, "javascript:window.close();", :class => "btnGray rf" %>
+		<div class="clear"></div>
+	</div>
+<%end%>

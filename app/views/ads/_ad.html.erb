@@ -1,0 +1,24 @@
+<%
+=begin
+	id : Number
+	ids : Array (optional)
+	html_class : String (optional, values => global, top, header, left_bar, right_bar, col2, right_box, footer)
+	html_style
+=end
+html_class = "" unless html_class
+html_style = "" unless html_style
+%>
+
+<div class="ad_global <%= 'ad_%s' %(html_class) if html_class != '' %>" style="<%=html_style%>">
+<% if html_class == "col2" %>
+	<div class="lf">
+		<script type="text/javascript">BAIDU_CLB_fillSlot("<%= ids[0] %>");</script>
+	</div>
+	<div class="rf">
+		<script type="text/javascript">BAIDU_CLB_fillSlot("<%= ids[1] %>");</script>
+	</div>
+	<div class="clear"></div>
+<% else %>
+	<script type="text/javascript">BAIDU_CLB_fillSlot("<%= id %>");</script>
+<% end %>
+</div>

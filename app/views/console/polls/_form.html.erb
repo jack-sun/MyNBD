@@ -1,0 +1,121 @@
+<%= javascript_include_tag "nested_form" %>
+<%= require_jqueryUI %>
+<style type="text/css">
+	.formB { border:none; padding:0; }
+</style>
+<%= simple_nested_form_for [:console, @poll], :html => {:id => "poll_form", :class => "formA"} do |f| %>
+  <p>
+  <%= f.input :title, :label => "标题:" %>
+  </p>
+  <p>
+    <%= f.input :desc, :label => "描述:", :as => :text, :input_html => { :rows => 10 } %>
+  </p>
+	
+	<div class="block">
+		<label>选项:</label>
+		<div id="pollItemsList" class="formRightAlign">
+			<%= f.fields_for :polls_options, @poll.polls_options.order("pos asc") do |p| %>
+				<span class="dragHandler">拖动</span>
+				<%= p.text_field :content %>
+				<%= p.hidden_field :pos %>
+				<%= p.link_to_remove "删除" %>
+			<% end %>
+			<%= f.link_to_add "添加选项..", :polls_options, :class => "addPollItemBtn" %>
+		</div>
+	</div>
+
+<p>
+	<%= f.label :max_choice_count, "最多几票:" %>
+    <% if @poll.new_record? || @poll.polls_options.count == 0 %>
+      <%= f.collection_select :max_choice_count, (1..1).to_a, :to_i, :to_i %>
+    <% else %>
+      <%= f.collection_select :max_choice_count, (1..@poll.polls_options.count).to_a, :to_i, :to_i %>
+    <% end %>
+</p>
+
+<p>
+	<%= f.label :end_time, "截止日期:" %>
+	<%= f.datetime_select :expired_at %>
+</p>
+
+<p>
+	<%= f.label :show_result, "结果查看:" %>
+	<%= f.collection_select :show_result, [[0, "投票后显示结果"], [1, "隐藏投票结果"], [2, "任何人可见投票结果"]], :first, :last %>
+</p>
+
+<p>
+	<%= f.label :repeats_verify_type, "重复判定:" %>
+	<%= f.collection_select :repeats_verify_type, [[0, "Cookie"], [1, "IP"], [2, "是否登录"]], :first, :last %>
+</p>
+
+<p>
+	<%= f.label :need_capcha, "验证码:" %>
+	<%= f.collection_radio :need_capcha, [[1, "开启"], [0, "关闭"]], :first, :last%>
+</p>
+<p class="formRightAlign">
+	<a href="javascript:void(0)" id="pollSubmitBtn" class="btnBlueM"><span>提交</span></a>
+</p>
+<% end %>
+<script type="text/javascript">
+	$(function(){
+		var pollItemsList = $("#pollItemsList");
+		var pollForm = $("#poll_form");
+		var pollMaxCount = $("#poll_max_choice_count");
+		
+		function getCountOptions(){
+			return $("option", pollMaxCount);
+		}
+		function totalfieldsLength(){
+			return $(".fields:visible").length;
+		}
+		function refreshFieldPos(){
+			$(".fields:visible input[name*=pos]", pollItemsList).each(function(i, v){
+				console.log(v);
+				$(v).val(i+1);
+			});
+		}
+		
+	    pollForm.live("nested:fieldAdded", function(e){
+			// fields
+			$("input[name*=pos]", e.field).val(totalfieldsLength());
+			
+			// options
+			if(totalfieldsLength() == 1 && getCountOptions().size() == 1){
+				return;
+			}
+	        var current_count = getCountOptions().size() + 1;
+	        var clone_option = getCountOptions().first().clone();
+	        clone_option.text(current_count)
+				.val(current_count)
+				.appendTo(pollMaxCount);
+	    });
+	    
+	    pollForm.live("nested:fieldRemoved", function(e){
+			if(totalfieldsLength() == 0 && getCountOptions().size() == 1){
+				return;
+			}
+	        getCountOptions().last().remove();
+	        refreshFieldPos();
+	    });
+		
+		// sortable poll items list
+		pollItemsList.sortable({
+			axis:'y',
+			opacity:'0.4',
+			handle:'span',
+			tolerance:'pointer',
+			cursor:'move',
+			items:'.fields',
+			placeholder:"dragPlaceHolder",
+			update:function(event, ui){
+				console.log("update");
+				refreshFieldPos();
+			}
+		});
+	    
+	    $("#pollSubmitBtn").click(function(){
+	        pollForm.submit();
+	    });
+	});
+	
+</script>

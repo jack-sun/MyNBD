@@ -1,0 +1,23 @@
+<% list_title = @column.root.id == @column.id ? @column.name : "#{@column.root.name} - #{@column.name}" %>
+<% @title=list_title %>
+<%= require_css "article_list.css" %>
+
+<% content_for :header_ad do %>
+	<script type="text/javascript">
+		BAIDU_CLB_preloadSlots("349118");
+	</script>
+	<!-- 广告位：全站_顶部四分之三通栏 -->
+	<%= render :partial => "ads/ad", :locals => { :id => "349118", :html_class => "header" } %>
+<% end %>
+
+<div class="leftCol">
+  <% cache(column_show_content_key_by_id(@column.id)) do %>
+    <%= render :partial => "columns/article_list_for_search", :locals => {:list_title => list_title, :articles => @articles_columns.map(&:article).compact, :digest_restrict => true} %>
+    <%= paginate @articles_columns %>
+  <% end %>
+</div>
+
+<div class="rightCol">
+</div>
+
+<div class="clear"></div>

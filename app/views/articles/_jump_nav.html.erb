@@ -1,0 +1,14 @@
+<div class="jumpNav">
+	<a href="/" class="toHome"><b></b>返回每经网首页</a>
+	<a href="#" id="toTop2" class="toTop2"><b></b>回到顶部</a>
+	<!--<a href="#" class="toNext"><b></b>随机浏览下一篇</a>-->
+</div>
+<script type="text/javascript">
+	$(function(){
+		$("#toTop2").click(function(){
+			$("html,body").animate({
+				scrollTop: 0
+			}, 400);
+		});
+	});
+</script>

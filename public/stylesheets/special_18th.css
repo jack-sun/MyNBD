@@ -1,0 +1,15 @@
+body{background:white url(http://www.nbd.com.cn/corp/jc_inbox/18th_bg_gradient.png) 0 0 repeat-x ;}
+
+#top{width:1000px;margin:auto;}
+
+#top.dark #topStyle{background-color:#cc0000;}
+
+#top.dark #topStyle a{color:white!important}
+
+#top.dark #topStyle ul li {border-right:1px solid #900;}
+
+#header{width:1000px;margin:auto;background-color:white}
+
+
+
+#wrapper{margin-top:0!important; padding-top:10px; background:white;}

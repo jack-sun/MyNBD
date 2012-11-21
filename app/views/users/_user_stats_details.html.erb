@@ -1,0 +1,17 @@
+<div class="userAtten">
+	<ul>
+		<li>
+			<div class="num"><%= interviewee.followings_count %></div>
+			<%= link_to "关注", followings_user_path(interviewee) %>
+		</li>
+		<li>
+			<div class="num"><%= interviewee.followers_count %></div>
+			<%= link_to "粉丝", followers_user_path(interviewee) %>
+		</li>
+		<li>
+			<div class="num"><%= interviewee.weibos_count %></div>
+			<%= link_to "微博", user_path(interviewee) %>
+		</li>
+	</ul>
+	<div class="clear"></div>
+</div>

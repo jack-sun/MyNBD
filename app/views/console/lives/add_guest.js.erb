@@ -1,0 +1,6 @@
+<% if @guest %>
+  $("<%= escape_javascript(render :partial => "/users/guest_profile", :locals => {:guest => @guest}) %>").insertBefore($("#guest_name"));
+<% else %>
+  alert("用户<%= params[:guest_name] %>不存在");
+<% end %>
+$("#guest_name").val("");

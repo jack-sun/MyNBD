@@ -1,0 +1,54 @@
+<%
+=begin
+Parameters:
+	article: Article instance
+	list_title: String (optional, default '')
+	column_id: Int (optional, default '')
+=end
+list_title = "头条" unless list_title
+column_id = "" unless column_id
+more_title = "更多" unless more_title
+hide_image = false unless hide_image
+for_subdomain = false unless for_subdomain
+%>
+<div class="sectionA" id="headArticle2">
+	<!--<div class="title"><h3><%= link_to list_title, column_path(column_id)%></h3><span class="opts"><%= link_to more_title, column_path(column_id)%></span></div>-->
+	<div class="content">
+		<% unless hide_image %>
+		<%= link_to image_tag(article_thumbnail_path(article, :large_b), {:alt => article.list_title, :width => 310, :height => 176}),  article_path(article), {:target => "_blank"} if article.image.present? %>
+		<% end %>
+		<h2 class="headline" <%if article.is_special? -%>style="font-size:15px;"<% end -%>>
+			<%if article.is_special?%><span class="articleLabel red"><b><%= Article::SPECIAL[article.special] %></b></span><%end%>
+            <% if for_subdomain %>
+              <%= link_to article.list_title, send("#{for_subdomain}_article_url", article), {:target => "_blank", :title => article.title} %>
+            <% else %>
+              <%= link_to article.list_title, article_url(article), {:target => "_blank", :title => article.title} %>
+            <% end %>
+		</h2>
+		<div class="digest">
+			<p><%= article.show_digest %></p>
+			<div id="articleChildrenBox" class="additionalOpt">
+				<ul id="articleChildren" class="unorderList">
+                  <% if for_subdomain %>
+					<% article.relate_article_children.order("pos desc").each do |a| %>
+						<li>
+                          <% if a.children_url =~ /features\/\d+/ %>
+							<%= link_to a.children_title, a.children_url, {:target => "_blank", :title => a.children_title} %>
+                          <% else %>
+							<%= link_to a.children_title, a.children_url.gsub("www", for_subdomain), {:target => "_blank", :title => a.children_title} %>
+                          <% end %>
+						</li>
+					<%end %>
+                  <% else %>
+					<% article.relate_article_children.order("pos desc").each do |a| %>
+						<li>
+							<%= link_to a.children_title, a.children_url, {:target => "_blank", :title => a.children_title} %>
+						</li>
+					<%end %>
+                  <% end %>
+				</ul>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>

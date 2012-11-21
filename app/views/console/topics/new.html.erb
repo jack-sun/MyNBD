@@ -1,0 +1,35 @@
+<%= require_css "console_feature" %>
+
+<div class="sectionA">
+	<div class="title">
+		<h1>专题-添加新话题</h1>
+		<span class="opts">
+			<%= link_to '<span>取消</span>'.html_safe, console_topics_path, :class => "btnGray" %>
+		</span>
+	</div>
+	<div class="content rightColCenter">
+		<%= simple_form_for([:console, @topic], :html => {:id => "topic_form", :class => "formA"}) do |f| %>
+			<p>
+				<%= f.input :title , :label => "标题:", :input_html => {:id => "topicNameInput"} %><span id="restTipForTitle"></span>
+			</p>
+			<%if false%>
+				<p>
+					<%= f.input :slug , :label => "网址:",:input_html => {:style => "width:150px;" }%>
+					<span class="preurl"><%= Settings.host %>/topic/</span>
+				</p>
+				<p>
+					<%= f.input :keywords , :label => "关键词" %><span>聚合关键词，以逗号","分隔</span>
+				</p>
+			<%end%>
+			<p class="formRightAlign">
+				<%= link_to "<span>添加新话题</span>".html_safe, "javascript:void(0);", :onclick => "$(this).closest('form').submit();return false;", :id => "create_new_feature", :class => "btnBlueM"%>
+			</p>
+		<%end%>
+	</div>
+</div>
+
+<script>
+	$(function(){
+		_nbd.restCharNum("topicNameInput", 10, "restTipForTitle");
+	});
+</script>

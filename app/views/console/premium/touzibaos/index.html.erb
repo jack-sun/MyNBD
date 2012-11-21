@@ -1,0 +1,32 @@
+<div class="sectionA">
+  <div class="title">
+    <h1>每经投资宝 - 期刊管理</h1>
+    <span class="opts">
+      <%= link_to "<span>添加新期刊</span>".html_safe, new_console_premium_touzibao_path, :class => "btnBlueM" %>
+    </span>
+  </div>
+  <div class="content rightColCenter">
+    <table class="tableA">
+      <thead>
+        <tr>
+          <th>期刊号</th>
+          <th>状态</th>
+          <th>操作</th>
+        </tr>		
+      </thead>
+      <tbody>
+        <% @touzibaos.each do |touzibao| %>
+          <tr>
+            <td class="itemTitle"><%= link_to touzibao.t_index, print_console_premium_touzibao_path(touzibao)%></td>
+            <td><span class="<%=touzibao.published? ? 'green' : 'red'%>"><%=touzibao.published? ? '已发布' : '未发布'%></span></td>
+            <td class="itemActions">
+              <%= link_to '<b></b>内容管理'.html_safe, console_premium_touzibao_path(touzibao), :class => "actionChilden" %>
+              <%= link_to '<b></b>删除'.html_safe, console_premium_touzibao_path(touzibao), :confirm => '确定删除这期投资宝吗?', :method => :delete, :class => "actionDelete" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div style="margin:10px 0 0 0;height:30px;"><%= paginate @touzibaos %></div>
+  </div>
+</div>

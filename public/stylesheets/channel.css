@@ -1,0 +1,40 @@
+.subLeftCol .sectionA{margin-bottom:5px;}
+.subRightCol .sectionA{margin-bottom:5px;}
+.articleList li.articleRecommend{
+	padding-bottom: 5px;
+	margin-bottom: 5px;
+	border-bottom: 1px dotted #e5e5e5;
+}
+
+.columnSection .articleList li.articleRecommend{
+	padding: 5px 5px 0 5px;
+	background-color: #F2F5FA;
+	width: 305px;
+	margin-bottom: 10px;
+}
+
+.rightCol .columnSection .articleList li.articleRecommend{
+	width: 290px;
+}
+
+.columnSection .articleRecommend .rcDigest p.restrict{
+	height: 80px;
+}
+
+.columnSection .articleRecommend .rcDigest img{
+	width: 60px;
+	height: 75px;
+}
+
+.sectionA.columnSection .content{
+	padding-top: 0;
+}
+
+.NBDFeatures .rcDigest, .IPOResearch .rcDigest, .NBDConsumer .rcDigest{
+	height: 60px;
+	overflow: hidden;
+}
+
+.NBDFeatures .articleList li.articleRecommend, .IPOResearch .articleList li.articleRecommend, .NBDConsumer .articleList li.articleRecommend{
+	border-bottom: none;
+}

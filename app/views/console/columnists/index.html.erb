@@ -1,0 +1,32 @@
+<div class="sectionA">
+  <div class="title">
+    <h1>所有专家</h1>
+    <span class="opts"><%= link_to "<span>添加新专家</span>".html_safe, new_console_columnist_path, :class => "btnBlueM" %>
+    </span>
+  </div>
+  <div class="content rightColCenter">
+    <table class="tableA">
+      <thead>
+        <tr>
+          <th>姓名</th>
+          <th>描述</th>
+          <th>操作</th>
+        </tr>		
+      </thead>
+      <tbody>
+        <% @columnists.each do |columnist| %>
+          <tr>
+            <td><%= columnist.name %></td>
+            <td><%= truncate(columnist.desc) %></td>
+            <td class="itemActions">
+              <%= link_to "<b></b>编辑".html_safe, edit_console_columnist_url(columnist), :class => "actionEdit" %>
+              <%= link_to '<b></b>删除'.html_safe, console_columnist_url(columnist), :confirm => '确定删除吗?', :method => :delete, :class => "actionDelete" %>
+            </td>
+          </tr>
+        <%end%>
+      </tbody>
+    </table>
+<div style="margin:10px 0 0 0;height:30px;"><%= paginate @columnists %></div>
+  </div>
+</div>
+

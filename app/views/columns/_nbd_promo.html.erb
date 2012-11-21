@@ -1,0 +1,48 @@
+<%
+	hide_newspappers = false unless hide_newspappers
+	hide_clients = false unless hide_clients
+	hide_mobile_newspapers = false unless hide_mobile_newspapers
+	html_style = '' unless html_style
+	title = false unless title
+%>
+
+
+<div class="sectionA" style="<%=html_style%>">
+	<% if title %>
+	<div class="title">
+		<h1><%= title %></h1>
+	</div>
+	<% end %>
+	<div class="content" id="nbdPromo" style="margin-bottom:5px">
+		<dl>
+			<% unless hide_newspappers%>
+			<dt class="thumbNewspappers">每日经济新闻</dt>
+			<dd>
+				<h3>&laquo;每日经济新闻&raquo; <span>(<%=Time.now.strftime("%Y年%m月%d日")%>)</span></h3>
+				<p>
+					<%= link_to("文字版", today_newspapers_url, {:class => "first", :target => "_blank"})%> | <%= link_to("图文版", "http://epaper.nbd.com.cn/", :target => "_blank")%> | <%= link_to("订阅", "#{Settings.old_host}/html/dingyue.html", :target => "_blank") %>
+				<p>
+			</dd>
+                      <% end %>
+			<% unless hide_clients%>
+			<dt class="thumbClients">每经网移动客户端</dt>
+			<dd <% if hide_mobile_newspapers %>class="last"<%end%>>
+				<h3>每经网移动客户端</h3>
+				<p>
+					<%= link_to("iPhone", "http://itunes.apple.com/cn/app/id413082888?mt=8", {:class => "first", :target => "_blank"})%> | <%= link_to("iPad", "http://itunes.apple.com/cn/app/id440680920?mt=8", :target => "_blank")%> | <%= link_to("Android", "#{android_mobiles_url}", :target => "_blank")%> | <%= link_to("其他", "#{Settings.old_host}/mobile/", :target => "_blank")%>
+				</p>
+			</dd>
+			<% end %>
+			<% unless hide_mobile_newspapers %>
+			<dt class="thumbMobileNewspaper">每经手机报</dt>
+			<dd class="last">
+				<h3>每经资讯产品</h3>
+				<p>
+					<%= link_to("投资宝", "#{Settings.host}/premium/mobile_newspaper_account/introduce", {:class => "first", :target => "_blank"})%> | <%= link_to("投资快讯", "#{Settings.host}/premium/mobile_news/introduce", :target => "_blank")%>				
+				</p>
+			</dd>
+			<% end %>
+		</dl>
+	</div>
+</div>
+

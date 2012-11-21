@@ -1,0 +1,50 @@
+<%
+unless @element.new_record?
+  tag = @body["tag"] || ""
+  keywords = (@body["keywords"]||"").split(',').join(', ')
+  count = @body["count"] || 3
+end
+%>
+
+<div class="title">
+	<h1>页面元素编辑 - 微博聚合</h1>
+</div>
+
+<%= simple_form_for([:console, @owner, @element], :html => {:id => "element_form", :class => ""}) do |f| %>
+	<%= f.input :content, :as => :hidden %>
+	<p>
+		<%= f.input :title , :label => "标题:" %>
+	</p>
+	<p>
+		<label>显示条数：</label>
+        <%= select_tag "weiboNum", options_for_select({ 3 => 3, 5 => 5, 10 => 10}, (count || 5).to_i) %>
+	</p>
+	<p>
+		<label>话题标签</label>
+		<input type="text" id="topic_tag" value="<%= @element.new_record? ? '' : tag %>" />
+	</p>
+	<p>
+		<label>搜索关键词:</label>
+		<input type="text" id="topic_keywords" value="<%= @element.new_record? ? '' : keywords %>" />
+	</p>
+	<%= render "console/elements/element_editpage_actions" %>
+<%end%>
+
+<script type="text/javascript">
+	//{:body => {:tag =>， :keywords =>}}
+	
+	$("#createNewElement").click(function(){
+		var topic_tag = $("#topic_tag").val();
+		var topic_keywords = $("#topic_keywords").val();
+        var weibo_count = $("#weiboNum").val();
+
+		var body = {'body' : {
+			'tag' : topic_tag,
+			'keywords' : topic_keywords,
+            'count' : weibo_count
+		}};
+		
+		$("#element_<%= @k_name %>_content").val(JSON.stringify(body));
+		$('form').submit();
+	});
+</script>

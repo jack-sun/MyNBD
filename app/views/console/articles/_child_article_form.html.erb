@@ -1,0 +1,23 @@
+<li id="article_<%= article.id %>_<%=  article.children_id %>">
+	<span class="dragHandler">拖动</span>
+	<div class="childTitle">
+		<%= link_to article.children_title, article.children_url, :target => "_blank", :class => "childLink" %>
+		<span class="childActions"><a class="edit" href="javascript:void(0)">[编辑]</a><a class="remove" href="javascript:void(0)">[移除]</a></span>
+	</div>
+	
+	<%= simple_form_for [:console, article], :html => {:remote => true, :class => "updateForm formA", :id => "child_article_#{article.id}", :style => "display:none"} do |f| %>
+		<%= f.input :children_title, :label => "配稿标题:" %>
+		<br/>
+		<% unless article.children %>
+		<%= f.input :children_url, :label => "配稿链接:", :input_html => {:class => "childUrl"} %>
+		<% end %>
+		<div class="childEidtActions formRightAlign">
+			<input type="submit" class="hiddenSubmit" />
+			<a href="javascript:void(0)" class="btnBlue" onclick="$(this).closest('form').submit();"><span>更新配稿</span></a>
+			<a href="javascript:void(0)" class="cancelEditChild btnGray"><span>取消</span></a>
+			<% if article.children %>
+			<%= link_to "编辑更多 &raquo;".html_safe, edit_console_article_url(article.children), :class => "rf" %>
+			<% end %>
+		</div>
+	<% end %>
+</li>

@@ -1,0 +1,15 @@
+<li class="wishItem">
+	<div class="wishContent">
+		<p><%= weibo.content(:length => 140, :strip_break => true) %></p>
+		<div class="wishUserInfo">
+			<%= link_to(image_tag(user_avatar_path(weibo.owner, :middle), {:alt => weibo.owner.nickname, :width => "30", :height => "30"}), user_url(weibo.owner), :class=>"avatar") %>
+			<div class="wishDesc">
+				<a href="#" class="name"><%= link_to weibo.owner.nickname, user_url(weibo.owner) %></a>
+				<br/>
+				<span><%= nbd_time_f(weibo.created_at) %> 许愿</span>
+			</div>
+		</div>
+	</div>
+	<div class="itemShadow">
+	</div>
+</li>

@@ -1,0 +1,33 @@
+<%= stylesheet_link_tag "reset", "style_global", "style_website" %>
+<style type="text/css">
+body{ width:980px; margin:0 auto; }
+.pollResultBox .tip{display:none;}
+#searchPoll { padding:10px 25px; background:#efefef; border-bottom:1px solid #ddd; }
+
+.pollDetailItem { padding-bottom:20px; border-bottom:2px dotted #ccc; }
+.pollDetailInfo { margin-bottom:15px; padding:10px 25px; background:#efefef; }
+.pollDetailTitle { margin-bottom:10px; font-size:18px; font-weight:bold; }
+.pollDetailDesc { color:#606060; }
+
+
+.pollBottomInfo { padding-left:25px; color:red; }
+</style>
+<div id="searchPoll">
+	<%= form_tag(poll_details_path, :method => :get) do %>
+	  <%= text_field_tag "poll_ids", "", :class => "textInput" %>
+	  <%= submit_tag "搜索" %>
+	<% end %>	
+</div>
+<% @polls.each do |poll| %>
+<div class="pollDetailItem">
+	<div class="pollDetailInfo">
+		<div class="pollDetailTitle red"><%= poll.title%></div>
+		<div class="pollDetailDesc"><%= poll.desc%></div>
+	</div>
+
+  <div class="poll">
+    <%= render :partial => "polls/vote_result", :locals => {:poll => poll, :success => true} %>
+  </div>
+</div>
+
+<% end %>

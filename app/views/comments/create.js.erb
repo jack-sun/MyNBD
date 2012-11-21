@@ -1,0 +1,25 @@
+(function(){
+	var form;
+	<% if @comment.errors.blank? %>
+	var comments = $('#<%= "weibo_#{@comment.weibo.id}_comments" %>'); // 获取评论列表ul
+	var myComment = $("#myComment"); // 获取文章、专题页面的评论box
+	
+	// 在微博（微博详情、我的首页）页面
+	if(comments.length > 0){
+		form = $('#<%= "weibo_#{@weibo.id}_new_comment" %>');
+		$("<%=escape_javascript(render "comment", :comment => @comment) %>").hide().prependTo(comments).fadeIn("slow");
+		form.find('textarea').val('');
+		form.find('input:checked').each(function(i,v){v.checked=false;});
+		
+	// 在文章、专题页面
+	} else if(myComment.length > 0){
+		form = $("#myComment form");
+		form.find('textarea').val('');
+		$("<%=escape_javascript(render :partial => "article_comment", :locals => {:comment => @comment}) %>").prependTo($("#commentsBlock ul.weiboItemList"));
+	}
+	
+	<% else %>
+		alert("<%= raw @comment.errors.values.join(",") %>")
+	<%end %>
+	_enableSubmit(form);
+})();

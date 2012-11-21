@@ -1,0 +1,161 @@
+<% @title = "每经网专题: #{@feature.title} - 专题" %>
+<% require_js "weibo_mana" %>
+<% require_js "speak_mana" %>
+<% require_popWin %>
+<% require_slideShow %>
+<div id="banner">
+  <div id="bshareWrapper">
+    <div id="bshare">
+      <div id="bshareBg"></div>
+      <div id="bshareBody">
+
+        <!-- Bshare Button BEGIN -->
+        <div class="bshare-custom">
+          <a title="分享到" href="http://www.bshare.cn/share" id="bshare-shareto" class="bshare-more">分享到:</a>
+          <a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
+          <a title="分享到开心网" class="bshare-kaixin001"></a>
+          <a title="分享到豆瓣" class="bshare-douban"></a>
+          <a title="分享到QQ微博" class="bshare-qqmb"></a>
+          <a title="分享到搜狐微博" class="bshare-sohuminiblog"></a>
+          <a title="分享到网易微博" class="bshare-neteasemb"></a>
+          <a title="分享到QQ空间" class="bshare-qzone"></a>
+          <a title="分享到人民微博" class="bshare-peoplemb"></a>
+           <!-- 在这里添加更多平台 -->
+          <a title="更多平台" id="bshare-more-icon" class="bshare-more"></a>
+        </div>
+        <!-- Bshare Button END -->
+
+        <!-- Bshare Button BEGIN -->
+        <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#ssc=false&uuid=dadcb6c1-00b3-41b4-ab78-9d31e05fdceb&style=10&bgcolor=#ffffff&bp=sinaminiblog,kaixin001,douban,qqmb,sohuminiblog,neteasemb,qzone,peoplemb,bsharesync"></script>
+        <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC1.js"></script>
+        <script type="text/javascript" charset="utf-8">
+          bShare.addEntry({
+              summary: "-"
+          });
+        </script>
+        <!-- Bshare Button END -->
+        
+      </div>
+    </div>
+  </div>
+  <div id="intro">
+    <%=  @feature.banner.html_safe if @feature.banner.present?  %>
+  </div>
+</div>
+<% cache(feature_paginate_nav_key_by_id_and_page_id(@feature.id, @page.id)) do %>
+  <% if @feature.feature_pages.size > 1 %>
+    <% current_index = params[:page_id].blank? ? 0 : (params[:page_id].to_i - 1) %>
+    <div id="nav">
+      <ul>
+        <% @feature.feature_pages.order("pos asc").each_with_index do |page, index| %>
+          <li <%if index==current_index %>class="current"<% end %>><%= link_to content_tag(:span, page.title), page_feature_url(@feature, :page_id => page.pos+1, :preview => params[:preview])  %></li>
+        <%end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="clear">
+  </div>
+<%end %>
+<% @sections.each do |section|
+  col_count = section['section_code'].split("_")[1].to_i
+  element_ids = section['elements'] -%>
+  <div class="section <%= section['section_code'] %>">
+    <% col_count.times do|index| %>
+      <div class="col col_<%= index+1 %>">
+        <% element_ids[index].each do |element_id| %>
+          <% if @poll_element_ids.index(element_id.to_i) %>
+            <% element = Element.find(element_id) %>
+            <div class="element <%=element.class.name.underscore%>" id="element_<%= element.id %>">
+              <% if element.show_title? and element.title.present? %>
+                <h2 class="title"><%= element.title %></h2>
+              <% end %>
+              <div class="content">
+                <%= render(:partial => "elements/" + element.class.name.underscore, :locals => {:element => element}) %>
+              </div>
+            </div>
+          <% else %>
+            <% cache(feature_element_content_key_by_id_and_element_id(@feature.id, element_id)) do %>
+              <% element = Element.find(element_id) %>
+              <% if element.element_type == "标题" %>
+                <div class="element <%=element.class.name.underscore%>" id="element_<%= element.id %>">
+                  <%= render(:partial => "elements/" + element.class.name.underscore, :locals => {:element => element}) %>
+                </div>
+              <% elsif element.element_type == "图片" %>
+                <div class="element <%=element.class.name.underscore%>" id="element_<%= element.id %>">
+                  <div class="content">
+                    <%= render(:partial => "elements/" + element.class.name.underscore, :locals => {:element => element}) %>
+                  </div>
+                </div>
+              <% else %>
+                <div class="element <%=element.class.name.underscore%>" id="element_<%= element.id %>">
+                  <% if element.show_title? and element.title.present? %>
+                    <h2 class="title"><%= element.title %></h2>
+                  <% end %>
+                  <div class="content">
+                    <%= render(:partial => "elements/" + element.class.name.underscore, :locals => {:element => element}) %>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+    <%end %>
+    <div class="clear">
+    </div>
+  </div>
+<%end %>
+<%= render :partial => "features/comment_block" %>
+
+<script type="text/javascript">
+  $(function(){
+    // Fix some problems about image for IE6
+    // $(".element_image img").each(function(i, img){
+    //   var img = $(img);
+    //   var imgWidth = img.width();
+    //   var containerWidth = img.closest(".col").width();
+    //   if(imgWidth > containerWidth){
+    //     img.width(containerWidth);
+    //   }
+    // });
+    $(".imageItem img").each(function(i, img){
+      // console.log(img.height);
+      if(img.height > 0){
+        optImg(img);
+      }else {
+        $(img).load(function(){
+          optImg(this);
+        });
+      }
+      
+      // $(img).load(function(){
+      //   optImg(this);
+      // });
+    });
+
+    function optImg(image){
+      var curImg = $(image);
+      var imgWidth = curImg.width();
+      var box = curImg.closest(".imageItem");
+      var containerWidth = box.width();
+      var recommendWidth;
+      var table = box.find(".imagePos_table");
+
+      if(table.length === 0){
+        recommendWidth = containerWidth;
+      }else {
+        recommendWidth = Math.floor(containerWidth * 0.85);
+      }
+
+      // console.log("table-" + table.length);
+      // console.log("containerWidth-"+containerWidth);
+      // console.log("recommendWidth-"+recommendWidth);
+      // console.log("imgWidth-"+imgWidth);
+      // console.log("______________");
+      
+      if(imgWidth > recommendWidth){
+        curImg.width(recommendWidth);
+      }
+    }
+  });
+</script>

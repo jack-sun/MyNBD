@@ -1,0 +1,48 @@
+<% if ((request.url.chomp("/") == Settings.host) or (params[:controller] =="columns" and params[:id].try(:to_i) == 1 and params[:action] == "show" and request.subdomain == "www") ) and @ad_hash["a-0"][:display] %>
+  <div id="topAdvert">
+    <div id="topAdvertContainer">
+      <div id="advertImgContainer">
+        <% ad_pos = @ad_hash['a-0']; pos= 'a-0' %>
+        <%= link_to (image_tag("/uploads/ads/display/#{pos}.gif", {:width => ad_pos[:width], :height => ad_pos[:height]})), ad_pos[:link], {:class => "ad_"+pos[0]+"_"+pos[2], :target => "_blank", :alt => ad_pos[:alt]} %>
+        <span id="remainTime">正在载入图片..</span>
+        <a id="topAdvertCloseBtn">x</a>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    $(function(){
+      var times = 6;
+      var count;
+      var isLoad = false;
+      var mustStartTime = 3000;
+		
+      $("#topAdvertCloseBtn").click(function(){
+        closeAd();
+      });
+		
+      $("#topAdvertContainer img").load(start);
+      setTimeout(start, mustStartTime);
+		
+      function start(){
+        if(!isLoad){
+          count = setInterval(minusTime,1000);
+          isLoad = true;
+        }
+      }
+		
+      function minusTime(){
+        if(times == 1){
+          clearInterval(count);
+          closeAd();
+        }
+        $("#remainTime").html("广告倒计时: <b>"+(times-1)+" </b> 秒");
+        times--;
+      }
+		
+      function closeAd(){
+        $("#topAdvert").slideUp("fast");
+      }
+    });
+  </script>
+<% end %>

@@ -1,0 +1,73 @@
+<%
+=begin
+Parameters:
+articles: Array
+list_title: String (optional)
+title_icon: Enum String (optional), check out theme_website.html to get icon name.
+more_link: String (optional)
+html_class: String (optional)
+html_style: String (optional)
+digest_number: Int (optional, default 0)
+digest_restrict: true | false (optional)
+display_datetime: true | false (optional, default is false)
+display_children: true | false (optional, default is false)
+display_column: true | false (optional, default is false)
+column_id: Int (optional, default '')
+opt_content: String | Html (optional)
+=end
+html_style = '' unless html_style
+column_id = '' unless column_id
+list_title = '' unless list_title
+for_subdomain = false unless for_subdomain
+%>
+<div class="sectionA focusArticle" style="<%=html_style%>">
+  <% unless list_title == '' %>
+    <div class="title">
+      <h3>
+        <%if column_id.present? %>
+          <%= link_to list_title, column_path(column_id)%>
+        <%else%>
+          <%=list_title%>
+        <%end%>
+      </h3>
+      <%if column_id.present? %>
+        <span class="opts"><%= link_to "更多", column_path(column_id)%></span>
+      <%end%>
+    </div>
+  <% end %>
+  <div class="content">
+    <ul class="articleList unorderList">
+      <% articles.each_with_index do |article,index|
+        next if article.blank? -%>
+        <li class="articleRecommend <% if index == articles.length-1%>last<%end%>">
+          <h5 class='rcTitle'>
+            <%if article.is_special?%><span class="articleLabel red"><b><%= Article::SPECIAL[article.special] %></b></span><%end%>
+            <% if for_subdomain %>
+              <%= link_to article.list_title, send("#{for_subdomain}_article_url", article), {:target => "_blank", :title => article.title} %>
+            <% else %>
+              <%= link_to article.list_title, article_url(article), {:target => "_blank", :title => article.title} %>
+            <% end %>
+          </h5>
+          <div class="rcDigest" >
+            <p class="restrict" >
+              <%= article.show_digest %>
+            </p>
+            <% if article.relate_article_children.length > 0 %>
+            <div class="childrenArticles">
+              <ul class="unorderList">
+                <% article.relate_article_children.order("pos desc").limit(2).each do |a| %>
+                  <li>
+                    <%= link_to a.children_title, a.children_url, {:target => "_blank", :title => a.children_title} %>
+                  </li>
+                <%end %>
+              </ul>
+            </div>
+            <% end %>
+            <div class="clear"></div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>

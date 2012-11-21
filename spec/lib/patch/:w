@@ -1,0 +1,16 @@
+require File.expand_path('spec/spec_helper')
+require "patch/redis-objects-patch"
+
+describe Redis::Objects do
+  it "test patch" do
+    class User
+      include Redis::Objects
+      counter :why
+    end
+    user = Factory.create(:user)
+    #user.cache_user_info[:a] = "b"
+    puts user.why
+    puts User.get_why_counter(user.id)
+    puts user.cache_user_info.keys
+  end
+end

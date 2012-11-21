@@ -1,0 +1,26 @@
+<div id="livesList" class="sectionB">
+      <div class="title">
+        <h2>直播列表</h2>
+      </div>
+	  <div class="content">
+	  	<dl>
+        <% @relate_lives.each do |s| 
+			next if s.blank? -%>
+          <dt>
+            <%= link_to s.title, live_url(s), :class => "liveTitle" %> 
+			<% if s.is_pending? %>
+				<span class="articleLabel green"><b>未开始</b></span>
+			<%elsif s.is_going?%>
+				<span class="articleLabel orange"><b>进行中</b></span>
+			<%elsif s.is_over?%>
+				<span class="articleLabel gray"><b>已结束</b></span>
+			<% end %>
+          </dt>
+          <dd>
+      		主持人：<%=s.user.nickname%><br/>
+      		时间：<%= s.start_at.strftime("%Y年%m月%d日") %> <%= s.start_at.strftime("%H:%M") %> - <%= s.end_at.strftime("%H:%M") %>
+          </dd>
+        <% end %>
+	  	</ul>
+	  </div>
+</div>

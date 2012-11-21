@@ -1,0 +1,8 @@
+<%= simple_form_for([:console, @keyword], :html => {:id => "badkeyword_form", :class => "formA"}) do |f| %>
+	<p>
+		<%= f.input :value , :label => "敏感词:" %>
+	</p>
+	<p class="formRightAlign">
+		<%= link_to "<span>提交</span>".html_safe, "javascript:void(0);", :onclick => "$(this).closest('form').submit();return false;", :id => "create_new_badkeyword", :class => "btnBlueM"%>
+	</p>
+<%end%>

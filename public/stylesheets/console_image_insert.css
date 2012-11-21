@@ -1,0 +1,14 @@
+body { min-width:0; }
+.formB { margin:20px; }
+.formB input[type="text"], .formB textarea { width:400px; }
+.formB input[type='text'], .formB textarea { display:block; }
+
+#imageLib { margin-bottom:10px; }
+#imageLib .imageLibItem { background:#f5f5f5; display:inline-block; width:100px; height:100px; margin:0 5px 5px 0; padding:5px; border:2px solid #fff; text-align:center; cursor:pointer; vertical-align:middle; }
+#imageLib .imageLibItem img { max-width:100%; max-height:100%; }
+#imageLib .choosen { border:2px solid green; }
+
+#searchImageBox { margin:0 0 10px 0; }
+#searchImageBox input { display:inline; margin:0 10px 0 0; width:200px; }
+
+#tempBox { display:none; }

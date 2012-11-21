@@ -1,0 +1,3 @@
+class PlainArticle < Article
+  
+end

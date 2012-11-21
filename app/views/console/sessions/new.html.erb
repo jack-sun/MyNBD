@@ -1,0 +1,43 @@
+<%= require_css "reset.css" %>
+<%= require_css "style_global.css" %>
+<%= require_css "style_console.css" %>
+<div id="body_signin">
+	
+	<div id="top">
+		<div class="innerCenter">
+			<ul class="lf">
+				<li class="first last"><a href="/">&laquo; 返回每经网</a></li>
+			</ul>
+			<div class="rf">
+				
+			</div>
+		</div>
+	</div>
+	<div id="header">
+		<div class="innerCenter">
+			<div id="logo">
+				<a href="/"><img src="/images/console-logo.gif" alt="每经网" /></a>
+			</div>
+		</div>
+	</div>
+	
+		<%= form_tag(console_sign_in_path, :class => "formB roundCorner", :method => "post") do %>
+			<div class="title"><h1>用户登录</h1></div>
+			
+				<%if flash[:alert]%><div class="alert_error"><b></b><%= flash[:alert] %></div><%end%>
+			
+			<p>
+				<%= label_tag :name, "用户名" %> <br/>
+				<%= text_field_tag :name, nil, :size => 40 %>
+			</p>
+			<p>
+				<%= label_tag :password, "密码" %><br/>
+				<%= password_field_tag :password, nil, :size => 40, :autocomplete => :off %>
+			</p>
+			<p class="btnRowM">
+				<input type="submit" class="hiddenSubmit" />
+				<a href="javascript:void(0)" onclick="$(this).parents('form').submit();return false;" class="btnBlueM"><span>登录</span></a>
+				<div class="clear"></div>
+			</p>
+		<%end%>
+</div>

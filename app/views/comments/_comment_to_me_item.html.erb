@@ -1,0 +1,28 @@
+<% if comment.weibo.present? %>
+<li id="atme_comment_<%= comment.id  %>">
+	<%= link_to(image_tag(user_avatar_path(comment.owner, :middle)), user_path(comment.owner), :class=>"avatar") %>
+	<div class="itemContent">
+              <% if comment.owner %>
+		<p><%= link_to comment.owner.nickname, user_path(comment.owner) %>: <%= comment.content %></p>
+              <% else %>
+                <p>[已注销]: <%= comment.content %></p>
+              <% end %>
+		<p>
+			<%if !comment.parent_comment_id.nil? && comment.parent.user_id == @current_user.id  %>
+				<span>回复 我 评论</span>：
+                “<%= link_to comment.parent.raw_content, weibo_url(comment.weibo) %>” 
+			<%else%>
+				<span>评论 我 的微博</span>：
+                “<%= link_to comment.weibo.raw_content, weibo_url(comment.weibo) %>” 
+			<%end%>
+		</p>
+
+		<div class="itemBottom">
+			<!--<span class="rf">
+                <%= link_to "回复", rt_weibo_path(comment.weibo), :remote => true %>
+			</span>-->
+			<span><%= nbd_time_f(comment.created_at) %></span>
+		</div>
+	</div>
+</li>
+<%end%>

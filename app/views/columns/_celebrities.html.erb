@@ -1,0 +1,33 @@
+<%
+=begin
+Parameters:
+	html_style: String (optional)
+=end
+html_style = '' unless html_style
+%>
+<div class="sectionA celebrities" style="<%=html_style%>">
+	<div class="title">
+		<h1>名人堂</h1>
+	</div>
+	<div class="content">
+		<ul class="weiboItemList">
+			<% 5.times do %>
+			<li>
+				<a href="#" class="avatar"><img src="/images/avatar-default.gif" alt="" /></a>
+				<div class="itemContent">
+					<p>
+						<a class="nickname" href="">路人甲</a>
+						<span class="tailInfo">粉丝 13742</span>
+						<br/>
+						这个人很懒，什么都没留下
+					</p>
+					<div class="itemBottom">
+						<a href='#' class='btnGrayBlue rf'><span>关注ta</span></a>
+					</div>
+					<div class="clear"></div>
+				</div>
+			</li>
+			<% end %>
+		</ul>
+	</div>
+</div>

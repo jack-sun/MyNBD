@@ -1,0 +1,44 @@
+<%= require_popWin %>
+<%= require_autoComplete %>
+<%= require_js "weibo_mana"%>
+<%= require_js "speak_mana"%>
+
+<div class="leftCol">
+	<div id="pageName">
+		<h1>搜索 "<%= @keyword %>" 的结果</h1>
+	</div>
+	<div class="tabs">
+		<ul>
+			<li <% if @type == "weibo" %> class="current" <%end%>>
+				<%= link_to "相关微博", community_search_url(:type => 'weibo', :q => @keyword) %>
+			</li>
+			<li <% if @type == "user" %> class="current" <%end%>>
+				<%= link_to "相关用户", community_search_url(:type => 'user', :q => @keyword) %>
+			</li>
+		</ul>
+	</div>
+	<% if @type == "weibo" %>
+		<%if @weibos.length == 0%>
+			<%= render :partial => "search/no_search_result", :locals => { :keyword => @keyword } %>
+		<%else%>
+			<ul class="weiboItemList withTabs" id="weibos_list">
+				<% @weibos.each_with_index do |weibo, index|
+					next if weibo.blank? -%>
+					<%= render :partial => "weibos/weibo_item", :locals => {:weibo => weibo, :index => index, :is_same_user => false} %>
+				<% end %>
+			</ul>
+		<%end%>
+	<%= paginate @weibos %>
+	<%elsif @type == "user" %>
+		<%if @users.length == 0%>
+			<%= render :partial => "search/no_search_result", :locals => { :keyword => @keyword } %>
+		<%else%>
+			<%= render :partial => "users/users_list", :locals => {:users => @users, :html_style => "withTabs"} %>
+		<%end%>
+		<%= paginate @users %>
+	<%end %>
+</div>
+<div class="rightCol">
+</div>
+<div class="clear">
+</div>

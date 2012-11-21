@@ -1,0 +1,355 @@
+h2 {
+	font-size: 16px;
+}
+
+#featureEditWrapper {
+	margin-top: 10px;
+}
+
+#featureEditBox {
+	color: #606060;
+	text-align: center;
+}
+.tabs{
+	margin-bottom: 0;
+}
+#inputArea{
+	border: 1px solid #bbb;
+	border-top: none;
+	padding: 10px;
+}
+
+.sectionA .content { position:relative; }
+.subRightCol { float:none; position:absolute; right:20px; margin:0; }
+
+/* edit theme
+ -----------------------------------------------*/
+#advancedThemeBox { display: none; }
+#expandAdvancedTheme { font-size:12px; }
+#editTheme { margin:10px 0 0 73px; padding:1px 0; background:white; font-size:12px; }
+#editTheme label { padding: 0; }
+#changeBgColor { padding:0; width:110px; }
+
+
+#themeBgImg { margin:0 0 0 65px; width:112px; }
+#themeBgImg img { max-width:100%; }
+#themeBgImg .imgPlaceholder { padding:20px 0; border:1px solid #888; text-align:center; font-size:10px; overflow:hidden; }
+#themeBgImgActions { position:relative; }
+#changeBgImage { width:30px; position: absolute; left:0; top:0; opacity:0; }
+#delBgImageBtn { position: absolute; right:0; top:0; z-index:1; }
+
+/* create feature
+ -----------------------------------------------*/
+
+.preurl{
+	float:left;
+	color:#808080;
+	margin:3px 5px 0 5px;
+}
+
+/* section & element
+ -----------------------------------------------*/
+.section {
+	position: relative;
+	margin: 15px 0;
+	padding: 0 10px;
+	background: #ECEFF5;
+	border: 1px #CFD6E5 solid;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.element {
+	margin: 10px 0;
+	padding: 10px 10px;
+	background: #fff;
+	border: 2px #CFD6E5 solid;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	font-weight: bold;
+	color: #000;
+	text-align: left;
+}
+
+.element_title{
+	border: none;
+	padding: 5px 10px;
+	background-color: #484848;
+	color: #fff;
+}
+
+/* add section & element
+ -----------------------------------------------*/
+.addSection {
+	margin: 10px 0;
+	
+}
+
+.addSection a {
+	display: block;
+	padding: 10px;
+	border: 2px #CFD6E5 dotted;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	background-color: #eceff5;
+	color: #808080;
+}
+
+.addSection a:hover {
+	border-style: solid;
+	text-decoration: none;
+	color: #303030;
+}
+
+.addElement {
+	margin: 10px 0;
+}
+
+.addElement a {
+	display: block;
+	padding: 10px;
+	border: 2px #CFD6E5 dotted;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	background: #fff;
+	font-size: 12px;
+	color: #808080;
+}
+
+.addElement a:hover {
+	border-style: solid;
+	text-decoration: none;
+	color: #303030;
+}
+
+/* cols
+ -----------------------------------------------*/
+.inner2ColsALeft {
+	float: left;
+	width: 27%;
+	min-height: 30px;
+}
+
+.inner2ColsARight {
+	float: right;
+	width: 70%;
+}
+
+.inner2ColsBLeft {
+	float: left;
+	width: 70%;
+	min-height: 30px;
+}
+
+.inner2ColsBRight {
+	float: right;
+	width: 27%;
+}
+
+.inner2ColsCEqual {
+	float: left;
+	margin-right: 2%;
+	width: 49%;
+}
+
+.inner3ColsEqual {
+	float: left;
+	margin-right: 5%;
+	width: 30%;
+}
+
+/* sortable
+ -----------------------------------------------*/
+.sortable {
+	min-height: 20px;
+}
+
+.placeholder {
+	margin: 10px 0;
+	height: 40px;
+	background: white;
+	border: 1px dotted #CFD6E5 ;
+}
+
+.emptyElem {
+	margin: 10px 0;
+	padding: 10px;
+	border: 1px dotted #c0c0c0;
+}
+
+/* edit property
+ -----------------------------------------------*/
+.featureNameInput{
+	margin:7px 0 0 10px;
+	font-size: 20px;
+}
+
+#urlActions{
+	margin-bottom:20px;
+	color: #808080;
+}
+
+#urlEditBox{
+	display:none;
+}
+
+#banner{
+	margin-bottom:20px;
+	text-align:center;
+	padding: 5px 7px;
+	background: #eceff5;
+	border: 2px #CFD6E5 solid;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+	font-weight: bold;
+}
+
+#bannerEdit{
+	font-size: 12px;
+}
+
+#bannerEidtBox{
+	display:none;
+}
+
+#banner .alignRight{
+	text-align:right;
+}
+
+#bannerEidtBox textarea{
+	display:block;
+	margin:10px auto;
+	width:98%;
+	height:50px;
+}
+
+/* edit layout
+ -----------------------------------------------*/
+.elementTitle{
+	text-align:center;
+}
+.editElement {
+	float: right;
+	font-size: 12px;
+	margin-top: 3px;
+}
+.editElement a{
+	color: #808080;
+}
+.editElement a:hover{
+	color: #303030;
+}
+.element_title .editElement a{
+	color: #bbb;
+}
+.element_title .editElement a:hover{
+	color: #eee;
+}
+
+.editSection {
+	display: none;
+	position: absolute;
+	top: -1px;
+	left: -28px;
+	width: 16px;
+	font-size: 12px;
+	padding: 5px 5px 0 5px;
+	background: #fff;
+	border: 1px #CFD6E5 solid;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.editSection.itemActions a{
+	margin: 0 0 5px;
+}
+
+/* edit theme
+ -----------------------------------------------*/
+#themeSelect {
+	position:relative;
+	height:86px;
+}
+
+#themeSelect a {
+	color: #666;
+}
+
+#themeSelect a:hover {
+	text-decoration: none;
+}
+
+#themeSelectFlag {
+	display: block;
+	padding: 2px;
+	height: 80px;
+	border: 1px solid #ccc;
+	background: #fff;
+}
+
+#themeSelectFlag:hover {
+	color: #303030;
+}
+
+#themeSelect img.themeImage {
+	float: left;
+	width: 80px;
+	height: 80px;
+}
+
+#themeSelect .themeDescription {
+	margin-left: 90px;
+	height: 80px;
+}
+
+#themeSelectList {
+	display: none;
+	max-height:200px;
+	border: 1px solid #ccc;
+	background: #fff;
+	overflow-y:auto;
+	z-index:9999;
+}
+
+#themeSelectList li {
+	padding:2px;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+#themeSelectList li:last-child {
+	border-bottom: none;
+}
+
+#themeSelectList li a:hover {
+	color: #303030;
+}
+
+/* icons
+ -----------------------------------------------*/
+
+b.actionIcon {
+	display:inline-block;
+	margin-right:3px;
+	width:16px;
+	height:16px;
+	background:url(../images/sprite-icons.gif) no-repeat;
+	vertical-align:text-bottom;
+	opacity: 0.6;
+	filter:alpha(opacity=60);
+}
+a:hover b.actionIcon {
+	opacity:1;
+	filter:alpha(opacity=100);
+}
+b.actionIcon.edit {
+	background-position:-16px -40px;
+}
+b.actionIcon.add {
+	background-position: -144px -40px;
+}

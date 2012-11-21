@@ -1,0 +1,2770 @@
+body {
+    margin: 0px;
+}
+
+div {
+    background-repeat: no-repeat;
+}
+
+.raw_image {
+    width: 100%;
+    height: 100%;
+}
+
+.preload {
+    display: none;
+}
+div.main_container {
+}
+
+.form_sketch {
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.u0_original {
+    background-image: url('../All_Weibo_files/u0_original.png');
+}
+
+.u0_container {
+    position:absolute;
+    left:20px;
+    top:20px;
+    width:1020px;
+    height:780px;
+}
+
+#u0_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:1026px;
+    height:786px;
+}
+
+.u1 {
+    position:absolute;
+    left:2px;
+    top:382px;
+    width:1016px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u0 {
+    position:absolute;
+    left:20px;
+    top:20px;
+    width:1020px;
+    height:780px
+}
+
+.u2_original {
+    background-image: url('../All_Weibo_files/u2_original.png');
+}
+
+.u2_container {
+    position:absolute;
+    left:20px;
+    top:20px;
+    width:1020px;
+    height:30px;
+}
+
+#u2_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:1026px;
+    height:36px;
+}
+
+.u3 {
+    position:absolute;
+    left:2px;
+    top:7px;
+    width:1016px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u2 {
+    position:absolute;
+    left:20px;
+    top:20px;
+    width:1020px;
+    height:30px
+}
+
+.u4 {
+    position:absolute;
+    left:30px;
+    top:30px;
+    width:150px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u5 {
+    position:absolute;
+    left:880px;
+    top:30px;
+    width:150px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u7_original {
+    background-image: url('../All_Weibo_files/u7_original.png');
+}
+
+.u7_container {
+    position:absolute;
+    left:20px;
+    top:110px;
+    width:150px;
+    height:690px;
+}
+
+#u7_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:156px;
+    height:696px;
+}
+
+.u8 {
+    position:absolute;
+    left:2px;
+    top:337px;
+    width:146px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u7 {
+    position:absolute;
+    left:20px;
+    top:110px;
+    width:150px;
+    height:690px
+}
+
+.u11_selected {
+    background-image: url('../All_Weibo_files/u11_selected.png');
+}
+
+.u11_original {
+    background-image: url('../All_Weibo_files/u11_original.png');
+}
+
+.u11_container {
+    position:absolute;
+    left:6px;
+    top:6px;
+    width:9px;
+    height:9px;
+}
+
+#u11_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:9px;
+    height:9px;
+}
+
+.u12 {
+    position:absolute;
+    left:2px;
+    top:-4px;
+    width:5px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u11 {
+    position:absolute;
+    left:6px;
+    top:6px;
+    width:9px;
+    height:9px
+}
+
+.u13_original {
+    background-image: url('../resources/images/transparent.gif');
+}
+
+.u13_container {
+    position:absolute;
+    left:22px;
+    top:0px;
+    width:62px;
+    height:20px;
+}
+
+#u13_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:68px;
+    height:26px;
+}
+
+.u14 {
+    position:absolute;
+    left:3px;
+    top:3px;
+    width:66px;
+    height:14px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    white-space:nowrap;
+}
+
+.u13 {
+    position:absolute;
+    left:22px;
+    top:0px;
+    width:62px;
+    height:20px
+}
+
+.u16_original {
+    background-image: url('../resources/images/transparent.gif');
+}
+
+.u16_container {
+    position:absolute;
+    left:22px;
+    top:0px;
+    width:45px;
+    height:20px;
+}
+
+#u16_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:51px;
+    height:26px;
+}
+
+.u17 {
+    position:absolute;
+    left:3px;
+    top:4px;
+    width:40px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    white-space:nowrap;
+}
+
+.u16 {
+    position:absolute;
+    left:22px;
+    top:0px;
+    width:45px;
+    height:20px
+}
+
+.u19_original {
+    background-image: url('../resources/images/transparent.gif');
+}
+
+.u19_container {
+    position:absolute;
+    left:22px;
+    top:0px;
+    width:62px;
+    height:20px;
+}
+
+#u19_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:68px;
+    height:26px;
+}
+
+.u20 {
+    position:absolute;
+    left:3px;
+    top:4px;
+    width:57px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    white-space:nowrap;
+}
+
+.u19 {
+    position:absolute;
+    left:22px;
+    top:0px;
+    width:62px;
+    height:20px
+}
+
+.u22_original {
+    background-image: url('../resources/images/transparent.gif');
+}
+
+.u22_container {
+    position:absolute;
+    left:22px;
+    top:0px;
+    width:45px;
+    height:20px;
+}
+
+#u22_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:51px;
+    height:26px;
+}
+
+.u23 {
+    position:absolute;
+    left:3px;
+    top:4px;
+    width:40px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    white-space:nowrap;
+}
+
+.u22 {
+    position:absolute;
+    left:22px;
+    top:0px;
+    width:45px;
+    height:20px
+}
+
+.u25_original {
+    background-image: url('../resources/images/transparent.gif');
+}
+
+.u25_container {
+    position:absolute;
+    left:22px;
+    top:0px;
+    width:6px;
+    height:20px;
+}
+
+#u25_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:12px;
+    height:26px;
+}
+
+.u26 {
+    position:absolute;
+    left:3px;
+    top:2px;
+    width:1px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    white-space:nowrap;
+}
+
+.u25 {
+    position:absolute;
+    left:22px;
+    top:0px;
+    width:6px;
+    height:20px
+}
+
+.u28_selected {
+    background-image: url('../All_Weibo_files/u11_selected.png');
+}
+
+.u28_original {
+    background-image: url('../All_Weibo_files/u11_original.png');
+}
+
+.u28_container {
+    position:absolute;
+    left:6px;
+    top:6px;
+    width:9px;
+    height:9px;
+}
+
+#u28_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:9px;
+    height:9px;
+}
+
+.u29 {
+    position:absolute;
+    left:2px;
+    top:-4px;
+    width:5px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u28 {
+    position:absolute;
+    left:6px;
+    top:6px;
+    width:9px;
+    height:9px
+}
+
+.u30_original {
+    background-image: url('../resources/images/transparent.gif');
+}
+
+.u30_container {
+    position:absolute;
+    left:22px;
+    top:0px;
+    width:62px;
+    height:20px;
+}
+
+#u30_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:68px;
+    height:26px;
+}
+
+.u31 {
+    position:absolute;
+    left:3px;
+    top:3px;
+    width:57px;
+    height:14px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    white-space:nowrap;
+}
+
+.u30 {
+    position:absolute;
+    left:22px;
+    top:0px;
+    width:62px;
+    height:20px
+}
+
+.u33_original {
+    background-image: url('../resources/images/transparent.gif');
+}
+
+.u33_container {
+    position:absolute;
+    left:22px;
+    top:0px;
+    width:58px;
+    height:20px;
+}
+
+#u33_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:64px;
+    height:26px;
+}
+
+.u34 {
+    position:absolute;
+    left:3px;
+    top:4px;
+    width:62px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    white-space:nowrap;
+}
+
+.u33 {
+    position:absolute;
+    left:22px;
+    top:0px;
+    width:58px;
+    height:20px
+}
+
+.u36_original {
+    background-image: url('../resources/images/transparent.gif');
+}
+
+.u36_container {
+    position:absolute;
+    left:22px;
+    top:0px;
+    width:58px;
+    height:20px;
+}
+
+#u36_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:64px;
+    height:26px;
+}
+
+.u37 {
+    position:absolute;
+    left:3px;
+    top:4px;
+    width:62px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    white-space:nowrap;
+}
+
+.u36 {
+    position:absolute;
+    left:22px;
+    top:0px;
+    width:58px;
+    height:20px
+}
+
+.u39_original {
+    background-image: url('../resources/images/transparent.gif');
+}
+
+.u39_container {
+    position:absolute;
+    left:22px;
+    top:0px;
+    width:58px;
+    height:20px;
+}
+
+#u39_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:64px;
+    height:26px;
+}
+
+.u40 {
+    position:absolute;
+    left:3px;
+    top:4px;
+    width:62px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    white-space:nowrap;
+}
+
+.u39 {
+    position:absolute;
+    left:22px;
+    top:0px;
+    width:58px;
+    height:20px
+}
+
+.u42_original {
+    background-image: url('../resources/images/transparent.gif');
+}
+
+.u42_container {
+    position:absolute;
+    left:22px;
+    top:0px;
+    width:58px;
+    height:20px;
+}
+
+#u42_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:64px;
+    height:26px;
+}
+
+.u43 {
+    position:absolute;
+    left:3px;
+    top:4px;
+    width:62px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    white-space:nowrap;
+}
+
+.u42 {
+    position:absolute;
+    left:22px;
+    top:0px;
+    width:58px;
+    height:20px
+}
+
+.u45_original {
+    background-image: url('../resources/images/transparent.gif');
+}
+
+.u45_container {
+    position:absolute;
+    left:22px;
+    top:0px;
+    width:84px;
+    height:20px;
+}
+
+#u45_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:90px;
+    height:26px;
+}
+
+.u46 {
+    position:absolute;
+    left:3px;
+    top:4px;
+    width:79px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    white-space:nowrap;
+}
+
+.u45 {
+    position:absolute;
+    left:22px;
+    top:0px;
+    width:84px;
+    height:20px
+}
+
+.u48_original {
+    background-image: url('../resources/images/transparent.gif');
+}
+
+.u48_container {
+    position:absolute;
+    left:22px;
+    top:0px;
+    width:6px;
+    height:20px;
+}
+
+#u48_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:12px;
+    height:26px;
+}
+
+.u49 {
+    position:absolute;
+    left:3px;
+    top:2px;
+    width:1px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    white-space:nowrap;
+}
+
+.u48 {
+    position:absolute;
+    left:22px;
+    top:0px;
+    width:6px;
+    height:20px
+}
+
+.u51_original {
+    background-image: url('../All_Weibo_files/u51_original.png');
+}
+
+.u51_container {
+    position:absolute;
+    left:20px;
+    top:50px;
+    width:1020px;
+    height:60px;
+}
+
+#u51_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:1026px;
+    height:66px;
+}
+
+.u52 {
+    position:absolute;
+    left:2px;
+    top:22px;
+    width:1016px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u51 {
+    position:absolute;
+    left:20px;
+    top:50px;
+    width:1020px;
+    height:60px
+}
+
+.u53_image_sketch {
+    background-image: url('../All_Weibo_files/u53_image_sketch.png');
+    position:absolute;
+    left:447px;
+    top:65px;
+    width:186px;
+    height:28px;
+}
+
+.u53 {
+    position:absolute;
+    left:450px;
+    top:68px;
+    width:180px;
+    height:22px;
+    ;
+    ;
+    ;
+    font-family:'Arial';
+    font-size: 20px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+
+.u54_original {
+    background-image: url('../All_Weibo_files/u54_original.png');
+}
+
+.u54_container {
+    position:absolute;
+    left:30px;
+    top:70px;
+    width:206px;
+    height:24px;
+}
+
+#u54_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:206px;
+    height:24px;
+}
+
+.u55 {
+    position:absolute;
+    left:2px;
+    top:4px;
+    width:202px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u54 {
+    position:absolute;
+    left:30px;
+    top:70px;
+    width:206px;
+    height:24px
+}
+
+.u57_line {
+    background-image: url('../All_Weibo_files/u57_line.png');
+}
+
+.u57_line {
+    position:absolute;
+    left:190px;
+    top:196px;
+    width:830px;
+    height:5px;
+}
+
+.u57 {
+    position:absolute;
+    left:190px;
+    top:196px;
+    width:830px;
+    height:5px
+}
+
+.u58 {
+    position:absolute;
+    left:190px;
+    top:168px;
+    width:190px;
+    height:21px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u59_original {
+    background-image: url('../All_Weibo_files/u59_original.png');
+}
+
+.u59_container {
+    position:absolute;
+    left:800px;
+    top:480px;
+    width:220px;
+    height:30px;
+}
+
+#u59_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:226px;
+    height:36px;
+}
+
+.u60 {
+    position:absolute;
+    left:2px;
+    top:8px;
+    width:216px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u59 {
+    position:absolute;
+    left:800px;
+    top:480px;
+    width:220px;
+    height:30px
+}
+
+.u62_original {
+    background-image: url('../All_Weibo_files/u59_original.png');
+}
+
+.u62_container {
+    position:absolute;
+    left:800px;
+    top:208px;
+    width:220px;
+    height:30px;
+}
+
+#u62_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:226px;
+    height:36px;
+}
+
+.u63 {
+    position:absolute;
+    left:2px;
+    top:8px;
+    width:216px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u62 {
+    position:absolute;
+    left:800px;
+    top:208px;
+    width:220px;
+    height:30px
+}
+
+.u65_original {
+    background-image: url('../All_Weibo_files/u65_original.png');
+}
+
+.u65_container {
+    position:absolute;
+    left:261px;
+    top:213px;
+    width:45px;
+    height:25px;
+}
+
+#u65_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:51px;
+    height:31px;
+}
+
+.u66 {
+    position:absolute;
+    left:2px;
+    top:6px;
+    width:41px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u65 {
+    position:absolute;
+    left:261px;
+    top:213px;
+    width:45px;
+    height:25px
+}
+
+.u67 {
+    position:absolute;
+    left:191px;
+    top:219px;
+    width:70px;
+    height:14px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u68_original {
+    background-image: url('../All_Weibo_files/u65_original.png');
+}
+
+.u68_container {
+    position:absolute;
+    left:321px;
+    top:213px;
+    width:45px;
+    height:25px;
+}
+
+#u68_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:51px;
+    height:31px;
+}
+
+.u69 {
+    position:absolute;
+    left:2px;
+    top:6px;
+    width:41px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u68 {
+    position:absolute;
+    left:321px;
+    top:213px;
+    width:45px;
+    height:25px
+}
+
+.u71_original {
+    background-image: url('../All_Weibo_files/u65_original.png');
+}
+
+.u71_container {
+    position:absolute;
+    left:261px;
+    top:480px;
+    width:45px;
+    height:25px;
+}
+
+#u71_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:51px;
+    height:31px;
+}
+
+.u72 {
+    position:absolute;
+    left:2px;
+    top:6px;
+    width:41px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u71 {
+    position:absolute;
+    left:261px;
+    top:480px;
+    width:45px;
+    height:25px
+}
+
+.u73 {
+    position:absolute;
+    left:191px;
+    top:486px;
+    width:70px;
+    height:14px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u74_original {
+    background-image: url('../All_Weibo_files/u65_original.png');
+}
+
+.u74_container {
+    position:absolute;
+    left:321px;
+    top:480px;
+    width:45px;
+    height:25px;
+}
+
+#u74_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:51px;
+    height:31px;
+}
+
+.u75 {
+    position:absolute;
+    left:2px;
+    top:6px;
+    width:41px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u74 {
+    position:absolute;
+    left:321px;
+    top:480px;
+    width:45px;
+    height:25px
+}
+
+.u77_original {
+    background-image: url('../All_Weibo_files/u77_original.png');
+}
+
+.u77_container {
+    position:absolute;
+    left:170px;
+    top:110px;
+    width:870px;
+    height:40px;
+}
+
+#u77_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:876px;
+    height:46px;
+}
+
+.u78 {
+    position:absolute;
+    left:2px;
+    top:12px;
+    width:866px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u77 {
+    position:absolute;
+    left:170px;
+    top:110px;
+    width:870px;
+    height:40px
+}
+
+.u79_menu {
+    background-image: url('../All_Weibo_files/u79_menu.png');
+}
+
+.u79_menu {
+    position:absolute;
+    left:177px;
+    top:114px;
+    width:423px;
+    height:35px;
+}
+
+#u80 {
+    position:absolute;
+    left:3px;
+    top:3px;
+    width:413px;
+    height:25px
+}
+
+.u80_table {
+    background-image: url('../All_Weibo_files/u80_table.png');
+}
+
+.u80_table {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:417px;
+    height:29px;
+}
+
+.u81_original {
+    background-image: url('../All_Weibo_files/u81_original.png');
+}
+
+.u81_container {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:70px;
+    height:20px;
+}
+
+.u82 {
+    position:absolute;
+    left:2px;
+    top:4px;
+    width:66px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u81 {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:70px;
+    height:20px
+}
+
+.u83_original {
+    background-image: url('../All_Weibo_files/u83_original.png');
+}
+
+.u83_container {
+    position:absolute;
+    left:70px;
+    top:0px;
+    width:81px;
+    height:20px;
+}
+
+.u84 {
+    position:absolute;
+    left:2px;
+    top:4px;
+    width:77px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u83 {
+    position:absolute;
+    left:70px;
+    top:0px;
+    width:81px;
+    height:20px
+}
+
+.u85_original {
+    background-image: url('../All_Weibo_files/u85_original.png');
+}
+
+.u85_container {
+    position:absolute;
+    left:151px;
+    top:0px;
+    width:100px;
+    height:20px;
+}
+
+.u86 {
+    position:absolute;
+    left:2px;
+    top:4px;
+    width:96px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u85 {
+    position:absolute;
+    left:151px;
+    top:0px;
+    width:100px;
+    height:20px
+}
+
+.u87_original {
+    background-image: url('../All_Weibo_files/u87_original.png');
+}
+
+.u87_container {
+    position:absolute;
+    left:251px;
+    top:0px;
+    width:75px;
+    height:20px;
+}
+
+.u88 {
+    position:absolute;
+    left:2px;
+    top:4px;
+    width:71px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u87 {
+    position:absolute;
+    left:251px;
+    top:0px;
+    width:75px;
+    height:20px
+}
+
+.u89_original {
+    background-image: url('../All_Weibo_files/u89_original.png');
+}
+
+.u89_container {
+    position:absolute;
+    left:326px;
+    top:0px;
+    width:82px;
+    height:20px;
+}
+
+.u90 {
+    position:absolute;
+    left:2px;
+    top:4px;
+    width:78px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u89 {
+    position:absolute;
+    left:326px;
+    top:0px;
+    width:82px;
+    height:20px
+}
+
+#u91 {
+    position:absolute;
+    left:190px;
+    top:260px;
+    width:836px;
+    height:367px
+}
+
+.u91_table {
+    background-image: url('../All_Weibo_files/u91_table.png');
+}
+
+.u91_table {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:840px;
+    height:371px;
+}
+
+.u92_original {
+    background-image: url('../All_Weibo_files/u92_original.png');
+}
+
+.u92_container {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:43px;
+    height:36px;
+}
+
+.u93 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:31px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u92 {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:43px;
+    height:36px
+}
+
+.u94_original {
+    background-image: url('../All_Weibo_files/u94_original.png');
+}
+
+.u94_container {
+    position:absolute;
+    left:43px;
+    top:0px;
+    width:228px;
+    height:36px;
+}
+
+.u95 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:216px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u94 {
+    position:absolute;
+    left:43px;
+    top:0px;
+    width:228px;
+    height:36px
+}
+
+.u96_original {
+    background-image: url('../All_Weibo_files/u96_original.png');
+}
+
+.u96_container {
+    position:absolute;
+    left:271px;
+    top:0px;
+    width:74px;
+    height:36px;
+}
+
+.u97 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:62px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u96 {
+    position:absolute;
+    left:271px;
+    top:0px;
+    width:74px;
+    height:36px
+}
+
+.u98_original {
+    background-image: url('../All_Weibo_files/u98_original.png');
+}
+
+.u98_container {
+    position:absolute;
+    left:345px;
+    top:0px;
+    width:73px;
+    height:36px;
+}
+
+.u99 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:61px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u98 {
+    position:absolute;
+    left:345px;
+    top:0px;
+    width:73px;
+    height:36px
+}
+
+.u100_original {
+    background-image: url('../All_Weibo_files/u100_original.png');
+}
+
+.u100_container {
+    position:absolute;
+    left:418px;
+    top:0px;
+    width:71px;
+    height:36px;
+}
+
+.u101 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:59px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u100 {
+    position:absolute;
+    left:418px;
+    top:0px;
+    width:71px;
+    height:36px
+}
+
+.u102_original {
+    background-image: url('../All_Weibo_files/u102_original.png');
+}
+
+.u102_container {
+    position:absolute;
+    left:489px;
+    top:0px;
+    width:92px;
+    height:36px;
+}
+
+.u103 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:80px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u102 {
+    position:absolute;
+    left:489px;
+    top:0px;
+    width:92px;
+    height:36px
+}
+
+.u104_original {
+    background-image: url('../All_Weibo_files/u104_original.png');
+}
+
+.u104_container {
+    position:absolute;
+    left:580px;
+    top:0px;
+    width:81px;
+    height:36px;
+}
+
+.u105 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:69px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u104 {
+    position:absolute;
+    left:580px;
+    top:0px;
+    width:81px;
+    height:36px
+}
+
+.u106_original {
+    background-image: url('../All_Weibo_files/u106_original.png');
+}
+
+.u106_container {
+    position:absolute;
+    left:661px;
+    top:0px;
+    width:78px;
+    height:36px;
+}
+
+.u107 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:66px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u106 {
+    position:absolute;
+    left:661px;
+    top:0px;
+    width:78px;
+    height:36px
+}
+
+.u108_original {
+    background-image: url('../All_Weibo_files/u102_original.png');
+}
+
+.u108_container {
+    position:absolute;
+    left:740px;
+    top:0px;
+    width:92px;
+    height:36px;
+}
+
+.u109 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:80px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u108 {
+    position:absolute;
+    left:740px;
+    top:0px;
+    width:92px;
+    height:36px
+}
+
+.u110_original {
+    background-image: url('../All_Weibo_files/u110_original.png');
+}
+
+.u110_container {
+    position:absolute;
+    left:0px;
+    top:36px;
+    width:43px;
+    height:110px;
+}
+
+.u111 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:28px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u110 {
+    position:absolute;
+    left:0px;
+    top:36px;
+    width:43px;
+    height:110px
+}
+
+.u112_original {
+    background-image: url('../All_Weibo_files/u112_original.png');
+}
+
+.u112_container {
+    position:absolute;
+    left:43px;
+    top:36px;
+    width:228px;
+    height:110px;
+}
+
+.u113 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:213px;
+    height:90px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u112 {
+    position:absolute;
+    left:43px;
+    top:36px;
+    width:228px;
+    height:110px
+}
+
+.u114_original {
+    background-image: url('../All_Weibo_files/u114_original.png');
+}
+
+.u114_container {
+    position:absolute;
+    left:271px;
+    top:36px;
+    width:74px;
+    height:110px;
+}
+
+.u115 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:59px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u114 {
+    position:absolute;
+    left:271px;
+    top:36px;
+    width:74px;
+    height:110px
+}
+
+.u116_original {
+    background-image: url('../All_Weibo_files/u116_original.png');
+}
+
+.u116_container {
+    position:absolute;
+    left:345px;
+    top:36px;
+    width:73px;
+    height:110px;
+}
+
+.u117 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:58px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u116 {
+    position:absolute;
+    left:345px;
+    top:36px;
+    width:73px;
+    height:110px
+}
+
+.u118_original {
+    background-image: url('../All_Weibo_files/u118_original.png');
+}
+
+.u118_container {
+    position:absolute;
+    left:418px;
+    top:36px;
+    width:71px;
+    height:110px;
+}
+
+.u119 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:56px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u118 {
+    position:absolute;
+    left:418px;
+    top:36px;
+    width:71px;
+    height:110px
+}
+
+.u120_original {
+    background-image: url('../All_Weibo_files/u120_original.png');
+}
+
+.u120_container {
+    position:absolute;
+    left:489px;
+    top:36px;
+    width:92px;
+    height:110px;
+}
+
+.u121 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:77px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u120 {
+    position:absolute;
+    left:489px;
+    top:36px;
+    width:92px;
+    height:110px
+}
+
+.u122_original {
+    background-image: url('../All_Weibo_files/u122_original.png');
+}
+
+.u122_container {
+    position:absolute;
+    left:580px;
+    top:36px;
+    width:81px;
+    height:110px;
+}
+
+.u123 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:66px;
+    height:26px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u122 {
+    position:absolute;
+    left:580px;
+    top:36px;
+    width:81px;
+    height:110px
+}
+
+.u124_original {
+    background-image: url('../All_Weibo_files/u124_original.png');
+}
+
+.u124_container {
+    position:absolute;
+    left:661px;
+    top:36px;
+    width:78px;
+    height:110px;
+}
+
+.u125 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:63px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u124 {
+    position:absolute;
+    left:661px;
+    top:36px;
+    width:78px;
+    height:110px
+}
+
+.u126_original {
+    background-image: url('../All_Weibo_files/u120_original.png');
+}
+
+.u126_container {
+    position:absolute;
+    left:740px;
+    top:36px;
+    width:92px;
+    height:110px;
+}
+
+.u127 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:77px;
+    height:36px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u126 {
+    position:absolute;
+    left:740px;
+    top:36px;
+    width:92px;
+    height:110px
+}
+
+.u128_original {
+    background-image: url('../All_Weibo_files/u128_original.png');
+}
+
+.u128_container {
+    position:absolute;
+    left:0px;
+    top:146px;
+    width:43px;
+    height:160px;
+}
+
+.u129 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:28px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u128 {
+    position:absolute;
+    left:0px;
+    top:146px;
+    width:43px;
+    height:160px
+}
+
+.u130_original {
+    background-image: url('../All_Weibo_files/u130_original.png');
+}
+
+.u130_container {
+    position:absolute;
+    left:43px;
+    top:146px;
+    width:228px;
+    height:160px;
+}
+
+.u131 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:213px;
+    height:140px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u130 {
+    position:absolute;
+    left:43px;
+    top:146px;
+    width:228px;
+    height:160px
+}
+
+.u132_original {
+    background-image: url('../All_Weibo_files/u132_original.png');
+}
+
+.u132_container {
+    position:absolute;
+    left:271px;
+    top:146px;
+    width:74px;
+    height:160px;
+}
+
+.u133 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:59px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u132 {
+    position:absolute;
+    left:271px;
+    top:146px;
+    width:74px;
+    height:160px
+}
+
+.u134_original {
+    background-image: url('../All_Weibo_files/u134_original.png');
+}
+
+.u134_container {
+    position:absolute;
+    left:345px;
+    top:146px;
+    width:73px;
+    height:160px;
+}
+
+.u135 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:58px;
+    height:14px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u134 {
+    position:absolute;
+    left:345px;
+    top:146px;
+    width:73px;
+    height:160px
+}
+
+.u136_original {
+    background-image: url('../All_Weibo_files/u136_original.png');
+}
+
+.u136_container {
+    position:absolute;
+    left:418px;
+    top:146px;
+    width:71px;
+    height:160px;
+}
+
+.u137 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:56px;
+    height:14px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u136 {
+    position:absolute;
+    left:418px;
+    top:146px;
+    width:71px;
+    height:160px
+}
+
+.u138_original {
+    background-image: url('../All_Weibo_files/u138_original.png');
+}
+
+.u138_container {
+    position:absolute;
+    left:489px;
+    top:146px;
+    width:92px;
+    height:160px;
+}
+
+.u139 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:77px;
+    height:14px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u138 {
+    position:absolute;
+    left:489px;
+    top:146px;
+    width:92px;
+    height:160px
+}
+
+.u140_original {
+    background-image: url('../All_Weibo_files/u140_original.png');
+}
+
+.u140_container {
+    position:absolute;
+    left:580px;
+    top:146px;
+    width:81px;
+    height:160px;
+}
+
+.u141 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:66px;
+    height:28px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u140 {
+    position:absolute;
+    left:580px;
+    top:146px;
+    width:81px;
+    height:160px
+}
+
+.u142_original {
+    background-image: url('../All_Weibo_files/u142_original.png');
+}
+
+.u142_container {
+    position:absolute;
+    left:661px;
+    top:146px;
+    width:78px;
+    height:160px;
+}
+
+.u143 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:63px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u142 {
+    position:absolute;
+    left:661px;
+    top:146px;
+    width:78px;
+    height:160px
+}
+
+.u144_original {
+    background-image: url('../All_Weibo_files/u138_original.png');
+}
+
+.u144_container {
+    position:absolute;
+    left:740px;
+    top:146px;
+    width:92px;
+    height:160px;
+}
+
+.u145 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:77px;
+    height:36px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u144 {
+    position:absolute;
+    left:740px;
+    top:146px;
+    width:92px;
+    height:160px
+}
+
+.u146_original {
+    background-image: url('../All_Weibo_files/u146_original.png');
+}
+
+.u146_container {
+    position:absolute;
+    left:0px;
+    top:306px;
+    width:43px;
+    height:56px;
+}
+
+.u147 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:31px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u146 {
+    position:absolute;
+    left:0px;
+    top:306px;
+    width:43px;
+    height:56px
+}
+
+.u148_original {
+    background-image: url('../All_Weibo_files/u148_original.png');
+}
+
+.u148_container {
+    position:absolute;
+    left:43px;
+    top:306px;
+    width:228px;
+    height:56px;
+}
+
+.u149 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:216px;
+    height:28px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u148 {
+    position:absolute;
+    left:43px;
+    top:306px;
+    width:228px;
+    height:56px
+}
+
+.u150_original {
+    background-image: url('../All_Weibo_files/u150_original.png');
+}
+
+.u150_container {
+    position:absolute;
+    left:271px;
+    top:306px;
+    width:74px;
+    height:56px;
+}
+
+.u151 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:62px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u150 {
+    position:absolute;
+    left:271px;
+    top:306px;
+    width:74px;
+    height:56px
+}
+
+.u152_original {
+    background-image: url('../All_Weibo_files/u152_original.png');
+}
+
+.u152_container {
+    position:absolute;
+    left:345px;
+    top:306px;
+    width:73px;
+    height:56px;
+}
+
+.u153 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:61px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u152 {
+    position:absolute;
+    left:345px;
+    top:306px;
+    width:73px;
+    height:56px
+}
+
+.u154_original {
+    background-image: url('../All_Weibo_files/u154_original.png');
+}
+
+.u154_container {
+    position:absolute;
+    left:418px;
+    top:306px;
+    width:71px;
+    height:56px;
+}
+
+.u155 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:59px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u154 {
+    position:absolute;
+    left:418px;
+    top:306px;
+    width:71px;
+    height:56px
+}
+
+.u156_original {
+    background-image: url('../All_Weibo_files/u156_original.png');
+}
+
+.u156_container {
+    position:absolute;
+    left:489px;
+    top:306px;
+    width:92px;
+    height:56px;
+}
+
+.u157 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:80px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u156 {
+    position:absolute;
+    left:489px;
+    top:306px;
+    width:92px;
+    height:56px
+}
+
+.u158_original {
+    background-image: url('../All_Weibo_files/u158_original.png');
+}
+
+.u158_container {
+    position:absolute;
+    left:580px;
+    top:306px;
+    width:81px;
+    height:56px;
+}
+
+.u159 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:69px;
+    height:28px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u158 {
+    position:absolute;
+    left:580px;
+    top:306px;
+    width:81px;
+    height:56px
+}
+
+.u160_original {
+    background-image: url('../All_Weibo_files/u160_original.png');
+}
+
+.u160_container {
+    position:absolute;
+    left:661px;
+    top:306px;
+    width:78px;
+    height:56px;
+}
+
+.u161 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:66px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u160 {
+    position:absolute;
+    left:661px;
+    top:306px;
+    width:78px;
+    height:56px
+}
+
+.u162_original {
+    background-image: url('../All_Weibo_files/u156_original.png');
+}
+
+.u162_container {
+    position:absolute;
+    left:740px;
+    top:306px;
+    width:92px;
+    height:56px;
+}
+
+.u163 {
+    position:absolute;
+    left:10px;
+    top:10px;
+    width:80px;
+    height:36px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u162 {
+    position:absolute;
+    left:740px;
+    top:306px;
+    width:92px;
+    height:56px
+}
+
+.u165 {
+    position:absolute;
+    left:16px;
+    top:0px;
+    width:2px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u167 {
+    position:absolute;
+    left:16px;
+    top:0px;
+    width:2px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u169 {
+    position:absolute;
+    left:16px;
+    top:0px;
+    width:2px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u171 {
+    position:absolute;
+    left:16px;
+    top:0px;
+    width:2px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u172_image_sketch {
+    background-image: url('../All_Weibo_files/u172_image_sketch.png');
+    position:absolute;
+    left:847px;
+    top:116px;
+    width:186px;
+    height:31px;
+}
+
+.u172 {
+    position:absolute;
+    left:850px;
+    top:119px;
+    width:180px;
+    height:25px;
+    ;
+    ;
+    text-align: left;;
+    font-family:'Heiti SC';
+    font-size: 13px;
+    color:#999999;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+

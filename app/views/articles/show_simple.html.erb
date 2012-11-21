@@ -1,0 +1,156 @@
+<% @title = @article.title %>
+<%= require_css "site_article.css" %>
+<%= require_js "speak_mana.js" %>
+<%= require_js "jquery.color.js" %>
+<%= require_popWin %>
+<%= require_fixedPosition %>
+<%= require_autoComplete %>
+
+<% content_for :header_ad do %>
+	<script type="text/javascript">
+		BAIDU_CLB_preloadSlots("347473","347491","347495","347499","347516");
+	</script>
+	<!-- 广告位：文章详情页_顶部四分之三通栏 -->
+	<%= render :partial => "ads/ad", :locals => { :id => "347473", :html_class => "header" } %>
+<% end %>
+<% cache(article_crumbs_nav_key_by_id(@article.id), :expire_in => Article::EXPIRE_IN) do %>
+  <%= render :partial => "articles/crumb", :locals=>{:first_column => @first_column}%>
+<% end %>
+
+<% @_come_back = true %>
+<%= render :partial => "sessions/pop_register_box" %>
+
+<% #render :partial => "articles/hot_keywords"%>
+<div id="articalMain">
+  <div class="leftCol">
+    <div id="articalContentWrapper">
+      <div id="articleTools">
+        <ul class="lf">
+          <li><a href="/articles/<%= @article.created_at.to_s(:db)[0..9] %>/<%=@article.id%>/print" class="printLink" rel="nofollow"><b></b>打印</a></li>
+          <li id="aticleFontSize">
+					字号: <a href="javascript:void(0);" title="small">小</a> <a class="current"  href="javascript:void(0);" title="medium">中</a> <a href="javascript:void(0);" title="large">大</a> 
+          </li>
+        </ul>
+        <!-- JiaThis Button BEGIN -->
+        <div id="ckepop" style="float:right;">
+          <a href="http://www.jiathis.com/share?uid=1547109" class="jiathis jiathis_txt" target="_blank"><img src="http://v2.jiathis.com/code/images/btn/v1/jiathis1.gif" border="0" /></a>
+        </div>
+        <!-- JiaThis Button END -->
+        <div class="clear"></div>
+      </div>
+      <% cache(article_page_content_key_by_id_and_page_id(@article.id, @page.id), :expire_in => Article::EXPIRE_IN) do %>
+        <h1 class="articleTitle"><%= @article.title %></h1>
+        <p class="articleTime">
+          <%= link_to "http://www.nbd.com.cn", "http://www.nbd.com.cn" %> <% if @reporters.present? %>每经记者：<% @reporters.each do|reporter| %><%= reporter.real_name %><%end%><%end%> <span><%= @article.created_at.strftime("%Y-%m-%d %H:%M") %></span> <% if @article.ori_source.present? %>来源: <%= @article.ori_source %><%end%> </p>		
+        <% if @article.digest.present? %>
+          <p id="articleDigest" class="articleFontSize_medium"><b>核心提示：</b><%= @article.digest.html_safe %></p>
+        <%end%>
+
+        <%= image_tag(@page.image.article_url(:x_large), :class => "artcileAddimg", :alt => @article.title) if @page.image.present?  %>
+
+        <div id="articleContent" class="articleFontSize_medium"><%= @page.content.html_safe %></div>
+
+        <% if @article.pages.count > 1 %>
+          <div class="pagination"><%= article_paginate(@article, @page) %></div><div class="clear"></div>
+        <%end%>
+
+        <% if @article.copyright? %>
+          <%= render :partial => "/articles/copyright" %>
+        <% end %>
+
+        <div id="articleInfo">
+          <span id="articleColumns">归类于: <% @article.columns.each do|column| %><%= link_to column.name, column_path(column) %><%end%></span>
+          <div class="clear"></div>
+        </div>
+
+        <div class="articleShare"> 
+          <div id="ckepop">
+            <span class="jiathis_txt">分享到：</span>
+            <a class="jiathis_button_copy">复制网址</a>
+            <a class="jiathis_button_tsina">新浪微博</a>
+            <a class="jiathis_button_tqq">腾讯微博</a>
+            <a class="jiathis_button_tsohu">搜狐微博</a>
+            <a class="jiathis_button_t163">网易微博</a>
+            <a href="http://www.jiathis.com/share?uid=1547109" class="jiathis jiathis_txt jiathis_separator jtico jtico_jiathis" target="_blank">更多</a>
+            <a class="jiathis_counter_style"></a>
+          </div>
+          <div class="clear"></div>
+        </div>
+      <% end %>
+    </div><!--article content wrapper -->
+
+    <div class="jumpNav">
+      <a href="/" class="toHome"><b></b>返回每经网首页</a>
+      <a href="#" id="toTop2" class="toTop2"><b></b>回到顶部</a>
+      <!--<a href="#" class="toNext"><b></b>随机浏览下一篇</a>-->
+    </div>		
+
+  </div>
+
+  <div class="rightCol">
+
+    <%= render :partial => "columns/nbd_promo", :locals => {:hide_newspappers => true, :title => "移动客户端"} %>
+    <%= render :partial => "columns/subscription", :locals => {:html_style => ""} %>
+
+  </div>
+
+  <div class="clear"></div>
+</div>
+
+<!--<a href="javascript:void(0)" id="toTop" title="返回顶部" >返回顶部</a>-->
+
+<script type="text/javascript">
+  $(function(){
+    var $myConmemnt = $('#comment_content');
+    $('.articlCommentsBtn').live('click',function(){
+      var value = $myConmemnt.val();
+      var reg = /^回复\@.*\:/;
+      if(reg.test(value)){
+        value = value.replace(reg,'回复@'+$(this).closest('li').find('.nickname').text()+" :");
+      }else {
+        value = '回复@'+$(this).closest('li').find('.nickname').text()+" :"+value;
+      }
+      $myConmemnt.focus();
+      $myConmemnt.val(value);
+      return false;
+    });
+	
+    $('#aticleFontSize a').click(function(e){
+      var linkEl = $(this);
+      linkEl.siblings().removeClass();
+      linkEl.addClass('current');
+      $('#articleDigest').attr('class', 'articleFontSize_'+linkEl.attr('title'));
+      $('#articleContent').attr('class', 'articleFontSize_'+linkEl.attr('title'));
+      return false;
+    });
+	
+    $myConmemnt.focus(function(){
+      _popRegisterBox();
+    });
+	
+    $("#toTop2").click(function(){
+      $("html,body").animate({scrollTop:0},400);
+    });
+	
+    /*$("#toTop").fixedPosition({
+                right:20,
+                bottom:20,
+                hideBefore:700,
+                readyFunc:function(obj){
+                        obj.hide();
+                },
+                clickFunc:function(){
+                        $("html,body").animate({scrollTop:0},400);
+                }
+        });*/
+	
+  });
+</script>
+<!-- JiaThis Button BEGIN -->
+<script type="text/javascript">var jiathis_config = {data_track_clickback:true};</script>
+<script type="text/javascript" src="http://v2.jiathis.com/code/jia.js?uid=1535213" charset="utf-8"></script>
+<!-- JiaThis Button END -->
+
+<% if params[:id] %>
+  <%= render :partial => (params[:id].to_i % 2 == 0 ? "ads/pop_2" : "ads/pop_2") %>
+<% end %>

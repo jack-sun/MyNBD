@@ -1,0 +1,30 @@
+<%
+=begin
+Parameters:
+	articles: Array
+	html_style: String (optional)
+=end
+html_style = '' unless html_style
+%>
+<div id="hotFeatures" class="sectionA featureList" style="<%=html_style%>">
+	<div class="title">
+		<h3>热门专题</h3>
+		<span class="opts"><%= link_to "更多", nil%></span>
+	</div>
+	<div class="content">
+		<ul>
+			<% articles.each_with_index do |article, index|%>
+				<li <%if index == articles.length-1%>class="last"<%end%> >
+					<h3 class='fTitle'>
+						<%= link_to article.list_title, article_url(article), {:target => "blank", :title => article.title} %>
+					</h3>
+					<%= link_to image_tag(article_thumbnail_path(article, :large_b), :alt => article.list_title), article_url(article), {:class => "fImageLink", :title => article.title} if article.image.present? %>
+					
+					<p class="fDigest" >
+						<%= truncate(article.show_digest, :length => 68) %>
+					</p>
+				</li>
+			<% end %>
+		</ul>
+	</div>
+</div>

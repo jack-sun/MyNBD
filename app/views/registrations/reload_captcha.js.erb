@@ -1,0 +1,4 @@
+<% if params[:id] %>
+  $('#<%= params[:id] %> span.captchaImage').replaceWith("<%= escape_javascript(show_simple_captcha(:session_key => params[:id])) %>");
+<% end %>
+

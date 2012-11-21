@@ -1,0 +1,2 @@
+module CommunityHomeHelper
+end

@@ -1,0 +1,2 @@
+module Console::SearchHelper
+end

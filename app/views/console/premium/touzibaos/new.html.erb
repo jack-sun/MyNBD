@@ -1,0 +1,23 @@
+<div class="sectionA">
+	<div class="title">
+		<h1>每经投资宝 - 添加新期刊</h1>
+		<span class="opts">
+			<%= link_to '<span>取消</span>'.html_safe, console_premium_touzibaos_path, :class => "btnGray" %>
+		</span>
+	</div>
+	<div class="content rightColCenter">
+            <%= simple_form_for([:console, :premium,  @touzibao], :html => {:multipart => true, :class => "formA"} ) do |f| %>
+
+                    <% if flash[:error]  %>
+                      <div class="alert_error"><b></b><%= flash[:error] %></div>
+                    <% end %>
+                    <p>
+                            <label for="file">期刊号:</label>
+                            <%= f.text_field "t_index" %>
+                    </p>
+                    <p class="formRightAlign">
+                            <%= link_to "<span>下一步</span>".html_safe, "javascript:void(0)", :onclick => "$(this).closest('form').submit();return false;", :class => "btnBlueM" %>
+                    </p>
+            <% end %>
+	</div>
+</div>

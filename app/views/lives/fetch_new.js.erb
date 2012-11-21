@@ -1,0 +1,15 @@
+(function(){
+	var toAddTalks = "";
+	<% @live_talks.each do |talk| %>
+	  $("li#talk_<%= talk.id %>").remove();
+	  toAddTalks += '<%= escape_javascript(render :partial => "weibos/weibo_item_for_live", :locals => {:talk => talk}) %>';
+	<% end %>
+	$(toAddTalks).hide().prependTo($("#liveTalkList")).fadeIn(1000);
+        <% if @question_page %>
+          _liveData.last_question_update_at = <%= Time.now.to_i %>;
+        <% else %>
+          _liveData.last_talk_update_at = <%= Time.now.to_i %>;
+          
+        <% end %>
+	$("#newTalksLoading").hide();
+})();

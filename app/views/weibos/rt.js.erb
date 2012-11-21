@@ -1,0 +1,30 @@
+var _rtPopWin;
+(function(){
+	var currentWeibo = $("#weibo_<%=@weibo.id%>");
+	var isRt = !!currentWeibo.find("blockquote").length;
+	var originText;
+	
+	_rtPopWin = _rtPopWin || $.popWin.init({title:"转发微博"});
+	_rtPopWin.content.empty().append("<%=escape_javascript(render "form") %>");
+	
+	if(isRt){
+		originText = "//@"+currentWeibo.find(".itemContent p").eq(0).text();
+		_rtPopWin.content.find("textarea").val(originText);
+	}
+	
+	var blockquote = $(".rtOriginText"),
+		expandBtn = $(".expandText"),
+		content = blockquote.find(".content"),
+		maxLength = 50,
+		maxBr = 3;
+	
+	if(content.text().length <= maxLength && content.find("br").length <= maxBr){
+		expandBtn.hide();
+	}else {
+		var contentHtml = content.html();
+		var cutoff = content.text().slice(0, maxLength) + "... ";
+		content.html(cutoff).data("content", contentHtml);
+	}
+	
+	_rtPopWin.show();
+})();

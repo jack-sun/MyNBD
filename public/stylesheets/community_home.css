@@ -1,0 +1,202 @@
+@charset "utf-8";
+body{
+	font-family: Arial, sans-serif;
+}
+#loginEntry { padding:13px; background-color: #F2F5FA; border:1px solid #D5DCEB; font-size:12px;
+-webkit-border-radius:3px;
+-moz-border-radius:3px;
+border-radius:3px;
+font-family: Arial, sans-serif;
+margin-bottom: 15px;
+}
+#loginEntry .regTop { padding-bottom:10px; border-bottom:1px solid #D5DCEB; }
+#loginEntry .regTop .regBtn { display:block; width:272px; height:52px; background:url(../images/button-reg.png) 0 0 no-repeat; }
+#loginEntry form { padding-top:5px; border-top:1px solid #fff; }
+#loginEntry form p { margin:8px 0; }
+#loginEntry form p.placeHolder { height:35px; }
+#loginEntry form p input.textInput { display:block; width:260px; height:20px; }
+#loginEntry .loginBtn { display:block; width:272px; height:45px; border:0; background:url(../images/button-login.png) 0 0 no-repeat; 
+cursor: pointer;
+}
+
+.rtNumBox { float:left; width:50px; height:60px; background:#ECEFF5; border:1px #CFD6E5 solid; text-align:center; }
+.rtNumBox .rtNumBoxTop { height:36px; border-bottom:1px solid #CFD6E5; font-size:20px; line-height:36px; color: #000; }
+.rtNumBox .rtNumBoxBottom { border-top:1px solid #fff; color:#808080; font-size:12px; line-height: 24px; }
+
+#weiboListForHome.weiboItemList li { padding:10px 0; margin-bottom: 0; }
+#weiboListForHome .itemContent { margin-left:65px; }
+
+/* extend from slideImageWrapper ; replace .bottomInfo*/
+.topicTitle{
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	padding-left:7px;
+	*width:100%;
+	line-height: 36px;
+	height:36px;
+	font-size: 18px;
+	overflow:hidden;
+	z-index:0;
+	width:100%;
+}
+.topicTitle a{
+	color: white;
+}
+.topicTitle span{
+	font-size: 12px;
+	font-weight: normal;
+	color: #ddd;
+}
+.topicTitle span a{
+	margin-left: 5px;
+}
+.slideImageWrapper .bottomInfoBg{
+	height: 36px;
+	line-height: 36px;
+}
+#hotTopics{
+	height: 30px;
+	background-color: #F2F5FA;
+	border: 1px solid #D5DCEB;
+	overflow: hidden;
+	margin-bottom: 15px;
+}
+#scrollTopicWrapper { position:relative; margin-right:10px; height:30px; overflow: hidden; }
+#scrollTopic {font-size: 12px; position:absolute; top:0; left:0; height:100%; }
+#scrollTopic li { float:left; padding-right:15px; line-height: 30px; }
+#scrollTopic li a { display:float; color:#808080; }
+#scrollTopic li a:hover{
+	color: #303030;
+}
+
+/* 没有position:relative; position:absolute; 的话，在item show出来的时候，height高度的计算会有问题 */
+#scrollWeibosWrapper { position:relative; height:620px; overflow:hidden; }
+#scrollWeibos { position:absolute; width:100%; }
+#scrollWeibosWrapper .weiboItemList li{
+	border-bottom: 1px dotted #D5DCEB;
+}
+.bottomInfoLabel{
+	float:left;
+	height: 30px;
+	font-family: Arial, sans-serif;
+	font-size: 12px;
+	color: #303030;
+	line-height: 30px;
+	padding: 0 7px;
+	background-color: #f2f5fa;
+}
+.subLeftCol{
+	width: 240px;
+	margin-right: 20px;
+}
+.subRightCol{
+	width: 390px;
+}
+#weiboLive .avatar{
+	display: block;
+	border: 1px solid #ccc;
+	padding: 1px;
+	width: 50px;
+	height: 50px;
+	float: left;
+	margin-right: 8px;
+}
+#weiboLive .weiboItemList .itemContent{
+	margin-left: 0; 
+}
+
+#weiboLive .weiboItemList .itemContent p{
+	margin-bottom: 0;
+	height: 105px;
+	overflow: hidden;
+	padding: 0 5px;
+}
+
+#weiboLive .weiboItemList .itemBottom{
+	padding: 0 5px;
+	margin-top: 3px;
+}
+
+#weiboLive .content{
+	padding: 5px;
+	background-color: #F2F5FA;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+.weiboLiveCompereProfile{
+	margin-bottom: 0;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+#weiboLive .weiboItemList{
+	background-color: white;
+}
+
+#weiboLive .weiboItemList li{
+	margin-bottom: 0;
+	padding: 7px 0;
+}
+
+/* questions and answers */
+
+#weiboLive.qa .weiboItemList .itemContent, #weiboLive.qa .weiboItemList .itemBottom{
+	margin-left: 65px;
+}
+
+#weiboLive.qa .weiboItemList li .avatar{
+	margin-left: 7px;
+	margin-right: 0;
+}
+
+#weiboLive.qa .weiboItemList li b{
+	float: left;
+	width: 20px;
+	height: 20px;
+	background: url(../images/sprite-icons.gif) no-repeat;
+	margin-right: 3px;
+}
+
+#weiboLive.qa .weiboItemList li.question b{
+	background-position: -40px -80px;
+}
+
+#weiboLive.qa .weiboItemList li.answer b{
+	background-position: -60px -80px;
+}
+
+#weiboLive.qa .weiboItemList .itemContent p{
+	height: 64px;
+}
+
+.block .blockTitle h1, .block .blockTitle h2, .block .blockTitle h3, .block .blockTitle h4, .block .blockTitle h5, .block .blockTitle h6 {
+	float: left;
+	font-size: 16px;
+	font-weight: bold;
+	color: #bb0000;
+}
+
+.block .blockContent{
+	padding: 0 10px;
+}
+
+#hotComments .weiboItemList .itemContent {
+	margin-left: 45px;
+	font-size: 13px;
+}
+
+#hotComments .weiboItemList .itemContent p{
+	height: 38px;
+	overflow: hidden;
+}
+
+#hotComments .weiboItemList .avatar img {
+width: 30px;
+height: 30px;
+}
+
+.qa{
+	margin-bottom: 15px;
+}
+

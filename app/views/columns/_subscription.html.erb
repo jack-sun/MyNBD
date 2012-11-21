@@ -1,0 +1,20 @@
+<%
+=begin
+Parameters:
+	html_style: String (optional)
+=end
+html_style = '' unless html_style
+%>
+<div id="subsBox" class="sectionA" style="<%=html_style%>">
+	<div class="title">
+		<h1>订阅</h1>
+	</div>
+	<div class="content">
+		<dl>
+			<!--<dt><b class="icon16 rss"></b>RSS</dt>
+			<dd><a class="first" href="">今日焦点</a> | <a href="">滚动新闻</a> | <a href="">观点</a> | <a href="">今日报纸</a></dd>-->
+			<dt><b class="icon16 newspaper"></b>报刊</dt>
+			<dd class="last"><strong>《每日经济新闻》</strong> <%= link_to("文字版", today_newspapers_url, {:class => "first", :target => "_blank"})%> | <%= link_to("图文版", "http://epaper.nbd.com.cn/", :target => "_blank")%> | <%= link_to("订阅", "#{Settings.old_host}/html/dingyue.html", :target => "_blank") %></dd>
+		</dl>
+	</div>
+</div>

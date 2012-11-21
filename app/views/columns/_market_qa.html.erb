@@ -1,0 +1,46 @@
+<%
+=begin
+Parameters:
+	compere: User
+	live_questions: Q and A
+=end
+%>
+<div class="sectionA qa" id="weiboLive">
+	<div class="title">
+		<h1>专家问答</h1>
+	</div>
+	<div class="content">
+		<div class="weiboLiveCompereProfile">
+			<%= link_to(image_tag(user_avatar_path(compere, :middle)), today_lives_url, {:class => "avatar lf"}) %>
+			<%= link_to(compere.nickname, today_lives_url, {:class => "nickname"}) %><br/>
+			<%= link_to "<span>我要提问</span>".html_safe, today_lives_url, :class => "btnBlue", :style => "margin-top:5px;" %>
+			<div class="clear"></div>
+		</div>
+		<ul class="weiboItemList">
+			<% live_questions.each do |question|
+				next if question.weibo.blank? or question.weibo.owner.blank? %>
+			  <li class="question">		  
+			  <%= link_to(image_tag(user_avatar_path(question.weibo.owner, :middle)), user_url(question.weibo.owner), :class=>"avatar") %>
+			  <div class="itemContent">
+			  	<p><b></b><%= link_to question.weibo.owner.nickname, user_path(question.weibo.owner) %>: <%= question.weibo.content %></p>
+			  </div>
+			  <div class="itemBottom">
+			  	<%= link_to nbd_time_f(question.weibo.created_at), today_lives_url %>
+			  </div>
+			  </li>
+			  <% if question.live_answers.count > 0 and question.live_answers.first.present? and question.live_answers.first.weibo.present? and question.live_answers.first.weibo.owner.present? %>
+			  <li class="answer">
+			    <%= link_to(image_tag(user_avatar_path(question.live_answers.first.weibo.owner, :middle)), user_url(question.live_answers.first.weibo.owner), :class => "avatar") %>
+			    <div class="itemContent">
+			    	<p><b></b><%= link_to question.live_answers.first.weibo.owner.nickname, user_path(question.live_answers.first.weibo.owner) %>: <%= question.live_answers.first.weibo.content %></p>
+			    </div>
+			    <div class="itemBottom">
+			    	<%= link_to nbd_time_f(question.live_answers.first.weibo.created_at), today_lives_url %>
+			    </div>
+			  </li>
+			  <% end %>
+			<% end %>
+		</ul>
+	</div><!--content-->
+</div>
+

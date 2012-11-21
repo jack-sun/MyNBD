@@ -1,0 +1,8 @@
+<% ad_pos = @ad_hash[pos] %>
+<% if pos == "b-2" %>
+		<!-- AdSame ShowCode: 每日经济新闻 / 新闻阅读页 / 固定位 Begin -->
+		<script language="javascript" type="text/javascript" src="http://xplus.adsame.com/s?z=xplus&c=400" ></script>
+		<!-- AdSame ShowCode: 每日经济新闻 / 新闻阅读页 / 固定位 End -->
+<% else %>
+<%= link_to (image_tag("http://image#{[nil, 1, 2][rand(3)]}#{Settings.session_domain}/uploads/ads/display/#{pos}.gif", {:width => ad_pos[:width], :height => ad_pos[:height]})), ad_pos[:link], {:class => "ad_"+pos[0]+"_"+pos[2], :target => "_blank", :alt => ad_pos[:alt]} %>
+<% end %>

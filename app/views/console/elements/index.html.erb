@@ -1,0 +1,18 @@
+<div class="title">
+	<h1>请选择页面元素类型</h1>
+</div>
+
+<ul class="unorderList">
+	<% Element::ELEMENT_NAME_MAP.each do |e|%>
+		<%case @owner.class.to_s%>
+		<%when FeaturePage.name%>
+			<li><%= link_to e.values.first, new_console_feature_page_element_url(@owner) + "?type=#{e.keys.first}" %></li>
+		<%when Topic.name%>
+			<li><%= link_to e.values.first, new_console_topic_element_url(@owner) + "?type=#{e.keys.first}" %></li>
+		<%end%>
+	<%end%>
+</ul>
+
+<p class="rightAlignActions">
+	<%= link_to '<span>取消</span>'.html_safe, 'javascript:window.close();', :class => "btnGray" %>	
+</p>

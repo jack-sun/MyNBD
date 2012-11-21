@@ -1,0 +1,1040 @@
+body {
+    margin: 0px;
+}
+
+div {
+    background-repeat: no-repeat;
+}
+
+.raw_image {
+    width: 100%;
+    height: 100%;
+}
+
+.preload {
+    display: none;
+}
+div.main_container {
+}
+
+.form_sketch {
+    border-color: transparent;
+    background-color: transparent;
+}
+
+.u0_original {
+    background-image: url('../ViewPoint_Channel_files/u0_original.png');
+}
+
+.u0_container {
+    position:absolute;
+    left:100px;
+    top:50px;
+    width:800px;
+    height:1740px;
+}
+
+#u0_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:806px;
+    height:1746px;
+}
+
+.u1 {
+    position:absolute;
+    left:2px;
+    top:862px;
+    width:796px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u0 {
+    position:absolute;
+    left:100px;
+    top:50px;
+    width:800px;
+    height:1740px
+}
+
+.u2_original {
+    background-image: url('../ViewPoint_Channel_files/u2_original.png');
+}
+
+.u2_container {
+    position:absolute;
+    left:100px;
+    top:80px;
+    width:800px;
+    height:120px;
+}
+
+#u2_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:806px;
+    height:126px;
+}
+
+.u3 {
+    position:absolute;
+    left:2px;
+    top:52px;
+    width:796px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u2 {
+    position:absolute;
+    left:100px;
+    top:80px;
+    width:800px;
+    height:120px
+}
+
+.u4_original {
+    background-image: url('../ViewPoint_Channel_files/u4_original.png');
+}
+
+.u4_container {
+    position:absolute;
+    left:100px;
+    top:200px;
+    width:800px;
+    height:40px;
+}
+
+#u4_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:806px;
+    height:46px;
+}
+
+.u5 {
+    position:absolute;
+    left:2px;
+    top:12px;
+    width:796px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u4 {
+    position:absolute;
+    left:100px;
+    top:200px;
+    width:800px;
+    height:40px
+}
+
+.u6 {
+    position:absolute;
+    left:120px;
+    top:212px;
+    width:560px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u7_image_sketch {
+    background-image: url('../ViewPoint_Channel_files/u7_image_sketch.png');
+    position:absolute;
+    left:649px;
+    top:204px;
+    width:186px;
+    height:31px;
+}
+
+.u7 {
+    position:absolute;
+    left:652px;
+    top:207px;
+    width:180px;
+    height:25px;
+    ;
+    ;
+    text-align: left;;
+    font-family:'Heiti SC';
+    font-size: 13px;
+    color:#999999;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+
+.u8_image_sketch {
+    background-image: url('../ViewPoint_Channel_files/u8_image_sketch.png');
+    position:absolute;
+    left:832px;
+    top:204px;
+    width:46px;
+    height:31px;
+}
+
+.u8 {
+    position:absolute;
+    left:835px;
+    top:207px;
+    width:40px;
+    height:25px;
+    ;
+    ;
+    text-align: center;;
+    font-family:'Heiti SC';
+    font-size: 13px;
+    color:#000000;
+    font-style:normal;
+    font-weight:normal;
+    text-decoration:none;
+    
+}
+
+.u9_original {
+    background-image: url('../ViewPoint_Channel_files/u9_original.png');
+}
+
+.u9_container {
+    position:absolute;
+    left:100px;
+    top:50px;
+    width:800px;
+    height:30px;
+}
+
+#u9_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:806px;
+    height:36px;
+}
+
+.u10 {
+    position:absolute;
+    left:2px;
+    top:7px;
+    width:796px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u9 {
+    position:absolute;
+    left:100px;
+    top:50px;
+    width:800px;
+    height:30px
+}
+
+.u11 {
+    position:absolute;
+    left:581px;
+    top:59px;
+    width:310px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u12_original {
+    background-image: url('../ViewPoint_Channel_files/u12_original.png');
+}
+
+.u12_container {
+    position:absolute;
+    left:100px;
+    top:170px;
+    width:800px;
+    height:30px;
+}
+
+#u12_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:806px;
+    height:36px;
+}
+
+.u13 {
+    position:absolute;
+    left:2px;
+    top:7px;
+    width:796px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u12 {
+    position:absolute;
+    left:100px;
+    top:170px;
+    width:800px;
+    height:30px
+}
+
+.u14 {
+    position:absolute;
+    left:110px;
+    top:178px;
+    width:470px;
+    height:10px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u15 {
+    position:absolute;
+    left:732px;
+    top:177px;
+    width:150px;
+    height:11px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u16_original {
+    background-image: url('../ViewPoint_Channel_files/u16_original.png');
+}
+
+.u16_container {
+    position:absolute;
+    left:120px;
+    top:100px;
+    width:230px;
+    height:50px;
+}
+
+#u16_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:230px;
+    height:50px;
+}
+
+.u17 {
+    position:absolute;
+    left:2px;
+    top:17px;
+    width:226px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u16 {
+    position:absolute;
+    left:120px;
+    top:100px;
+    width:230px;
+    height:50px
+}
+
+.u18_original {
+    background-image: url('../ViewPoint_Channel_files/u18_original.png');
+}
+
+.u18_container {
+    position:absolute;
+    left:380px;
+    top:90px;
+    width:510px;
+    height:70px;
+}
+
+#u18_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:510px;
+    height:70px;
+}
+
+.u19 {
+    position:absolute;
+    left:2px;
+    top:27px;
+    width:506px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u18 {
+    position:absolute;
+    left:380px;
+    top:90px;
+    width:510px;
+    height:70px
+}
+
+.u20 {
+    position:absolute;
+    left:730px;
+    top:50px;
+    width:60px;
+    height:30px
+}
+
+.u21 {
+    position:absolute;
+    left:798px;
+    top:50px;
+    width:30px;
+    height:30px
+}
+
+.u22 {
+    position:absolute;
+    left:523px;
+    top:200px;
+    width:50px;
+    height:40px
+}
+
+.u23 {
+    position:absolute;
+    left:110px;
+    top:200px;
+    width:50px;
+    height:40px
+}
+
+.u24 {
+    position:absolute;
+    left:165px;
+    top:200px;
+    width:50px;
+    height:40px
+}
+
+.u25 {
+    position:absolute;
+    left:220px;
+    top:200px;
+    width:40px;
+    height:40px
+}
+
+.u26 {
+    position:absolute;
+    left:268px;
+    top:200px;
+    width:40px;
+    height:40px
+}
+
+.u27 {
+    position:absolute;
+    left:319px;
+    top:200px;
+    width:43px;
+    height:40px
+}
+
+.u28 {
+    position:absolute;
+    left:371px;
+    top:200px;
+    width:40px;
+    height:40px
+}
+
+.u29 {
+    position:absolute;
+    left:424px;
+    top:200px;
+    width:39px;
+    height:40px
+}
+
+.u30 {
+    position:absolute;
+    left:477px;
+    top:200px;
+    width:39px;
+    height:40px
+}
+
+.u32_original {
+    background-image: url('../ViewPoint_Channel_files/u32_original.png');
+}
+
+.u32_container {
+    position:absolute;
+    left:120px;
+    top:1577px;
+    width:760px;
+    height:86px;
+}
+
+#u32_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:760px;
+    height:86px;
+}
+
+.u33 {
+    position:absolute;
+    left:2px;
+    top:35px;
+    width:756px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u32 {
+    position:absolute;
+    left:120px;
+    top:1577px;
+    width:760px;
+    height:86px
+}
+
+.u34_original {
+    background-image: url('../ViewPoint_Channel_files/u4_original.png');
+}
+
+.u34_container {
+    position:absolute;
+    left:100px;
+    top:1677px;
+    width:800px;
+    height:40px;
+}
+
+#u34_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:806px;
+    height:46px;
+}
+
+.u35 {
+    position:absolute;
+    left:2px;
+    top:12px;
+    width:796px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u34 {
+    position:absolute;
+    left:100px;
+    top:1677px;
+    width:800px;
+    height:40px
+}
+
+.u36 {
+    position:absolute;
+    left:120px;
+    top:1688px;
+    width:770px;
+    height:12px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u37_original {
+    background-image: url('../ViewPoint_Channel_files/u37_original.png');
+}
+
+.u37_container {
+    position:absolute;
+    left:100px;
+    top:1717px;
+    width:800px;
+    height:80px;
+}
+
+#u37_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:806px;
+    height:86px;
+}
+
+.u38 {
+    position:absolute;
+    left:2px;
+    top:19px;
+    width:796px;
+    height:42px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u37 {
+    position:absolute;
+    left:100px;
+    top:1717px;
+    width:800px;
+    height:80px
+}
+
+.u40 {
+    position:absolute;
+    left:120px;
+    top:449px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u41_original {
+    background-image: url('../ViewPoint_Channel_files/u41_original.png');
+}
+
+.u41_container {
+    position:absolute;
+    left:120px;
+    top:474px;
+    width:240px;
+    height:536px;
+}
+
+#u41_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:246px;
+    height:542px;
+}
+
+.u42 {
+    position:absolute;
+    left:2px;
+    top:260px;
+    width:236px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u41 {
+    position:absolute;
+    left:120px;
+    top:474px;
+    width:240px;
+    height:536px
+}
+
+.u43 {
+    position:absolute;
+    left:650px;
+    top:300px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u44 {
+    position:absolute;
+    left:120px;
+    top:253px;
+    width:760px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u45_line {
+    background-image: url('../ViewPoint_Channel_files/u45_line.png');
+}
+
+.u45_line {
+    position:absolute;
+    left:120px;
+    top:276px;
+    width:760px;
+    height:5px;
+}
+
+.u45 {
+    position:absolute;
+    left:120px;
+    top:276px;
+    width:760px;
+    height:5px
+}
+
+.u46_original {
+    background-image: url('../ViewPoint_Channel_files/u46_original.png');
+}
+
+.u46_container {
+    position:absolute;
+    left:130px;
+    top:482px;
+    width:221px;
+    height:520px;
+}
+
+#u46_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:221px;
+    height:520px;
+}
+
+.u47 {
+    position:absolute;
+    left:2px;
+    top:252px;
+    width:217px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u46 {
+    position:absolute;
+    left:130px;
+    top:482px;
+    width:221px;
+    height:520px
+}
+
+.u48_original {
+    background-image: url('../ViewPoint_Channel_files/u48_original.png');
+}
+
+.u48_container {
+    position:absolute;
+    left:120px;
+    top:300px;
+    width:510px;
+    height:130px;
+}
+
+#u48_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:516px;
+    height:136px;
+}
+
+.u49 {
+    position:absolute;
+    left:2px;
+    top:58px;
+    width:506px;
+    height:13px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u48 {
+    position:absolute;
+    left:120px;
+    top:300px;
+    width:510px;
+    height:130px
+}
+
+.u50_original {
+    background-image: url('../ViewPoint_Channel_files/u50_original.png');
+}
+
+.u50_container {
+    position:absolute;
+    left:650px;
+    top:324px;
+    width:230px;
+    height:316px;
+}
+
+#u50_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:236px;
+    height:322px;
+}
+
+.u51 {
+    position:absolute;
+    left:2px;
+    top:150px;
+    width:226px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u50 {
+    position:absolute;
+    left:650px;
+    top:324px;
+    width:230px;
+    height:316px
+}
+
+.u52 {
+    position:absolute;
+    left:386px;
+    top:449px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u53_original {
+    background-image: url('../ViewPoint_Channel_files/u41_original.png');
+}
+
+.u53_container {
+    position:absolute;
+    left:386px;
+    top:474px;
+    width:240px;
+    height:536px;
+}
+
+#u53_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:246px;
+    height:542px;
+}
+
+.u54 {
+    position:absolute;
+    left:2px;
+    top:260px;
+    width:236px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u53 {
+    position:absolute;
+    left:386px;
+    top:474px;
+    width:240px;
+    height:536px
+}
+
+.u55_original {
+    background-image: url('../ViewPoint_Channel_files/u46_original.png');
+}
+
+.u55_container {
+    position:absolute;
+    left:396px;
+    top:482px;
+    width:221px;
+    height:520px;
+}
+
+#u55_img {
+    position:absolute;
+    left:0px;
+    top:0px;
+    width:221px;
+    height:520px;
+}
+
+.u56 {
+    position:absolute;
+    left:2px;
+    top:252px;
+    width:217px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u55 {
+    position:absolute;
+    left:396px;
+    top:482px;
+    width:221px;
+    height:520px
+}
+
+.u57 {
+    position:absolute;
+    left:650px;
+    top:660px;
+    width:150px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u58_original {
+    background-image: url('../ViewPoint_Channel_files/u50_original.png');
+}
+
+.u58_container {
+    position:absolute;
+    left:650px;
+    top:684px;
+    width:230px;
+    height:316px;
+}
+
+#u58_img {
+    position:absolute;
+    left:-3px;
+    top:-3px;
+    width:236px;
+    height:322px;
+}
+
+.u59 {
+    position:absolute;
+    left:2px;
+    top:150px;
+    width:226px;
+    height:16px;
+    ;
+    ;
+    ;
+    font-family:Arial;
+    text-align:left;
+    word-wrap:break-word;
+}
+
+.u58 {
+    position:absolute;
+    left:650px;
+    top:684px;
+    width:230px;
+    height:316px
+}
+

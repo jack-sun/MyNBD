@@ -1,0 +1,145 @@
+<%= require_css "console_feature" %>
+<%= require_js "console_feature" %>
+<%= require_js "console_interact" %>
+<%= require_popWin %>
+<%= require_jqueryUI %>
+<script type="text/javascript">
+  var _all_urls = [];
+  _all_urls["new_page_url"] = "<%= console_feature_feature_pages_url(@feature) %>";
+  _all_urls["featch_section_template_url"] = "<%= console_fetch_section_template_url %>";
+  _all_urls["edit_banner_url"] = "<%= update_banner_console_feature_url(@feature) %>";
+</script>
+<div class="sectionA">
+  <%= simple_form_for([:console, @feature], :html => { :id => "feature_form", :remote => true, :multipart => true}) do |f| %>
+    <%= f.input :status, :as => :hidden %>
+    <%= f.input :preview, :as => :hidden, :input_html => {:value => 0} %>
+    <div class="title">
+      <h1>专题:</h1>
+      <%= f.input :title, :label => false, :input_html => {:class => "featureNameInput textInput", :size => 36} %>
+      <span class="opts"><a class="btnGray" href="javascript:history.go(-1);"><span>取消</span></a></span>
+    </div>
+    <div class="content ">
+      <div class="subRightCol">
+        <div class="formA roundCorner">
+            <%= f.label :theme, "主题:" %>
+            <%= f.select :theme, Feature::THEME_ARRAY,{:selected => @feature.feature_theme}, {} %>
+            <%= hidden_field_tag :theme_bg %>
+            <a href="javascript:void(0)" id="expandAdvancedTheme" class="rf">高级选项</a>
+            <div id="advancedThemeBox">
+              <div id="editTheme">
+                <div class="block">
+                  <label>背景色：</label> <input id="changeBgColor" type="text" value="<%= @feature.feature_bg_color %>">
+                </div>
+                <div class="block">
+                  <%= f.fields_for :bg_image, (@feature.bg_image ? @feature.bg_image : Image.new) do |image| %>
+                  <%= image.label "背景图：" %>
+                  <div id="themeBgImg">
+                    <% is_have_bg_image = @feature.bg_image && !@feature.bg_image.feature.blank? %>
+                    <% if is_have_bg_image %>
+                      <%= image_tag(@feature.bg_image.feature_url(:subdomain => "www"), :id => "themeBgThumb" ) %>
+                    <% end %>
+                    <div class="imgPlaceholder" <% if is_have_bg_image %>style="display:none"<%end%>>
+                      null
+                    </div>
+                    <div id="themeBgImgActions">
+                      <a id="changeBgImageBtn" href="javascript:void(0)">编辑</a>
+                      <a id="delBgImageBtn" <% unless is_have_bg_image %>style="display:none"<%end%> href="javascript:void(0)">删除</a>
+                      <%= image.file_field :feature, :id => "changeBgImage" %>
+                      <%= image.hidden_field :feature_cache %>
+                      <%= image.hidden_field :remove_feature %>
+                    </div>
+                  </div>
+                  <!--<label><%= image.check_box :remove_feature %> 删除背景图片</label>-->
+                  <%end %>
+                </div>
+              </div>
+            </div>
+<!--          <div id="themeSelect">
+            <a id="themeSelectFlag" href="javascript:void(0)"><img class="themeImage" src="/images/article-miniature-default.gif" />
+            <div class="themeDescription">
+              <span>蓝色A</span>
+              <br/>
+              <span id="themeDetail">主色调：蓝色、灰色
+                <br/>
+                                                                  适用于社会类专题
+              </span>
+            </div>
+            </a>
+            <ul id="themeSelectList" class="roundCorner">
+              <li>
+                <a href="#"><img class="themeImage" src="/images/article-miniature-default.gif" />
+                <div class="themeDescription">
+                  <span>蓝色A</span>
+                  <br/>
+                  <span id="themeDetail">主色调：蓝色、灰色
+                    <br/>
+                                                                                  适用于社会类专题
+                  </span>
+                </div>
+                </a>
+              </li>
+            </ul>
+          </div>
+-->
+          <hr/>
+          <p>					
+            <% if @feature.status == Feature::PUBLISHED %>
+              <%= link_to "<span>取消发布</span>".html_safe, "javascript:void(0);", :id => "draft_feature", :class => "btnGrayBlue lf", :confirm => "是否要取消发布该专题?" %>
+            <% elsif params[:new_record] %>
+              <%= link_to "<span>存为草稿</span>".html_safe, "javascript:void(0);", :id => "draft_feature", :class => "btnGrayBlue lf" %>
+            <% end %>
+            <%= link_to "<span>预览专题</span>".html_safe, "javascript:void(0);", :id => "preview_feature", :class => "btnGrayBlue rf"%>
+          <div class="clear">
+          </div>
+          </p>
+          <hr/>
+          <p>
+            <%= f.input :allow_comment, :as => :boolean , :label => "允许评论" , :label_html => {:style => "float:none;width:auto" } %>
+          </p>
+          <div>
+            <% if @feature.status == Feature::PUBLISHED %>
+              <%= link_to "<span>更新专题</span>".html_safe, "javascript:void(0);", :class => "btnBlueM rf", :id => "update_feature" %>
+            <% else %>
+              <%= link_to "<span>发布专题</span>".html_safe, "javascript:void(0);", :id => "publish_feature", :class => "btnBlueM rf" %>
+            <% end %>
+            <div class="clear"></div>
+          </div>
+
+        </div>
+      </div>
+      <div class="subLeftCol">
+        <div id="banner">
+                                  头部
+          <div class="alignRight"><a id="bannerEdit" href="javascript:void(0)"><b class='actionIcon edit'></b></a></div>
+        </div>
+        <div class="tabs">
+          <ul>
+            <% @pages.each do |page| %>
+              <% if page.pos == 0 %>
+                <li class="current">
+                <% else %>
+                <li>
+                <% end %>
+                <a href="#tabs-<%= page.pos + 1 %>" id="feature_page_<%= page.id %>">第<%= page.pos + 1 %>页</a>
+              </li>
+            <%end %>
+            <li>
+              <a href="javascript:void(0)">新增</a>
+            </li>
+          </ul>
+        </div>
+        <div id="inputArea">
+          <% @pages.each do |page| %>
+            <div id="tabs-<%=  page.pos + 1 %>">
+              <%= f.fields_for :feature_pages, page do |p| %>
+                <%= p.input :title, :label => "页面名称：", :input_html => {:size=>20, :class => "textInput"} %>
+                <%= p.input :layout, :as => :hidden %>
+              <% end %>
+              <%= render :partial => "/console/feature_pages/feature_pages", :locals => {:page => page} %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

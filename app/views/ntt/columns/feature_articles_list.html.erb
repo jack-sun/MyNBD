@@ -1,0 +1,71 @@
+<% list_title = @column.root.id == @column.id ? @column.name : "#{@column.root.name} - #{@column.name}" %>
+<% @title=list_title %>
+<%= require_css "feature_article_list.css" %>
+
+<% content_for :header_ad do %>
+	<script type="text/javascript">
+		BAIDU_CLB_preloadSlots("347589");
+	</script>
+	<!-- 广告位：西部_顶部四分之三通栏 -->
+	<%= render :partial => "ads/ad", :locals => { :id => "347589", :html_class => "header" } %>
+<% end %>
+
+<div class="leftCol">
+  <% if @is_premium_user %>
+  	  <% articles = @articles_columns.map(&:article).compact %>
+      <div class="sectionA" style="">
+      	<div class="title">
+      		<h3><%=@column.name%></h3>
+      	</div>
+      	<div class="content">
+      		<ul class="articleList unorderList">
+      			<% articles.each_with_index do |article,index|
+      				next if article.blank? -%>
+      				<% if index == 0 %>
+      					<li class="articleRecommend topOne">
+      						<% if (columnist = article.columnists.first) and columnist.image %>
+      						  <%= link_to image_tag(columnist_avatar_path(columnist), {:alt => columnist.name, :width => 100, :height => 100}),  ntt_columnist_url(columnist), {:target => "_blank", :style => "float:left; margin-right:15px;"}%>
+      						<% end %>
+      						<h4 class='rcTitle'>
+      							<%= link_to article.list_title, ntt_article_url(article), {:target => "_blank", :title => article.title} %>
+      						</h4>
+      						<p class="articleTime"><span><%= article.created_at.strftime("%Y-%m-%d %H:%M") %></span></p>
+      						<div class="rcDigest">
+      						  	<p>
+      								<%= article.show_digest %>
+      							</p>
+      						</div>
+      						<div class="clear"></div>
+      					</li>
+      				<% else %>
+	      				<li class="articleRecommend">
+	      					<h5 class='rcTitle'>
+	      						<%= link_to article.list_title, ntt_article_url(article), {:target => "_blank", :title => article.title} %>
+	      					</h5>
+	      					<p class="articleTime"><span><%= article.created_at.strftime("%Y-%m-%d %H:%M") %></span></p>
+	      					<div class="rcDigest">
+	                            <p>
+	      							<%= article.show_digest %>
+	      						</p>
+	      						<div class="clear"></div>
+	      					</div>
+	      				</li>
+      				<% end %>
+      			<% end %>
+      		</ul>
+      		<div class="clear"></div>
+      	</div><!--content-->
+      </div>
+      
+      <%= paginate @articles_columns %>
+      
+  <% else %>
+    <p></p>
+  <% end %>
+</div>
+
+<div class="rightCol">
+</div>
+
+<div class="clear"></div>
+

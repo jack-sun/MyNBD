@@ -1,0 +1,28 @@
+<div id="elementActions">
+	<% if (not @element.new_record?) %>
+		<%case @owner.class.to_s%>
+		<%when FeaturePage.name%>
+			<%= link_to "<span>移除</span>".html_safe, console_feature_page_element_url(@owner, @element), :method => :delete, :confirm => "移除元素？", :class => "btnRed lf" %>
+		<%when Topic.name%>
+			<%= link_to "<span>移除</span>".html_safe, console_topic_element_url(@owner, @element), :method => :delete, :confirm => "移除元素？", :class => "btnRed lf" %>
+		<%end%>
+	<%end %>
+	<%= link_to "<span>保存</span>".html_safe, "javascript:void(0);", :id => "createNewElement", :class => "btnBlueM rf"%>
+	<%= link_to "<span>取消</span>".html_safe, "javascript:void(0)", :id => "cancelEditBtn", :class => "btnGrayM rf" %>
+	<div class="clear"></div>
+</div>
+
+<script type="text/javascript">
+	$(function(){
+		var ie = /*@cc_on!@*/ !1;
+		$("#cancelEditBtn").click(function(){
+			var l = window.history.length;
+			if( (ie && l == 0) || (!ie && l == 1) ){
+				window.close();
+			}else {
+				window.history.go(-1);
+			}
+			return false;
+		});
+	});
+</script>

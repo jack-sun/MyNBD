@@ -1,0 +1,10 @@
+<div class="operation">
+	<% if defined?(@weibos_navs) and @weibos_navs != "hot_rt"  %>
+		<%= paginate weibos %>
+	<%end%>
+	<div class='lOpt'>
+		<span>批量操作:</span>
+        <a href="javascript:void(0)" class="btnGray banWeibos"><span>屏蔽</span></a>
+		<a href="javascript:void(0)" class="btnGray deleteWeibos"><span>删除</span></a>
+	</div>
+</div>

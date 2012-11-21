@@ -1,0 +1,60 @@
+<%= require_slideShow %>
+
+<% content_for :header_ad do %>
+  <script type="text/javascript">
+    BAIDU_CLB_preloadSlots("347589","347595","347597");
+  </script>
+  <!-- 广告位：智库_顶部四分之三通栏 -->
+  <%= render :partial => "ads/ad", :locals => { :id => "347589", :html_class => "header" } %>
+<% end %>
+
+<% content_for :footer_ad do %>
+  <!-- 广告位：智库_底部通栏 -->
+  <%= render :partial => "ads/ad", :locals => { :id => "347597", :html_class => "footer" } %>
+<% end %>
+
+<div class="layout">
+  <div class="rCol rColBorder">
+    <%= render :partial => "columns/article_list", :locals => {:list_title => "晨会速递", :digest_number => 1, :digest_restrict => true, :articles => (@chenghui_articles[:articles].map(&:article)||[]), :for_subdomain => Settings.ntt_sub_domain, :column_id => @chenghui_articles[:id]}%>
+
+    <!-- 广告位：智库_右边栏一 -->
+    <%= render :partial => "ads/ad", :locals => { :id => "347595", :html_class => "right_box" } %>
+  </div>
+  <div class="main">
+    <div class="sectionA">
+      <div class="title titleNoBorder">
+        <h3>重磅推荐</h3>
+        <span class="opts"><%= link_to "更多", ntt_column_url(@zhongbang_articles[:id])%></span>
+      </div>
+      <div class="content ptn">
+         <% cache(column_show_content_key_by_id(@zhongbang_articles[:id])) do %>
+        <%= render :partial => "columns/scroll_head_article", :locals => { :articles => @zhongbang_articles[:articles].map(&:article).compact, :column_id => 201 } %>
+        <% end %>
+      </div>
+    </div>
+    <div class="sectionA mbl">
+      <div class="title">
+        <h3>热门研报</h3>
+        <span class="opts"><%= link_to "更多", ntt_column_url(@yanbao_articles[:id])%></span>
+      </div>
+      <div class="content">
+        <div class="subLeftCol">
+          <%= render :partial => "columns/article_list", :locals => { :digest_number => 2, :digest_restrict => true, :articles => (@yanbao_articles[:articles].map(&:article)[0..1]||[]), :for_subdomain => Settings.ntt_sub_domain, :column_id => @yanbao_articles[:id]} %>
+        </div>
+        <div class="subRightCol">
+          <%= render :partial => "columns/article_list", :locals => { :digest_number => 2, :digest_restrict => true, :articles => (@yanbao_articles[:articles].map(&:article)[2..3]||[]), :for_subdomain => Settings.ntt_sub_domain, :column_id => @yanbao_articles[:id]} %>
+        </div>
+        <div class="clear"></div>
+      </div>
+    </div>
+    <div class="subLeftCol">
+      <%= render :partial => "columns/article_list", :locals => {:list_title => "LED", :digest_number => 1, :digest_restrict => true, :articles => (@led_articles[:articles].map(&:article)||[]), :for_subdomain => Settings.ntt_sub_domain, :column_id => @led_articles[:id]}%>
+      <%= render :partial => "columns/article_list", :locals => {:list_title => "新材料", :digest_number => 1, :digest_restrict => true, :articles => (@fantai_articles[:articles].map(&:article)||[]), :for_subdomain => Settings.ntt_sub_domain, :column_id => @fantai_articles[:id]}%>
+    </div>
+    <div class="subRightCol">
+      <%= render :partial => "columns/article_list", :locals => {:list_title => "物联网", :digest_number => 1, :digest_restrict => true, :articles => (@wulian_articles[:articles].map(&:article)||[]), :for_subdomain => Settings.ntt_sub_domain, :column_id => @wulian_articles[:id]}%>
+      <%= render :partial => "columns/article_list", :locals => {:list_title => "新能源", :digest_number => 1, :digest_restrict => true, :articles => (@nengyuan_articles[:articles].map(&:article)||[]), :for_subdomain => Settings.ntt_sub_domain, :column_id => @nengyuan_articles[:id]}%>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+(function(){
+ <% @objects.each do |o| %>
+   $('#<%= o.class.to_s.downcase %>_<%= o.id %>').fadeOut();
+ <% end %>
+ _popWinForLoading.hide();
+ //window.location.reload();
+})();

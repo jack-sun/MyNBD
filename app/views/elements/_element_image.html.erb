@@ -1,0 +1,4 @@
+<% json = JSON.parse(element.content)["body"]
+-%>
+
+<%= render :partial => "elements/image", :locals => { :image_data => json, :element => element } %>
