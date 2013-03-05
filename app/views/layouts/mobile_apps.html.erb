@@ -24,8 +24,8 @@
 
       <div id="mobileNavigation">
         <ul>
-          <li class="current"><a href="#"><b class="android"></b>Android版</a></li>
-          <li><a href="http://itunes.apple.com/cn/app/id413082888?mt=8"><b class="iphone"></b>iPhone版</a></li>
+          <li <%if @current == 'android'%>class="current"<%end%>><a href="/mobiles/android"><b class="android"></b>Android版</a></li>
+          <li <%if @current == 'iphone'%>class="current"<%end%>><a href="/mobiles/iphone"><b class="iphone"></b>iPhone版</a></li>
           <li><a href="http://itunes.apple.com/cn/app/id440680920?mt=8"><b class="ipad"></b>iPad版</a></li>
           <li><a href="http://old.nbd.com.cn/mobile/"><b class="more"></b>更多</a></li>
         </ul>

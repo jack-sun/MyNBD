@@ -17,6 +17,10 @@ class Payment < ActiveRecord::Base
     status == STATUS_SUCCESS
   end
 
+  def faild?
+    !success?
+  end
+
   def set_success_from_notify(notify)
     return if self.success?
     Payment.transaction do

@@ -1,0 +1,66 @@
+<div class="sectionA">
+  <div class="title">
+    <h2>
+      用户管理
+    </h2>
+    <div style="margin-top:15px;" class="opts">
+    <% if false %>  
+      <%= form_tag search_console_premium_gms_accounts_url, :method => :get, :class => "searchBoxSmall" do %>
+        <a href="javascript:void(0)" onclick="$(this).closest('form').submit();return false;" class="searchBtn"></a>
+        <%= text_field_tag "nickname", params[:nickname], :class => "searchInput", :placeholder => "搜索用户名" %>
+        <%= submit_tag "", :class => "hiddenSubmit" %>
+      <% end %>
+    <% end %>
+    </div>
+  </div>
+
+  <div id="body_state" class="content rightColCenter">
+    <div class="datePicker">
+      <ul>
+        <li class="<%= @paid ? 'current' : '' %>">
+          <%= link_to "付费用户", console_premium_gms_accounts_path(:paid => 'true') %>
+        </li>
+        <li class="<%= @paid ? '' : 'current' %>">
+          <%= link_to "登记用户", console_premium_gms_accounts_path(:paid => 'false') %>
+        </li>
+      </ul>
+    </div>
+    <table class="tableA">
+      <thead>
+        <tr>
+          <th>用户名</th>
+          <% if @paid %>
+          <th>套餐类型</th>
+          <% end %>
+          <th>当前点数</th>
+          <% if @paid %>
+          <th>最后付款时间</th>
+          <th>最后付款类型</th>
+          <% end %>
+          <th>登记时间</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @gms_accounts.each do |account| %>
+          <tr>
+            <td><%= account.user.blank? ? "" : account.user.nickname %></td>
+            <% if @paid %>
+            <td><%= plan_type_name(account.plan_type) %></td>
+            <% end %>
+            <td><%= account.user.credits %></td>
+            <% if @paid %>
+            <td><%= account.last_payment_at && account.last_payment_at.strftime("%Y-%m-%d") %></td>
+            <td><%= GmsAccount::ACTIVE_FROM[account.last_active_from] %></td>
+            <% end %>
+            <td><%= account.created_at.strftime("%Y-%m-%d") %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% unless @console_search %>
+      <div style="margin-top:20px;">
+        <%= paginate @gms_accounts %>
+      </div>
+    <% end %>
+  </div>
+</div>

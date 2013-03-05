@@ -1,0 +1,29 @@
+<div id="pageName">
+  <h1>
+    <%= link_to '股东大会实录',premium_gms_articles_path %> / <%=  (@gms_article.is_preview? ? '[预售]' : '') + @gms_article.article.title %>
+  </h1>
+</div>
+
+<% unless flash[:note].blank? %>
+  <div class="alert_done">
+    <b></b><%= "恭喜！您已成功购买了套餐#{flash[:note][:play_type]}！目前的信用点数为：#{@current_user.credits}。"%>
+  </div>
+<% end %>
+
+<div class="layout">
+  <div style="width:250px;" class="rCol pts"></div>
+  <div class="main">
+    <div class="alert_info">
+      <p>
+        <b></b>该文章归属于"每经投资宝"，查阅内容需消费 <span class="red"><%= @gms_article.cost_credits %> 个信用点</span>。您目前的信用点为: <%= @current_user.credits %>，确认并继续查阅。<br>
+        <% if @gms_article.is_preview? %>
+          <br>带【预售】状态的实录，该公司股东大会尚未召开，您可以提前预订实录并提问，实录将会在股东大会召开后更新。 <br><br>若因各种原因（包括上市公司方面的原因、旅途行程原因、多家公司同一天召开等多方面因素），研究员未能成功参会，所消费点数可以自行领取返还。
+        <% end %>
+      </p>
+    </div>
+    <div style="padding-top: 5px;">
+    <%= link_to '<span>确认购买</span>'.html_safe, premium_gms_article_buy_path(@gms_article), :method => :post, :class => "btnBlueM mrm" %>
+      <%= link_to '<span>取消</span>'.html_safe, premium_gms_articles_path, :class => "btnGrayM" %>
+    </div>
+  </div>
+</div>

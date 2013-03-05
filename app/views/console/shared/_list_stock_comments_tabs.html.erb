@@ -1,0 +1,4 @@
+<ul>
+    <li <% if defined?(@stock_comments_navs) and @stock_comments_navs == "all" %>class="current"<%end%> ><%= link_to "所有评论", console_premium_stock_comments_url %></li>
+	<li <% if defined?(@stock_comments_navs) and @stock_comments_navs == "banned" %>class="current"<%end%> ><%= link_to "已屏蔽", console_premium_stock_comments_url(:banned => true) %></li>
+</ul>

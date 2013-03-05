@@ -4,7 +4,7 @@ class Console::StaffsController < ApplicationController
   skip_before_filter :current_user
   before_filter :current_staff
   before_filter :authorize_staff
-  before_filter :init_common_console#, :only => [:update_target]
+  before_filter :init_common_console, :except => [:change_password] #, :only => [:update_target]
   
   def index
       @staff_type = params[:type].try(:to_i) || Staff::TYPE_EDITOR

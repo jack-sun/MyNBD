@@ -17,11 +17,16 @@ class Column < ActiveRecord::Base
   RSS_INFORMATION_HEADLINE_COLUMN_ID = 10009
   RSS_MANAGE_COLUMN_ID = 10010
   RSS_FINACE_LIFE_COLUMN_ID = 10011
+  RSS_NBD_HEADLINE_COLUMN_ID = 10012
+  RSS_NBD_REPORTER_COLUMN_ID = 10013
   PAGE_CACHE_EXPIRE_TIME = 30.minutes
 
   MOBILE_NEWS_COLUMN = 198
   TOUZIBAO_NEWS_COLUMN = 199
   TOUZIBAO_CASE_COLUMN = 200
+  GMS_ARTICLES_COLUMN = 210
+
+  GMS_ARTICLES_COLUMNS = [GMS_ARTICLES_COLUMN]
 
   FORBID_COLUMNS = [TOUZIBAO_NEWS_COLUMN]
   FORBID_ARTICLE_REQUEST_OF_COLUMNS = [TOUZIBAO_NEWS_COLUMN]
@@ -167,7 +172,11 @@ class Column < ActiveRecord::Base
       "normal"
     end
   end
-  
+
+  def show_name
+    "#{self.parent.name}-#{self.name}"
+  end
+
   class << self
     
     def aggregate_articles(column_ids, limit)

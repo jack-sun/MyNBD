@@ -4,7 +4,7 @@ class Console::SessionsController < ApplicationController
   USER_NAME = "savesparta"
   PASSWORD = "nbdanti9105"
 
-  before_filter :authenticate, :only => [:new]
+  before_filter :authenticate
   
   def new
     if session[:staff_id].present?
@@ -16,6 +16,14 @@ class Console::SessionsController < ApplicationController
   end
   
   def create
+  if Rails.env.development?
+
+  else
+    if !simple_captcha_valid?("simple_captcha")
+        flash[:captcha_error] = "验证码错误！"
+        return render :action => 'new',:layout => 'application'
+    end
+  end
     if staff = Staff.authenticate(params[:name], params[:password])
       update_staff_session(staff)
       

@@ -122,9 +122,10 @@
     // edit item
     boxGrid.delegate(".gridItem:not(#addGridItem)", "click", function(){
       var data = $(this).data("imageData");
+      var dataStr = encodeURIComponent(JSON.stringify(data));
       _editedItem = $(this);
       _popWinForAddItem.show();
-      ifmImage.attr("src", url + "?content=" + JSON.stringify(data));
+      ifmImage.attr("src", url + "?content=" + dataStr);
     });
 
     // submit form

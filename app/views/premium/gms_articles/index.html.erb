@@ -1,0 +1,37 @@
+<div id="pageName">
+  <%= render :partial => "search" %>
+  <h1>
+    每经投资宝·股东大会实录
+  </h1>
+</div>
+
+<% if false %>
+  <% if @current_user.present? && @current_user.paid_one_year_for_ttyj? && !@current_user.is_receive_credits_from_ttyj? %>
+  <div class="alert_info">
+  <b></b>尊敬的用户，由于您已购买了一年期的《每经投资宝·天天赢家》，现获赠26个每经信用点，该信用点可用于购买股东大会实录。
+  <%= link_to '<span>立刻领取</span>'.html_safe, premium_receive_credits_from_ttyj_path, :method => :post, :class => "btnBlue" %>
+</div>
+<% end %>
+<% end %>
+
+<% if flash[:notice] %>
+  <div class="alert_done">
+    <b></b><%= flash[:notice] %>
+  </div>
+<% end %>
+<div class="tabs">
+  <ul>
+    <li class='<%= 'current' if @gms_articles_type == 'all' %>'><%= link_to "所有实录", premium_gms_articles_path %></li>
+    <li class='<%= 'current' if @gms_articles_type == 'paid' %>'><%= link_to "已购买的实录", premium_gms_articles_path(:paid => true) if @current_user.present? %></li>
+  </ul>
+</div>
+<div>
+</div>
+<%= render :partial => "premium/gms_articles/table", :locals => { :gms_articles => @gms_articles, :is_order => true } %>
+
+<div class="mtm"><%= paginate @gms_articles %></div>
+<div class="clear"></div>
+
+<p class="mvm">您感兴趣的公司不在其中？<%= link_to( "在此提交相关信息",premium_question_stock_path,:target => '_blank') %></p>
+
+<%= render :partial => "premium/gms_articles/tip" %>

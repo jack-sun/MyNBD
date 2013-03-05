@@ -28,7 +28,7 @@ html_class = 'gray' unless html_class
     </ul>
     <ul class="rf">
       <%if @current_user.present?%>
-        <li><span><%= @current_user.nickname %></span> <%= link_to "[退出]", user_sign_out_url, :method => :delete %></li>
+        <li><span><%= @current_user.nickname.truncate(10) %></span> <%= link_to "[退出]", user_sign_out_url, :method => :delete %></li>
         <li><%= link_to "我的首页", user_url(@current_user) %></li>
         <li><%= link_to "账户设置", settings_user_url %></li>
         <li class="last"><%= link_to "意见反馈", user_url('每经网客服') %></li>

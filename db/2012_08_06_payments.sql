@@ -1,4 +1,5 @@
 DROP TABLE IF EXISTS `payments`; 
+rDROP TABLE IF EXISTS `payments`; 
 CREATE TABLE `payments` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT 0,

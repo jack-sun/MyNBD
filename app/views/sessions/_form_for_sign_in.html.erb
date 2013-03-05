@@ -1,15 +1,20 @@
-<div id="loginFormWrapper">
+<%
+title = '登录社区' unless title
+btn_txt = '登录' unless btn_txt
+%>
 
-	
+<div id="loginFormWrapper">
 <%= form_tag(user_sign_in_url, :class => "formA roundCorner", :method => "post") do %>
+
 	<div class="title">
-	<h2>登录社区</h2>
-	<span class="titleOpts">还没有账号？<%= link_to "立刻注册 &raquo;".html_safe, "/user/sign_up" %></span>
+		<h2><%= title %></h2>
+		<span class="titleOpts">还没有账号？<%= link_to "立刻注册 &raquo;".html_safe, "/user/sign_up" %></span>
 	</div>
+
 	<%if flash[:notice]%><div class="alert_info" style="margin-bottom:20px;"><b></b><%= flash[:notice] %></div><%end%>
 	<%if flash[:alert]%><div class="alert_error"><b></b><%= flash[:alert] %></div><%end%>
 	<p>
-		<%= label_tag :email, "邮箱:" %> <br />
+		<%= label_tag :email, "邮箱或昵称:" %> <br />
 		<%= text_field_tag :email, nil, :size => 40, :class => 'textInput' %>
 	</p>
 	<p style="margin-bottom:5px">
@@ -29,7 +34,7 @@
 	</div>
 	<div class="block btnRowM">
 		<input type="submit" class="hiddenSubmit" />
-		<a href="javascript:void(0)" onclick="$(this).parents('form').submit();return false;" class="btnBlueM"><span>登录社区</span></a>
+		<a href="javascript:void(0)" onclick="$(this).parents('form').submit();return false;" class="btnBlueM"><span><%= btn_txt %></span></a>
 		<div class="clear"></div>		
 	</div>
 	<div class="otherAccess">

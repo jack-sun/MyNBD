@@ -1,0 +1,43 @@
+<%= stylesheet_link_tag "reset", "style_global", "style_website" %>
+<style type="text/css">
+  body{ margin:20px 30px; }
+</style>
+
+<h1>发行部订阅卡查询</h1>
+<%= paginate @cards %>
+<div class="clear"></div>
+<table class="tableNormal">
+  <thead>
+    <tr>
+      <th style="width:67px">激活日期</th>
+      <th style="width:82px">卡号</th>
+      <th style="width:60px">姓名</th>
+      <th>地址</th>
+      <th style="width:50px">邮编</th>
+      <th style="width:100px">电话</th>
+      <th style="width:100px">邮件</th>
+      <th>公司</th>
+      <th style="width:90px">订阅开始时间</th>
+      <th style="width:80px">是否要发票</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @cards.each do |card| %>
+      <tr>
+        <td><%= card.actndate[0..9]%></td>
+        <td><%= card.cardnumber%></td>
+        <td><%= card.realname%></td>
+        <td><%= card.address%></td>
+        <td><%= card.postcode%></td>
+        <td><%= card.phone%></td>
+        <td><%= card.email%></td>
+        <td><%= card.company%></td>
+        <td><%= card.subbegin%></td>
+        <td><%= card.receipt ? "是" : "否"%></td>
+      </tr>
+
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @cards %>

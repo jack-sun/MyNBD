@@ -9,9 +9,9 @@
       <div style="margin-bottom:15px;">
         <%= f.label :column_ids, "所属栏目:" %>
         <% if @selected_id %>
-          <%= f.grouped_collection_select :column_ids, Column.basic_columns.displaied_columns.includes(:children), :children, :name, :id, :name, {:selected => [@selected_id]}, {:class => "chzn-select", :multiple => true, :style => "width:200px;"} %>
+          <%= f.grouped_collection_select :column_ids, Column.basic_columns.displaied_columns.includes(:children), :children, :name, :id, :show_name, {:selected => [@selected_id]}, {:class => "chzn-select", :multiple => true, :style => "width:200px;"} %>
         <% else %>
-          <%= f.grouped_collection_select :column_ids, Column.basic_columns.displaied_columns.includes(:children), :children, :name, :id, :name, {}, {:class => "chzn-select", :multiple => true, :style => "width:200px;"} %>
+          <%= f.grouped_collection_select :column_ids, Column.basic_columns.displaied_columns.includes(:children), :children, :name, :id, :show_name, {}, {:class => "chzn-select", :multiple => true, :style => "width:200px;"} %>
         <%end %>
       </div>
       <div style="margin-bottom:15px;">
@@ -65,7 +65,7 @@
         <% link_to "<span>预览文章</span>".html_safe, "javascript:void(0);", :id => "preview_aricle", :class => "btnGrayBlue rf"%>
 
       <p>
-        <%= f.input :is_rolling_news, :as => :boolean, :defautl => 0, :label => "是否为滚动新闻", :label_html => {:style => "float:none;width:auto" } %>
+        <%= f.input :is_rolling_news, :as => :boolean, :defautl => 1, :label => "是否为滚动新闻", :label_html => {:style => "float:none;width:auto" } %>
         <br/>
         <%= f.input :need_push, :as => :boolean, :defautl => 0, :label => "是否推送到客户端".html_safe, :label_html => {:style => "float:none;width:auto" } %>
       </p>

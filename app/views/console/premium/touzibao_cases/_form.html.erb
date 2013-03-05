@@ -96,6 +96,12 @@
 
 
 <script type="text/javascript">
+  // 供外部调用，插入图片
+  var _insertImage = function(data){
+    var inst = $("#inputArea div:visible textarea").focus().tinymce();
+    inst.execCommand('mceInsertContent',false, data);
+  }
+  
   $(function(){
     var isNewArticle = $("#article_pages_attributes_0_id").length == 0 ? true : false; 
     var boxEditPage = $('#editPageContent');

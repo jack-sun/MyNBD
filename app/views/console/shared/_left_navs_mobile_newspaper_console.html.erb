@@ -29,6 +29,19 @@
   <dd <% if @mobile_news_type and @mobile_news_type == "new" %>class="current" <%end%>>
     <%= link_to "添加新期刊", new_console_premium_mobile_news_path %>
   </dd>
+  <dt>股东大会实录</dt>
+  <dd <% if @gms_articles_type and @gms_articles_type == "index" %>class="current" <%end%>>
+    <%= link_to "文章管理", console_premium_gms_articles_path %>
+  </dd>
+  <dd <% if @gms_articles_type and @gms_articles_type == "new" %>class="current" <%end%>>
+    <%= link_to "添加新文章", new_console_premium_gms_article_path %>
+  </dd>
+  <dd <% if @gms_articles_type and @gms_articles_type == "comments" %>class="current" <%end%>>
+    <%= link_to "会议提问管理", console_premium_stock_comments_path %>
+  </dd>  
+  <dd <% if @gms_articles_type and @gms_articles_type == "paid_users" %>class="current" <%end%>>
+    <%= link_to "用户管理", console_premium_gms_accounts_path %>
+  </dd>   
   <dt>卡号管理</dt>
   <dd <% if @service_card_type and @service_card_type == "create" %>class="current" <%end%>>
     <%= link_to "卡号生成器", new_console_premium_service_card_url %>

@@ -35,7 +35,7 @@ module Console
     def new
       column = Column.where(:id => params[:column_id]).first
       @selected_id = column.nil? ? -1 : column.id
-      @article = Article.new(:allow_comment => false) 
+      @article = Article.new(:allow_comment => false, :is_rolling_news => true) 
       session[:article_jump] = request.env["HTTP_REFERER"]
     end
     
@@ -67,7 +67,7 @@ module Console
     
     #TODO
     def index
-      @articles = Article.published.includes({:columns => :parent}, :staffs, :pages, :children_articles, :weibo).order('id desc').page params[:page]#@current_staff.articles.page params[:page]
+      @articles = Article.published.includes({:columns => :parent}, :staffs, :pages, :children_articles, :weibo).order('pos asc').page params[:page]#@current_staff.articles.page params[:page]
       @category = ""
       @sortable = false
       render :show

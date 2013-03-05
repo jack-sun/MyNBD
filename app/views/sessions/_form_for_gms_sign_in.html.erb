@@ -1,0 +1,46 @@
+<div id="loginFormWrapper">
+
+	
+<%= form_tag(user_sign_in_url, :class => "formA roundCorner", :method => "post") do %>
+	<%if flash[:notice]%><div class="alert_info" style="margin-bottom:20px;"><b></b><%= flash[:notice] %></div><%end%>
+	<%if flash[:alert]%><div class="alert_error"><b></b><%= flash[:alert] %></div><%end%>
+	<p>
+		<%= label_tag :email, "邮箱或昵称:" %> <br />
+		<%= text_field_tag :email, nil, :size => 40, :class => 'textInput' %>
+	</p>
+	<p style="margin-bottom:5px">
+		<%= label_tag :password, "密码:" %>	<br />
+		<%= password_field_tag :password, nil, :size => 40, :class => 'textInput', :autocomplete => :off %>
+	</p>
+    <% if @_come_back %>
+      <%=  hidden_field_tag "come_back", "1" %>
+    <% end %>
+	<div class="block" style="width:345px;">
+		<span class="lf">
+			<%= check_box_tag :remember_me, "1", false %>
+			<%= label_tag :remember_me, "下次自动登录", :style => "font-weight:normal;font-size:12px;" %>
+		</span>
+		<%= link_to "忘记密码?", new_password_reset_url, :class => "rf" %>
+		<div class="clear"></div>
+	</div>
+	<div class="block btnRowM">
+		<input type="submit" class="hiddenSubmit" />
+		<a href="javascript:void(0)" onclick="$(this).parents('form').submit();return false;" class="btnBlueM"><span>登录社区</span></a>
+		<div class="clear"></div>		
+	</div>
+	<div class="otherAccess">
+		<p style="margin-bottom:5px;">或使用合作网站账号登录?</p>
+		<p>
+            <span class="sinaAccess"><b></b><%= link_to "用新浪微博登录", auth_provider_path('weibo') %></span>
+            <span class="qqAccess"><b></b><%= link_to "用QQ登录", auth_provider_path('qq_connect') %></span>
+            <%if false%><span class="ttAccess"><b></b><%= link_to "用QQ帐号登录", auth_provider_path('tqq') %></span><%end%>
+		</p>
+	</div>
+<% end %>
+</div>
+
+<script type="text/javascript">
+	$(function(){
+		$("#email").focus();
+	});
+</script>

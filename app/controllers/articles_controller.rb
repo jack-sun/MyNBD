@@ -2,9 +2,10 @@
 class ArticlesController < ApplicationController
 
   before_filter :check_ntt_article, :only => [:print, :show, :page]
-  before_filter :forbid_the_latest_article_request_of_mobile_news, :only => [:show]
+  before_filter :forbid_the_latest_article_request_of_mobile_news, :only => [:show,:print]
 
-  before_filter :forbid_article_request_of_touzibao, :only => [:show]
+  before_filter :forbid_article_request_of_touzibao, :only => [:show,:print]
+  before_filter :forbid_article_request_of_gms, :only => [:show,:print]
   
   layout 'site'
   after_filter :only => [:show, :page] do |c|
@@ -26,6 +27,8 @@ class ArticlesController < ApplicationController
   end
   
   def show
+    @showed_live = Live.showed_lives(Rails.cache.read(Live::LIVE_SHOW_TYPE_KEY)||"1").order("id desc").first
+    @showed_live_talks = @showed_live.live_talks.where(:talk_type => LiveTalk::TYPE_TALK).includes([:weibo => :owner, :live_answers => {:weibo => :owner}]).order("id desc").limit(2) #直播
     
     @first_column = @article.columns.order("id asc").try(:to_a).try(:first)
     
@@ -125,7 +128,11 @@ class ArticlesController < ApplicationController
       render :show_simple
       return
     else
-      render :show
+      if @article.is_in_cache_period?
+        render :show
+      else
+        render :show_with_out_cache
+      end
       return
     end
   end

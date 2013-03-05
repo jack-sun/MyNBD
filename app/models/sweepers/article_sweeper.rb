@@ -10,6 +10,32 @@
 #
 
 module Sweepers
+
+  module ArticleSweeperForTouzibao
+  def after_save(entry)
+    ids = ArticleTouzibao.where(:article_id => entry.id).select(:touzibao_id).map(&:touzibao_id)
+    if ids.present?
+      expire_cache_object("touzibao", "today")
+      expire_cache_object("touzibao", "latest")
+      ids.each do |id|
+        expire_cache_object("touzibao", id)
+      end
+    end
+    super
+  end
+
+  def after_destroy(entry)
+        ids = ArticleTouzibao.where(:article_id => entry.id).select(:touzibao_id).map(&:touzibao_id)
+    if ids.present?
+      expire_cache_object("touzibao", "today")
+      expire_cache_object("touzibao", "latest")
+      ids.each do |id|
+        expire_cache_object("touzibao", id)
+      end
+    end
+    super
+  end
+  end
   
   module ArticleSweeperForPushArticle
     def before_save(entry)
@@ -130,6 +156,7 @@ module Sweepers
     include ArticleSweeperForStaffRecord
     include ArticleSweeperForColumnist
     include ArticleSweeperForPushArticle
+    include ArticleSweeperForTouzibao
 
     # include new module behinde this line
 

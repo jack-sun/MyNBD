@@ -11,7 +11,7 @@
     end
 %>
 
-<%= simple_form_for([:console, @article],:url =>url, :html => {:id => "article_form", :multipart => true}) do |f| %>
+<%= simple_form_for([:console, @article],:url => url, :html => {:id => "article_form", :multipart => true}) do |f| %>
   <%= f.input :status, :as => :hidden, :default => 0 %>
   <%= f.grouped_collection_select :column_ids, Column.basic_columns.includes(:children), :children, :name, :id, :name, {:selected => [Column::MOBILE_NEWS_COLUMN]}, {:multiple => true, :style => "display:none"} %>
   <div class="subRightCol">
@@ -90,6 +90,10 @@
 
 
 <script type="text/javascript">
+  var _insertImage = function(data){
+    var inst = $("#inputArea div:visible textarea").focus().tinymce();
+    inst.execCommand('mceInsertContent',false, data);
+  }
   $(function(){
     var isNewArticle = $("#article_pages_attributes_0_id").length == 0 ? true : false; 
     var boxEditPage = $('#editPageContent');
@@ -182,3 +186,9 @@
     });
   });
 </script>
+
+<!-- ======params:{"utf8"=>"✓", "authenticity_token"=>"vTUMWJq1UzlyT2eSRyIkWXOX5FYxdT919JB7/ngAquk=", 
+"gms_article"=>{"cost_credits"=>"15", "stock_code"=>"eee", "meeting_at(1i)"=>"2012", "meeting_at(2i)"=>"12", "meeting_at(3i)"=>"26", "meeting_at(4i)"=>"17", "meeting_at(5i)"=>"41", "article"=>{"title"=>"aaa", "status"=>"", "column_ids"=>["209"], "pages"=>{"content"=>"<p>bbb</p>", "p_index"=>"1", "_destroy"=>"false"}
+}
+}, 
+"article"=>{"pages_attributes"=>{"2"=>{"content"=>"<p>ccc</p>", "p_index"=>"2", "_destroy"=>"false"}, "3"=>{"content"=>"<p>ddd</p>", "p_index"=>"3", "_destroy"=>"false"}}}, "action"=>"create", "controller"=>"console/premium/gms_articles"} -->

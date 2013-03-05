@@ -1,0 +1,6 @@
+<% url = @console_search ? console_premium_search_stock_path : premium_search_stock_path %>
+<% form_tag(url,:method => :get, :class => "r searchBox mbm") do %>
+<a href="javascript:void(0)" class="searchBtn" onclick="$(this).closest('form').submit();return false;"></a>
+  <%= submit_tag "搜索", :class => "hiddenSubmit" %>
+  <%= text_field_tag 'stock_code', params[:stock_code], :placeholder => "6位数股票代码", :class => "searchInput" %>
+<% end %>

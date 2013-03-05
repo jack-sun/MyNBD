@@ -25,6 +25,7 @@ class Article < ActiveRecord::Base
   attr_accessor :c_id
 
   paginates_per Settings.count_per_page
+
   DRAFT = 0
   PUBLISHED = 1
   BANNDED = 2
@@ -49,12 +50,16 @@ class Article < ActiveRecord::Base
   SPECIAL_OPTIONS = [["无", SPECIAL_NONE], ["重磅", SPECIAL_HEAVY], ["独家", SPECIAL_EXCLUSIVE], ["特稿", SPECIAL_FEATURE], ["突发", SPECIAL_BREAKING], ["追踪", SPECIAL_TRACK], ["快讯", SPECIAL_EXPRESS]]
   SPECIAL = {SPECIAL_NONE => "", SPECIAL_HEAVY => "重磅", SPECIAL_EXCLUSIVE => "独家", SPECIAL_FEATURE => "特稿", SPECIAL_BREAKING => "突发", SPECIAL_TRACK => "追踪", SPECIAL_EXPRESS => "快讯"}
   
+  ONE_MONTH_PERIOD = 1.months
+
   attr_accessor :publish_weibo_with_official_account
   attr_accessor :pos
   attr_accessor :section
 
   has_one  :articles_newspaper, :dependent => :destroy
   has_one  :newspaper, :through => :articles_newspaper
+
+  has_one :gms_article
 
   has_many :articles_staffs, :dependent => :destroy
   has_many :staffs, :through => :articles_staffs
@@ -248,7 +253,7 @@ class Article < ActiveRecord::Base
         if !added_column_ids.blank?
           self.add_columns(added_column_ids, params[:status] || 0) 
         elsif params[:allow_comment] == "1" and self.weibo_id == 0
-          weibo_content = "【#{self.title}】#{self.show_digest} #{article_url(self)}" #<a href='http://#{article_url(self)}'>查看详情</a>
+          weibo_content = "【#{self.title}】#{self.list_title} #{article_url(self)}" #<a href='http://#{article_url(self)}'>查看详情</a>
           first_column = self.columns.first
           ori_weibo = first_column.parent.user.create_plain_text_weibo(weibo_content) if first_column
           params["weibo_id"] = ori_weibo.id
@@ -311,8 +316,8 @@ class Article < ActiveRecord::Base
     if send_weibo
       if self.weibo.nil?
         first_column = columns.shift
-        #return if first_column.blank?
-        weibo_content = "【#{self.title}】#{self.show_digest} #{article_url(self)}"
+        return if first_column.blank?
+        weibo_content = "【#{self.title}】#{self.list_title} #{article_url(self)}"
         ori_weibo = first_column.user.create_plain_text_weibo(weibo_content)
         self.weibo_id = ori_weibo.id
         Weibo.weibo_article_id[ori_weibo.id] = self.id
@@ -334,6 +339,14 @@ class Article < ActiveRecord::Base
 
   def published?
     self.status == PUBLISHED
+  end
+
+  def publish
+    self.update_attributes({:status => PUBLISHED})
+  end
+
+  def ban
+    self.update_attributes({:status => BANNDED})
   end
 
   def draft?
@@ -422,6 +435,10 @@ class Article < ActiveRecord::Base
     self.article_touzibao.try(:section)
   end
 
+  def is_in_cache_period?(period = ONE_MONTH_PERIOD)
+    self.created_at.strftime("%Y-%m-%d") > (Time.now - period).strftime("%Y-%m-%d")
+  end
+  
 
   class << self
 
@@ -453,6 +470,7 @@ class Article < ActiveRecord::Base
     def record_hot_article?(article_id)
       (ArticlesColumn.where(:article_id => article_id, :status => PUBLISHED).select([:column_id]).map(&:column_id) & Column::NOT_RECORD_HOT_IDS).blank?
     end
+
 
   end
 

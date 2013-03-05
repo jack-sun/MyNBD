@@ -52,5 +52,11 @@ class SearchController < ApplicationController
     @images = Image.search(@keyword, :page => params[:page], :per_page => 10, :order => :id, :sort_mode => :desc)
   end
   
-  
+  # def gms_accounts_search
+  #   @keyword = params[:nick_name]
+
+  #   @users = User.search(@keyword, :page => params[:page], :per_page => 10, :order => :id, :sort_mode => :desc, :with => {:status => 1}) 
+
+  # end
+
 end

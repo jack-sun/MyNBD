@@ -70,7 +70,13 @@ related_articles = false unless related_articles
 	<div id="articleContent" class="articleFontSize_medium">
 		<%= @page.content.html_safe %>
 	</div>
-	<div class="childrenArticles">
+
+	<!-- 广告位：文章详情页_投资宝 -->
+	<div class="w100p ovh">
+		<script type="text/javascript">BAIDU_CLB_fillSlot("557753");</script>
+	</div>
+
+	<div class="childrenArticles mtl">
 		<ul class="unorderList">
           <% if for_subdomain %>
 			<% @article.relate_article_children.order("pos desc").limit(2).each do |a| %>

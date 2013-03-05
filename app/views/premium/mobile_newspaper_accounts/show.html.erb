@@ -1,36 +1,103 @@
-<%@title="账号信息 - 每经资讯产品"%>
+<%@title="账户信息 - 每经资讯产品"%>
 <%= require_css "account_settings.css" %>
-<div class="leftCol">
-  <div id="pageName"><h1>账号信息</h1></div>
-  <% if @account %>
-  
+
+<% unless flash[:note].blank? %>
+  <div class="alert_done">
+    <b></b><%= "恭喜！您已成功购买了套餐#{flash[:note][:play_type]}！目前的信用点数为：#{@current_user.credits}。"%>
+</div>
+<% end %>
+
+
+<% if flash[:notice] %>
+  <div class="alert_done">
+    <b></b><%= flash[:notice] %>
+  </div>
+<% end %>
+
+
+<style type="text/css">
+.formA {
+	border-bottom: 1px dotted #ddd;
+	margin-bottom: 20px;
+}
+.formA p{
+	margin-bottom: 10px;
+}
+</style>
+
+<div id="pageName"><h1>账户信息</h1></div>
+<div class="mobileAccountInfo">
+  <h2>基本信息</h2>
   <div class="formA">
     <p>
-      <%= label_tag "mobile_no", "订阅手机号码:"%>
-      <span class="pureText"><%= @account.phone_no %></span>
+      <%= label_tag "mobile_no", "用户名:"%>
+      <span class="pureText"><%= @current_user.nickname %></span>
     </p>
     <p>
-      <%= label_tag "end_time", "有效期至:"%>
+      <%= label_tag "email", "邮箱:"%>
       <span class="pureText">
-        <% if @current_user.is_premium_overdue? %>
-          <%= @account.service_end_at && @account.service_end_at.strftime("%Y-%m-%d") %>
-          <span class="red b">
-            (已过期)
-          </span>
-        <% else %>
-          <%= @account.service_end_at && @account.service_end_at.strftime("%Y-%m-%d") %>
-        <% end %>
+        <%= @current_user.email %>
       </span>
     </p>
     <p>
-      <%= link_to "<span>订阅续费</span>".html_safe, new_premium_mobile_newspaper_account_url, :class => "btnBlueM" %>
+      <%= link_to "修改密码", premium_change_password_url %>
     </p>
   </div>
-    
-  <% else %>
-    <%= link_to "每经资讯产品介绍", introduce_premium_mobile_newspaper_account_url %>
+
+
+<% if @gms_account %>
+    <h2>每经投资宝·股东大会实录</h2>
+    <div class="formA">
+      <% if @gms_account %>
+          <p>
+            <%= label_tag "point", "目前点数:"%>
+            <span class="pureText">
+              <%= @current_user.credits %>
+            </span>
+          </p>
+          <p>
+            <%= link_to "<span>充值信用点</span>".html_safe, buy_premium_gms_accounts_url, :class => "btnBlueM" %>
+          </p>
+        
+
+      <% else %>
+        <%= link_to "每经资讯产品介绍", premium_gms_articles_path %>
+      <% end %>
+    </div>
+<% end %>
+
+
+  <% if @account %>
+    <h2>每经投资宝·天天赢家</h2>
+    <div class="formA">
+    <% if @account %>
+          <!--<p>
+            <%= label_tag "mobile_no", "订阅手机号码:"%>
+            <span class="pureText"><%= @account.phone_no %></span>
+          </p>-->
+          <p>
+            <%= label_tag "end_time", "有效期至:"%>
+            <span class="pureText">
+              <% if @current_user.is_premium_overdue? %>
+                <%= @account.service_end_at && @account.service_end_at.strftime("%Y-%m-%d") %>
+                <span class="red b">
+                  (已过期)
+                </span>
+              <% else %>
+                <%= @account.service_end_at && @account.service_end_at.strftime("%Y-%m-%d") %>
+              <% end %>
+            </span>
+          </p>
+          <p>
+            <%= link_to "<span>订阅续费</span>".html_safe, new_premium_mobile_newspaper_account_url, :class => "btnBlueM" %>
+          </p>
+
+      <% else %>
+        <%= link_to "每经资讯产品介绍", introduce_premium_mobile_newspaper_account_url %>
+      <% end %>
+    </div>
   <% end %>
-  
 </div>
-<div class="rightCol"></div>
-<div class="clear"></div>
+
+
+

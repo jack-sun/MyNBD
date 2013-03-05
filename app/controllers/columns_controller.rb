@@ -103,6 +103,7 @@ class ColumnsController < ApplicationController
     #@stock_live = {:compere => User.stock_live_user, :id => 'stock_live', :live_talks => Live.last.live_talks.includes([:weibo => :owner, :live_answers => {:weibo => :owner}]).order("id desc").limit(2)} #股市直播
     @showed_live = Live.showed_lives(Rails.cache.read(Live::LIVE_SHOW_TYPE_KEY)||"1").order("id desc").first
     @showed_live_talks = @showed_live.live_talks.where(:talk_type => LiveTalk::TYPE_TALK).includes([:weibo => :owner, :live_answers => {:weibo => :owner}]).order("id desc").limit(2) #直播
+    @touzibao_latest_cases = Touzibao.latest_cases(3)
     
     #首页section
     @head_article = {:articles => Article.of_column(2, 3), :id => 2} #首页头条

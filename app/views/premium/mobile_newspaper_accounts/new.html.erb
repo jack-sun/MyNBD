@@ -44,8 +44,9 @@ alipay = params[:type].try(:to_i) != 1
       <%= label_tag "plan_type_2", "<span class='eq'>6个月</span> <span class='red'>300</span>元 ( 原价<span class='delInfo'>360</span>元, 节省60元 )".html_safe, :class => "clearLabelStyle tzbPayLabelItem" %><br />
       <%= radio_button_tag "plan_type", "1" %>
       <%= label_tag "plan_type_1", "<span class='eq'>3个月</span> <span class='red'>160</span>元 ( 原价<span class='delInfo'>180</span>元, 节省20元 )".html_safe, :class => "clearLabelStyle tzbPayLabelItem" %><br />
-      <%= radio_button_tag "plan_type", "0" %>
-      <%= label_tag "plan_type_0", "<span class='eq'>1个月</span> <span class='red'>60</span>元".html_safe, :class => "clearLabelStyle tzbPayLabelItem" %><br />
+      
+      <% radio_button_tag "plan_type", "0" %>
+     <% label_tag "plan_type_0", "<span class='eq'>1个月</span> <span class='red'>60</span>元".html_safe, :class => "clearLabelStyle tzbPayLabelItem" %><br />
     </p>
     <div class="block">
       <%= submit_tag "购买 并同意服务条款", :class => "hiddenSubmit" %>
@@ -113,6 +114,7 @@ $(function(){
 
   $("#nextBtn").click(function(){
     form.submit();
+    return false;
   });
 
   form.submit(function(){

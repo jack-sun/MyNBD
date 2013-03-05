@@ -12,6 +12,7 @@ class ServiceCard < ActiveRecord::Base
   TIME_12_MOUNTH = 3
   TIME_TYPE = {TIME_1_MOUNTH => 1, TIME_3_MOUNTH => 3, TIME_6_MOUNTH => 6, TIME_12_MOUNTH => 12}
   STATUS_TYPE = {STATUS_ACTIVATED => "已使用", STATUS_UNACTIVATED => "未使用"}
+  PASSWORD_PREFIX = 'nbd'
 
   def overdue?
     return false if self.status == STATUS_UNACTIVATED
@@ -27,18 +28,31 @@ class ServiceCard < ActiveRecord::Base
     return STATUS_TYPE[self.status]
   end
 
-  def ServiceCard.init_temp_new_card(count)
-    card_nos = ServiceCard.select(:card_no).map(&:card_no)
+  def self.init_temp_new_card(count)
+    #TODO: performace issue
+    exist_cards = ServiceCard.select([:card_no, :password]) 
+    cards_infos = {}
+    exist_cards.each{|card| cards_infos.merge!({card.card_no => card.password})}
+
+    # card_nos = exist_cards.map(&:card_no)
+    # card_passwords = exist_cards.map(&:password)
+
     accounts = []
     time = Time.now.strftime("%Y%m%d")
     count.times do
-      number = "#{time}#{ServiceCard.random_number(100000000)}"
-      password = ServiceCard.random_number(10000000000000000)
-      while card_nos.include?(number) do
-        number = "#{time}#{ServiceCard.random_number(100000000)}"
+      number = self.generate_random_str(time, 8) #card number always take time stamp as prefix
+      password = self.generate_random_str(PASSWORD_PREFIX, 13) #card password always take 'nbd' as prefix
+      
+      while cards_infos.has_key?(number) do
+        number = self.generate_random_str(time, 8)
       end
+
+      while cards_infos.has_value?(password) do
+        password = self.generate_random_str(PASSWORD_PREFIX, 13)
+      end
+
       accounts << [number, password]
-      card_nos << number
+      cards_infos.merge!({number => password})
     end
     return accounts
   end
@@ -64,6 +78,11 @@ class ServiceCard < ActiveRecord::Base
   end
 
   private
+
+  def self.generate_random_str(prefix, size)
+    prefix + ServiceCard.random_number("1#{'0'*size}".to_i).to_s
+  end
+
   def self.init_random_number(type)
     count = 1
     number = SecureRandom.random_number(10000000000000000)

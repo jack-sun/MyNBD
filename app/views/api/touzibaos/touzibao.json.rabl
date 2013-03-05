@@ -27,6 +27,7 @@ node :sections do |touzibao|
       end
       {
         :title => section,
+        :id => valid_section_ids[section],
         :content => resp_section_content(section, articles.first.created_at, content),
         :pos => keys.index(section)
       }

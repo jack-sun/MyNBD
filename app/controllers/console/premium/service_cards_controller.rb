@@ -15,9 +15,9 @@ class Console::Premium::ServiceCardsController < ApplicationController
     @stats_type = params[:type] || "0"
     @service_card_type = "manage"
     if @stats_type == "0"
-      @service_cards = ServiceCard.where(:status => @stats_type).order("card_no desc").includes(:staff).page(params[:page]).per(30)
+      @service_cards = ServiceCard.where(:status => @stats_type).order("id desc").includes(:staff).page(params[:page]).per(30)
     else
-      @service_cards = ServiceCard.where(:status => @stats_type).order("card_no desc").includes({:payment => :user}).page(params[:page]).per(30)
+      @service_cards = ServiceCard.where(:status => @stats_type).order("id desc").includes({:payment => :user}).page(params[:page]).per(30)
     end
   end
 
@@ -33,7 +33,8 @@ class Console::Premium::ServiceCardsController < ApplicationController
     temp = ServiceCard.init_temp_new_card(count)
 
     temp.sort_by(&:first).each_with_index do |account, index|
-      accounts << [format_service_card(account.first.to_s), format_service_card(account.last.to_s), "#{ServiceCard::TIME_TYPE[card_type]}个月", card_type]
+      card_no, card_password = account
+      accounts << [format_service_card(card_no.to_s), card_password.to_s, "#{ServiceCard::TIME_TYPE[card_type]}个月", card_type]
     end
 
     @file_name = "#{Time.now.strftime("%Y-%m-%d-%H-%M")}-#{@current_staff.name}"
@@ -56,20 +57,34 @@ class Console::Premium::ServiceCardsController < ApplicationController
   def upload
     @service_card_type = "manage"
     accounts = get_accounts_from_file(params[:accounts_file].tempfile)
-    card_nos = ServiceCard.select(:card_no).map(&:card_no)
+
+    exist_cards = ServiceCard.select([:card_no, :password]) 
+    cards_infos = {}
+    exist_cards.each{|card| cards_infos.merge!({card.card_no => card.password})}
+
     accounts.shift
     accounts.each do |account|
-      card_no = account[0].gsub(" ", "")
-      password = account[1].gsub(" ", "")
-      next if card_nos.include?(card_no)
-      card = @current_staff.service_cards.create(:card_no => card_no, :password => password, :card_type => account[2].to_i)
-      card_nos << card.card_no
+      card_no = account[0].to_s.gsub(" ", "")
+      password = account[1].to_s.gsub(" ", "")
+      card_type = account[2].to_i
+
+      next if cards_infos.has_key?(card_no) or cards_infos.has_value?(password)
+      
+      card = @current_staff.service_cards.create(:card_no => card_no, 
+                                                 :password => password, 
+                                                 :card_type => card_type)
+      cards_infos.merge!({card_no => password})
     end
+
     redirect_to console_premium_service_cards_url    
   end
 
   def upload_file
     @service_card_type = "manage"
+  end
+
+  def search
+    @service_cards = ServiceCard.where("card_no like ?","%#{params[:cards_no].split.join}%").includes(:staff).page(params[:page]).per(30)
   end
 
 end

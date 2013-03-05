@@ -50,6 +50,7 @@ class Staff < ActiveRecord::Base
   has_many :badwords
 
   has_many :touzibaos
+  has_many :gms_articles
 
   has_many :article_logs
   has_many :notices, :dependent => :destroy
@@ -84,6 +85,27 @@ class Staff < ActiveRecord::Base
 
   def create_article(params, send_weibo = true)
     Article.create_article({"staff_ids" => [self.id]}.merge!(params), send_weibo)
+  end
+
+  def create_gms_article(gms_article_params, article_params)
+    top_gms_article = nil
+    GmsArticle.transaction do
+      pos = Column.find(Column::GMS_ARTICLES_COLUMN).max_pos + 1
+      article = create_article(article_params)
+      gms_article = GmsArticle.create(gms_article_params.merge!({:staff_id => self.id, :article_id => article.id, :pos => pos})) 
+      top_gms_article = gms_article
+      top_gms_article.article = article
+      if gms_article.valid?
+        # gms_article.update_attribute(:article_id,article.id)
+      else
+        raise ActiveRecord::Rollback, "gms_article is error"
+      end
+    end
+    return top_gms_article
+  end
+
+  def create_gms_article_old(gms_params,article)
+      GmsArticle.create!(gms_params.merge!({:article_id => article.id,:staff_id => self.id}))
   end
 
   def create_newspaper(newspapers_data)

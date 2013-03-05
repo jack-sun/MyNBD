@@ -76,12 +76,23 @@ class ApplicationController < ActionController::Base
   def check_access_token
     return render :json => {:error => "invalid access_token"}, :status => 401 unless @current_user.check_access_token(params[:access_token])
   end
-  
+ 
+
+  def authorize_mn_account
+    return render :json => {:error => "你的帐号已在别处登录，请重新登录"}, :status => 401 if params[:access_token].present? && @mn_account.nil?
+    # return render :json => {:error => "你的帐号已在别处登录，请重新登录"}, :status => 401 unless @mn_account.present?
+  end 
+
   def authorize
+
+    if @current_user.nil? && !@mn_account.nil? 
+      @current_user = @mn_account.user
+    end
+
     unless @current_user.present?
-      if request.subdomain(Settings.domain_length) == "api"
-        return render :json => {:error => "登陆后才能继续操作"}, :status => 401
-      end
+     # if request.subdomain(Settings.domain_length) == "api"
+     #   return render :json => {:error => "登陆后才能继续操作"}, :status => 401
+     # end
       session[:jumpto] = request.url if request.url.present?
       redirect_to user_sign_in_url, :notice => "温馨提示：您需要登录后才能进行更多的操作！" 
       return
@@ -246,6 +257,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def forbid_article_request_of_gms
+    if (ArticlesColumn.where(:article_id => params[:id]).map(&:column_id) & Column::GMS_ARTICLES_COLUMNS).present?
+      raise ActiveRecord::RecordNotFound
+    end
+  end
+
   def check_parameter(parame_arry)
     return (params.symbolize_keys.keys & parame_arry).present?
   end
@@ -255,6 +272,10 @@ class ApplicationController < ActionController::Base
       return
     end
     @current_user ||= User.where(:access_token => params[:access_token]).first
+  end
+
+  def current_mn_account_by_token
+    @mn_account ||= (MnAccount.where(:access_token => params[:access_token]).first if params[:access_token].present?)
   end
 
 end

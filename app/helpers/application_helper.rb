@@ -325,6 +325,37 @@ module ApplicationHelper
     
     return links_str.html_safe
   end  
+
+  def gms_article_paginate(gms_article,article, page, options={})
+    links_str = ""
+    if article.pages.count == 1
+      return links_str
+    end
+    if @show_type !='console'
+      links_str << link_to("上一页", premium_gms_article_path(gms_article, :p_index => page.p_index - 1)) if page.p_index > 1
+       (1..(article.pages.count)).each do |index|
+        if page.p_index == index
+          links_str << "<b>#{page.p_index}</b>".html_safe
+        else
+          links_str << link_to(index, premium_gms_article_path(gms_article, :p_index => index))
+          options.delete(:class)
+        end
+      end
+      links_str << link_to("下一页", premium_gms_article_path(gms_article,:p_index => page.p_index + 1)) if page.p_index < article.pages.count
+    else
+      links_str << link_to("上一页", console_premium_gms_article_path(gms_article, :p_index => page.p_index - 1)) if page.p_index > 1
+         (1..(article.pages.count)).each do |index|
+          if page.p_index == index
+            links_str << "<b>#{page.p_index}</b>".html_safe
+          else
+            links_str << link_to(index, console_premium_gms_article_path(gms_article, :p_index => index))
+            options.delete(:class)
+          end
+        end
+        links_str << link_to("下一页", console_premium_gms_article_path(gms_article,:p_index => page.p_index + 1)) if page.p_index < article.pages.count
+    end
+    return links_str.html_safe
+  end  
   
   def article_page_path(article, index, for_subdomain = false)
     return "#{article_url(article, false)}/page/#{index}" unless for_subdomain
@@ -417,4 +448,11 @@ module ApplicationHelper
     end
   end
 
+  def nbd_cache(name = {}, proxyable = false, options = nil, &block)
+    unless proxyable
+      cache(name, options , &block)
+    else
+      yield
+    end
+  end
 end

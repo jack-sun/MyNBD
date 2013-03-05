@@ -52,7 +52,7 @@
               <%end%>
               <%if @current_staff and @current_staff.authority_of_mobile_news?%>
                 <li>
-                  <%= link_to "手机报控制台", console_premium_mobile_newspaper_accounts_url %>
+                  <%= link_to "投资宝控制台", console_premium_mobile_newspaper_accounts_url %>
                 </li>
               <%end%>
             </ul>
@@ -71,7 +71,7 @@
               <%end%>
               <%if @current_staff and @current_staff.authority_of_mobile_news?%>
                 <li>
-                  <%= link_to "手机报控制台", console_premium_mobile_newspaper_accounts_url %>
+                  <%= link_to "投资宝控制台", console_premium_mobile_newspaper_accounts_url %>
                 </li>
               <%end%>
             </ul>
@@ -90,12 +90,12 @@
               <% end %>
               <%if @current_staff and @current_staff.authority_of_mobile_news?%>
                 <li>
-                  <%= link_to "手机报控制台", console_premium_mobile_newspaper_accounts_url %>
+                  <%= link_to "投资宝控制台", console_premium_mobile_newspaper_accounts_url %>
                 </li>
               <%end%>
             </ul>
           <% elsif @mobile_newspaper_console  %>
-            <a id="navSelectFlag" href="javascript:void(0)">手机报控制台</a>
+            <a id="navSelectFlag" href="javascript:void(0)">投资宝控制台</a>
             <ul id="navSelectList" class="roundCorner">
               <% if @current_staff and @current_staff.authority_of_news? %>
                 <li>

@@ -15,7 +15,7 @@
 <% end %>
 <% cache(article_crumbs_nav_key_by_id(@article.id), :expire_in => Article::EXPIRE_IN) do %>
 
-  <%= render :partial => "articles/crumb", :locals=>{:first_column => @first_column}%>
+<%= render :partial => "articles/crumb", :locals=>{:first_column => @first_column}%>
 <% end %>
 
 <% @_come_back = true %>
@@ -24,7 +24,7 @@
 <% #render :partial => "articles/hot_keywords"%>
 <div id="articalMain">
   <div class="leftCol">
-	<%= render :partial => "articles/article_content", :locals => { :related_articles => true } %>
+    <%= render :partial => "articles/article_content", :locals => { :related_articles => true } %>
     <%= render :partial => "articles/comments_block" %>
 
     <% cache(column_show_content_key_by_id(@image_news[:id], true, "uniq")) do %>
@@ -36,8 +36,13 @@
   </div> 
 
   <div class="rightCol">
+    <div class="sectionA">
+      <div class="title"><h3>更多<%= @article.tags.present? ? "有关“"+@article.tags+"”的" : "相关" %>新闻</h3></div>
+      <div class="content" style="padding-top:0;" >
+		    <%= render :partial => "ads/ad", :locals => { :id => "347491", :html_class => "right_box", :html_style => "margin-top:0px;" } %>
+      </div>
+    </div>
     <!-- 广告位：文章详情页_右边栏一 -->
-		<%= render :partial => "ads/ad", :locals => { :id => "347491", :html_class => "right_box", :html_style => "margin-top:0px;" } %>
     
     <% cache(column_collected_articles_key_by_id(@column_top_picks[:id]), :expire_in => Column::EXPIRE_IN) do %>
       <% if @column_top_picks[:articles].present? %>
@@ -55,11 +60,17 @@
 
     <div class="divider" style="margin-bottom:10px;"></div>
 
-    <% if @hot_topics[:topics].present? %>
+    <% if false # @hot_topics[:topics].present? %>
       <% cache(Topic::HOT_TOPIC_FRAGMENT_CACHE_KEY) do %>
         <%= render :partial => "columns/hot_weibo_topic_entry", :locals => {:topic => @hot_topics[:topics].first}%>
       <% end %>
     <%end%>
+    
+    <% cache(Live::HOME_INDEX_FRAGMENT_KEY, :expire_in => 3*60) do %>
+      <%= render :partial => "columns/market_live", :locals => {:compere => @showed_live.user, :live_talks => @showed_live_talks, :live => @showed_live} %>
+    <%end%>
+
+
 	  <div class="divider" style="margin-bottom:10px;"></div>
 
         <%= render :partial => "columns/hot_articles" %>

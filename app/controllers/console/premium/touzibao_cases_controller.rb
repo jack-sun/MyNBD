@@ -24,7 +24,7 @@ class Console::Premium::TouzibaoCasesController < ApplicationController
   end
 
   def create
-    @article = @current_staff.create_article(params[:article], false)
+    @article = @current_staff.create_article(params[:article], true)
     if @article.errors.size > 0
       column = Column.where(:id => params[:column_id]).first
       @selected_id = column.nil? ? -1 : column.id

@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-  <title>每经资讯产品</title>
+  <title>每经投资宝</title>
   <%= stylesheet_link_tag "reset", "style_global", "style_website", "mobile_newspaper" %>
   <%= yield :header_css %>
   <%= javascript_include_tag "jquery.min", "jquery_ujs", "nbdtools" %>
@@ -16,12 +16,12 @@
    <div class="innerCenter">
         <a class="smallLogo" href="http://www.nbd.com.cn" title="每经网">每经网</a>
         <ul class="lf">
-          <li class="first last"><%= link_to "每经资讯产品", introduce_premium_mobile_newspaper_account_path %></li>
+          <li class="first last"><%= link_to "每经投资宝", introduce_premium_mobile_newspaper_account_path %></li>
         </ul>
         <ul class="rf">
             <%if @current_user.present?%>
               <li><span><%= @current_user.nickname %></span> <%= link_to "[退出]", user_sign_out_url, :method => :delete %></li>
-              <li><%= link_to "账户信息", premium_mobile_newspaper_account_url %></li>
+              <li><%= link_to "账户信息", premium_mobile_newspaper_account_url, :target => "_blank" %></li>
             <%else%>
               <li><%= link_to "登录", user_sign_in_url %></li>
             <%end%>

@@ -25,7 +25,7 @@ class Newspaper < ActiveRecord::Base
   
   def add_articles(articles_data)
     articles_data.each do |article_data|
-      articles_params = attributes_of(Article,article_data).merge({'column_ids' => [79], :status => 1, :allow_comment => false}) # pls make sure to fill the correct column id value, which map to '今日报纸'
+      articles_params = attributes_of(Article,article_data).merge({'column_ids' => [79], :status => 1, :allow_comment => false, :is_rolling_news => true}) # pls make sure to fill the correct column id value, which map to '今日报纸'
       article = self.staff.create_article(articles_params)
       #article.pages.create(:content => article_data.delete('content').map{|p| "<p>#{p}</p>"}.join(""))
       p = Page.create(:content => article_data.delete('content').map{|p| "<p>#{p}</p>"}.join(""), :article_id => article.id)

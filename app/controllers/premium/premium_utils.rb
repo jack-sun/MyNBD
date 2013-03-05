@@ -101,7 +101,8 @@ module Premium::PremiumUtils
       redirect_to  make_url_by_query_string(options)
     end
 
-    def make_url_by_query_string(options)
+    def make_url_by_query_string(options,return_url="http://www.nbd.cn/premium/alipay/notify_mobile")
+      Rails.logger.info("=========options:#{options}")
       query_params = {
         :partner => Alipay::ACCOUNT,
         :out_trade_no => options[:out_trade_no],
@@ -117,6 +118,11 @@ module Premium::PremiumUtils
       if Rails.env.development?
         query_params = query_params.merge({:return_url => Alipay::NOTIFY_URL})
       end
+      if !options[:from].nil?
+        # query_params[:notify_url] = "http://www.nbd.cn/premium/alipay/notify_mobile"
+        # query_params[:return_url] = "http://www.nbd.cn/premium/alipay/notify_mobile"
+        query_params[:return_url] = return_url
+      end
       sign = make_sign(query_params)
       params_url_section = query_params.map do |k, value|
         "#{k}=#{CGI.escape(value)}"
@@ -124,6 +130,31 @@ module Premium::PremiumUtils
       return "#{Alipay::COOPERATE_GATEWAY}?#{params_url_section}&sign=#{sign}&sign_type=MD5"
     end
 
+    def create_json_result(mn_account)
+      user = mn_account.user
+      user_info = Hash.new("")
+      user_info = {:id => user.id, :nickname => user.nickname, :email => user.email} if user
+         {
+          :access_token => mn_account.valid_access_token,
+          :trade_num => mn_account.last_trade_num.nil? ? "" : mn_account.last_trade_num,
+          :user_info => {
+            :user_id => user_info[:id],
+            :nickname => user_info[:nickname],
+            :email => user_info[:email],
+          },
+          :touzibao_account => {
+            :expiry_at => mn_account.service_end_at.to_i * 1000,
+            :alert => {
+            :today => Time.now.to_i * 1000,
+            :count_down_days_alert => MnAccount::COUNT_DOWN_DAYS_ALERT
+            },
+            :is_valid => mn_account.account_valid?,
+            :plan_type => mn_account.try(:plan_type),
+            :last_activated_from => mn_account.last_activated_device.nil? ? "" : mn_account.last_activated_device,
+            :last_payment_at => mn_account.last_payment_at.to_i * 1000
+          }
+        }
+    end
     private
 
     def parse(post)

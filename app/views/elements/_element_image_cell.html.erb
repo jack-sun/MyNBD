@@ -1,17 +1,26 @@
 <% img_array = JSON.parse(element.content)["body"]["content"]
 	count = JSON.parse(element.content)["body"]["count"]
-	equal = ( 100/count.to_i ).to_s + "%"
+	equal = ( 100.0/count.to_i ).to_s + "%"
   # image_id = json["source"]
   # image = image_id.nil? ? nil : Image.where(:id => image_id).first
   # url = json["url"]
   # position = json["position"] || 0
   # desc = json["desc"] || element.title
 -%>
-<ul class="image_cell_list">
-	<% img_array.each_with_index do |img, index| %>
-		<li style="width:<%= equal %>;">
-			<%= render :partial => "elements/image", :locals => { :image_data => img } %>
-		</li>
-	<% end %>
-</ul>
-<div class="clear"></div>
+
+<table class="w100p">
+  <% img_array.each_with_index do |img, index| %>
+    <% if index%count.to_i == 0 %>
+      <% pre_index = index %>
+      <tr class="<%= index %> <%= count %> <%= index%count.to_i %>">
+    <% end %>
+
+    <td style="width:<%= equal %>;"  class="<%= index %> <%= count %> <%= index%count.to_i %>">
+      <%= render :partial => "elements/image", :locals => { :image_data => img } %>
+    </td>
+    
+    <% if (index%count.to_i == 0 && index != pre_index) || index == img_array.length-1 %>
+      </tr>
+    <% end %>
+  <% end %>
+</table>

@@ -1,0 +1,14 @@
+<%= require_jqueryUI %>
+
+<div class="sectionA">
+	<div class="title">
+		<h1>会议提问</h1>
+	</div>
+	<div id="subColumnTab" class="tabs">
+		<%= render :partial => "console/shared/list_stock_comments_tabs"  %>
+	</div>
+	<div id="body_channel" class="content rightColCenter">
+		<%=render :partial => "console/premium/stock_comments/stock_comments_list", :locals=>{ :stock_comments => @stock_comments} %>
+	</div>
+</div>
+

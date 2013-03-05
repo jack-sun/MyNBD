@@ -97,22 +97,24 @@
   </div><!-- sectionA -->
 </div>
 <div class="rightCol nttIndex">
+  <% cache(column_show_content_key_by_id(@urbanization[:id])) do %>
+    <%= render :partial => "columns/article_list", :locals => {:list_title => "十字路口的城镇化", :more_title => "进入专题", :list_title_tail => "?type=feature", :more_title_tail => "?type=feature", :digest_number => 1, :digest_restrict => true, :articles => (@urbanization[:articles].map(&:article)||[]), :for_subdomain => Settings.ntt_sub_domain, :column_id => @urbanization[:id], :html_class => "feature"}%>
+  <% end %>
+  <div class="divider mbs"></div>
 
   <% cache(column_show_content_key_by_id(@house_observe[:id])) do %>
-    <%= render :partial => "columns/article_list", :locals => {:list_title => "楼市观察", :more_title => "进入专题", :list_title_tail => "?type=feature", :more_title_tail => "?type=feature", :digest_number => 1, :digest_restrict => true, :articles => (@house_observe[:articles].map(&:article)||[]), :for_subdomain => Settings.ntt_sub_domain, :column_id => @house_observe[:id], :html_class => "feature"}%>
+  <%= render :partial => "columns/article_list", :locals => {:list_title => "楼市观察", :more_title => "进入专题", :articles => @house_observe[:articles].map(&:article).compact, :column_id => @house_observe[:id], :digest_number => 1, :digest_restrict => true, :for_subdomain => "ntt", :list_title_tail => "?type=feature", :html_class => "feature"} %>
   <% end %>
-  <div class="divider" style="margin-bottom:5px;"></div>
+  <div class="divider mbs"></div>
 
-  <% cache(column_show_content_key_by_id(@reform_logic[:id])) do %>
-    <%= render :partial => "columns/article_list", :locals => {:list_title => "转型的逻辑", :more_title => "进入专题", :list_title_tail => "?type=feature", :more_title_tail => "?type=feature", :digest_number => 1, :digest_restrict => true, :articles => (@reform_logic[:articles].map(&:article)||[]), :for_subdomain => Settings.ntt_sub_domain, :column_id => @reform_logic[:id], :html_class => "feature"}%>
-  <% end %>
 
-  <% cache(column_show_content_key_by_id(@internet_observe[:id])) do %>
-    <%= render :partial => "columns/article_list", :locals => {:list_title => "互联网观察", :more_title => "进入专题", :list_title_tail => "?type=feature", :more_title_tail => "?type=feature", :digest_number => 1, :digest_restrict => true, :articles => (@internet_observe[:articles].map(&:article)||[]), :for_subdomain => Settings.ntt_sub_domain, :column_id => @internet_observe[:id], :html_class => "feature"}%>
+  <% cache(column_show_content_key_by_id(@huaerjie_observe[:id])) do %>
+    <%= render :partial => "columns/article_list", :locals => {:list_title => "说不完的华尔街", :more_title => "进入专题", :list_title_tail => "?type=feature", :more_title_tail => "?type=feature", :digest_number => 1, :digest_restrict => true, :articles => (@huaerjie_observe[:articles].map(&:article)||[]), :for_subdomain => Settings.ntt_sub_domain, :column_id => @huaerjie_observe[:id], :html_class => "feature"}%>
   <% end %>
 
   <!-- 广告位：智库_右边栏一 -->
   <%= render :partial => "ads/ad", :locals => { :id => "347595", :html_class => "right_box" } %>
+  
   <% cache(column_show_content_key_by_id(@one_word_articles_id)) do %>
     <%= render :partial => "columns/one_word", :locals => { :article => Article.of_column(100, 1, {}).first.try(:article) }%>
   <% end %>

@@ -1,0 +1,96 @@
+<style type="text/css">
+  .tableA .forceGray td { color:#bbb !important; }
+</style>
+<%= require_jqueryUI %>
+<%= require_js "console_sortable.js" %>
+
+<div class="sectionA">
+  <div class="title">
+    <h1>股东大会实录 - 文章管理</h1>
+    <span class="opts">
+      <%= link_to "<span>添加新文章</span>".html_safe, new_console_premium_gms_article_path, :class => "btnBlueM" %>
+    </span>
+  </div>
+  <div class="content sortableTableMargin">
+    <%= render :partial => "premium/gms_articles/search" %>
+    <table class="tableA">
+      <thead>
+        <tr>
+          <th class="forHandler"></th>
+          <th>股票代码</th>
+          <th>标题</th>
+          <th class="tdw100">编辑</th>
+          <th class="tdw100">创建时间</th>
+          <th class="tdw50">点数</th>
+          <th class="tdw50">文章状态</th>
+          <th class="tdw50">销售状态</th>
+          <th>操作</th>
+        </tr>		
+      </thead>
+      <tbody id="sortableBox">
+        <% @gms_articles.each do |gms_article| %>
+          <tr <%= "class='forceGray'" if gms_article.is_refund? %> id="gms_<%= gms_article.id %>">
+            <td class="forHandler"><span class="dragHandler"></span></td>
+            <td><%= link_to "#{gms_article.stock.name} / #{gms_article.stock.code}", console_premium_search_stock_path(:stock_code => gms_article.stock.code) %></td>
+            <td class="itemTitle">
+              <% if gms_article.is_refund? %>
+                <span style="font-weight:normal;text-decoration:line-through;"><%= gms_article.article.title %></span>
+              <% else %>
+                <%= link_to gms_article.article.title,premium_gms_article_path(gms_article), :target => "_blank" %>
+              <% end %>
+            </td>
+            <td><%= gms_article.staff.real_name %></td>
+            <td><%= gms_article.created_at.strftime("%Y-%m-%d") %></td>
+            <td><%= gms_article.cost_credits %></td>
+            <td>
+              <% if gms_article.is_refund? %>
+                <span>
+              <% else %>
+                <span class="<%=gms_article.published? ? 'green' : 'red'%>">
+              <% end %>
+                <%=gms_article.published? ? '已发布' : '已屏蔽'%>
+              </span>
+
+            </td>
+            <td>
+              <%= gms_article_sale_status(gms_article).html_safe %>
+              / <%= gms_article.sales_quantity %>
+            </td>
+            <td class="itemActions tdw100">
+
+              <%= link_to '<b></b>编辑'.html_safe, edit_console_premium_gms_article_path(gms_article), :class => "actionEdit" %>
+              <% if false %>
+              <%= link_to '<b></b>删除'.html_safe, console_premium_gms_article_path(gms_article), :confirm => '确定删除这期股东大会吗?', :method => :delete, :class => "actionDelete" %>
+              <% end %>
+              <% if gms_article.published? %>
+                <%= link_to '<b></b>屏蔽'.html_safe, ban_console_premium_gms_article_path(gms_article), :confirm => '确定屏蔽这期股东大会吗?', :method => :put, :class => "actionBanned" %>
+              <% else %>
+                <%= link_to '<b></b>发布'.html_safe, publish_console_premium_gms_article_path(gms_article),:method => :put, :class => "actionPublish" %>
+              <% end %>
+              <%= link_to("<b></b>置顶".html_safe, to_top_console_premium_gms_article_path(gms_article), :class=>'actionUp', :confirm => "确定置顶这期股东大会吗?") %>       
+              <% if gms_article.is_refund? %>
+              <% elsif false %>
+                <%= link_to '<b></b>下架'.html_safe, off_shelf_console_premium_gms_article_path(gms_article), :confirm => '确定下架这期股东大会吗?', :method => :put, :class => "actionStop" %>              
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% if @console_search %>
+    <% if params[:stock_code].present? && @gms_articles.empty? %>
+      <p class="rightColCenter mtl">
+        找不到和您的查询 "<%= params[:stock_code] %>" 相符的股票。
+      </p>
+    <% end %>
+  <% end %>
+  <% unless @gms_articles.empty? %>
+  <div style="margin:10px 0 0 0;height:30px;"><%= paginate @gms_articles %></div>    
+  <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  _isInGMSPage_ = true;
+</script>
+

@@ -1,0 +1,38 @@
+<table class="tableA">
+	<thead>
+		<tr>
+			<th>内容</th>
+			<th>股票</th>
+			<th>发布者</th>
+			<th>时间</th>
+			<th>状态</th>
+			<th>操作</th>
+		</tr>		
+	</thead>
+	<tbody id="sortableBox">
+		<% stock_comments.each do |comment| %>
+			<% next unless comment.present? %>
+			<tr id="weibo_<%= comment.id %>">
+				<td><%= comment.comment %></td>
+				<td><%= link_to "#{comment.stock_code} / #{comment.stock_name}",console_premium_stock_comments_path(:stock_code => comment.stock_code)  %> 
+				</td>
+				<td><%= link_to(comment.user.nickname, user_url(comment.user)) %></td>
+				<td class="itemDate"><%= comment.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+				<td class="itemStatus_<%=(1-comment.status)%>"><%= StockComment::STATUS[comment.status.to_i] %></td>
+				<td class="itemActions">
+					<% if false %>
+					<%= link_to "<b></b>删除 ".html_safe, console_premium_stock_comment_path(comment), :confirm => "删除这条提问？", :method => :delete, :class=>'actionDelete' %>
+					<% end %>
+					<% if !comment.is_banned? %>
+					<%= link_to "<b></b>屏蔽 ".html_safe, ban_console_premium_stock_comment_path(comment), :confirm => "屏蔽这条提问？", :method => :put, :class=>'actionBanned' %>
+          			<% end %>
+          			<% if comment.is_banned? %>
+					  <%= link_to("<b></b>发布".html_safe, publish_console_premium_stock_comment_path(comment), :confirm => "发布这条提问？", :method => :put, :class=>'actionPublish') %>
+				  	<% end %>
+				</td>
+			</tr>
+		<%end%>
+	</tbody>
+</table>
+
+

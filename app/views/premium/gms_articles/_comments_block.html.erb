@@ -1,0 +1,69 @@
+<% if @article.is_allow_comment? %>
+<% @weibo = @article.weibo %>
+<div id="commentsBlock" class="block">
+	<div class="blockTitle">
+		<h3 id="articleComments" style="font-size:16px;color:#bb0000;">实录评论 <% if false %>(<%=@comments.count %>)<%end %></h3>
+		<span class="opts">所发表的网友评论仅代表网友个人观点，不代表"每经网"的观点</span>
+	</div>
+	<div class="blockContent">
+		<div id="myComment">
+			<% if @current_user %>
+			<%= link_to(image_tag(user_avatar_path(@current_user, :middle), :width => 50, :height => 50), user_url(@current_user), :class=>"avatar") %>
+			<% else %>
+			<%= link_to(image_tag('avatar-default.gif'), user_url(nil), :class=>"avatar") %>
+			<% end %>
+			<div class="itemContent">
+				<%= simple_form_for [@weibo, Comment.new(:rt_weibo => true)], :remote => true, :html => {:class => "speakForm"} do |f| %>
+				<div class="speakSuccessTip">
+					发送成功！
+				</div>
+				<%= f.text_area :content, :class => "textInput ingms" %>
+				<%= f.hidden_field :article_id, :value => @article.id %>
+				<p>
+					<%= link_to "<span>提交评论</span>".html_safe, "javascript:void(0)", :class => "speakBtn btnBlueM rf" %>
+				</p>
+				<% end %>
+			</div>
+			<div class="clear">
+			</div>
+		</div>
+		<% cache(article_comment_area_key_by_id(@article.id), :expire_in => Article::EXPIRE_IN) do %>
+		<ul class="weiboItemList">
+			<% @comments[0..4].each do |comment| %>
+			<%= render :partial => "/comments/article_comment", :locals => {:comment => comment} %>
+			<% end %>
+		</ul>
+		<% if @comments.count > 5 %>
+		<p style="text-align:right;padding-bottom:10px;border:none;font-size:13px;">
+			<%= link_to "查看所有评论(#{@comments.length}) &raquo;".html_safe, weibo_url(@weibo) %>
+		</p>
+		<%end %>
+		<% end %>
+	</div>
+</div>
+<% else %>
+<p class="articleDeclare">
+	文章的评论功能未开启
+</p>
+<%end %>
+<script type="text/javascript">
+	$(function(){
+		var $myConmemnt = $('#comment_content');
+		$('.articlCommentsBtn').live('click', function(){
+			var value = $myConmemnt.val();
+			var reg = /^回复\@.*\:/;
+			if (reg.test(value)) {
+				value = value.replace(reg, '回复@' + $(this).closest('li').find('.nickname').text() + " :");
+			}else {
+				value = '回复@' + $(this).closest('li').find('.nickname').text() + " :" + value;
+			}
+			$myConmemnt.focus();
+			$myConmemnt.val(value);
+			return false;
+		});
+		
+		$myConmemnt.focus(function(){
+			_popRegisterBox();
+		});
+	});
+</script>

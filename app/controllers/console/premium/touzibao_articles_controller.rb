@@ -7,7 +7,7 @@ class Console::Premium::TouzibaoArticlesController < ApplicationController
   before_filter :init_mobile_newspaper_console
   before_filter :init_touzibao
 
-    cache_sweeper Sweepers::PageSweeper, Sweepers::ArticleSweeper, :only => [:destroy, :create, :update]
+  cache_sweeper Sweepers::PageSweeper, Sweepers::ArticleSweeper,Sweepers::TouzibaoSweeper, :only => [:destroy, :create, :update]
   def new
     @touzibao = Touzibao.find(params[:touzibao_id])
     @article = Article.new(:status => 1)
@@ -22,6 +22,7 @@ class Console::Premium::TouzibaoArticlesController < ApplicationController
       @article = @current_staff.create_article(params[:article], false)
       @touzibao.article_touzibaos.create(:article_id => @article.id, :pos => @touzibao.max_pos, :section => section)
       @touzibao.increment!(:max_pos)
+      @touzibao.update_attributes({:updated_at => Time.now})
       save_success = true
     end
     if @article.errors.size > 0 or !save_success
@@ -43,6 +44,8 @@ class Console::Premium::TouzibaoArticlesController < ApplicationController
       @article.update_self(params[:article])
       article_touzibao = @article.article_touzibao
       article_touzibao.update_attributes({:section => section})
+      touzibao = article_touzibao.touzibao
+      touzibao.update_attributes({:updated_at => Time.now})
       save_success = true
     end
     if @article.errors.size > 0 or !save_success
@@ -55,6 +58,9 @@ class Console::Premium::TouzibaoArticlesController < ApplicationController
 
   def destroy
     @article = Article.find(params[:id])
+    article_touzibao = @article.article_touzibao
+    touzibao = article_touzibao.touzibao
+    touzibao.update_attributes({:updated_at => Time.now})
     @article.destroy
     redirect_to console_premium_touzibao_path(@touzibao)
   end

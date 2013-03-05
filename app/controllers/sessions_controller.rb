@@ -33,9 +33,13 @@ class SessionsController < ApplicationController
         session[:omniauth] = nil
       end
       
+      # temp comment by vincent, 2013-01-10
+      cookies[:gms_access_token] = user.update_access_tokens[:gms_access_token]
+
       after_sign_in_and_redirect_to(user)
       return
     else
+      return redirect_to :back, :alert => "用户名密码不匹配" if params[:come_back] == '1'
       session[:jumpto] = request.env["HTTP_REFERER"] if params[:come_back] == "1" && request.env["HTTP_REFERER"] 
       redirect_to user_sign_in_url, :method => :get, :alert => "用户名密码不匹配"
     end

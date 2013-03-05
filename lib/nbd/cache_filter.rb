@@ -7,6 +7,7 @@ module Nbd
         object = yield
         Rails.cache.write cache_key, object.to_s, options
       end
+      
       return object
     end
 

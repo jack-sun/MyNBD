@@ -22,6 +22,7 @@
 <% content_for :tzbNav do %>
 <ul class="tzbNav">
   <li class="current"><%= link_to "每经投资宝", introduce_premium_mobile_newspaper_account_url %></li>
+  <li><%= link_to "股东大会实录", Settings::gms_articles_features_url %></li>
   <li><%= link_to "每经投资快讯", introduce_premium_mobile_news_index_url %></li>
 </ul>
 <% end %>
@@ -36,16 +37,17 @@
       <li><%= link_to "<b class='buy'></b>立刻购买".html_safe, new_premium_mobile_newspaper_account_url %></li>
       <li><%= link_to "<b class='card'></b>卡号激活".html_safe, new_premium_mobile_newspaper_account_url + "?type=1" %></li>
       <% end %>
-
-      <% if is_touzibao_premium_user? %>
       <li><%= link_to "<b class='check'></b>在线阅读".html_safe, today_premium_touzibaos_url %></li>
-      <% else %>
-      <li><%= link_to "<b class='check'></b>在线阅读".html_safe, yesterday_premium_touzibaos_url %></li>
-      <% end %>
-
       <li><%= link_to "<b class='feedback'></b>意见反馈".html_safe, new_premium_feedback_path %></li>
     </ul>
   </div>
+
+  <p class="tc mtl">
+    <%= link_to "圣诞大礼《2013投资宝典》".html_safe, "http://www.nbd.com.cn/features/216", :target => "_blank" %><br>
+    <span class="f12">特别提醒：《每经投资宝·天天赢家》的正式（一年期及以上）用户，<%= link_to "免费查看 &raquo;".html_safe, "http://www.nbd.com.cn/features/216", :target => "_blank" %></span>
+  </p>
+  <p><span></span></p>
+
   <% if is_valid_premium_user %>
   <p class="mtl f12">
     <% if @current_user.is_premium_overdue_soon? %>
@@ -78,9 +80,9 @@
         <tr><td>题材驱动</td>  <td>从产业相关政策、重大突发事件、突发行业新闻中挖掘短线交易性机会或揭示风险 </td></tr>
         <tr><td>主编观点</td>  <td>在股市的短线或者中长线转折关头，研究院策略研究委员会提出的指导性观点</td></tr>
         <tr><td>资金监测</td>  <td>从资金价格、央行公开市场操作、盘面资金流动等多个方面对市场资金供给等情报进行分析研判</td></tr>
-        <tr><td>盘面雷达</td>  <td>从龙虎榜、高管增减持、盘面异动、期指多空双方数据变化等盘口信息挖掘板块个股机会或揭示风险</td></tr>
-        <tr><td>机构动向</td>  <td>动态跟踪基金、社保、保险、QFII、私募等机构动向，从中挖掘机会或揭示风险</td></tr>
-        <tr><td>期指导航</td>  <td>从股指期货和融资融券运行中，折射股市趋势的未来可能的方向</td></tr>
+        <tr><td>盘面雷达</td>  <td>从龙虎榜、高管增减持、大宗交易、板块个股异动等盘口信息挖掘机会或揭示风险</td></tr>
+        <tr><td>机构情报</td>  <td>动态跟踪基金、社保、保险、QFII、私募等机构动向，从中挖掘机会或揭示风险</td></tr>
+        <tr><td>股期导航</td>  <td>从股指期货和融资融券运行中，折射股市趋势的未来可能的方向</td></tr>
         <tr><td>公司前沿</td>  <td>从上市公司最新动态中挖掘机会或揭示风险</td></tr>
 			</tbody>
 		</table>

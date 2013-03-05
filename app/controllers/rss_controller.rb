@@ -56,10 +56,10 @@ class RssController < ApplicationController
     render(:text => feed.to_s)
   end
   
-  # 证券投资 (11, 12, 23, 24, 25, 26, 27, 32, 83 )
+  # 证券投资 (11, 12, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 37, 83 )
   def stock_invest
     feed = cache_filter(Column::RSS_STOCK_INVEST_COLUMN_ID) do
-      @articles = Column.aggregate_articles([11, 12, 23, 24, 25, 26, 27, 32, 83], 20)
+      @articles = Column.aggregate_articles([11, 12, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 37, 83], 20)
       str = RSS::Maker.make("2.0") do |maker| 
         maker.channel.title = "每日经济新闻 - 证券投资" 
         maker.channel.description = "每经网 | 新闻决定影响力 |《每日经济新闻》报社旗下网站"
@@ -72,10 +72,26 @@ class RssController < ApplicationController
     render(:text => feed.to_s)
   end
   
-  # 公司产业 (34, 35, 36, 38, 39, 40, 42, 44, 45)
+  # 每经要闻 (2, 3, 44, 48, 81, 82, 87)
+  def nbd_headline
+    feed = cache_filter(Column::RSS_NBD_HEADLINE_COLUMN_ID) do
+      @articles = Column.aggregate_articles([2, 3, 44, 48, 81, 82, 87], 20)
+      str = RSS::Maker.make("2.0") do |maker| 
+        maker.channel.title = "每日经济新闻 - 每经要闻" 
+        maker.channel.description = "每经网 | 新闻决定影响力 |《每日经济新闻》报社旗下网站"
+        maker.channel.link = Settings.host
+        
+        article_rss_items(@articles, maker)
+      end
+    end
+    
+    render(:text => feed.to_s)
+  end
+  
+  # 公司产业 (34, 35, 36, 38, 39, 40, 42, 45)
   def company
     feed = cache_filter(Column::RSS_COMPANY_COLUMN_ID) do
-      @articles = Column.aggregate_articles([34, 35, 36, 38, 39, 40, 42, 44, 45], 20)
+      @articles = Column.aggregate_articles([34, 35, 36, 38, 39, 40, 42, 45], 20)
       str = RSS::Maker.make("2.0") do |maker| 
         maker.channel.title = "每日经济新闻 - 公司产业" 
         maker.channel.description = "每经网 | 新闻决定影响力 |《每日经济新闻》报社旗下网站"
@@ -88,10 +104,10 @@ class RssController < ApplicationController
     render(:text => feed.to_s)
   end
   
-  # 金融理财 (37, 67)
+  # 金融理财 (120~128, 139)
   def finace
     feed = cache_filter(Column::RSS_FINACE_COLUMN_ID) do
-      @articles = Column.aggregate_articles([37, 67], 20)
+      @articles = Column.aggregate_articles([120, 121, 122, 123, 124, 125, 126, 127, 128, 139], 20)
       str = RSS::Maker.make("2.0") do |maker| 
         maker.channel.title = "每日经济新闻 - 金融理财" 
         maker.channel.description = "每经网 | 新闻决定影响力 |《每日经济新闻》报社旗下网站"
@@ -104,6 +120,21 @@ class RssController < ApplicationController
     render(:text => feed.to_s)
   end
   
+  # 记者专栏 (57, 58, 102, 103, 104, 105, 106, 107)
+  def nbd_reporter
+    feed = cache_filter(Column::RSS_NBD_REPORTER_COLUMN_ID) do
+      @articles = Column.aggregate_articles([57, 58, 102, 103, 104, 105, 106, 107], 20)
+      str = RSS::Maker.make("2.0") do |maker| 
+        maker.channel.title = "每日经济新闻 - 记者专栏" 
+        maker.channel.description = "每经网 | 新闻决定影响力 |《每日经济新闻》报社旗下网站"
+        maker.channel.link = Settings.host
+        
+        article_rss_items(@articles, maker)
+      end
+    end
+    
+    render(:text => feed.to_s)
+  end
   
   # 每日头条 (2)
   def daily_headline
@@ -214,7 +245,7 @@ class RssController < ApplicationController
     Rails.logger.info "-------------- get cache, key: #{key} -------------"
     return str if str
     str = yield
-    Rails.cache.write(key, str)
+    Rails.cache.write(key, str, :expire_in => 2.hours)
     Rails.logger.info "-------------- write cache, key: #{key} -------------"
     return str
   end

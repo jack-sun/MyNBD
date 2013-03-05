@@ -1,0 +1,37 @@
+<div id="pageName">
+  <%= render :partial => "search" %>
+  <h1>
+    每经投资宝·股东大会实录
+  </h1>
+</div>
+<% if flash[:notice] %>
+  <div class="alert_done">
+    <b></b><%= flash[:notice] %>
+  </div>
+<% end %>
+
+<% if @gms_articles.present? %>
+  <div class="pvm">
+    <h2 class="f18">关于"<%= @stock_code %>"的大会实录</h2>
+  </div>
+  <%= render :partial => "premium/gms_articles/table", :locals => { :gms_articles => @gms_articles } %>
+  <div class="mtm"><%= paginate @gms_articles %></div>
+<% else %>
+  <p class="mbl">
+    找不到和您的查询 "<%= @stock_code %>" 相符的股票。
+  </p>
+<% end %>
+
+<% if @stock.present? && @stock.preview_gms_article.present? %>
+<div class="alert_info mbl">
+  <b></b><%= @stock.name %> 股东大会将于 <%= @stock.preview_gms_article.meeting_at_value('近期') %> 举行，您可以立刻<%= link_to '预购该大会实录', premium_gms_article_path(@stock.preview_gms_article),:target => '_blank' %>，同时您也可以在大会开始前<%= link_to '提出自己感兴趣的问题', premium_question_stock_path(:stock_code => @stock.code),:target => '_blank' %>
+</div>
+<% end %>
+
+<div class="pvm">
+  <%= link_to '查看所有 &raquo;'.html_safe,premium_gms_articles_path, :class => "r f12 mtm" %>
+  <h2 class="f18">最新大会实录</h2>
+</div>
+<%= render :partial => "premium/gms_articles/table", :locals => { :gms_articles => @latest_gms_articles } %>
+<%= render :partial => "premium/gms_articles/tip" %>
+

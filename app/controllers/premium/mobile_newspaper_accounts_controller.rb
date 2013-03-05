@@ -1,28 +1,28 @@
 #encoding: utf-8
 class Premium::MobileNewspaperAccountsController < ApplicationController
-  layout "mobile_newspaper"
+  layout "mobile_newspaper", :except => [:new_mobile]
 
   include Premium::PremiumUtils
   before_filter :current_user
   before_filter :authorize , :except => [:introduce]
-  
+  before_filter :current_mn_account_by_token, :only => [:new_mobile]
   #TOTAL_FEE = {1 => 19.8, 2 => 58, 3 => 108, 4 => 198}
 
 
   # create payment from alipay
   #
   def subscribe
-    init_accounts(params[:plan_type], MnAccount::ACTIVE_FROM_ALIPAY)
-    return render :new unless @current_account.errors.blank?
-    @payment = init_payment_with(@current_account, params[:plan_type].to_i)
-
-    options = {}
-    options[:out_trade_no] = @payment.out_trade_no
-    options[:amount] = @payment.payment_total_fee.to_s
-    options[:body] = "每日经济新闻xxxxx 订单号：#{@payment.out_trade_no}"
-    count = I18n.t("service_time.mn_account.type_#{params[:plan_type]}")
-    options[:subject] = "订阅每日经济新闻手机报服务 #{count}个月 手机号：#{params[:mobile_no]}"
-    return redirect_to make_url_by_query_string(options)
+          init_accounts(params[:plan_type], MnAccount::ACTIVE_FROM_ALIPAY)
+          return render :new unless @current_account.errors.blank?
+          @payment = init_payment_with(@current_account, params[:plan_type].to_i)
+          options = {}
+          options[:out_trade_no] = @payment.out_trade_no
+          options[:amount] = @payment.payment_total_fee.to_s
+          options[:body] = "Mobile每日经济新闻xxxxx 订单号：#{@payment.out_trade_no}"
+          count = I18n.t("service_time.mn_account.type_#{params[:plan_type]}")
+          options[:subject] = "订阅每日经济新闻手机报服务 #{count}个月 手机号：#{params[:mobile_no]}"
+          options[:from] = "mobile" unless params[:from].nil?
+          return redirect_to make_url_by_query_string(options)
   end
 
   # create payment from activate card
@@ -59,7 +59,11 @@ class Premium::MobileNewspaperAccountsController < ApplicationController
   # mn_account detail view
   #
   def show
+    session[:jumpto] = premium_mobile_newspaper_account_url
     @account = @current_user.mn_account
+    
+    #temp comment by vincent, 2013-01-10
+    @gms_account = @current_user.gms_account
   end
 
   # actions for payment status
@@ -80,10 +84,11 @@ class Premium::MobileNewspaperAccountsController < ApplicationController
   end
 
   def new
-    @current_account = @current_user.mn_account
+      @current_account = @current_user.mn_account
   end
 
-
-
+  def new_mobile
+    @current_user = @mn_account.user
+  end
   
 end

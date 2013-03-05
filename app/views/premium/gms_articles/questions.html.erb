@@ -1,0 +1,135 @@
+<div id="pageName">
+  <h1>
+    股东大会实录会议提问<% if @stock.present? %>：<%= @stock.name %>（<%= @stock.code %>）<% end %>
+  </h1>
+</div>
+
+<div class="layout">
+  <div class="rCol">&nbsp;</div>
+  <div class="main">
+    <% if @stock.nil? || @stock.is_preview? %>
+    	<% if @current_user.present? %>
+      <%= form_for([:premium, @stock_comment], :html => { :class => "formA" }) do |f| %>
+        <div class="layout">
+          <div class="lCol" style="margin-right:5px;width:60px;">
+            <%= image_tag(user_avatar_path(@current_user, :middle), :width => "50", :height => "50", :class => "rahmen") %>
+          </div>
+          <div class="main">
+            <span class="f16">
+              <%= @current_user.nickname %> :
+            </span> 
+            <div class="boxNormal mts pal">
+              <div class="block">
+                <%= f.label :stock_code, "股票代码: " %>
+                <% if @stock.present? %>
+                  <%= @stock.code %>
+                	<%= f.hidden_field :stock_code, :value => @stock.code, :class => "textInput", :readonly => true %>
+              	<% else %>
+                  <br />
+              		<%= f.text_field :stock_code, :class => "textInput" %><br>
+              		<span class="error"><%= @stock_comment.errors[:stock_code].first if @stock_comment.errors[:stock_code].present? %></span>
+              	<% end %>
+              </div>
+              <div class="block">
+                <%= f.label :stock_name, "股票名称: " %>
+              	<% if @stock.present? %>
+                  <%= @stock.name %>
+                	<%= f.hidden_field :stock_name, :value => @stock.name, :class => "textInput", :readonly => true %>	  	
+              	<% else %>
+                  <br />
+                	<%= f.text_field :stock_name, :class => "textInput" %><br>
+                	<span class="error"><%= @stock_comment.errors[:stock_name].first if @stock_comment.errors[:stock_name].present? %></span>
+              	<% end %>
+              </div>
+              <div class="block">
+                <%= f.label :comment, "提问内容:" %><br />
+                <%= f.text_area :comment, :rows => 8, :class => "textInput" %><br>
+                <span class="error"><%= @stock_comment.errors[:comment].first if @stock_comment.errors[:comment].present? %></span>
+              </div>
+              <div>
+              	<a href="javascript:" onclick="$(this).closest('form').submit();return false;" class="btnBlueM"><span>提交问题</span></a>
+                <%= f.submit "保存", :class => "hiddenSubmit" %>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      <% end %>
+
+      <% else %>
+        <div class="boxNormal">
+      	 <%= render :partial => "sessions/form_for_sign_in", :locals => { :title => "登录每经网账号，发起提问" } %>
+        </div>
+      <% end %>
+
+    <% elsif !@stock.is_preview? %>
+    	<div class="alert_info"><b></b>该股票提问已关闭！ </div>
+    <% end %>
+    <% if false %>
+      <div class="alert_info"><b></b>没有找到您需要的股票，请填写提问！ </div>
+    <% end %>
+
+    <% if @stock.present? %>
+    <div class="sectionA mtl">
+    	<div class="title">
+    		<h3>所有提问</h3>
+    	</div>
+    	<div class="content">
+        <% if @questions.length == 0 %>
+          <p>该大会实录暂无提问。</p>
+        <% else %>  
+      		<% @questions.each do |question| %>
+      			<div class="media mvl">
+      				<div class="img">
+      					<%= image_tag(user_avatar_path(@stock_comment.user, :middle), :width => "50", :height => "50", :class => "rahmen") %>
+      				</div>
+      				<div class="bd">
+      					<div class="plm">
+      						<p><%= question.user.nickname %>: <%= question.comment %></p>
+      						<p class="g6 pts f12"><%= question.created_at.strftime('%Y-%m-%d %H:%M:%S')  %></p>
+      					</div>
+      				</div>
+            </div>
+          <% end %>
+          <div style="margin:10px 0 0 0;height:30px;"><%= paginate @questions %></div> 
+        <% end %>
+    	</div>
+    </div>
+    <% end %>
+  </div>
+</div>
+<div class="jumpNav">
+  <%= link_to '<b></b>返回 股东大会实录'.html_safe,premium_gms_articles_path, :class => "toHome" %>
+</div>
+
+
+<script type="text/javascript">
+	$(function(){
+		// var inputCode = $('#stock_comment_stock_code');
+		// var inputName = $('#stock_comment_stock_name');
+		// var inputComment = $('#stock_comment_comment');
+		// var is_login = "<%= @current_user.present? %>"
+		// $('form').submit(function(){
+		// 	if(is_login === 'false'){
+		// 		alert("提问需要登录！");
+		// 		return false;				
+		// 	}
+
+		// 	if(!/^[360]\d{5}$/.test(inputCode.val())){
+		// 		alert("股票代码格式错误！");
+		// 		return false;
+		// 	}
+
+		// 	if($.trim(inputName.val()) === ''){
+		// 		alert("股票名称不能为空！");
+		// 		return false;
+		// 	}
+
+		// 	if($.trim(inputComment.val()) === ''){
+		// 		alert("评论内容不能为空");
+		// 		return false;
+		// 	}
+		// });
+	});
+</script>
+

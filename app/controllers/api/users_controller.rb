@@ -1,136 +1,122 @@
 #encoding:utf-8
 class Api::UsersController < ApplicationController
   skip_filter :current_user
-  before_filter :current_user_by_token, :only => [:destroy, :account, :payment_notify]
-  before_filter :authorize, :only => [:account, :payment_notify]
-  before_filter AccessTokenFilter, :only => [:account, :payment_notify]
+  before_filter :current_mn_account_by_token, :only => [:destroy, :account,:create,:sign_in]# :payment_notify]
+  before_filter :authorize_mn_account, :only => [:account]
   before_filter AppKeyFilter
   skip_before_filter :verify_authenticity_token, :only => [:payment_notify]
+
   attr_accessor :current_device
 
   include Premium::PremiumUtils
 
   def create
-    @user = User.new(:nickname => params[:nickname], :email => params[:email], :password => params[:password], :password_confirmation => params[:password_confirmation])    
-
+    @user = User.new(:nickname => params[:nickname], :email => params[:email], :password => params[:password], :password_confirmation => params[:phone_no].blank? ? params[:password_confirmation] : params[:password])    
+    gift_period = params[:phone_no].blank? ? MnAccount::ONE_WEEK_GIFT_TIME : MnAccount::TWO_WEEK_GIFT_TIME
+    is_receive_sms = false
+    last_active_from = current_device
     if @user.save
+      if @mn_account
+        if @mn_account.binded?
+          @user.create_mn_account_gift(last_active_from, gift_period, is_receive_sms, params[:phone_no])
+        else
+          @mn_account = @mn_account.bind_user(@user)
+        end
+      else
+        @user.create_mn_account_gift(last_active_from,gift_period,is_receive_sms,params[:phone_no])
+      end
+      @user.reload
+
       update_user_session @user
-      @user.create_mn_account_gift(MnAccount::SERVICE_TYPE_APPLE_GIFT)
-      return render :json => {
-                                :access_token => @user.valid_access_token,
-                                :user_id => @user.id,
-                                :nickname => @user.nickname,
-                                :email => @user.email,
-                                :touzibao_account => {
-                                                        :expiry_at => @user.mn_service_end_at * 1000,
-                                                        :alert => {
-                                                        :today => Time.now.to_i * 1000,
-                                                        :count_down_days_alert => MnAccount::COUNT_DOWN_DAYS_ALERT
-                                                        },
-                                                        :plan_type => @user.mn_account.try(:plan_type),
-                                                        :is_valid => @user.is_valid_premium_user?,
-                                                        :last_activated_from => @user.mn_activated_from,
-                                                        :last_payment_at => @user.mn_last_payed_at * 1000
-                                                     }
-                             }
+
+      return render :json => create_json_result(@user.mn_account)
     else
       error = {}
       @user.errors.each do |k, v|
-        error[k] = v.first
+        error[k] = v
       end
       return render :json => {:error => error}, :status => 401
     end
   end
 
   def account
-    @user = @current_user
-    return render :json => {
-      :access_token => @user.valid_access_token,
-      :user_id => @user.id,
-      :nickname => @user.nickname,
-      :email => @user.email,
-      :touzibao_account => {
-        :expiry_at => @user.mn_service_end_at * 1000,
-        :is_valid => @user.is_valid_premium_user?,
-      :alert => {
-      :today => Time.now.to_i * 1000,
-      :count_down_days_alert => MnAccount::COUNT_DOWN_DAYS_ALERT
-      },
-        :plan_type => @user.mn_account.try(:plan_type),
-        :last_activated_from => @user.mn_activated_from,
-        :last_payment_at => @user.mn_last_payed_at * 1000
-      }
-    }
+    return render :json => create_json_result(@mn_account)
   end
 
   def payment_notify
-    #apple_response = verify_apple_puchase(params[:receipt_data])
+
     temp_payment = Payment.where(:receipt_data => params[:receipt_data]).first
     if temp_payment and temp_payment.success?
       return render :json => {:error => "invalid receipt data"}, :status => 400
     end
-    MnAccount.transaction do
-      init_accounts(params[:plan_type].to_i, MnAccount::ACTIVE_FROM_APPLE)
-      init_payment_with(@current_account, params[:plan_type].to_i)
-      @payment.set_waiting_from_apple_store_receipt(params[:receipt_data])
+
+    if params[:access_token].nil?	#无access_token，没有登录，直接购买
+      MnAccount.transaction do
+        @mn_account = MnAccount.create(:plan_type => params[:plan_type], :last_active_from => MnAccount::ACTIVE_FROM_APPLE,:last_trade_num => MnAccount.rand_trade_num)
+        @payment = @mn_account.payments.create(:payment_total_fee => MnAccount::TOTAL_FEE[params[:plan_type].to_i], :plan_type => params[:plan_type])
+    
+      end
+    else	#有access_token
+      @mn_account = MnAccount.where(:access_token => params[:access_token]).first
+      if @mn_account.user.nil?	#有access_token,无用户绑定，继续购买
+    
+          MnAccount.transaction do
+            @mn_account.update_attributes(:last_trade_num => MnAccount.rand_trade_num)
+            @payment = @mn_account.payments.create(:payment_total_fee => MnAccount::TOTAL_FEE[params[:plan_type].to_i], :plan_type => params[:plan_type])
+          end
+      else	#有access_token，且有用户绑定，充值
+        @current_user = @mn_account.user
+        MnAccount.transaction do
+            @mn_account.update_attributes(:last_trade_num => MnAccount.rand_trade_num)
+            init_accounts(params[:plan_type].to_i, MnAccount::ACTIVE_FROM_APPLE)
+            init_payment_with(@current_account, params[:plan_type].to_i)
+        end
+      end
     end
+    @payment.set_waiting_from_apple_store_receipt(params[:receipt_data])
     if current_device == MnAccount::DEVICE_IPHONE
       Resque.enqueue(Jobs::VerifyApplePaymentJob, params[:receipt_data], params[:plan_type])
     end
-    @current_user.mn_account.try(:reload)
-
-    return render :json => {
-      :access_token => @current_user.valid_access_token,
-      :user_id => @current_user.id,
-      :nickname => @current_user.nickname,
-      :email => @current_user.email,
-      :touzibao_account => {
-      :expiry_at => @current_user.mn_service_end_at * 1000,
-      :is_valid => @current_user.is_valid_premium_user?,
-      :alert => {
-      :today => Time.now.to_i * 1000,
-      :count_down_days_alert => MnAccount::COUNT_DOWN_DAYS_ALERT
-      },
-      :plan_type => @current_user.mn_account.try(:plan_type),
-      :last_activated_from => @current_user.mn_activated_from,
-      :last_payment_at => @current_user.mn_last_payed_at * 1000
-    }
-    }
+    @mn_account.try(:reload)
+    @mn_account.check_access_token
+    return render :json => create_json_result(@mn_account)
   end
 
   def sign_in
-      #if user = User.authenticate(user_name, password)
-    if user = User.authenticate(params[:nickname], params[:password])
-      @user = user
-      update_user_session user
-      if user.mn_account.nil?
-        user.create_mn_account_gift(MnAccount::SERVICE_TYPE_APPLE_GIFT)
-        user.reload
-      end
-      return render :json => {
-        :access_token => @user.valid_access_token,
-        :user_id => @user.id,
-        :nickname => @user.nickname,
-        :email => @user.email,
-        :touzibao_account => {
-          :expiry_at => @user.mn_service_end_at * 1000,
-          :alert => {
-          :today => Time.now.to_i * 1000,
-          :count_down_days_alert => MnAccount::COUNT_DOWN_DAYS_ALERT
-          },
-          :is_valid => @user.is_valid_premium_user?,
-          :plan_type => @user.mn_account.try(:plan_type),
-          :last_activated_from => @user.mn_activated_from,
-          :last_payment_at => @user.mn_last_payed_at * 1000
-        }
-      }
+    if params[:trade_num]
+      @mn_account = MnAccount.where(:last_trade_num => params[:trade_num]).first
+      return render :json => {:error => "您的订单号码不正确"}, :status => 401 if @mn_account.nil?
+      @mn_account.check_access_token
+      @mn_account.check_access_token(@mn_account.access_token)
+      update_user_session @mn_account.user if @mn_account.present? && @mn_account.user.present?
+      return render :json => create_json_result(@mn_account)
     else
-      return render :json => {}, :status => 401
+      if user = User.authenticate(params[:nickname], params[:password])
+        @user = user
+        update_user_session user
+        if @mn_account
+          @mn_account = @mn_account.bind_user(@user) unless @mn_account.binded?
+          @mn_account.check_access_token
+        else
+          if user.mn_account.nil?
+            user.create_mn_account_gift(current_device,MnAccount::ONE_WEEK_GIFT_TIME,false,nil)
+          else
+            user.mn_account.check_access_token
+          end
+        end
+        user.reload
+        return render :json => create_json_result(@user.mn_account)
+      else
+        return render :json => {:error => "用户名或密码错误"}, :status => 401
+      end
     end
+
+
   end
 
   def sign_out
     update_user_session nil
     return render :json => {:message => "登出成功"}
   end
+
 end

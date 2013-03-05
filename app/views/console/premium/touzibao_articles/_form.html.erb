@@ -10,7 +10,7 @@
     end
 %>
 
-<%= simple_form_for([:console, @article],:url =>url, :html => {:id => "article_form", :multipart => true}) do |f| %>
+<%= simple_form_for([:console, @article],:url => url, :html => {:id => "article_form", :multipart => true}) do |f| %>
   <%= f.input :status, :as => :hidden, :default => 0 %>
   <%= f.grouped_collection_select :column_ids, Column.basic_columns.includes(:children), :children, :name, :id, :name, {:selected => [Column::TOUZIBAO_NEWS_COLUMN]}, {:multiple => true, :style => "display:none"} %>
   <div class="subRightCol">
@@ -64,6 +64,10 @@
 
 
 <script type="text/javascript">
+  var _insertImage = function(data){
+    var inst = $("#inputArea div:visible textarea").focus().tinymce();
+    inst.execCommand('mceInsertContent',false, data);
+  }
   $(function(){
     var isNewArticle = $("#article_pages_attributes_0_id").length == 0 ? true : false; 
     var boxEditPage = $('#editPageContent');

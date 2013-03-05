@@ -27,6 +27,7 @@ class Ntt::ColumnsController < ApplicationController
   COLUMNS_INDEX = {111 => "investment", 110 => "data", 109 => "report"}
 
   def index
+    @feature_2013 = {:articles => Article.of_column(209, 1), :id => 209 }  #2013中国经济展望
     @editor_selected = {:articles => Article.of_column_for_ntt(116, 5), :id => 116} #编辑推荐
     @columnists = Columnist.order("last_article_id desc").limit(10).includes([{:last_article => :columns}, :image])
     @head_article = {:articles => Article.of_column_for_ntt(57, 1), :id => 57} #头条
@@ -54,8 +55,11 @@ class Ntt::ColumnsController < ApplicationController
     
     @house_observe = {:articles => Article.of_column(184, 1), :id => 184 }  #楼市观察
     @internet_observe = {:articles => Article.of_column(182, 1), :id => 182 }  #互联网观察
+    @urbanization = {:articles => Article.of_column(211, 1), :id => 211 }  #互联网观察
+
     #@feature_southAsia = {:articles => Article.of_column(115, 1), :id => 115 }  #南亚投资观察
-    @reform_logic = {:articles => Article.of_column(174, 1), :id => 174 } #转型的逻辑
+    #@reform_logic = {:articles => Article.of_column(174, 1), :id => 174 } #转型的逻辑
+    @huaerjie_observe = {:articles => Article.of_column(208, 1), :id => 208}
 
     @all_columnists = Columnist.select([:id, :name, :slug])
 
@@ -92,6 +96,7 @@ class Ntt::ColumnsController < ApplicationController
 
   def features
     @feature_2012 = {:articles => Article.of_column(113, 5), :id => 113 }  #2012中国经济展望
+    @feature_2013 = {:articles => Article.of_column(209, 5), :id => 209 }  #2013中国经济展望
 
     @feature_taiwan = {:articles => Article.of_column(114, 5), :id => 114 }  #走读台湾
 

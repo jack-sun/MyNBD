@@ -1,6 +1,8 @@
 <%= require_css "reset.css" %>
 <%= require_css "style_global.css" %>
 <%= require_css "style_console.css" %>
+<%= require_js "nbdtools.js" %>
+
 <div id="body_signin">
 	
 	<div id="top">
@@ -28,12 +30,24 @@
 			
 			<p>
 				<%= label_tag :name, "用户名" %> <br/>
-				<%= text_field_tag :name, nil, :size => 40 %>
+				<%= text_field_tag :name, params[:name], :size => 40 %>
 			</p>
 			<p>
 				<%= label_tag :password, "密码" %><br/>
-				<%= password_field_tag :password, nil, :size => 40, :autocomplete => :off %>
+				<%= password_field_tag :password, params[:password], :size => 40, :autocomplete => :off %>
 			</p>
+		  	<% if Rails.env.development? %>
+ 	
+			<% else %>
+				<div class="block">
+				    <label for="captcha">验证码:</label>
+				      <span class="error"><%= flash[:captcha_error] %></span>
+				      <p id="simple_captcha">
+				        <%= text_field_tag "captcha", "", :class => "textInput captchaInput" %>
+				        <span class="captchaImage"></span>
+				      </p>
+				</div>
+			<% end %>
 			<p class="btnRowM">
 				<input type="submit" class="hiddenSubmit" />
 				<a href="javascript:void(0)" onclick="$(this).parents('form').submit();return false;" class="btnBlueM"><span>登录</span></a>
@@ -41,3 +55,24 @@
 			</p>
 		<%end%>
 </div>
+<script type="text/javascript">
+	$(function(){
+    var reloadCaptchaUrl = "<%= reload_captcha_url(:id => 'simple_captcha') %>";
+    var loadingHtml = "<span style='display:inline;margin:0;' class='loading'><span>正在获取验证码</span></span>";
+
+		$("#user_email").focus();
+
+    $(".captchaInput").one("focus", function(){
+      $(".captchaImage").html(loadingHtml);
+      $.get(reloadCaptchaUrl, function(){
+        $("#simple_captcha .error").hide();
+      });
+    });
+
+    $("body").delegate(".changeCaptchaBtn", "click", function(){
+      $(this).closest(".captchaImage").html(loadingHtml);
+    });
+
+    _nbd.setPlaceholder($(".captchaInput"), "请输入验证码")
+	});
+</script>

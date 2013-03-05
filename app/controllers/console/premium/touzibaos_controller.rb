@@ -5,6 +5,7 @@ class Console::Premium::TouzibaosController < ApplicationController
   before_filter :authorize_staff
   before_filter :init_mobile_newspaper_console
 
+  cache_sweeper Sweepers::PageSweeper, Sweepers::ArticleSweeper,Sweepers::TouzibaoSweeper, :only => [:create, :destroy, :publish, :unpublish]
 
   def index
     @touzibao_nav_type = "index"

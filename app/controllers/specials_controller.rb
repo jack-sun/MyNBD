@@ -1,10 +1,16 @@
 # encoding: utf-8
 class SpecialsController < ApplicationController
-  USER_NAME = "nbddog"
-  PASSWORD = "kbb2012cd"
-  #if Rails.env.production?
-    before_filter :authenticate
-  #end
+  USER_NAME = "nbdadmin"
+  PASSWORD = "mrjjxwfxb"
+  
+  if Rails.env.production?
+    before_filter :authenticate, :only => :dingyuecards
+  end
+  
+  # 锦绣卡查询，具体需求找 发行部 王魁
+  def dingyuecards
+    @cards = Dingyuecard.where("isactn = 1").order("actndate DESC").page(params[:page]).per(40)
+  end
   
   # 散户心愿墙
   def wishwall
@@ -28,9 +34,9 @@ class SpecialsController < ApplicationController
     render :layout => 'wishwall'
   end
 
-  def poll_details
-    @polls = Poll.where(:id => params[:poll_ids].split(","))    
-  end
+ # def poll_details
+ #   @polls = Poll.where(:id => params[:poll_ids].split(","))    
+ # end
 
   private
   def authenticate

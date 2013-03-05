@@ -13,6 +13,8 @@ class User < ActiveRecord::Base
   USER_TYPE_ORG = 2 # 机构用户
   USER_TYPE_SUPPER = 3 # 每经超级用户，拥有屏蔽权限
 
+  EXPIRE_ACCESS_TOKEN_TIME = 10
+
   USER_FANS_SHOW_COUNT = 12
   
   include Redis::Objects
@@ -157,9 +159,15 @@ class User < ActiveRecord::Base
 
   has_one :mn_account
 
+  has_one :gms_account
+
   has_many :payments
   
   belongs_to :image, :dependent => :destroy
+
+  has_many :gms_accounts_articles, :class_name => "GmsAccountsArticle"
+  has_many :gms_articles, :through => :gms_accounts_articles, :source => :gms_article
+
   accepts_nested_attributes_for :image , :reject_if => lambda { |a| a[:avatar].blank? && a[:remote_avatar_url].blank?}
   
   define_index do
@@ -177,6 +185,34 @@ class User < ActiveRecord::Base
     self.nickname
   end
   
+  def pay_one_year_for_touzibao?
+    return false if self.mn_account.blank?
+    return false if self.mn_account.service_end_at.blank?
+    return false if self.mn_account.service_end_at < Time.parse("2013-10-20")
+
+    return true
+  end
+
+  def paid_one_year_for_ttyj?
+    return false if self.mn_account.blank?
+
+    self.mn_account.paid_for?(MnAccount::PLAN_TYPE_YEAR)
+  end
+
+  def is_receive_credits_from_ttyj?
+    return false if self.mn_account.blank?
+
+    self.mn_account.is_receive_credits?
+  end
+
+  def receive_credits_from_ttyj
+    User.transaction do
+      self.update_attribute(:credits, self.credits + MnAccount::RECEIVE_CREDITS)
+      self.gms_account.credit_logs.create({:user_id => self.id,:cmd => CreditLog::CMD_RECEIVE,:credits => MnAccount::RECEIVE_CREDITS, :product_type => CreditLog::PRODUCT_TYPE_MN, :product_id => self.mn_account.id})
+      self.mn_account.update_attribute(:is_receive_credits, 1)
+    end
+  end
+
   def weibos_following
     Weibo.where("(owner_id in (?) AND owner_type = ? AND status = ?) OR (owner_id = ? AND owner_type = ?)", self.following_ids, self.class.to_s, Weibo::PUBLISHED, self.id, self.class.to_s).includes([{:owner => :image}, {:ori_weibo => {:owner => :image}}]).order("id DESC")
   end
@@ -548,7 +584,7 @@ class User < ActiveRecord::Base
       return false if token != value
       updated_at = self.cache_token_updated_at.value
       self.cache_token_updated_at = self.token_updated_at if updated_at.blank?
-      if self.cache_token_updated_at.value.blank? or (Time.at(self.cache_token_updated_at.value.to_i) + 1.minutes).past?
+      if self.cache_token_updated_at.value.blank? or (Time.at(self.cache_token_updated_at.value.to_i) + EXPIRE_ACCESS_TOKEN_TIME.minutes).past?
         self.access_token = NBD::Utils.to_md5(Time.now.to_i.to_s)
         self.token_updated_at = Time.now.to_i.to_s
         if self.save
@@ -564,11 +600,48 @@ class User < ActiveRecord::Base
     self.check_access_token(self.cache_access_token)
   end
 
-  def create_mn_account_gift(gift_type)
-    MnAccount.create_gift_account(self.id, gift_type)
+  def create_mn_account_gift(current_device, gift_period, is_receive_sms, phone_no)
+    MnAccount.create_gift_account(self.id, MnAccount::PLAN_TYPE_GIFT, current_device, gift_period, is_receive_sms, phone_no)
+  end
+
+  def pay_for_gms_article(gms_article)
+    User.transaction do
+      gms_article.increment!(:sales_quantity)
+      self.decrement!(:credits, gms_article.cost_credits)
+      # self.update_attribute(:credits,self.credits - gms_article.cost_credits)
+      GmsAccountsArticle.create({:gms_account_id => self.gms_account.id, :user_id => self.id, :gms_article_id => gms_article.id, :cost_credits => gms_article.cost_credits})
+      # self.gms_account.credit_logs.create({:user_id => self.id, :cmd => CreditLog::CMD_COST, :credits => gms_article.cost_credits, :product_type => CreditLog::PRODUCT_TYPE_GMS, :product_id => gms_article.id})
+      create_gms_account_credit_log(CreditLog::CMD_COST, gms_article.cost_credits, CreditLog::PRODUCT_TYPE_GMS, gms_article.id)
+    end
+  end
+
+  def refund_gms_article(gms_article)
+    User.transaction do
+      gms_account_article = GmsAccountsArticle.where(:user_id => self.id, :gms_article_id => gms_article.id).first
+      self.increment!(:credits, gms_article.cost_credits)
+      # self.update_attribute(:credits,self.credits + gms_account_article.cost_credits)
+      gms_account_article.update_attribute(:is_receive_refund,GmsAccountsArticle::REFUND_CREDITS_STATUS)
+      # self.gms_account.credit_logs.create({:user_id => self.id, :cmd => CreditLog::CMD_REFUND, :credits => gms_account_article.cost_credits, :product_type => CreditLog::PRODUCT_TYPE_GMS, :product_id => gms_article.id})
+      create_gms_account_credit_log(CreditLog::CMD_REFUND, gms_account_article.cost_credits, CreditLog::PRODUCT_TYPE_GMS, gms_article.id)
+      return gms_account_article.cost_credits
+    end
+  end
+
+  def pay_for_credits(plan_type)
+      self.increment!(:credits, GmsAccount::CREDITS[plan_type])
+      # self.update_attribute(:credits,self.credits+GmsAccount::CREDITS[plan_type])
+      # self.gms_account.credit_logs.create({:user_id => self.id,:cmd => CreditLog::CMD_PAY,:credits => GmsAccount::CREDITS[plan_type], :product_type => CreditLog::PRODUCT_TYPE_GMS, :product_id => 0})
+      create_gms_account_credit_log(CreditLog::CMD_PAY, GmsAccount::CREDITS[plan_type], CreditLog::PRODUCT_TYPE_GMS, 0)
+  end
+
+  def update_access_tokens(accounts=[:gms_account,:mn_account])
+      gms_access_token = self.gms_account.check_access_token('init') if (self.gms_account.present? && accounts.include?(:gms_account))
+      mn_access_token = self.mn_account.check_access_token('init') if (self.mn_account.present? && accounts.include?(:mn_account))
+      return {:gms_access_token => gms_access_token,:mn_access_token => mn_access_token}
   end
 
   
+
   class << self
     
     #股市直播用户
@@ -581,6 +654,7 @@ class User < ActiveRecord::Base
     end
     
     def authenticate(email, password)
+      email = email.strip
       if email =~ /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i
         user = where(:email => email).first
       else
@@ -624,6 +698,10 @@ class User < ActiveRecord::Base
     begin  
       self[column] = SecureRandom.urlsafe_base64(24)
     end while User.exists?(column => self[column])  
+  end
+
+  def create_gms_account_credit_log(cmd, credits, product_type, product_id)
+    self.gms_account.credit_logs.create({:user_id => self.id, :cmd => cmd, :credits => credits, :product_type => product_type, :product_id => product_id})
   end
   
 end

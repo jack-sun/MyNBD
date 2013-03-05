@@ -7,13 +7,13 @@
 		<div class="tabs">
 			<ul>
 				<li <%= stats_class_helper(Staff::TYPE_EDITOR,"staff_type") %>>
-					<%= link_to "网站编辑", console_staffs_url(:type => Staff::TYPE_EDITOR,:status => @stats_type, :page => params[:page]) %>
+					<%= link_to "网站编辑", console_staffs_url(:type => Staff::TYPE_EDITOR) %>
 				</li>
 				<li <%= stats_class_helper(Staff::TYPE_EDITOR_ADMIN,"staff_type") %>>
-					<%= link_to "网站编辑管理", console_staffs_url(:type => Staff::TYPE_EDITOR_ADMIN,:status => @stats_type, :page => params[:page]) %>
+					<%= link_to "网站编辑管理", console_staffs_url(:type => Staff::TYPE_EDITOR_ADMIN) %>
 				</li>
 				<li <%= stats_class_helper(Staff::TYPE_ADMIN,"staff_type") %>>
-					<%= link_to "网站技术人员", console_staffs_url(:type => Staff::TYPE_ADMIN,:status => @stats_type, :page => params[:page]) %>
+					<%= link_to "网站技术人员", console_staffs_url(:type => Staff::TYPE_ADMIN) %>
 				</li>
 
 			</ul>
@@ -22,7 +22,7 @@
                         <div class="datePicker">
 			<ul>
 				<li <%= stats_class_helper(Staff::STATUS_ACTIVE,"staff_status") %>>
-					<%= link_to "有效用户", console_staffs_url(:status => "1", :type => @staff_type, :page => params[:page]) %>
+					<%= link_to "有效用户", console_staffs_url(:type => @staff_type) %>
 				</li>
 				<li <%= stats_class_helper(Staff::STATUS_BAN,"staff_status") %>>
 					<%= link_to "失效用户", console_staffs_url(:status => "2", :type => @staff_type, :page => params[:page]) %>

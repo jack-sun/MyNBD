@@ -27,7 +27,7 @@
 	</div>
 	<div class="subRightCol">	
 		<% cache(column_show_content_key_by_id(@finace[:id])) do %>
-			<%= render :partial => "columns/article_list", :locals => {:list_title => "金融", :articles => @finace[:articles].map(&:article).compact, :column_id => 37, :digest_number => 2, :display_children => false, :digest_restrict => true} %>
+			<%= render :partial => "columns/article_list", :locals => {:list_title => "机构", :articles => @finace[:articles].map(&:article).compact, :column_id => 37, :digest_number => 2, :display_children => false, :digest_restrict => true} %>
 		<% end %>		
 	</div>
 	
