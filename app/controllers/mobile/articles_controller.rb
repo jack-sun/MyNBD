@@ -1,5 +1,5 @@
 # encoding: utf-8
-class Mobile::ArticlesController < ApplicationController
+class Mobile::ArticlesController < ArticlesBaseController
 
   layout 'mobile', :except => [:plain]
 
@@ -57,16 +57,16 @@ class Mobile::ArticlesController < ApplicationController
   end
   
 
-  private
+  # private
 
-  def record_click_count(article)
-    # TODO: update click_count, will move this logic into cache 
-    Article.increment_counter(:click_count, article.id)
+  # def record_click_count(article)
+  #   # TODO: update click_count, will move this logic into cache 
+  #   Article.increment_counter(:click_count, article.id)
 
-    # for redis hot cache
-    t = Time.now
-    CacheCallback::BaseCallback.increment_count("click_count", article)
-    Rails.logger.debug "############# cache callback cost time : #{Time.now - t}"
-  end
+  #   # for redis hot cache
+  #   t = Time.now
+  #   CacheCallback::BaseCallback.increment_count("click_count", article)
+  #   Rails.logger.debug "############# cache callback cost time : #{Time.now - t}"
+  # end
 
 end

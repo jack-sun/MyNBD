@@ -9,11 +9,11 @@ class GeneralController < ApplicationController
   end
 
   def mobile_newspaper_privacy
-    render :layout => "mobile_newspaper"
+    render :layout => "touzibao"
   end
 
   def gms_privacy
-    render :layout => "mobile_newspaper"
+    render :layout => "touzibao"
   end  
 
   def copyright

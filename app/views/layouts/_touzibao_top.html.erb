@@ -1,0 +1,24 @@
+<%
+html_class = 'gray' unless html_class
+%>
+<div id="top" class="<%=html_class%>"><div id="topStyle">
+  <div class="innerCenter">
+    <ul class="lf">
+      <li class="first"><%= link_to "每经网首页", Settings.host, :class => "#{request.url.chomp("/") == Settings.host ? 'highlight' : ''}" %></li>
+      <li><%= link_to "资讯", customize_host_url('news'), :class => "#{request.url.chomp("/") == customize_host_url('news') ? 'highlight' : ''}" %></li>  
+      <li><%= link_to "股票", customize_host_url('stock'), :class => "#{request.url.chomp("/") == customize_host_url('stock') ? 'highlight' : ''}" %></li>  
+      <li><%= link_to "公司", customize_host_url('company'), :class => "#{request.url.chomp("/") == customize_host_url('company') ? 'highlight' : ''}" %></li>  
+      <li><%= link_to "金融", customize_host_url('finance'), :class => "#{request.url.chomp("/") == customize_host_url('finance') ? 'highlight' : ''}" %></li>
+      <li><%= link_to "汽车", customize_host_url('auto'), :class => "#{request.url.chomp("/") == customize_host_url('auto') ? 'highlight' : ''}" %></li>   
+      <li><%= link_to "全球", column_url(47), :class => "#{request.url.chomp("/") == column_url(47) ? 'highlight' : ''}" %></li>  
+      <li><%= link_to "智库", Settings.ntt_host, :class => "#{request.url.chomp("/") == Settings.ntt_host ? 'highlight' : ''}" %></li>  
+      <li><%= link_to "品味", customize_host_url('life'), :class => "#{request.url.chomp("/") == customize_host_url('life') ? 'highlight' : ''}" %></li>  
+      <li><%= link_to "管理", customize_host_url('bschool'), :class => "#{request.url.chomp("/") == customize_host_url('bschool') ? 'highlight' : ''}" %></li>  
+      <li><%= link_to "社区", weibo_host_url, :class => "#{@community_home_nav ? 'highlight' : ''}" %></li>
+      <li  class="last"><%= link_to "西部", Settings.western_host %></li>
+    </ul>
+    <ul class="rf">
+      <li class="last"><strong>客服电话：028-86660288</strong></li>
+    </ul>
+  </div>
+</div></div>

@@ -1,3 +1,4 @@
+# encoding: utf-8
 require "digest/md5"
 require 'cgi'
 require 'open-uri'
@@ -44,6 +45,7 @@ module Premium::PremiumUtils
         end
       end
       result["receipt"] = receipt_data
+      result["json_response"] = json_response
       return result
     end
   end # ClassMethods
@@ -80,6 +82,7 @@ module Premium::PremiumUtils
         end
       end
       result["receipt"] = receipt_data
+      result["json_response"] = json_response
       return result
     end
 
@@ -89,72 +92,67 @@ module Premium::PremiumUtils
       return false
     end
 
-    def verify_sign(query_string)
+    def verify_sign(query_string, sort_params = true)
       verify_params = parse(query_string)
       sign_type = verify_params.delete("sign_type")
       sign = verify_params.delete("sign")
-
-      make_sign(verify_params) == sign.try(:downcase)
+      Rails.logger.info("===sign:#{sign}")
+      Rails.logger.info("===make_sign:#{make_sign(verify_params, sort_params)}")
+      make_sign(verify_params, sort_params) == sign.try(:downcase)
     end
 
     def redirect_to_alipay_gateway(options={})
       redirect_to  make_url_by_query_string(options)
     end
 
-    def make_url_by_query_string(options,return_url="http://www.nbd.cn/premium/alipay/notify_mobile")
-      Rails.logger.info("=========options:#{options}")
-      query_params = {
-        :partner => Alipay::ACCOUNT,
-        :out_trade_no => options[:out_trade_no],
-        :total_fee => options[:amount],
-        :seller_email => Alipay::EMAIL,
-        :notify_url => Alipay::NOTIFY_URL,
-        :body => options[:body],
-        :"_input_charset" => 'utf-8',
-        :service => Alipay::Helper::CREATE_DIRECT_PAY_BY_USER,
-        :payment_type => "1",
-        :subject => options[:subject]
-      }
-      if Rails.env.development?
-        query_params = query_params.merge({:return_url => Alipay::NOTIFY_URL})
-      end
-      if !options[:from].nil?
-        # query_params[:notify_url] = "http://www.nbd.cn/premium/alipay/notify_mobile"
-        # query_params[:return_url] = "http://www.nbd.cn/premium/alipay/notify_mobile"
-        query_params[:return_url] = return_url
-      end
-      sign = make_sign(query_params)
-      params_url_section = query_params.map do |k, value|
+
+    def make_url_by_query_string(payment)
+      alipay_params = payment.generate_alipay_params
+
+      sign = make_sign(alipay_params)
+      params_url_section = alipay_params.map do |k, value|
         "#{k}=#{CGI.escape(value)}"
       end.join("&")
       return "#{Alipay::COOPERATE_GATEWAY}?#{params_url_section}&sign=#{sign}&sign_type=MD5"
     end
 
-    def create_json_result(mn_account)
-      user = mn_account.user
-      user_info = Hash.new("")
-      user_info = {:id => user.id, :nickname => user.nickname, :email => user.email} if user
-         {
-          :access_token => mn_account.valid_access_token,
-          :trade_num => mn_account.last_trade_num.nil? ? "" : mn_account.last_trade_num,
-          :user_info => {
-            :user_id => user_info[:id],
-            :nickname => user_info[:nickname],
-            :email => user_info[:email],
-          },
-          :touzibao_account => {
-            :expiry_at => mn_account.service_end_at.to_i * 1000,
-            :alert => {
-            :today => Time.now.to_i * 1000,
-            :count_down_days_alert => MnAccount::COUNT_DOWN_DAYS_ALERT
-            },
-            :is_valid => mn_account.account_valid?,
-            :plan_type => mn_account.try(:plan_type),
-            :last_activated_from => mn_account.last_activated_device.nil? ? "" : mn_account.last_activated_device,
-            :last_payment_at => mn_account.last_payment_at.to_i * 1000
-          }
-        }
+    def get_wap_alipay_token(payment)
+      alipay_params = payment.generate_alipay_params(true)
+      sign = make_sign(alipay_params)
+      params_url_section = alipay_params.map do |k, value|
+        "#{k}=#{CGI.escape(value)}"
+      end.join("&")
+
+      uri = URI.parse(Settings.wap_alipay_gateway)
+      req = Net::HTTP::Post.new(uri.path)
+
+      req.body = params_url_section+"&sign=#{sign}"
+
+      http = Net::HTTP.new(uri.host,uri.port)
+      response = http.request(req)
+      body = response.body
+
+      # resonse_body_str = CGI.unescape(body)
+      # token_start_index = resonse_body_str.index("<request_token>")
+      # tag_length = "<request_token>".length
+      # token_end_index = resonse_body_str.index("</request_token>")
+
+      if verify_sign(body)
+        token = get_specify_node_data_from_xml(parse(body)["res_data"], "direct_trade_create_res", "request_token")
+        # token = resonse_body_str[(token_start_index+tag_length)...token_end_index]
+        return token
+      else
+        return false
+      end
     end
+
+    def get_wap_alipay_url(token)
+      base_params = "format=xml&partner=#{Alipay::ACCOUNT}&req_data=<auth_and_execute_req><request_token>#{token}</request_token></auth_and_execute_req>&sec_id=MD5&service=#{Settings.wap_alipay_trade_service}&v=2.0"
+      sign = Digest::MD5.hexdigest(base_params+Alipay::KEY)
+      wap_alipay_url = "#{Settings.wap_alipay_gateway}?#{base_params}&sign=#{sign}"
+      return wap_alipay_url
+    end
+
     private
 
     def parse(post)
@@ -166,22 +164,33 @@ module Premium::PremiumUtils
       return params
     end
 
-    def make_sign(query_params)
-      temp = query_params.sort.map do |key, value|
+    def make_sign(query_params, sort_params = true)
+      if sort_params
+        temp = query_params.sort
+      else
+        temp = {:service => query_params["service"], 
+                :v => query_params["v"], 
+                :sec_id => query_params["sec_id"], 
+                :notify_data => query_params["notify_data"]}
+      end
+      temp = temp.map do |key, value|
               "#{key}=#{CGI.unescape(value)}"
              end.join("&") + Alipay::KEY
       return Digest::MD5.hexdigest(temp)
     end
 
-    def init_accounts(plan_type, active_from)
+
+    def init_accounts(plan_type, active_from, account_type='MnAccount')
       @current_account = @current_user.mn_account
       if @current_account.nil?
         @current_account = MnAccount.create(:phone_no => params[:mobile_no], :user_id => @current_user.id, :plan_type => plan_type, :last_active_from => active_from)
+      else
+        @current_account.update_attribute(:phone_no, params[:mobile_no]) if params[:mobile_no].present?
       end
       return false unless @current_account.errors.blank?
     end
 
-    def init_payment_with(account, plan_type)
+    def old_init_payment_with(account, plan_type)
       last_payment = account.payments.last
       if last_payment.nil? or last_payment.success?
         last_payment = account.payments.create(:payment_total_fee => MnAccount::TOTAL_FEE[plan_type], :user_id => @current_user.id, :plan_type => plan_type)
@@ -191,6 +200,31 @@ module Premium::PremiumUtils
       if last_payment.nil? or !last_payment.success?
       end
       @payment = last_payment
+    end
+
+    def init_payment_with(account, plan_type, payment_device, payment_type)
+      total_fee = (account.user && account.user.nickname == "投资宝测试") ? "0.0#{plan_type}".to_f : account.total_fee(plan_type)
+
+      @payment = account.payments.create(:payment_total_fee => total_fee, 
+                                         :user_id => account.user_id, 
+                                         :plan_type => plan_type, 
+                                         :status => Payment::STATUS_WAITE, 
+                                         :payment_device => payment_device, 
+                                         :payment_type => payment_type)
+    end
+
+    def get_specify_node_data_from_xml(xml, root_node, child_node, need_unescape = 'true', return_all = false)
+      xml = CGI.unescape(xml) if need_unescape
+      xml = REXML::Document.new(xml)
+      child_nodes = []
+      xml.each_element(root_node) do |element|
+        if return_all
+          child_nodes << element.elements[child_node].text
+        else
+          return element.elements[child_node].text
+        end
+      end
+      return child_nodes
     end
 
   private

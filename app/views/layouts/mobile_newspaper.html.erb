@@ -1,3 +1,11 @@
+<!-- 
+  ################### DEPRECATED #####################
+  ################### DEPRECATED #####################
+  ################### DEPRECATED #####################
+  ################### DEPRECATED #####################
+  ################### DEPRECATED #####################
+-->
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -14,19 +22,20 @@
 
 <div id="top" class="dark"><div id="topStyle">
    <div class="innerCenter">
-        <a class="smallLogo" href="http://www.nbd.com.cn" title="每经网">每经网</a>
+        <a class="smallLogo" href="/" title="每经网">每经网</a>
         <ul class="lf">
           <li class="first last"><%= link_to "每经投资宝", introduce_premium_mobile_newspaper_account_path %></li>
         </ul>
         <ul class="rf">
+          <!-- # temp solution for touzibao's sign_in by zhou -->
             <%if @current_user.present?%>
-              <li><span><%= @current_user.nickname %></span> <%= link_to "[退出]", user_sign_out_url, :method => :delete %></li>
-              <li><%= link_to "账户信息", premium_mobile_newspaper_account_url, :target => "_blank" %></li>
+              <li><span><%= @current_user.nickname %></span> <%= link_to "[退出]", user_sign_out_url(:touzibao => true), :method => :delete %></li>
+              <li><%= link_to "帐号信息", premium_mobile_newspaper_account_url, :target => "_blank" %></li>
             <%else%>
-              <li><%= link_to "登录", user_sign_in_url %></li>
+              <li><%= link_to "登录", user_sign_in_url(:touzibao => true) %></li>
             <%end%>
             <li><%= link_to "意见反馈", new_premium_feedback_path, :target => "_blank" %></li>
-            <li class="last">客服电话：028 8666-0288</li>
+            <li class="last">客服电话：028-86660288</li>
         </ul>
     </div>
 </div></div>

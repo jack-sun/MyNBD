@@ -3,7 +3,7 @@
     <h1>文章管理 - 文章排行</h1>
   </div>
   <div class="content rightColCenter" id="body_state">
-    <div class="datePicker">
+    <div class="consoleFilter">
       <ul>
         <li <%= stats_class_helper("today") %>>
           <%= link_to "今天", top_stats_console_articles_url(:filter => "today", :page => params[:page]) %>

@@ -8,7 +8,7 @@ title = json["title"]
 articles = if type == ElementArticle::ARTICLE_SOURCE_COLUMN
   ArticlesColumn.where(:column_id => value, :status => Article::PUBLISHED).select([:article_id]).order("id DESC").includes(:article => {:pages => :image}).page(0).per(count).map(&:article).compact
 elsif type == ElementArticle::ARTICLE_SOURCE_TAG
-  articles = Article.search(:conditions => {:tags => value.split(",").first}, :page => 1, :per_page => count, :order => :id, :sort_mode => :desc, :with => {:status => Article::PUBLISHED})
+  articles = Article.search(:conditions => {:tags => "(#{value.split(',').join(' | ')})"}, :page => 1, :per_page => count, :order => :id, :sort_mode => :desc, :with => {:status => Article::PUBLISHED})
 end
 -%>
 

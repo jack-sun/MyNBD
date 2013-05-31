@@ -19,7 +19,7 @@
 			</ul>
 
 		</div>
-                        <div class="datePicker">
+                        <div class="consoleFilter">
 			<ul>
 				<li <%= stats_class_helper(Staff::STATUS_ACTIVE,"staff_status") %>>
 					<%= link_to "有效用户", console_staffs_url(:type => @staff_type) %>
@@ -44,7 +44,7 @@
 				<% @stats.each do |stat| %>
 				<tr>
 					<td>
-						<%= link_to stat.real_name,show_articles_console_staff_url(stat.name) %>
+						<%= link_to stat.real_name,common_index_console_staff_staff_performance_logs_path(stat,'day') %>
 					</td>
 					<td>
 						<%= stat.name %>

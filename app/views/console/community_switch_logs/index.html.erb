@@ -1,0 +1,37 @@
+<div class="sectionA">
+  <div class="title">
+    <h1>社区开关操作-操作记录</h1>
+    <div class="opts">
+      <%# if staff_name == Settings.xupeng_name %>
+        <% if Weibo.content_check_needed? %>
+          <%= link_to "<span>社区 - 已关闭</span>".html_safe, toggle_content_check_status_console_weibos_url, :method => :post, :confirm => "你确定要开启‘社区’吗", :class => "btnGreen followManaBtn", :id => "switchStatBtn" %>
+        <% else %>
+          <%= link_to "<span>社区 - 已开启</span>".html_safe, toggle_content_check_status_console_weibos_url, :method => :post, :confirm => "你确定要关闭‘社区’吗？用户产生的所有内容，将是‘屏蔽/待审核’状态", :class => "btnGrayBlue" %>
+        <% end %>
+      <%# end %>
+      <div class="clear"></div>
+    </div>
+  </div>
+  <div class="content rightColCenter">
+    <table class="tableA">
+      <tr>
+        <th>操作</th>
+        <th>操作人</th>
+        <th>操作IP</th>
+        <th>操作时间</th>
+      </tr>
+
+      <% for community_switch_log in @community_switch_logs %>
+        <tr>
+          <td><%= community_switch_log.cmd_type %></td>
+          <td><%= community_switch_log.staff.real_name %></td>
+          <td><%= community_switch_log.remote_ip %></td>
+          <td width="12%"><%= community_switch_log.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="operation">
+    <%= paginate(@community_switch_logs) %>
+  </div>
+</div>

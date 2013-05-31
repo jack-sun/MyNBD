@@ -103,4 +103,5 @@ class ServiceCard < ActiveRecord::Base
     end
     result
   end
+
 end

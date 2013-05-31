@@ -1,0 +1,37 @@
+<div class="sectionA">
+  <div class="title">
+    <h1>
+      <%= "#{@staff.real_name} #{@staff_performance_log.date_at}" %> 工作日志 - 折算发稿量
+    </h1>
+    <div class="opts"><a class="btnGray" href="javascript:history.go(-1);"><span>取消</span></a></div>
+    <span class="opts">
+     
+    </span>
+  </div>
+  <div class="content rightColCenter">
+    <%= simple_form_for [:console, @staff, @staff_performance_log], :method => :put, :html => {:class => "formA formA-9c"} do |f| %>
+      <p>
+        <%= f.input :convert_count, :label => "折算发稿量:", :error => false, :input_html => {:size => 30} %>
+        <% if @staff_performance_log.errors[:convert_count].present? %>
+          <span class="tip error"><%= @staff_performance_log.errors[:convert_count].last %></span>
+        <% end %>
+      </p>
+      <p>
+        <%= f.input :convert_apply_comment, :as => :text, :label => "备注:", :error => false, :input_html => {:value => @staff_performance_log.convert_apply_comment, :cols => 30, :rows => 10} %>
+        <% if @staff_performance_log.errors[:convert_apply_comment].present? %>
+          <span class="tip error"><%= @staff_performance_log.errors[:convert_apply_comment].last %></span>
+        <% end %>
+      </p>      
+      <% if @current_staff.authority_of_common? %>
+        <p>
+            <%= f.input :convert_count_reviewed, :label => "折算发稿量状态:", collection: StaffPerformanceLog::REVIEW_STATUS, label_method: :last, value_method: :first, :selected => @staff_performance_log.convert_count_reviewed %>
+            <%= f.input :review_staff_id, :as => :hidden, :input_html => {:value => @current_staff.id} %>
+        </p>
+      <% end %>
+      <%= hidden_field_tag :console, @console %>
+      <p class="formRightAlign">
+        <a href="javascript" class="btnBlueM" onclick="$(this).closest('form').submit();return false;"><span>提交</span></a>
+      </p>
+    <% end %>
+  </div>
+</div>

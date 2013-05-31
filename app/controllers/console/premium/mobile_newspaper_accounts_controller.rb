@@ -28,6 +28,14 @@ class Console::Premium::MobileNewspaperAccountsController < ApplicationControlle
     @result = @result.includes(:user).order("last_payment_at desc").page(params[:page]).per(30)
   end
 
+  def appstore_users
+    @mn_mobile_type = "appstore_users"
+    @stats_type = params[:type].nil? ? Payment::STATUS_ALL : params[:type].to_i
+    @payments = Payment.appstore
+    @payments = @payments.verify_status(@stats_type) if @stats_type != Payment::STATUS_ALL
+    @payments = @payments.includes(:user,:service).order("created_at DESC").page(params[:page]).per(30)
+  end
+
   def plain
     @stats_type = params[:type] || "active"
     @filter_type = (params[:filter] || (@stats_type == "all" ? "1" : "3")).to_i
@@ -84,9 +92,39 @@ class Console::Premium::MobileNewspaperAccountsController < ApplicationControlle
                   @result.invalid
                 end
               end
+    # search_str = "phone_no like '%#{params[:query]}%'"
+    # @result = @result.where(search_str).includes(:user).order("last_payment_at desc").page(params[:page]).per(30)
 
-    search_str = "phone_no like '%#{params[:query]}%'"
-    @result = @result.where(search_str).includes(:user).order("last_payment_at desc").page(params[:page]).per(30)
+    #edit by zhangbo at 2013.5.7 to add feature allow user search by username
+    search_str = "mn_accounts.phone_no like '%#{params[:query]}%' or nickname like '%#{params[:query]}%'"
+    @result = @result.joins(:user).where(search_str).order("last_payment_at desc").page(params[:page]).per(30)
     return render :index
+  end
+
+  def verify
+    payment = Payment.find(params[:id])
+    @stats_type = params[:type]
+    Resque.enqueue(Jobs::VerifyApplePaymentJob, payment.id) if payment.present?
+    return redirect_to appstore_users_console_premium_mobile_newspaper_accounts_url(:type => @stats_type)
+  end
+
+  def show
+    @mn_account = MnAccount.includes(:user).where("id = ?", params[:id]).first
+    @user = @mn_account.user
+  end
+
+  def update_password
+    @mn_account = MnAccount.includes(:user).where("id = ?", params[:id]).first
+    @user = @mn_account.user
+    new_password = params[:account][:user][:password]
+    if new_password.blank?
+      @user.errors[:password] = "密码不能为空"
+      return render :show
+    end
+    if @user.update_attributes(params[:account][:user])
+      redirect_to console_premium_mobile_newspaper_account_url(@mn_account), :notice => "密码更改成功"
+    else
+      return render :show
+    end
   end
 end

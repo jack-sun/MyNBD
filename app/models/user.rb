@@ -640,6 +640,9 @@ class User < ActiveRecord::Base
       return {:gms_access_token => gms_access_token,:mn_access_token => mn_access_token}
   end
 
+  def any_mn_account?
+    mn_account.nil?
+  end
   
 
   class << self
@@ -680,6 +683,7 @@ class User < ActiveRecord::Base
     def existed?(nickname)
       where(:nickname => nickname).first.present?
     end
+
     
     #TODO
     #def active_users(limit)

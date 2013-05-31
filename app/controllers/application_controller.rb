@@ -79,8 +79,7 @@ class ApplicationController < ActionController::Base
  
 
   def authorize_mn_account
-    return render :json => {:error => "你的帐号已在别处登录，请重新登录"}, :status => 401 if params[:access_token].present? && @mn_account.nil?
-    # return render :json => {:error => "你的帐号已在别处登录，请重新登录"}, :status => 401 unless @mn_account.present?
+    return redirect_to failure_premium_mobile_newspaper_account_url if @mn_account.nil?
   end 
 
   def authorize
@@ -164,6 +163,13 @@ class ApplicationController < ActionController::Base
     return render :text => "唉，你的权限不够啊！" unless @current_staff.authority_of_common?
     @common_console = true
   end
+
+  def init_statistics_console
+    return render :text => "唉，你的权限不够啊！" unless @current_staff.authority_of_statistics?
+    @console = 'statistics'
+    @statistics_console = true
+  end
+
   
   def error_message  message , action='home/err'
     unless message.blank?
@@ -251,18 +257,6 @@ class ApplicationController < ActionController::Base
     raise ActiveRecord::RecordNotFound if Column::FORBID_COLUMNS.include?(params[:id].to_i)
   end
 
-  def forbid_article_request_of_touzibao
-    if (ArticlesColumn.where(:article_id => params[:id]).map(&:column_id) & Column::FORBID_ARTICLE_REQUEST_OF_COLUMNS).present?
-      raise ActiveRecord::RecordNotFound
-    end
-  end
-
-  def forbid_article_request_of_gms
-    if (ArticlesColumn.where(:article_id => params[:id]).map(&:column_id) & Column::GMS_ARTICLES_COLUMNS).present?
-      raise ActiveRecord::RecordNotFound
-    end
-  end
-
   def check_parameter(parame_arry)
     return (params.symbolize_keys.keys & parame_arry).present?
   end
@@ -276,6 +270,17 @@ class ApplicationController < ActionController::Base
 
   def current_mn_account_by_token
     @mn_account ||= (MnAccount.where(:access_token => params[:access_token]).first if params[:access_token].present?)
+  end
+
+  protected
+
+  def staff_name
+    @current_staff.nil? ? '' : @current_staff.name
+  end
+  helper_method :staff_name
+
+  def current_user_by_mn_account
+    @mn_account.user
   end
 
 end

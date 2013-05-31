@@ -1,5 +1,6 @@
 #encoding: utf-8
 class GmsAccount < ActiveRecord::Base
+  include PaymentAccount
 
   include Redis::Objects
   value :cache_access_token
@@ -52,10 +53,11 @@ class GmsAccount < ActiveRecord::Base
   end
 
 
-  def touch_success(plan_type, active_from)
+  def touch_success(plan_type, active_from, payment_device)
     self.plan_type = plan_type
     self.last_active_from = active_from
     self.last_payment_at = Time.now
+    self.last_activated_device = payment_device
     self.save
     user = self.user
     user.pay_for_credits(plan_type)

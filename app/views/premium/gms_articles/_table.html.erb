@@ -7,7 +7,7 @@
     <tr>
       <th>
         <% if is_order %>
-          <%= link_to "<span>股票名称</span><b></b>".html_safe, premium_gms_articles_path(:order_by => "stock_name",:order_sort => "desc",:paid => @gms_articles_type == 'paid'), :class => "orderBtn order_by_stock_name" %>
+          <%= link_to "<span>股票名称</span><b></b>".html_safe, premium_gms_articles_path(:order_by => "stock_name",:order_sort => "desc",:paid => @gms_articles_type == 'paid'), :class => "orderBtn", "data-order" => "stock_name" %>
         <% else %>
           股票名称
         <% end %>
@@ -15,14 +15,14 @@
       <th>文章标题</th>
       <th>
         <% if is_order %>
-          <%= link_to "<span>股票代码</span><b></b>".html_safe, premium_gms_articles_path(:order_by => "stock_code",:order_sort => "desc",:paid => @gms_articles_type == 'paid'), :class => "orderBtn order_by_stock_code" %>
+          <%= link_to "<span>股票代码</span><b></b>".html_safe, premium_gms_articles_path(:order_by => "stock_code",:order_sort => "desc",:paid => @gms_articles_type == 'paid'), :class => "orderBtn", "data-order" => "stock_code" %>
         <% else %>
           股票代码
         <% end %>
       </th>
       <th>
         <% if is_order %>
-          <%= link_to "<span>会议时间</span><b></b>".html_safe, premium_gms_articles_path(:order_by => "meeting_at",:order_sort => "desc",:paid => @gms_articles_type == 'paid'), :class => "orderBtn order_by_meeting_at" %>
+          <%= link_to "<span>会议时间</span><b></b>".html_safe, premium_gms_articles_path(:order_by => "meeting_at",:order_sort => "desc",:paid => @gms_articles_type == 'paid'), :class => "orderBtn", "data-order" => "meeting_at" %>
         <% else %>
           大会日期
          <% end %>
@@ -42,7 +42,7 @@
         <tr class="<%= gms_article.is_refund? ? 'refund' : '' %>">
           <td><%= gms_article.stock.name %></td>
           <td class="title">
-            <%= link_to "#{gms_article.is_preview? ? '[预售]' : ''}#{gms_article.article.title}",premium_gms_article_path(gms_article),:target => '_blank' %>
+            <%= link_to "#{gms_article.is_preview? ? '<span class="articleLabel red"><b>预售</b></span> ' : ''}#{gms_article.article.title}".html_safe,premium_gms_article_path(gms_article),:target => '_blank' %>
           </td>
           <td>
             <%= link_to gms_article.stock.code,premium_search_stock_path(:stock_code => gms_article.stock.code) %>
@@ -95,13 +95,23 @@
 
     if(isOrder && !window._isOrder_){      
       var params = _nbd.parseUrl();
-      var order = $('.orderBtn.order_by_'+params.order_by);
+      var href = new $.path();
 
-      if(order.length > 0){
-        var sort = params.order_sort == 'desc' ? 'asc' : 'desc';
-        order.attr('href', order.attr('href').replace(params.order_sort, sort));
-        order.addClass(params.order_sort);
-      }
+      $('.orderBtn').each(function(i){
+        var order = $(this);
+        var hrefCopy = $.extend(true, {}, href);
+        var sort;
+        if(hrefCopy.get('order_by') == order.attr('data-order')){
+          sort = hrefCopy.get('order_sort') == 'desc' ? 'asc' : 'desc';
+          order.addClass(hrefCopy.get('order_sort'));
+        }else {
+          sort = 'desc';
+        }
+        hrefCopy.set('order_by', order.attr('data-order'));
+        hrefCopy.set('order_sort', sort);
+        hrefCopy.del('page');
+        order.attr('href', hrefCopy.getHref());
+      });
       _isOrder_ = true;
     }
   });

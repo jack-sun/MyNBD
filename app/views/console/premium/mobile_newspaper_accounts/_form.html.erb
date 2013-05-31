@@ -1,0 +1,16 @@
+<%= simple_form_for [:console_premium, @mn_account.first] , :html => {:class => "formA", :multipart => true} do |f|%>
+  <%= f.simple_fields_for @mn_account.first.user do |user_form| %>
+    <p>
+      <%= user_form.input :nickname, :label => "用户名：" %>
+    </p>
+  <% end %>
+  <p>
+    <%= f.input :plan_type %>
+  </p>
+  <p>
+    <%= f.input :last_payment_at %>
+  </p>
+  <p>
+    <%= f.input :last_active_from %>
+  </p>
+<% end %>

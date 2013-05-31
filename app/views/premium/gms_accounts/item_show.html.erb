@@ -1,62 +1,65 @@
 <%
-alipay = params[:type].try(:to_i) != 1
+  @title = "信用点购买 | 股东大会实录"
+  alipay = params[:type].try(:to_i) != 1
 %>
-<div id="pageName">
-	<h1>每经投资宝·股东大会实录 信用点购买</h1>
-</div>
-<div class="leftCol">
-  <div class="formA ">
-<!--     <div class="title">
-      <h3>激活邮件已过期</h3>
-    </div> -->
-    <% if flash[:notice] %>
-    <div class="alert_info">
-      <b></b><%= flash[:notice] %>
-    </div>
-    <% end %>
-<!--     <div class="tabs">
-    </div> -->
-    <% if params[:type].try(:to_i) != 1 %>
-    <%= form_tag buy_confirm_premium_gms_accounts_url, { :id => "accountForm", "data-type" => "text", :target => "_blank"} do %>
-    <p>
-      <%= label_tag "name", "每经网帐号:" %> <br />
-      <span class="pureText"><%= @current_user.nickname %></span>
-      
-    </p>
-    <% if !@current_account or @current_account.phone_no.blank? %>
-    <p>
-      <%= label_tag "mobile_no", "当前可用点数:" %><br />  <%= @current_user.credits %><br />
-    </p>
-    <% end %>
-    <p>
-      <%= label_tag "plan_type_label", "订阅套餐:" %> <br />
-      <%= radio_button_tag "plan_type", "2" %>
-      <%= label_tag "plan_type_2", "钻石套餐 100,000元（25,000个信用点，可以查阅最多1000家公司）".html_safe, :class => "clearLabelStyle tzbPayLabelItem" %><br />
-      <%= radio_button_tag "plan_type", "1", true %>
-      <%= label_tag "plan_type_1", "高级套餐 20,000元（4,000个信用点，可以查阅最多200家公司）".html_safe, :class => "clearLabelStyle tzbPayLabelItem" %><br />
-      <%= radio_button_tag "plan_type", "0" %>
-      <%= label_tag "plan_type_0", "基本套餐 3,000元（300个信用点，可以查阅最多15家公司）".html_safe, :class => "clearLabelStyle tzbPayLabelItem" %><br />
-      
-    </p>
-    <div class="block">
-      <%= submit_tag "购买 并同意服务条款", :class => "hiddenSubmit" %>
-      <a href="javascript:void(0)" id="nextBtn" class="btnBlueM mrm"><span>购买 并同意服务条款</span></a> 
-      <a href="javascript:void(0)" class="btnGrayM" onclick="history.back();"><span>取消</span></a>
-      <p class="mtm">
-        <%= link_to "《每经投资宝·股东大会实录》服务条款", gms_privacy_url, :target => "_blank" %>
-      </p>
-    </div>
-    <% end %>
-
-    <% end %>
-
+<div class="tzbWrapper tzbWrapper-g">
+  <div id="pageName">
+  	<h1>每经投资宝·股东大会实录 信用点购买</h1>
   </div>
-</div>
+  <div class="leftCol">
+    <div class="formA ">
+  <!--     <div class="title">
+        <h3>激活邮件已过期</h3>
+      </div> -->
+      <% if flash[:notice] %>
+      <div class="alert_info">
+        <b></b><%= flash[:notice] %>
+      </div>
+      <% end %>
+  <!--     <div class="tabs">
+      </div> -->
+      <% if params[:type].try(:to_i) != 1 %>
+      <%= form_tag buy_confirm_premium_gms_accounts_url, { :id => "accountForm", "data-type" => "text", :target => "_blank"} do %>
+      <p>
+        <%= label_tag "name", "每经网帐号:" %> <br />
+        <span class="pureText"><%= @current_user.nickname %></span>
+        
+      </p>
+      <% if !@current_account or @current_account.phone_no.blank? %>
+      <p>
+        <%= label_tag "mobile_no", "当前可用点数:" %><br />  <%= @current_user.credits %><br />
+      </p>
+      <% end %>
+      <p>
+        <%= label_tag "plan_type_label", "订阅套餐:" %> <br />
+        <%= radio_button_tag "plan_type", "2" %>
+        <%= label_tag "plan_type_2", "钻石套餐 100,000元（25,000个信用点，可以查阅最多1000家公司）".html_safe, :class => "clearLabelStyle tzbPayLabelItem" %><br />
+        <%= radio_button_tag "plan_type", "1", true %>
+        <%= label_tag "plan_type_1", "高级套餐 20,000元（4,000个信用点，可以查阅最多200家公司）".html_safe, :class => "clearLabelStyle tzbPayLabelItem" %><br />
+        <%= radio_button_tag "plan_type", "0" %>
+        <%= label_tag "plan_type_0", "基本套餐 3,000元（300个信用点，可以查阅最多15家公司）".html_safe, :class => "clearLabelStyle tzbPayLabelItem" %><br />
+        
+      </p>
+      <div class="block">
+        <%= submit_tag "购买 并同意服务条款", :class => "hiddenSubmit" %>
+        <a href="javascript:void(0)" id="nextBtn" class="btnBlueM mrm"><span>购买 并同意服务条款</span></a> 
+        <a href="javascript:void(0)" class="btnGrayM" onclick="history.back();"><span>取消</span></a>
+        <p class="mtm">
+          <%= link_to "《每经投资宝·股东大会实录》服务条款", gms_privacy_url, :target => "_blank" %>
+        </p>
+      </div>
+      <% end %>
 
-<div class="rightCol">
-</div>
+      <% end %>
 
-<div class="clear"></div>
+    </div>
+  </div>
+
+  <div class="rightCol">
+  </div>
+
+  <div class="clear"></div>
+</div>
 
 <script type="text/javascript">
 $(function(){

@@ -1,0 +1,213 @@
+<% require_slideShow %>
+
+<style type="text/css">
+  .tzbBodyWrapper { background: #f1f1f1; }
+</style>
+
+<script type="text/javascript">
+  BAIDU_CLB_preloadSlots("657857","657856");
+</script>
+
+<div class="tzbIntro">
+  <div class="tzbWrapper">
+    <div class="layout">
+      <div class="lCol" style="">
+        <div class="tzbIntro_item tzbIntro_item-interview">
+          <%= link_to "在纷繁迷乱的股市中为投资者点亮一盏灯", "#{premium_touzibao_help_path}#tzb_interview", :target => "_blank" %><br>
+          专访《每日经济新闻》报社执行总编辑、每经研究院院长、每经投资宝总编辑李伟先生
+        </div>
+      </div>
+      <div class="main">
+        <div class="tzbIntro_item">
+          <p>
+            《每经投资宝》是每日经济新闻报社旗下每经研究院基于权威的新闻媒体平台和专业的研发团队，倾力打造的一系列财经证券资讯信息产品，于2012年8月正式上线。专注于给投资者提供具有前瞻性、实用性、有效性和指导性的财经证券资讯。 <%= link_to "查看更多 &raquo;".html_safe, "#{premium_touzibao_help_path}#tzb_about", :target => "_blank" %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tzbSlideshow">
+  <div id="slideshow-bg" class="tzbSlideshow_bg">
+    <div class="slidebg-ttyj"></div>
+    <div class="slidebg-gms"></div>
+    <div class="slidebg-tzkx"></div>
+  </div>
+  <div class="tzbSlideshow_container">
+    <div id="slideshow-intro" class="tzbSlideshow_intro">
+
+      <!-- 天天赢家 -->
+      <div>
+        <div class="tzbSlideintro">
+          <div class="tzbSlideintro_hd">天天赢家</div>
+          <div class="tzbSlideintro_text">专注于给投资者提供有前瞻性、实用性、有效性和指导性的财经证券资讯信息，是投资者理想的权威的投资顾问。</div>
+          <%= link_to '<span class="tzbSlideintro_outlink">查看详情</span>'.html_safe, 
+              premium_touzibao_tiantianyingjia_path, :class => "tzbSlideintro_detail" %>
+          <div class="tzbSlideintro_links">
+            <p>
+              <a href="https://itunes.apple.com/us/app/mei-jing-tou-zi-bao-mei-ri/id575805206?ls=1&mt=8" target="_blank">iPhone客户端</a>
+              <a href="http://product.nbd.com.cn/touzibao/android/TouzibaoMobile-NBD-Web-release.apk">Android客户端</a>
+            </p>
+            <p>
+              <%= link_to "在线阅读".html_safe, today_premium_touzibaos_url %>
+              <%= link_to "卡号激活".html_safe, new_premium_mobile_newspaper_account_url + "?type=1" %>
+              <%= link_to "常见问题及解答", premium_touzibao_help_path %>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 股东大会实录 -->
+      <div>
+        <div class="tzbSlideintro">
+          <div class="tzbSlideintro_hd">股东大会实录</div>
+          <div class="tzbSlideintro_text">您带来股东大会上第一手的重磅信息。《股东大会实录》是每经投资宝在2013年推出的首款资讯信息产品，也是每经研究院倾力打造的又一款中高端资讯信息产品。</div>
+          <%= link_to '<span class="tzbSlideintro_outlink">查看详情</span>'.html_safe,
+              premium_touzibao_gudongdahuishilu_path, :class => "tzbSlideintro_detail" %>
+        </div>
+      </div>
+
+      <!-- 投资快讯 -->
+      <div>
+        <div class="tzbSlideintro">
+          <div class="tzbSlideintro_hd">投资快讯</div>
+          <div class="tzbSlideintro_text">“源于每经报，精于每经报”。根据第二天每经报的精华内容，选取能够对市场以及板块个股产生直接影响的信息，进行再加工，财经证券资讯信息一网打尽。是广大普通投资者获取有效财经证券资讯信息的好途径。</div>
+          <%= link_to '<span class="tzbSlideintro_outlink">查看详情</span>'.html_safe,
+              premium_touzibao_touzikuaixun_path, :class => "tzbSlideintro_detail" %>
+        </div>
+      </div>
+
+    </div>
+    <div id="slideshow-index" class="tzbSlideshow_index">
+      <a href="javascript:;">1</a>
+      <a href="javascript:;">1</a>
+      <a href="javascript:;">1</a>
+    </div>
+  </div>
+</div>
+
+<div class="tzbWrapper">
+
+  <div style="margin-bottom:25px;">
+    <%= render :partial => "ads/ad", :locals => { :ids => ["657856", "657857"], :html_class => "col2" } %>
+  </div>
+
+  <div class="tzbHome3col clearfix">
+    <div class="tzbHome3col_col">
+      <div class="tzbBox">
+        <h3 class="hd">
+          <span class="opt"><%= link_to '更多', column_path(Column::TOUZIBAO_REPORT_COLUMN), :target => "_blank" %></span>
+          新闻报道
+        </h3>
+        <% 
+          forward_articles = @news_report_articles[0...2] 
+          last_articles = @news_report_articles[2...5]
+        %>
+        <div class="bd">
+          <% forward_articles.each do |article| %>
+          <div class="article-item">
+            <div class="article-item__title"> <%= link_to article.title, article_url(article), :target => '_blank' %> </div>
+            <div class="article-item__digest">
+              <a href="#">
+                <%= link_to image_tag(article_thumbnail_path(article, :small), {:alt => article.list_title, :width => 80, :height => 60}),  article_url(article), {:target => "_blank"} if article.image.present? %>
+              </a>
+              <%= article.digest %>
+            </div>
+          </div>
+          <% end %>
+          <ul class="unorderList article-list">
+            <% last_articles.each do |article| %>
+            <li>
+              <%= link_to article.title, article_url(article), :target=> '_blank', :title => article.title %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="tzbHome3col_col">
+      <div class="tzbBox">
+        <h3 class="hd">
+          <span class="opt"> <%= link_to '更多', column_path(Column::TOUZIBAO_CASE_COLUMN), :target => "_blank" %> </span>
+          成功案例
+        </h3>
+        <% 
+          forward_articles = @success_case_articles[0...2] 
+          last_articles = @success_case_articles[2...5]
+        %>
+        <div class="bd">
+          <% forward_articles.each do |article| %>
+          <div class="article-item">
+            <div class="article-item__title"> <%= link_to article.title, article_url(article), :target => '_blank' %> </div>
+            <div class="article-item__digest">
+              <a href="#">
+                <%= link_to image_tag(article_thumbnail_path(article, :small), {:alt => article.list_title, :width => 80, :height => 60}),  article_url(article), {:target => "_blank"} if article.image.present? %>
+              </a>
+              <%= article.digest %>
+            </div>
+          </div>
+          <% end %>
+          <ul class="unorderList article-list">
+            <% last_articles.each do |article| %>
+            <li>
+              <%= link_to article.title, article_url(article), :target=> '_blank', :title => article.title %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="tzbHome3col_col">
+      <div class="tzbBox">
+        <h3 class="hd">
+          <span class="opt"> <%= link_to '更多', column_path(Column::TOUZIBAO_SALON_COLUMN), :target => "_blank" %> </span>
+          读者沙龙
+        </h3>
+        <% 
+          forward_articles = @reader_salon_articles[0...2] 
+          last_articles = @reader_salon_articles[2...5]
+        %>        
+        <div class="bd">
+          <% forward_articles.each do |article| %>
+          <div class="article-item">
+            <div class="article-item__title"> <%= link_to article.title, article_url(article), :target => '_blank' %> </div>
+            <div class="article-item__digest">
+              <a href="#">
+                <%= link_to image_tag(article_thumbnail_path(article, :small), {:alt => article.list_title, :width => 80, :height => 60}),  article_url(article), {:target => "_blank"} if article.image.present? %>
+              </a>
+              <%= article.digest %>
+            </div>
+          </div>
+          <% end %>
+          <ul class="unorderList article-list">
+            <% last_articles.each do |article| %>
+            <li>
+              <%= link_to article.title, article_url(article), :target=> '_blank', :title => article.title %>
+            </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    var slide = $.nbdslide.init({
+      interval:7000,
+      speed:1000,
+      // autoScroll:false,
+      optDOMs:["#slideshow-bg", "#slideshow-intro"],
+      style:"fade",
+      indexDOM:"#slideshow-index"
+    });
+
+    $(".tzbSlideintro").mouseenter(function(){
+      slide.stopAutoScroll();
+    }).mouseleave(function(){
+      slide.startAutoScroll();
+    });
+  });
+</script>

@@ -1,0 +1,152 @@
+<% require_scrollFix %>
+<%
+  @title = "天天赢家"
+
+  is_valid_premium_user = @current_user && @current_user.is_valid_premium_user?
+  is_payed_premium_user = @current_user && @current_user.mn_account.try("payed?")
+%>
+
+<div class="tzbSubNav_placeholder">
+  <div class="tzbSubNav" id="subNav" style="width:100%">
+    <div class="tzbWrapper">
+      <h1>天天赢家</h1>
+      <div class="tzbSubNav_index">
+        <a href="#ttyjProductIntro">产品介绍</a>
+        <a href="#ttyjRead">在线阅读</a>
+        <a href="#ttyjIphone">iPhone客户端</a>
+        <a href="#ttyjAndroid">Android客户端</a>
+        <a href="#ttyjActive">卡号激活</a>
+        <%= link_to "<span>立刻购买</span>".html_safe, new_premium_mobile_newspaper_account_url, :class => "outlink outlink-s" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tzbColumnBg">
+  <img src="/images/touzibao/bg-tiantian.png">
+</div>
+
+<div class="intro" id="ttyjProductIntro">
+  <div class="tzbWrapper">
+    <h2>产品介绍</h2>
+    <p>
+      天天赢家产品专注于给投资者提供有前瞻性、实用性、有效性和指导性的财经证券资讯信息，是投资者理想的权威的投资顾问。 <br>
+      <strong>发布时间：</strong>交易日早上07:30-08:00 <br>
+      <strong>产品资费：</strong> 160元/季度、300元/半年、580元/全年。
+    </p>
+    <table class="tableTianTian">
+      <thead>
+        <tr>
+          <th>栏目</th><th>内容简介</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="tdw80">美股风向</td>  <td>欧美股市及国际大宗商品最新动态；美国股市最新的股票炒作动向，从美国股市最新动向中揭示A股的连动机会。</td></tr>
+        <tr><td>每经精选</td>  <td>从国际国内多方面精选对证券市场具有重大影响的资讯信息和财经证券政策进行深度解读进行解读，并从中挖掘机会或揭示风险。</td></tr>
+        <tr><td>价值发掘</td>  <td>每经研究院精心研究或者深度调查的中线价值股的持续追踪，是价值投资和中期投资的良品。</td></tr>
+        <tr><td>题材驱动</td>  <td>从产业相关政策、重大突发事件、突发行业新闻中挖掘短线交易性机会或揭示风险 </td></tr>
+        <tr><td>主编观点</td>  <td>在股市的短线或者中长线转折关头，研究院策略研究委员会提出的指导性观点</td></tr>
+        <tr><td>资金监测</td>  <td>从资金价格、央行公开市场操作、盘面资金流动等多个方面对市场资金供给等情报进行分析研判</td></tr>
+        <tr><td>盘面雷达</td>  <td>从龙虎榜、高管增减持、大宗交易、板块个股异动等盘口信息挖掘机会或揭示风险</td></tr>
+        <tr><td>机构情报</td>  <td>动态跟踪基金、社保、保险、QFII、私募等机构动向，从中挖掘机会或揭示风险</td></tr>
+        <tr><td>股期导航</td>  <td>从股指期货和融资融券运行中，折射股市趋势的未来可能的方向</td></tr>
+        <tr><td>公司前沿</td>  <td>从上市公司最新动态中挖掘机会或揭示风险</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="intro intro-blue intro-read" id="ttyjRead">
+  <div class="tzbWrapper">
+    <%= link_to "<span>前往在线阅读</span>".html_safe, today_premium_touzibaos_url, :class => "outlink" %>
+    <h2>在线阅读</h2>
+    <p>轻点鼠标，即可体验天天赢家在线版！免费查阅往期内容。</p>
+  </div>
+</div>
+
+<div class="intro intro-iphone" id="ttyjIphone">
+  <div class="tzbWrapper">
+    <h2>iPhone客户端</h2>
+    <h3>在iPhone上直接安装：</h3>
+    <p>
+      1. 进入iPhone手机中的应用商店(App Store)； <br>
+      2. 搜索“每经投资宝”； <br>
+      3. 在搜索结果中选择“每经投资宝”，进入应用下载界面； <br>
+      4. 点击“免费”按钮，待按钮显示“安装应用”后，点击安装。
+    </p>
+    <h3>在iTunes中下载后，通过同步安装：</h3>
+    <p>
+      1. 确认该电脑上已安装iTunes (<a target="_blank" href="http://www.apple.com.cn/itunes/download/">下载iTunes</a>)； <br>
+      2. <a target="_blank" href="https://itunes.apple.com/us/app/mei-jing-tou-zi-bao-mei-ri/id575805206?ls=1&mt=8">在iTunes中查看该客户端</a>； <br>
+      3. 点击“免费”按钮，开始下载； <br>
+      4. 下载完成后，通过iTunes同步完成安装 (同步设置详述)。
+    </p>
+    <p>
+      系统要求：iOS 4.3+
+    </p>
+  </div>
+</div>
+
+<div class="intro intro-green intro-android" id="ttyjAndroid">
+  <div class="tzbWrapper">
+    <h2>Android 客户端</h2>
+    <h3>QR码扫描下载：</h3>
+    <p>
+      <img src="/images/touzibao/android-code.png">
+    </p>
+    <h3>直接下载：</h3>
+    <p>
+      <%= link_to "<span>下载Android客户端</span>".html_safe, "http://product.nbd.com.cn/touzibao/android/TouzibaoMobile-NBD-Web-release.apk", :class => "outlink", :style => "float:none;margin-top:0;" %>
+    </p>
+    <p>
+      系统要求：Android 2.2+
+    </p>
+  </div>
+</div>
+
+<div class="intro" id="ttyjActive">
+  <div class="tzbWrapper">
+    <%= link_to "<span>前往卡号激活</span>".html_safe, new_premium_mobile_newspaper_account_url + "?type=1", :class => "outlink" %>
+    <h2>卡号激活</h2>
+    <p>
+      点击右边的“前往卡号激活”按钮，根据提示操作即可。
+    </p>
+  </div>
+</div>
+
+<div class="intro intro-gray" id="ttyjPay">
+  <div class="tzbWrapper">
+    <%= link_to "<span>前往在线购买</span>".html_safe, new_premium_mobile_newspaper_account_url, :class => "outlink" %>
+    <h2>购买方式</h2>
+
+    <h3>1. 在线购买</h3>
+    <p>点击右边的“前往在线购买”按钮，根据提示操作即可。</p>
+
+    <h3>2. 转账汇款</h3>
+    <p>
+      账号：43111 01001 0001 7125 <br>
+      开户行：兴业银行成都新华大道支行 <br>
+      开户名：成都每日经济新闻报社有限公司 <br>
+      注意：在备注中务必标明“订阅每经投资宝·天天赢家”和“手机号码”
+    </p>
+    <h3>3. 报社缴费</h3>
+    <p>
+      报社地址：成都市锦江区红星路二段159号成都报业大厦联系电话：028-86660288
+    </p>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    $("#subNav").scrollFix("top","top");
+
+    $('.tzbSubNav_index').delegate('a[href^=#]', 'click', function(i){
+      var cursor = $(this),
+          id = cursor.attr('href'),
+          top = $(id).offset().top - 80;
+
+      $('html, body').animate({'scrollTop':top}, 400);
+      return false;
+    });
+  });
+</script>

@@ -1,0 +1,77 @@
+<div class="sectionA">
+  <div class="title">
+    <h1><%= @staff.real_name if @console == 'common' || @console == 'statistics' %> 工作日志</h1>
+  </div>
+  <% if flash[:notice]  %>
+    <div class="alert_done" style="margin:20px 20px 10px;"><b></b> <%= flash[:notice] %></div>
+  <% end %>
+
+  <div class="content rightColCenter" id="body_state">
+    <div class="tabs">
+      <ul>
+        <li <%= "class='current'" if @find_method == 'day' %>>
+          <%= link_to '按天',staff_permance_index_helper_path(@staff, 'day') %>
+        </li>
+        <li <%= "class='current'" if @find_method == 'month' %>>
+          <%= link_to '按月',staff_permance_index_helper_path(@staff, 'month') %>
+        </li>
+      </ul>
+    </div>
+
+    <table class="tableA">
+      <thead>
+        <tr>
+          <th>日期</th>
+          <th>发稿量</th>
+          <th>点击量</th>
+          <th>折算发稿量</th>
+          <th>总发稿量</th>
+          <th>平均每篇点击量</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @staff_performance_logs.each do |performance_log| %>
+        
+        <tr>
+          <td>
+            <%= link_to log_date(performance_log), console_staff_show_articles_helper_path(@staff.name, log_date(performance_log)) %>
+          </td>
+          <td>
+            <%= performance_log.post_count %>
+          </td>
+          <td>
+            <%= performance_log.click_count %>
+          </td>
+          <td>
+            <% if @find_method == 'day' %>
+              <%= link_to_unless @console == 'statistics', performance_log.convert_count, edit_console_staff_staff_performance_log_path(@staff, performance_log, :console => @console) %>
+              <% if performance_log.convert_count != 0 %>
+              /
+              <span class="<%= performance_log.reviewed? ? 'green' : '' %>">
+                <%= performance_log.review_staff.real_name if performance_log.review_staff %>
+                <%= review_status_name(performance_log) %>
+              </span>
+              <% end %>
+            <% elsif @find_method == 'month' %>
+              <%= convert_count(performance_log) %>
+            <% end %>            
+          </td>
+          <% unless @find_method == 'month' %>
+          <% end %>
+          <% if @find_method == 'day' %>
+          <% end %>
+          <td>
+            <%= total_press_count(performance_log) %>
+          </td>
+          <td>
+            <%= average_hits(performance_log) %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div style="margin-top:20px;" class="pagination">
+      <%= paginate @staff_performance_logs %>
+    </div>    
+  </div>
+</div>

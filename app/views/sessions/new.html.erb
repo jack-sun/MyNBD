@@ -7,9 +7,14 @@
 		border: none;
 	}
 </style>
+<% action_from = flash[:action_from] %>
+<% action_from ||= 'web_site'%>
+<% flash.keep(:action_from) if action_from == 'touzibao'%>
 <div class="leftCol">
-	<%= render :partial => "sessions/form_for_sign_in", :locals => { :btn_txt => "登录社区" } %>
+	<%= render :partial => "sessions/form_for_sign_in", :locals => { :btn_txt => "登录社区", :action_from => action_from } %>
 </div>
+<!-- temp solution for touzibao's sign_in by zhou -->
+<% unless action_from == 'touzibao' %>
 <div class="rightCol">
 	<div id="weiboIntro">
 		<h3>每经社区是一个专业的财经微博社区，在此您可以：</h3>
@@ -18,8 +23,20 @@
 			<li><b>2</b>收看股市直播，与专家实时互动，实时解盘；</li>
 			<li><b>3</b>参与社区活动，结交志同道合的朋友，分享投资理财心得。</li>
 		</ol>
-		<h4>还没有每经微博账号？<%= link_to "<strong>立刻注册吧 &raquo;</strong>".html_safe, "/user/sign_up", {:class => "red", :style => "text-decoration:underline;"} %></h4>
+		<h4>还没有每经微博帐号？<%= link_to "<strong>立刻注册吧 &raquo;</strong>".html_safe, "/user/sign_up", {:class => "red", :style => "text-decoration:underline;"} %></h4>
 		
 	</div>
 </div>
+<% else %>
+<div class="rightCol">
+	<div id="weiboIntro">
+		<h3>《每经投资宝》是专业的股市投资资讯产品，在此登录后您可以：</h3>
+		<ol>
+			<li><b>1</b>第一时间获得独家、有效、实用的股市实战方略；</li>
+			<li><b>2</b>第一时间获得上市公司股东大会的重磅经营信息；</li>
+			<li><b>3</b>第一时间获得每经投资宝研究员采集的投资信息。</li>
+		</ol>
+	</div>
+</div>
+<% end %>
 <div class="clear"></div>

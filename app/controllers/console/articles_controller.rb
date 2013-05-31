@@ -212,7 +212,7 @@ module Console
       @articles = if @article_source == ElementArticle::ARTICLE_SOURCE_COLUMN # column articles
         ArticlesColumn.where(:column_id => params[:value], :status => Article::PUBLISHED).select([:article_id]).order("id DESC").includes(:article => {:pages => :image}).page(0).per(count)
       else # tag articles
-        @articles = Article.search(:conditions => {:tags => params[:value].split(",").first}, :page => 1, :per_page => count, :order => :id, :sort_mode => :desc, :with => {:status => Article::PUBLISHED})
+        @articles = Article.search(:conditions => {:tags => "(#{params[:value].split(",").join(' | ')})"}, :page => 1, :per_page => count, :order => :id, :sort_mode => :desc, :with => {:status => Article::PUBLISHED})
       end
       
       render :text => render_to_string(:partial => "console/articles/dynamic_articles", :layout => false)

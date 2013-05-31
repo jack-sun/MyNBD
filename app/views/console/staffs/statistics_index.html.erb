@@ -1,0 +1,30 @@
+<div class="sectionA">
+  <div class="title">
+    <h1>用户列表</h1>
+  </div>
+  <div class="content rightColCenter">
+    <table class="tableA">
+      <thead>
+        <tr>
+          <th>姓名</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @stats.each do |stat| %>
+        <tr>
+          <td>
+            <%= link_to stat.real_name,staff_permance_index_helper_path(stat,'day') %>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div style="margin-top:20px;">
+      <%= paginate @stats %>
+    </div>
+  </div>
+</div>
+<style type="text/css">
+  .tableA { width: 500px; }
+  .tableA td { width: 150px; }
+</style>

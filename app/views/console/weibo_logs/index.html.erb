@@ -1,0 +1,27 @@
+<div class="sectionA">
+  <div class="title">
+    <h1>微博操作记录</h1>
+  </div>
+  <div class="content rightColCenter">
+    <table class="tableA">
+      <tr>
+        <th>操作</th>
+        <th>操作人</th>
+        <th>操作IP</th>
+        <th>操作时间</th>
+      </tr>
+      
+      <% for weibo_log in @weibo_logs %>
+        <tr>
+          <td><%= weibo_log.cmd_type %></td>
+          <td><%= weibo_log.staff.real_name %></td>
+          <td><%= weibo_log.remote_ip %></td>
+          <td width="12%"><%= weibo_log.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+  <div class="operation">
+    <%= paginate(@weibo_logs) %>
+  </div>
+</div>

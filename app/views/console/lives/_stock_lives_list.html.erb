@@ -1,28 +1,27 @@
-<div class="content rightColCenter">
-	<table class="tableA">
-		<thead>
+<table class="tableA">
+	<thead>
+		<tr>
+			<th>标题</th>
+			<th>主持人</th>
+			<th>时间</th>
+			<th>直播状态</th>
+			<th>操作</th>
+		</tr>		
+	</thead>
+	<tbody>
+		<% lives.each do |live| %>
 			<tr>
-				<th>标题</th>
-				<th>主持人</th>
-				<th>时间</th>
-				<th>直播状态</th>
-				<th>操作</th>
-			</tr>		
-		</thead>
-		<tbody>
-			<% lives.each do |live| %>
-				<tr>
-					<td class="itemTitle"><%= link_to live.title, live_url(live), {:target => "_blank"} %></td>
-				    <td><%= live.user.nickname %></td>
-					<td class="itemDate"><%= live.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
-					<td class="itemStatus_<%=live.status%>"><%= live.status.to_i %></td>
-					<td class="itemActions">
-						<%= link_to '<b></b>编辑'.html_safe, edit_console_live_path(live), :class=>'actionEdit' %>
-						<%= link_to '<b></b>删除'.html_safe, console_live_url(live), :confirm => '你确定要删除此直播吗？', :method => :delete, :class=>'actionDelete' %>
-					</td>
-				</tr>
-			<%end%>
-		</tbody>
-	</table>
-	<%= paginate @lives %>
-</div>
+				<td class="itemTitle"><%= link_to live.title, live_url(live), {:target => "_blank"} %></td>
+			    <td><%= live.user.nickname %></td>
+				<td class="itemDate"><%= live.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+				<td class="itemStatus_<%=live.status%>"><%= live.status.to_i %></td>
+				<td class="itemActions">
+					<%= link_to '<b></b>编辑'.html_safe, edit_console_live_path(live), :class=>'actionEdit' %>
+					<%= link_to '<b></b>删除'.html_safe, console_live_url(live), :confirm => '你确定要删除此直播吗？', :method => :delete, :class=>'actionDelete' %>
+				</td>
+			</tr>
+		<%end%>
+	</tbody>
+</table>
+
+

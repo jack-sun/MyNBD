@@ -7,4 +7,9 @@ class Badword < ActiveRecord::Base
   def self.keyword_list_key
     BAD_KEYWROD_KEY 
   end
+
+  
+  def record_exsit?
+    Badword.where(:value => value).first.present?
+  end
 end

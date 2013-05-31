@@ -1,0 +1,45 @@
+<div class="sectionA">
+  <div class="title">
+    <h1><%= @column.name %> 频道工作日志</h1>
+  </div>
+  <% if flash[:notice]  %>
+    <div class="alert_done" style="margin:20px 20px 10px;"><b></b> <%= flash[:notice] %></div>
+  <% end %>
+  <div class="content rightColCenter" id="body_state">
+    <div class="tabs">
+      <ul>
+        <li <%= "class='current'" if @find_method == 'day' %>>
+          <%= link_to '按天', statistics_index_console_column_column_performance_logs_url(@column.id, :find_method => 'day') %>
+        </li>
+        <li <%= "class='current'" if @find_method == 'month' %>>
+          <%= link_to '按月', statistics_index_console_column_column_performance_logs_url(@column.id, :find_method => 'month') %>
+        </li>
+      </ul>
+    </div>
+    <table class="tableA">
+      <thead>
+        <tr>
+          <th>日期</th>
+          <th>发稿量</th>
+          <th>点击量</th>
+          <th>平均每篇点击量</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @column_performance_logs.each do |column_performance_log| %>
+          <tr>
+            <td>
+              <%= link_to_unless column_performance_log.post_count.zero?, log_date(column_performance_log), statistics_show_articles_console_columns_url(@column, log_date(column_performance_log)) %>
+            </td>
+            <td><%= column_performance_log.post_count %></td>
+            <td><%= column_performance_log.click_count %></td>
+            <td><%= column_performance_log.average_hits %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div style="margin-top:20px;" class="pagination">
+      <%= paginate @column_performance_logs %>
+    </div>
+  </div>
+</div>

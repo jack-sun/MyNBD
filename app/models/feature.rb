@@ -33,6 +33,22 @@ class Feature < ActiveRecord::Base
   scope :banned, where(:status => BANNDED)
   
   after_create :init_page_and_elements
+
+  TOUZIBAO_FEATURE_IDS = [199,207,274]
+
+  EXPIRE_IN = 3*60*60
+
+  define_index do
+    # fields
+    indexes title, :sortable => true
+    indexes tags
+
+    # attributes
+    has :id, status, created_at, updated_at
+    
+    # 声明使用实时索引    
+    set_property :delta => true
+  end
   
   def init_page_and_elements
     page = FeaturePage.new
@@ -96,6 +112,14 @@ class Feature < ActiveRecord::Base
   def change_to_draft
     self.status = DRAFT
     self.save!
+  end
+
+  class << self
+    def search_with_tags(tags, limit=2)
+      return [] if tags.blank? or tags.empty?
+
+      Feature.search(:page => 1, :per_page => limit, :order => :id, :sort_mode => :desc, :with => {:status => PUBLISHED}, :conditions => {:tags => "(#{tags.first})"})
+    end
   end
   
 end

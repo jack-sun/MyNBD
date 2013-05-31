@@ -9,9 +9,9 @@
       <div style="margin-bottom:15px;">
         <%= f.label :column_ids, "所属栏目:" %>
         <% if @selected_id %>
-          <%= f.grouped_collection_select :column_ids, Column.basic_columns.displaied_columns.includes(:children), :children, :name, :id, :show_name, {:selected => [@selected_id]}, {:class => "chzn-select", :multiple => true, :style => "width:200px;"} %>
+          <%= f.grouped_collection_select :column_ids, Column.basic_columns.displaied_columns.includes(:visable_children), :visable_children, :name, :id, :show_name, {:selected => [@selected_id]}, {:class => "chzn-select", :multiple => true, :style => "width:200px;"} %>
         <% else %>
-          <%= f.grouped_collection_select :column_ids, Column.basic_columns.displaied_columns.includes(:children), :children, :name, :id, :show_name, {}, {:class => "chzn-select", :multiple => true, :style => "width:200px;"} %>
+          <%= f.grouped_collection_select :column_ids, Column.basic_columns.displaied_columns.includes(:visable_children), :visable_children, :name, :id, :show_name, {}, {:class => "chzn-select", :multiple => true, :style => "width:200px;"} %>
         <%end %>
       </div>
       <div style="margin-bottom:15px;">
@@ -385,12 +385,9 @@
     // 查询敏感词，并更改敏感词提示(badWordsTip)
     function findBadWords(){
       var isfind = false;
-      if(!badWordsRexp) {
-        return false;
-      }else {
-        badWordsTip = "";
-      }
+      if(!badWordsRexp) return false;
 
+      badWordsTip = "";
       $("#inputArea iframe").each(function(index){
         var body = $($(this)[0].contentDocument.body);
         var htmlcode = body.html();

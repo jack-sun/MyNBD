@@ -84,7 +84,7 @@ class Console::Premium::GmsArticlesController < ApplicationController
     @article = @gms_article.article
     @comments = @article.comments.order("id DESC").includes(:owner)
     @page = params.has_key?(:p_index) ? @article.pages.where(:p_index => params[:p_index]).first : @article.pages.where(:p_index => 1).first
-    return render :template => "premium/gms_articles/show",:layout => 'mobile_newspaper'
+    return render :template => "premium/gms_articles/show",:layout => 'touzibao'
   end
 
   def refund

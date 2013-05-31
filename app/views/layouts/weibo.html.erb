@@ -26,7 +26,7 @@
           <ul class="rf">
             <%if @current_user.present?%>
               <li><span><%= @current_user.nickname %></span> <%= link_to "[退出]", user_sign_out_url, :method => :delete %></li>
-              <li><%= link_to "账号设置", settings_user_url %></li>
+              <li><%= link_to "帐号设置", settings_user_url %></li>
               <li class="last"><%= link_to "意见反馈", user_url('每经网客服') %></li>
             <%else%>
               <li><%= link_to "登录社区", user_sign_in_url %></li>
@@ -40,6 +40,7 @@
       <div class="innerCenter" id="logo">
         <a href="/" class="logo" id="logoWeibo" title="每经网">每经网</a>
         <div id="weiboMainNav">
+          <% if false #隐藏微薄搜索框 %>
           <% form_tag(community_search_url, :method => "get", :class => "searchBox rf") do%>
             <%= text_field_tag(:q, "", :class => "searchInput", :id => "searchWeibo", :autocomplete => "off") %>
             <%= hidden_field_tag(:type, "", :class => "searchInput", :id => "searchType") %>
@@ -52,6 +53,7 @@
               </ul>
             </div>
           <%end%>
+          <% end %>
           <%if @current_user.present?%>
             <div id="mainNavList" class="rf">
               <%= link_to "微博社区", weibo_host_url %>|<%= link_to "我的首页", user_url(@current_user) %>|<%= link_to "我的微博", profile_user_url(@current_user) %><!--|<%= link_to "好友", "#" %>-->

@@ -1,93 +1,97 @@
+<!DOCTYPE html>
 <%
   is_order = false unless is_order
 %>
 
 <%= stylesheet_link_tag "reset", "style_global", "style_website" %>
-
 <style type="text/css">
   .viewAllGms { display:block; margin:10px auto 0; width:282px; height:38px; line-height:38px; color:#fff; background:url('http://www.nbd.com.cn/corp/jc_inbox/f-gms-button.gif'); text-align:center; }
+  .viewAllGms:active { color:#fff; }
 </style>
 
-<table id="gmsArticleTable" class="tableNormal">
-  <thead>
-    <tr>
-      <th>
-        <% if is_order %>
-          <%= link_to "<span>股票名称</span><b></b>".html_safe, premium_gms_articles_path(:order_by => "stock_name",:order_sort => "desc",:paid => @gms_articles_type == 'paid'), :class => "orderBtn order_by_stock_name" %>
-        <% else %>
-          股票名称
-        <% end %>
-      </th>
-      <th>文章标题</th>
-      <th>
-        <% if is_order %>
-          <%= link_to "<span>股票代码</span><b></b>".html_safe, premium_gms_articles_path(:order_by => "stock_code",:order_sort => "desc",:paid => @gms_articles_type == 'paid'), :class => "orderBtn order_by_stock_code" %>
-        <% else %>
-          股票代码
-        <% end %>
-      </th>
-      <th>
-        <% if is_order %>
-          <%= link_to "<span>会议时间</span><b></b>".html_safe, premium_gms_articles_path(:order_by => "meeting_at",:order_sort => "desc",:paid => @gms_articles_type == 'paid'), :class => "orderBtn order_by_meeting_at" %>
-        <% else %>
-          大会日期
-         <% end %>
-      </th>
-      <% if @gms_articles_type == 'paid' %>
-        <th>消费点数</th>
-      <% else %>
-        <th>所需点数</th>
-      <% end %>
-      <% if false %>
-      <th>状态</th>
-      <% end %>
-      <th>操作</th>
-    </tr>   
-  </thead>
-  <tbody>
-    <% @gms_articles.each do |gms_article| %>
-      <% status = gms_article.user_gms_article_status(@current_user) %>
-        <tr class="<%= gms_article.is_refund? ? 'refund' : '' %>">
-          <td><%= gms_article.stock.name %></td>
-          <td class="title">
-            <%= link_to "#{gms_article.is_preview? ? '[预售]' : ''}#{gms_article.article.title}",premium_gms_article_path(gms_article),:target => '_blank' %>
-          </td>
-          <td>
-            <%= link_to gms_article.stock.code,premium_search_stock_path(:stock_code => gms_article.stock.code), :target => '_blank' %>
-          </td>
-          <td><%= gms_article.meeting_at.present? ? gms_article.meeting_at.strftime("%Y-%m-%d") : '待定' %></td>
-          <% if @gms_articles_type == 'paid' %>
-            <td><%= gms_article.cost_user_credits(@current_user) == 0 ? '免费' : gms_article.cost_user_credits(@current_user) %></td>
-          <% else %>
-            <td><%= gms_article.cost_credits == 0 ? '免费' : gms_article.cost_credits %></td>
-          <% end %>
-          <% if false %>
-          <td>
-            <% user_status = gms_article.user_gms_article_status(@current_user) %>
-            <% case user_status %>
-                <% when GmsAccountsArticle::USER_STATUS_NOT_PAID %>
-                  未购买
-                <% when GmsAccountsArticle::USER_STATUS_NO_ACCOUNT %>
-                  未购买                  
-                <% when GmsAccountsArticle::USER_STATUS_RECEIVE_CREDITS %>
-                  <span class="red">已领取返点</span>
-                <% when GmsAccountsArticle::USER_STATUS_BOUGHT %>
-                  <span class="green">已购买</span>
-                <% when GmsAccountsArticle::USER_STATUS_UN_RECEIVE_CREDITS %>
-                  <span>已失效</span>
-            <% end %>
-          </td>
-          <% end %>
-          <td class="itemActions w100">
-            <%= link_to( "<b></b>购买".html_safe,premium_gms_article_path(gms_article),:target => '_blank', :class => "actionCart") %>
-            <%= link_to( "<b></b>会议提问 #{gms_article.stock_comments_count}".html_safe,premium_question_stock_path(:stock_code => gms_article.stock.code),:target => '_blank', :class => "actionComment") %>
-            <div class="clear"></div>
-          </td>
-        </tr>
-      <% if ((gms_article.is_refund? && status == GmsAccountsArticle::USER_STATUS_UN_RECEIVE_CREDITS) || !gms_article.is_refund?) %>     
-      <% end %>
-    <% end %>
-  </tbody>
-</table>
+<div class="tzbWrapper tzbWrapper-g">
 
-<%= link_to("目前一共有#{GmsArticle.published.on_shelf.count}篇大会实录，查看所有>>",premium_gms_articles_path, :class => "viewAllGms", :target => "_parent") %>
+  <table id="gmsArticleTable" class="tableNormal">
+    <thead>
+      <tr>
+        <th>
+          <% if is_order %>
+            <%= link_to "<span>股票名称</span><b></b>".html_safe, premium_gms_articles_path(:order_by => "stock_name",:order_sort => "desc",:paid => @gms_articles_type == 'paid'), :class => "orderBtn order_by_stock_name" %>
+          <% else %>
+            股票名称
+          <% end %>
+        </th>
+        <th>文章标题</th>
+        <th>
+          <% if is_order %>
+            <%= link_to "<span>股票代码</span><b></b>".html_safe, premium_gms_articles_path(:order_by => "stock_code",:order_sort => "desc",:paid => @gms_articles_type == 'paid'), :class => "orderBtn order_by_stock_code" %>
+          <% else %>
+            股票代码
+          <% end %>
+        </th>
+        <th>
+          <% if is_order %>
+            <%= link_to "<span>会议时间</span><b></b>".html_safe, premium_gms_articles_path(:order_by => "meeting_at",:order_sort => "desc",:paid => @gms_articles_type == 'paid'), :class => "orderBtn order_by_meeting_at" %>
+          <% else %>
+            大会日期
+           <% end %>
+        </th>
+        <% if @gms_articles_type == 'paid' %>
+          <th>消费点数</th>
+        <% else %>
+          <th>所需点数</th>
+        <% end %>
+        <% if false %>
+        <th>状态</th>
+        <% end %>
+        <th>操作</th>
+      </tr>   
+    </thead>
+    <tbody>
+      <% @gms_articles.each do |gms_article| %>
+        <% status = gms_article.user_gms_article_status(@current_user) %>
+          <tr class="<%= gms_article.is_refund? ? 'refund' : '' %>">
+            <td><%= gms_article.stock.name %></td>
+            <td class="title">
+              <%= link_to "#{gms_article.is_preview? ? '[预售]' : ''}#{gms_article.article.title}",premium_gms_article_path(gms_article),:target => '_blank' %>
+            </td>
+            <td>
+              <%= link_to gms_article.stock.code,premium_search_stock_path(:stock_code => gms_article.stock.code), :target => '_blank' %>
+            </td>
+            <td><%= gms_article.meeting_at.present? ? gms_article.meeting_at.strftime("%Y-%m-%d") : '待定' %></td>
+            <% if @gms_articles_type == 'paid' %>
+              <td><%= gms_article.cost_user_credits(@current_user) == 0 ? '免费' : gms_article.cost_user_credits(@current_user) %></td>
+            <% else %>
+              <td><%= gms_article.cost_credits == 0 ? '免费' : gms_article.cost_credits %></td>
+            <% end %>
+            <% if false %>
+            <td>
+              <% user_status = gms_article.user_gms_article_status(@current_user) %>
+              <% case user_status %>
+                  <% when GmsAccountsArticle::USER_STATUS_NOT_PAID %>
+                    未购买
+                  <% when GmsAccountsArticle::USER_STATUS_NO_ACCOUNT %>
+                    未购买                  
+                  <% when GmsAccountsArticle::USER_STATUS_RECEIVE_CREDITS %>
+                    <span class="red">已领取返点</span>
+                  <% when GmsAccountsArticle::USER_STATUS_BOUGHT %>
+                    <span class="green">已购买</span>
+                  <% when GmsAccountsArticle::USER_STATUS_UN_RECEIVE_CREDITS %>
+                    <span>已失效</span>
+              <% end %>
+            </td>
+            <% end %>
+            <td class="itemActions w100">
+              <%= link_to( "<b></b>购买".html_safe,premium_gms_article_path(gms_article),:target => '_blank', :class => "actionCart") %>
+              <%= link_to( "<b></b>会议提问 #{gms_article.stock_comments_count}".html_safe,premium_question_stock_path(:stock_code => gms_article.stock.code),:target => '_blank', :class => "actionComment") %>
+              <div class="clear"></div>
+            </td>
+          </tr>
+        <% if ((gms_article.is_refund? && status == GmsAccountsArticle::USER_STATUS_UN_RECEIVE_CREDITS) || !gms_article.is_refund?) %>     
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+
+  <%= link_to("目前一共有#{GmsArticle.published.on_shelf.count}篇大会实录，查看所有>>",premium_gms_articles_path, :class => "viewAllGms", :target => "_parent") %>
+</div>

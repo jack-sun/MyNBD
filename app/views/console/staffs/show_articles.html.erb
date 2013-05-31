@@ -1,24 +1,30 @@
 <div class="sectionA">
 	<div class="title">
-		<h1><%= @stat.real_name %></h1>
+		<h1>
+			<%= @stat.real_name if @console == 'common' || @console == 'statistics' %>
+			<%= @date %> 工作日志
+		</h1>
+		<div class="opts">
+			<%= link_to "<span>返回</span>".html_safe, staff_permance_index_helper_path(@stat, @find_method), :class => "btnGray" %>
+		</div>
 	</div>
 	<div id="subColumnTab" class="tabs">
 			<ul>
 				<li <%= stats_class_helper(Article::PUBLISHED) %>>
-					<%= link_to '发布',show_articles_console_staff_url(@stat.name,:status => 1, :filter => @filter_type, :page => params[:page]) %>
+					<%= link_to '发布',console_staff_show_articles_helper_path(@stat.name, @date, :status => 1, :filter => @filter_type) %>
 				</li>
 				<li <%= stats_class_helper(Article::BANNDED) %>>
-						<%= link_to '屏蔽',show_articles_console_staff_url(@stat.name,:status => 2, :filter => @filter_type, :page => params[:page]) %>
+						<%= link_to '屏蔽',console_staff_show_articles_helper_path(@stat.name, @date, :status => 2, :filter => @filter_type) %>
 				</li>
 				<li <%= stats_class_helper(Article::DRAFT) %>>
-						<%= link_to '草稿',show_articles_console_staff_url(@stat.name,:status => 0, :filter => @filter_type, :page => params[:page]) %>
-				</li>
-
-			</ul>
+						<%= link_to '草稿',console_staff_show_articles_helper_path(@stat.name, @date, :status => 0, :filter => @filter_type) %>
+				</li>			
+			</ul>	
 	</div>
 	<div class="content" id="body_state">
-
+<% unless @console == 'statistics' %>
 		<%=render :partial => "console/shared/article_operation_bar", :locals=>{ :articles => @articles} %>
+<% end %>
 <%
 require_js "console_selectAll"
 =begin
@@ -37,7 +43,9 @@ logger.debug "----------special_column: #{special_column}"
 	    <thead>
 	      <tr>
 	        <th class="forHandler"></th>
-	        <th><input class="selectAll" type="checkbox" /></th>
+	        <% unless @console == 'statistics' %>
+		        <th><input class="selectAll" type="checkbox" /></th>
+	        <% end %>
 	        <th>标题</th>
 	        <th>栏目</th>
 	        <th>点击/评论</th>
@@ -50,7 +58,9 @@ logger.debug "----------special_column: #{special_column}"
 	        	</div>
 	        </th>
 	        <th>状态</th>
-	        <th>操作</th>
+	        <% unless @console == 'statistics' %>
+		        <th>操作</th>
+	        <% end %>
 	      </tr>		
 	    </thead>
 	    <tbody id="sortableBox">
@@ -58,7 +68,9 @@ logger.debug "----------special_column: #{special_column}"
 	        <% next unless a.present? %>
 	        <tr id="article_<%= a.id %>">
 	          <td class="forHandler"><span class="dragHandler"></span></td>
+	        	<% unless @console == 'statistics' %>
 	          <td class="forSelect"><input class="subSelect" type="checkbox" value="<%= a.id %>"/></td>
+	          <% end %>
 	          <td class="itemTitle">
 	            <% if special_column == 'ntt' %>
 	              <%= link_to a.title, ntt_article_url(a), {:target => "_blank"} %>
@@ -76,33 +88,37 @@ logger.debug "----------special_column: #{special_column}"
 	          <td><%= "#{a.click_count} / #{(w=a.weibo) ? w.reply_count : 0}" %></td>
 	          <td class="itemDate"><%= a.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
 	          <td class="itemStatus_<%=a.status%>"><%= Article::STATUS[a.status.to_i] %></td>
-	          <td class="itemActions">
-	            <%= link_to("<b></b>编辑".html_safe, edit_console_article_url(a, :column_id => @current_column.present? ? @current_column.id : nil), :class=>'actionEdit') %>
-	            <%= link_to("<b></b>删除 ".html_safe, console_article_url(a), :confirm => "删除文章？", :method => :delete, :class=>'actionDelete') %>
-	            <br/>
-	            <%= link_to("<b></b>管理配稿".html_safe, console_article_manage_children_article_url(a), :class=>'actionChilden') %>
+	          <% unless @console == 'statistics' %>
+		          <td class="itemActions">
+		            <%= link_to("<b></b>编辑".html_safe, edit_console_article_url(a, :column_id => @current_column.present? ? @current_column.id : nil), :class=>'actionEdit') %>
+		            <%= link_to("<b></b>删除 ".html_safe, console_article_url(a), :confirm => "删除文章？", :method => :delete, :class=>'actionDelete') %>
+		            <br/>
+		            <%= link_to("<b></b>管理配稿".html_safe, console_article_manage_children_article_url(a), :class=>'actionChilden') %>
 
-	            <%if display_top%>
-	              <%= link_to("<b></b>置顶".html_safe, "javascript:void(0);", :class=>'actionUp') %>
-	            <%end%>
+		            <%if display_top%>
+		              <%= link_to("<b></b>置顶".html_safe, "javascript:void(0);", :class=>'actionUp') %>
+		            <%end%>
 
-	            <% if a.published? %>
-	              <%= link_to("<b></b>屏蔽".html_safe, "javascript:void(0);", :class=>'actionBanned') %>
-	            <% else %>
-	              <%= link_to("<b></b>发布".html_safe, "javascript:void(0);", :class=>'actionPublish') %>
-	            <% end %>
+		            <% if a.published? %>
+		              <%= link_to("<b></b>屏蔽".html_safe, "javascript:void(0);", :class=>'actionBanned') %>
+		            <% else %>
+		              <%= link_to("<b></b>发布".html_safe, "javascript:void(0);", :class=>'actionPublish') %>
+		            <% end %>
 
-	            <%if true%>
-	              <%= link_to("<b></b>操作记录".html_safe, article_logs_console_article_url(a), :class=>'actionRecord')%>
-	            <%end%>
-	          </td>
+		            <%if true%>
+		              <%= link_to("<b></b>操作记录".html_safe, article_logs_console_article_url(a), :class=>'actionRecord')%>
+		            <%end%>
+		          </td>
+	          <% end %>
 	        </tr>
 	      <%end%>
 	    </tbody>
 	  </table>
 	</div><!-- table wrapper -->
-	<div id="body_channel" class="content">
+	<div class="content">
+		<% unless @console == 'statistics' %>
 		<%=render :partial => "console/shared/article_operation_bar", :locals=>{ :articles => @articles} %>
+		<% end %>
 	</div>
 
 </div>

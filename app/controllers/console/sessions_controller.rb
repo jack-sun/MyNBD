@@ -39,8 +39,10 @@ class Console::SessionsController < ApplicationController
   end
   
   def destroy
+    session[:jumpto] = nil
     update_staff_session nil
-    redirect_to :back
+    # redirect_to :back
+    redirect_to :console_sign_in
   end
   
   private

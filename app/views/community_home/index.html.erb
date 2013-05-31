@@ -48,28 +48,28 @@
 		</div>
 	</div>
 
-	<div class="subLeftCol">
-      <% cache(Live::COMMUNITY_INDEX_FRAGMENT_KEY, :expire_in => 3*60) do %>
-        <%= render :partial => "columns/market_live", :locals => {:compere => @showed_live.user, :live_talks => @showed_live_talks, :live => @showed_live} %>
-      <% end %>
-	</div>
-	<div class="subRightCol">
-		<div class="sectionA" >
-          <% cache(Weibo::NEWEST_WEIBO_FRAGMENT_KEY, :expire_in => 3*60) do %>
-			<div class="title"><h1>最新微博</h1></div>
-			<div id="scrollWeibosWrapper" class="content">
-				<ul id="scrollWeibos" class="weiboItemList">
-                  <% @comment_articles = Weibo.comment_articles(@newest_weibos.map(&:ori_weibo_id)) %>
-					<% @newest_weibos.each_with_index do |weibo, index|
-						next if weibo.blank? -%>
-                      <%= render :partial => "weibos/weibo_item", :locals => {:weibo => weibo, :index => index, :hideOpts => true, :stripAndTruncate => true, :is_same_user => false, :showArticle => true} %>
-					<% end %>
-				</ul>
-			</div>
-          <% end %>
+	<!-- 每经直播间 -->
+  <% cache(Live::COMMUNITY_INDEX_FRAGMENT_KEY, :expire_in => 3*60) do %>
+    <%= render :partial => "columns/market_live", :locals => {:compere => @showed_live.user, :live_talks => @showed_live_talks, :live => @showed_live} %>
+  <% end %>
+
+  <% if false # 隐藏最新微博 %>
+	<div class="sectionA" >
+        <% cache(Weibo::NEWEST_WEIBO_FRAGMENT_KEY, :expire_in => 3*60) do %>
+		<div class="title"><h1>最新微博</h1></div>
+		<div id="scrollWeibosWrapper" class="content">
+			<ul id="scrollWeibos" class="weiboItemList">
+                <% @comment_articles = Weibo.comment_articles(@newest_weibos.map(&:ori_weibo_id)) %>
+				<% @newest_weibos.each_with_index do |weibo, index|
+					next if weibo.blank? -%>
+                    <%= render :partial => "weibos/weibo_item", :locals => {:weibo => weibo, :index => index, :hideOpts => true, :stripAndTruncate => true, :is_same_user => false, :showArticle => true} %>
+				<% end %>
+			</ul>
 		</div>
+        <% end %>
 	</div>
-	<div class="clear"></div>
+	<% end %>
+
 	
 	<div class="block" style="margin-top:20px;">
 		<div class="blockTitle">
@@ -114,7 +114,7 @@
 				</div>
 			<% end %>
 			<div class="otherAccess">
-				<p>或使用合作网站账号登录</p>
+				<p>或使用合作网站帐号登录</p>
 				<p>
 					<span class="sinaAccess"><b></b><%= link_to "用新浪微博登录", auth_provider_path('weibo') %></span>
            			<span class="qqAccess"><b></b><%= link_to "用QQ登录", auth_provider_path('qq_connect') %></span>
@@ -125,7 +125,9 @@
 			<p><%= link_to "<strong>进入我的首页&raquo;</strong>".html_safe, user_url(@current_user) %></p>
 		<%end%>
 	</div>
-	
+
+
+	<% if false # 隐藏活跃用户 %>
 	<div class="sectionA">
 		<div class="title">
 			<h4>活跃用户</h4>	
@@ -135,6 +137,7 @@
 			<div class="clear"></div>
 		</div>
 	</div>
+	<% end %>
 
 
     

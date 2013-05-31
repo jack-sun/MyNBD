@@ -1,9 +1,9 @@
 <%
 =begin
-	| 文章内容 |
+  | 文章内容 |
 
-	for_subdomain: Boolean( optional, default is false )
-	related_articles: Boolean( optional, default is false )
+  for_subdomain: Boolean( optional, default is false )
+  related_articles: Boolean( optional, default is false )
 =end
 
 for_subdomain = false unless for_subdomain
@@ -12,159 +12,205 @@ related_articles = false unless related_articles
 %>
 
 <div id="articalContentWrapper">
-	<div id="articleTools">
-		<ul class="lf">
-			<li>
-				<a href="/articles/<%= @article.created_at.to_s(:db)[0..9] %>/<%=@article.id%>/print" class="printLink"><b></b>打印</a>
-			</li>
-			<li id="aticleFontSize">
-				字号: <a href="javascript:void(0);" title="small">小</a>
-				<a class="current" href="javascript:void(0);" title="medium">中</a>
-				<a href="javascript:void(0);" title="large">大</a>
-			</li>
-		</ul>
-		
-		<!-- Bshare Button BEGIN -->
-		<a class="bshareDiv rf" href="http://www.bshare.cn/share">分享按钮</a>
-		<!-- Bshare Button END -->
-		
-		<!-- JiaThis Button BEGIN 
-		<div id="ckepop" style="float:right;">
-			<a href="http://www.jiathis.com/share?uid=1547109" class="jiathis jiathis_txt" target="_blank"><img src="http://v2.jiathis.com/code/images/btn/v1/jiathis1.gif" border="0" /></a>
-		</div>
-		 JiaThis Button END -->
-		<div class="clear">
-		</div>
-	</div>
-	<% cache(article_page_content_key_by_id_and_page_id(@article.id, @page.id), :expire_in => Article::EXPIRE_IN) do %>
-	<h1 class="articleTitle"><%= @article.title %></h1>
-	<p class="articleTime">
-		<!-- source: ntt or else -->
-		<% if for_subdomain == Settings.ntt_sub_domain %>
-			<%if !@article.columns.map(&:id).include?(102) and (columnist = @article.columnists.first) %>
-			<strong>每经智库专栏作家：<%= link_to columnist.name, ntt_columnist_url(columnist) %></strong>
-			<%elsif @article.ori_author.present? %>
-			<strong><%= @article.ori_author %></strong>
-			<%end %>
-		<% else %>
-			<%= link_to "http://www.nbd.com.cn", "http://www.nbd.com.cn" %> 
-			<% if @reporters.present? %>每经记者：
-				<% @reporters.each do|reporter| %>
-				<%= reporter.real_name %>
-				<% end %>
-			<% end %>
-		<% end %>
-		
-		<span><%= @article.created_at.strftime("%Y-%m-%d %H:%M") %></span> 
-		<% if @article.ori_source.present? %>
-		来源: <%= @article.ori_source %>
-		<%end%> 
-	</p>
-	<% if @article.digest.present? %>
-	<p id="articleDigest" class="articleFontSize_medium">
-		<b>核心提示：</b>
-		<%= @article.digest.html_safe %>
-	</p>
-	<% end %>
-	<%= image_tag(article_thumbnail_path(@article, :x_large), :class => "artcileAddimg", :alt => @article.title) if @article.image.present? and @page.is_first_page? %>
-	<div id="articleContent" class="articleFontSize_medium">
-		<%= @page.content.html_safe %>
-	</div>
+  <div id="articleTools">
+    <ul class="lf">
+      <li>
+        <a href="/articles/<%= @article.created_at.to_s(:db)[0..9] %>/<%=@article.id%>/print" class="printLink"><b></b>打印</a>
+      </li>
+      <li id="aticleFontSize">
+        字号: <a href="javascript:void(0);" title="small">小</a>
+        <a class="current" href="javascript:void(0);" title="medium">中</a>
+        <a href="javascript:void(0);" title="large">大</a>
+      </li>
+    </ul>
+    
+    <!-- Bshare Button BEGIN -->
+    <a class="bshareDiv rf" href="http://www.bshare.cn/share">分享按钮</a>
+    <!-- Bshare Button END -->
+    
+    <!-- JiaThis Button BEGIN 
+    <div id="ckepop" style="float:right;">
+      <a href="http://www.jiathis.com/share?uid=1547109" class="jiathis jiathis_txt" target="_blank"><img src="http://v2.jiathis.com/code/images/btn/v1/jiathis1.gif" border="0" /></a>
+    </div>
+     JiaThis Button END -->
+    <div class="clear">
+    </div>
+  </div>
+  <% cache(article_page_content_key_by_id_and_page_id(@article.id, @page.id), :expire_in => Article::EXPIRE_IN) do %>
+  <h1 class="articleTitle"><%= @article.title %></h1>
+  <p class="articleTime">
 
-	<!-- 广告位：文章详情页_投资宝 -->
-	<div class="w100p ovh">
-		<script type="text/javascript">BAIDU_CLB_fillSlot("557753");</script>
-	</div>
+    <!-- source: ntt or else -->
+    <% if for_subdomain == Settings.ntt_sub_domain %>
+      <% if false #hide %>
+        <%if !@article.columns.map(&:id).include?(102) and (columnist = @article.columnists.first) %>
+          <strong>每经智库专栏作家：<%= link_to columnist.name, ntt_columnist_url(columnist) %></strong>
+        <%elsif @article.ori_author.present? %>
+          <strong><%= @article.ori_author %></strong>
+        <% end %>
+      <% end %>
+    <% else %>
+      <%= link_to "http://www.nbd.com.cn", "http://www.nbd.com.cn" %> 
+      <% if @reporters.present? %>每经记者：
+        <% @reporters.each do|reporter| %>
+        <%= reporter.real_name %>
+        <% end %>
+      <% end %>
+    <% end %>
+    
+    <!-- 发布时间 -->
+    <span><%= @article.created_at.strftime("%Y-%m-%d %H:%M") %></span> 
 
-	<div class="childrenArticles mtl">
-		<ul class="unorderList">
-          <% if for_subdomain %>
-			<% @article.relate_article_children.order("pos desc").limit(2).each do |a| %>
-			<li>
-                            <% if a.children_url =~ /features\/\d+/ %>
-                                <%= link_to a.children_title, a.children_url, {:target => "_blank"} %>
-                            <% else %>
-                                <%= link_to a.children_title, a.children_url.gsub("www", for_subdomain), {:target => "_blank"} %>
-                            <% end %>
-			</li>
-			<%end %>
-          <% else %>
-			<% @article.relate_article_children.order("pos desc").limit(2).each do |a| %>
-			<li>
-				<%= link_to a.children_title, a.children_url, {:target => "_blank"} %>
-			</li>
-			<%end %>
-          <% end %>
-		</ul>
-	</div>
-	<% if @article.pages.count > 1 %>
-	<div class="paginationWrapper">
-		<div class="pagination">
-			<%= article_paginate(@article, @page, :for_subdomain => for_subdomain) %>
-		</div>
-		<div class="clear">
-		</div>
-	</div>
-	<%end %>
-	
-	<% if @article.copyright? %>
-	<%= render :partial => "/articles/copyright" %>
-	<% end %>
-	
-	<div id="articleInfo">
-		<% if for_subdomain == Settings.ntt_sub_domain %>
-			<span id="articleColumns">归类于: <% @article.columns.each do|column| %><%= link_to column.name, column_path(column) %><%end %></span>
-			<span style="margin-right:10px;"><%if columnist = @article.columnists.first %><strong style="margin-right:10px;">每经智库专栏作家: <%= link_to columnist.name, ntt_columnist_url(columnist) %></strong><%elsif @article.ori_author.present? %><strong style="margin-right:10px;"><%= @article.ori_author %></strong><%end %><% if @article.ori_source.present? %>来源: <%= @article.show_ori_source %><%end %></span>
-			责任编辑: <% @editors_in_charge.each do|editor| %><%= editor.real_name %><% end %>
-		<% else %>
-			<span id="articleColumns">归类于: <% @article.columns.each do|column| %><%= link_to column.name, column_path(column) %><%end%></span>
-			<span style="margin-right:20px;">
-			<% if @article.ori_author.present?%>
-				<%= @article.ori_author %>
-			<%end%> 
-			<% if @article.ori_source.present? %>
-				来源: <%= @article.show_ori_source %>
-			<%end%>
-			</span> 责任编辑: <% @editors_in_charge.each do|editor| %><%= editor.real_name %><%end%>
-		<% end %>
-	</div>
-	
-	<div class="articleShare">
-		<!-- Bshare Button BEGIN -->
-		<div class="bshare-custom">
-			<a title="分享到" href="http://www.bshare.cn/share" id="bshare-shareto" class="bshare-more">分享到</a>
-			<a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
-			<a title="分享到开心网" class="bshare-kaixin001"></a>
-			<a title="分享到豆瓣" class="bshare-douban"></a>
-			<a title="分享到QQ微博" class="bshare-qqmb"></a>
-			<a title="分享到搜狐微博" class="bshare-sohuminiblog"></a>
-			<a title="分享到网易微博" class="bshare-neteasemb"></a>
-			<a title="分享到QQ空间" class="bshare-qzone"></a>
-			<a title="分享到人民微博" class="bshare-peoplemb"></a>
-		   <!-- 在这里添加更多平台 -->
-		   <a title="更多平台" id="bshare-more-icon" class="bshare-more"></a>
-		</div>
-		<!-- Bshare Button END -->
-	</div>
-	<% end %>
-	
-	<% if related_articles %>
+    <!-- 文章来源 -->
+    <% if @article.ori_source.present? %>
+      <% if for_subdomain == Settings.ntt_sub_domain %>
+      <% elsif %>
+        来源: <%= @article.ori_source %>
+      <% end %>
+    <%end%> 
+
+  </p>
+
+  <% if @article.digest.present? %>
+    <p id="articleDigest" class="articleFontSize_medium">
+      <b>核心提示：</b>
+      <%= @article.digest.html_safe %>
+    </p>
+  <% end %>
+
+  <!-- 文章配图 -->
+  <%= image_tag(article_thumbnail_path(@article, :x_large), :class => "artcileAddimg", :alt => @article.title) if @article.image.present? and @page.is_first_page? %>
+
+  <!-- 正文内容 -->
+  <div id="articleContent" class="articleFontSize_medium">
+    <%= @page.content.html_safe %>
+  </div>
+
+  <% if for_subdomain == Settings.ntt_sub_domain %>
+  <% elsif %>
+    <!-- 广告位：文章详情页_投资宝 -->
+    <div class="w100p ovh">
+      <script type="text/javascript">BAIDU_CLB_fillSlot("557753");</script>
+    </div>
+  <% end %>
+
+  <div class="childrenArticles mtl">
+    <ul class="unorderList">
+      <% if for_subdomain %>
+        <% @article.relate_article_children.order("pos desc").limit(2).each do |a| %>
+          <li>
+            <% if a.children_url =~ /features\/\d+/ %>
+                <%= link_to a.children_title, a.children_url, {:target => "_blank"} %>
+            <% else %>
+                <%= link_to a.children_title, a.children_url.gsub("www", for_subdomain), {:target => "_blank"} %>
+            <% end %>
+          </li>
+        <% end %>
+      <% else %>
+        <% @article.relate_article_children.order("pos desc").limit(2).each do |a| %>
+          <li>
+            <%= link_to a.children_title, a.children_url, {:target => "_blank"} %>
+          </li>
+        <% end %>
+      <% end %>
+    </ul>
+    <div id="relatedFeatureTemp"></div>
+  </div>
+
+  <% if @article.pages.count > 1 %>
+    <div class="paginationWrapper">
+      <div class="pagination">
+        <%= article_paginate(@article, @page, :for_subdomain => for_subdomain) %>
+      </div>
+      <div class="clear">
+      </div>
+    </div>
+  <%end %>
+  
+  <% if @article.copyright? %>
+  <%= render :partial => "/articles/copyright" %>
+  <% end %>
+  
+  <div id="articleInfo">
+    <% if for_subdomain == Settings.ntt_sub_domain #用于每经智库页面 %>
+      <% if false #hide %>
+        <span id="articleColumns">归类于: <% @article.columns.each do|column| %><%= link_to column.name, column_path(column) %><%end %></span>
+        <span style="margin-right:10px;">
+
+          <%if columnist = @article.columnists.first %>
+            <strong style="margin-right:10px;">每经智库专栏作家: <%= link_to columnist.name, ntt_columnist_url(columnist) %></strong>
+          <%elsif @article.ori_author.present? %>
+            <strong style="margin-right:10px;"><%= @article.ori_author %></strong>
+          <%end %>
+
+          <% if @article.ori_source.present? %>
+            来源: <%= @article.show_ori_source %>
+          <%end %>
+
+        </span>
+        责任编辑: <% @editors_in_charge.each do|editor| %><%= editor.real_name %><% end %>
+      <% end %>
+    <% else %>
+      <span id="articleColumns">归类于: <% @article.columns.each do|column| %><%= link_to column.name, column_path(column) %><%end%></span>
+      <% if @article.ori_author.present?%>
+        <span class="mrm"><%= @article.ori_author %></span>
+      <%end%> 
+      <% if @article.ori_source.present? %>
+        <span class="mrm">来源: <%= @article.show_ori_source %></span>
+      <%end%>
+      责任编辑: <% @editors_in_charge.each do|editor| %><%= editor.real_name %><%end%>
+    <% end %>
+  </div>
+  
+  <div class="articleShare">
+    <!-- Bshare Button BEGIN -->
+    <div class="bshare-custom">
+      <a title="分享到" href="http://www.bshare.cn/share" id="bshare-shareto" class="bshare-more">分享到</a>
+      <a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
+      <a title="分享到开心网" class="bshare-kaixin001"></a>
+      <a title="分享到豆瓣" class="bshare-douban"></a>
+      <a title="分享到QQ微博" class="bshare-qqmb"></a>
+      <a title="分享到搜狐微博" class="bshare-sohuminiblog"></a>
+      <a title="分享到网易微博" class="bshare-neteasemb"></a>
+      <a title="分享到QQ空间" class="bshare-qzone"></a>
+      <a title="分享到人民微博" class="bshare-peoplemb"></a>
+       <!-- 在这里添加更多平台 -->
+       <a title="更多平台" id="bshare-more-icon" class="bshare-more"></a>
+    </div>
+    <!-- Bshare Button END -->
+  </div>
+  <% end %>
+  
+  <% if related_articles %>
     <h3 class="moreTitle">延伸阅读</h3>
     <div id="relatedArticlesWrapper">
-    	<div class="subLeftCol">
+      <div class="subLeftCol">
           <% cache(column_relate_articles_key_by_id(@related_articles[:id]), :expire_in => Column::EXPIRE_IN) do %>
-    		<%= render :partial => "columns/article_list", :locals => {:articles => (@related_articles[:articles] || []).map(&:article).compact, :list_title => "您可能感兴趣的更多新闻", :digest_number => 1, :digest_restrict => true} %>
-    		<%end %>
-    	</div>
-    	<div class="subRightCol">
+        <%= render :partial => "columns/article_list", :locals => {:articles => (@related_articles[:articles] || []).map(&:article).compact, :list_title => "您可能感兴趣的更多新闻", :digest_number => 1, :digest_restrict => true} %>
+        <%end %>
+      </div>
+      <div class="subRightCol">
           <% cache(article_recommend_articles_key_by_id(@recommend_articles[:id]), :expire_in => Article::EXPIRE_IN) do %>
-			<%= render :partial => "columns/article_list", :locals => {:articles => (@article.recommend_articles(5)[:articles] || []).compact, :list_title => "更多#{@article.tags.present? ? "有关“"+@article.tags+"”的" : "热门"}新闻", :digest_number => 1, :digest_restrict => true} %>
-			<%end %>
-		</div>
-		<div class="clear">
-		</div>
-	</div>
-	<% end %>
+      <%= render :partial => "columns/article_list", :locals => {:articles => (@article.recommend_articles(5)[:articles] || []).compact, :list_title => "更多#{@article.tags.present? ? "有关“"+@article.tags+"”的" : "热门"}新闻", :digest_number => 1, :digest_restrict => true} %>
+      <%end %>
+    </div>
+    <div class="clear">
+    </div>
+  </div>
+  <% end %>
+  <div id="relatedFeature">
+    <% cache(article_related_features_key_by_id(@article.id), :expire_in => Feature::EXPIRE_IN) do %>
+      <% related_features = @article.related_features %>
+      <% if related_features.present? and !related_features.empty? %>
+        相关专题：
+        <ul class="unorderList">
+          <% related_features.each do |feature| %>
+            <li><%= link_to feature.title, feature_path(feature), :target => '_blank' %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    <% end %>
+  </div>
 </div>
 
 <!-- Bshare Button BEGIN -->
@@ -178,14 +224,15 @@ bShare.addEntry({
 <!-- Bshare Button END -->
 
 <script type="text/javascript">
-	$(function(){
-		$('#aticleFontSize a').click(function(e){
-			var linkEl = $(this);
-			linkEl.siblings().removeClass();
-			linkEl.addClass('current');
-			$('#articleDigest').attr('class', 'articleFontSize_'+linkEl.attr('title'));
-			$('#articleContent').attr('class', 'articleFontSize_'+linkEl.attr('title'));
-			return false;
-		});
-	});
+  $(function(){
+    $("#relatedFeatureTemp").replaceWith($("#relatedFeature"));
+    $('#aticleFontSize a').click(function(e){
+      var linkEl = $(this);
+      linkEl.siblings().removeClass();
+      linkEl.addClass('current');
+      $('#articleDigest').attr('class', 'articleFontSize_'+linkEl.attr('title'));
+      $('#articleContent').attr('class', 'articleFontSize_'+linkEl.attr('title'));
+      return false;
+    });
+  });
 </script>

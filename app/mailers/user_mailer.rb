@@ -18,5 +18,15 @@ class UserMailer < ActionMailer::Base
     @user = user
     mail(:to => user.email, :subject => "激活用户")
   end
+
+  def ttyj_weekly_active_user(recipients)
+    last_week_time = Time.now - 1.week
+    @start_date = last_week_time.beginning_of_week.strftime("%Y-%m-%d")
+    @end_date = last_week_time.end_of_week.strftime("%Y-%m-%d")
+    @active_users = Redis::HashKey.new("#{MnAccount::ACTIVE_USER}", Redis::Objects.redis)
+    @mn_accounts = MnAccount.where(:id => @active_users.keys)
+    @subject = "[投资宝] 天天赢家-活跃用户上周（#{@start_date} ~ #{@end_date}）统计"
+    mail(:to => recipients, :subject => @subject)
+  end
   
 end

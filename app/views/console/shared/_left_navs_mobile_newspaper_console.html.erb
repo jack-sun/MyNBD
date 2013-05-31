@@ -12,6 +12,9 @@
   <dd <% if @mn_mobile_type and @mn_mobile_type == "history_index" %>class="current" <%end%>>
     <%= link_to "历史记录", console_premium_activated_user_records_url %>
   </dd>
+  <dd <% if @mn_mobile_type and @mn_mobile_type == "appstore_users" %>class="current" <%end%>>
+    <%= link_to "苹果缴费用户", appstore_users_console_premium_mobile_newspaper_accounts_url %>
+  </dd>  
   <dt>每经投资宝</dt>
   <dd <% if @touzibao_nav_type and @touzibao_nav_type == "index" %>class="current" <%end%>>
     <%= link_to "期刊管理", console_premium_touzibaos_path %>

@@ -4,7 +4,7 @@
 			<h3>激活用户</h3>
 		</div>
 		<p>我们已向您的邮箱<%= @current_user.email %>发送了一封激活信<br/>
-		请查收邮件并根据提示激活您的账户。 </p>
+		请查收邮件并根据提示激活您的帐号。 </p>
 		<p><%= link_to "<span>前往邮箱</span>".html_safe, @current_user.resolve_email_host, :class => "btnBlueM"%></p>
 		<p>
 			<span>温馨提示：</span>

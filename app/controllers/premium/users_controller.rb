@@ -1,7 +1,7 @@
 # encoding: utf-8
 class Premium::UsersController < ApplicationController
   
-  layout 'mobile_newspaper'
+  layout 'touzibao'
   
   #before_filter :authorize #, :only => [:follow, :unfollow, :check_status, :atme, :atme_comments, :comments_to_me, :step_1, :step_2, :settings, :chanage_password, :show, :profile]
   before_filter :authorize, :except => [:check_status]
@@ -184,6 +184,32 @@ class Premium::UsersController < ApplicationController
       end
     end
   end
+
+  # 更改用户登录密码
+  def change_profile
+    @user = @current_user
+    
+    if request.get?
+
+    else
+      if params[:user][:nickname].blank?
+        @user.errors[:nickname] = "昵称不能为空"
+        return
+      end
+      
+      if params[:user][:nickname] != @user.nickname and User.existed?(params[:user][:nickname])
+        @user.errors[:nickname] = "昵称 #{params[:user][:nickname]} 已被占用"
+        return
+      end
+      
+      if @user.update_attributes(params[:user])
+        redirect_to premium_mobile_newspaper_account_url, :notice =>  "更改已保存"
+      else
+        Rails.logger.debug "#################{@user.errors.inspect}"
+        render :change_profile
+      end   
+    end
+  end  
   
   def weibo_accounts
     @accounts = @current_user.authentications

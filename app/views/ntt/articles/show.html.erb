@@ -7,16 +7,16 @@
 <%= require_autoComplete %>
 
 <style type="text/css">
-#wrapper {padding-top:0;}
-#crumb li.first{padding-left: 0;}
+  #wrapper { padding-top:0; }
+  #crumb li.first { padding-left: 0; }
 </style>
 
 <% content_for :header_ad do %>
-	<script type="text/javascript">
-		BAIDU_CLB_preloadSlots("347473","347491","347495","347499","347516");
-	</script>
-	<!-- 广告位：文章详情页_顶部四分之三通栏 -->
-	<%= render :partial => "ads/ad", :locals => { :id => "347473", :html_class => "header" } %>
+  <script type="text/javascript">
+    BAIDU_CLB_preloadSlots("347473");
+  </script>
+  <!-- 广告位：文章详情页_顶部四分之三通栏 -->
+  <%= render :partial => "ads/ad", :locals => { :id => "347473", :html_class => "header" } %>
 <% end %>
 
 <!-- 所在位置 -->
@@ -29,21 +29,19 @@
 <%= render :partial => "sessions/pop_register_box" %>
 
 <% #render :partial => "articles/hot_keywords"%>
-<div id="articalMain">
-  <div class="leftCol">
-  	<%= render :partial => "articles/article_content", :locals => { :for_subdomain => Settings.ntt_sub_domain } %>
-    <%= render :partial => "articles/comments_block" %>
-    <%= render :partial => "articles/jump_nav" %>	
-  </div>
 
-  <div class="rightCol">
+<div id="" class="layout">
+  <div class="lCol">
     <% if columnist = @article.columnists.first %>
       <%= render :partial => "ntt/columnists/columnist_intro", :locals => { :title => "专家介绍", :columnist => columnist } %>
+      <%= render :partial => "columns/article_list", :locals => { :list_title => "相关文章", :digest_number => 0, :digest_restrict => false, :articles => @recently_articles, :for_subdomain => Settings.ntt_sub_domain} if @recently_articles %>
     <% end %>
-
   </div>
-
-  <div class="clear"></div>
+  <div class="main main-b">
+    <%= render :partial => "articles/article_content", :locals => { :for_subdomain => Settings.ntt_sub_domain } %>
+    <%= render :partial => "articles/comments_block" %>
+    <%= render :partial => "articles/jump_nav" %> 
+  </div>
 </div>
 
 <!--<a href="javascript:void(0)" id="toTop" title="返回顶部" >返回顶部</a>-->

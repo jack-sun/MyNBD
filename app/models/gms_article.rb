@@ -12,6 +12,8 @@ class GmsArticle < ActiveRecord::Base
   	scope :on_shelf, where(:is_remove_from_sale => UNREFUND_STATUS)
   	scope :preview, where(:is_preview => PREVIEW_SALE)
   	scope :official, where(:is_preview => OFFICIAL_SALE)
+  	scope :to_be_determined, where('meeting_at is null')
+  	scope :determined, where('meeting_at is not null')
   	after_save :create_stock
   	after_save :switch_stock_allow_comment
 

@@ -21,10 +21,12 @@
     <div class="content ">
       <div class="subRightCol">
         <div class="formA roundCorner">
-            <%= f.label :theme, "主题:" %>
-            <%= f.select :theme, Feature::THEME_ARRAY,{:selected => @feature.feature_theme}, {} %>
-            <%= hidden_field_tag :theme_bg %>
-            <a href="javascript:void(0)" id="expandAdvancedTheme" class="rf">高级选项</a>
+            <div class="block">
+              <%= f.label :theme, "主题:" %>
+              <%= f.select :theme, Feature::THEME_ARRAY,{:selected => @feature.feature_theme}, {} %>
+              <%= hidden_field_tag :theme_bg %>
+              <a href="javascript:void(0)" id="expandAdvancedTheme" class="rf">高级选项</a>
+            </div>
             <div id="advancedThemeBox">
               <div id="editTheme">
                 <div class="block">
@@ -53,6 +55,9 @@
                   <%end %>
                 </div>
               </div>
+            </div>
+            <div class="block keywords">
+              <%= f.input :tags, :label => '关键词:', :hint => "多个关键词请用逗号或空格分隔" %>
             </div>
 <!--          <div id="themeSelect">
             <a id="themeSelectFlag" href="javascript:void(0)"><img class="themeImage" src="/images/article-miniature-default.gif" />

@@ -10,15 +10,41 @@
 <div class="sectionA">
   <div class="title">
     <h1><%=@column.name%></h1>
+    <span class="mll">责任编辑：<%= @column.charge_staff.try(:real_name) %></span>
     <span class="opts">
-      <%= link_to "<span>添加新文章</span>".html_safe, new_console_article_url(:column_id => @current_column.id), :class => "btnBlueM" %>
+      <% if params.has_key? :date %>
+        <% if params[:action] == 'news_show_articles' %>
+          <% if performance_log_find_by_month? %>
+            <%= link_to "<span>返回</span>".html_safe, news_index_console_column_column_performance_logs_url(@column, :find_method => 'month', :page => @column_performance_log_page), :class => "btnGrayM mrs" %>
+          <% else %>
+            <%= link_to "<span>返回</span>".html_safe, news_index_console_column_column_performance_logs_url(@column, :page => @column_performance_log_page), :class => "btnGrayM mrs" %>
+          <% end %>
+        <% elsif params[:action] == 'common_show_articles' %>
+          <% if performance_log_find_by_month? %>
+            <%= link_to "<span>返回</span>".html_safe, common_index_console_column_column_performance_logs_url(@column, :find_method => 'month', :page => @column_performance_log_page), :class => "btnGrayM mrs" %>
+          <% else %>
+            <%= link_to "<span>返回</span>".html_safe, common_index_console_column_column_performance_logs_url(@column, :page => @column_performance_log_page), :class => "btnGrayM mrs" %>
+          <% end %>
+        <% elsif params[:action] == 'statistics_show_articles' %>
+          <% if performance_log_find_by_month? %>
+            <%= link_to "<span>返回</span>".html_safe, statistics_index_console_column_column_performance_logs_url(@column, :find_method => 'month', :page => @column_performance_log_page), :class => "btnGrayM mrs" %>
+          <% else %>
+            <%= link_to "<span>返回</span>".html_safe, statistics_index_console_column_column_performance_logs_url(@column, :page => @column_performance_log_page), :class => "btnGrayM mrs" %>
+          <% end %>          
+        <% end %>
+      <% end %>
+      <%= link_to "<span>添加新文章</span>".html_safe, new_console_article_url(:column_id => @current_column.id), :class => "btnBlueM" unless @console == 'statistics' %>
     </span>
   </div>
   <div id="subColumnTab" class="tabs"><%= render :partial => "console/shared/list_sub_columns"  %></div>
   <div id="body_channel" class="content">
+    <% unless @console == 'statistics' %>
     <%=render :partial => "console/shared/article_operation_bar", :locals=>{ :articles => @articles_columns} %>
+    <% end %>
     <%=render :partial => "console/shared/articles", :locals=>{ :articles => @articles_columns.map{|a|a.article}, :special_column => @current_column.special_column} %>
+    <% unless @console == 'statistics' %>
     <%=render :partial => "console/shared/article_operation_bar", :locals=>{ :articles => @articles_columns} %>
+    <% end %>
   </div>
 </div>
 

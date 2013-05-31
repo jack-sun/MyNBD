@@ -1,7 +1,15 @@
 <ul>
   <% @sub_columns.each do |c| %>
     <li class='<%= c == @current_column ? "current" : "" %>'>
-        <%= link_to c.name, console_column_url(c) %>
+      <% if params[:controller] == "console/column_performance_logs" && params[:action] == "news_show_articles" %>
+        <%= link_to c.name, news_show_articles_console_columns_url(c, @date) %>
+      <% elsif params[:controller] == "console/column_performance_logs" && params[:action] == "common_show_articles" %>
+        <%= link_to c.name, common_show_articles_console_columns_url(c, @date) %>
+      <% elsif params[:controller] == "console/column_performance_logs" && params[:action] == "statistics_show_articles" %>
+        <%= link_to c.name, statistics_show_articles_console_columns_url(c, @date) %>        
+      <% else %>
+        <%= link_to c.name, console_column_url(c, @date) %>
+      <% end %>
     </li>
   <% end %>
 </ul>

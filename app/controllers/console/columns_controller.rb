@@ -1,12 +1,16 @@
 # encoding: utf-8
 module Console
-  class ColumnsController < ApplicationController
+  class ColumnsController < ConsoleBaseController
     layout 'console'
     skip_before_filter :current_user
     before_filter :current_staff
     before_filter :authorize_staff
     before_filter :init_news_console
-
+    before_filter :init_common_console, :only => [:change_charge_staff]
+    before_filter :init_common_console, :only => [:show], :if => lambda { |controller| 
+      return true if params[:console] == 'common'
+      return false
+    }
     cache_sweeper Sweepers::PageSweeper
 
     def remove_articles
@@ -23,12 +27,12 @@ module Console
       
       if column.parent_id.nil?
         @column = column
-        @sub_columns = @column.children
+        @sub_columns = @column.children.console_displayable
         @current_column = @sub_columns.first
       else
       #  @column = Column.where(:id => column.parent_id).first
         @column = Column.find(column.parent_id)
-        @sub_columns = @column.children
+        @sub_columns = @column.children.console_displayable
         @current_column = column
       end
       
@@ -84,6 +88,14 @@ module Console
       @columns = Column.find(Column::DIS_MAIN_NAVS)
       
       render :text => render_to_string(:partial => "console/columns/column_list", :layout => false)
+    end
+
+    def change_charge_staff
+      column = Column.find(params[:column])
+      if column.update_attribute(:staff_id_in_charge, params[:charge_staff])
+        flash[:notice] = "修改成功"
+        redirect_to common_list_console_column_performance_logs_url
+      end
     end
   end
 end

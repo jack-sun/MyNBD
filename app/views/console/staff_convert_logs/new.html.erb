@@ -1,0 +1,14 @@
+<div class="sectionA">
+  <div class="title">
+    <h1><%= "#{@staff.real_name} #{params[:date]}" %> 工作日志</h1>
+    <span class="opts">
+      <%= link_to '<span>取消</span>'.html_safe, console_staff_work_log_url(@staff, :console => @console, :page => session[:staff_convert_log_page]),:class => "btnGray" %>
+    </span>
+  </div>
+  <div class="content rightColCenter">
+    <% if notice %>
+      <div class="alert_done"><b></b><%= notice %></div>
+    <% end %>
+    <%= render 'form' %>
+  </div>
+</div>

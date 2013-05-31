@@ -19,11 +19,12 @@ class Staff < ActiveRecord::Base
   AUTHORITY_COMMON = 2
   AUTHORITY_COMMUNITY = 4
   AUTHORITY_NEWS = 8
+  AUTHORITY_STATISTICS = 16
   
   STAFF_TYPE = {TYPE_ADMIN => "网站技术管理员",TYPE_EDITOR => "网站编辑",TYPE_EDITOR_ADMIN => "网站编辑管理员"}
   STATUS_TYPE = {STATUS_ACTIVE => "激活",STATUS_BAN => "屏蔽"}
 
-  AUTHORITIES = [AUTHORITY_NEWS, AUTHORITY_COMMUNITY, AUTHORITY_COMMON, AUTHORITY_MOBILE_NEWS]
+  AUTHORITIES = [AUTHORITY_NEWS, AUTHORITY_COMMUNITY, AUTHORITY_COMMON, AUTHORITY_MOBILE_NEWS, AUTHORITY_STATISTICS]
   
   validates_presence_of :name,:real_name, :on => :create,:on=>:update, :message => "输入不能为空"
   validates_presence_of :password, :on => :create, :message => "输入不能为空"
@@ -62,7 +63,15 @@ class Staff < ActiveRecord::Base
   has_many :created_permissions, :class_name => "StaffsPermission", :foreign_key => "creator_id"
 
   has_many :activated_user_records
-    
+
+  has_many :weibo_logs
+  has_many :community_switch_logs
+  has_many :charge_columns, :class_name => "Column", :foreign_key => "staff_id_in_charge"
+
+  has_many :staff_convert_logs
+
+  has_many :staff_performance_logs
+
   scope :reporters, where(:user_type => TYPE_REPORTER)
   scope :common_editors, where(:user_type => TYPE_EDITOR)
   scope :editors_in_charge, where(:user_type => EDITOER_IN_CHARGE)
@@ -84,7 +93,7 @@ class Staff < ActiveRecord::Base
   end
 
   def create_article(params, send_weibo = true)
-    Article.create_article({"staff_ids" => [self.id]}.merge!(params), send_weibo)
+    Article.create_article(params.merge({:staff_ids => [self.id]}), send_weibo)
   end
 
   def create_gms_article(gms_article_params, article_params)
@@ -140,6 +149,10 @@ class Staff < ActiveRecord::Base
     [TYPE_ADMIN, TYPE_EDITOR_ADMIN].include?(self.user_type)
   end
 
+  def is_type_editor_admin?
+    [TYPE_EDITOR_ADMIN].include?(self.user_type)
+  end
+
   def newspaper_admin?
     [TYPE_PAPER_ADMIN, TYPE_ADMIN].include?(self.user_type)
   end
@@ -162,6 +175,10 @@ class Staff < ActiveRecord::Base
 
   def authority_of_mobile_news?
     has_authority_of AUTHORITY_MOBILE_NEWS
+  end
+
+  def authority_of_statistics?
+    has_authority_of AUTHORITY_STATISTICS
   end
 
   def add_authority type

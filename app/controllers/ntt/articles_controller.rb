@@ -1,4 +1,4 @@
-class Ntt::ArticlesController < ApplicationController
+class Ntt::ArticlesController < ArticlesBaseController
   USER_NAME = "nbdthinktank"
   PASSWORD = "socialntt"
   #before_filter :ntt_authenticate
@@ -22,7 +22,8 @@ class Ntt::ArticlesController < ApplicationController
   def show
     @article = Article.where(:id => params[:id]).first
     raise ActiveRecord::RecordNotFound if @article.blank? or (not @article.is_published?)
-    
+    columnist = @article.columnists.first
+    @recently_articles = columnist.articles.published.order('id DESC').limit(10) if columnist
     @first_column = @article.columns.where(:parent_id => 56).first
     
     @comments = @article.comments.order("id DESC").includes(:owner)
@@ -38,7 +39,8 @@ class Ntt::ArticlesController < ApplicationController
   def page
     @article = Article.where(:id => params[:id]).first
     raise ActiveRecord::RecordNotFound if @article.blank? or (not @article.is_published?)
-    
+    columnist = @article.columnists.first
+    @recently_articles = columnist.articles.published.order('id DESC').limit(10) if columnist    
     @comments = @article.comments.order("id DESC").includes(:owner)
     
     @reporters = @article.staffs.reporters

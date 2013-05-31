@@ -36,9 +36,11 @@
 			<% unless hide_mobile_newspapers %>
 			<dt class="thumbMobileNewspaper">每经手机报</dt>
 			<dd class="last">
-				<h3>每经资讯产品</h3>
+				<h3>每经投资宝</h3>
 				<p>
-					<%= link_to("投资宝", "#{Settings.host}/premium/mobile_newspaper_account/introduce", {:class => "first", :target => "_blank"})%> | <%= link_to("投资快讯", "#{Settings.host}/premium/mobile_news/introduce", :target => "_blank")%>				
+					<%= link_to("天天赢家", "#{Settings.host}/premium/mobile_newspaper_account/introduce", {:class => "first", :target => "_blank"})%> | 
+					<%= link_to("股东大会实录", "http://www.nbd.com.cn/features/274", :target => "_blank")%> | 
+					<%= link_to("投资快讯", "#{Settings.host}/premium/mobile_news/introduce", :target => "_blank")%> 
 				</p>
 			</dd>
 			<% end %>

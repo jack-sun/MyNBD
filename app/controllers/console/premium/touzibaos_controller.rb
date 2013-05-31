@@ -70,7 +70,7 @@ class Console::Premium::TouzibaosController < ApplicationController
   def print
     @touzibao = Touzibao.find(params[:id])
     @touzibao_articles = @touzibao.article_touzibaos.includes(:article => :pages).order("pos asc, section asc")
-    render :print, :layout => "mobile_newspaper"
+    render :print, :layout => "touzibao"
   end
   
 end

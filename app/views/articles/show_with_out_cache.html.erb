@@ -95,12 +95,3 @@
 
 <!-- 广告位：文章详情页_右下角漂浮 -->
 <%= render :partial => "ads/ad", :locals => { :id => "347516" } %>
-
-<div id='cache_helper'>
-
-    <%= cahce_test("cahce_test_2",true, :expire_in => Article::EXPIRE_IN) do%>
-      <h1>
-        Cache_Helper!!
-      </h1>
-    <% end %>
-</div>

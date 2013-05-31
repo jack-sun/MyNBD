@@ -14,7 +14,7 @@
 <% end %>
 
 <div class="layout">
-  <div class="rCol rColBorder">
+  <div class="rCol rCol-line">
     <%= render :partial => "columns/article_list", :locals => {:list_title => "晨会速递", :digest_number => 1, :digest_restrict => true, :articles => (@chenghui_articles[:articles].map(&:article)||[]), :for_subdomain => Settings.ntt_sub_domain, :column_id => @chenghui_articles[:id]}%>
 
     <!-- 广告位：智库_右边栏一 -->

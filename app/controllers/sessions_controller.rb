@@ -8,6 +8,11 @@ class SessionsController < ApplicationController
   # GET: user sign in
   def new
     session[:jumpto] = params[:redirect_url] if params[:redirect_url]
+    # temp solution for touzibao's sign_in by zhou
+    flash[:action_from] = session[:action_from] = 'touzibao' if params[:touzibao] == 'true'
+
+    Rails.logger.info("===jumpto:#{session[:jumpto]}--------action_from:#{session[:action_from]}")
+
     if session[:user_id]
       user = User.where(:id => session[:user_id]).first
       redirect_to user_url(user) if user.present? 
@@ -36,6 +41,8 @@ class SessionsController < ApplicationController
       # temp comment by vincent, 2013-01-10
       cookies[:gms_access_token] = user.update_access_tokens[:gms_access_token]
 
+      return redirect_to premium_touzibao_home_page_url if params[:action_from] == 'touzibao' && session[:jumpto].nil?
+
       after_sign_in_and_redirect_to(user)
       return
     else
@@ -51,7 +58,9 @@ class SessionsController < ApplicationController
     cookies.delete(:CHKIO, :domain => Settings.session_domain)
     session = nil
 
-    redirect_to weibo_host_url
+    return redirect_to 'http://touzibao.nbd.com.cn' if params[:touzibao] == 'true'
+
+    return redirect_to weibo_host_url
     #redirect_to :back
   end
 

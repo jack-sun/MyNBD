@@ -1,11 +1,18 @@
 #encoding:utf-8
 class Premium::TouzibaosController < ApplicationController
-  layout "mobile_newspaper"
+  layout "touzibao"
 
   before_filter :current_user
+  # temp solution for touzibao's sign_in by zhou
+  before_filter FlashTouzibaoFilter, :only => [:today, :last_week]
   before_filter :get_last_touzibao, :except => [:last_week]
   before_filter :authorize , :except => [:introduce]
-  #before_filter :check_premium_user, :only => [:today]
+  # after_filter :record_activity_user#, :only => [:today, :last_week]
+
+
+ after_filter RecordActiveUserFilter, :only => [:today], :if => lambda{|controller| 
+   return controller.current_mn_account.present?
+ }
 
   def today
     @touzibao = @last_touzibao
@@ -53,6 +60,10 @@ class Premium::TouzibaosController < ApplicationController
       @touzibao_articles = @touzibao.article_touzibaos.includes(:article => :pages).order("pos asc, section asc")
       @is_valid = true
     end
+  end
+
+  def current_mn_account
+    @mn_account = @current_user.mn_account if @current_user
   end
 
   private

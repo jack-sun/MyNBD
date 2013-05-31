@@ -1,5 +1,5 @@
 <%= form_for(:user, :html => {:class => "formA roundCorner"}, :action => user_sign_up_path, :method => "post") do |user_form| %>
-  <div class="title"><h1>填写账户信息</h1><span class="titleOpts">已有每经微博账号？<%= link_to "登录 &raquo;".html_safe, user_sign_in_path, {:style => "font-weight:bold;"} %></span></div>
+  <div class="title"><h1>填写帐号信息</h1><span class="titleOpts">已有每经微博帐号？<%= link_to "登录 &raquo;".html_safe, user_sign_in_path, {:style => "font-weight:bold;"} %></span></div>
   
   <p>
     <%= user_form.label :email, "邮箱:" %><br />

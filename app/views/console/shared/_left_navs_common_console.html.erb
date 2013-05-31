@@ -12,9 +12,17 @@
     <%= link_to "文章排行", top_stats_console_articles_url %>
   </dd>
 
-  <dt>用户中心</dt>
+  <dt>后台用户中心</dt>
   <dd <% if defined?(@common_navs) and @common_navs == "staff_center_index" %>class="current" <% end %>><%= link_to "所有用户", console_staffs_url %></dd>
   <dd <% if defined?(@common_navs) and @common_navs == "staff_center_new" %>class="current"<%end%> ><%= link_to "新增用户", new_console_staff_url %></dd>
+
+  <dt>频道管理</dt>
+  <dd <%= "class='current'" if @column_work_log %>><%= link_to "查看频道", common_list_console_column_performance_logs_url %></dd>
+
+  <%# if staff_name == Settings.xupeng_name %>
+    <dt>社区开关操作</dt>
+    <dd <% if defined?(@common_navs) and @common_navs == "community_switch_log_index" %>class="current" <% end %>><%= link_to "操作记录", console_community_switch_logs_path %></dd>
+  <%# end %>
 
 <!--
   <dt>广告管理</dt>

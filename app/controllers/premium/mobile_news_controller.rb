@@ -1,6 +1,6 @@
 #encoding:utf-8
 class Premium::MobileNewsController < ApplicationController
-  layout "mobile_newspaper"
+  layout "touzibao"
 
   def introduce
     #article_columns = Column.find(Column::MOBILE_NEWS_COLUMN).articles_columns.order("pos desc")

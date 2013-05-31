@@ -1,16 +1,11 @@
 <div class="sectionA">
 	<div class="title">
 		<h1>文章管理 - 文章统计</h1>
-		<div class="opts">
-			<%if Weibo.content_check_needed? %>
-				<%= link_to "<span>社区 - 已关闭</span>".html_safe, toggle_content_check_status_console_weibos_url, :method => :post, :confirm => "你确定要开启‘社区’吗", :class => "btnGreen followManaBtn", :id => "switchStatBtn" %>
-			<%else%>
-				<%= link_to "<span>社区 - 已开启</span>".html_safe, toggle_content_check_status_console_weibos_url, :method => :post, :confirm => "你确定要关闭‘社区’吗？用户产生的所有内容，将是‘屏蔽/待审核’状态", :class => "btnGrayBlue" %>
-			<%end%>
-			<div class="clear"></div>
-		</div>
 	</div>
 	<div class="content rightColCenter" id="body_state">
+		<% if alert %>
+      <div class="alert_done"><b></b><%= alert %></div>
+    <% end %>
 		<div class="tabs">
 			<ul>
 				<li <%= stats_class_helper("staff") %>>
@@ -27,7 +22,7 @@
 				</li>
 			</ul>
 		</div>
-		<div class="datePicker">
+		<div class="consoleFilter">
 			<ul>
 				<li <%= stats_class_helper("today") %>>
 					<%= link_to "今天", stats_console_articles_url(:type => @stats_type, :filter => "today", :page => params[:page]) %>

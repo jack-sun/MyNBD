@@ -3,12 +3,13 @@
 		<h1>社区内容 - 活动直播</h1>
         <span class="opts"><%= link_to "<span>添加新直播</span>".html_safe, new_console_live_url(:type => Live::TYPE_ORIGIN), :class => "btnBlueM"%>
 	</div>
-	<div class="content">
+	<div class="content rightColCenter">
 		<%=render :partial => "console/lives/stock_lives_list", :locals=>{ :lives => @lives } %>
-	</div>
-    <div class="rightColCenter">
+    <div class="operation">
       社区首页显示为：<%= select("", "showLiveType", [["股市直播", "1"], ["活动直播", "2"]], :selected => Rails.cache.read(Live::LIVE_SHOW_TYPE_KEY)||"1")   %>
+      <%= paginate @lives %>
     </div>
+  </div>
 </div>
 <script type="text/javascript">
   $(function(){

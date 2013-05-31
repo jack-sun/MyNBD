@@ -1,0 +1,60 @@
+<div class="sectionA">
+  <div class="title">
+    <h2>
+      苹果缴费用户
+    </h2>
+  </div>
+
+  <div id="body_state" class="content rightColCenter">
+
+      <div class="consoleFilter">
+        <ul>
+          <li <%= stats_class_helper(9) %> >
+            <%= link_to "所有", appstore_users_console_premium_mobile_newspaper_accounts_url %>
+          </li>
+          <li <%= stats_class_helper(0) %> >
+            <%= link_to "等待", appstore_users_console_premium_mobile_newspaper_accounts_url(:type =>0) %>
+          </li>
+          <li <%= stats_class_helper(1) %> >
+            <%= link_to "成功", appstore_users_console_premium_mobile_newspaper_accounts_url(:type => 1) %>
+          </li>
+          <li <%= stats_class_helper(2) %> >
+            <%= link_to "失败", appstore_users_console_premium_mobile_newspaper_accounts_url(:type =>2) %>
+          </li>          
+        </ul>
+      </div>    
+
+    <table class="tableA">
+      <thead>
+        <tr>
+          <th>Payment ID</th>
+          <th>用户名</th>
+          <th>最后每经订单号</th>
+          <th>有效期至/套餐类型</th>
+          <th>最后付款时间</th>
+          <th>认证状态</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @payments.each do |payment| %>
+          <% account = payment.service %>
+          <tr>
+            <td><%= payment.id %></td>
+            <td><%= payment.user.blank? ? "" : payment.user.nickname %></td>
+            <td><%= account.last_trade_num %></td>
+            <td><%= account.service_end_at && "#{account.service_end_at.strftime("%Y-%m-%d")}" %> / <%= ttyj_plan_type_name(account) %></td>
+            <td><%= account.last_payment_at && account.last_payment_at.strftime("%Y-%m-%d") %></td>
+            <td><%= payment.apple_verify_name %></td>
+            <td>
+              <%= link_to('认证',verify_console_premium_mobile_newspaper_account_url(payment.id, :type => @stats_type), :method => :post, :confirm => '确定重新认证吗?') if (payment.status != 1) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div style="margin-top:20px;">
+      <%= paginate @payments %>
+    </div>
+  </div>
+</div>

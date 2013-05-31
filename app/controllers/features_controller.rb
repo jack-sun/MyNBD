@@ -38,9 +38,9 @@ class FeaturesController < ApplicationController
   end 
 
   def access_control_for_specify_feature
-    if params[:id].to_i == 216
+    if params[:id].to_i == 328
       if @current_user.present?
-        return render :text => "抱歉，您需要购买每经投资宝-天天赢家 1年期套餐 才能免费访问该专题内容，<a href=\"#{new_premium_mobile_newspaper_account_url}\">立即购买</a>".html_safe unless @current_user.pay_one_year_for_touzibao?
+        return render :text => "抱歉，您需要购买每经投资宝-天天赢家 1年期套餐 才能免费访问该专题内容，<a href=\"#{new_premium_mobile_newspaper_account_url}\">立即购买</a>".html_safe unless @current_user.paid_one_year_for_ttyj?
       else
         session[:jumpto] = request.url if request.url.present?
         redirect_to user_sign_in_url, :notice => "温馨提示：您需要登录后才能进行更多的操作！" 

@@ -1,6 +1,10 @@
 <%
 title = '登录社区' unless title
 btn_txt = '登录' unless btn_txt
+# temp solution for touzibao's sign_in by zhou
+action_from ||= 'web_site'
+title = '登录投资宝' if action_from == 'touzibao'
+btn_txt = '登录投资宝' if action_from == 'touzibao'
 %>
 
 <div id="loginFormWrapper">
@@ -8,7 +12,7 @@ btn_txt = '登录' unless btn_txt
 
 	<div class="title">
 		<h2><%= title %></h2>
-		<span class="titleOpts">还没有账号？<%= link_to "立刻注册 &raquo;".html_safe, "/user/sign_up" %></span>
+		<span class="titleOpts">还没有帐号？<%= link_to "立刻注册 &raquo;".html_safe, "/user/sign_up" %></span>
 	</div>
 
 	<%if flash[:notice]%><div class="alert_info" style="margin-bottom:20px;"><b></b><%= flash[:notice] %></div><%end%>
@@ -24,6 +28,9 @@ btn_txt = '登录' unless btn_txt
     <% if @_come_back %>
       <%=  hidden_field_tag "come_back", "1" %>
     <% end %>
+    <% if action_from == 'touzibao' %>
+    	<%= hidden_field_tag "action_from", "touzibao" %>
+    <% end %>
 	<div class="block" style="width:345px;">
 		<span class="lf">
 			<%= check_box_tag :remember_me, "1", false %>
@@ -38,7 +45,7 @@ btn_txt = '登录' unless btn_txt
 		<div class="clear"></div>		
 	</div>
 	<div class="otherAccess">
-		<p style="margin-bottom:5px;">或使用合作网站账号登录?</p>
+		<p style="margin-bottom:5px;">或使用合作网站帐号登录?</p>
 		<p>
             <span class="sinaAccess"><b></b><%= link_to "用新浪微博登录", auth_provider_path('weibo') %></span>
             <span class="qqAccess"><b></b><%= link_to "用QQ登录", auth_provider_path('qq_connect') %></span>

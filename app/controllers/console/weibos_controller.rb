@@ -6,6 +6,7 @@ class Console::WeibosController < ApplicationController
   before_filter :current_staff
   before_filter :authorize_staff
   before_filter :init_community_console
+  # after_filter :add_weibo_log, :only => [:change_status]
   
   def index
     @weibos = Weibo.exclude_sys.includes(:owner).page(params[:page])
@@ -57,7 +58,7 @@ class Console::WeibosController < ApplicationController
     
     Weibo.transaction do
       @weibos.each do |w|
-        unless w.update_attributes(:status => params[:status])
+        if !(w.update_attributes(:status => params[:status])) || !(add_weibo_log(w.id))
           return render :js => "alert('更改失败')"
         end
       end
@@ -81,7 +82,7 @@ class Console::WeibosController < ApplicationController
   # ban a weibo
   def ban
     @weibo = Weibo.where(:id => params[:id]).includes(:owner).first
-    
+
     Weibo.ban_weibo(@weibo.id) if @current_staff.can_monitor_weibo? and @weibo.present?
   end
   
@@ -95,9 +96,24 @@ class Console::WeibosController < ApplicationController
   end
   
   def toggle_content_check_status
-    Weibo.set_content_check_status(Weibo.content_check_needed? ? 0 : 1)
+    status = Weibo.content_check_needed? ? Weibo::WEIBO_ON : Weibo::WEIBO_OFF
+    roll_back_status = Weibo.content_check.value.to_i
+    Weibo.set_content_check_status(status)
+    add_community_switch_logs(status, roll_back_status)
     
-    redirect_to stats_console_articles_url
+    redirect_to console_community_switch_logs_url
+  end
+
+  private
+
+  def add_weibo_log(weibo_id)
+    cmd = params[:status] == "2" ? 2 : 0
+    WeiboLog.add_weibo_log(weibo_id, @current_staff.id, cmd, request.ip)
+  end
+
+  def add_community_switch_logs(status, roll_back_status)
+    cmd = status == Weibo::WEIBO_ON ? CommunitySwitchLog::ON : CommunitySwitchLog::OFF
+    CommunitySwitchLog.add_community_switch_logs(@current_staff.id, cmd, request.ip, roll_back_status)
   end
   
 end

@@ -205,6 +205,18 @@ module ApplicationHelper
       javascript_include_tag '/utilities/fixedPosition/fixedPosition.js'
     end
   end
+
+  def require_scrollFix
+    content_for :header_js do
+      javascript_include_tag '/utilities/scrollFix/scrollFix.js'
+    end
+  end
+
+  def require_path
+    content_for :header_js do
+      javascript_include_tag '/utilities/path/path.js'
+    end
+  end
   
   def require_tinymce
     content_for :header_js do
@@ -455,4 +467,30 @@ module ApplicationHelper
       yield
     end
   end
+
+  def action_from_touzibao?(feature)
+    return false if feature.nil?
+    Feature::TOUZIBAO_FEATURE_IDS.include?(feature.id)
+  end
+
+  def console_staff_show_articles_helper_path(staff_name, log_date, options = nil)  
+    if @console == 'common'
+      return show_articles_console_staff_url(staff_name, log_date, options)
+    elsif @console == 'statistics'
+      return statistics_show_articles_console_staff_url(staff_name, log_date, options)
+    else
+      return news_show_articles_console_staff_url(staff_name, log_date, options)
+    end
+  end
+
+  def staff_permance_index_helper_path(staff, find_method, options = nil)
+    if @console == 'common'
+      return common_index_console_staff_staff_performance_logs_path(staff, find_method, options)
+    elsif @console == 'statistics'
+      return statistics_index_console_staff_staff_performance_logs_path(staff, find_method, options)
+    else
+      return news_index_console_staff_staff_performance_logs_path(staff, find_method, options)
+    end
+  end  
+
 end

@@ -1,0 +1,35 @@
+<style type="text/css">
+  h2 { font-size:1.1rem; }
+  .formA label { width: 8.5em; }
+  .formRightAlign { padding-left: 8.6em; }
+</style>
+
+<%= simple_form_for [:console, @staff, @staff_convert_log], :html => {:class => "formA", :multipart => true} do |f| %>
+  <p>
+    <%= f.input :convert_count, :label => "折算发稿量", :error => false %>
+    <% if @staff_convert_log.errors[:convert_count].present? %>
+      <span class="tip error"><%= @staff_convert_log.errors[:convert_count].last %></span>
+    <% end %>
+  </p>
+  <p>
+    <%= f.input :comment, :as => :text, :label => "备注", :error => false %>
+    <% if @staff_convert_log.errors[:comment].present? %>
+      <span class="tip error"><%= @staff_convert_log.errors[:comment].last %></span>
+    <% end %>
+  </p>
+  <p>
+    <%= f.input :date_at, :as => :hidden, :input_html => { :value => date_at } %>
+  </p>
+  <% if @current_staff.authority_of_common? %>
+    <p>
+      <%= f.input :status, :collection => options_for_status, :selected => @staff_convert_log.status, :label => "折算发稿量状态", :error => false %>
+      <% if @staff_convert_log.errors[:status].present? %>
+        <span class="tip error"><%= @staff_convert_log.errors[:status].last %></span>
+      <% end %>
+    </p>
+  <% end %>
+  <%= hidden_field_tag :console, @console %>
+  <p class="formRightAlign">
+    <%= f.button :submit, "提交" %>
+  </p>
+<% end %>

@@ -1,28 +1,32 @@
-<div id="pageName">
-	<h1><%= link_to "每经投资宝", introduce_premium_mobile_newspaper_account_path %> / 账号充值</h1>
-</div>
-<div class="leftCol">
-  <div class="formA ">
-		<div class="alert_info">
-			<b></b>请您在新打开的页面完成支付：<br />
-			- 支付完成前，请不要关闭此窗口<br />
-			- 支付完成后，请根据结果选择
-		</div>
-		<div id="mnBottomActions" style="border: none;">
-		<% if params.has_key?(:gms_article_id) %>
-			<%= link_to "<span>支付成功</span>".html_safe, premium_gms_article_url(:id => params[:gms_article_id]), :class => "btnBlueM mrm" %>	
-		<% else %>
-			<%= link_to "<span>支付成功</span>".html_safe, premium_mobile_newspaper_account_url, :class => "btnBlueM mrm" %>
-		<% end %>
-		<%= link_to "<span>支付失败，重试</span>".html_safe, failed_premium_gms_accounts_url, :class => "btnGrayM" %>
-			
-			
-		</div>
+<% @title = "等待支付 | 股东大会实录" %>
 
-  </div>
-</div>
+<div class="tzbWrapper tzbWrapper-g">
+	<div id="pageName">
+		<h1><%= link_to "每经投资宝", introduce_premium_mobile_newspaper_account_path %> / 信用点购买</h1>
+	</div>
+	<div class="leftCol">
+	  <div class="formA ">
+			<div class="alert_info">
+				<b></b>请您在新打开的页面完成支付：<br />
+				- 支付完成前，请不要关闭此窗口<br />
+				- 支付完成后，请根据结果选择
+			</div>
+			<div id="mnBottomActions" style="border: none;">
+			<% if params.has_key?(:gms_article_id) %>
+				<%= link_to "<span>支付成功</span>".html_safe, premium_gms_article_url(:id => params[:gms_article_id]), :class => "btnBlueM mrm" %>	
+			<% else %>
+				<%= link_to "<span>支付成功</span>".html_safe, premium_mobile_newspaper_account_url, :class => "btnBlueM mrm" %>
+			<% end %>
+			<%= link_to "<span>支付失败，重试</span>".html_safe, failed_premium_gms_accounts_url, :class => "btnGrayM" %>
+				
+				
+			</div>
 
-<div class="rightCol">
-</div>
+	  </div>
+	</div>
 
-<div class="clear"></div>
+	<div class="rightCol">
+	</div>
+
+	<div class="clear"></div>
+</div>

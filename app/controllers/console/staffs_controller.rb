@@ -4,16 +4,15 @@ class Console::StaffsController < ApplicationController
   skip_before_filter :current_user
   before_filter :current_staff
   before_filter :authorize_staff
-  before_filter :init_common_console, :except => [:change_password] #, :only => [:update_target]
-  
+  before_filter :init_common_console, :except => [:change_password, :news_show_articles, :statistics_index, :statistics_show_articles]
+  before_filter :init_news_console, :only => [:news_show_articles]
+  before_filter :init_statistics_console, :only => [:statistics_index, :statistics_show_articles]
+
   def index
       @staff_type = params[:type].try(:to_i) || Staff::TYPE_EDITOR
       @stats_type = params[:status].try(:to_i) || Staff::STATUS_ACTIVE
       @stats = Staff.where({:status => @stats_type,:user_type => @staff_type}).page(params[:page]).per(15)
-
       @common_navs = "staff_center_index"
-    #  @stats = @stats.where({:user_type => @staff_type})
-    #  @stats = Staff.common_editors.where(:status => 1).page(params[:page]).per(15)
   end
 
   def ban_staff
@@ -27,12 +26,21 @@ class Console::StaffsController < ApplicationController
   end
 
   def show_articles
-      @common_navs = "staff_center_index"
-      @stat = Staff.where(:name => params[:id]).first
-      @stats_type = params[:status].try(:to_i) || 1
-      @order = params[:order] || "desc"
-      @articles = @stat.articles.where({:status => @stats_type}).includes({:columns => :parent},:weibo,:articles_columns).order("articles.id #{@order}").page(params[:page]).per(15)
+    @console = 'common'
+    get_staff_articles
   end
+
+
+  def news_show_articles
+    get_staff_articles
+    render :show_articles
+  end
+
+  def statistics_show_articles
+    @statistics_navs = "staff_statistics"
+    get_staff_articles
+    render :show_articles
+  end  
 
   def new
       @common_navs = "staff_center_new"
@@ -110,4 +118,27 @@ class Console::StaffsController < ApplicationController
     end
   end
 
+  def statistics_index
+    @console = 'statistics'
+    @statistics_navs = "staff_statistics"
+    @stats = Staff.where("status = ? and (user_type = ? or user_type = ?)", Staff::STATUS_ACTIVE, Staff::TYPE_EDITOR, Staff::TYPE_EDITOR_ADMIN).page(params[:page]).per 50
+  end
+
+  private
+
+
+  def get_staff_articles
+    @stat = Staff.where(:name => params[:id]).first
+    @stats_type = params[:status].try(:to_i) || 1
+    @order = params[:order] || "desc"
+    @common_navs = "staff_center_index"
+    @date = params[:date]
+    @staff_work_log = true
+    if @date
+      @find_method = @date.length < 9 ? 'month' : 'day' if @find_method.nil?
+      @articles = @stat.articles.where("status = ? and articles.created_at like ?", @stats_type, "#{params[:date]}%").includes({:columns => :parent},:weibo,:articles_columns).page(params[:page]).per(15)
+    else
+      @articles = @stat.articles.where({:status => @stats_type}).includes({:columns => :parent},:weibo,:articles_columns).order("articles.id #{@order}").page(params[:page]).per(15)
+    end
+  end  
 end

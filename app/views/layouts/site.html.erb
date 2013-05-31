@@ -8,7 +8,8 @@
     <%= yield :header_js %>
     <%= csrf_meta_tag %>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-    <link rel="shortcut icon" href="http://static.nbd.com.cn/favicon.ico" type="image/x-icon"/>
+    <meta name="viewport" content="width=1000" />
+    <link rel="shortcut icon" href="http://static.nbd.com.cn/favicon.ico" type="image/x-icon" />
     <meta name="Keywords" content="财经新闻,财经报道,叶檀,道达,老法师看盘,股市直播,郑眼看盘,股市行情,财经证券,基金,荐股,股市内参,股吧,传闻,内幕,板块,个股,黑马,股市新闻,生活,汽车" />
     <meta name="Description" content="24小时财经资讯平台，依托新锐财经日报《每日经济新闻》(National Business Daily)，打造中国最具影响力的经济、股票网站。覆盖宏观、股票、基金、期货、股指期货、外汇、债券、保险、银行、黄金、理财等全方位财经新闻。" />
   </head>
@@ -26,13 +27,13 @@
           <li><%= link_to "移动客户端", "#{android_mobiles_url}" %></li>
           <li><%= link_to "每经会", "#{Settings.club_host}" %></li>
           <li><a href="http://www.nbd.com.cn/html/dingyue.html">订阅服务</a></li>
-          <li class="last"><%= link_to "每经增值服务", "#{Settings.host}/premium/mobile_newspaper_account/introduce", :style=>"color:#f60;font-weight:bold;" %></li>
+          <li class="last"><%= link_to "每经投资宝", premium_touzibao_home_page_url, :style=>"color:#f60;font-weight:bold;" %></li>
         </ul>
         <ul class="rf">
           <%if @current_user.present?%>
             <li><span><%= @current_user.nickname %></span> <%= link_to "[退出]", user_sign_out_url, :method => :delete %></li>
             <li><%= link_to "我的首页", user_url(@current_user) %></li>
-            <li><%= link_to "账户设置", settings_user_url %></li>
+            <li><%= link_to "帐号设置", settings_user_url %></li>
             <li class="last"><%= link_to "意见反馈", user_url('每经网客服') %></li>
           <%else%>
             <li><%= link_to "登录社区", user_sign_in_url %></li>

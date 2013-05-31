@@ -1,0 +1,57 @@
+<style type="text/css">
+  h2 { font-size:1.1rem; }
+  .tableNormal { width: 305px; }
+  .tableNormal th { width: 7em; text-align: center; }
+  .formA label { width: 8.5em; }
+  .formRightAlign { padding-left: 8.6em; }
+</style>
+
+<div class="sectionA">
+  <div class="title">
+    <h1>用户详情</h1>
+    <span class="opts">
+      <%= link_to '<span>取消</span>'.html_safe, console_premium_mobile_newspaper_accounts_path, :class => "btnGray" %>
+    </span>
+  </div>
+  <div class="content rightColCenter">
+    <table class="tableNormal">
+      <tr>
+        <th style="">用户名</th>
+        <td><%= @user.nickname %></td>
+      </tr>
+      <tr>
+        <th>最后套餐类型</th>
+        <td><%= ttyj_plan_type_name(@mn_account) %></td>
+      </tr>
+      <tr>
+        <th>最后付款时间</th>
+        <td><%= @mn_account.last_payment_at && @mn_account.last_payment_at.strftime("%Y-%m-%d") %></td>
+      </tr>
+      <tr>
+        <th>最后付款类型</th>
+        <td><%= @mn_account.service_end_at && "#{@mn_account.plan_type_str}" %></td>
+      </tr>
+    </table>
+
+    <h2>修改密码</h2>
+    <%= simple_form_for :account , :html => {:class => "formA", :multipart => true}, :url => update_password_console_premium_mobile_newspaper_account_path(@mn_account) do |f|%>
+      <%= f.simple_fields_for @user do |user_form| %>
+        <p>
+          <%= user_form.input :password, :label => "输入新密码：", :error => false %>
+          <% if @user.errors[:password].present? %>
+            <span class="tip error"><%= @user.errors[:password].last %></span>
+          <% end %>
+        </p>
+        <p>
+          <%= user_form.input :password_confirmation, :label => "再次输入新密码：" %>
+          <% if @user.errors[:password].present? %>
+            <span class="tip error"><%= @user.errors[:password].last %></span>
+          <% end %>
+        </p>
+        <p class="formRightAlign">
+          <a href="javascript:void(0)" onclick="$(this).closest('form').submit();return false;" class="btnBlueM"><span>修改密码</span></a>
+        </p>
+      <% end %>
+    <% end %>
+  </div>
+</div>

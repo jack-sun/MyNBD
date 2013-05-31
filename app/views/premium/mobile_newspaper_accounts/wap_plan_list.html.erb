@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, width=device-width, minimum-scale=1">
+  <title>每经投资宝·天天赢家 订阅续费</title>
+  <%= stylesheet_link_tag "reset", "style_global" %>
+  <%= yield :header_css %>
+  <%= javascript_include_tag "jquery-1.7.1.min" %>
+  <%= yield :header_js %>
+  <style type="text/css">
+    body { font-size: 16px; }
+    #pageName { background: #2c96dd; margin: 0; padding: 20px; color: #fff; }
+    #tzbmWrapper { padding: 20px; }
+    .tzbmForm { border:none; padding: 0 }
+    .tzbmForm p, .tzbmForm .block { margin-bottom: 20px; }
+    .tzbmForm .blockLabel { display: block; margin-bottom: 8px; font-weight: bold; }
+    .tzbmForm .error { color: red; font-size: 0.8em; }
+    .tzbmFormTip { font-size: 0.85em; line-height: 1.8; }
+    .tzbmFormTip li { }
+  </style>
+</head>
+<body>
+  <div id="pageName">
+    <h1>每经投资宝·天天赢家 订阅续费</h1>
+  </div>
+  <div id="tzbmWrapper">
+
+    <div class="tzbmForm">
+      <%= form_tag wap_pay_premium_mobile_newspaper_account_path, { :id => "accountForm", "data-type" => "text"} do %>
+      <p>
+        <%= label_tag "name", "每经网帐号:", :class => "blockLabel" %>
+        <span><%= @current_user.nickname %></span>
+      </p>
+      <p>
+        <%= label_tag "mobile_no", "手机号码:", :class => "blockLabel" %>
+        <%= text_field_tag "mobile_no", @mn_account.present? ? @mn_account.phone_no : '', :id => "phoneNumber", :class => "textInput", :autocomplete => "off" %>
+        <span class="error" id="phonenumError" style="display:none">手机号码格式错误</span>
+        <% if notice %>
+          <span class="error" id="phonenumError">
+            <%= notice %>
+          </span>
+        <% end %>
+      </p>
+      <p>
+        <%= label_tag "plan_type_label", "订阅套餐:", :class => "blockLabel" %>
+        <%= radio_button_tag "plan_type", "3", "true" %>
+        <%= label_tag "plan_type_3", "<span class='eq'>1年</span> <span class='red'>580</span>元 ( 原价<span class='delInfo'>720</span>元, 节省140元 )".html_safe %><br />
+        <%= radio_button_tag "plan_type", "2" %>
+        <%= label_tag "plan_type_2", "<span class='eq'>6个月</span> <span class='red'>300</span>元 ( 原价<span class='delInfo'>360</span>元, 节省60元 )".html_safe %><br />
+        <%= radio_button_tag "plan_type", "1" %>
+        <%= label_tag "plan_type_1", "<span class='eq'>3个月</span> <span class='red'>160</span>元 ( 原价<span class='delInfo'>180</span>元, 节省20元 )".html_safe %><br />
+        
+        <% radio_button_tag "plan_type", "0" %>
+       <% label_tag "plan_type_0", "<span class='eq'>1个月</span> <span class='red'>60</span>元".html_safe %><br />
+      </p>
+      <%= hidden_field_tag "payment_device", @payment_device %>
+      <div class="block">
+        <%= submit_tag "购买 并同意服务条款", :class => "hiddenSubmit" %>
+        <a href="javascript:void(0)" id="nextBtn" class="btnBlueM mrm"><span>购买 并同意服务条款</span></a> <%= link_to "《服务条款》", mobile_newspaper_privacy_url %>
+      </div>
+      <% end %>
+      <div class="block mtl ptm tzbmFormTip">
+        <span class="b">重要提示:</span>
+        <ul class="unorderList mts">
+          <li>每经投资宝服务的发送渠道基于PC或智能手机，用户付费后即可登录每经网收看</li>
+          <li>部分省市用户若因运营商网络，手机设置原因无法以彩信方式收看，请直接登录每经网网站收看</li>
+          <li>购买服务前请务必仔细阅读<%= link_to "《服务条款》", mobile_newspaper_privacy_url, :target => "_blank" %>，用户一旦付费成功视为同意该条款</li>
+        </ul>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script type="text/javascript">
+    $(function(){
+      var form = $("#accountForm");
+      var txtPhone = $("#phoneNumber");
+
+      $("#nextBtn").click(function(){
+        form.submit();
+        return false;
+      });
+      
+      form.submit(function(){
+        if(txtPhone.length != 0){
+          var num = $.trim( txtPhone.val() );
+          var reg = /^\d{11}$/;
+          if(!reg.test(num)){
+            $("#phonenumError").show();
+            return false;
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+

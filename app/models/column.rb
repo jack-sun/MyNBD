@@ -24,6 +24,8 @@ class Column < ActiveRecord::Base
   MOBILE_NEWS_COLUMN = 198
   TOUZIBAO_NEWS_COLUMN = 199
   TOUZIBAO_CASE_COLUMN = 200
+  TOUZIBAO_SALON_COLUMN = 213
+  TOUZIBAO_REPORT_COLUMN = 212
   GMS_ARTICLES_COLUMN = 210
 
   GMS_ARTICLES_COLUMNS = [GMS_ARTICLES_COLUMN]
@@ -41,6 +43,8 @@ class Column < ActiveRecord::Base
     [3] => RSS_FINACE_HEADLINE_COLUMN_ID,
     [7, 8] => RSS_INFORMATION_HEADLINE_COLUMN_ID
   }
+
+
   UNIQ_COLUMN_IDS = [12, 10001, 10002, 10003, 10004, 10005, 10006, 10007, 10008, 10009]
 
   FEATURE_COLUMN_HASH = { 1 => 5, 6 => 9, 10 => 11, 33 => 36, 47 => 55, 56 => 57, 61 => 69, 70 => 76, 78 => 5, 145 => 148, 119 => 121, 129 => 131, 185 => 193}
@@ -87,7 +91,7 @@ class Column < ActiveRecord::Base
   
   acts_as_tree :order => "id asc"
 
-  NOT_RECORD_HOT_IDS = [4, 5, Column.find(6).child_ids, Column.find(61).child_ids].flatten
+  NOT_RECORD_HOT_IDS = [4, 5, Column.find(6).child_ids, Column.find(61).child_ids, Column.find(185).child_ids].flatten
 
   has_many :staffs_permissions
   has_many :staffs, :through => :staffs_permissions
@@ -96,8 +100,15 @@ class Column < ActiveRecord::Base
   has_one :user, :through => :columns_user
   has_many :articles_columns
   has_many :articles, :through => :articles_columns
-  
+
+  has_many :visable_children, :foreign_key => :parent_id, :class_name => 'Column', :conditions => {:console_display => 1}
+  belongs_to :visable_parent, :foreign_key => :parent_id, :class_name => 'Column'
+  belongs_to :charge_staff, :foreign_key => :staff_id_in_charge, :class_name => 'Staff'
+
+  has_many :column_performance_logs
+
   scope :basic_columns, where(:parent_id => nil).order("id asc")
+  scope :console_displayable, where(:console_display => 1)
   default_scope :conditions => {:status => ACTIVE}
 
   scope :displaied_columns, where(:console_display => 1)
@@ -175,6 +186,10 @@ class Column < ActiveRecord::Base
 
   def show_name
     "#{self.parent.name}-#{self.name}"
+  end
+
+  def charge_staff_id
+    parent_id.nil? ? staff_id_in_charge : Column.where(:id => parent_id).first.staff_id_in_charge
   end
 
   class << self

@@ -1,26 +1,25 @@
 #encoding:utf-8
 require 'nbd/cache_filter'
-class Api::TouzibaosController < ApplicationController
+class Api::TouzibaosController < Api::ApiBaseController
   include Api::ApiUtils
 
   include Nbd::CacheFilter
   EXPIRE_IN = 1000
-  skip_filter :current_user
+  # skip_filter :current_user
   before_filter :current_mn_account_by_token
   before_filter :get_latest_touzibao, :except => [:terms, :plans]
-  before_filter :authorize_mn_account, :except => [:terms, :plans]
-  attr_accessor :current_device
+  before_filter :authorize_mn_account, :except => [:terms, :plans, :latest]
+
+  # after_filter :record_activity_user
+  # attr_accessor :current_device
 
   before_filter PremiumFilter, :if => lambda{|controller| 
-    if controller.params[:action] == "today"
-      return true 
-    end
-    if controller.params[:action] == "specify" and 
-      Touzibao.last_period_t_index < controller.params[:id] and params[:access_token].present?
-      return true
-    end
-    return false
+    return controller.access_least_touzibao 
   }
+
+ after_filter RecordActiveUserFilter, :if => lambda{|controller|
+   return controller.access_least_touzibao 
+ }  
 
   # before_filter AccessTokenFilter, :if => lambda{|controller|
   #   if controller.params[:action] == "today"
@@ -107,6 +106,7 @@ class Api::TouzibaosController < ApplicationController
                         }
                       ]
                     }
+
   end
 
   def terms
@@ -120,6 +120,25 @@ class Api::TouzibaosController < ApplicationController
 
   def get_latest_touzibao
     @latest_touzibao ||= Touzibao.published.order("id desc").first
+  end
+
+  # def record_activity_user
+  #   MnAccount.record_active_user(@mn_account)
+  # end
+
+  def current_mn_account
+    return @mn_account
+  end
+
+  def access_least_touzibao
+    if self.params[:action] == "today"
+      return true 
+    end
+    if self.params[:action] == "specify" and 
+      Touzibao.last_period_t_index < self.params[:id] and self.params[:access_token].present?
+      return true
+    end
+    return false    
   end
 
 end

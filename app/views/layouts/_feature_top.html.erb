@@ -3,7 +3,6 @@ html_class = 'gray' unless html_class
 %>
 <div id="top" class="<%=html_class%>"><div id="topStyle">
   <div class="innerCenter">
-    <a class="smallLogo" href="http://www.nbd.com.cn" title="每经网">每经网</a>
     <ul class="lf">
       <%if false%>
         <% Column.where(:id => Column::DIS_MAIN_NAVS).each_with_index do|column, index| %>
@@ -13,7 +12,7 @@ html_class = 'gray' unless html_class
         <li class="last"><%= link_to "社区", weibo_host_url, :class => "#{@community_home_nav ? 'highlight' : ''}" %></li>
       <%end%>
 
-      <li class="first"><%= link_to "首页", Settings.host, :class => "#{request.url.chomp("/") == Settings.host ? 'highlight' : ''}" %></li>
+      <li class="first"><%= link_to "每经网首页", Settings.host, :class => "#{request.url.chomp("/") == Settings.host ? 'highlight' : ''}" %></li>
       <li><%= link_to "资讯", customize_host_url('news'), :class => "#{request.url.chomp("/") == customize_host_url('news') ? 'highlight' : ''}" %></li>  
       <li><%= link_to "股票", customize_host_url('stock'), :class => "#{request.url.chomp("/") == customize_host_url('stock') ? 'highlight' : ''}" %></li>  
       <li><%= link_to "公司", customize_host_url('company'), :class => "#{request.url.chomp("/") == customize_host_url('company') ? 'highlight' : ''}" %></li>  
@@ -27,13 +26,14 @@ html_class = 'gray' unless html_class
       <li  class="last"><%= link_to "西部", Settings.western_host %></li>
     </ul>
     <ul class="rf">
+      <!-- # temp solution for touzibao's sign_in by zhou -->
       <%if @current_user.present?%>
-        <li><span><%= @current_user.nickname.truncate(10) %></span> <%= link_to "[退出]", user_sign_out_url, :method => :delete %></li>
+        <li><span><%= @current_user.nickname.truncate(10) %></span> <%= link_to "[退出]", user_sign_out_url(:touzibao => action_from_touzibao?(@feature)), :method => :delete %></li>
         <li><%= link_to "我的首页", user_url(@current_user) %></li>
-        <li><%= link_to "账户设置", settings_user_url %></li>
+        <li><%= link_to "帐号设置", settings_user_url %></li>
         <li class="last"><%= link_to "意见反馈", user_url('每经网客服') %></li>
       <%else%>
-        <li><%= link_to "登录社区", user_sign_in_url %></li>
+        <li><%= link_to action_from_touzibao?(@feature) ? '登录投资宝' : '登录社区' , user_sign_in_url(:touzibao => action_from_touzibao?(@feature)) %></li>
         <li class="last"><%= link_to "意见反馈", user_url('每经网客服') %></li>
       <%end%>
     </ul>

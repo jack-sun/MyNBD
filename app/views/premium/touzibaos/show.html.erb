@@ -1,5 +1,5 @@
 <% if @is_valid %>
-<% @title = "投资宝期刊 : #{@touzibao.t_index}" %>
+<% @title = "天天赢家 : #{@touzibao.t_index}" %>
 <% @touzibao_articles = @touzibao_articles.group_by{|e| e.section} %>
 
 <% valid_sections = [] %>
@@ -20,94 +20,93 @@
 <%= require_jqueryUI %>
 
 
-
-<div id="pageName" style="width:910px;">
-  <span class="rf f14 mtm">
-          <% if pre_id = Touzibao.pre_t_index_of(params[:id]) %>
-            <%= link_to "<span>&laquo;上一期</span>".html_safe, premium_touzibao_url(:id => pre_id), :class=>"mlm btnGray" %>
-          <% end %>
-          <% if next_id = Touzibao.next_t_index_of(params[:id]) %>
-            <%= link_to "<span>下一期&raquo;</span>".html_safe, premium_touzibao_url(:id => next_id), :class => "mlm btnGray" %>
-          <% end %>
-    </span>
-  <h1>
-    每经投资宝: <input id="datepicker" class="textInput vm w100" type="text" value="<%= params[:id] %>" /><span style="margin-left:2px;">期</span>
-  </h1>
-</div>
-<% if @touzibao.nil? %>
-  <div class="layout">
-    <div class="lCol">
-      <div class="sectionA">
-        <div class="content"></div>
-      </div>
-    </div>
-    <div class="main noBorder">
-      您查看的期刊不存在。
-    </div>
+<div class="tzbWrapper tzbWrapper-g">
+  <div id="pageName" style="width:940px;">
+    <span class="rf f14 mtm">
+            <% if pre_id = Touzibao.pre_t_index_of(params[:id]) %>
+              <%= link_to "<span>&laquo;上一期</span>".html_safe, premium_touzibao_path(pre_id), :class=>"mlm btnGray" %>
+            <% end %>
+            <% if next_id = Touzibao.next_t_index_of(params[:id]) %>
+              <%= link_to "<span>下一期&raquo;</span>".html_safe, premium_touzibao_path(next_id), :class => "mlm btnGray" %>
+            <% end %>
+      </span>
+    <h1>
+      天天赢家: <input id="datepicker" class="textInput vm w100" type="text" value="<%= params[:id] %>" /><span style="margin-left:2px;">期</span>
+    </h1>
   </div>
-<% else %>
-  <% if @is_valid %>
-    <% if !@current_user.is_valid_premium_user? %>
-  <div style="border:1px solid #f0c36d; background-color:#f9edbe; padding:5px 10px; font-size:12px; -webkit-border-radius:5px; -moz-border-radius:5px; margin-bottom:15px; text-align:center; font-weight:bold;">您正在免费查阅“每经投资宝”往期内容。付费账号可查阅最新内容。 <%= link_to "<span>立刻购买</span>".html_safe, new_premium_mobile_newspaper_account_url, :class=>"btnBlue" %></div>
-    <% end %>
+  <% if @touzibao.nil? %>
     <div class="layout">
       <div class="lCol">
         <div class="sectionA">
-          <div class="content">
-            <ul class="indexBox roundCorner">
-              <% valid_sections.each do|section| %>
-                <li><a href="#<%= section %>"><%= section %></a></li>
-              <%end %>
-              <li><a href="#免责申明">免责申明</a></li>
-            </ul>
-          </div>
-        </div>    
+          <div class="content"></div>
+        </div>
       </div>
       <div class="main noBorder">
-        <% @touzibao_articles.each do|section, touzibao_articles| %>
-          <% articles = touzibao_articles.map(&:article).compact.find_all{|x|x.status == Article::PUBLISHED} %>
-          <% next if articles.blank? %>
-          <div class="sectionA">
-            <div class="title">
-              <h3><%= link_to section, "javascript:void(0)", :name => "#{section}" %></h3>
-            </div>
-            <div class='content'>
-              <% articles.each do |article| %>
-                <%= article.pages.map(&:content).join("</br>").html_safe %>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
-        <div class="sectionA">
-          <div class="title">
-            <h3>
-              <%= link_to "免责申明", "javascript:void(0)", :name => "免责申明" %>
-            </h3>
-          </div>
-          <div class="content">                    ★本手机报所提供的观点和信息仅供读者参考，不作为投资的直接依据，读者的投资决策行为务必要在自行分析判断的基础上谨慎为之。读者据本手机报做出的任何投资决策和结果，本报不承担任何责任。版权所有不得复制传播。客服电话028-86660288★
-          </div>
-        </div>
+        您查看的期刊不存在。
       </div>
     </div>
   <% else %>
-    <div class="bD bgF5 pal">
-      <% if last_touzibao = Touzibao.last_valid_touzibao_for_common %>
-        <p style="margin-bottom:.5em;">查阅往期内容，免费体验“每经投资宝”。（往期查看：<%= link_to last_touzibao.t_index, premium_touzibao_url(:id => last_touzibao.t_index) %>）</p>
+    <% if @is_valid %>
+      <% if !@current_user.is_valid_premium_user? %>
+    <div style="border:1px solid #f0c36d; background-color:#f9edbe; padding:5px 10px; font-size:12px; -webkit-border-radius:5px; -moz-border-radius:5px; margin-bottom:15px; text-align:center; font-weight:bold;">您正在免费查阅“天天赢家”往期内容。付费帐号可查阅最新内容。 <%= link_to "<span>立刻购买</span>".html_safe, new_premium_mobile_newspaper_account_url, :class=>"btnBlue" %></div>
       <% end %>
-      <p>付费账号可查阅最新内容。</p>
-      <p style="margin:.5em 0 2em; color: gray;"><%= link_to "<span>立刻购买</span>".html_safe, new_premium_mobile_newspaper_account_url, :class=>"btnBlueM" %>
-  </div>
+      <div class="layout">
+        <div class="lCol">
+          <div class="sectionA">
+            <div class="content">
+              <ul class="indexBox roundCorner">
+                <% valid_sections.each do|section| %>
+                  <li><a href="#<%= section %>"><%= section %></a></li>
+                <%end %>
+                <li><a href="#免责申明">免责申明</a></li>
+              </ul>
+            </div>
+          </div>    
+        </div>
+        <div class="main noBorder">
+          <% @touzibao_articles.each do|section, touzibao_articles| %>
+            <% articles = touzibao_articles.map(&:article).compact.find_all{|x|x.status == Article::PUBLISHED} %>
+            <% next if articles.blank? %>
+            <div class="sectionA">
+              <div class="title">
+                <h3><%= link_to section, "javascript:void(0)", :name => "#{section}" %></h3>
+              </div>
+              <div class='content'>
+                <% articles.each do |article| %>
+                  <%= article.pages.map(&:content).join("</br>").html_safe %>
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+          <div class="sectionA">
+            <div class="title">
+              <h3>
+                <%= link_to "免责申明", "javascript:void(0)", :name => "免责申明" %>
+              </h3>
+            </div>
+            <div class="content">                    ★本手机报所提供的观点和信息仅供读者参考，不作为投资的直接依据，读者的投资决策行为务必要在自行分析判断的基础上谨慎为之。读者据本手机报做出的任何投资决策和结果，本报不承担任何责任。版权所有不得复制传播。客服电话028-86660288★
+            </div>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <div class="bD bgF5 pal">
+        <% if last_touzibao = Touzibao.last_valid_touzibao_for_common %>
+          <p style="margin-bottom:.5em;">查阅往期内容，免费体验“天天赢家”。（往期查看：<%= link_to last_touzibao.t_index, premium_touzibao_path(last_touzibao.t_index) %>）</p>
+        <% end %>
+        <p>付费帐号可查阅最新内容。</p>
+        <p style="margin:.5em 0 2em; color: gray;"><%= link_to "<span>立刻购买</span>".html_safe, new_premium_mobile_newspaper_account_url, :class=>"btnBlueM" %>
+    </div>
+    <% end %>
   <% end %>
-<% end %>
-    
+      
 
-<a href="javascript:void(0)" class="dn" id="toTop" title="返回顶部" >返回顶部</a>
-
+  <a href="javascript:void(0)" class="dn" id="toTop" title="返回顶部" >返回顶部</a>
+</div>
 <script type="text/javascript">
-  
   $(function(){
     $("#pageName").fixedPosition({
-      pageWidth:910,
+      pageWidth:940,
       top: 0,
       left: 0,
       start:$("#pageName").position().top

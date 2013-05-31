@@ -1,10 +1,12 @@
 #encoding:utf-8
 class Premium::FeedbacksController < ApplicationController
   before_filter :current_user
+  # temp solution for touzibao's sign_in by zhou
+  before_filter FlashTouzibaoFilter, :only => [:new]
   before_filter :authorize
   before_filter :current_mn_account, :except => [:alert]
 
-  layout 'mobile_newspaper'
+  layout 'touzibao'
 
   def new
     @feedback = Feedback.new

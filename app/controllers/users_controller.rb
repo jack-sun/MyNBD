@@ -26,6 +26,7 @@ class UsersController < ApplicationController
     @user = @current_user
     @image = Image.new
     
+
     if request.get?
       if session[:omniauth]
         @current_user.desc = session[:omniauth]["info"]["description"]
@@ -67,6 +68,13 @@ class UsersController < ApplicationController
   end
   
   def show
+
+    if session[:action_from] == 'touzibao'
+      session[:action_from] = nil
+      return after_sign_in_and_redirect_to(user) unless session[:jumpto].blank?
+      return redirect_to premium_touzibao_home_page_url
+    end    
+    
     @interviewee = User.where(:nickname => params[:id]).first
     raise ActiveRecord::RecordNotFound if @interviewee.blank?
     

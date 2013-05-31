@@ -1,0 +1,75 @@
+<style type="text/css">
+  .tableA { width: 500px; }
+  .tableA td { width: 150px; }
+</style>
+
+<div class="sectionA">
+  <div class="title">
+    <h1>频道数据</h1>
+  </div>
+  <% if flash[:notice]  %>
+    <div class="alert_done" style="margin:20px 20px 10px;"><b></b> <%= flash[:notice] %></div>
+  <% end %>
+  <div class="content rightColCenter">
+    <table class="tableA">
+      <thead>
+        <th>频道名称</th>
+        <th>负责编辑</th>
+      </thead>
+      <tbody>
+        <% for column in @columns %>
+        <tr>
+          <td><%= link_to_if (!column.charge_staff.nil? && column.charge_staff.try(:id) == @current_staff.id) || (@current_staff.authority_of_common?) || @current_staff.is_type_editor_admin?, column.name, news_index_console_column_column_performance_logs_url(column.id) %></td>
+          <td>
+            <div class="editorSelect" style="display:none;">
+              <%= form_tag(change_charge_staff_console_columns_url) do %>
+                <%= select_tag "charge_staff", option_for_charge_staff(column.charge_staff.try(:id)) %>
+                <%= hidden_field_tag "column", column.id %>
+                <%= hidden_field_tag "console", @console %>
+              <% end %>
+            </div>
+            <span class="currentEditor"><%= column.charge_staff.try(:real_name) %></span>
+          </td>
+        </tr>
+        <% end %>
+      </tbody>
+   </table>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+
+    var table = $('.tableA');
+
+    // start select
+    table.delegate('.modifyEditor', 'click', function(){
+      changeEditStatus($(this).closest('tr'));
+    });
+
+    // select a editor
+    table.delegate('.confirmModify', 'click', function(){
+      $(this).closest('tr').find('form').submit();
+    });
+
+    // cancel select
+    table.delegate('.cancelModify', 'click', function(){
+      changeEditStatus($(this).closest('tr'));
+    });
+
+    function changeEditStatus(currentItem){
+      currentItem.find('.modifyEditor').toggle();
+      currentItem.find('.modifyEditorOpts').toggle();
+      currentItem.find('.editorSelect').toggle();
+      currentItem.find('.currentEditor').toggle();
+    }
+
+  });
+</script>
+
+
+
+
+
+
+

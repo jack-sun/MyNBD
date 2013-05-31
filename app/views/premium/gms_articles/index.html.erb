@@ -1,37 +1,76 @@
-<div id="pageName">
-  <%= render :partial => "search" %>
-  <h1>
-    每经投资宝·股东大会实录
-  </h1>
-</div>
+<% require_path %>
+<% @title="股东大会实录" %>
 
-<% if false %>
-  <% if @current_user.present? && @current_user.paid_one_year_for_ttyj? && !@current_user.is_receive_credits_from_ttyj? %>
-  <div class="alert_info">
-  <b></b>尊敬的用户，由于您已购买了一年期的《每经投资宝·天天赢家》，现获赠26个每经信用点，该信用点可用于购买股东大会实录。
-  <%= link_to '<span>立刻领取</span>'.html_safe, premium_receive_credits_from_ttyj_path, :method => :post, :class => "btnBlue" %>
-</div>
-<% end %>
-<% end %>
-
-<% if flash[:notice] %>
-  <div class="alert_done">
-    <b></b><%= flash[:notice] %>
+<div class="tzbWrapper tzbWrapper-g">
+  <div id="pageName" class="clearfix">
+    <h1 class="l">每经投资宝·股东大会实录</h1>
+    <%= render :partial => "search" %>
+    <div class="clear"></div>
   </div>
-<% end %>
-<div class="tabs">
-  <ul>
-    <li class='<%= 'current' if @gms_articles_type == 'all' %>'><%= link_to "所有实录", premium_gms_articles_path %></li>
-    <li class='<%= 'current' if @gms_articles_type == 'paid' %>'><%= link_to "已购买的实录", premium_gms_articles_path(:paid => true) if @current_user.present? %></li>
-  </ul>
+
+  <% if false %>
+    <% if @current_user.present? && @current_user.paid_one_year_for_ttyj? && !@current_user.is_receive_credits_from_ttyj? %>
+    <div class="alert_info">
+      <b></b>尊敬的用户，由于您已购买了一年期的《每经投资宝·天天赢家》，现获赠26个每经信用点，该信用点可用于购买股东大会实录。
+      <%= link_to '<span>立刻领取</span>'.html_safe, premium_receive_credits_from_ttyj_path, :method => :post, :class => "btnBlue" %>
+    </div>
+  <% end %>
+  <% end %>
+
+  <% if flash[:notice] %>
+    <div class="alert_done">
+      <b></b><%= flash[:notice] %>
+    </div>
+  <% end %>
+  <div class="tabs">
+    <ul>
+      <li class='<%= 'current' if @gms_articles_type == 'all' %>'><%= link_to "所有实录", premium_gms_articles_path %></li>
+      <li class='<%= 'current' if @gms_articles_type == 'preview' %>'><%= link_to "预售", premium_gms_articles_path(:gms_articles_type => 'preview') %></li>
+      <li class='<%= 'current' if @gms_articles_type == 'official' %>'><%= link_to "正式发售", premium_gms_articles_path(:gms_articles_type => "official") %></li>
+      <li class='<%= 'current' if @gms_articles_type == 'paid' %>'><%= link_to "已购买", premium_gms_articles_path(:gms_articles_type => 'paid') if @current_user.present? %></li>
+    </ul>
+  <% if @gms_articles_type == 'all' || @gms_articles_type == 'preview' %>
+    <div class="f12 pvs r">
+      <span>
+        <input id="filterConfirmDate" class="man pan vm" type="checkbox" /> <label for="filterConfirmDate">大会时间已确定</label>
+      </span>
+    </div>
+  <% end %>
+  </div>
+
+  <%= render :partial => "premium/gms_articles/table", :locals => { :gms_articles => @gms_articles, :is_order => true } %>
+
+  <div class="mtm"><%= paginate @gms_articles %></div>
+  <div class="clear"></div>
+
+  <p class="mvm">您感兴趣的公司不在其中？<%= link_to( "在此提交相关信息",premium_question_stock_path,:target => '_blank') %></p>
+
+  <%= render :partial => "premium/gms_articles/tip" %>
 </div>
-<div>
-</div>
-<%= render :partial => "premium/gms_articles/table", :locals => { :gms_articles => @gms_articles, :is_order => true } %>
+<script type="text/javascript">
+  $(function(){
+    var cbDate = $('#filterConfirmDate');
+    var href = new $.path();
 
-<div class="mtm"><%= paginate @gms_articles %></div>
-<div class="clear"></div>
+    init(cbDate, 'meeting_at');
+    cbDate.change(function(){
+      toggle('meeting_at', 'determined')
+    });
 
-<p class="mvm">您感兴趣的公司不在其中？<%= link_to( "在此提交相关信息",premium_question_stock_path,:target => '_blank') %></p>
+    function init(dom, key){
+      if(href.get(key)){
+        dom.attr('checked', 'checked')
+      }
+    }
 
-<%= render :partial => "premium/gms_articles/tip" %>
+    function toggle(key, value){
+      if(href.get(key)){
+        href.del(key);
+      }else {
+        href.set(key, value);
+      }
+      href.del('page');
+      location.href = href.getHref();
+    }
+  })
+</script>

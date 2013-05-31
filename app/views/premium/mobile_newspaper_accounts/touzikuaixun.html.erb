@@ -1,0 +1,44 @@
+<%
+  @title = "投资快讯"
+%>
+
+<div class="tzbSubNav">
+  <div class="tzbWrapper">
+    <h1>投资快讯</h1>
+  </div>
+</div>
+
+<div class="tzbColumnBg">
+  <img src="/images/touzibao/bg-touzikuaixun.png">
+</div>
+
+<div class="intro">
+  <div class="tzbWrapper">
+    <div class="tzkxIntro_container">
+
+      <div class="tzkxIntro_phone">
+        <div class="phone">
+          <div class="phoneScreen">
+            <div class="magzine">
+              <% if @article %>
+              <%= @article.title %>
+              <%= @article.pages.map(&:content).join("<\br>").html_safe %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <p style="text-align:center;"><a href="/columns/<%=Column::MOBILE_NEWS_COLUMN%>">每经投资快讯 往期查询 &raquo;</a></p>
+      </div>
+
+      <div class="tzkxIntro">
+        <h2>产品介绍</h2>
+        <p>根据第二天每经报的精华内容，选取能够对市场以及板块个股产生直接影响的信息，进行再加工，“源于每经报，精于每经报”，财经证券资讯信息一网打尽。是广大普通投资者获取有效财经证券资讯信息的好途径。</p>
+        <p>栏目设置：<br>每经独家、头条精选、投资三人行、主力动向解码、机构内参、重磅公告解读等。</p>
+        <p>发送时间：每个交易日早上8点前。</p>
+        <p>产品资费：<strong>5元/月</strong></p>
+        <p>订购方式：移动用户发送短信 <strong>MRJJXW</strong> 至 <strong>10658000</strong></p>
+      </div>
+
+    </div>
+  </div>
+</div>

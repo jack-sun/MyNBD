@@ -100,6 +100,13 @@ class Article < ActiveRecord::Base
   scope :visible_comments, lambda{|user_id| where(["status = ? OR user_id = ?", PUBLISHED, user_id])}
   scope :import_articles, where(:need_push => 1)
 
+
+  #callbacks
+  before_save :parse_tags
+  def parse_tags
+    self.tags = NBD::Utils.parse_tags(self.tags).join(",") unless self.tags.blank?
+  end 
+
   define_index do
     # fields
     indexes title, :sortable => true
@@ -293,14 +300,14 @@ class Article < ActiveRecord::Base
 
   def self.create_article(params, send_weibo = true)
     column_ids = params.delete("column_ids")
-    params[:tags] = NBD::Utils.parse_tags(params[:tags]).join(", ") if params[:tags].present?
+    # params[:tags] = NBD::Utils.parse_tags(params[:tags]).join(", ") if params[:tags].present?
     
     article = self.new(params)
     self.transaction do
       unless article.save
         return article
       end
-      article.add_columns(column_ids, params["status"] || 0, send_weibo)
+      article.add_columns(column_ids, params[:status] || 0, send_weibo)
     end
     return article
   end
@@ -439,6 +446,9 @@ class Article < ActiveRecord::Base
     self.created_at.strftime("%Y-%m-%d") > (Time.now - period).strftime("%Y-%m-%d")
   end
   
+  def related_features(limit=2)
+    Feature.search_with_tags(NBD::Utils.parse_tags(self.tags), limit) unless self.tags.blank?
+  end
 
   class << self
 
@@ -470,7 +480,6 @@ class Article < ActiveRecord::Base
     def record_hot_article?(article_id)
       (ArticlesColumn.where(:article_id => article_id, :status => PUBLISHED).select([:column_id]).map(&:column_id) & Column::NOT_RECORD_HOT_IDS).blank?
     end
-
 
   end
 

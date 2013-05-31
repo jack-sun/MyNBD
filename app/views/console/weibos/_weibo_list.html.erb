@@ -19,7 +19,7 @@
 				<% next unless w.present? %>
 				<tr id="weibo_<%= w.id %>">
 					<td class="forHandler"><span class="dragHandler"></span></td>
-                    <td class="forSelect"><input class="subSelect" type="checkbox" value="<%= w.id %>"/></td>
+          <td class="forSelect"><input class="subSelect" type="checkbox" value="<%= w.id %>"/></td>
 					<td><%= w.content %></td>
 					<td><%= link_to(w.owner.nickname, user_url(w.owner)) %></td>
 					<td><%= w.rt_count %> / <%= w.reply_count %></td>
@@ -27,15 +27,19 @@
 					<td class="itemStatus_<%=w.status%>"><%= Weibo::STATUS[w.status.to_i] %></td>
 					<td class="itemActions">
 						<%= link_to "<b></b>查看".html_safe, weibo_url(w), :class=>'actionEdit' %>
-						<%= link_to "<b></b>删除 ".html_safe, console_weibo_url(w), :confirm => "删除这条微博？", :method => :delete, :remote => true, :class=>'actionDelete' %>
+						<%= link_to "<b></b>删除 ".html_safe, console_weibo_url(w), :confirm => "删除这条微博？", 
+																																				:method => :delete,
+																																				:remote => true,
+																																				:class=>'actionDelete' %>
 						<% if !w.is_banned? %>
 						  <%= link_to("<b></b>屏蔽".html_safe, "javascript:void(0);", :class=>'actionBanned') %>
-	                    <% else %>
+            <% else %>
 						  <%= link_to("<b></b>发布".html_safe, "javascript:void(0);", :class=>'actionPublish') %>
-	                    <% end %>
+            <% end %>
+	          	<%= link_to("<b></b>操作记录".html_safe, console_weibo_weibo_logs_path(w), :class=>'actionRecord')%>
 					</td>
 				</tr>
-			<%end%>
+			<% end %>
 		</tbody>
 	</table>
 </div><!-- table wrapper -->

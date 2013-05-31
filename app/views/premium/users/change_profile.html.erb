@@ -1,0 +1,48 @@
+<% @title="帐号设置" %>
+<%= require_css "account_settings.css" %>
+<div class="tzbWrapper tzbWrapper-g">
+  <div class="leftCol">
+  <div id="pageName"><h1><%= link_to '帐号信息', premium_mobile_newspaper_account_url %> / 帐号设置</h1></div>
+
+    <%= form_for(@current_user, :url => premium_change_profile_url, :html => {:id => "user_form", :class => "formA roundCorner", :multipart => true}) do |f| %>
+    <p>
+      <%= f.label :email, "邮箱:" %><br/>
+      <%= f.text_field :email, :class => "textInput #{@user.errors[:email].present? ? 'error' : ''}"  %>
+      <%if @user.errors[:email].present? %><span class="tip error"><%= @user.errors[:email].last %></span><%end%>
+    </p>
+    <p>
+      <%= f.label :nickname, "昵称:" %><br/>
+      <%= f.text_field :nickname, :class => "textInput #{@user.errors[:nickname].present? ? 'error' : ''}" %>
+      <%if @user.errors[:nickname].present? %><span class="tip error"><%= @user.errors[:nickname].last %></span><%end%>
+    </p>
+    <p>
+      <%= f.label :image, "头像:" %><br>
+      <% if @user.image.present? %>
+        <%= f.fields_for :image, @user.image do |image| %>
+        <%= image_tag(user_avatar_path(@user, :large)) %>
+        <%= image.file_field :avatar %>
+        <%= image.hidden_field :avatar_cache %>
+        <%end %>
+      <% else %>
+        <%= f.fields_for :image, Image.new do |image| %>
+        <%= image.file_field :avatar %>
+        <%= image.hidden_field :avatar_cache %>
+        <% end %>
+      <%end %>
+    </p>
+  <!--     <p>
+      <%= f.label :desc, "关于我:" %><br/>
+      <%= f.text_area :desc, :class => "textInput", :style => "width:300px;height:80px;"  %>
+    </p> -->
+    <p>
+      <a href="javascript:void(0)" class="btnBlueM" onclick="$(this).parents('form').submit();return false;" ><span>保存</span></a>
+    </p>
+    <%end %>
+
+
+  </div>
+  <div class="rightCol">
+  </div>
+  <div class="clear">
+  </div>
+</div>

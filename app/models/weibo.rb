@@ -23,6 +23,9 @@ class Weibo < ActiveRecord::Base
   STATUS = {PUBLISHED => "已发布", BANNDED => "屏蔽/待审核"}
   
   DEFAULT_RT_CONENT = "转发微博"
+
+  WEIBO_ON = 0
+  WEIBO_OFF = 1
   
   include MentionTarget
   
@@ -50,6 +53,8 @@ class Weibo < ActiveRecord::Base
   belongs_to :parent_weibo, :class_name => "Weibo", :foreign_key => "parent_weibo_id"
 
   has_many :polls, :as => :owner, :dependent => :destroy
+
+  has_many :weibo_logs
   
   scope :banned, where(:status => BANNDED)
   scope :published, where(:status => PUBLISHED)
@@ -99,8 +104,8 @@ class Weibo < ActiveRecord::Base
     end
     
     def content_check_needed?
-      return false if Weibo.content_check.blank?
-      Weibo.content_check.value == "1"
+      return true if Weibo.content_check.blank?
+      Weibo.content_check.value == WEIBO_OFF.to_s
     end
     
     def hot_rt_weibos(limit = 10, asso_hash = {})

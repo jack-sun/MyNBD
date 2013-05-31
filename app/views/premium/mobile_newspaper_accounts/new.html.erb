@@ -1,111 +1,108 @@
 <%
-alipay = params[:type].try(:to_i) != 1
+  @title = "订阅续费 | 天天赢家"
+  alipay = params[:type].try(:to_i) != 1
 %>
 
-<div class="leftCol">
-  <div class="formA ">
-<!--     <div class="title">
-      <h3>激活邮件已过期</h3>
-    </div> -->
-    <% if flash[:notice] %>
-    <div class="alert_info">
-      <b></b><%= flash[:notice] %>
-    </div>
-    <% end %>
-    <div class="tabs">
-      <ul>
-        <li class="<%= alipay ? 'current' : '' %>">
-          <%= link_to "在线支付购买", new_premium_mobile_newspaper_account_url %>
-        </li>
-        <li class="<%= alipay ? '' : 'current' %>">
-          <%= link_to "激活卡号购买", new_premium_mobile_newspaper_account_url(:type => 1) %>
-        </li>
-      </ul>
-    </div>
-    <% if params[:type].try(:to_i) != 1 %>
-    <%= form_tag subscribe_premium_mobile_newspaper_account_url, { :id => "accountForm", "data-type" => "text", :target => "_blank"} do %>
-    <p>
-      <%= label_tag "name", "每经网帐号:" %> <br />
-      <span class="pureText"><%= @current_user.nickname %></span>
-      
-    </p>
-    <% if !@current_account or @current_account.phone_no.blank? %>
-    <p>
-      <%= label_tag "mobile_no", "手机号码:" %> <br />
-      <%= text_field_tag "mobile_no", "", :id => "phoneNumber", :class => "textInput", :autocomplete => "off" %>
-      <span class="tip error" id="phonenumError" style="display:none">手机号码格式错误</span>
-    </p>
-    <% end %>
-    <p>
-      <%= label_tag "plan_type_label", "订阅套餐:" %> <br />
-      <%= radio_button_tag "plan_type", "3", "true" %>
-      <%= label_tag "plan_type_3", "<span class='eq'>1年</span> <span class='red'>580</span>元 ( 原价<span class='delInfo'>720</span>元, 节省140元 )".html_safe, :class => "clearLabelStyle tzbPayLabelItem" %><br />
-      <%= radio_button_tag "plan_type", "2" %>
-      <%= label_tag "plan_type_2", "<span class='eq'>6个月</span> <span class='red'>300</span>元 ( 原价<span class='delInfo'>360</span>元, 节省60元 )".html_safe, :class => "clearLabelStyle tzbPayLabelItem" %><br />
-      <%= radio_button_tag "plan_type", "1" %>
-      <%= label_tag "plan_type_1", "<span class='eq'>3个月</span> <span class='red'>160</span>元 ( 原价<span class='delInfo'>180</span>元, 节省20元 )".html_safe, :class => "clearLabelStyle tzbPayLabelItem" %><br />
-      
-      <% radio_button_tag "plan_type", "0" %>
-     <% label_tag "plan_type_0", "<span class='eq'>1个月</span> <span class='red'>60</span>元".html_safe, :class => "clearLabelStyle tzbPayLabelItem" %><br />
-    </p>
-    <div class="block">
-      <%= submit_tag "购买 并同意服务条款", :class => "hiddenSubmit" %>
-      <a href="javascript:void(0)" id="nextBtn" class="btnBlueM mrm"><span>购买 并同意服务条款</span></a> <%= link_to "《服务条款》", mobile_newspaper_privacy_url, :target => "_blank" %>
-    </div>
-    <% end %>
-    <% else %>
-    <%= form_tag activate_premium_mobile_newspaper_account_url, {:id => "accountForm"} do %>
-    <p>
-      <%= label_tag "name", "每经网帐号:" %> <br />
-      <span class="pureText"><%= @current_user.nickname %></span>
-      
-    </p>
-    <% if !@current_user.mn_account or @current_user.mn_account.phone_no.blank? %>
-    <p>
-      <%= label_tag "mobile_no", "手机号码:" %> <br />
-      <%= text_field_tag "mobile_no", params[:mobile_no] || "", :id => "phoneNumber", :class => "textInput", :autocomplete => "off" %>
-      <span class="tip error" id="phonenumError" style="display:none">手机号码格式错误</span>
-    </p>
-    <% end %>
-    <p>
-      <%= label_tag "password", "每经卡密码:" %> <br />
-      <%= password_field_tag "password", params[:password] || "", :class => "textInput", :autocomplete => "off" %>
-      <% if @password_error %>
-      <span class="tip error">激活卡密码错误</span>
-      <% end %>
-    </p>
-    <div class="block">
-      <label for="captcha">验证码:</label>
-      <div id="simple_captcha">
-        <%= text_field_tag "captcha", "", :class => "textInput captchaInput" %>
-        <span class="captchaImage">
-        </span>
-        <span class="error"><%= flash[:captcha_error] %></span>
-      </div>
-    </div>
-    <div class="block">
-      <%= submit_tag "购买 并同意服务条款", :class => "hiddenSubmit" %>
-      <a href="javascript:void(0)" id="nextBtn" class="btnBlueM mrm"><span>购买 并同意服务条款</span></a> <%= link_to "《服务条款》", mobile_newspaper_privacy_url, :target => "_blank" %>
-    </div>
-    <% end %>
-    <% end %>
-    <div class="block mtl ptm">
-      <span class="b">重要提示:</span>
-      <ul class="unorderList mts">
-        <li>每经投资宝服务的发送渠道基于PC或智能手机，用户付费后即可登录每经网收看</li>
-        <li>部分省市用户若因运营商网络，手机设置原因无法以彩信方式收看，请直接登录每经网网站收看</li>
-        <li>购买服务前请务必仔细阅读<%= link_to "《服务条款》", mobile_newspaper_privacy_url, :target => "_blank" %>，用户一旦付费成功视为同意该条款</li>
-      </ul>
-    </div>
-
+<div class="tzbWrapper tzbWrapper-g">
+  <div id="pageName">
+    <h1>每经投资宝·天天赢家 订阅续费</h1>
   </div>
+  <div class="leftCol">
+    <div class="formA ">
+      <% if flash[:notice] %>
+      <div class="alert_info">
+        <b></b><%= flash[:notice] %>
+      </div>
+      <% end %>
+      <div class="tabs">
+        <ul>
+          <li class="<%= alipay ? 'current' : '' %>">
+            <%= link_to "在线支付购买", new_premium_mobile_newspaper_account_url %>
+          </li>
+          <li class="<%= alipay ? '' : 'current' %>">
+            <%= link_to "激活卡号购买", new_premium_mobile_newspaper_account_url(:type => 1) %>
+          </li>
+        </ul>
+      </div>
+      <% if params[:type].try(:to_i) != 1 %>
+      <%= form_tag subscribe_premium_mobile_newspaper_account_url, { :id => "accountForm", "data-type" => "text", :target => "_blank"} do %>
+      <p>
+        <%= label_tag "name", "每经网帐号:" %> <br />
+        <span class="pureText"><%= @current_user.nickname %></span>
+        
+      </p>
+      <p>
+        <%= label_tag "mobile_no", "手机号码:" %> <br />
+        <%= text_field_tag "mobile_no", @current_account.present? ? @current_account.phone_no : '', :id => "phoneNumber", :class => "textInput", :autocomplete => "off" %>
+        <span class="tip error" id="phonenumError" style="display:none">手机号码格式错误</span>
+      </p>
+      <p>
+        <%= label_tag "plan_type_label", "订阅套餐:" %> <br />
+        <%= radio_button_tag "plan_type", "3", "true" %>
+        <%= label_tag "plan_type_3", "<span class='eq'>1年</span> <span class='red'>580</span>元 ( 原价<span class='delInfo'>720</span>元, 节省140元 )".html_safe, :class => "clearLabelStyle tzbPayLabelItem" %><br />
+        <%= radio_button_tag "plan_type", "2" %>
+        <%= label_tag "plan_type_2", "<span class='eq'>6个月</span> <span class='red'>300</span>元 ( 原价<span class='delInfo'>360</span>元, 节省60元 )".html_safe, :class => "clearLabelStyle tzbPayLabelItem" %><br />
+        <%= radio_button_tag "plan_type", "1" %>
+        <%= label_tag "plan_type_1", "<span class='eq'>3个月</span> <span class='red'>160</span>元 ( 原价<span class='delInfo'>180</span>元, 节省20元 )".html_safe, :class => "clearLabelStyle tzbPayLabelItem" %><br />
+        
+        <% radio_button_tag "plan_type", "0" %>
+       <% label_tag "plan_type_0", "<span class='eq'>1个月</span> <span class='red'>60</span>元".html_safe, :class => "clearLabelStyle tzbPayLabelItem" %><br />
+      </p>
+      <div class="block">
+        <%= submit_tag "购买 并同意服务条款", :class => "hiddenSubmit" %>
+        <a href="javascript:void(0)" id="nextBtn" class="btnBlueM mrm"><span>购买 并同意服务条款</span></a> <%= link_to "《服务条款》", mobile_newspaper_privacy_url, :target => "_blank" %>
+      </div>
+      <% end %>
+      <% else %>
+      <%= form_tag activate_premium_mobile_newspaper_account_url, {:id => "accountForm"} do %>
+      <p>
+        <%= label_tag "name", "每经网帐号:" %> <br />
+        <span class="pureText"><%= @current_user.nickname %></span>
+      </p>
+      <p>
+        <%= label_tag "mobile_no", "手机号码:" %> <br />
+        <%= text_field_tag "mobile_no", @current_account.present? ? @current_account.phone_no : '', :id => "phoneNumber", :class => "textInput", :autocomplete => "off" %>
+        <span class="tip error" id="phonenumError" style="display:none">手机号码格式错误</span>
+      </p>
+      <p>
+        <%= label_tag "password", "每经卡密码:" %> <br />
+        <%= password_field_tag "password", params[:password] || "", :class => "textInput", :autocomplete => "off" %>
+        <% if @password_error %>
+        <span class="tip error">激活卡密码错误</span>
+        <% end %>
+      </p>
+      <div class="block">
+        <label for="captcha">验证码:</label>
+        <div id="simple_captcha">
+          <%= text_field_tag "captcha", "", :class => "textInput captchaInput" %>
+          <span class="captchaImage">
+          </span>
+          <span class="error"><%= flash[:captcha_error] %></span>
+        </div>
+      </div>
+      <div class="block">
+        <%= submit_tag "购买 并同意服务条款", :class => "hiddenSubmit" %>
+        <a href="javascript:void(0)" id="nextBtn" class="btnBlueM mrm"><span>购买 并同意服务条款</span></a> <%= link_to "《服务条款》", mobile_newspaper_privacy_url, :target => "_blank" %>
+      </div>
+      <% end %>
+      <% end %>
+      <div class="block mtl ptm">
+        <span class="b">重要提示:</span>
+        <ul class="unorderList mts">
+          <li>每经投资宝服务的发送渠道基于PC或智能手机，用户付费后即可登录每经网收看</li>
+          <li>部分省市用户若因运营商网络，手机设置原因无法以彩信方式收看，请直接登录每经网网站收看</li>
+          <li>购买服务前请务必仔细阅读<%= link_to "《服务条款》", mobile_newspaper_privacy_url, :target => "_blank" %>，用户一旦付费成功视为同意该条款</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="rightCol">
+  </div>
+
+  <div class="clear"></div>
 </div>
-
-<div class="rightCol">
-</div>
-
-<div class="clear"></div>
-
 <script type="text/javascript">
 $(function(){
   var form = $("#accountForm");
@@ -148,6 +145,6 @@ $(function(){
     $(this).closest(".captchaImage").html(loadingHtml);
   });
 
-  _nbd.setPlaceholder($(".captchaInput"), "请输入验证码")
+  _nbd.setPlaceholder($(".captchaInput"), "请输入验证码");
 });
 </script>

@@ -9,7 +9,7 @@ class Console::Premium::GmsAccountsController < ApplicationController
   	cache_sweeper Sweepers::PageSweeper, Sweepers::ArticleSweeper, :only => [:create, :update, :destroy, :publish, :ban, :off_shelf]
 
 	def index
-    @console_search = true
+    @console_search = false
 		@gms_articles_type = 'paid_users'
 		@paid = true
 		@paid = false if params[:paid] == 'false'
@@ -24,7 +24,7 @@ class Console::Premium::GmsAccountsController < ApplicationController
     @article = @gms_article.article
     @comments = @article.comments.order("id DESC").includes(:owner)
     @page = params.has_key?(:p_index) ? @article.pages.where(:p_index => params[:p_index]).first : @article.pages.where(:p_index => 1).first
-    return render :template => "premium/gms_articles/show",:layout => 'mobile_newspaper'
+    return render :template => "premium/gms_articles/show",:layout => 'touzibao'
   end
 
 

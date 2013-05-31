@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title><%= @title.blank? ? "每经投资宝" : "#{@title} | 每经投资宝"%></title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <%= stylesheet_link_tag "reset", "style_global", "style_website", "touzibao" %>
+  <%= yield :header_css %>
+  <%= javascript_include_tag "jquery.min", "jquery_ujs", "nbdtools", "baidu_m" %>
+  <%= yield :header_js %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+  <%= render :partial => "layouts/touzibao_top", :locals=>{:html_class => "dark"} %>
+  <div class="tzbNavbar_container">
+    <div class="tzbNavbar tzbWrapper clearfix">
+
+      <div class="tzbNavbar_operations tzbOperations">
+        <%if @current_user.present?%>
+          <span class="tzbOperations_item first">
+            <%= @current_user.nickname.truncate(8) %> 
+            <%= link_to "[退出]", user_sign_out_url(:touzibao => true), :method => :delete %>
+          </span>
+          <%= link_to "帐号信息", premium_mobile_newspaper_account_url %>
+        <%else%>
+          <%= link_to "登录", user_sign_in_url(:touzibao => true), :class => "first" %>
+        <%end%>
+        <%= link_to "帮助中心", premium_touzibao_help_url, :class => "last" %>
+      </div>
+
+      <%= link_to premium_touzibao_home_page_url do %>
+        <img class="tzbLogo" alt="每经投资宝" src="/images/touzibao/logo.png" />
+      <% end %>
+      <ul class="tzbNav">
+        <li><%= link_to "首页", premium_touzibao_home_page_url, 
+            :class => "#{"current" if @current_item == "index"}" %></li>
+        <li><%= link_to "天天赢家", premium_touzibao_tiantianyingjia_url, 
+            :class => "#{"current" if @current_item == "tiantianyingjia"}" %></li>
+        <li><%= link_to "股东大会实录", premium_touzibao_gudongdahuishilu_url, 
+            :class => "#{"current" if @current_item == "gudongdahuishilu"}" %></li>
+        <li><%= link_to "投资快讯", premium_touzibao_touzikuaixun_url, 
+            :class => "#{"current" if @current_item == "touzikuaixun"}" %></li>
+      </ul>
+
+    </div>
+  </div>
+
+  <div class="tzbBodyWrapper">
+    <%= yield %>
+  </div>
+
+  <div class="tzbFooter">
+    <div class="tzbWrapper">
+
+      <div class="tzbPartner"><a href="http://www.taoguba.com.cn/index?blockID=1" target="_blank"><img src="/images/touzibao/partner_touguba.gif" /></a></div>
+      <p class="tzbOperations tzbOperations-footer">
+        <%= link_to "首页", premium_touzibao_home_page_url, :class => "first" %>
+        <%= link_to "天天赢家", premium_touzibao_tiantianyingjia_url %>
+        <%= link_to "股东大会实录", premium_touzibao_gudongdahuishilu_url %>
+        <%= link_to "投资快讯", premium_touzibao_touzikuaixun_url %>
+        <%= link_to "帮助中心", premium_touzibao_help_url, :class=>'last' %>
+      </p>
+      <p class="tzbPhone">客服电话：028-86660288</p>
+      <p class="tzbFooter_copyright">Copyright @ 2013 每日经济新闻报社版权所有</p>
+
+    </div>
+  </div>
+
+</body>
+</html>

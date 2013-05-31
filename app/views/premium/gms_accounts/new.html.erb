@@ -1,6 +1,9 @@
-<%= render "general/gms_privacy" %>
+<% @title = "《每经投资宝·股东大会实录》服务条款" %>
 
-<div class="tcBtns" style="border-top: 1px solid #ccc; padding-top: 30px;margin-top: 20px;">
-    <%= link_to '<span>取消</span>'.html_safe,premium_gms_articles_path, :class => "btnGrayM" %>
-    <%= link_to '<span>同意并继续</span>'.html_safe,premium_gms_accounts_path(:article_id => @article_id, :buy => params[:buy]),:method => :post, :class => "btnBlueM" %>
+<div class="tzbWrapper tzbWrapper-g">
+  <%= render "general/gms_privacy" %>
+  <div class="tcBtns" style="border-top: 1px solid #ccc; padding-top: 30px;margin-top: 20px;">
+      <%= link_to '<span>取消</span>'.html_safe,premium_gms_articles_path, :class => "btnGrayM" %>
+      <%= link_to '<span>同意并继续</span>'.html_safe,premium_gms_accounts_path(:article_id => @article_id, :buy => params[:buy]),:method => :post, :class => "btnBlueM" %>
+  </div>
 </div>

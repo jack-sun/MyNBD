@@ -2,7 +2,7 @@
   <p>
     <%= f.label :name, "帐号:" %>
     <% unless @staff.new_record? %>
-      <%= f.text_field :name ,:disabled => "disabled" %>帐号不能修改！
+      <%= @staff.name %>
     <% else %>
       <%= f.text_field :name  %>
       <%= @staff.errors[:name].length ==0 ? '':@staff.errors[:name][0] %>
@@ -52,9 +52,12 @@
     <%= check_box_tag("permissions[]","#{Staff::AUTHORITY_COMMON}",@staff.authority_of_common?,:id => "console_common") %>
     <%= label_tag 'console_common','通用控制台',:class => "clearLabelStyle" %> 
     <%= check_box_tag("permissions[]","#{Staff::AUTHORITY_MOBILE_NEWS}", @staff.authority_of_mobile_news?,:id => "console_mobile") %>
-    <%= label_tag 'console_mobile','手机控制台',:class => "clearLabelStyle" %> 
-  </p>
-	<br/>
+    <%= label_tag 'console_mobile','投资宝控制台',:class => "clearLabelStyle" %> 
+    <%= check_box_tag("permissions[]","#{Staff::AUTHORITY_STATISTICS}", @staff.authority_of_statistics?,:id => "console_statistics") %>
+    <%= label_tag 'console_statistics','统计控制台',:class => "clearLabelStyle" %>    
+
+    
+  </p>  
 	<p class="formRightAlign">
 		<%= link_to "<span>提交</span>".html_safe, "javascript:void(0)", :onclick => "$(this).closest('form').submit();return false;", :class => "btnBlueM" %>
 	</p>

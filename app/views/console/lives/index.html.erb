@@ -3,7 +3,7 @@
 		<h1>社区内容 - 股市直播</h1>
 		<span class="opts"><%= link_to "<span>添加新直播</span>".html_safe, new_console_live_url, :class => "btnBlueM"%>
 	</div>
-	<div class="content">
+	<div class="content rightColCenter">
 		<%=render :partial => "console/lives/stock_lives_list", :locals=>{ :lives => @lives } %>
 	</div>
 </div>

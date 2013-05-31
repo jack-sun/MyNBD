@@ -1,0 +1,9 @@
+<dl id="navList">
+  <dt>绩效统计</dt>
+  <dd <% if @statistics_navs == "staff_statistics" %>class="current" <%end%>>
+    <%= link_to "编辑数据", statistics_index_console_staffs_url %>
+  </dd>
+  <dd <% if @statistics_navs == "column_statistics" %>class="current" <%end%>>
+    <%= link_to "频道数据", statistics_list_console_column_performance_logs_url %>
+  </dd>
+</dl>

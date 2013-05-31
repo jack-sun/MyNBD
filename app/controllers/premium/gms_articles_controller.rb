@@ -1,20 +1,30 @@
 #encoding:utf-8
 class Premium::GmsArticlesController < ApplicationController
-	layout "mobile_newspaper"
+	layout "touzibao"
 	before_filter :current_user
-  	before_filter :authorize , :except => [:introduce, :search, :questions, :out_link, :index]
-  	before_filter :current_gms_article, :except => [:index, :search, :questions, :out_link]
+	# temp solution for touzibao's sign_in by zhou
+	before_filter FlashTouzibaoFilter, :only => [:show, :buy]
+  	before_filter :authorize , :except => [:introduce, :search, :questions, :out_link, :index, :home_page]
+  	before_filter :current_gms_article, :except => [:index, :search, :questions, :out_link, :home_page]
   	before_filter :authorize_gms_account, :only => [:show]
-  	before_filter :authorize_gms_token, :except => [:search, :questions, :out_link, :index]
+  	before_filter :authorize_gms_token, :except => [:search, :questions, :out_link, :index, :home_page]
 
   	def index
-  		@gms_articles_type = 'all'
-  		@gms_articles = if params[:paid]
-			@gms_articles_type = 'paid'
+		@gms_articles_type = params[:gms_articles_type]
+  		@gms_articles_type = 'all' if @gms_articles_type.nil?
+  		@gms_articles = if @gms_articles_type == 'paid'
 			@current_user.gms_articles
+		elsif @gms_articles_type == 'preview'
+			GmsArticle.published.on_shelf.preview
+		elsif @gms_articles_type == 'official'
+			GmsArticle.published.on_shelf.official
   		else
 			GmsArticle.published.on_shelf
   		end
+  		# @gms_articles = @gms_articles.preview if params[:is_preview] == 'true'
+  		# @gms_articles = @gms_articles.official if params[:is_preview] == 'false'
+  		@gms_articles = @gms_articles.determined if params[:meeting_at] == 'determined'
+  		@gms_articles = @gms_articles.includes([:stock,:article])
   		@gms_articles = @gms_articles.order("#{params[:order_by]} #{params[:order_sort]}") if params[:order_by].present?
   		@gms_articles = @gms_articles.order('pos DESC','id DESC').page(params[:page]).per(10)
 
@@ -63,6 +73,11 @@ class Premium::GmsArticlesController < ApplicationController
 		return render :layout => false
 	end
 
+	def home_page
+		@current_item = 'gudongdahuishilu'
+		@gms_articles = GmsArticle.published.on_shelf.order('pos DESC','id DESC').limit(params[:count] || 10) 
+	end	
+
 	private
 
 	def current_gms_article
@@ -73,10 +88,11 @@ class Premium::GmsArticlesController < ApplicationController
 
 	def authorize_gms_account
 		return redirect_to new_premium_gms_accounts_path(:article_id => params[:id]) if @current_user.gms_account.nil?	#to be a gms_account member first!
-		unless @gms_article.user_status?(@current_user)	#did the user buy the article? no
-			flash[:note] = flash[:note] unless flash[:note].blank?
+		unless @gms_article.user_status?(@current_user)	#the current user didn't buy the article
+			flash.keep(:note) unless flash[:note].blank?
 			return redirect_to premium_gms_article_pay_path(@gms_article) if @current_user.credits >= @gms_article.cost_credits	#pay for the article from uses's credits!
-			session[:jumpto] = premium_gms_article_url(@gms_article)
+			# session[:jumpto] = premium_gms_article_url(@gms_article)
+			session[:jump_to_gms] = premium_gms_article_url(@gms_article)
 			return redirect_to pay_premium_gms_accounts_path(:gms_article_id => @gms_article.id)	#pay for the article from alipay and return to whether pay for it from users's credits! 
 		end
 	end

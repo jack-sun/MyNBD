@@ -1,0 +1,5 @@
+<% @mn_accounts.each do |mn_account| %>
+<%= mn_account.phone_no.present? ? mn_account.phone_no : "无电话号码" %>，帐号ID_<%= mn_account.id %>，上周登录 <%= @active_users[mn_account.id] %> 天
+<% end %>
+
+合计人数: <%= @mn_accounts.size %> 人

@@ -1,3 +1,5 @@
+<% @title = @article.title %>
+
 <%# require_css "site_article" %>
 <%#= require_js "speak_mana.js" %>
 <%#= require_js "jquery.color.js" %>
@@ -21,7 +23,7 @@
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  background: #f2f5fa url(/images/tou_zi_bao/watermark.png) -50px -50px;
+  background: #f2f5fa url(/images/tou_zi_bao/watermark.png) 0 0;
   text-indent:2em;
   line-height:1.8;
 }
@@ -32,57 +34,57 @@
   width: 185px;
 }
 </style>
+<div class="tzbWrapper tzbWrapper-g">
+  <div id="pageName">
+    <h1>
+      <%= link_to '股东大会实录',premium_gms_articles_path %> / <%= (@gms_article.is_preview? ? '[预售]' : '')+@article.title %>
+    </h1>
+  </div>
 
-<div id="pageName">
-  <h1>
-    <%= link_to '股东大会实录',premium_gms_articles_path %> / <%= (@gms_article.is_preview? ? '[预售]' : '')+@article.title %>
-  </h1>
-</div>
-
-<div class="layout" onselectstart="return false">
-  <div class="rCol">
-    <div class="gmsArticleInfo" style="text-align:left;">
-      <div class="sectionA">
-        <div class="title"><h3>相关信息</h3></div>
-        <div class="content">
-          <span>大会时间: <%= @gms_article.meeting_at.strftime("%Y-%m-%d") if @gms_article.meeting_at.present? %></span><br/>
-          <span>股票代码: <%= link_to @gms_article.stock_code,premium_search_stock_path(:stock_code => @gms_article.stock_code),:target => '_blank' %></span><br />
-          <span>股票名称: <%= @gms_article.stock_name %></span><br />
-          <div class="itemActions mtm">
-            <%= link_to( "<b></b>会议提问 #{@gms_article.stock_comments_count}".html_safe,premium_question_stock_path(:stock_code => @gms_article.stock_code),:target => '_blank', :class => "actionComment") %>
+  <div class="layout" onselectstart="return false">
+    <div class="rCol">
+      <div class="gmsArticleInfo" style="text-align:left;">
+        <div class="sectionA">
+          <div class="title"><h3>相关信息</h3></div>
+          <div class="content">
+            <span>大会时间: <%= @gms_article.meeting_at.strftime("%Y-%m-%d") if @gms_article.meeting_at.present? %></span><br/>
+            <span>股票代码: <%= link_to @gms_article.stock_code,premium_search_stock_path(:stock_code => @gms_article.stock_code),:target => '_blank' %></span><br />
+            <span>股票名称: <%= @gms_article.stock_name %></span><br />
+            <div class="itemActions mtm">
+              <%= link_to( "<b></b>会议提问 #{@gms_article.stock_comments_count}".html_safe,premium_question_stock_path(:stock_code => @gms_article.stock_code),:target => '_blank', :class => "actionComment") %>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="main">
-    <% if @gms_article.is_preview? %>
-    <div class="alert_info">
-      <b></b>该大会将于<%= @gms_article.meeting_at_value('近期') %>举行，您可以在大会开始前<%= link_to '提出自己感兴趣的问题', premium_question_stock_path(:stock_code => @gms_article.stock_code),:target => '_blank' %>
-    </div>
-    <% end %>
-    <div id="articleContent" class="fs">
-      <%= @page.content.html_safe %>
-
-    </div>
-      <div class="paginationWrapper">
-        <div class="pagination">
-          <%= gms_article_paginate(@gms_article,@article, @page) %>
-        </div>
-        <div class="clear"></div>
+    <div class="main">
+      <% if @gms_article.is_preview? %>
+      <div class="alert_info">
+        <b></b>该大会将于<%= @gms_article.meeting_at_value('近期') %>举行，您可以在大会开始前<%= link_to '提出自己感兴趣的问题', premium_question_stock_path(:stock_code => @gms_article.stock_code),:target => '_blank' %>
       </div>
+      <% end %>
+      <div id="articleContent" class="fs">
+        <%= @page.content.html_safe %>
+
+      </div>
+        <div class="paginationWrapper">
+          <div class="pagination">
+            <%= gms_article_paginate(@gms_article,@article, @page) %>
+          </div>
+          <div class="clear"></div>
+        </div>
+    </div>
+  </div>
+
+  <% if false %>
+  <div style="margin-bottom: 30px;">
+    <%= render :partial => "premium/gms_articles/comments_block" %>
+  </div>
+  <% end %>
+  <div class="jumpNav">
+    <%= link_to '<b></b>返回 股东大会实录'.html_safe,premium_gms_articles_path, :class => "toHome" %>
   </div>
 </div>
-
-<% if false %>
-<div style="margin-bottom: 30px;">
-  <%= render :partial => "premium/gms_articles/comments_block" %>
-</div>
-<% end %>
-<div class="jumpNav">
-  <%= link_to '<b></b>返回 股东大会实录'.html_safe,premium_gms_articles_path, :class => "toHome" %>
-</div>
-
 <style type="text/css">
 body {
 -moz-user-select : none;

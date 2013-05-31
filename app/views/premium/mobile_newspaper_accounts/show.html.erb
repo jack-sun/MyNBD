@@ -1,103 +1,101 @@
-<%@title="账户信息 - 每经资讯产品"%>
-<%= require_css "account_settings.css" %>
+<% @title = "帐号信息" %>
 
-<% unless flash[:note].blank? %>
-  <div class="alert_done">
-    <b></b><%= "恭喜！您已成功购买了套餐#{flash[:note][:play_type]}！目前的信用点数为：#{@current_user.credits}。"%>
-</div>
-<% end %>
-
-
-<% if flash[:notice] %>
-  <div class="alert_done">
-    <b></b><%= flash[:notice] %>
+<div class="tzbWrapper tzbWrapper-g">
+  <% unless flash[:note].blank? %>
+    <div class="alert_done">
+      <b></b><%= "恭喜！您已成功购买了#{flash[:note][:plan_type]}！目前的信用点数为：#{@current_user.credits}。"%>
   </div>
-<% end %>
+  <% end %>
 
-
-<style type="text/css">
-.formA {
-	border-bottom: 1px dotted #ddd;
-	margin-bottom: 20px;
-}
-.formA p{
-	margin-bottom: 10px;
-}
-</style>
-
-<div id="pageName"><h1>账户信息</h1></div>
-<div class="mobileAccountInfo">
-  <h2>基本信息</h2>
-  <div class="formA">
-    <p>
-      <%= label_tag "mobile_no", "用户名:"%>
-      <span class="pureText"><%= @current_user.nickname %></span>
-    </p>
-    <p>
-      <%= label_tag "email", "邮箱:"%>
-      <span class="pureText">
-        <%= @current_user.email %>
-      </span>
-    </p>
-    <p>
-      <%= link_to "修改密码", premium_change_password_url %>
-    </p>
-  </div>
-
-
-<% if @gms_account %>
-    <h2>每经投资宝·股东大会实录</h2>
-    <div class="formA">
-      <% if @gms_account %>
-          <p>
-            <%= label_tag "point", "目前点数:"%>
-            <span class="pureText">
-              <%= @current_user.credits %>
-            </span>
-          </p>
-          <p>
-            <%= link_to "<span>充值信用点</span>".html_safe, buy_premium_gms_accounts_url, :class => "btnBlueM" %>
-          </p>
-        
-
-      <% else %>
-        <%= link_to "每经资讯产品介绍", premium_gms_articles_path %>
-      <% end %>
-    </div>
-<% end %>
-
-
-  <% if @account %>
-    <h2>每经投资宝·天天赢家</h2>
-    <div class="formA">
-    <% if @account %>
-          <!--<p>
-            <%= label_tag "mobile_no", "订阅手机号码:"%>
-            <span class="pureText"><%= @account.phone_no %></span>
-          </p>-->
-          <p>
-            <%= label_tag "end_time", "有效期至:"%>
-            <span class="pureText">
-              <% if @current_user.is_premium_overdue? %>
-                <%= @account.service_end_at && @account.service_end_at.strftime("%Y-%m-%d") %>
-                <span class="red b">
-                  (已过期)
-                </span>
-              <% else %>
-                <%= @account.service_end_at && @account.service_end_at.strftime("%Y-%m-%d") %>
-              <% end %>
-            </span>
-          </p>
-          <p>
-            <%= link_to "<span>订阅续费</span>".html_safe, new_premium_mobile_newspaper_account_url, :class => "btnBlueM" %>
-          </p>
-
-      <% else %>
-        <%= link_to "每经资讯产品介绍", introduce_premium_mobile_newspaper_account_url %>
-      <% end %>
+  <% if flash[:notice] %>
+    <div class="alert_done">
+      <b></b><%= flash[:notice] %>
     </div>
   <% end %>
-</div>
 
+  <div id="pageName">
+    <h1>帐号信息</h1>
+  </div>
+
+  <div class="mobileAccountInfo">
+    <h2>基本信息</h2>
+    <div class="block">
+      <table>
+        <tr>
+          <th><%= label_tag :image, "头像:".html_safe %></th>
+          <td><%= image_tag(user_avatar_path(@user, :large)) %></td>
+        </tr>
+        <tr>
+          <th><%= label_tag "mobile_no", "用户名:"%></th>
+          <td><span class="pureText"><%= @current_user.nickname %></span></td>
+        </tr>
+        <tr>
+          <th><%= label_tag "email", "邮箱:".html_safe %></th>
+          <td><span class="pureText">
+            <%= @current_user.email %>
+          </span></td>
+        </tr>
+      </table>
+      <div>
+        <%= link_to "<span>修改基本信息</span>".html_safe, premium_change_profile_url, :class => "btnBlueM mrm" %>
+        <%= link_to "<span>修改密码</span>".html_safe, premium_change_password_url, :class => "btnGrayM" %>
+      </div>
+    </div>
+
+    <% if @account %>
+      <h2>每经投资宝·天天赢家</h2>
+      <div class="block">
+        <div>
+          <% if @account %>
+            <table>
+              <!--<p>
+                <%= label_tag "mobile_no", "订阅手机号码:"%>
+                <span class="pureText"><%= @account.phone_no %></span>
+              </p>-->
+              <tr>
+                <th><%= label_tag "end_time", "有效期至:"%></th>
+                <td><span class="pureText">
+                  <% if @current_user.is_premium_overdue? %>
+                    <%= @account.service_end_at && @account.service_end_at.strftime("%Y-%m-%d") %>
+                    <span class="red b">
+                      (已过期)
+                    </span>
+                  <% else %>
+                    <%= @account.service_end_at && @account.service_end_at.strftime("%Y-%m-%d") %>
+                  <% end %>
+                </span></td>
+              </tr>
+            </table>
+            <div>
+              <%= link_to "<span>订阅续费</span>".html_safe, new_premium_mobile_newspaper_account_url, :class => "btnBlueM" %>
+            </div>
+          <% else %>
+            <%= link_to "每经投资宝介绍", introduce_premium_mobile_newspaper_account_url %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <% if @gms_account %>
+      <h2>每经投资宝·股东大会实录</h2>
+      <div class="block">
+        <% if @gms_account %>
+          <table>
+            <tr>
+              <th><%= label_tag "point", "目前点数:"%></th>
+              <td><span class="pureText"><%= @current_user.credits %></span></td>
+            </tr>
+          </table>
+          <div>
+            <%= link_to "<span>充值信用点</span>".html_safe, buy_premium_gms_accounts_url, :class => "btnBlueM" %>
+          </div>
+        <% else %>
+          <%= link_to "每经投资宝介绍", premium_gms_articles_path %>
+        <% end %>
+      </div>
+    <% end %>
+
+  </div>
+</div></div>
 
 

@@ -1,6 +1,6 @@
 #encoding:utf-8
 class Premium::StockCommentsController < ApplicationController
-	layout "mobile_newspaper"
+	layout "touzibao"
 	before_filter :current_user
 
   	def create
