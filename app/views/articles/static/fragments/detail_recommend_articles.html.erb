@@ -1,0 +1,13 @@
+<% recommend_articles = (@article.recommend_articles(5)[:articles] || []).compact %>
+<% unless recommend_articles.empty? %>
+  <div class="mtl a_relatedList">
+    <p class="a_relatedList_hd">延伸阅读：</p>
+    <ul class="unorderList unorderList-orange">
+      <% recommend_articles.each do |article| %>
+        <li>
+          <%= link_to article.list_title, article.send(:article_url, article), {:target => "_blank", :title => article.title} %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

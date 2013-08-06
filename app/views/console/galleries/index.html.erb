@@ -1,0 +1,46 @@
+<div class="sectionA">
+  <div class="title">
+    <h2>图片集 - 所有图集</h2>
+    <span class="opts"><%= link_to "<span>添加新图集</span>".html_safe, new_console_gallery_url, :class => "btnBlueM" %></span>
+  </div>
+  <div class="content rightColCenter">
+    <% if flash[:notice] %>
+      <div class="alert_done"><b></b> <%= flash[:notice] %></div>
+    <% end %>
+    <% if flash[:error] %>
+      <div class="alert_error"><b></b> <%= flash[:error] %></div>
+    <% end %>
+    <table class="tableA">
+      <thead>
+        <th>标题</th>
+        <th class="tdw30p">描述</th>
+        <th>创建者</th>
+        <th>状态</th>
+        <th>点击数</th>
+        <th>创建时间</th>
+        <th>操作</th>
+      </thead>
+      <tbody>
+        <% if !@galleries.blank? %>
+          <% for gallery in @galleries %>
+            <tr>
+              <td><%= link_to gallery.title, gallery_url(gallery), :target => "_blank" %></td>
+              <td><%= gallery.desc %></td>
+              <td><%= gallery.staff.real_name %></td>
+              <td><%= gallery_status(gallery.status) %></td>
+              <td><%= gallery.click_count %></td>
+              <td><%= nbd_time_f3(gallery.created_at) %></td>
+              <td class="itemActions">
+                <%= link_to "<b></b>编辑".html_safe, edit_console_gallery_url(gallery), :class => "actionEdit" %>
+                <%= link_to "<b></b>删除".html_safe, console_gallery_url(gallery), :method => :delete, :confirm => "确定要删除该图集吗？", :class => "actionDelete"  %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+    <div class="pagination mt20">
+      <%= paginate @galleries %>
+    </div>
+  </div>
+</div>

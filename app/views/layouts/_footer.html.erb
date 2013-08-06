@@ -14,7 +14,16 @@
 	</div>
 	<p>
 		Copyright © 2013 每日经济新闻报社版权所有，未经许可不得转载使用，违者必究<br/>
-		读者热线：400-889-0008  广告热线：021-61283008 028-86612828<br/>
-		<%= link_to "沪ICP备09000473号", "http://www.miibeian.gov.cn/", :target => "_blank", :style => "margin-right: 10px; color:#787878" %> <span>带宽提供：<%= link_to "上海快网", "http://www.kwww.cn/", :target => "_blank", :style => "margin-right: 10px;" %></span> <span><a href=" http://top.chinaz.com" target="_blank">网站排行榜</a></span>
+		<span class="footer_label footer_label-red">广告热线</span>北京: 010-58528290， 上海: 021-61283008， 广州: 020-84201861， 深圳: 0755-83520159， 成都: 028-86612828<br/>
+		<span class="footer_label footer_label-blue">读者热线</span>400-889-0008
+		<%= link_to "沪ICP备09000473号", "http://www.miibeian.gov.cn/", :target => "_blank", :style => "margin-left: 10px; margin-right: 10px; color:#787878" %>
+		<span id="footerVendor" style="display:none;">带宽提供：<%= link_to "上海快网", "http://www.kwww.cn/", :target => "_blank" %></span> 
 	</p>
 </div>
+
+<script type="text/javascript">
+	// 只有在文章页面才显示宽带提供
+	if($('#articalContentWrapper').length > 0){
+		$('#footerVendor').show();
+	}
+</script>

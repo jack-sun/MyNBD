@@ -1,0 +1,166 @@
+<%
+=begin
+
+__横版__
+1. 80x60
+2. 120x90
+3. 300x225
+__竖版__
+1. 90x120
+2. 300x400
+__mask__
+80x80  
+110x90
+120x80
+
+img_size: 每个for_subdomain和img_ver有自己默认的img_size
+当给img_size传值之后，就可以手动控制图片的大小
+
+mask_size: 图片的遮罩层,当此参数有值时,图片总大小以此为准
+
+digest_row: digest_row的值默根据img_size的高度和children_row来计算
+当给digest_row传值之后，就可以手动控制digest的行数
+
+=end
+img_ver = :thumb_hs unless img_ver
+img_size = nil unless img_size
+mask_size = nil unless mask_size
+digest_row = false unless digest_row
+articles_css = "" unless articles_css
+
+digest_number = 0 unless digest_number
+digest_number = articles.length if digest_number == 'max'
+digest_norestrict = false unless digest_norestrict
+
+display_datetime = false unless display_datetime
+children_row = 0 unless children_row
+display_column = false unless display_column
+
+for_subdomain = false unless for_subdomain
+for_article_subdomain = for_subdomain unless for_article_subdomain
+display_label = false unless display_label
+hide_image = false unless hide_image
+
+# calculate mask size and img size
+unless img_size
+  if for_subdomain == Settings.ntt_sub_domain
+    img_size = '60x60'
+  else
+    img_size = thumb_size(img_ver)
+  end
+end
+unless mask_size.blank?
+  size = mask_size
+else 
+  size = img_size # not use yet
+end
+size_w = size.split('x')[0].to_i
+size_h = size.split('x')[1].to_i
+
+# calculate rows
+if size_h >= 80
+  right_row = 4
+else
+  right_row = 3
+end
+digest_row = right_row - children_row unless digest_row
+
+# special
+is_move_hd = false unless is_move_hd
+if size_h == 120
+  is_move_hd = true
+  articles_css += " articles-sh"
+elsif size_h == 90
+  articles_css += " articles-hot"
+end
+
+display_column_ids ||= []
+%>
+
+<ul class="articles <%= articles_css if articles_css.present?%> <%unless display_column%>unorderList unorderList-orange<%end%>">
+  <% articles.each_with_index do |article,index| next if article.blank? -%>
+    <% if digest_number>index #摘要样式 %>
+      <li class="articleMaterial <%if index == articles.length-1%>last<%end%>">
+        <% unless is_move_hd %>
+          <%= render :partial => "columns/article_list_hd", :locals => { :display_column => display_column, :article => article, :for_article_subdomain => for_article_subdomain } %>
+
+          <% if display_datetime #文章列表页面，显示作者和时间 %>
+            <p class="articleMaterial_meta">
+              <% if article.staffs.reporters.present? %>
+                每经记者：
+                <% article.staffs.reporters.each do|reporter| %>
+                  <%= reporter.real_name %>
+                <%end%>
+              <%end%>
+              <span><%= article.created_at.strftime("%Y-%m-%d %H:%M") %></span>
+            </p>
+          <% end %>
+        <% end %>
+
+        <div class="articleMaterial_digest">
+          <% unless hide_image %>
+            <%= render :partial => "columns/article_image_mask", :locals => {:content => block_article_list(article, 
+                                   :subdomain => for_subdomain,
+                                   :with_image =>true,
+                                   :version => img_ver,
+                                   :size => img_size), :mask_size => mask_size }%>
+
+          <% end %>
+
+          <% if is_move_hd %>
+            <%= render :partial => "columns/article_list_hd", :locals => { :display_column => display_column, :article => article, :for_article_subdomain => for_article_subdomain } %>
+          <% end %>
+
+          <%
+            if article.relate_article_children.length > 0
+              cur_children_row = children_row
+              cur_digest_row = digest_row
+            else
+              cur_children_row = 0
+              cur_digest_row = right_row
+            end
+          %>
+
+          <% if digest_norestrict %>
+            <p class="articleMaterial_digest_norestrict">
+          <% else %>
+            <p class="articleMaterial_digest_<%= cur_digest_row %>row">
+          <% end %>
+            <%= article.show_digest %>
+          </p>
+
+          <% if cur_children_row > 0 %>
+            <div class="articleMaterial_children articleMaterial_digest_<%= cur_children_row %>row">
+              <ul class="unorderList unorderList-orange">
+                <% article.relate_article_children.order("pos desc").limit(2).each do |a| %>
+                  <li>
+                    <%= link_to a.children_title, a.children_url, {:target => "_blank", :title => a.children_title} %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+        </div>
+      </li>
+
+    <% else #列表样式 %>
+      <li <%if index == (articles.length/2-1) && digest_number==0 && articles.length>5 %>class="divider"<%end%>>
+        <% if display_datetime%>
+         <span class="articles_itemTail"><%=article.created_at.strftime("%H:%M")%></span>
+        <% end %>
+
+        <% if display_column %>
+          <%= 
+          unless display_column_ids.empty?
+            column_id = (article.columns.map(&:id) & display_column_ids).first
+            link_to Column.find(column_id).name, column_path(column_id), {:class => "label label-gray", :target => "_blank"}
+          else
+            link_to article.columns.first.name, column_path(article.columns.first), {:class => "label label-gray", :target => "_blank"}
+          end
+          %>
+        <% end %>
+        <%= block_article_list(article, :subdomain => for_subdomain) %>
+      </li>
+    <% end %>
+  <% end %>
+</ul>

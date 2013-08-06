@@ -1,3 +1,13 @@
+<!-- 
+  ##################### DEPRECATED ########################
+  ##################### DEPRECATED ########################
+  ##################### DEPRECATED ########################
+  ##################### DEPRECATED ########################
+  ##################### DEPRECATED ########################
+-->
+
+
+
 <%= require_jqueryUI %>
 <script src="//ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
 <%= javascript_include_tag 'jquery.iframe-transport' %>
@@ -6,105 +16,102 @@
 <%= stylesheet_link_tag 'jquery.fileupload-ui' %>
 
 <div class="title">
-	<h1>页面元素编辑 - 图片</h1>
+  <h1>页面元素编辑 - 图片</h1>
 </div>
 
 <div id="fileupload" style="margin-bottom:10px">
   <% unless @image.new_record? %>
-    <%= image_tag @image.article_url(:x_large, :subdomain => "www"), :width => 200 %>
+  <%= image_tag @image.article_url(:x_large, :subdomain => "image"), :width => 200 %>
   <% end %>
-    <%= simple_form_for([:console, @image], :html => { :multipart => true }) do |f| %>
-        <div class="fileupload-buttonbar">
-            <label class="fileinput-button">
-              <% if @image.new_record? %>
-                <span>添加图片...</span>
-              <% else %>
-                <span>修改图片...</span>
-              <% end %>
-                        <%= f.file_field :article %>
-            </label>
-            <button type="submit" class="start">开始上传</button>
-            <button type="reset" class="cancel">取消上传</button>
-            <button type="button" class="delete">删除图片</button>
-        </div>
-    <% end %>
-    <div class="fileupload-content">
-        <table class="files"></table>
-        <div class="fileupload-progressbar"></div>
+  <%= simple_form_for([:console, @image], :html => { :multipart => true }) do |f| %>
+    <div class="fileupload-buttonbar">
+      <label class="fileinput-button">
+        <% if @image.new_record? %>
+        <span>添加图片...</span>
+        <% else %>
+        <span>修改图片...</span>
+        <% end %>
+            <%= f.file_field :article %>
+      </label>
+      <button type="submit" class="start">开始上传</button>
+      <button type="reset" class="cancel">取消上传</button>
+      <button type="button" class="delete">删除图片</button>
     </div>
+  <% end %>
+  <div class="fileupload-content">
+    <table class="files"></table>
+    <div class="fileupload-progressbar"></div>
+  </div>
 </div>
 
 
 <script id="template-upload" type="text/x-jquery-tmpl">
-    <tr class="template-upload{{if error}} ui-state-error{{/if}}">
-        <td class="preview"></td>
-        <td class="name">${name}</td>
-        <td class="size">${sizef}</td>
-        {{if error}}
-            <td class="error" colspan="2">Error:
-                {{if error === 'custom_failure'}}Custom Error Message
-                {{else}}${error}
-                {{/if}}
-            </td>
-        {{else}}
-            <td class="progress"><div></div></td>
-            <td class="start"><button>Start</button></td>
+  <tr class="template-upload{{if error}} ui-state-error{{/if}}">
+    <td class="preview"></td>
+    <td class="name">${name}</td>
+    <td class="size">${sizef}</td>
+    {{if error}}
+      <td class="error" colspan="2">Error:
+        {{if error === 'custom_failure'}}Custom Error Message
+        {{else}}${error}
         {{/if}}
-        <td class="cancel"><button>Cancel</button></td>
-    </tr>
+      </td>
+    {{else}}
+      <td class="progress"><div></div></td>
+      <td class="start"><button>Start</button></td>
+    {{/if}}
+    <td class="cancel"><button>Cancel</button></td>
+  </tr>
 </script>
 <script id="template-download" type="text/x-jquery-tmpl">
-    <tr class="template-download{{if error}} ui-state-error{{/if}}">
-        {{if error}}
-            <td></td>
-            <td class="name">${name}</td>
-            <td class="size">${sizef}</td>
-            <td class="error" colspan="2">Error:
-                {{if error === 1}}File exceeds upload_max_filesize (php.ini directive)
-                {{else}}${error}
-                {{/if}}
-            </td>
-        {{else}}
-            <td class="preview">
-              <a href="${url}" target="_blank"><img src="${url}"></a>
-            </td>
-            <td class="name">
-                <a href="${url}"{{if thumbnail_url}} target="_blank"{{/if}}>${name}</a>
-            </td>
-            <td class="size">${sizef}</td>
-            <input type="hidden" id="image_id" value="${image_id}" />
-            <td colspan="2"></td>
+  <tr class="template-download{{if error}} ui-state-error{{/if}}">
+    {{if error}}
+      <td></td>
+      <td class="name">${name}</td>
+      <td class="size">${sizef}</td>
+      <td class="error" colspan="2">Error:
+        {{if error === 1}}File exceeds upload_max_filesize (php.ini directive)
+        {{else}}${error}
         {{/if}}
-        <td class="delete">
-            <button data-type="${delete_type}" data-url="${delete_url}">Delete</button>
-        </td>
-    </tr>
+      </td>
+    {{else}}
+      <td class="preview">
+        <a href="${url}" target="_blank"><img src="${url}"></a>
+      </td>
+      <td class="name">
+        <a href="${url}"{{if thumbnail_url}} target="_blank"{{/if}}>${name}</a>
+      </td>
+      <td class="size">${sizef}</td>
+      <input type="hidden" id="image_id" value="${image_id}" />
+      <td colspan="2"></td>
+    {{/if}}
+    <td class="delete">
+      <button data-type="${delete_type}" data-url="${delete_url}">Delete</button>
+    </td>
+  </tr>
 </script>
 <script type="text/javascript" charset="utf-8">
-    $(function () {
-        // Initialize the jQuery File Upload widget:
-        $('#fileupload').fileupload({autoUpload:true});
-        // 
-        // Load existing files:
-        $.getJSON($('#fileupload form').prop('action'), function (files) {
-            var fu = $('#fileupload').data('fileupload');
-            fu._adjustMaxNumberOfFiles(-files.length);
-            fu._renderDownload(files)
-                .appendTo($('#fileupload .files'))
-                .fadeIn(function () {
-                    // Fix for IE7 and lower:
-                    $(this).show();
-                });
+  $(function () {
+    // Load existing files:
+    $.getJSON($('#fileupload form').prop('action'), function (files) {
+      var fu = $('#fileupload').data('fileupload');
+      fu._adjustMaxNumberOfFiles(-files.length);
+      fu._renderDownload(files)
+        .appendTo($('#fileupload .files'))
+        .fadeIn(function () {
+          // Fix for IE7 and lower:
+          $(this).show();
         });
-
-        // Open download dialogs via iframes,
-        // to prevent aborting current uploads:
-        $('#fileupload .files a:not([target^=_blank])').live('click', function (e) {
-            e.preventDefault();
-            $('<iframe style="display:none;"></iframe>')
-                .prop('src', this.href)
-                .appendTo('body');
-        });
-
     });
+
+    // Open download dialogs via iframes,
+    // to prevent aborting current uploads:
+    $('#fileupload .files a:not([target^=_blank])').live('click', function (e) {
+      e.preventDefault();
+      $('<iframe style="display:none;"></iframe>')
+        .prop('src', this.href)
+        .appendTo('body');
+    });
+
+  });
 </script>

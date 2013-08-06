@@ -1,0 +1,48 @@
+<% if subdomain == 'shanghai' || is_special_skin_column_from_id?(params[:id]) || @render_shanghai_skin %>
+  <div class="nav nav-sh">
+    <div class="nav_item">
+      <dl>
+        <dt>咨讯</dt>
+        <dd><%= link_to "城事", column_url(250) %></dd>
+        <dd><%= link_to "文娱", column_url(252) %></dd>
+        <dd><%= link_to "区域", column_url(228) %></dd>
+        <dd><%= link_to "会展", column_url(233) %></dd>
+      </dl>
+    </div>
+    <div class="nav_item">
+      <dl>
+        <dt>尚海</dt>
+        <dd><%= link_to "时尚", column_url(234) %></dd>
+        <dd><%= link_to "购物", column_url(235) %></dd>
+        <dd><%= link_to "电影", column_url(236) %></dd>
+        <dd><%= link_to "演艺", column_url(237) %></dd>
+      </dl>
+    </div>
+    <div class="nav_item">
+      <dl>
+        <dt>生活</dt>
+        <dd><%= link_to "美食", column_url(238) %></dd>
+        <dd><%= link_to "健康", column_url(239) %></dd>
+        <dd><%= link_to "旅游", column_url(240) %></dd>
+        <dd><%= link_to "乐活", column_url(241) %></dd>
+      </dl>
+    </div>
+    <div class="nav_item">
+      <dl>
+        <dt>教育</dt>
+        <dd><%= link_to "职场", column_url(242) %></dd>
+        <dd><%= link_to "知识库", column_url(259) %></dd>
+        <dd><%= link_to "亲子", column_url(244) %></dd>
+        <dd><%= link_to "培训", column_url(243) %></dd>
+      </dl>
+    </div>
+    <div class="nav_item">
+      <dl>
+        <dt>长三角</dt>
+        <dd><%= link_to "上海", column_url(229) %></dd>
+        <dd><%= link_to "浙江", column_url(230) %></dd>
+        <dd><%= link_to "江苏", column_url(231) %></dd>
+      </dl>
+    </div>
+  </div>
+<% end %>

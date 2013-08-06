@@ -9,16 +9,6 @@ class Ntt::ArticlesController < ArticlesBaseController
 
   before_filter :forbid_article_request_of_touzibao, :only => [:show]
 
-  after_filter :only => [:show, :page] do |c|
-    path = nbd_page_cache_path
-    set = Article.get_page_cache_file_names_set(@article.id)
-    logger.debug "-----#{@article.created_at}"
-    if @article.created_at > Article::STATIC_CACHE_DEADLINE and !File.exists?(path)
-      set << path
-      Resque.enqueue(Jobs::WritePageCache, response.body, path)
-    end
-  end
-
   def show
     @article = Article.where(:id => params[:id]).first
     raise ActiveRecord::RecordNotFound if @article.blank? or (not @article.is_published?)

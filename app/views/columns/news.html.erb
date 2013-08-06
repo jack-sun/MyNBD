@@ -1,4 +1,116 @@
 <% @title="资讯频道" %>
+<%= require_slideShow %>
+
+<% content_for :top_ad do %>
+  <script type="text/javascript">
+    BAIDU_CLB_preloadSlots("331630","349118","349120","350299");
+  </script>
+  <!-- 广告位：首页_顶部头图 -->
+  <script type="text/javascript">BAIDU_CLB_fillSlot("331630");</script>
+<% end %>
+
+<% content_for :header_ad do %>
+  <!-- 广告位：全站_顶部四分之三通栏 -->
+  <%= render :partial => "ads/ad", :locals => { :id => "349118", :html_class => "header" } %>
+<% end %>
+
+<%= render :partial => "attach_scroll_news", :locals => { :bulletins => @bulletin_articles } %>
+
+<div class="layout">
+  <div class="rCol rCol-home">
+    <% cache(column_show_content_key_by_id(@featured_articles[:id], true, "uniq")) do %>
+    <%= render :partial => "media_wall", :layout => "story", :locals => { :story_css => "story-borderBlue story-nop", :header_data => {:list_title => "每日精选"}, :articles => articles_of(@featured_articles), :column_id => column_id_of(@featured_articles) } %>
+    <% end %>
+
+    <!-- 广告位：全站_右边栏一 -->
+    <%#= render :partial => "ads/ad", :locals => { :id => "349119", :html_class => "right_box" } %>
+
+    <% cache(column_show_content_key_by_id(@macro[:id])) do %>
+      <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_css => "story-borderOrange", :header_data => {:list_title => "宏观要闻"}, :column_id => column_id_of(@macro), :digest_number => 1, :articles => articles_of(@macro) } %>
+    <% end %>
+
+    <% cache(column_show_content_key_by_id(@viewpoint_articles[:id])) do %>
+      <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_css => "story-borderBlue", :header_data => {:list_title => "财经视点"}, :column_id => column_id_of(@viewpoint_articles), :digest_number => 1, :articles => articles_of(@viewpoint_articles) } %>
+    <% end %>
+
+    <% cache(Article::HOT_ARTICLE_FRAGMENT_CACHE_KEY, :expire_in => 30*60) do %>
+    <%= render :partial => "hot_articles_v3", :layout => "story", :locals => { :story_id => "h_news_34", :story_css => "story-borderBlue", :header_data => {:list_title => "热门文章"} } %>
+    <% end %>
+
+    <%# cache("home_nbd_products") do %>
+      <%#= render :partial => "nbd_products" %>
+    <%# end %>
+  </div>
+  <div class="main">
+    <div class="layout">
+      <div class="lCol lCol-home">
+        <% cache(column_show_content_key_by_id(@image_articles[:id])) do %>
+        <%= render :partial => "image_articles", :layout => "story", :locals => { :story_css => "story-p1", :articles => articles_of(@image_articles)  } %>
+        <% end %>
+      </div>
+
+      <div class="main">
+        <% cache(column_show_content_key_by_id(@head_article[:id])) do %>
+        <%= render :partial => 'column_breakingnews', :layout => 'story', :locals => { :articles => articles_of(@head_article) } %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="story_shadow">
+      <div class="story">
+        <div class="story_divide_l">
+          <% cache(column_show_content_key_by_id(@rolling_articles[:id])) do %>
+            <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_is_hide => true, :header_data => {:list_title => "滚动"}, :opt_data => {:opt_content => "<a href=\"#{rolling_news_articles_path}\" target=\"_blank\">更多 &raquo;</a>"}, :articles => @rolling_articles[:articles], :display_column => true } %>
+          <% end %>
+        </div>
+        <div class="story_divide_r">
+          <% cache(column_show_content_key_by_id(@focus_articles[:id])) do %>
+            <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_is_hide => true, :header_data => {:list_title => "媒体聚焦"}, :column_id => column_id_of(@focus_articles), :articles => articles_of(@focus_articles) } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <!-- 广告位：全站_左通栏一 -->
+    <%= render :partial => "ads/ad", :locals => { :id => "350299", :html_class => "left_bar" } %>
+
+    <% cache(column_show_content_key_by_id(@entertainment[:id])) do %>
+      <%= render :partial => "feature_articles", :layout => "story", :locals => { :header_data => {:list_title => "时事要闻"}, :articles => articles_of(@entertainment), :column_id => column_id_of(@entertainment) } %>
+    <% end %>
+
+    <div class="story_shadow">
+      <div class="story">
+        <div class="story_divide_l">
+          <% cache(column_show_content_key_by_id(@world[:id])) do %>
+            <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_is_hide => true, :header_data => {:list_title => "热点精选"}, :digest_number => 1, :column_id => column_id_of(@world), :articles => articles_of(@world) } %>
+          <% end %>
+        </div>
+        <div class="story_divide_r">
+          <% cache(column_show_content_key_by_id(@fun_story[:id])) do %>
+            <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_is_hide => true, :header_data => {:list_title => "社会纵横"}, :digest_number => 1, :column_id => column_id_of(@fun_story), :articles => articles_of(@fun_story) } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <%#= render :partial => "news", :layout => "story", :locals => { :header_data => {:list_title => "滚动"}, :articles => @rolling_articles[:articles] } %>
+  </div>
+</div>
+
+<!-- 广告位：全站_底部通栏 -->
+<%= render :partial => "ads/ad", :locals => { :id => "349120", :html_class => "footer" } %>
+
+
+
+
+
+
+
+
+
+
+<% if false %>
+<% @title="资讯频道" %>
 <%= require_css "channel.css" %>
 <%= require_slideShow %>
 
@@ -58,4 +170,4 @@
 
 <!-- 广告位：全站_底部通栏 -->
 <%= render :partial => "ads/ad", :locals => { :id => "349120", :html_class => "footer" } %>
-
+<% end %>

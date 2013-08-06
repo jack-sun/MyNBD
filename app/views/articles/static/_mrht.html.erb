@@ -1,0 +1,3 @@
+    <% cache(column_show_content_key_by_id(@image_news[:id], true, "uniq")) do %>
+      <%= render :partial => "columns/article_feature", :locals => {:list_title => "每日好图", :articles => @image_news[:articles].map(&:article).compact, :column_id => 4, :digest_number => 5, :html_class => "articleWallWrapper", :html_style=>"margin:20px 0;" } %>    
+    <% end %>

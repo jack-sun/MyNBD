@@ -9,13 +9,13 @@
   <div class="error">
   </div>
   <div class="content rightColCenter">
-    <%= simple_form_for([:console, @feature], :html => {:id => "feature_form", :class => "formA"}) do |f| %>
+    <%= simple_form_for([:console, @feature], :html => {:class => "formA"}) do |f| %>
       <p>
         <%= f.input :title , :label => "标题:" %>
       </p>
       <p class="formRightAlign">
         <input type="submit" class="hiddenSubmit" />
-        <%= link_to "<span>添加新专题</span>".html_safe, "javascript:void(0);", :onclick => "$(this).closest('form').submit();return false;", :id => "create_new_feature", :class => "btnBlueM" %>
+        <%= link_to "<span>添加新专题</span>".html_safe, "javascript:void(0);", :onclick => "$(this).closest('form').submit();return false;", :class => "btnBlueM" %>
       </p>
     <%end%>
   </div>

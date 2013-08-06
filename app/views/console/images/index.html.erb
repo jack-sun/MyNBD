@@ -16,7 +16,7 @@
       <tbody>
 				<% @images.each do |image| %>
 				  <tr>
-				    <td><%= image_tag image.url_for_search(:x_large, "www"), :width => 200 %></td>
+				    <td><%= image_tag image.url_for_search(:x_large, "image"), :width => 200 %></td>
                                     <td><%= image.desc %></td>
 				    <td class="itemActions">
 				    	<%= link_to '<b></b>编辑'.html_safe, edit_console_image_path(image), :class => "actionEdit" %>

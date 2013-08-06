@@ -81,25 +81,25 @@ class Api::TouzibaosController < Api::ApiBaseController
     render :json => {
                       :plans => [
                         {
-                          :apple_product_id => "cn.com.nbd.Touzibao.1_year",
+                          :apple_product_id => get_product_id(3),
                           :desc => "1年 580元 ( 原价720元, 节省140元 )",
                           :type => 3,
                           :price => 580
                         },
                         {
-                          :apple_product_id => "cn.com.nbd.Touzibao.6_months",
+                          :apple_product_id => get_product_id(2),
                           :desc => "6个月 300元 ( 原价360元, 节省60元 )",
                           :type => 2,
                           :price => 300
                         },
                         {
-                          :apple_product_id => "cn.com.nbd.Touzibao.3_months",
+                          :apple_product_id => get_product_id(1),
                           :desc => "3个月 160元 ( 原价180元, 节省20元 )",
                           :type => 1,
                           :price => 160
                         },
                         {
-                          :apple_product_id => "cn.com.nbd.Touzibao.1_month",
+                          :apple_product_id => get_product_id(0),
                           :desc => "1个月",
                           :type => 0,
                           :price => 60
@@ -139,6 +139,34 @@ class Api::TouzibaosController < Api::ApiBaseController
       return true
     end
     return false    
+  end
+
+  private
+
+  def get_product_id(plan_type)
+    if params[:client_version_name] == '1.1.2'
+      return case plan_type
+      when 3
+        "cn.com.nbd.TouzibaoTTYJ.1_year"
+      when 2
+        "cn.com.nbd.TouzibaoTTYJ.6_months"
+      when 1
+        "cn.com.nbd.TouzibaoTTYJ.3_months"
+      when 0
+        "cn.com.nbd.TouzibaoTTYJ.1_month"
+      end
+    else
+      return case plan_type
+      when 3
+        "cn.com.nbd.Touzibao.1_year"
+      when 2
+        "cn.com.nbd.Touzibao.6_months"
+      when 1
+        "cn.com.nbd.Touzibao.3_months"
+      when 0
+        "cn.com.nbd.Touzibao.1_month"
+      end
+    end
   end
 
 end

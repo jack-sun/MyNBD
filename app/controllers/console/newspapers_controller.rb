@@ -130,7 +130,7 @@ class Console::NewspapersController < ApplicationController
     if hash[filename] == Newspaper::STATUS_PARSE_SUCCESS.to_s or hash[filename] == Newspaper::STATUS_PARSE.to_s
       return render :text => [{:name => params[:temp_file].original_filename, :repeat => true}].to_json
     end
-    Resque.enqueue(Jobs::NewspaperJob, "#{Rails.root}/public#{uploader.to_s}", params[:newspaper_id])
+    Resque.enqueue(Jobs::NewspaperJob, "#{uploader.to_s}", params[:newspaper_id])
     hash[filename] = Newspaper::STATUS_PARSE
     render :text => [{:name => params[:temp_file].original_filename}].to_json
   end

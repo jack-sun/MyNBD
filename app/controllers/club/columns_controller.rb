@@ -1,19 +1,19 @@
 class Club::ColumnsController < ApplicationController
     layout 'nbdclub'
     before_filter :forbid_request_of_mobile_news, :only => [:show]
-    after_filter :only => [:show, :index] do |c|
-      path = nbd_page_cache_path
-      write = nil
-      if params[:page]
-        write = params[:page].to_i < 11
-      else
-        write = true
-      end
-      if write and !File.exists?(path)
-        Resque.enqueue(Jobs::WritePageCache, response.body, path)
-        Resque.enqueue_in(Column::PAGE_CACHE_EXPIRE_TIME, Jobs::DeletePageCache, "column", path)
-      end
-    end
+    # after_filter :only => [:show, :index] do |c|
+    #   path = nbd_page_cache_path
+    #   write = nil
+    #   if params[:page]
+    #     write = params[:page].to_i < 11
+    #   else
+    #     write = true
+    #   end
+    #   if write and !File.exists?(path)
+    #     Resque.enqueue(Jobs::WritePageCache, response.body, path)
+    #     Resque.enqueue_in(Column::PAGE_CACHE_EXPIRE_TIME, Jobs::DeletePageCache, "column", path)
+    #   end
+    # end
 
     def index
          @head_articles = {:articles => Article.of_column(176, 3), :id => 176} #头条

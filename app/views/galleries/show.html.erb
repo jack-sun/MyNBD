@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>每经网图集</title>
+  <%= stylesheet_link_tag "reset", "style_global", "gallery" %>
+  <%= javascript_include_tag "jquery.min", "gallery" %>
+  <%= csrf_meta_tag %>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  <meta name="viewport" content="width=1000" />
+  <link rel="shortcut icon" href="http://static.nbd.com.cn/favicon.ico" type="image/x-icon" />
+  <meta name="Keywords" content="财经新闻,财经报道,叶檀,道达,老法师看盘,股市直播,郑眼看盘,股市行情,财经证券,基金,荐股,股市内参,股吧,传闻,内幕,板块,个股,黑马,股市新闻,生活,汽车" />
+  <meta name="Description" content="24小时财经资讯平台，依托新锐财经日报《每日经济新闻》(National Business Daily)，打造中国最具影响力的经济、股票网站。覆盖宏观、股票、基金、期货、股指期货、外汇、债券、保险、银行、黄金、理财等全方位财经新闻。" />
+</head>
+<body>
+  <div class="top">
+    <% if @gallery_article_column.blank? %>
+      <a href="/">每经网首页</a> <b>&gt;</b> <%= @gallery.title %>
+    <% else %>
+      <a href="/">每经网首页</a> <b>&gt;</b> <%= link_to @gallery_article_parent_column.name, column_url(@gallery_article_parent_column) %> <b>&gt;</b> <%= link_to @gallery_article_column.name, column_url(@gallery_article_column) %> <b>&gt;</b> <%= @gallery.title %>
+    <% end %>
+  </div>
+
+  <div id="wrapper" class="wrapper">
+    <div id="gallery" class="gallery">
+      <a id="gallery_expand" class="gallery_expand" href="javascript:;">&gt;</a>
+      <div class="layout">
+        <div id="gallery_sideCol" class="rCol rCol-gallery gallery_sideCol">
+          <div class="">
+            <!-- Bshare Button BEGIN -->
+            <div class="bshare-custom">
+              <a title="分享到" href="http://www.bshare.cn/share" id="bshare-shareto" class="bshare-more">分享到</a>
+              <a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
+              <a title="分享到开心网" class="bshare-kaixin001"></a>
+              <a title="分享到豆瓣" class="bshare-douban"></a>
+              <a title="分享到QQ微博" class="bshare-qqmb"></a>
+              <a title="分享到搜狐微博" class="bshare-sohuminiblog"></a>
+              <a title="分享到网易微博" class="bshare-neteasemb"></a>
+              <a title="分享到QQ空间" class="bshare-qzone"></a>
+              <a title="分享到人民微博" class="bshare-peoplemb"></a>
+               <!-- 在这里添加更多平台 -->
+               <a title="更多平台" id="bshare-more-icon" class="bshare-more"></a>
+            </div>
+            <!-- Bshare Button END -->
+          </div>
+
+          <div class="gallery_desc">
+            <%= @gallery.desc %>
+          </div>
+
+          <p class="gallery_labels">
+            标签：
+            <%= @gallery.tags %>
+          </p>
+
+          <div id="gallery_content" class="gallery_content">
+            <div class="gallery_progress">
+              <span id="gallery_curNum" class="gallery_progress_cur"></span> / <span id="gallery_totalNum"></span>
+            </div>
+            <p id="gallery_info" class="gallery_info">读取中</p>
+          </div>
+        </div>
+
+        <div id="gallery_main" class="main main-b">
+          <div class="gallery_title">
+            <h1>
+              <%= @gallery.title %>
+              <span><%= nbd_time_f3(@gallery.created_at) %></span>
+            </h1>
+          </div>
+          <div class="gallery_box">
+            <div id="gallery_show" class="gallery_show">
+              <div class="gallery_show_mask">
+                <a href="javascript:;" id="gallery_prev" class="gallery_show_mask_l"></a>
+                <a href="javascript:;" id="gallery_next" class="gallery_show_mask_r"></a>
+              </div>
+              <div class="gallery_loading" id="gallery_loading">
+                <div class="gallery_loading_mask"></div>
+                <div class="gallery_loading_tip">
+                  <div class="loading"><span>正在加载图片</span></div>
+                </div>
+              </div>
+              <div id="gallery_contentBtm" class="gallery_contentBtm" style="display:none;">
+              </div>
+              <div id="gallery_photos" class="gallery_show_photos">
+                <div class="gallery_item gallery_item-1" style="display:none;">
+                  &nbsp;
+                </div>
+                <div class="gallery_item gallery_item-2" style="display:block;">
+                  &nbsp;
+                </div>
+              </div>
+            </div>
+
+            <div class="gallery_btm">
+              <div class="gallery_opts r">
+                <a id="gallery_viewOriginSize" class="gallery_btn" href="javascript:;" target="_blank">查看原图</a>
+              </div>
+              <div id="gallery_index" class="gallery_index">
+                <% @gallery.gallery_images.each_with_index do |img,i| %>
+                  <a href="javascript:;"><%= i+1 %></a>
+                <% end %>
+                <a href="javascript:;"><%= @gallery.gallery_images.length+1 %></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="gallery_recommend" class="gallery_afterRead" style="display:none;">
+      <div class="gallery_title">
+        <h1>
+          <%= @gallery.title %>
+          <span><%= nbd_time_f3(@gallery.created_at) %></span>
+        </h1>
+      </div>
+
+      <div class="gallery_box">
+        <div>
+          <p class="gallery_afterRead_info"><span>图集已浏览完毕</span></p>
+          <div>
+            <a href="javascript:;" id="gallery_return" class="gallery_btn mrm">返回上一图片</a>
+            <a href="javascript:;" id="gallery_reset" class="gallery_btn gallery_btn-blue">重新浏览</a>
+            <div class="gallery_bshare mll">
+              <!-- Bshare Button BEGIN -->
+              <div class="bshare-custom">
+                <a title="分享到" href="http://www.bshare.cn/share" id="bshare-shareto" class="bshare-more">分享到</a>
+                <a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
+                <a title="分享到开心网" class="bshare-kaixin001"></a>
+                <a title="分享到豆瓣" class="bshare-douban"></a>
+                <a title="分享到QQ微博" class="bshare-qqmb"></a>
+                <a title="分享到搜狐微博" class="bshare-sohuminiblog"></a>
+                <a title="分享到网易微博" class="bshare-neteasemb"></a>
+                <a title="分享到QQ空间" class="bshare-qzone"></a>
+                <a title="分享到人民微博" class="bshare-peoplemb"></a>
+                 <!-- 在这里添加更多平台 -->
+                 <a title="更多平台" id="bshare-more-icon" class="bshare-more"></a>
+              </div>
+              <!-- Bshare Button END -->
+            </div>
+          </div>
+        </div>
+
+        <div class="gallery_afterRead_recommend clearfix">
+          <p class="gallery_afterRead_recommend_label">推荐图集</p>
+          <%= render :partial => "gallery_recommend", :locals => { :galleries => @recommend_galleries } %>
+        </div>
+      </div>
+    </div>
+
+    <div class="gallery_others">
+      <div class="layout">
+        <div class="rCol rCol-gallery">
+          <div style="height:300px; background:#fff;"></div>
+        </div>
+
+        <div class="main main-b">
+          <div class="gallery_box gallery_box-tabs">
+            <div class="gallery_box_hd">
+              <span class="gallery_tabs_label">精选图集</span>
+            </div>
+
+            <div class="gallery_box_bd clearfix">
+              <%= render :partial => "gallery_recommend", :locals => { :galleries => @hot_galleries, :recommend_css => "gallery_recommend-fun" } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Copyright © 2013 每日经济新闻报社版权所有
+    <%= link_to "关于我们", "#{Settings.old_host}/html/front/html/aboutus_new/index.htm", :class => "first" %>
+    <%= link_to "版权声明", copyright_url %>
+    <%= link_to "免责声明", disclaimer_url %>
+    <%= link_to "广告服务", advertisement_url %>
+    <%= link_to "联系我们", contact_url %>
+    <%= link_to "订阅中心", "http://www.nbd.com.cn/corp/2013dingyue/index.html" %>
+    <%= link_to "友情链接", links_url, :class => "last" %>
+    <%= link_to "网站地图", sitemap_url, :class => "last" %>
+  </div>
+
+  <textarea class="dn" id="gallery_data">
+    <%= @gallery_images %>
+  </textarea>
+  <!-- Bshare Button BEGIN -->
+  <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#ssc=true&uuid=dadcb6c1-00b3-41b4-ab78-9d31e05fdceb&style=10&bgcolor=#ffffff&bp=sinaminiblog,kaixin001,douban,qqmb,sohuminiblog,neteasemb,qzone,peoplemb,bsharesync"></script>
+  <script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC1.js"></script>
+  <script type="text/javascript" charset="utf-8">
+    bShare.addEntry({
+        summary: "-"
+    });
+  </script>
+  <!-- Bshare Button END -->
+</body>
+</html>

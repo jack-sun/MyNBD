@@ -1,0 +1,259 @@
+<%
+# 文章内容 v3 #
+
+for_subdomain = false unless for_subdomain
+related_articles = false unless related_articles
+%>
+
+<div class="articleWrapper">
+  <div class="articleTools clearfix">
+    <ul class="l">
+      <li>
+        <a href="/articles/<%= @article.created_at.to_s(:db)[0..9] %>/<%=@article.id%>/print" class="printLink"><b></b>打印</a>
+      </li>
+      <li id="aticleFontSize">
+        字号: <a href="javascript:void(0);" title="small">小</a>
+        <a class="current" href="javascript:void(0);" title="medium">中</a>
+        <a href="javascript:void(0);" title="large">大</a>
+      </li>
+    </ul>
+    
+    <!-- Bshare Button BEGIN -->
+    <a class="bshareDiv r" href="http://www.bshare.cn/share">分享按钮</a>
+    <!-- Bshare Button END -->
+    
+    <!-- JiaThis Button BEGIN 
+    <div id="ckepop" style="float:right;">
+      <a href="http://www.jiathis.com/share?uid=1547109" class="jiathis jiathis_txt" target="_blank"><img src="http://v2.jiathis.com/code/images/btn/v1/jiathis1.gif" border="0" /></a>
+    </div>
+     JiaThis Button END -->
+  </div>
+
+  <% cache(article_page_content_key_by_id_and_page_id(@article.id, @page.id), :expire_in => Article::EXPIRE_IN) do %>
+    <h2 class="articleTitle"><%= @article.title %></h2>
+
+    <p class="articleTime">
+      <!-- source: ntt or else -->
+      <% if for_subdomain == Settings.ntt_sub_domain %>
+        <% if false #hide %>
+          <%if !@article.columns.map(&:id).include?(102) and (columnist = @article.columnists.first) %>
+            <strong>每经智库专栏作家：<%= link_to columnist.name, ntt_columnist_url(columnist) %></strong>
+          <%elsif @article.ori_author.present? %>
+            <strong><%= @article.ori_author %></strong>
+          <% end %>
+        <% end %>
+      <% else %>
+        <%= link_to "http://www.nbd.com.cn", "http://www.nbd.com.cn" %> 
+        <% if @reporters.present? %>每经记者：
+          <% @reporters.each do|reporter| %>
+          <%= reporter.real_name %>
+          <% end %>
+        <% end %>
+      <% end %>
+      
+      <!-- 发布时间 -->
+      <span><%= @article.created_at.strftime("%Y-%m-%d %H:%M") %></span> 
+
+      <!-- 文章来源 -->
+      <% if @article.ori_source.present? %>
+        <% if for_subdomain == Settings.ntt_sub_domain %>
+        <% elsif %>
+          来源: <%= @article.ori_source %>
+        <% end %>
+      <%end%> 
+    </p>
+
+    <% if @article.digest.present? %>
+      <div id="articleDigest" class="articleFontSize_medium">
+        <div class="articleDigest_top"></div>
+        <b>核心提示：</b>
+        <%= @article.digest.html_safe %>
+        <div class="articleDigest_btm"></div>
+      </div>
+    <% end %>
+
+
+    <!-- 文章配图 -->
+    <%= image_tag(article_thumbnail_path(@article, :x_large), :class => "artcileAddimg", :alt => @article.title) if @article.image.present? and @page.is_first_page? %>
+
+    <div class="articleContentWrapper">
+      <!-- 正文内容 -->
+      <div id="articleContent" class="articleFontSize_medium">
+        <%= @page.content.html_safe %>
+      </div>
+
+      <!-- 页数 -->
+      <% if @article.pages.count > 1 %>
+        <div class="paginationWrapper">
+          <div class="pagination">
+            <%= article_paginate(@article, @page, :for_subdomain => for_subdomain) %>
+          </div>
+          <div class="clear">
+          </div>
+        </div>
+      <%end %>
+
+
+      <!-- copyright -->
+      <% if @article.copyright? %>
+        <%= render :partial => "/articles/copyright" %>
+      <% end %>
+      
+      <!-- 文章信息 -->
+      <div class="articleInfo">
+        <% if for_subdomain == Settings.ntt_sub_domain #用于每经智库页面 %>
+          <% if false #hide %>
+            <span class="articleColumns">归类于: <% @article.columns.each do|column| %><%= link_to column.name, column_path(column) %><%end %></span>
+            <span style="margin-right:10px;">
+
+              <%if columnist = @article.columnists.first %>
+                <strong style="margin-right:10px;">每经智库专栏作家: <%= link_to columnist.name, ntt_columnist_url(columnist) %></strong>
+              <%elsif @article.ori_author.present? %>
+                <strong style="margin-right:10px;"><%= @article.ori_author %></strong>
+              <%end %>
+
+              <% if @article.ori_source.present? %>
+                来源: <%= @article.show_ori_source %>
+              <%end %>
+
+            </span>
+            责任编辑: <% @editors_in_charge.each do|editor| %><%= editor.real_name %><% end %>
+          <% end %>
+        <% else %>
+          <span class="articleColumns">归类于: <% @article.columns.each do|column| %><%= link_to column.name, column_path(column) %><%end%></span>
+          <% if @article.ori_author.present?%>
+            <p><%= @article.ori_author %></p>
+          <%end%> 
+          <% if @article.ori_source.present? %>
+            <p>来源: <%= @article.show_ori_source %></p>
+          <%end%>
+          责任编辑: <% @editors_in_charge.each do|editor| %><%= editor.real_name %><%end%>
+        <% end %>
+      </div>
+      
+      <div class="articleShare">
+        <!-- Bshare Button BEGIN -->
+        <div class="bshare-custom">
+          <a title="分享到" href="http://www.bshare.cn/share" id="bshare-shareto" class="bshare-more">分享到</a>
+          <a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
+          <a title="分享到开心网" class="bshare-kaixin001"></a>
+          <a title="分享到豆瓣" class="bshare-douban"></a>
+          <a title="分享到QQ微博" class="bshare-qqmb"></a>
+          <a title="分享到搜狐微博" class="bshare-sohuminiblog"></a>
+          <a title="分享到网易微博" class="bshare-neteasemb"></a>
+          <a title="分享到QQ空间" class="bshare-qzone"></a>
+          <a title="分享到人民微博" class="bshare-peoplemb"></a>
+           <!-- 在这里添加更多平台 -->
+           <a title="更多平台" id="bshare-more-icon" class="bshare-more"></a>
+        </div>
+        <!-- Bshare Button END -->
+      </div>
+
+      <!-- 相关新闻 -->
+      <div id="relateArticles">
+        <% unless @article.relate_article_children.empty? %>
+        <div class="a_relatedList">
+          <p class="a_relatedList_hd">相关新闻：</p>
+          <ul class="unorderList unorderList-orange">
+            <% if for_subdomain %>
+              <% @article.relate_article_children.order("pos desc").limit(2).each do |a| %>
+                <li>
+                  <% if a.children_url =~ /features\/\d+/ %>
+                      <%= link_to a.children_title, a.children_url, {:target => "_blank"} %>
+                  <% else %>
+                      <%= link_to a.children_title, a.children_url.gsub("www", for_subdomain), {:target => "_blank"} %>
+                  <% end %>
+                </li>
+              <% end %>
+            <% else %>
+              <% @article.relate_article_children.order("pos desc").limit(2).each do |a| %>
+                <li>
+                  <%= link_to a.children_title, a.children_url, {:target => "_blank"} %>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+      </div>
+
+      <!-- 相关专题 -->
+      <div id="relatedFeature">
+        <div class="a_relatedList">
+          <%= article_detail_ssi_include_file(@article, 'features') %>
+        </div>
+      </div>
+
+      <!-- 延伸阅读 -->
+      <div id="extendArticle">
+        <%= article_detail_ssi_include_file(@article, 'recommend') %>
+      </div>
+
+      <div class="a_jumptoColumn">
+        <%= link_to "返回每经网#{@first_column.root.name unless @first_column.root.name == "首页"}首页", column_url(@first_column.root) %>
+      </div>
+    </div>
+  <% end #cache end %>
+
+</div>
+
+<script type="text/javascript">
+  $(function(){
+
+    var elemDigest = $('#articleDigest');
+    var elemContent = $('#articleContent');
+    $('#aticleFontSize a').click(function(e){
+      var linkEl = $(this);
+      linkEl.siblings().removeClass();
+      linkEl.addClass('current');
+      elemDigest.attr('class', 'articleFontSize_'+linkEl.attr('title'));
+      elemContent.attr('class', 'articleFontSize_'+linkEl.attr('title'));
+      return false;
+    });
+  });
+</script>
+
+<!-- Bshare Button BEGIN -->
+<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#ssc=true&uuid=dadcb6c1-00b3-41b4-ab78-9d31e05fdceb&style=10&bgcolor=#ffffff&bp=sinaminiblog,kaixin001,douban,qqmb,sohuminiblog,neteasemb,qzone,peoplemb,bsharesync"></script>
+<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC1.js"></script>
+<script type="text/javascript" charset="utf-8">
+  bShare.addEntry({
+      summary: "-"
+  });
+</script>
+<!-- Bshare Button END -->
+
+<%if false%>
+<div id="articalContentWrapper">
+
+
+  <% cache(article_page_content_key_by_id_and_page_id(@article.id, @page.id), :expire_in => Article::EXPIRE_IN) do %>
+
+
+
+
+  <% end %>
+  
+  <% if related_articles %>
+    <h3 class="moreTitle">延伸阅读</h3>
+    <div id="relatedArticlesWrapper">
+      <div class="subLeftCol">
+          <% cache(column_relate_articles_key_by_id(@related_articles[:id]), :expire_in => Column::EXPIRE_IN) do %>
+        <%= render :partial => "columns/article_list", :locals => {:articles => (@related_articles[:articles] || []).map(&:article).compact, :list_title => "您可能感兴趣的更多新闻", :digest_number => 1, :digest_restrict => true} %>
+        <%end %>
+      </div>
+      <div class="subRightCol">
+          <% cache(article_recommend_articles_key_by_id(@recommend_articles[:id]), :expire_in => Article::EXPIRE_IN) do %>
+      <%= render :partial => "columns/article_list", :locals => {:articles => (@article.recommend_articles(5)[:articles] || []).compact, :list_title => "更多#{@article.tags.present? ? "有关“"+@article.tags+"”的" : "热门"}新闻", :digest_number => 1, :digest_restrict => true} %>
+      <%end %>
+    </div>
+    <div class="clear">
+    </div>
+  </div>
+  <% end %>
+
+
+</div>
+
+
+<% end %>

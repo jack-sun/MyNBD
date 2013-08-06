@@ -1,0 +1,102 @@
+<%= javascript_include_tag "nested_form" %>
+<%= require_jqueryUI %>
+
+<style type="text/css">
+  form { width: 492px; }
+  .tzbctTaskAnnotate{
+    box-sizing:border-box;
+    moz-box-sizing:border-box;
+    width: 100%;
+  }
+  .tzbctAddChild, .tzbctCardItem { border: 1px solid #cecece; background: #f3f3f3; margin: 10px 0; padding: 0 15px; }
+  .tzbctAddChild { display: block; background: none; text-align: center; padding: 25px 15px; color: #666; }
+  .tzbctAddChild:hover { background: #f3f3f3; text-decoration: none; }
+  a.tzbctDelChild { margin-top: 15px; display: none; }
+  .tzbctCardItem:hover a.tzbctDelChild { display: inline-block; }
+</style>
+
+<div class="sectionA">
+  <div class="title">
+    <h2>
+      创建卡号任务
+    </h2>
+    <span class="opts">
+      <%= link_to "<span>返回</span>".html_safe, console_premium_card_tasks_url, :class => "btnGray" %>
+    </span>
+  </div>
+  <% if flash[:notice]  %>
+    <div class="alert_error" style="margin:20px 20px 10px;"><b></b> <%= flash[:notice] %></div>
+  <% end %>
+  <div class="content rightColCenter">
+    <%= simple_nested_form_for ["console_premium", @card_task], :html => { :class => "formA formA-6c" } do |f| %>
+      <p>
+        <%= f.input :comment, :as => :text, :label => false, :input_html => {:rows => 10, :class => "tzbctTaskAnnotate", :placeholder => "任务备注"} %>
+      </p>
+      <%= f.simple_fields_for :card_sub_tasks do |sub_form| %>
+        <div class="tzbctCardItem">
+          <%= sub_form.link_to_remove "<span>删除</span>".html_safe, :class => "btnRed r tzbctDelChild" %>
+          <p>
+            <%= sub_form.input :service_card_type, :collection => options_for_service_card_type, :selected => ServiceCard::CARD_TYPES[ServiceCard::CARD_TYPE_TTYJ], :label => "实体卡类型：", :input_html => {:class => "tzbctTypeSel"} %>
+          </p>
+          <div class="tzbctTaskSelContainer">
+            <%= sub_form.input :service_card_plan_type, :collection => options_for_ttyj_service_card_plan_type, :selected => "1个月", :label => "实体卡套餐：" %>
+          </div>
+          <div style="display:none">
+            <textarea class="tzbctTtyjSel">
+              <%= sub_form.input :service_card_plan_type, :collection => options_for_ttyj_service_card_plan_type, :selected => "1个月", :label => "实体卡套餐：" %>
+            </textarea>
+            <textarea class="tzbctGmsSel">
+              <%= sub_form.input :service_card_plan_type, :collection => options_for_gms_service_card_plan_type, :selected => "基本套餐", :label => "实体卡套餐：" %>
+            </textarea>
+          </div>
+          <p>
+            <%= sub_form.input :service_card_count, :label => "数量：", :input_html => {:size => 20} %>
+          </p>
+        </div>
+      <% end %>
+      <div class="block">
+        <%= f.link_to_add "+ 新建子任务", :card_sub_tasks, :class => "tzbctAddChild" %>
+      </div>
+      <p>
+        <a href="javascript:;" onclick="$(this).closest('form').submit();return false;" id="tzbctAddTask" class="btnBlueM"><span>新建卡号任务</span></a>
+      </p>
+    <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    var btnAdd = $('#tzbctAddTask');
+    
+    $('body').delegate('form', 'nested:fieldAdded', function(e){
+      toggleBtn();
+    });
+
+    $('body').delegate('form', 'nested:fieldRemoved', function(e){
+      toggleBtn();
+    });
+
+    toggleBtn();
+
+    function toggleBtn(){
+      var num = $('.tzbctCardItem:visible').length;
+      if(num > 0){
+        btnAdd.show();
+      }else {
+        btnAdd.hide();
+      }
+    }
+
+    // select type
+    // -----------------------
+
+    $('body').delegate('.tzbctTypeSel', 'change', function(){
+      var wrapper = $(this).closest('.tzbctCardItem');
+      if($(this).val() === '0'){
+        $('.tzbctTaskSelContainer', wrapper).html($('.tzbctTtyjSel', wrapper).val());
+      }else {
+        $('.tzbctTaskSelContainer', wrapper).html($('.tzbctGmsSel', wrapper).val());
+      }
+    });
+  });
+</script>

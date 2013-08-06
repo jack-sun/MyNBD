@@ -1,0 +1,49 @@
+<%
+=begin
+	tabs_data: Array
+		item: Object
+			title: String
+			cache_id: Number
+			article_data: Object
+	tabs_id: String
+=end
+
+story_id = nil if story_id.nil?
+story_css = nil if story_css.nil?
+%>
+
+<div class="story_shadow">
+  <div <%if story_id%>id="<%=story_id%>"<%end%> class="story story-lTabs <%if story_css%><%=story_css%><%end%>">
+		<div class="story_hd" id="<%= tabs_id %>_index">
+			<% tabs_data.each do |tab| %>
+				<a href="javascript:;"><%= tab[:title] %></a>
+			<% end %>
+		</div>
+		<div class="story_bd">
+			<div id="<%= tabs_id %>_slide">
+				<% tabs_data.each do |tab| %>
+					<%
+						article_data = tab[:article_data]
+						tab[:cache_id] = article_data[:column_id] if article_data[:column_id].present? && tab[:cache_id].blank?
+					%>
+					<div>
+						<% cache(column_show_content_key_by_id(tab[:cache_id], true, "uniq")) do %>
+						<%= render :partial => "article_list_v3", :locals => tab[:article_data] %>
+						<% end %>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+  $.nbdslide.init({
+  	interval:7000,
+    optDOMs:[{
+      selector:"#<%= tabs_id %>_slide",
+      style:"normal"
+    }],
+    indexDOM:"#<%= tabs_id %>_index"
+  });
+</script>

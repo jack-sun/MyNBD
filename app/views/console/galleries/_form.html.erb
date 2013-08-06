@@ -1,0 +1,248 @@
+<style type="text/css">
+  .cGallery_editItem { }
+  .cGllery_editItem_img { float: left; position: relative; margin-right: 20px; width: 100px; height: 73px; }
+  .cGllery_editItem_img img.cGllery_editItem_img_small { width: 100%; height: 100%; }
+  .cGllery_editItem_img img.cGllery_editItem_img_big { position: absolute; top: 0; right: -300px; display: none; z-index: 1; }
+  .cGllery_editItem_img:hover img.cGllery_editItem_img_big { display: block; }
+  .cGallery_editItem_desc { position: relative;  overflow: hidden; height: 100%; }
+  .cGallery_editItem_desc_textarea { width: 95% !important; font-size: 12px !important; }
+  .cGallery_editItem_desc_mask { position: absolute; left: 0; top: 0; width: 100%; height: 100%; background: #f3f3f3; cursor: pointer;  }
+  .cGallery_editItem_delBtn { float: right; padding-top: 1px; width: 45px; font-size: 12px; }
+  .cGallery_editItem_delBtn a { display: none; margin: 0; }
+  .cGallery_editItem:hover .cGallery_editItem_delBtn a { display: inline; }
+  .cGallery_dragPlaceHolder { border: 1px dotted #ddd; height: 100px; }
+  #cGallery_addNewImg, .cGallery_editItem { border: 1px solid #cecece; background: #f3f3f3; margin: 10px 0; padding: 10px 15px; }
+  #cGallery_addNewImg { display: block; background: none; text-align: center; padding: 15px; color: #666; }
+  #cGallery_addNewImg:hover { background: #f3f3f3; text-decoration: none; }
+</style>
+<%= require_jqueryUI %>
+
+
+
+<% if flash[:notice] %>
+  <div class="alert_done"><b></b> <%= flash[:notice] %></div>
+<% end %>
+<% if flash[:error] %>
+  <div class="alert_error"><b></b> <%= flash[:error] %></div>
+<% end %>
+<%= simple_form_for [:console, @gallery] do |f| %>
+  <div class="subRightCol">
+    <fieldset class="formA roundCorner">
+      <p>
+        <%= f.input :tags, :label => "关键词：" %>
+      </p>
+      <% if @gallery.status == Gallery::STATUS_UNPUBLISH %>
+        <hr>
+        <p>
+          <%= link_to "<span>预览图集</span>".html_safe, "javascript:void(0);", :id => "preview_gallery", :class => "btnGrayBlue r" %>
+        </p>
+        <p>
+          <%= link_to "<span>存为草稿</span>".html_safe, "javascript:void(0);", :id => "draft_gallery", :class => "btnGrayBlue" %>
+        </p>
+        <hr>
+        <p>
+          <%= link_to "<span>发布图集</span>".html_safe, "javascript:void(0);", :id => "publish_gallery", :class => "btnBlueM r" %>
+        </p>
+      <% else %>
+        <hr>
+        <p>
+          <%= link_to "<span>预览图集</span>".html_safe, "javascript:void(0);", :id => "preview_gallery", :class => "btnGrayBlue" %>
+        </p>
+        <hr>
+        <p>
+          <%= link_to "<span>#{@gallery.status == Gallery::STATUS_UNPUBLISH ? '发布图集' : '更新图集'}</span>".html_safe, "javascript:void(0);", :id => "publish_gallery", :class => "btnBlueM r" %>
+        </p>
+      <% end %>
+    </fieldset>
+  </div>
+
+  <div class="subLeftCol">
+    <table class="formC">
+      <tr>
+        <th>
+          <%= f.label :title, "图集标题:" %>
+        </th>
+        <td>
+          <%= f.input :title, :label => false, :input_html => { :value => @gallery.title } %>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <%= f.label :desc, "图集描述:" %>
+        </th>
+        <td>
+          <%= f.input :desc, :label => false %>
+          <%= f.input :status, :as => :hidden %>
+        </td>
+      </tr>
+      <tr>
+        <th>
+          <label>图片:</label>
+        </th>
+        <td>
+          <div id="cGallery_list" class="cGallery_list">
+            图片列表读取中
+          </div>
+          <%= link_to_function "+ 添加新图片", :id => "cGallery_addNewImg"  %>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <div class="dn" id="cGallery_template">
+    <%= f.simple_fields_for "gallery_images_{{id}}" do |sub_form| %>
+      <div class="cGallery_editItem clearfix" data-id="{{id}}">
+        <div class="cGallery_editItem_delBtn itemActions">
+          <a class="actionDelete" href="javascript:;"><b></b>删除</a>
+        </div>
+        <div class="cGllery_editItem_img">
+          <img class="cGllery_editItem_img_small" src="{{thumb_src}}">
+          <img class="cGllery_editItem_img_big" src="{{thumb_src}}">
+        </div>
+        <div class="cGallery_editItem_desc">
+          <%= sub_form.input :desc, :as => :text, :label => false, :input_html => { :value => "{{desc}}", :rows => 5, :cols => 8, :class => "cGallery_editItem_desc_textarea" } %>
+          <div class="cGallery_editItem_desc_mask">{{mask_desc}}</div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+
+
+<script type="text/javascript">
+  // 供外部调用，插入图片
+  var _insertImage = function(dataArray){
+    var elemList = $('#cGallery_list');
+    var elemTemp = $('#cGallery_template');
+    var tempStr = elemTemp.html();
+    var replaceStr = '';
+
+    if(elemList.find('.cGallery_editItem').length === 0){
+      elemList.html('');
+    }
+
+    for(var i=0; i<dataArray.length; i++){
+      var data = dataArray[i].gallery_image;
+      var mask_desc = $.trim(data.desc) === '' ? '请点击添加描述' :  data.desc
+      replaceStr += tempStr.replace(/\{\{thumb_src\}\}/g, data.thumb_s_url)
+          .replace(/\{\{id\}\}/g, data.id)
+          .replace(/\{\{desc\}\}/g, data.desc)
+          .replace(/\{\{mask_desc\}\}/g, mask_desc);
+    }
+    elemList.append(replaceStr);
+  }
+
+  $(function(){
+    var elemList = $('#cGallery_list');
+    var galleryId = <%= @gallery.id %>;
+    
+    $('#cGallery_addNewImg').click(function(){
+      var winStatus = "width=700,height=700,top=200,left=" + ($(window).width() - 500) / 2 + ",toolbar=1,status=1,scrollbars=1";
+      var winUrl = '<%= "#{upload_gallery_images_console_image_url(@gallery)}" %>';
+      window.open(winUrl, "imagesSelect", winStatus);
+    });
+
+    // get the images
+    $.get('<%= console_gallery_gallery_images_url(@gallery) %>', function(data){
+      if(data.length === 0){
+        elemList.html('还没有图片,请点击添加');
+      }else {
+        elemList.html('');
+        _insertImage(data);
+      }
+    });
+
+    // start edit
+    elemList.delegate('.cGallery_editItem_desc_mask', 'click', function(){
+      $(this).hide();
+      $(this).siblings('.cGallery_editItem_desc_textarea').focus();
+    });
+
+    // confirm edit
+    $('body').click(function(e){
+      var target = $(e.target);
+      if(!target.is('.cGallery_editItem_desc_mask') && !target.is('.cGallery_editItem_desc_textarea')){
+        $('.cGallery_editItem_desc_mask', elemList).show();
+        $('.cGallery_editItem_desc_textarea', elemList).each(function(){
+          var txt = $(this).val();
+          txt = txt === '' ? '请点击添加描述' : txt;
+          $(this).siblings('.cGallery_editItem_desc_mask').text(txt);
+        });
+      }
+    });
+
+    elemList.delegate('.cGallery_editItem_delBtn', 'click', function(){
+      if(!confirm('确定删除该图片?')) return;
+      
+      var curItem = $(this).closest('.cGallery_editItem');
+      var id = curItem.data('id');
+
+      $(this).replaceWith('<span class="r">删除中</span>');
+
+      $.ajax({
+        type:'delete',
+        url:'/console/galleries/'+galleryId+'/gallery_images/'+id,
+        success:function(){
+          curItem.remove();
+        }
+      });
+    });
+
+    elemList.sortable({
+      axis:'y',
+      opacity:'0.4',
+      // handle:'span.dragHandler',
+      tolerance:'pointer',
+      cursor:'move',
+      placeholder:"cGallery_dragPlaceHolder",
+      update:function(event,ui){
+        var item = $(ui.item);
+        var id = item.data('id');
+        var pos = item.index()+1;
+        var url = '/console/galleries/'+galleryId+'/gallery_images/'+id+'/change_pos';
+
+        $.post(url, {gallery_image:{id:id, pos:pos}}, function(){
+          console.log(id, pos, 'sorted.');
+        });
+      }
+    });
+
+
+    var form = $('form');
+
+    $('#publish_gallery').click(function(){
+      $("#gallery_status").val(1);
+      form.submit();
+    });
+    
+    $("#draft_gallery").click(function(){
+      $("#gallery_status").val(0);
+      form.submit();
+    });
+
+    $("#preview_gallery").click(function(){
+      $("#gallery_status").val(0);
+      var data = form.serializeArray();
+      var result = {};
+      $.each(data, function(i, v){
+        var key = v.name;
+        var val = v.value;
+        console.log(name);
+        if(/gallery.+/.test(key)){
+          result[key] = val;
+        }
+      });
+
+      $.ajax({
+        url:'<%= console_gallery_url(@gallery) %>',
+        type:'put',
+        data:result,
+        success:function(){
+          var winUrl = '<%= "#{gallery_url(@gallery, :preview => "true")}" %>';
+          window.open(winUrl, "galleryPreview");
+        }
+      });
+    });
+  });
+
+</script>

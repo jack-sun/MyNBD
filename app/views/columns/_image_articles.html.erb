@@ -1,0 +1,54 @@
+<%
+concise_mode = false if concise_mode.nil?
+image_css = '' if image_css.nil?
+image_css += ' imageArticle-concise' if concise_mode
+img_ver = :thumb_hl unless img_ver
+# articles
+%>
+
+<div class="imageArticle <%= image_css if image_css.present? %>">
+  <div class="imageArticle_slide" id="imageArticlesSlide">
+    <% articles.each_with_index do |article,index| %>
+      <%= block_article_list(article, :subdomain => Settings.default_sub_domain, :with_image => true, :version => img_ver, :is_show_default => true) %>
+    <% end %>
+  </div>
+  <div class="imageArticle_btmBarBg"></div>
+  <div class="imageArticle_btmBar">
+    <% if concise_mode %>
+      <div class="slideIndex" id="imageArticlesIndex">
+        <% articles.each_with_index do |article, i| %> 
+          <a href="javascript:;"><%= i+1 %></a>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="imageArticle_btmBar_intro" id="imageArticlesInfo">
+      <% articles.each_with_index do |article, i| %> 
+        <%= block_article_list(article) %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% unless concise_mode %>
+  <div class="slideIndex" id="imageArticlesIndex">
+    <% articles.each_with_index do |article, i| %> 
+      <a href="javascript:;"><%= i+1 %></a>
+    <% end %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  if($.nbdslide){
+    $.nbdslide.init({
+      optDOMs:[{
+        selector:"#imageArticlesSlide",
+        style:"normal"
+      },{
+        selector:"#imageArticlesInfo",
+        style:"normal"
+      }],
+      indexDOM:"#imageArticlesIndex"
+    });
+  }
+</script>

@@ -20,22 +20,22 @@ class ThumbnailUploader < BaseUploader
     #"http://iamges#{rand(3)}.nbd.com.cn/#{super}"
   #end
 
-  #def full_filename(for_file)
-    #if for_file.index(".")
-      #s = for_file.split(".")
-      #[s[0..-2].join(""), version_name, "jpg"].compact.join(".")
-    #else
-      #[for_file, version_name, "jpg"].join("_")
-    #end
-  #end
+  # def full_filename(for_file)
+  #   if for_file.index(".")
+  #     s = for_file.split(".")
+  #     [s[0..-2].join(""), version_name, "jpg"].compact.join(".")
+  #   else
+  #     [for_file, version_name, "jpg"].join("_")
+  #   end
+  # end
 
 
-  #def resize_by_width(width)
-    #manipulate! do |img|
-      #img.resize "#{width}x"
-      #img
-    #end
-  #end
+  # def resize_by_width(width)
+  #   manipulate! do |img|
+  #     img.resize "#{width}x"
+  #     img
+  #   end
+  # end
 
   version :small do
     process :resize_to_fill => [80, 60]
@@ -60,6 +60,26 @@ class ThumbnailUploader < BaseUploader
   version :x_large do
     process :resize_by_width => [500]
     process :change_quality
+  end
+
+  version :thumb_hs do
+    process :resize_to_fill => [80, 60]
+  end
+
+  version :thumb_hm do
+    process :resize_to_fill => [120, 90]
+  end
+
+  version :thumb_hl do
+    process :resize_to_fill => [300, 225]
+  end
+
+  version :thumb_vm do
+    process :resize_to_fill => [90, 120]
+  end
+
+  version :thumb_vl do
+    process :resize_to_fill => [300, 400]
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

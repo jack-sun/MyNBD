@@ -5,13 +5,13 @@ class NewspapersController < ApplicationController
   
   before_filter :current_user
 
-  after_filter :only => [:today, :show] do |c|
-    path = nbd_page_cache_path
-    if !File.exists?(path)
-      Resque.enqueue(Jobs::WritePageCache, response.body, path)
-      Resque.enqueue_in(Column::PAGE_CACHE_EXPIRE_TIME, Jobs::DeletePageCache, "column", path)
-    end
-  end
+  # after_filter :only => [:today, :show] do |c|
+  #   path = nbd_page_cache_path
+  #   if !File.exists?(path)
+  #     Resque.enqueue(Jobs::WritePageCache, response.body, path)
+  #     Resque.enqueue_in(Column::PAGE_CACHE_EXPIRE_TIME, Jobs::DeletePageCache, "column", path)
+  #   end
+  # end
   
   def index
     

@@ -8,7 +8,7 @@
 		
 		<% if @topic.image.present? %>
 			<%= f.fields_for :image, @topic.image do |image| %>
-				<%= image_tag(@topic.image.topic_url(:x_large, :subdomain => "www"), :style => "width:100%" )%><br/>
+				<%= image_tag(@topic.image.topic_url(:x_large, :subdomain => "image"), :style => "width:100%" )%><br/>
 				<%= image.file_field :topic %><br/>
 				<%= image.hidden_field :topic_cache %>
 			<%end %>

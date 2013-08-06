@@ -1,0 +1,49 @@
+<%
+column_articles = [{Column::SHANGHAI_COMPLEX_INFORMATION_COLUMN_ID => @complex_information_articles}, {Column::SHANGHAI_COMPLEX_FASHION_COLUMN_ID => @complex_fashion_articles}, {Column::SHANGHAI_COMPLEX_LIVE_COLUMN_ID => @complex_live_articles}, {Column::SHANGHAI_COMPLEX_EDUCATION_COLUMN_ID => @complex_eduction_articles}]
+%>
+
+<ul class="articles articles-sh">
+  <% column_articles.each_with_index do |column_article, i| %>
+  <% cache(column_show_content_key_by_id(column_article.keys.first)) do %>
+    <% c = column_article.values.first %>
+    <% marticle = c[:articles].first %>
+    <% unless marticle.nil? %>
+      <%
+        class_name = case i
+          when 0 then "columnBubble-blue"
+          when 1 then "columnBubble-purple"
+          when 2 then "columnBubble-green"
+          when 3 then "columnBubble-orange"
+        end
+      %>
+      <li class="articleMaterial <%if i == column_articles.length-1%>last<%end%>">
+        <div class="articleMaterial_digest">
+          <%= block_article_list(marticle, :subdomain => Settings.default_sub_domain, :with_image => true, :version => "thumb_vm") %>
+          <div class="articleMaterial_hedsec">
+            <div class="columnBubble <%= class_name %>"><b></b>
+              <%= c[:name] %>
+            </div>
+            <div class="articleMaterial_hedsec_columns">
+              <% c[:sub_columns].each do |child_column| %>
+                <%= link_to child_column.name, column_path(child_column) %>  
+              <% end %>
+            </div>
+          </div>
+          <h4 class="articleMaterial_title">
+            <%= block_article_list(marticle) %>
+          </h4>
+          <div class="articleMaterial_children articleMaterial_digest_3row">
+            <ul class="unorderList unorderList-orange">
+              <% c[:articles][1..3].each do |a| %>
+                <li>
+                  <%= link_to a.list_title, article_url(a), {:target => "_blank", :title => a.list_title} %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </li>
+    <% end %>
+  <% end %>
+  <% end %>
+</ul>

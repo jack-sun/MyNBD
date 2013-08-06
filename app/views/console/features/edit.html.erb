@@ -38,7 +38,7 @@
                   <div id="themeBgImg">
                     <% is_have_bg_image = @feature.bg_image && !@feature.bg_image.feature.blank? %>
                     <% if is_have_bg_image %>
-                      <%= image_tag(@feature.bg_image.feature_url(:subdomain => "www"), :id => "themeBgThumb" ) %>
+                      <%= image_tag(@feature.bg_image.feature_url(:subdomain => "image"), :id => "themeBgThumb" ) %>
                     <% end %>
                     <div class="imgPlaceholder" <% if is_have_bg_image %>style="display:none"<%end%>>
                       null

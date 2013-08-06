@@ -1,0 +1,14 @@
+<% articles.each do |article| %>
+<div class="sh_todayTop_item">
+  <div class="sh_todayTop_title">
+    <%= block_article_list(article) %>
+  </div>
+  <div class="sh_todayTop_children">
+    <% if article.relate_article_children.length > 0 %>
+      <% article.relate_article_children.order("pos desc").limit(3).each do |a| %>
+        <%= link_to "[#{a.children_title}]", a.children_url, {:target => "_blank", :title => a.children_title} %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+<% end %>

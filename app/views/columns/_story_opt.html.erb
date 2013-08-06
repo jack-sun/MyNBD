@@ -1,0 +1,19 @@
+<%
+column_id = nil unless column_id
+more_title = '更多 &raquo;' unless more_title
+more_title_tail = '' unless more_title_tail
+for_subdomain = false unless for_subdomain
+opt_content = '' unless opt_content
+%>
+
+<span class="story_hd_opt">
+	<% if column_id.present? %>
+	  <% if for_subdomain %>
+	    <%= link_to more_title.html_safe, send("#{for_subdomain}_column_url", column_id)+more_title_tail%>
+	  <% else %>
+	    <%= link_to more_title.html_safe, column_url(column_id, :subdomain => SUBDOMAIN_EXP[WWW_EXP])+more_title_tail%>
+	  <% end %>
+	<% elsif opt_content.present? %>
+	  <%= opt_content.html_safe %>
+	<% end %>
+</span>

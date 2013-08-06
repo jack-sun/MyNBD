@@ -1,0 +1,27 @@
+<%= render :partial => "console/images/image_upload_form", :locals => {:image => @image, :url_method => "gal", :create_gallery_image => @gallery.id }%>
+
+<div class="rightAlignActions">
+  <%= link_to "<span>取消</span>".html_safe, "javascript:void(0)", :id => "cancelUploadBtn", :class => "btnGrayM" %>
+  <%= link_to "<span>确定</span>".html_safe, "javascript:void(0);", :id => "uploadImageBtn", :class => "btnBlueM"%>
+</div>
+
+
+<script type="text/javascript" charset="utf-8">
+  $(function () {
+    // confirm upload
+    $("#uploadImageBtn").bind("click", function(){
+      function afterUpdateImageData(data){
+        window.opener._insertImage(data);
+        setTimeout(function(){window.close();}, 500); // 避免编辑框刷不出图片的情况，不过具体原因不明
+      }
+      
+      // call update image in the partial
+      _updateImageData(afterUpdateImageData);
+    });
+
+    // cancel upload
+    $("#cancelUploadBtn").bind("click", function(){
+      window.close();
+    });
+  });
+</script>

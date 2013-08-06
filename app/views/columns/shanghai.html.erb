@@ -1,0 +1,138 @@
+<% require_slideShow %>
+
+<style type="text/css">
+  .wrapper { padding-top: 15px; }
+</style>
+
+<% content_for :top_ad do %>
+  <!-- 广告位：首页_顶部头图 -->
+  <script type="text/javascript">
+    BAIDU_CLB_preloadSlots("331630","347411","347417","347421","347425","347426","347428","347430","347432","347433","347437");
+  </script>
+  <script type="text/javascript">BAIDU_CLB_fillSlot("331630");</script>
+<% end %>
+
+<% content_for :header_ad do %>
+  <!-- 广告位：首页_顶部四分之三通栏 -->
+  <%= render :partial => "ads/ad", :locals => { :id => "347411", :html_class => "header" } %>
+<% end %>
+
+<div class="layout">
+  <div class="rCol rCol-home">
+    <%= render :partial => "sh_changsanjiao_tabs" %>
+    <% cache(column_show_content_key_by_id(@meeting_articles[:id])) do %>
+    <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_css => "story-borderPurple", :header_data => {:list_title => "会议论坛"}, :column_id => column_id_of(@meeting_articles), :digest_number => 1, :articles => articles_of(@meeting_articles), :img_ver => "thumb_hm", :mask_size => "120x80" } %>
+    <% end %>
+
+    <% cache(column_show_content_key_by_id(@show_articles[:id])) do %>
+    <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_css => "story-borderPurple", :header_data => {:list_title => "展会"}, :column_id => column_id_of(@show_articles), :digest_number => 1, :articles => articles_of(@show_articles), :img_ver => "thumb_hm", :mask_size => "120x80" } %>
+    <% end %>
+  </div>
+
+  <div class="main">
+    <div class="layout">
+      <div class="lCol lCol-home">
+        <% cache(column_show_content_key_by_id(@image_articles[:id])) do %>
+        <%= render :partial => "image_articles", :layout => "story", :locals => { :story_css => "story-p1", :articles => articles_of(@image_articles), :image_css => "imageArticle-sh", :img_ver => :thumb_vl} %>
+        <% end %>
+
+        <% cache(column_show_content_key_by_id(@area_dynamic_articles[:id])) do %>
+        <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_id => "h_sh_1_12", :story_css => "sh_trends", :header_data => {:list_title => "各区动态"}, :column_id => column_id_of(@area_dynamic_articles), :digest_number => 1, :articles => articles_of(@area_dynamic_articles), :display_column => true, :img_ver => "thumb_hm", :mask_size => "120x80" } %>
+        <% end %>
+      </div>
+
+      <div class="main main-b">
+        <% cache(column_show_content_key_by_id(@head_articles[:id])) do %>
+        <%= render :partial => "sh_breakingnews", :layout => "story", :locals => {:header_data => {:list_title => "今日头条"}, :articles => articles_of(@head_articles), :column_id => column_id_of(@head_articles)} %>
+        <% end %>
+
+        <%= render :partial => "sh_collection", :layout => "story", :locals => { :story_css => "story-shCollection", :header_data => {:list_title => "综合"}} %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render :partial => "ads/ad", :locals => { :ids => [347417, 347428], :html_class => "col2" } %>
+
+<%= render :partial => "sh_head_section", :locals => {:sub_columns => @sub_column_nav_fashion, :section_class => "shanghai"}  %>
+
+<div class="layout">
+  <div class="rCol rCol-home">
+    <% cache(column_show_content_key_by_id(@show_field_articles[:id])) do %>
+    <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_css => "story-borderPurple", :header_data => {:list_title => "秀场"}, :column_id => column_id_of(@show_field_articles), :digest_number => 1, :articles => articles_of(@show_field_articles), :img_ver => "thumb_hm", :mask_size => "120x80" } %>
+    <% end %>
+
+    <% cache(column_show_content_key_by_id(@shopping_articles[:id])) do %>
+    <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_css => "story-borderPurple", :header_data => {:list_title => "购物·折扣"}, :column_id => column_id_of(@shopping_articles), :digest_number => 1, :articles => articles_of(@shopping_articles), :img_ver => "thumb_hm", :mask_size => "120x80" } %>
+    <% end %>
+  </div>
+
+  <div class="main">
+    <div class="layout">
+      <div class="lCol lCol-home">
+        <% cache(column_show_content_key_by_id(@fashion_articles[:id])) do %>
+        <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_css => "articles-bigHead", :header_data => {:list_title => "时尚"}, :column_id => column_id_of(@fashion_articles), :digest_number => 1, :articles => articles_of(@fashion_articles), :img_ver => "thumb_hl", :mask_size => "270x200", :is_move_hd => true } %>
+        <% end %>
+      </div>
+
+      <div class="main">
+        <%= render :partial => "sh_movie_collection" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= render :partial => "ads/ad", :locals => { :ids => [347421, 347430], :html_class => "col2" } %>
+
+<%= render :partial => "sh_head_section", :locals => {:sub_columns => @sub_column_nav_live, :section_class => "shenghuo"}  %>
+
+<div class="layout">
+  <div class="rCol rCol-home">
+    <% cache(column_show_content_key_by_id(@health_articles[:id])) do %>
+    <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_css => "story-borderPurple", :header_data => {:list_title => "健康"}, :column_id => column_id_of(@health_articles), :digest_number => 1, :articles => articles_of(@health_articles), :img_ver => "thumb_hm", :mask_size => "120x80", :articles_css => "articles-nohr" } %>
+    <% end %>
+
+    <% cache(column_show_content_key_by_id(@happy_life_articles[:id])) do %>
+    <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_css => "story-borderPurple", :header_data => {:list_title => "乐活"}, :column_id => column_id_of(@happy_life_articles), :digest_number => 1, :articles => articles_of(@happy_life_articles), :img_ver => "thumb_hm", :mask_size => "120x80", :articles_css => "articles-nohr" } %>
+    <% end %>
+  </div>
+
+  <div class="main">
+    <% cache(column_show_content_key_by_id(@food_articles[:id])) do %>
+    <%= render :partial => "feature_articles", :layout => "story", :locals => { :header_data => {:list_title => "美食·精选"}, :articles => articles_of(@food_articles), :column_id => column_id_of(@food_articles) } %>
+    <% end %>
+
+    <% cache(column_show_content_key_by_id(@travel_articles[:id])) do %>
+    <%= render :partial => "feature_articles", :layout => "story", :locals => { :header_data => {:list_title => "旅游"}, :articles => articles_of(@travel_articles), :column_id => column_id_of(@travel_articles) } %>
+    <% end %>
+  </div>
+</div>
+
+<%= render :partial => "ads/ad", :locals => { :ids => [347425, 347432], :html_class => "col2" } %>
+
+<%= render :partial => "sh_head_section", :locals => {:sub_columns => @sub_column_nav_eduction, :section_class => "jiaoyu"}  %>
+
+<div class="layout">
+  <div class="rCol rCol-home">
+    <% cache(column_show_content_key_by_id(@train_articles[:id])) do %>
+    <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_css => "story-borderPurple", :header_data => {:list_title => "培训"}, :column_id => column_id_of(@train_articles), :digest_number => 1, :articles => articles_of(@train_articles), :img_ver => "thumb_hm", :mask_size => "120x80", :articles_css => "articles-nohr" } %>
+    <% end %>
+
+    <% cache(column_show_content_key_by_id(@abroad_articles[:id])) do %>
+    <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_css => "story-borderPurple", :header_data => {:list_title => "出国"}, :column_id => column_id_of(@abroad_articles), :digest_number => 1, :articles => articles_of(@abroad_articles), :img_ver => "thumb_hm", :mask_size => "120x80", :articles_css => "articles-nohr" } %>
+    <% end %>
+  </div>
+
+  <div class="main">
+    <% cache(column_show_content_key_by_id(@eduction_articles[:id])) do %>
+    <%= render :partial => "feature_articles", :layout => "story", :locals => { :header_data => {:list_title => "教育·视点"}, :articles => articles_of(@eduction_articles), :column_id => column_id_of(@eduction_articles) } %>
+    <% end %>
+
+    <% cache(column_show_content_key_by_id(@family_articles[:id])) do %>
+    <%= render :partial => "feature_articles", :layout => "story", :locals => { :header_data => {:list_title => "亲子"}, :articles => articles_of(@family_articles), :column_id => column_id_of(@family_articles) } %>
+    <% end %>
+  </div>
+</div>
+
+<!-- 广告位：首页_底部通栏 -->
+<%= render :partial => "ads/ad", :locals => { :id => 347437, :html_class => "footer" } %>

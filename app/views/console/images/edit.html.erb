@@ -9,7 +9,7 @@
     <%= simple_form_for [:console, @image], :html => {:class => "formA"} do |image|%>
 			<p>
 				<label>缩略图:</label>
-     	 <%= image_tag(@image.url_for_search(:x_large, "www"), :alt => @image.desc )%>
+     	 <%= image_tag(@image.url_for_search(:x_large, "image"), :alt => @image.desc )%>
 			</p>
 			<p>
 				<%= image.input :desc, :label => "描述: "%>

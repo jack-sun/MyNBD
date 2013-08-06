@@ -22,7 +22,7 @@
                 <strong>尺寸:</strong> <%= "#{@ad_p.width}x#{@ad_p.height}" %><br />
 		        <strong>链接:</strong> <%= link_to ad.link, ad.link, :target => "_blank"%><br />
 		        <strong>缩略图:</strong><br />
-                        <%= image_tag(ad.image.ad_url(:subdomain => "www"), :style => "max-width:200px; max-height:100px;") %>
+                        <%= image_tag(ad.image.ad_url(:subdomain => "image"), :style => "max-width:200px; max-height:100px;") %>
 		      </td>
 	        <% if @ad_p.current_ad_id == ad.id %>
 	          <td class="itemStatus_1">展示中</td>

@@ -27,6 +27,12 @@ module Api::ApiUtils
 
   module InstanceMethods
     private
+
+    def compress_with_zip(result, json=false)
+      return Zlib::Deflate.deflate(result.to_json.to_s) if json
+      return Zlib::Deflate.deflate(result.to_s)
+    end
+
     def init_articles_params
       init_params(DEFAULT_ARTICLES_PARAMS)
     end

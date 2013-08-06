@@ -1,0 +1,23 @@
+<%
+# 栏目头条
+# articles
+%>
+
+<% articles.each do |a| %>
+<div class="breakNews">
+  <div class="breakNews_title"><%= block_article_list(a) %></div>
+  <div class="breakNews_content">
+    <% if a.relate_article_children.length > 0 %>
+      <ul class="unorderList unorderList-orange">
+        <% a.relate_article_children.order("pos desc").limit(2).each do |ca| %>
+          <li>
+            <%= link_to ca.children_title, ca.children_url, {:target => "_blank", :title => ca.children_title} %>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p><%= a.show_digest %></p>
+    <% end %>
+  </div>
+</div>
+<% end %>

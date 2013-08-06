@@ -1,5 +1,8 @@
 <% @title="文章搜索 - #{@keyword}" %>
-<%= require_css "article_list.css" %>
+
+<style type="text/css">
+	.wrapper { padding-top: 15px; }
+</style>
 
 <% content_for :header_ad do %>
 	<script type="text/javascript">
@@ -9,6 +12,45 @@
 	<%= render :partial => "ads/ad", :locals => { :id => "349118", :html_class => "header" } %>
 <% end %>
 
+<div class="layout">
+	<div class="rCol rCol-home">
+
+    <%= render :partial => "columns/hot_articles_v3", :layout => "columns/story", :locals => { :story_css => "story-borderOrange", :header_data => {:list_title => "热门文章"} } %>
+
+    <%= render :partial => "columns/nbd_products" %>
+
+		<!-- 广告位：全站_右边栏一 -->
+		<%= render :partial => "ads/ad", :locals => { :id => "349119", :html_class => "right_box" } %>
+	</div>
+	<div class="main">
+		<% if @articles.length == 0 %>
+			<div class="story_shadow">
+				<div class="story">
+					<div class="story_bd">
+						<%= render :partial => "search/not_searched", :locals => { :keyword => @keyword } %>
+					</div>
+				</div>
+			</div>
+		<% else %>
+			<%= render :partial => "columns/article_list_v3", :layout => "columns/story", :locals => {:header_data => {:list_title => '搜索 "' + @keyword + '" 的结果'}, :opt_data => {:opt_content => "共 #{@articles.total_entries} 个结果"}, :articles => @articles, :display_datetime => true, :digest_number => "max" } %>
+			<%= paginate @articles %>
+		<% end %>
+	</div>
+</div>
+
+<!-- 广告位：全站_底部通栏 -->
+<%= render :partial => "ads/ad", :locals => { :id => "349120", :html_class => "footer" } %>
+
+
+
+
+
+
+
+
+
+
+<% if false %>
 <div class="leftCol">
 	<% if @articles.length == 0 %>
 	<%= render :partial => "search/no_search_result", :locals => { :keyword => @keyword } %>
@@ -34,3 +76,4 @@
 
 <!-- 广告位：全站_底部通栏 -->
 <%= render :partial => "ads/ad", :locals => { :id => "349120", :html_class => "footer" } %>
+<% end %>

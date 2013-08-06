@@ -8,7 +8,7 @@ class FeatureUploader < BaseUploader
   # include CarrierWave::ImageScience
   
   # Choose what kind of storage to use for this uploader:
-  storage :file
+  # storage :file
   # storage :fog
 
   #process :change_quality

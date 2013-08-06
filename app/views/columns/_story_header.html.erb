@@ -1,0 +1,17 @@
+<%
+# _story_content的header部分 #
+column_id = '' unless column_id
+list_title = '' unless list_title
+list_title_tail = '' unless list_title_tail
+for_subdomain = false unless for_subdomain
+%>
+
+<% if column_id.present? %>
+  <% if for_subdomain %>
+    <%= link_to list_title, send("#{for_subdomain}_column_url", column_id)+list_title_tail%>
+  <% else %>
+    <%= link_to list_title, column_url(column_id, :subdomain => SUBDOMAIN_EXP[WWW_EXP])+list_title_tail%>
+  <% end %>
+<% else %>
+  <%= list_title %>
+<% end %>

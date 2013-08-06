@@ -3,20 +3,32 @@ require 'pp'
 require 'nbd/utils'
 require 'logger/logger_patch'
 require 'uri'
+require 'nbd/generate_article_urls'
 class ApplicationController < ActionController::Base
+
   AD_TYPE_INDEX = 1
   AD_TYPE_ARTICLE = 2
   AD_TYPE_COUMN = 3
   AD_TYPE_ALL = 4
+  USER_NAME = "preview"
+  PASSWORD = "123456"
+
   include SimpleCaptcha::ControllerHelpers
+
   protect_from_forgery
   before_filter :current_user
+  before_filter :authenticate
 
   after_filter do
     self.logger.last_log_message = ""
   end
 
   rescue_from Exception, :with => :render_all_errors
+
+  ##### workaround *_article_url methods override bugs
+  include Nbd::GenerateArticleUrls
+  helper_method :live_url, :article_url, :article_url_mobile, :west_article_url, :ntt_article_url
+  #####
   
   def render_all_errors(exception)
     if Rails.env.production?
@@ -45,17 +57,6 @@ class ApplicationController < ActionController::Base
     super(options)
   end
   helper_method :url_for
-
-  def ntt_article_url(article, html_suffix = true)
-    if article.redirect_to.present?
-  	  article.redirect_to
-  	else
-    	url = "#{Settings.ntt_host}/articles/#{article.created_at.strftime("%Y-%m-%d")}/#{article.id}"
-    	url += ".html" if html_suffix
-    	url
-    end
-  end
-  helper_method :ntt_article_url
   
   def current_user
     Rails.logger.info '###################'
@@ -272,6 +273,11 @@ class ApplicationController < ActionController::Base
     @mn_account ||= (MnAccount.where(:access_token => params[:access_token]).first if params[:access_token].present?)
   end
 
+  def subdomain
+    subdomain = request.subdomain(Settings.domain_length)
+  end
+  helper_method :subdomain
+
   protected
 
   def staff_name
@@ -281,6 +287,14 @@ class ApplicationController < ActionController::Base
 
   def current_user_by_mn_account
     @mn_account.user
+  end
+
+  private
+
+  def authenticate
+    authenticate_or_request_with_http_basic do |user_name, password|
+      user_name == USER_NAME && password == PASSWORD
+    end if RAILS_ENV == 'production'
   end
 
 end

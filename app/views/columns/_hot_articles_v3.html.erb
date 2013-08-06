@@ -1,0 +1,14 @@
+<%
+show_number = 10 if show_number.nil?
+hot_articles = Article.hot_articles(20)[0..show_number-1] if hot_articles.nil?
+%>
+
+<ol class="hotArticles">
+  <% if hot_articles and hot_articles.size > 0 %>
+    <% hot_articles.each_with_index do |article, index|%>
+      <li>
+        <b <%if index<3%>class="hotArticles_topLabel"<%end%>><%=index+1%></b><%= link_to article.list_title, article_url(article), {:target => "_blank"} %>
+      </li>
+    <% end %>
+  <% end %>
+</ol>

@@ -1,5 +1,8 @@
 require 'nbd/cache_filter'
 class Api::ColumnistsController < ApplicationController
+
+  skip_before_filter :authenticate
+  
   include Api::ApiUtils 
   include Nbd::CacheFilter
 

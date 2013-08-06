@@ -1,0 +1,26 @@
+<div class="story-funArticles">
+  <h3 class="story_hd">
+    <span class="story_hd_opt">
+      <%= link_to "更多", column_url(column_id) %>
+    </span>
+    社会·故事·时事
+  </h3>
+  <div class="story_bd clearfix">
+    <ul class="funArticles">
+      <% articles.each do |article| %>
+        <li>
+          <div class="funArticles_img">
+            <%= block_article_list(article,
+                                   :subdomain => Settings.default_sub_domain, 
+                                   :with_image =>true,
+                                   :version => :thumb_hm,
+                                   :is_show_default => true) %>
+          </div>
+          <p class="funArticles_title">
+            <%= block_article_list(article) %>
+          </p>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

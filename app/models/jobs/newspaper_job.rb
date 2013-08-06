@@ -5,9 +5,9 @@ class Jobs::NewspaperJob
     newspaper = Newspaper.where(:id => newspaper_id).first
     return if newspaper.nil?
 
-    file = File.new(file_path)
+    # file = File.new(file_path)
     begin
-    articles_data = NBD::Utils.parse_daily_news(file)
+    articles_data = NBD::Utils.parse_daily_news(file_path)
     rescue Exception => e
       WebsiteLog.error2("newspaper error", "filename:#{file_path.split("/").last}  --  newspaper_id:#{newspaper_id}", e)
       Newspaper.get_file_status_hash_key(newspaper_id)["#{file_path.split("/").last}"] = Newspaper::STATUS_PARSE_ERROR

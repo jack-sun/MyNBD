@@ -24,10 +24,12 @@
 <% end %>
 
 <div class="leftCol">
-  <% @articles_newspapers = @articles_newspapers.group_by{|e| e.page.to_s + " - " + e.section} %>
+  <% @articles_newspapers = @articles_newspapers.group_by{|e| e.page.to_s + " - " + e.section}.map{|key, value| [key, value]}.sort{|x, y| x.first.to_i <=> y.first.to_i} %>
   <% cache(newspaper_content_key_by_id(@newspaper.id)) do %>
 	<div id="pageName"><h1>今日报纸 : <%= @newspaper.n_index %></h1></div>
-		<% @articles_newspapers.each do|section, article_newspaper| %>
+		<% @articles_newspapers.each do|item| 
+			section = item.first
+			article_newspaper = item.last-%>
           <%= render :partial => "columns/article_list", :locals => {:list_title => "<a name='#{section}'>#{section}</a>".html_safe, :articles => article_newspaper.map(&:article).compact.find_all{|x|x.status == Article::PUBLISHED}, :digest_number => "max" } %>
 		<%end %>
   <% end %>
@@ -37,7 +39,8 @@
 		<div class="title"><h3>新闻索引</h3></div>
 		<div class="content">
 			<ul class="indexBox roundCorner">
-				<% @articles_newspapers.keys.each do|section| %>
+				<% @articles_newspapers.each do|item| 
+					section = item.first-%>
 				<li><a href="#<%= section %>"><%= section %></a></li>
 				<%end %>
 			</ul>

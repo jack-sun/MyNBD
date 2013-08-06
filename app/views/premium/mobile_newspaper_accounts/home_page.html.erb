@@ -46,7 +46,7 @@
               premium_touzibao_tiantianyingjia_path, :class => "tzbSlideintro_detail" %>
           <div class="tzbSlideintro_links">
             <p>
-              <a href="https://itunes.apple.com/us/app/mei-jing-tou-zi-bao-mei-ri/id575805206?ls=1&mt=8" target="_blank">iPhone客户端</a>
+              <a href="https://itunes.apple.com/us/app/mei-jing-tou-zi-bao-tian-tian/id655463089?ls=1&mt=8" target="_blank">iPhone客户端</a>
               <a href="http://product.nbd.com.cn/touzibao/android/TouzibaoMobile-NBD-Web-release.apk">Android客户端</a>
             </p>
             <p>
@@ -110,7 +110,7 @@
             <div class="article-item__title"> <%= link_to article.title, article_url(article), :target => '_blank' %> </div>
             <div class="article-item__digest">
               <a href="#">
-                <%= link_to image_tag(article_thumbnail_path(article, :small), {:alt => article.list_title, :width => 80, :height => 60}),  article_url(article), {:target => "_blank"} if article.image.present? %>
+                <%= link_to image_tag(article_thumbnail_path(article, :thumb_hs), {:alt => article.list_title, :width => 80, :height => 60}),  article_url(article), {:target => "_blank"} if article.image.present? %>
               </a>
               <%= article.digest %>
             </div>
@@ -142,7 +142,7 @@
             <div class="article-item__title"> <%= link_to article.title, article_url(article), :target => '_blank' %> </div>
             <div class="article-item__digest">
               <a href="#">
-                <%= link_to image_tag(article_thumbnail_path(article, :small), {:alt => article.list_title, :width => 80, :height => 60}),  article_url(article), {:target => "_blank"} if article.image.present? %>
+                <%= link_to image_tag(article_thumbnail_path(article, :thumb_hs), {:alt => article.list_title, :width => 80, :height => 60}),  article_url(article), {:target => "_blank"} if article.image.present? %>
               </a>
               <%= article.digest %>
             </div>
@@ -174,7 +174,7 @@
             <div class="article-item__title"> <%= link_to article.title, article_url(article), :target => '_blank' %> </div>
             <div class="article-item__digest">
               <a href="#">
-                <%= link_to image_tag(article_thumbnail_path(article, :small), {:alt => article.list_title, :width => 80, :height => 60}),  article_url(article), {:target => "_blank"} if article.image.present? %>
+                <%= link_to image_tag(article_thumbnail_path(article, :thumb_hs), {:alt => article.list_title, :width => 80, :height => 60}),  article_url(article), {:target => "_blank"} if article.image.present? %>
               </a>
               <%= article.digest %>
             </div>

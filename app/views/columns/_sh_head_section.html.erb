@@ -1,0 +1,21 @@
+<%
+=begin
+section_class: String
+sub_columns: Arary
+=end
+sub_domain = nil unless sub_domain
+sub_columns
+%>
+
+<div class="hedSec">
+  <h2 class="hedSec_title hedSec_title-<%=section_class%>"><%= section_class %></h2>
+  <div class="hedSec_links">
+    <% sub_columns.each_with_index do |child_column, index| %>
+      <% if sub_domain %>
+        <%= link_to child_column.name, send("#{sub_domain}_column_url",child_column) %>   
+      <% else %>
+        <%= link_to child_column.name, column_path(child_column) %>   
+      <% end %>
+    <%end%>
+  </div>
+</div>

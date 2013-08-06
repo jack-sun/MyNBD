@@ -1,105 +1,66 @@
 <% @title = @article.title %>
-<%= require_css "site_article.css" %>
-<%= require_js "speak_mana.js" %>
-<%= require_js "jquery.color.js" %>
-<%= require_popWin %>
-<%= require_fixedPosition %>
-<%= require_autoComplete %>
+<%#= require_css "article" %>
+<%= stylesheet_link_tag "article.css" %>
 
 <% content_for :header_ad do %>
-	<script type="text/javascript">
-		BAIDU_CLB_preloadSlots("347473","347491","347495","347499","347516");
-	</script>
-	<!-- 广告位：文章详情页_顶部四分之三通栏 -->
-	<%= render :partial => "ads/ad", :locals => { :id => "347473", :html_class => "header" } %>
+  <script type="text/javascript">
+    BAIDU_CLB_preloadSlots("347473","347491","347495","347499","347516");
+  </script>
+  <!-- 广告位：文章详情页_顶部四分之三通栏 -->
+  <%= render :partial => "ads/ad", :locals => { :id => "347473", :html_class => "header" } %>
 <% end %>
+
+<!-- crumb -->
 <% cache(article_crumbs_nav_key_by_id(@article.id), :expire_in => Article::EXPIRE_IN) do %>
-
-<%= render :partial => "articles/crumb", :locals=>{:first_column => @first_column}%>
+<%= render :partial => "articles/crumb_v3", :locals => {:first_column => @first_column} %>
 <% end %>
 
-<% @_come_back = true %>
-<%= render :partial => "sessions/pop_register_box" %>
+<div class="layout">
+  <div class="rCol rCol-home">
+    <%= render :partial => "ads/ad", :locals => { :id => "347491", :html_class => "right_box" } %>
 
-<% #render :partial => "articles/hot_keywords"%>
-<div id="articalMain">
-  <div class="leftCol">
-    <%= render :partial => "articles/article_content", :locals => { :related_articles => true } %>
-    <%= render :partial => "articles/comments_block" %>
+    <!-- 频道推荐 -->
+    <%= ssi_include_file(:fragment_page ,:right_top_1, {:column_id => Column::FEATURE_COLUMN_HASH[@article.first_column.parent_id]}) %>
 
-    <% cache(column_show_content_key_by_id(@image_news[:id], true, "uniq")) do %>
-      <%= render :partial => "columns/article_feature", :locals => {:list_title => "每日好图", :articles => @image_news[:articles].map(&:article).compact, :column_id => 4, :digest_number => 5, :html_class => "articleWallWrapper", :html_style=>"margin:20px 0;" } %>		
-    <% end %>
+    <!-- 热门文章 -->
+    <%= ssi_include_file(:fragment_page ,:right_top_2, {:column_id => @article.first_column.parent_id}) %>
 
-	<%= render :partial => "articles/jump_nav" %>
+    <!-- 频道图片精选 -->
+    <%= ssi_include_file(:fragment_page ,:right_top_3, {:column_id => Column::COLUMN_PICTURE[@article.first_column.parent_id]}) %>
 
-  </div> 
+    <%= render :partial => "ads/ad", :locals => { :id => "347495", :html_class => "right_box" } %>
 
-  <div class="rightCol">
-    <div class="sectionA">
-      <div class="title"><h3>更多<%= @article.tags.present? ? "有关“"+@article.tags+"”的" : "相关" %>新闻</h3></div>
-      <div class="content" style="padding-top:0;" >
-		    <%= render :partial => "ads/ad", :locals => { :id => "347491", :html_class => "right_box", :html_style => "margin-top:0px;" } %>
-      </div>
-    </div>
-    <!-- 广告位：文章详情页_右边栏一 -->
-    
-    <% cache(column_collected_articles_key_by_id(@column_top_picks[:id]), :expire_in => Column::EXPIRE_IN) do %>
-      <% if @column_top_picks[:articles].present? %>
-        <%= render :partial => "columns/article_feature", :locals => {:list_title => "频道推荐", :articles => (@column_top_picks[:articles] || []).map(&:article).compact, :column_id => @column_top_picks[:id], :digest_number => 4, :html_class => "articleWallWrapper"} %>
-      <% end %>
-    <% end %>
-
-    <div class="divider" style="margin-bottom:10px;"></div>
-
-    <% cache(column_show_content_key_by_id(@nbd_weekly_comment[:id], true, "uniq")) do %>
-      <% if (_article = @nbd_weekly_comment[:articles].map(&:article).compact[0]) %>
-        <%= render :partial => "columns/one_word", :locals => { :article => _article }%>
-      <% end %>
-    <% end %>
-
-    <div class="divider" style="margin-bottom:10px;"></div>
-
-    <% if false # @hot_topics[:topics].present? %>
-      <% cache(Topic::HOT_TOPIC_FRAGMENT_CACHE_KEY) do %>
-        <%= render :partial => "columns/hot_weibo_topic_entry", :locals => {:topic => @hot_topics[:topics].first}%>
-      <% end %>
-    <%end%>
-    
-    <% cache(Live::HOME_INDEX_FRAGMENT_KEY, :expire_in => 3*60) do %>
-      <%= render :partial => "columns/market_live", :locals => {:compere => @showed_live.user, :live_talks => @showed_live_talks, :live => @showed_live} %>
-    <%end%>
-
-
-	  <div class="divider" style="margin-bottom:10px;"></div>
-
-        <%= render :partial => "columns/hot_articles" %>
-
-    <% if false %>	
-      <%= render :partial => "columns/feature_list", :locals => {:articles => @global_hot_features[:articles].map(&:article).compact, :html_style => "margin-bottom:20px;"}%>		
-    <% end %>
-
-    <% cache(column_show_content_key_by_id(@featured_articles[:id], true, "uniq")) do %>
-      <%= render :partial => "columns/article_feature", :locals => {:list_title => "每日精选", :articles => @featured_articles[:articles].map(&:article).compact, :column_id => @featured_articles[:id], :digest_number => 4, :html_class => "articleWallWrapper", :html_style => "margin-bottom:15px;"} %>
-    <%end %>
-
-    <% cache(column_show_content_key_by_id(@focus_articles[:id], true, "uniq")) do %>
-      <%= render :partial => "columns/article_list", :locals => {:list_title => "媒体聚焦", :articles => @focus_articles[:articles].map(&:article).compact, :column_id => 8, :digest_number =>1, :display_datetime => true, :html_style => "margin-bottom:10px;", :digest_restrict => true } %>
-    <%end %>
-
-    <!-- 广告位：文章详情页_右边栏二 -->
-		<%= render :partial => "ads/ad", :locals => { :id => "347495", :html_class => "right_box" } %>
-
-    <%= render :partial => "columns/nbd_promo", :locals => {:hide_newspappers => true, :title => "移动客户端"} %>
-    <%= render :partial => "columns/subscription", :locals => {:html_style => ""} %>
-
+    <%= render :partial => "columns/nbd_products" %>
   </div>
 
-  <div class="clear"></div>
+  <div class="main main-b">
+    <div class="story_shadow">
+      <div class="story story-articleWrapper">
+        <%= render :partial => "article_content_v3", :locals => { :related_articles => true } %>
+
+        <!-- 广告位：文章详情页_投资宝 -->
+        <div class="a_adWrapper">
+          <script type="text/javascript">BAIDU_CLB_fillSlot("557753");</script>
+        </div>
+        
+        <%= ssi_include_file(:fragment_page, :bottom_1) %>
+      </div>
+    </div>
+  </div>
 </div>
+
+<%= render :partial => "btm_nav" %>
 
 <!-- 广告位：文章详情页_底部通栏 -->
 <%= render :partial => "ads/ad", :locals => { :id => "347499", :html_class => "footer" } %>
 
 <!-- 广告位：文章详情页_右下角漂浮 -->
 <%= render :partial => "ads/ad", :locals => { :id => "347516" } %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    $.get('<%= add_click_count_article_path(@article) %>');
+  });
+</script>
+<% if @page.p_index == 1 %>
+<% end %>

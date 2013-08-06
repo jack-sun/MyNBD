@@ -1,4 +1,3 @@
-<%= require_css "homepage.css" %>
 <%= require_loopScroll %>
 <%= require_slideShow %>
 
@@ -23,27 +22,450 @@
 	<%= render :partial => "ads/ad", :locals => { :id => "347411", :html_class => "header" } %>
 <% end %>
 
-<% render :partial => "columns/sub_navigation", :locals => {:column_id => 1 } %>
+<%# render :partial => "columns/sub_navigation", :locals => {:column_id => 1 } %>
+
+<%= render :partial => "attach_scroll_news", :locals => { :bulletins => @bulletin_articles } %>
+
+<!-- 1 view -->
+<div class="layout">
+
+  <!-- 1 view right -->
+  <div class="rCol rCol-home">
+    <!-- require Cache but no  -->
+    <% cache(column_show_content_key_by_id(@image_articles[:id])) do %>
+      <%= render :partial => "image_articles", :layout => "story", :locals => { :story_id => "h_home_first_31", :story_css => "story-p1", :articles => articles_of(@image_articles), :image_css => "imageArticle-home", :concise_mode => true } %>
+    <% end %>
+
+    <% cache(column_show_content_key_by_id(@featured_articles[:id])) do %>
+      <%= render :partial => "home_recommend" %>
+    <% end %>
+
+    <% cache("home_nbd_products") do %>
+      <%= render :partial => "nbd_products" %>
+    <% end %>
+
+    <div class="story_shadow">
+      <div id="h_home_first_34" class="story story-touzibao">        
+        <h3 class="story_hd">
+          <div class="story_hd_opt">
+            <a href="<%= Touzibao::TOUZIBAO_INTRODUCE_URL %>" target="_blank">
+              查看详情 &raquo;
+            </a>
+          </div>
+          <a href="<%= Touzibao::TOUZIBAO_INTRODUCE_URL %>" target="_blank">
+            每经投资宝·精彩推荐
+          </a>
+        </h3>
+        <% cache(column_show_content_key_by_id(Column::TOUZIBAO_CASE_COLUMN)) do %>
+          <div class="story_bd">
+            <a href="<%= Touzibao::TOUZIBAO_INTRODUCE_URL %>" target="_blank">
+              <%= truncate(@touzibao_latest_cases.first.show_digest, :length => 70) %>
+            </a>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <% cache(column_show_content_key_by_id(@ntt_head_article[:id])) do %>
+      <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_css => "story-borderBlue", :header_data => {:list_title => "智库专栏"}, :column_id => column_id_of(@ntt_head_article), :for_subdomain => Settings.ntt_sub_domain, :digest_number => 1, :articles => articles_of(@ntt_head_article) } %>
+    <% end %>
+  </div><!-- 1 view right end -->
+
+  <!-- 1 view left -->
+  <div class="main main-b">
+    
+    <!-- Front Page -->
+    <% cache(column_show_content_key_by_id(@head_articles[:id])) do %>
+      <%= render :partial => "front_page", :locals => { :articles => articles_of(@head_articles) } %>
+    <% end %>
+
+    <div class="layout">
+      <div class="lCol lCol-home">
+        <% cache(column_show_content_key_by_id(Column::NBD_ORIGINAL_COLUMN_ID)) do %>
+        <%= render :partial => "nbd_original", :locals => {:articles => @original_articles}[:articles] %>
+        <% end %>
+        <% cache(column_show_content_key_by_id(@popular_features[:id])) do %>
+          <%= render :partial => "story_slide", :locals => { :header_data => {:list_title => "专题精选"}, :articles => articles_of(@popular_features), :column_id => @popular_features[:id] } %>
+        <% end %>
+      </div>
+      <div class="main main-b">
+        <%= render :partial => "important_news", :layout => "story", :locals => { :header_data => {:list_title => "要闻"}, :story_id => "h_home_first_22", :news => @important_articles, :stock => @important_articles_stock, :company => @important_articles_company, :finance => @important_articles_finance, :column_id => column_id_of(@important_articles) } %>
+      </div>
+    </div>
+
+  </div><!-- 1 view left end -->
+</div><!-- 1 view end -->
+
+<!-- 广告位：首页_左通栏一 首页_右通栏一 -->
+<%= render :partial => "ads/ad", :locals => { :ids => [347417, 347428], :html_class => "col2" } %>
+
+<!-- 2 view stock -->
+<% cache(column_sub_column_nav_key_by_id(10)) do %>
+  <%= render :partial => "head_section", :locals => { :section_class => "gupiao", :sub_column_id => 10, :sub_domain => "stock" } %>
+<% end %>
+
+<div class="layout">
+  <!-- 2 view stock right -->
+  <div class="rCol rCol-home">
+    <% cache(column_show_content_key_by_id(@company_inv_articles[:id], true, "uniq")) do %>
+      <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_css => "story-borderBlue", :header_data => {:list_title => "上市公司调查"}, :column_id => column_id_of(@company_inv_articles), :digest_number => 1, :articles => articles_of(@company_inv_articles) } %>
+    <% end %>
+
+    <div class="story_shadow">
+      <div id="h_home_stock_32" class="story story-borderOrange">
+        <h3 class="story_hd">
+          市场行情
+        </h3>
+        <div class="story_bd">
+          <iframe width="100%" height="205px" class="share_self" frameborder="0" scrolling="no" src="http://finance.sina.com.cn/mini/cnr/global_market.shtml"></iframe>
+          <%= link_to "锁定最热股市资讯，免费试用每经投资宝", premium_touzibao_home_page_url, :class => "bgOrange mts pas gF tc f12 db" %>
+        </div>
+      </div>
+    </div>
+
+    <% cache(Live::HOME_INDEX_FRAGMENT_KEY, :expire_in => 5*60) do %>
+    <%= render :partial => "market_live_v3", :locals => {:live_talk => @showed_live_talks.first, :live => @showed_live} %>
+    <% end %>
+  </div><!-- 2 view stock - right end -->
+
+  <!-- 2 view stock - left -->
+  <div class="main">
+    <div class="story_shadow">
+      <div class="story">
+        <div class="story_divide_l">
+          <% cache(column_show_content_key_by_id(@zhengbuchun_column[:id])) do %>
+            <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_is_hide => true, :header_data => {:list_title => "郑眼看盘"}, :column_id => column_id_of(@zhengbuchun_column), :digest_number => 1, :articles => articles_of(@zhengbuchun_column) } %>
+          <% end %>
+        </div>
+        <div class="story_divide_r">
+          <% cache(column_show_content_key_by_id(@laofashi_column[:id])) do %>
+            <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_is_hide => true, :header_data => {:list_title => "老法师操盘手记"}, :column_id => column_id_of(@laofashi_column), :digest_number => 1, :articles => articles_of(@laofashi_column) } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="story_shadow">
+      <div id="h_home_stock_12" class="story">
+        <div class="story_divide_l">
+          <% cache(column_show_content_key_by_id(Column::HOME_COMBINED_COLUMN_ID)) do %>
+            <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_is_hide => true, :header_data => {:list_title => "市场综合"}, :column_id => column_id_of(@market_collection), :display_column => true, :articles => @market_collection[:articles], :display_column_ids => [23, 24, 25, 26, 27, 28] } %>
+          <% end %>
+        </div>
+        <div class="story_divide_r">
+          <% cache(column_show_content_key_by_id(@market_express_articles[:id])) do %>
+            <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_is_hide => true, :header_data => {:list_title => "行情快讯"}, :column_id => column_id_of(@market_express_articles), :articles => articles_of(@market_express_articles) } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="story_shadow">
+      <div class="story">
+        <div class="story_divide_l">
+          <% cache(column_show_content_key_by_id(@analysis_articles[:id])) do %>
+            <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_is_hide => true, :header_data => {:list_title => "对策"}, :column_id => column_id_of(@analysis_articles), :digest_number => 1, :articles => articles_of(@analysis_articles) } %>
+          <% end %>
+        </div>
+        <div class="story_divide_r">
+          <% cache(column_show_content_key_by_id(@stock_bulletin[:id])) do %>
+            <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_is_hide => true, :header_data => {:list_title => "公告"}, :column_id => column_id_of(@stock_bulletin), :digest_number => 1, :articles => articles_of(@stock_bulletin) } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div><!-- 2 view stock right end -->
+</div><!-- 2 view stock end -->
+
+<!-- 广告位：首页_左通栏二 首页_右通栏二 -->
+<%= render :partial => "ads/ad", :locals => { :ids => [347421, 347430], :html_class => "col2" } %>
+<!-- 3 view company -->
+<% cache(column_sub_column_nav_key_by_id(33)) do %>
+  <%= render :partial => "head_section", :locals => { :section_class => "gongsi", :sub_column_id => 33, :sub_domain => "company" } %>
+<% end %>
+
+<div class="layout">
+  <!-- 3 view company right -->
+  <div class="rCol rCol-home">
+    <% cache(column_show_content_key_by_id(@biz_featured_articles[:id])) do %>
+      <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_id => "h_home_company_31", :story_css => "story-borderBlue", :header_data => {:list_title => "商业精选"}, :column_id => column_id_of(@biz_featured_articles), :digest_number => 1, :articles => articles_of(@biz_featured_articles) } %>
+    <% end %>
+
+    <% cache(column_show_content_key_by_id(@macro[:id], true, "uniq")) do %>
+      <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_css => "story-borderOrange", :header_data => {:list_title => "宏观要闻"}, :column_id => column_id_of(@macro), :digest_number => 1, :articles => articles_of(@macro) } %>
+    <% end %>
+
+    <% cache(column_show_content_key_by_id(@campaign_articles[:id], true, "uniq")) do %>
+      <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_css => "story-borderBlue", :header_data => {:list_title => "活动会议"}, :column_id => column_id_of(@campaign_articles), :digest_number => 1, :articles => articles_of(@campaign_articles) } %>
+    <% end %>
+  </div><!-- 3 view company right end -->
+
+  <!-- 3 view company left -->
+  <div class="main">
+    <% cache(column_show_content_key_by_id(@finace_articles[:id])) do %>
+      <%= render :partial => "feature_articles", :layout => "story", :locals => { :story_id => "h_home_company_11", :header_data => {:list_title => "热公司"}, :articles => articles_of(@finace_articles), :column_id => column_id_of(@finace_articles) } %>
+    <% end %>
+
+    <div class="story_shadow">
+      <div class="story">
+        <div class="story_divide_l">
+          <% cache(column_show_content_key_by_id(@property_articles[:id])) do %>
+            <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_is_hide => true, :header_data => {:list_title => "房产"}, :column_id => column_id_of(@property_articles), :digest_number => 1, :articles => articles_of(@property_articles) } %>
+          <% end %>
+        </div>
+        <div class="story_divide_r">
+          <% cache(column_show_content_key_by_id(@sicence_articles[:id])) do %>
+            <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_is_hide => true, :header_data => {:list_title => "科技"}, :column_id => column_id_of(@sicence_articles), :digest_number => 1, :articles => articles_of(@sicence_articles) } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="story_shadow">
+      <div class="story">
+        <div class="story_divide_l">
+          <% cache(column_show_content_key_by_id(@auto_articles[:id])) do %>
+            <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_is_hide => true, :header_data => {:list_title => "汽车"}, :column_id => column_id_of(@auto_articles), :digest_number => 1, :articles => articles_of(@auto_articles) } %>
+          <% end %>
+        </div>
+        <div class="story_divide_r">
+          <% cache(column_show_content_key_by_id(@business_information_articles[:id])) do %>
+            <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_is_hide => true, :header_data => {:list_title => "商讯"}, :column_id => column_id_of(@business_information_articles), :digest_number => 1, :articles => articles_of(@business_information_articles) } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div><!-- 3 view company left end -->
+</div><!-- 3 view company end -->
+
+<!-- 广告位：首页_左通栏三 首页_右通栏三 -->
+<%= render :partial => "ads/ad", :locals => { :ids => [347425, 347432], :html_class => "col2" } %>
+
+<!-- 4 view global -->
+<% cache(column_sub_column_nav_key_by_id(47)) do %>
+  <%= render :partial => "head_section", :locals => { :section_class => "quanqiu", :sub_column_id => 47 } %>
+<% end %>
+
+<div class="layout">
+  <div class="rCol rCol-home">
+    <% cache(column_show_content_key_by_id(@global_express_articles[:id])) do %>
+      <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_id => "h_home_global_31", :story_css => "story-borderBlue", :header_data => {:list_title => "全球快讯"}, :column_id => column_id_of(@global_express_articles), :digest_number => 1, :articles => articles_of(@global_express_articles) } %>
+    <% end %>
+    
+    <% cache(column_show_content_key_by_id(@global_asia[:id])) do %>
+      <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_css => "story-borderBlue", :header_data => {:list_title => "亚洲"}, :column_id => column_id_of(@global_asia), :digest_number => 1, :articles => articles_of(@global_asia) } %>
+    <% end %>
+  </div>
+
+  <div class="main">
+    <% cache(column_show_content_key_by_id(@global_featured_articles[:id])) do %>
+      <%= render :partial => "feature_articles", :layout => "story", :locals => { :story_id => "h_home_global_11", :header_data => {:list_title => "全球精选"}, :articles => articles_of(@global_featured_articles), :column_id => column_id_of(@global_featured_articles) } %>
+    <% end %>
+
+    <div class="story_shadow">
+      <div class="story">
+        <div class="story_divide_l">
+          <% cache(column_show_content_key_by_id(@global_america[:id])) do %>
+            <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_is_hide => true, :header_data => {:list_title => "美国"}, :column_id => column_id_of(@global_america), :digest_number => 1, :articles => articles_of(@global_america) } %>
+          <% end %>
+        </div>
+        <div class="story_divide_r">
+          <% cache(column_show_content_key_by_id(@global_europe[:id])) do %>
+            <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_is_hide => true, :header_data => {:list_title => "欧洲"}, :column_id => column_id_of(@global_europe), :digest_number => 1, :articles => articles_of(@global_europe) } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- 4 view global end -->
+
+<!-- 5 view ntt -->
+<% cache(column_sub_column_nav_key_by_id(56)) do %>
+<%= render :partial => "head_section", :locals => { :section_class => "zhiku", :sub_column_id => 56, :sub_domain => Settings.ntt_sub_domain } %>
+<% end %>
+
+<div class="layout">
+  <div class="rCol rCol-home">
+    <div class="story_shadow">
+      <div class="story story-borderOrange">
+        <div class="story_hd">
+          <h3>专题策划</h3>
+        </div>
+        <div class="story_bd">
+          <h4 class="f14 pbs"><%= link_to "十字路口的城镇化", send("#{Settings.ntt_sub_domain}_column_url", @ntt_urbanization[:id])+"?type=feature", :class => "gStory" %></h4>
+          <% cache(column_show_content_key_by_id(@ntt_urbanization[:id])) do %>
+          <%= render :partial => "article_list_v3", :locals => {:articles => articles_of(@ntt_urbanization), :for_subdomain => Settings.ntt_sub_domain} %>
+          <div class="hr"></div>
+          <% end %>
+          
+          <% cache(column_show_content_key_by_id(@ntt_house_observe[:id])) do %>
+          <h4 class="f14 pbs"><%= link_to "楼市观察", send("#{Settings.ntt_sub_domain}_column_url", @ntt_house_observe[:id])+"?type=feature", :class => "gStory" %></h4>
+          <%= render :partial => "article_list_v3", :locals => {:articles => articles_of(@ntt_house_observe), :for_subdomain => Settings.ntt_sub_domain} %>
+          <div class="hr"></div>
+          <% end %>
+
+          <% cache(column_show_content_key_by_id(@ntt_huaerjie_observe[:id])) do %>
+          <h4 class="f14 pbs"><%= link_to "说不完的华尔街", send("#{Settings.ntt_sub_domain}_column_url", @ntt_huaerjie_observe[:id])+"?type=feature", :class => "gStory" %></h4>
+          <%= render :partial => "article_list_v3", :locals => {:articles => articles_of(@ntt_huaerjie_observe), :for_subdomain => Settings.ntt_sub_domain} %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main">
+    <%= render(:layout => "story", :locals => { :story_id => "h_home_ntt_11", :story_css => "story-nop", :header_data => {:list_title => "智库专家"}, :column_id => @columnist_articles[:id], :for_subdomain => Settings.ntt_sub_domain}) do %>
+      <% cache(columnist_articles_key_by_id("index_table")) do %>
+      <div class="story_divide_l">
+        <div class="story_bd" style="padding:15px;">
+          <%= render :partial => "article_list_v3", :locals => {:digest_number => 2, :articles => @columnist_articles[:articles][0..1], :for_subdomain => Settings.ntt_sub_domain} %>
+        </div>
+      </div>
+      <div class="story_divide_r">
+        <div class="story_bd" style="padding:15px;">
+          <%= render :partial => "article_list_v3", :locals => {:digest_number => 2, :articles => @columnist_articles[:articles][2..3], :for_subdomain => Settings.ntt_sub_domain} %>
+        </div>
+      </div>
+      <% end %>
+    <% end %>
+
+    <div class="story_shadow">
+      <div class="story">
+        <div class="story_divide_l">
+          <% cache(column_show_content_key_by_id(@interview_articles[:id])) do %>
+          <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_is_hide => true, :header_data => {:list_title => "专家访谈"}, :column_id => column_id_of(@interview_articles), :digest_number => 1, :articles => articles_of(@interview_articles), :for_subdomain => Settings.ntt_sub_domain } %>
+          <% end %>
+        </div>
+        <div class="story_divide_r">
+          <% cache(column_show_content_key_by_id(@ntt_books[:id])) do %>
+          <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_is_hide => true, :header_data => {:list_title => "每经书会"}, :column_id => column_id_of(@ntt_books), :digest_number => 1, :articles => articles_of(@ntt_books), :for_subdomain => Settings.ntt_sub_domain } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><!-- 5 view ntt end -->
+
+<!-- 广告位：首页_左通栏四 首页_右通栏四 -->
+<%= render :partial => "ads/ad", :locals => { :ids => [347426, 347433], :html_class => "col2" } %>
+
+<div class="layout">
+  <!-- 7 view misc -->
+  <div class="rCol rCol-home">
+    <% cache(column_show_content_key_by_id(@video_news[:id])) do %>
+    <%= render :partial => "media_wall", :layout => "story", :locals => { :story_css => "story-borderBlue story-nop", :header_data => {:list_title => "视听·每经财讯"}, :articles => articles_of(@video_news), :column_id => column_id_of(@video_news) } %>
+    <% end %>
+
+    <% cache(column_show_content_key_by_id(@video_face_to_face[:id])) do %>
+    <%= render :partial => "media_wall", :layout => "story", :locals => { :story_css => "story-borderOrange story-nop", :header_data => {:list_title => "视听·财经面对面"}, :articles => articles_of(@video_face_to_face), :column_id => column_id_of(@video_face_to_face) } %>
+    <% end %>
+    <% cache(Article::HOT_ARTICLE_FRAGMENT_CACHE_KEY, :expire_in => 30*60) do %>
+    <%= render :partial => "hot_articles_v3", :layout => "story", :locals => { :story_css => "story-borderOrange", :header_data => {:list_title => "热门文章"} } %>
+    <% end %>
+  </div><!-- 7 view misc end -->
+
+  <div class="main">
+    <!-- 5 view life -->
+    <% cache(column_sub_column_nav_key_by_id(61)) do %>
+    <%= render :partial => "head_section", :locals => { :section_class => "pinwei", :sub_column_id => 61, :sub_domain => 'life' } %>
+    <% end %>
+
+    <div class="story_shadow">
+      <div class="story">
+        <div class="story_divide_l">
+          <% cache(column_show_content_key_by_id(@entertainment_articles[:id])) do %>
+          <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_is_hide => true, :header_data => {:list_title => "娱乐"}, :column_id => column_id_of(@entertainment_articles), :digest_number => 1, :articles => articles_of(@entertainment_articles) } %>
+          <% end %>
+        </div>
+        <div class="story_divide_r">
+          <% cache(column_show_content_key_by_id(@fashion_articles[:id])) do %>
+          <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_is_hide => true, :header_data => {:list_title => "时尚"}, :column_id => column_id_of(@fashion_articles), :digest_number => 1, :articles => articles_of(@fashion_articles) } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="story_shadow">
+      <div class="story">
+        <div class="story_divide_l">
+          <% cache(column_show_content_key_by_id(@life_travel[:id])) do %>
+          <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_is_hide => true, :header_data => {:list_title => "探索"}, :column_id => column_id_of(@life_travel), :digest_number => 1, :articles => articles_of(@life_travel) } %>
+          <% end %>
+        </div>
+        <div class="story_divide_r">
+          <% cache(column_show_content_key_by_id(@life_taste[:id])) do %>
+          <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_is_hide => true, :header_data => {:list_title => "奢侈品"}, :column_id => column_id_of(@life_taste), :digest_number => 1, :articles => articles_of(@life_taste) } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <!-- 5 view life end -->
+
+    <!-- 6 view bschool -->
+    <% cache(column_sub_column_nav_key_by_id(70)) do %>
+    <%= render :partial => "head_section", :locals => { :section_class => "guanli", :sub_column_id => 70, :sub_domain => "bschool" } %>
+    <% end %>
+
+    <div class="story_shadow">
+      <div class="story">
+        <div class="story_divide_l">
+          <% cache(column_show_content_key_by_id(@career_articles[:id])) do %>
+          <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_is_hide => true, :header_data => {:list_title => "职场"}, :column_id => column_id_of(@career_articles), :digest_number => 1, :articles => articles_of(@career_articles) } %>
+          <% end %>
+        </div>
+        <div class="story_divide_r">
+          <% cache(column_show_content_key_by_id(@people_articles[:id])) do %>
+          <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_is_hide => true, :header_data => {:list_title => "人物"}, :column_id => column_id_of(@people_articles), :digest_number => 1, :articles => articles_of(@people_articles) } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="story_shadow">
+      <div class="story">
+        <div class="story_divide_l">
+          <% cache(column_show_content_key_by_id(@mba_articles[:id])) do %>
+          <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_is_hide => true, :header_data => {:list_title => "商学院"}, :column_id => column_id_of(@mba_articles), :digest_number => 1, :articles => articles_of(@mba_articles) } %>
+          <% end %>
+        </div>
+        <div class="story_divide_r">
+          <% cache(column_show_content_key_by_id(@bschool_featured[:id])) do %>
+          <%= render :partial => "article_list_v3", :layout => "story", :locals => { :story_is_hide => true, :header_data => {:list_title => "管理精选"}, :column_id => column_id_of(@bschool_featured), :digest_number => 1, :articles => articles_of(@bschool_featured) } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <!-- 6 view bschool end -->
+  </div>
+</div>
+
+<!-- 广告位：首页_底部通栏 -->
+<%= render :partial => "ads/ad", :locals => { :id => 347437, :html_class => "footer" } %>
+
+<script type="text/javascript">
+  $(function(){
+    $("#scrollNewsInHome").loopScroll();
+  });
+</script>
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%if false%>
 <div class="leftCol">
-	<div id="scrollNewsHome" class="innerCenter">
-		<span class="label"><%= link_to "滚动新闻:", column_url(6), :target => "_blank" %></span>
-		<div id="scrollNewsHomeWrapper">
-			<ul id="scrollNewsHomeList">
-	          <% Article.rolling.order("id desc").limit(8).each do |article| %>
-	            <li>
-	            	<%if article.is_special?%><span class="articleLabel red"><b><%= Article::SPECIAL[article.special] %></b></span><%end%>
-	              	<%= link_to article.list_title, article_url(article), :target => "_blank" %>
-	            </li>
-	          <% end %>
-			</ul>
-		</div>
-	</div>
 	
-	<% cache(column_show_content_key_by_id(@head_article[:id])) do %>
-	  <%= render :partial => "columns/homepage_head_article", :locals => { :article => @head_article[:articles].map(&:article)[0], :column_id => 2 } %>
-	<% end %>
+
 		  
   <div style="width:285px;margin-right:25px;" class="subLeftCol">
     <% cache(column_show_content_key_by_id(@ntt_head_article[:id])) do %>
@@ -66,9 +488,7 @@
 </div>
 <div class="rightCol">
 
-	<% cache(column_show_content_key_by_id(@bulletin_articles[:id], true, "uniq")) do %>
-	    <%= render :partial => "columns/homepage_bulletin", :locals => {:articles => @bulletin_articles[:articles].map(&:article).compact, :column_id => @bulletin_articles[:id]} %>
-	<% end %>
+
 	<div class="divider" style="margin-bottom:2px;"></div>
   <%= render :partial => "columns/tou_zi_bao" %>
 
@@ -389,8 +809,5 @@
 <!-- 广告位：首页_底部通栏 -->
 <%= render :partial => "ads/ad", :locals => { :id => 347437, :html_class => "footer" } %>
 
-<script type="text/javascript">
-	$(function(){
-		$("#scrollNewsHomeList").loopScroll();
-	});
-</script>
+
+<%end%>

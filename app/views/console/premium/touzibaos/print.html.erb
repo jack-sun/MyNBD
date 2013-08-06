@@ -1,23 +1,26 @@
-<%= require_css "article_list.css" %>
-<div class="leftCol">
-  <% @touzibao_articles = @touzibao_articles.group_by{|e| e.section} %>
-  <div id="pageName"><h1><%= @touzibao.t_index %></h1></div>
-  <% @touzibao_articles.each do|section, touzibao_articles| %>
-    <% articles = touzibao_articles.map(&:article).compact.find_all{|x|x.status == Article::PUBLISHED} %>
-    <% next if articles.blank? %>
-    <div class="leftCol">
-    <div class="sectionA">
-      <div class="title">
-        <h3>
-<%= section %>
-        </h3>
+<div class="tzbWrapper tzbWrapper-g">
+    <% @touzibao_articles = @touzibao_articles.group_by{|e| e.section} %>
+    <div id="pageName"><h1><%= @touzibao.t_index %></h1></div>
+
+    <div class="layout">
+      <div class="rCol">
+        &nbsp;
       </div>
-    <div class='content'>
-      <% articles.each do |article| %>
-        <%= article.pages.map(&:content).join("</br>").html_safe %>
-      <% end %>
+      <div class="main noBorder">
+        <% @touzibao_articles.each do|section, touzibao_articles| %>
+          <% articles = touzibao_articles.map(&:article).compact.find_all{|x|x.status == Article::PUBLISHED} %>
+          <% next if articles.blank? %>
+          <div class="sectionA">
+            <div class="title">
+              <h3> <%= section %> </h3>
+            </div>
+            <div class='content'>
+              <% articles.each do |article| %>
+                <%= article.pages.map(&:content).join("</br>").html_safe %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
-    </div>
-    </div>
-  <%end %>
 </div>

@@ -1,8 +1,10 @@
+require 'carrierwave/storage/sftp'
 class BaseUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
   after :store, :unlink_original
-  storage :file
+  # storage :file
+  storage :sftp
 
   def unlink_original(file)
     File.delete("#{Rails.root}/public#{model.send(model.url_type)}") if !self.class.versions.first.nil? and File.exist?("#{Rails.root}/public#{model.send(model.url_type)}")
@@ -38,7 +40,7 @@ class BaseUploader < CarrierWave::Uploader::Base
 
   def resize_by_width(width)
     manipulate! do |img|
-      img.resize "#{width}x"
+      img.resize "#{width}x>"
       img
     end
   end
@@ -49,6 +51,48 @@ class BaseUploader < CarrierWave::Uploader::Base
       img.strip
       img
     end
+  end
+
+  CarrierWave.configure do |config|
+    config.sftp_host = "#{Settings.remote_image_sftp_host}"
+    config.sftp_user = "#{Settings.remote_image_sftp_user}"
+    config.sftp_folder = "#{Settings.remote_image_sftp_folder}"
+    config.sftp_url = ""
+    config.sftp_options = {
+      :port     => 22
+    }
+  end
+
+  protected
+
+  def is_height_or_width_over_500?(pic)
+    is_over_height_or_width?(pic, 500)    
+  end
+
+  def is_height_or_width_over_1280?(pic)
+    is_over_height_or_width?(pic, 1280)    
+  end
+
+  def is_over_height_or_width?(pic, threshold)
+    height, width = width_and_height(pic)
+    return (width > height && width > threshold) || (width < height && height > threshold)
+  end
+
+  def is_vertical?(pic)
+    height, width = width_and_height(pic)
+    return height > width
+  end
+
+  def is_horizontal?(pic)
+    height, width = width_and_height(pic)
+    return height < width
+  end
+
+  def width_and_height(pic)
+    image = MiniMagick::Image.open(pic.path)
+    height = image[:height]
+    width = image[:width]
+    return height, width
   end
 
 end

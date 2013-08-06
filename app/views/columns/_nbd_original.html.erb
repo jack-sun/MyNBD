@@ -1,0 +1,30 @@
+<div class="story_shadow">
+  <div id="h_home_first_12" class="story">
+    <h3 class="story_hd">每经原创</h3>
+    <div class="story_bd">
+      <ul class="nbdOriginal">
+        <% articles.each_with_index do |article, index| %>
+          <% column_id = (Column::ORIGINAL_COLUMNS & article.columns.map(&:id)).first %>
+            <li class="<%= 'last' if index == articles.length-1 %>">
+              <%
+                # class_name = case index
+                #   when 0 then "columnBubble-blue"
+                #   when 1 then "columnBubble-purple"
+                #   when 2 then "columnBubble-green"
+                # end
+              %>
+              <h4 class="columnBubble columnBubble-gray"><b></b>
+                <%= link_to Column.find(column_id).name, column_url(column_id), :target => "_blank" %>
+              </h4>
+              <h5 class="nbdOriginal_title">
+                <%= link_to article.list_title, article_url(article), {:target => "_blank", :title => article.title} %>
+              </h5>
+              <p class="nbdOriginal_content">
+                <%= article.digest %>
+              </p>
+            </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

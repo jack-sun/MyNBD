@@ -1,0 +1,28 @@
+<style type="text/css">
+  <% if subdomain == Settings.shanghai_sub_domain || is_special_skin_column_from_id?(params[:id]) || @render_shanghai_skin %>
+    .header { *width: 100%; *overflow: hidden; background: url(/images/nbd_v3/shanghai-header.png) 0 0 repeat-x; }
+    .header_bg { background: url(/images/nbd_v3/sprite-shanghai.png) 50% -140px no-repeat; }
+
+    .logo {
+      margin-top: 11px; 
+      width: 270px;
+      height: 70px;
+      background: url(/images/nbd_v3/sprite-shanghai.png) 0 0 no-repeat;
+    }
+
+    .nav-sh { font-size: 14px; }
+    .nav-sh dt { height: 42px; line-height: 50px; font-size: 18px; }
+    .nav-sh dt a { display: inline-block; }
+    .nav-sh { background: url(/images/nbd_v3/sprite-shanghai.png) 0 -70px no-repeat; }
+    .nav-sh .nav_item { background: none; width: 197px; }
+    .nav-sh .nav_item dt, .nav-sh .nav_item dd { margin-left: 27px; }
+
+    .label { background: #bdc3c7 !important; }
+
+    .story-borderOrange, .story-borderBlue { border-top: 2px solid #9c55b8; }
+
+    .hedSec_title { margin-left: 10px; }
+    .hedSec_links { margin-left: 105px; }
+    .hedSec { margin: 0; border-top: 2px solid #9c55b8; height: 58px; background: url(/images/nbd_v3/sprite-shanghai.png) 0 -310px no-repeat;  }
+  <% end %>
+</style>

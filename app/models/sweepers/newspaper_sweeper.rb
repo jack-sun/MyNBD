@@ -4,6 +4,7 @@ module Sweepers
 
 
     def expire_newspaper_fragment(entry)
+      Rails.cache.delete(entry.api_newspaper_cache_key)
       expire_cache_object(entry)
     end
 

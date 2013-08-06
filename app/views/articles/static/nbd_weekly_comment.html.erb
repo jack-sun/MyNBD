@@ -1,0 +1,3 @@
+<% if (_article = @nbd_weekly_comment[:articles].map(&:article).compact[0]) %>
+  <%= render :partial => "columns/one_word", :locals => { :article => _article }%>
+<% end %>

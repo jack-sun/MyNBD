@@ -1,0 +1,42 @@
+<%
+for_subdomain = false if for_subdomain.nil?
+column = Column.find(column_id)
+sub_columns = []
+if for_subdomain
+  sub_columns = Column.where(:id => Column::SUBDOMAIN_CHILD_COLUMN[for_subdomain])
+else
+  sub_navs = Column::DIS_SUB_NAVS[column.root.id]
+  if sub_navs.present?
+    sub_columns = Column.find(sub_navs).sort_by{|e| sub_columns.index(e.id)}
+  end
+end
+%>
+
+<% if sub_columns.present? %>
+  <div class="attachBar">
+    <div class="attachBar_crumb">
+      <span class="attachBar_label">
+        <%if Column::DIS_SUB_NAVS.keys.include?(column.id) -%>
+          <%=  link_to column.name, column_path(column)%>
+        <%else -%>
+          <%= link_to column.root.name, column_path(column.root)%>
+        <%end -%>
+      </span>
+      <div class="attachBar_crumb_show">
+        <% sub_columns.each_with_index do |child_column, index| %>
+          <span class="<%= child_column.id == column.id ? 'current' : '' %> <%#= index == sub_columns.length-1 ? 'last' : '' %>">
+            <% if for_subdomain %>
+              <%= link_to child_column.name, send("#{for_subdomain}_column_path", child_column) %>
+            <% else %>
+              <%= link_to child_column.name, column_path(child_column) %>
+            <% end %>
+          </span>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <style type="text/css">
+    .wrapper { padding-top: 20px; }
+  </style>
+<% end %>

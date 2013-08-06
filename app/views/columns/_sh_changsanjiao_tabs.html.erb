@@ -1,0 +1,42 @@
+<div class="story_shadow">
+  <div id="h_sh_1_31" class="story story-tabs story-borderPurple">
+    <h3 class="story_hd">
+      <div id="sh_csj_index" class="story_hd_opt">
+        <a href="javascript:;">上海</a>
+        <a href="javascript:;">浙江</a>
+        <a href="javascript:;">江苏</a>
+      </div>
+      长三角
+    </h3>
+
+    <div class="story_bd">
+      <div id="sh_csj_slide">
+        <div>
+          <% cache(column_show_content_key_by_id(@delta_shanghai_articles[:id])) do %>
+          <%= render :partial => "article_list_v3", :locals => { :digest_number => 1, :articles => articles_of(@delta_shanghai_articles), :img_ver => "thumb_hm", :mask_size => "120x80" } %>
+          <% end %>
+        </div>
+        <div>
+          <% cache(column_show_content_key_by_id(@delta_zhejiang_articles[:id])) do %>
+          <%= render :partial => "article_list_v3", :locals => { :digest_number => 1, :articles => articles_of(@delta_zhejiang_articles), :img_ver => "thumb_hm", :mask_size => "120x80" } %>
+          <% end %>
+        </div>
+        <div>
+          <% cache(column_show_content_key_by_id(@delta_jiangsu_articles[:id])) do %>
+          <%= render :partial => "article_list_v3", :locals => { :digest_number => 1, :articles => articles_of(@delta_jiangsu_articles), :img_ver => "thumb_hm", :mask_size => "120x80" } %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $.nbdslide.init({
+    optDOMs:[{
+      selector:"#sh_csj_slide",
+      style:"normal"
+    }],
+    indexDOM:"#sh_csj_index"
+  });
+</script>

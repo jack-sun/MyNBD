@@ -4,7 +4,8 @@ class Console::ImagesController < ApplicationController
 
   IMAGE_COUNT_PER_PAGE = 10
   
-  layout "console"
+  layout "console", :except => [:upload_images, :upload_gallery_images]
+
   skip_before_filter :current_user
   before_filter :current_staff
   before_filter :authorize_staff
@@ -51,13 +52,17 @@ class Console::ImagesController < ApplicationController
   # POST /console/images
   # POST /console/images.xml
   def create
-    @image = Image.new(params[:image])
+    if params[:multiple] == "false"
+      @image = Image.new(params[:image])
+    else
+      @image = Image.new({params[:image].keys.first => params[:image].values.first.first})
+    end
     type = @image.url_type
     #response.headers["Content-type"] = "text/plain"
     if @image.save
-      render :text => [ @image.to_jq_upload(type, "www") ].to_json.to_s
+      render :text => [ @image.to_jq_upload(type, "image") ].to_json.to_s
     else 
-      render :text => [ @image.to_jq_upload(type, "www").merge({ :error => "custom_failure" }) ].to_json.to_s
+      render :text => [ @image.to_jq_upload(type, "image").merge({ :error => "custom_failure" }) ].to_json.to_s
     end
   end
 
@@ -68,13 +73,13 @@ class Console::ImagesController < ApplicationController
     type = @image.url_type
     if @image.update_attributes!(params[:image])
       if request.xhr?
-        render :text => [ @image.to_jq_upload(type, "www") ].to_json.to_s
+        render :text => [ @image.to_jq_upload(type, "image") ].to_json.to_s
       else
         redirect_to console_images_path
       end
     else 
       if request.xhr?
-        render :text => [ @image.to_jq_upload(type, "www").merge({ :error => "custom_failure" }) ].to_json.to_s
+        render :text => [ @image.to_jq_upload(type, "image").merge({ :error => "custom_failure" }) ].to_json.to_s
       else
         redirect_to edit_console_image_path(@image)
       end
@@ -104,10 +109,29 @@ class Console::ImagesController < ApplicationController
 
   def update_desc
     params_hash = {}
+    gallery_id = params[:create_gallery_image]
     params[:desc_params].each do |k, v|
-      params_hash[k] = {:desc => v}
+      params_hash[k] = {:desc => v[0..254]}
     end
-    Image.update(params_hash.keys, params_hash.values)
-    return render :text => UPDATE_DESC_SUCCESS
+    begin
+      Image.update(params_hash.keys, params_hash.values)
+      if gallery_id.present?
+        gallery = Gallery.where(:id => gallery_id).first
+        new_gallery_images = gallery.generate_gallery_image(params_hash) 
+      end
+    rescue ActiveRecord::Rollback
+      render :text => UPDATE_DESC_FAILD and return
+    end
+    if gallery_id.blank?
+      render :text => UPDATE_DESC_SUCCESS and return
+    else
+      return render :json => new_gallery_images.to_json(:methods => :thumb_s_url)
+    end
+  end
+
+  def upload_gallery_images
+    @gallery = Gallery.where(:id => params[:id]).first
+    @image = Image.new
+    render :layout => "image_insert"
   end
 end

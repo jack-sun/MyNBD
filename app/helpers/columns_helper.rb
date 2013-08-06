@@ -10,4 +10,12 @@ module ColumnsHelper
 			return "63px;"
 		end
 	end
+
+  def column_id_of obj
+    obj[:id]
+  end
+
+  def articles_of obj
+    obj[:articles].map(&:article).compact
+  end
 end

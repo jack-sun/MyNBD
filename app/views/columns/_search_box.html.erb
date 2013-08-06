@@ -1,0 +1,4 @@
+<%= form_tag(article_search_url, :method => "get", :class => "gSearch") do%>
+  <%= text_field_tag(:q, "", :class => "gSearch_input", :placeholder => "请输入关键词...") %>
+  <input type="submit" value="搜索" class="gSearch_btn">
+<%end%>

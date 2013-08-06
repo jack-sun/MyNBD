@@ -1,0 +1,60 @@
+<%
+column_id = '' unless column_id
+header_data = {} unless header_data
+
+# header_data: Object
+header_data[:column_id] = column_id
+
+# articles: Array
+%>
+
+<div class="story_shadow">
+  <div class="story">
+    <% if header_data[:list_title] %>
+      <h3 class="story_hd">
+        <div class="story_hd_opt">
+          <div class="story_slideIndex" id="storySlideIndex">
+            <% articles.each_with_index do |a, i| %>
+              <a href="javascript:;"><%= i+1 %></a>
+            <% end %>
+          </div>
+        </div>
+        <%= render :partial => "story_header", :locals => header_data %>
+      </h3>
+    <% end %>
+    <div class="story_bd">
+      <div class="imageArticle imageArticle-storySlide">
+        <div class="imageArticle_slide" id="storySlideImg">
+          <% articles.each_with_index do |a, i| %>
+            <%= block_article_list(a, :subdomain => Settings.default_sub_domain, :with_image => true, :version => :thumb_hl) %>
+          <% end %>
+        </div>
+        <div class="imageArticle_btmBarBg"></div>
+        <div class="imageArticle_btmBar">
+          <div class="imageArticle_btmBar_intro" id="storySlideInfo">
+            <% articles.each_with_index do |a, i| %> 
+              <%= block_article_list(a) %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    if($.nbdslide){
+      $.nbdslide.init({
+        optDOMs:[{
+          selector:"#storySlideImg",
+          style:"normal"
+        },{
+          selector:"#storySlideInfo",
+          style:"normal"
+        }],
+        indexDOM:"#storySlideIndex"
+      });
+    }
+  });
+</script>

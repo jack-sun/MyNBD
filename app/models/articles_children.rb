@@ -14,12 +14,13 @@ class ArticlesChildren < ActiveRecord::Base
   end
 
   def children_url
-    return read_attribute(:children_url) if self.new_record?
-    if read_attribute(:children_url).blank?
+    children_url = read_attribute(:children_url) if self.new_record?
+    children_url = if read_attribute(:children_url).blank?
       children.nil? ? "" : article_url(children)
     else
       read_attribute(:children_url)
     end
+    return children_url
     
   end
   private

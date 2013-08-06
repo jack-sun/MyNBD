@@ -1,0 +1,5 @@
+<%
+  @showed_live = Live.showed_lives(Rails.cache.read(Live::LIVE_SHOW_TYPE_KEY)||"1").order("id desc").first
+  @showed_live_talks = @showed_live.live_talks.where(:talk_type => LiveTalk::TYPE_TALK).includes([:weibo => :owner, :live_answers => {:weibo => :owner}]).order("id desc").limit(2) #直播
+%>
+<%= render :partial => "columns/market_live", :locals => {:compere => @showed_live.user, :live_talks => @showed_live_talks, :live => @showed_live} %>

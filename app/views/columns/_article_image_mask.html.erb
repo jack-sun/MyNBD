@@ -1,0 +1,22 @@
+<%
+mask_size = false unless mask_size
+
+if content.blank?
+  mask_size = false
+end 
+
+if mask_size
+  size_w = mask_size.split('x')[0].to_i
+  size_h = mask_size.split('x')[1].to_i
+end
+
+# content
+%>
+
+<% if mask_size %>
+  <div class="thumbMask" style="width:<%= size_w %>px;height:<%= size_h %>px;">
+<% end %>
+<%= content %>
+<% if mask_size %>
+  </div>
+<% end %>

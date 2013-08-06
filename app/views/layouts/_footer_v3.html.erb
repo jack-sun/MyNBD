@@ -1,0 +1,29 @@
+<%
+  color = "" unless color
+%>
+<div class="footer <%= "footer-#{color}" if color %>">
+  <div class="footer_nav">
+    <%= link_to "关于我们", "#{Settings.old_host}/html/front/html/aboutus_new/index.htm", :class => "first" %>
+    <%= link_to "版权声明", copyright_url %>
+    <%= link_to "免责声明", disclaimer_url %>
+    <%= link_to "广告服务", advertisement_url %>
+    <%= link_to "联系我们", contact_url %>
+    <%= link_to "订阅中心", "http://www.nbd.com.cn/corp/2013dingyue/index.html" %>
+    <%= link_to "友情链接", links_url, :class => "last" %>
+    <%= link_to "网站地图", sitemap_url, :class => "last" %>
+  </div>
+  <p>
+    Copyright © 2013 每日经济新闻报社版权所有，未经许可不得转载使用，违者必究<br/>
+    <span class="footer_label footer_label-red">广告热线</span>北京: 010-58528290， 上海: 021-61283008， 广州: 020-84201861， 深圳: 0755-83520159， 成都: 028-86612828<br/>
+    <span class="footer_label footer_label-blue">读者热线</span>400-889-0008
+    <%= link_to "沪ICP备09000473号", "http://www.miibeian.gov.cn/", :target => "_blank", :style => "margin-left: 10px; margin-right: 10px; color:#787878" %>
+    <span id="footerVendor" style="display:none;">带宽提供：<%= link_to "上海快网", "http://www.kwww.cn/", :target => "_blank" %></span> 
+  </p>
+</div>
+
+<script type="text/javascript">
+  // 只有在文章页面才显示宽带提供
+  if($('#articalContentWrapper').length > 0){
+    $('#footerVendor').show();
+  }
+</script>

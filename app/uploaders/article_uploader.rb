@@ -24,19 +24,18 @@ class ArticleUploader < BaseUploader
     "uploads/articles/images/#{model.id}"
   end
 
-  #def url(*args)
-    #"http://iamges#{rand(3)}.nbd.com.cn/#{super}"
-  #end
+  # def url(*args)
+  #   "http://iamges#{rand(3)}.nbd.com.cn/#{super}"
+  # end
 
-  #def full_filename(for_file)
-    #if for_file.index(".")
-      #s = for_file.split(".")
-      #[s[0..-2].join(""), version_name, "jpg"].compact.join(".")
-    #else
-      #[for_file, version_name, "jpg"].join("_")
-    #end
-  #end
-
+  # def full_filename(for_file)
+  #   if for_file.index(".")
+  #     s = for_file.split(".")
+  #     [s[0..-2].join(""), version_name, "jpg"].compact.join(".")
+  #   else
+  #     [for_file, version_name, "jpg"].join("_")
+  #   end
+  # end
 
   def resize_by_width(width)
     if model.image_width > 500
@@ -47,22 +46,23 @@ class ArticleUploader < BaseUploader
     end
   end
 
+  process :resize_to_limit => [500, 500]#, :if => :is_height_or_width_over_500?
 
-  #version :small do
-    #process :resize_to_fill => [80, 60]
-  #end
+  # version :small do
+  #   process :resize_to_fill => [80, 60]
+  # end
 
-  #version :middle do
-    #process :resize_to_fill => [120, 90]
-  #end
+  # version :middle do
+  #   process :resize_to_fill => [120, 90]
+  # end
 
-  #version :large_a do
-    #process :resize_to_fill => [270, 176]
-  #end
+  # version :large_a do
+  #   process :resize_to_fill => [270, 176]
+  # end
 
-  #version :large_b do
-    #process :resize_to_fill => [310, 186]
-  #end
+  # version :large_b do
+  #   process :resize_to_fill => [310, 186]
+  # end
 
   version :x_large do
     process :resize_by_width => [500]

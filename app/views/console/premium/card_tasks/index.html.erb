@@ -1,0 +1,319 @@
+<% require_js "console_selectAll" %>
+<% require_popWin %>
+<% require_js "jquery.color.js" %>
+
+<style type="text/css">
+  .tzbctOpts { line-height: 25px; }
+  .tzbctOpts a { float: left; margin-right: 8px; }
+</style>
+
+<div class="sectionA">
+  <div class="title">
+    <h2>卡号任务管理 - 任务列表</h2>
+    <% if Settings.card_task_create_staff_names.include? @current_staff.name %>
+      <span class="opts"><%= link_to "<span>创建新任务</span>".html_safe, new_console_premium_card_task_url, :class => "btnBlueM" %></span>
+    <% end %>
+  </div>
+  <% if flash[:notice] %>
+    <div class="alert_done" style="margin:20px 20px 10px;"><b></b> <%= flash[:notice] %></div>
+  <% end %>
+  <div class="content rightColCenter">
+    <div class="tabs">
+      <ul>
+        <li <%= "class='current'" if @query.nil? %>>
+          <%= link_to '全部', console_premium_card_tasks_url %>
+        </li>
+        <li <%= "class='current'" if @query == 'unreview' %>>
+          <%= link_to '待审核', console_premium_card_tasks_url(:query => "unreview") %>
+        </li>
+        <li <%= "class='current'" if @query == 'reviewed' %>>
+          <%= link_to '已审核', console_premium_card_tasks_url(:query => "reviewed") %>
+        </li>
+        <li <%= "class='current'" if @query == 'finished' %>>
+          <%= link_to '已完成', console_premium_card_tasks_url(:query => "finished") %>
+        </li>
+      </ul>
+    </div>
+    <!--
+    <div class="operation">
+      <div class="lOpt">
+        <span>批量操作:</span>
+        <%# if @query == 'unreview' || @query.nil? %>
+          <a class="btnGray tzbctReview" href="javascript:;"><span>审核选中任务</span></a>
+        <%# end %>
+        <%# if @query == 'reviewed' || @query == 'finished' %>
+          <a class="btnGray tzbctUnreview" href="javascript:;"><span>取消选中任务审核</span></a>
+        <%# end %>
+        <%# if @query == 'reviewed' %>
+          <a class="btnGray tzbctProceed" href="javascript:;"><span>批量生成卡号</span></a>
+        <%# end %>
+      </div>
+    </div>
+    -->
+    <table class="tableA tzbctTable">
+      <thead>
+        <!--<th><input class="selectAll" type="checkbox" /></th>-->
+        <th>编号</th>
+        <th>创建人</th>
+        <th class="tdw200">描述</th>
+        <th>创建时间</th>
+        <th class="tdw200">状态</th>
+        <th>详情</th>
+        <th style="width:160px">操作</th>
+      </thead>
+      <tbody>
+        <% for card_task in @card_tasks %>
+          <tr class="tzbctMainTask" data-id="<%= card_task.id %>" data-status="<%= card_task.status %>" id="card_item_<%= card_task.id %>">
+            <!--<td class="forSelect"><input class="subSelect" type="checkbox" value="<%= card_task.id %>" /></td>-->
+            <td><%= card_task.id %></td>
+            <td><%= card_task.create_staff.try :real_name %></td>
+
+            <td class="tzbctComment">
+              <div class="tzbctConsiceComment">
+                <%= sub_comment card_task.comment %>
+              </div> 
+              <div class="tzbctWholeComment" style="display:none;">
+                <%= card_task.comment %> <a href="javascirpt:;" class="tzbctShrinkComment">收起</a>
+              </div>
+            </td>
+
+            <td>
+              <%= nbd_time_f3 card_task.created_at %>
+            </td>
+
+            <td id="card_status_<%= card_task.id %>">
+              <%= status_words card_task %>
+            </td>
+
+            <td id="card_children_<%= card_task.id %>"><%= card_task_detail card_task %></td>
+
+            <td class="tzbctOpts">
+
+              <% if Settings.card_task_review_staff_names.include? @current_staff.name %>
+                <% if card_task.status == CardTask::STATUS_UNREVIEW %>
+                  <%= link_to "<span>通过审核</span>".html_safe, review_console_premium_card_task_url(card_task), :class => "btnGreen", :method => :post %>
+                <% elsif card_task.status == CardTask::STATUS_REVIEWED && card_task.proceed != CardTask::PROCEED_FINISHED && card_task.proceed != CardTask::PROCEED_PROCESSING %>
+                  <%= link_to "<span>取消审核</span>".html_safe, unreview_console_premium_card_task_url(card_task), :class => "btnRed", :method => :post, :id => "card_cancel_#{card_task.id}" %>
+                <% end %>
+              <% end %>
+
+              <% if Settings.card_task_create_staff_names.include? @current_staff.name %>
+                <% if card_task.status == CardTask::STATUS_REVIEWED && card_task.proceed == CardTask::PROCEED_UNFINISHED %>
+                  <a href="javascript:;" class="tzbctMakeCard btnBlue" id="card_make_<%= card_task.id %>" data-id="<%= card_task.id %>"><span>生成卡号</span></a>
+                <% end %>
+              <% end %>
+
+              <% if card_task.proceed == CardTask::PROCEED_FINISHED %>
+                <%= link_to "<span>卡号下载</span>".html_safe, download_as_xls_console_premium_card_task_url(card_task), :method => :post, :class => "btnBlue" %>
+                <%= link_to "卡号详细", show_cards_console_premium_card_task_url(card_task) %>
+              <% else %>
+                <%= link_to "<span>卡号下载</span>".html_safe, download_as_xls_console_premium_card_task_url(card_task), :style => "display:none", :method => :post, :class => "btnBlue", :id => "card_download_#{card_task.id}" %>
+                <%= link_to "卡号详细", show_cards_console_premium_card_task_url(card_task), :style => "display:none", :id =>"card_detail_#{card_task.id}" %>
+              <% end %>
+
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <div style="margin-top:20px;" class="pagination">
+      <%= paginate @card_tasks %>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+
+    //------------------------------------------------------
+    // comment shrink and expand
+    //------------------------------------------------------
+
+    $('.tzbctExpandComment').click(toggleCommentEvent);
+    $('.tzbctShrinkComment').click(toggleCommentEvent);
+
+    function toggleCommentEvent(){
+      toggleComment( $(this).closest('.tzbctComment') );
+      return false;
+    }
+
+    function toggleComment(elem){
+      elem.find('.tzbctWholeComment').toggle();
+      elem.find('.tzbctConsiceComment').toggle();
+    }
+
+  });
+
+  <% if @query == 'reviewed' || @query.nil? %>
+  $(function(){
+
+    $('.tzbctMakeCard').click(function(){
+      var btn = $(this);
+      var id = btn.data('id');
+      curID = id;
+      if(confirm('确定要生成卡号吗？')){
+        popMessage('init');
+        popWinForMakingCard.title.text('任务#'+id);
+        popWinForMakingCard.show();
+        batchMakeCard([id]);
+      }
+    });
+
+    function batchMakeCard(ids){
+      $.ajax('/console/premium/card_tasks/batch_make_card', {
+        type:'POST',
+        data:{
+          card_tasks_ids:ids.join(','),
+        },
+        success:function(){
+          errorCounts = 1;
+          if(!isPolling){
+            poll();
+          }
+        }
+      });
+
+      // hide card make button
+      $.each(ids, function(i, v){
+        var elemOpt = $('#card_make_'+v);
+        elemOpt.hide();
+      });
+    }
+
+    //------------------------------------------------------
+    // status check
+    //------------------------------------------------------
+
+    var checkPoll;
+    var isPolling = false;
+    var ids = getAllID();
+    var errorCounts = 1;
+    var curID;
+
+    var popWinForMakingCard = $.popWin.init({
+      title:"制卡任务",
+      hideCloseBtn:true
+    });
+    popWinForMakingCard.content.
+      html('<div style="display:block;" class="loading"><p class="mbm" id="popProgress"></p><span>正在制卡中，请稍候</span></div><div style="display:none;" class="loading" id="tzbctPopSuccessTip"><p class="mbm" id="popProgress">100.0%</p>制卡成功!</div>');
+    var popLoading = popWinForMakingCard.content.find('.loading');
+    var popSuccessTip = $('#tzbctPopSuccessTip');
+    var popProgress = $('#popProgress');
+
+    var curCards = {};
+    $('.tzbctMainTask').each(function(){
+      curCards[$(this).data('id')] = Number( $(this).data('status') );
+    });
+
+    poll();
+
+    function poll(){
+      setTimeout(function(){
+        isPolling = true;
+        checkPoll = checkRequest(ids);
+        checkPoll.done(function(statusData){
+
+          var workingTasks = 0;
+
+          $.each(statusData, function(i, task){
+            var statusWords = task.status_words;
+            var id = task.id;
+            var status = task.proceed;
+            var progress = task.progress_percentage;
+
+
+            // making
+            if(status === 3){
+              workingTasks++;
+              $('#card_status_'+id).text(statusWords);
+              if(curID == id){
+                popMessage('update', progress);
+              }
+            }
+            // success
+            if(status === 1 && curCards[id] !== status){
+              $('#card_detail_'+id).show();
+              $('#card_cancel_'+id).hide();
+              $('#card_download_'+id).show();
+
+              $('#card_children_'+id+' p').each(function(i){
+                var p = $(this);
+                var href = p.data('link');
+                var text = p.text();
+                var link = $('<a href="'+href+'">'+text+'</a>');
+                p.html(link);
+              });
+
+              $('#card_status_'+id).text(statusWords);
+
+              if(curID == id){
+                popMessage('success');
+              }
+            }
+
+            curCards[id] = status;
+          });
+
+          if(workingTasks > 0){
+            poll();
+          }else {
+            if(errorCounts > 0){
+              poll();
+              errorCounts--;
+
+            }else{
+              isPolling = false;
+            }
+          }
+
+        });
+      },3000);
+    }
+
+    function popMessage(status, arg){
+      switch(status){
+        case 'init':
+          popProgress.text('0.0%');
+          popLoading.show();
+          popSuccessTip.hide();
+          break;
+        case 'update':
+          popProgress.text(arg);
+          break;
+        case 'success':
+          popLoading.hide();
+          popSuccessTip.fadeIn(function(){
+            popWinForMakingCard.hide();
+            
+            var item = $('#card_item_'+curID+' td');
+            var oldBg = item.css('backgroundColor');
+            item.animate({backgroundColor:'#B7EEAE'},700,function(){
+              item.animate({backgroundColor:oldBg},500);
+            });
+          });
+      }
+    }
+
+    function checkRequest(ids){
+      return $.ajax('/console/premium/card_tasks/batch_check_process_status', {
+        type:'GET',
+        data:{
+          card_tasks_ids:ids
+        }
+      });
+    }
+
+    function getAllID(){
+      return $(".tzbctMainTask").map(function(){
+        return $(this).data('id')
+      }).toArray().join(',');
+    }
+
+    // function getSelected(){
+    //   return $("table .subSelect:checked").map(function(){
+    //     return $(this).attr('value')
+    //   }).toArray();
+    // }
+  });
+  <% end %>
+</script>

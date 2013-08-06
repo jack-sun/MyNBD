@@ -21,7 +21,7 @@ Parameters:
 				</h5>
 				<div class="rcDigest">
 				<% if article.pages.first.image.present? %>
-					<%= link_to image_tag(article_thumbnail_path(article, :small)), article_url(article), {:target => "_blank", :title => article.title}%>
+					<%= link_to image_tag(article_thumbnail_path(article, :thumb_hs)), article_url(article), {:target => "_blank", :title => article.title}%>
 					<% if article.show_digest.present? %>
 					<p class="restrict">
 						<%= article.show_digest %>

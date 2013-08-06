@@ -1,0 +1,26 @@
+<%
+# articles
+%>
+
+<div class="mediaWall_divide">
+  <ul class="mediaWall clearfix">
+    <% articles.each_with_index do |article,index| %>
+      <%
+        if index < 2
+          css = 'mediaWall_top'
+        else
+          css = 'mediaWall_btm'
+        end
+      %>
+      <li class="<%= css %>">
+        <div class="mediaWall_img">
+          <%= block_article_list(article, :subdomain => Settings.default_sub_domain, :with_image => true, :version => :thumb_hm, :is_show_default => true) %>
+        </div>
+        <p class="mediaWall_title">
+          <%= block_article_list(article) %>
+        </p>
+      </li>
+    <% end %>
+  </ul>
+</div>
+

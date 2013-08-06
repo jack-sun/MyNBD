@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title><%= @title.blank? ? "每经网 | 新闻决定影响力 |《每日经济新闻》报社旗下网站" : "#{@title} | 每经网"%></title>
+    <%= stylesheet_link_tag "reset", "style_global", "style_website_v3" %>
+    <%= special_css %>
+    <%= javascript_include_tag "jquery.min", "jquery_ujs", "cookie", "nbdtools", "baidu_m" %>
+    <%= yield :header_js %>
+    <%= csrf_meta_tag %>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta name="viewport" content="width=1000" />
+    <link rel="shortcut icon" href="http://static.nbd.com.cn/favicon.ico" type="image/x-icon" />
+    <meta name="Keywords" content="财经新闻,财经报道,叶檀,道达,老法师看盘,股市直播,郑眼看盘,股市行情,财经证券,基金,荐股,股市内参,股吧,传闻,内幕,板块,个股,黑马,股市新闻,生活,汽车" />
+    <meta name="Description" content="24小时财经资讯平台，依托新锐财经日报《每日经济新闻》(National Business Daily)，打造中国最具影响力的经济、股票网站。覆盖宏观、股票、基金、期货、股指期货、外汇、债券、保险、银行、黄金、理财等全方位财经新闻。" />
+  </head>
+
+  <body>
+    <%= yield :top_ad %>
+
+    <!-- Top -->
+    <%= top_bar %>
+
+    <!-- Header -->
+    <div class="header">
+      <div class="header_bg"></div>
+      <div class="innerCenter">
+        <%= yield :header_ad %>
+        <%= logo %>
+        <%= nav %>
+      </div>
+    </div>
+
+    <!-- Wrapper -->
+    <div class="wrapper">
+      <div class="innerCenter">
+        <%= yield %>
+      </div>
+    </div>
+
+    <%= render :partial => "layouts/footer_v3" %>
+    <%= yield :sbblock %>
+    <%#= render :partial => "layouts/analytics" %>
+  </body>
+
+</html>

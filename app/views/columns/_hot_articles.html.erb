@@ -35,7 +35,7 @@ cache_key = Article::HOT_COMMENT_ARTICLE_FRAGMENT_CACHE_KEY || "hot_articles_#{@
                       <%= link_to article.list_title, article_url(article), {:target => "_blank"} %>
                     </h5>
                     <div class="rcDigest">
-                      <%= link_to image_tag(article_thumbnail_path(article, :small), :width => 80, :height => 60 ),  article_url(article), {:target => "_blank"} if article.image.present? %>
+                      <%= link_to image_tag(article_thumbnail_path(article, :thumb_hs), :width => 80, :height => 60 ),  article_url(article), {:target => "_blank"} if article.image.present? %>
                       <p class="restrict" >
                         <%= article.show_digest %>
                       </p>
@@ -62,7 +62,7 @@ cache_key = Article::HOT_COMMENT_ARTICLE_FRAGMENT_CACHE_KEY || "hot_articles_#{@
                     <%= link_to article.list_title, article_url(article), {:target => "_blank", :title => article.title} %>
                   </h5>
                   <div class="rcDigest">
-                    <%= link_to image_tag(article_thumbnail_path(article, :small), {:target => "_blank", :title => article.title, :width => 80, :height => 60 } ),  article_url(article) if article.image.present? %>
+                    <%= link_to image_tag(article_thumbnail_path(article, :thumb_hs), {:target => "_blank", :title => article.title, :width => 80, :height => 60 } ),  article_url(article) if article.image.present? %>
                     <p class="restrict" >
                       <%= article.show_digest %>
                     </p>

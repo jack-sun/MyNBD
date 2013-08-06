@@ -1,0 +1,26 @@
+<%
+mask_size = '300x200' unless mask_size
+
+# articles
+main_article = articles.first
+%>
+
+<%unless main_article.blank?%>
+<div class="featureArticle">
+  <%= render :partial => 'article_image_mask', :locals => {:content => block_article_list(main_article, :subdomain => Settings.default_sub_domain, :with_image => true, :version => :thumb_hl), :mask_size => mask_size }%>
+  
+  <h4 class="featureArticle_title">
+    <%= link_to main_article.list_title, article_url(main_article), {:target => "_blank", :title => main_article.title} %>
+  </h4>
+  <div class="featureArticle_intro">
+    <%= main_article.show_digest %>
+  </div>
+  <ul class="featureArticle_children unorderList unorderList-orange">
+    <% articles[1..4].each do |a| %>
+      <li>
+        <%= link_to a.list_title, article_url(a), {:target => "_blank", :title => a.list_title} %>
+      </li>
+    <% end %>
+  </ul>
+</div>
+<%end%>

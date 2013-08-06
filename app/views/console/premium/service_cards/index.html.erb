@@ -8,20 +8,35 @@
 
 <div class="sectionA">
   <div class="title">
-    <h2>
-      卡号管理
-    </h2>
-    <span class="opts"><%= link_to "<span>导入新卡号</span>".html_safe, upload_file_console_premium_service_cards_url, :class => "btnBlueM" %></span>
-    
+    <% unless params[:controller] == "console/premium/card_tasks" || params[:controller] == "console/premium/card_sub_tasks" %>
+      <h2>卡号管理</h2>
+    <% else %>
+      <h2>卡号任务管理 - 卡号详细</h2>
+      <span class="opts">
+        <%= link_to "<span>返回</span>".html_safe, console_premium_card_tasks_url(:page => @page, :query => "finished"), :class => "btnGray" %>
+      </span>
+    <% end %>
   </div>
   <div id="body_state" class="content rightColCenter">
     <div class="tabs">
       <ul>
         <li <%= stats_class_helper("0") %>>
-          <%= link_to "未使用", console_premium_service_cards_url(:type => "0", :page => params[:page]) %>
+          <% if params[:controller] == "console/premium/service_cards" %>
+            <%= link_to "未使用", console_premium_service_cards_url(:type => "0", :page => params[:page]) %>
+          <% elsif params[:controller] == "console/premium/card_tasks" %>
+            <%= link_to "未使用", show_cards_console_premium_card_task_url(@card_task, :type => "0") %>
+          <% elsif params[:controller] == "console/premium/card_sub_tasks" %>
+            <%= link_to "未使用", show_cards_console_premium_card_task_card_sub_task_url(@card_task, @card_sub_task, :type => "0") %>
+          <% end %>
         </li>
         <li <%= stats_class_helper("1") %>>
-          <%= link_to "已使用", console_premium_service_cards_url(:type => "1", :page => params[:page]) %>
+          <% if params[:controller] == "console/premium/service_cards" %>
+            <%= link_to "已使用", console_premium_service_cards_url(:type => "1", :page => params[:page]) %>
+          <% elsif params[:controller] == "console/premium/card_tasks" %>
+            <%= link_to "已使用", show_cards_console_premium_card_task_url(@card_task, :type => "1") %>
+          <% elsif params[:controller] == "console/premium/card_sub_tasks" %>
+            <%= link_to "未使用", show_cards_console_premium_card_task_card_sub_task_url(@card_task, @card_sub_task, :type => "1") %>
+          <% end %>
         </li>
       </ul>
     </div>

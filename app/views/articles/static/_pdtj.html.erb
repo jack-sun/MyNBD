@@ -1,0 +1,5 @@
+    <% cache(column_collected_articles_key_by_id(@column_top_picks[:id]), :expire_in => Column::EXPIRE_IN) do %>
+      <% if @column_top_picks[:articles].present? %>
+        <%= render :partial => "columns/article_feature", :locals => {:list_title => "频道推荐", :articles => (@column_top_picks[:articles] || []).map(&:article).compact, :column_id => @column_top_picks[:id], :digest_number => 4, :html_class => "articleWallWrapper"} %>
+      <% end %>
+    <% end %>

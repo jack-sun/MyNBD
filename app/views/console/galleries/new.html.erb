@@ -1,0 +1,23 @@
+<div class="sectionA">
+  <div class="title">
+    <h2>图片集 - 添加新图集</h2>
+    <span class="opts"><%= link_to_function "<span>取消</span>".html_safe, "javascript:history.go(-1);", :class => "btnGray" %></span>
+  </div>
+  <div class="content rightColCenter">
+    <% if flash[:notice] %>
+      <div class="alert_done"><b></b> <%= flash[:notice] %></div>
+    <% end %>
+    <% if flash[:error] %>
+      <div class="alert_error"><b></b> <%= flash[:error] %></div>
+    <% end %>
+    <%= simple_form_for([:console, @gallery], :html => {:class => "formA"}) do |f| %>
+      <p>
+        <%= f.input :title, :label => "标题：" %>
+      </p>
+      <p class="formRightAlign">
+        <%= link_to "<span>添加新图集</span>".html_safe, "javascript:void(0);", :onclick => "$(this).closest('form').submit();return false;", :class => "btnBlueM" %>
+        <input type="submit" class="hiddenSubmit" />
+      </p>
+    <% end %>
+  </div>
+</div>

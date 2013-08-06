@@ -1,0 +1,31 @@
+<%
+# bulletins
+%>
+
+<div class="attachBar">
+  <% cache(column_show_content_key_by_id(bulletins[:id], true, "uniq")) do %>
+    <% @bulletin = bulletins[:articles].map(&:article).compact.first %>
+    <div class="attachBar_bulletin">
+      公告：  <%= link_to @bulletin.list_title, article_url(@bulletin), {:target => "_blank", :title => @bulletin.title} %>
+    </div>
+  <% end %>
+  <% cache(column_show_content_key_by_id(Column::ROLLING_COLUMN_ID), :expire_in => 30*60) do %>
+  <div class="attachBar_news">
+    <span class="attachBar_label">滚动新闻：</span>
+    <div class="attachBar_news_scroll">
+      <ul id="scrollNewsInHome">
+        <% Article.rolling.order("id desc").limit(8).each do |article| %>
+          <li>
+            <%if article.is_special?%>
+              <span class="articleLabel red">
+                <b><%= Article::SPECIAL[article.special] %></b>
+              </span>
+            <%end%>
+            <%= link_to article.list_title, article_url(article), :target => "_blank" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <% end %>
+</div>

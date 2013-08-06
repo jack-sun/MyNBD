@@ -288,12 +288,16 @@ class CacheCallback::BaseCallback
 
   HOT_COMMENT_ARTICLE_KEY = "hot_cache:result:hot_comment_article"
   HOT_ARTICLE_KEY = "hot_cache:result:hot_article"
+  HOT_COLUMN_ARTICLE_KEY = "hot_cache:result:hot_column_article"
   HOT_RT_WEIBO_KEY = "hot_cache:result:hot_rt_weibo"
   HOT_TAG_KEY = "hot_cache:result:hot_tag"
   ACTIVE_USER_KEY = "hot_cache:result:active_user"
+  HOT_GALLERY_KEY = "hot_cache:result:hot_gallery"
   RESULT_MAX_LENTH = 100
 
-  HOT_KEY_MAP = {"weibo" => [HOT_RT_WEIBO_KEY], "article" => [HOT_COMMENT_ARTICLE_KEY, HOT_ARTICLE_KEY], "user" => [ACTIVE_USER_KEY], "tag" => [HOT_TAG_KEY]}
+  HOT_KEY_MAP = { "weibo" => [HOT_RT_WEIBO_KEY], "article" => [HOT_COMMENT_ARTICLE_KEY, HOT_ARTICLE_KEY], 
+                  "user" => [ACTIVE_USER_KEY], "tag" => [HOT_TAG_KEY], "column" => [HOT_COLUMN_ARTICLE_KEY], 
+                  "gallery" => [HOT_GALLERY_KEY] }
   
   TAG_WEIGHT_HASH = {"ori_weibo_count" => 10, "comment_count" => 8, "rt_weibo_count" => 5, "ori_comment_weibo_count" => 3}
   USER_WEIGHT_HASH = {"weibo_count" => 10, "comment_count" => 8, "rt_count" => 5, "followings_count" => 0.5}
@@ -310,6 +314,8 @@ class CacheCallback::BaseCallback
       add_up_hot_tag
       add_up_hot_rt_weibo
       add_up_hot_article
+      add_up_hot_column_article
+      add_up_hot_gallery
     end
 
     # two importain methdos fo subclasses
@@ -341,6 +347,7 @@ class CacheCallback::BaseCallback
     # weibo
     # weibo tag
     # active user
+    # gallery
     #
 
     def add_up_hot_article
@@ -352,6 +359,7 @@ class CacheCallback::BaseCallback
           push_to_result_and_sort(HOT_COMMENT_ARTICLE_KEY, object_id, comment_point) if comment_point > 0
         end
       end
+      Resque.enqueue(Jobs::UpdateStaticFragmentPage, nil, {:hot_articles => []})
     end
 
     def add_up_hot_rt_weibo
@@ -384,6 +392,57 @@ class CacheCallback::BaseCallback
       end
     end
 
+    def add_up_hot_column_article
+      hot_columns = Column::COLUMN_MORE.keys + [185] - [56, 145, 175, 197]
+      flag_columns = hot_columns.dup
+      add_up_object_data("column") do |key|
+        click_point, comment_point = nice_object_point(key, "click_count", "comment_count")
+        if click_point
+          object_id = key.split(":")[3]
+          temp_article = Article.where(:id => object_id).first
+          temp_article_columns = []
+          temp_article.columns.each do |column|
+            if column.parent_id.present?
+              temp_article_columns << column.parent_id
+            else
+              temp_article_columns << column.id
+            end
+          end
+          if (record_columns = hot_columns & temp_article_columns).present?
+            record_columns.each do |record_column|
+              if flag_columns.include? record_column
+                clear_result_list("#{HOT_COLUMN_ARTICLE_KEY}:#{record_column}")
+                flag_columns = flag_columns - [record_column]
+              end
+              push_to_result_and_sort("#{HOT_COLUMN_ARTICLE_KEY}:#{record_column}", object_id, click_point) if click_point > 0
+            end
+          end
+        end
+      end
+      hot_columns.each do |hot_column|
+        redis_client.del "#{HOT_COLUMN_ARTICLE_KEY}:#{hot_column}_tmp"
+      end
+    rescue Exception => e
+      LOGGER.debug "------ error :#{e} -------"
+      LOGGER.debug "------ backtrace :#{e.backtrace} -------"
+      hot_columns.each do |hot_column|
+        reverse_from_tmp_list("#{HOT_COLUMN_ARTICLE_KEY}:#{hot_column}_tmp")
+      end
+    end
+
+    def add_up_hot_gallery
+      add_up_object_data("gallery") do |key|
+        click_point, = nice_object_point(key, "click_count")
+        LOGGER.debug "------ ########################################Gallery -------"
+        LOGGER.debug "------ click_count :#{click_point} -------"
+        if click_point
+          object_id = key.split(":")[3]
+          LOGGER.debug "------ click_count :#{object_id} -------"
+          push_to_result_and_sort(HOT_GALLERY_KEY, object_id, click_point) if click_point > 0
+        end
+      end
+    end
+
     # basic add up method
 
     def add_up_object_data(type)
@@ -392,8 +451,8 @@ class CacheCallback::BaseCallback
       LOGGER.debug "------ start add up #{type} data -------"
       HOT_KEY_MAP[type].each do |key|
         clear_result_list(key)
-      end
-      redis_client.smembers(objects_set_key(type)).each do |key|
+      end unless type == "column"
+      redis_client.smembers(objects_set_key(type == "column" ? "article" : type)).each do |key|
         if init_count == INTERVL_COUNT
           init_count = 0
           sleep(INTERVL_TIME)
@@ -403,19 +462,19 @@ class CacheCallback::BaseCallback
         if redis_client.type(key) != "none"
           yield key
         else
-          redis_client.srem objects_set_key(type), key
+          redis_client.srem objects_set_key(type == "column" ? "article" : type), key
         end
       end
       LOGGER.debug "------ end add up #{type} data -------"
       HOT_KEY_MAP[type].each do |key|
         redis_client.del "#{key}_tmp"
-      end
+      end unless type == "column"
     rescue Exception => e
       LOGGER.debug "------ error :#{e} -------"
       LOGGER.debug "------ backtrace :#{e.backtrace} -------"
       HOT_KEY_MAP[type].each do |key|
         reverse_from_tmp_list(key)
-      end
+      end unless type == "column"
     end
 
 

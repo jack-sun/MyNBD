@@ -58,12 +58,12 @@ no_title_prefix = nil unless no_title_prefix
 					<div class="rcDigest">
                       <% if for_subdomain %>
                         <% if show_article_image %>
-                          <%= link_to image_tag(article_thumbnail_path(article, :small), {:alt => article.list_title, :width => 80, :height => 60}),  send("#{for_subdomain}_article_url", article) if article.image.present? %>
+                          <%= link_to image_tag(article_thumbnail_path(article, :thumb_hs), {:alt => article.list_title, :width => 80, :height => 60}),  send("#{for_subdomain}_article_url", article) if article.image.present? %>
                         <% elsif for_subdomain == Settings.ntt_sub_domain and(columnist = article.columnists.first) and columnist.image %>
                           <%= link_to image_tag(columnist_avatar_path(columnist), {:alt => columnist.name, :width => 60, :height => 60}),  ntt_columnist_url(columnist), {:target => "_blank"}%>
                         <% end %>
                       <% else %>
-						<%= link_to image_tag(article_thumbnail_path(article, :small), {:alt => article.list_title, :width => 80, :height => 60}),  article_url(article) if article.image.present? %>
+						<%= link_to image_tag(article_thumbnail_path(article, :thumb_hs), {:alt => article.list_title, :width => 80, :height => 60}),  article_url(article) if article.image.present? %>
                       <% end %>
 						<p <%if digest_restrict%>class="restrict2"<%end%> >
 							<%= article.show_digest %>

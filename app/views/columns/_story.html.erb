@@ -1,0 +1,43 @@
+<%
+# layout: story #
+
+column_id = '' unless column_id
+for_subdomain = false unless for_subdomain
+header_data = {} unless header_data
+opt_data = {} unless opt_data
+story_id = false unless story_id
+story_css = false unless story_css
+story_is_hide = false unless story_is_hide
+
+header_data[:list_title_tail] = '' unless header_data[:list_title_tail]
+opt_data[:more_title_tail] = header_data[:list_title_tail] unless opt_data[:more_title_tail]
+
+# header_data: Object
+header_data[:column_id] = column_id 
+header_data[:for_subdomain] = for_subdomain unless header_data[:for_subdomain]
+
+# opt_data: Object
+opt_data[:column_id] = column_id 
+opt_data[:for_subdomain] = for_subdomain unless opt_data[:for_subdomain]
+%>
+
+<% unless story_is_hide %>
+<div class="story_shadow">
+  <div <%if story_id%>id="<%=story_id%>"<%end%> class="story <%if story_css%><%=story_css%><%end%>">
+<% end %>
+
+    <% if header_data[:list_title] %>
+      <h3 class="story_hd">
+        <%= render :partial => "columns/story_opt", :locals => opt_data %>
+        <%= render :partial => "columns/story_header", :locals => header_data %>
+      </h3>
+    <% end %>
+
+    <div class="story_bd">
+      <%= yield %>
+    </div>
+    
+<% unless story_is_hide %>
+  </div>
+</div>
+<% end %>

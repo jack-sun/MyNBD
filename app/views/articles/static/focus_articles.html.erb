@@ -1,0 +1,1 @@
+<%= render :partial => "columns/article_list", :locals => {:list_title => "媒体聚焦", :articles => @focus_articles[:articles].map(&:article).compact, :column_id => 8, :digest_number =>1, :display_datetime => true, :html_style => "margin-bottom:10px;", :digest_restrict => true } %>

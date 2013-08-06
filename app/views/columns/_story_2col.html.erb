@@ -1,0 +1,15 @@
+<%
+# left: Object
+# right: Object
+%>
+
+<div class="story_shadow">
+  <div class="story">
+    <div class="story_divide_l">
+      <%= render :partial => "story_articles", :locals => left %>
+    </div>
+    <div class="story_divide_r">
+      <%= render :partial => "story_articles", :locals => right %>
+    </div>
+  </div>
+</div>

@@ -9,7 +9,7 @@
 		<%= csrf_meta_tag %>
 		<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
 		<script type="text/javascript">
-			document.domain = (/^http.?:\/\/([^\.\/]+\.)*nbd\.com\.cn/g.test(location.href)) ? "nbd.com.cn" : "nbd.cn";
+			document.domain = "<%= Settings.session_domain %>".substring(1);
 		</script>
 	</head>
 	<body>

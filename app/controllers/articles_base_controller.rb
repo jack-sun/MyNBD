@@ -1,5 +1,35 @@
 # encoding: utf-8
 class ArticlesBaseController < ApplicationController
+    include StaticPage::Util
+    before_filter :split_article_id
+    before_filter :current_article
+
+    def split_article_id
+      if params[:id].include?("_")
+        @article_id = params[:id].split("_").first
+        @page_index = params[:id].split("_").last
+      else
+        @article_id = params[:id]
+        @page_index = 1
+      end
+    end    
+
+    def current_article
+      @article = Article.find(@article_id)
+    end
+
+    after_filter :only => [:show, :page] do |c|
+      subdomain = request.subdomains.first
+      date = @article.created_at.strftime("%Y-%m-%d")
+      file_path = get_static_article_path(subdomain, @article.id, date, @page.p_index)
+      Resque.enqueue(Jobs::WriteStaticPage, response.body, file_path)
+    end
+
+    def add_click_count
+      article = Article.find(params[:id])
+      record_click_count(article)
+      render :text => 'ok'
+    end
 
     def init_article_page(page_index = 1 , is_west = false)
       # Rails.logger.info("Come on========is_west:#{is_west}")
@@ -12,9 +42,11 @@ class ArticlesBaseController < ApplicationController
       
       @reporters = @article.staffs.reporters
       @editors_in_charge = @article.staffs.editors_in_charge
-      
-      @page = @article.pages.where(:p_index => page_index).first
-      
+      # if params[:id].include?("-")
+      #   page_index = params[:id].split('-').last.to_i
+      # end
+      @page = @article.pages.where(:p_index => @page_index).first
+      raise ActiveRecord::RecordNotFound if @page.blank?
       unless is_west
         @related_articles = @article.related_articles(5) #相关文章 west hasn't
         @recommend_articles = {:id => @article.id} #根据关键词 推荐的文章, 获取文章逻辑放到页面上  west hasn't
@@ -26,6 +58,8 @@ class ArticlesBaseController < ApplicationController
       #@global_hot_articles = Article.hot_articles(20)[0..9] #temp solution, Vincent 2011-12-05 #全局热门文章
       
       @nbd_weekly_comment = {:articles => Article.of_column(100, 1), :id => 100} #每经一周评
+
+      @hot_picture_articles = Article.of_column(222, 12).map(&:article).compact
       
       #@global_hot_comment_articles = Article.hot_comment_articles(20)[0..9] #全局热评文章
       
@@ -61,7 +95,7 @@ class ArticlesBaseController < ApplicationController
   end
 
   def check_ntt_article
-    @article = Article.find(params[:id])
+    # @article = Article.find(params[:id])
     raise ActiveRecord::RecordNotFound if @article.blank? or (not @article.is_published?)
     return redirect_to ntt_article_url(@article) if @article.from_ntt?
   end

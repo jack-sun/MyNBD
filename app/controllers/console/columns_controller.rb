@@ -13,6 +13,18 @@ module Console
     }
     cache_sweeper Sweepers::PageSweeper
 
+    after_filter :only => [:change_pos, :change_pos_to_first] do |c|
+      column_id = @column.id
+      params = {:column_top_picks_pages => [column_id]}
+
+      params.merge({:column_picture_articles => [column_id], 
+                    :hot_picture_articles => [column_id]}) if Column::COLUMN_PICTURE.values.include?(column_id)
+      Resque.enqueue(Jobs::UpdateStaticFragmentPage, nil, params)
+    end
+
+    # def update_static_page
+    # end
+
     def remove_articles
       @article_ids = params[:article_ids].split(",")
       @column = Column.find(params[:id])
@@ -97,5 +109,6 @@ module Console
         redirect_to common_list_console_column_performance_logs_url
       end
     end
+
   end
 end

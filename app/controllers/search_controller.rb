@@ -7,25 +7,23 @@ class SearchController < ApplicationController
     
     @keyword = params[:q]
     
-    @articles = Article.search(@keyword, :page => params[:page], :per_page => 10, :order => :id, :sort_mode => :desc, :with => {:status => 1})
+    @articles = Article.search(@keyword, :page => params[:page], :per_page => 10, :order => :id, :sort_mode => :desc, :with => {:status => 1}, :without => {:column_ids => Column::SEARCHE_FORBID_COLUMN_IDS})
     
     #TODO
     #@global_hot_articles = Article.hot_articles(20)[0..9] #temp solution, Vincent 2011-12-05
     #@global_hot_comment_articles = Article.hot_comment_articles(20)[0..9] #temp solution, Vincent 2011-12-05
     
-    render :layout => "site"
+    render :layout => "site_v3"
   end
   
   def article_tag_search
     @keyword = params[:q]
-    
-    @articles = Article.search(:page => params[:page], :per_page => 10, :order => :id, :sort_mode => :desc, :conditions => {:tags => @keyword})
-    
+    @articles = Article.search(:page => params[:page], :per_page => 10, :order => :id, :sort_mode => :desc, :conditions => {:tags => @keyword}, :with => {:status => 1}, :without => {:column_ids => Column::SEARCHE_FORBID_COLUMN_IDS})
     #TODO
     #@global_hot_articles = Article.hot_articles(20)[0..9] #temp solution, Vincent 2011-12-05
     #@global_hot_comment_articles = Article.hot_comment_articles(20)[0..9] #temp solution, Vincent 2011-12-05
     
-    render :article_search, :layout => "site"
+    render :article_search, :layout => "site_v3"
   end
   
   def community_search

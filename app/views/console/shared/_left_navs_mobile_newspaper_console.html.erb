@@ -47,7 +47,7 @@
   </dd>   
   <dt>卡号管理</dt>
   <dd <% if @service_card_type and @service_card_type == "create" %>class="current" <%end%>>
-    <%= link_to "卡号生成器", new_console_premium_service_card_url %>
+    <%= link_to "任务管理", console_premium_card_tasks_url %>
   </dd>
   <dd <% if @service_card_type and @service_card_type == "manage" %>class="current" <%end%>>
     <%= link_to "实体卡管理", console_premium_service_cards_url %>

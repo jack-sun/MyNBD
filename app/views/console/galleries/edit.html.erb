@@ -1,0 +1,13 @@
+<div class="sectionA">
+  <div class="title">
+    <% if @gallery.status == Gallery::STATUS_UNPUBLISH %>
+      <h2>图片集 - 添加新图集</h2>
+    <% else %>
+      <h2>图片集 - 编辑图集</h2>
+    <% end %>
+    <span class="opts"><%= link_to "<span>取消</span>".html_safe, console_galleries_url, :class => "btnGray" %></span>
+  </div>
+  <div class="content">
+    <%= render "form" %>
+  </div>
+</div>

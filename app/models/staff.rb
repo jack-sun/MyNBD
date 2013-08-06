@@ -72,6 +72,8 @@ class Staff < ActiveRecord::Base
 
   has_many :staff_performance_logs
 
+  has_many :galleries
+
   scope :reporters, where(:user_type => TYPE_REPORTER)
   scope :common_editors, where(:user_type => TYPE_EDITOR)
   scope :editors_in_charge, where(:user_type => EDITOER_IN_CHARGE)

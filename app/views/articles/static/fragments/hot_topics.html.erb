@@ -1,0 +1,3 @@
+<% if @hot_topics[:topics].present? %>
+  <%= render :partial => "columns/hot_weibo_topic_entry", :locals => {:topic => @hot_topics[:topics].first}%>
+<%end%>

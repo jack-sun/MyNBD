@@ -1,0 +1,46 @@
+<% cache(column_show_content_key_by_id(news[:id])) do
+news_articles = articles_of(news) -%>
+<div class="importantNews">
+  <% news_articles.each_with_index do |a, i| %>
+    <div class="importantNews_item ovh">
+      <h4 class="importantNews_item_title">
+        <% if a.is_special? %>
+          <span class="label"><%= Article::SPECIAL[a.special] %></span>
+        <% end %>
+        <%= link_to a.list_title, article_url(a), :target => "_blank", :class => "g1a" %>
+      </h4>
+      <% if a.relate_article_children.length > 0 %>
+        <ul class="unorderList unorderList-orange importantNews_children">
+          <% a.relate_article_children.order("pos desc").each do |child| %>
+            <li>
+              <%= link_to child.children_title, child.children_url, {:target => "_blank", :title => child.children_title} %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p class="importantNews_digest">
+          <%= a.digest %>
+        </p>
+      <% end %>
+    </div>
+    <% if i < news_articles.length-1 %>
+    <div class="hr"></div>
+    <% end %>
+  <% end %>
+</div>
+<% end %>
+
+<% cache(column_show_content_key_by_id(stock[:id])) do %>
+<div class="importantNews_column"><p><span>股票</span></p></div>
+<%= render :partial => "columns/article_list_v3", :locals => { :articles => articles_of(stock), :digest_number => 0 } %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(company[:id])) do %>
+<div class="importantNews_column"><p><span>公司</span></p></div>
+<%= render :partial => "columns/article_list_v3", :locals => { :articles => articles_of(company), :digest_number => 0 } %>
+<% end %>
+
+<% cache(column_show_content_key_by_id(finance[:id])) do %>
+<div class="importantNews_column"><p><span>金融</span></p></div>
+<%= render :partial => "columns/article_list_v3", :locals => { :articles => articles_of(finance), :digest_number => 0 } %>
+<% end %>

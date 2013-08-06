@@ -1,0 +1,9 @@
+<% related_features = @article.related_features %>
+<% if related_features.present? and !related_features.empty? %>
+  <p class="a_relatedList_hd">相关专题：</p>
+  <ul class="unorderList unorderList-orange">
+    <% related_features.each do |feature| %>
+      <li><%= link_to feature.title, "#{Settings.host}/features/#{feature.id}.html", :target => '_blank' %></li>
+    <% end %>
+  </ul>
+<% end %>

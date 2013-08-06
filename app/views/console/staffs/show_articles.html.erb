@@ -114,6 +114,9 @@ logger.debug "----------special_column: #{special_column}"
 	      <%end%>
 	    </tbody>
 	  </table>
+	  <div class="pagination mt20">
+      <%= paginate @articles %>
+    </div>
 	</div><!-- table wrapper -->
 	<div class="content">
 		<% unless @console == 'statistics' %>

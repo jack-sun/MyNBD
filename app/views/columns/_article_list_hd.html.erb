@@ -1,0 +1,6 @@
+<h4 class='articleMaterial_title'>
+  <% if false #display_label and article.is_special? %>
+    <span class="label"><%= Article::SPECIAL[article.special] %></span>
+  <% end %>  
+  <%= block_article_list(article, :subdomain => for_article_subdomain) %>
+</h4>

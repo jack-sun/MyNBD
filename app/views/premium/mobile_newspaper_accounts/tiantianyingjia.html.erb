@@ -16,7 +16,11 @@
         <a href="#ttyjIphone">iPhone客户端</a>
         <a href="#ttyjAndroid">Android客户端</a>
         <a href="#ttyjActive">卡号激活</a>
-        <%= link_to "<span>立刻购买</span>".html_safe, new_premium_mobile_newspaper_account_url, :class => "outlink outlink-s" %>
+        <% if @current_user %>
+          <%= link_to "<span>立刻续费</span>".html_safe, new_premium_mobile_newspaper_account_url, :class => "outlink outlink-s" %>
+        <% else %>
+          <%= link_to "<span>立刻购买</span>".html_safe, new_premium_mobile_newspaper_account_url, :class => "outlink outlink-s" %>
+        <% end %>
       </div>
     </div>
   </div>
@@ -77,7 +81,7 @@
     <h3>在iTunes中下载后，通过同步安装：</h3>
     <p>
       1. 确认该电脑上已安装iTunes (<a target="_blank" href="http://www.apple.com.cn/itunes/download/">下载iTunes</a>)； <br>
-      2. <a target="_blank" href="https://itunes.apple.com/us/app/mei-jing-tou-zi-bao-mei-ri/id575805206?ls=1&mt=8">在iTunes中查看该客户端</a>； <br>
+      2. <a target="_blank" href="https://itunes.apple.com/us/app/mei-jing-tou-zi-bao-tian-tian/id655463089?ls=1&mt=8">在iTunes中查看该客户端</a>； <br>
       3. 点击“免费”按钮，开始下载； <br>
       4. 下载完成后，通过iTunes同步完成安装 (同步设置详述)。
     </p>

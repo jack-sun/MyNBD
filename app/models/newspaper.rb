@@ -14,6 +14,8 @@ class Newspaper < ActiveRecord::Base
   STATUS_PARSE = 0
   STATUS_PARSE_ERROR = -1
   STATUS_PARSE_SUCCESS = 1
+
+  API_EXPIRE_IN = 1.week
   
   STATUS = {STATUS_DRAFT => "解析中", STATUS_PARSE_ERROR => "解析失败", STATUS_PARSE_SUCCESS => "解析成功"}
   
@@ -25,6 +27,7 @@ class Newspaper < ActiveRecord::Base
   
   def add_articles(articles_data)
     articles_data.each do |article_data|
+      logger.debug "==============+#{article_data}"
       articles_params = attributes_of(Article,article_data).merge({'column_ids' => [79], :status => 1, :allow_comment => false, :is_rolling_news => true}) # pls make sure to fill the correct column id value, which map to '今日报纸'
       article = self.staff.create_article(articles_params)
       #article.pages.create(:content => article_data.delete('content').map{|p| "<p>#{p}</p>"}.join(""))
@@ -65,5 +68,9 @@ class Newspaper < ActiveRecord::Base
 
   def name
     self.n_index
+  end
+
+  def api_newspaper_cache_key
+    Article::API_NEWSPAPER_CACHE_KEY.gsub('$newspaper_id', self.id.to_s)
   end
 end

@@ -1,0 +1,20 @@
+<%
+live = nil unless live
+current_live_url = live.nil? ? today_lives_url : live_url(live)
+# live_talk: Talk
+%>
+
+<div class="story_shadow">
+  <div id="h_home_stock_33" class="story">
+    <h3 class="story_hd">
+      <div class="story_hd_opt">
+        <%= link_to "收看直播", current_live_url, :class => "story_hd_opt_outlink" %>
+      </div>
+      <%= link_to "每经网股市直播", current_live_url %>
+    </h3>
+    <div class="story_bd">
+      <p class="g80"><%= nbd_time_f(live_talk.weibo.created_at) %></p>
+      <p><%= strip_html_tag(live_talk.weibo.content, 120) %> <%= link_to "更多 &raquo;".html_safe, current_live_url %></p>
+    </div>
+  </div>
+</div>

@@ -18,7 +18,7 @@ digest_restrict = true unless digest_restrict
 					<%= link_to article.title, article_url(article), :target => "_blank" %>
 				</h5>
 				<div class="rcDigest">
-					<%= link_to image_tag(article_thumbnail_path(article, :small), {:alt => article.list_title, :width => 80, :height => 60, :alt => article.title }),  article_url(article), :target => "_blank"  if article.image.present? %>
+					<%= link_to image_tag(article_thumbnail_path(article, :thumb_hs), {:alt => article.list_title, :width => 80, :height => 60, :alt => article.title }),  article_url(article), :target => "_blank"  if article.image.present? %>
 					<p <%if digest_restrict%>class="restrict"<%end%>><%= article.show_digest %></p>
 				</div>
               <% end %>

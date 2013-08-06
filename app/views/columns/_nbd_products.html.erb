@@ -1,0 +1,23 @@
+<div class="story_shadow">
+  <div class="story story-borderBlue">
+    <div class="story_bd">
+      <dl>
+        <dt class="mbs"><span class="g1a b">《每日经济新闻》</span>(<%=Time.now.strftime("%Y年%m月%d日")%>) </dt>
+        <dd>
+          <%= link_to("文字版", today_newspapers_url, {:class => "mhs", :target => "_blank"})%>
+          <%= link_to("图文版", "http://epaper.nbd.com.cn/", :target => "_blank", :class => "mhs")%>
+          <%= link_to("报纸订阅", "#{Settings.old_host}/html/dingyue.html", :target => "_blank", :class => "mhs") %>
+        </dd>
+      </dl>
+      <div class="hr"></div>
+      <dl>
+        <dt class="g1a mbs b">《每经投资宝》 系列产品</dt>
+        <dd>
+          <%= link_to("天天赢家", "#{Settings.host}/premium/mobile_newspaper_account/introduce", {:class => "mhs", :target => "_blank"})%>
+          <%= link_to("股东大会实录", "http://www.nbd.com.cn/features/274", :class => "mhs", :target => "_blank")%>
+          <%= link_to("投资快讯", "#{Settings.host}/premium/mobile_news/introduce", :class => "mhs", :target => "_blank")%> 
+        </dd>
+      </dl>
+    </div>
+  </div>
+</div>

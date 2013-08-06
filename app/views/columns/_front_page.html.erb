@@ -1,0 +1,84 @@
+<%
+# 头条
+small_image = false unless small_image
+for_subdomain = false unless for_subdomain
+
+if small_image
+  img_ver = :thumb_hm
+else
+  img_ver = :thumb_hl
+end
+%>
+<div class="story_shadow">
+  <div class="frontPage story <% if small_image %>frontPage-smallImg<% end %>">
+    <ul class="frontPage_index" id="frontPageIndex">
+      <% articles.each_with_index do |a, i| %>
+        <li <% if i == articles.length-1 %>class="last"<% end %>>
+          <a href="javascript:;"><span><%= a.short_title %></span></a>
+        </li>
+      <% end %>
+    </ul>
+    <div class="frontPage_content">
+      <div id="frontPageSlide" class="frontPage_content_slide">
+        <% articles.each_with_index do |a, i| %>
+          <%
+            children = a.relate_article_children.order("pos desc")
+          %>
+          <div>
+            <div class="hd">
+              <% if a.is_special? %>
+                <span class="label"><%= Article::SPECIAL[a.special] %></span>
+              <% end %>
+              <% if for_subdomain %>
+                <%= link_to a.list_title, send("#{for_subdomain}_article_url", a), {:target => "_blank", :title => a.title} %>
+              <% else %>
+                <%= link_to a.list_title, article_url(a), {:target => "_blank", :title => a.title} %>
+              <% end %>
+            </div>
+            <div class="bd">
+              <div class="frontPage_content_img">
+                <%= block_article_list(a, :subdomain => Settings.default_sub_domain, :with_image => true, :version => img_ver) %>
+              </div>
+              <p class="frontPage_intro <%= "frontPage_intro-noChildren" if children.length == 0%>"><%= a.show_digest %></p>
+              <% if children.length > 0 %>
+                <ul class="frontPage_content_children unorderList unorderList-orange">
+                  <% if for_subdomain %>
+                    <% a.relate_article_children.order("pos desc").each do |child| %>
+                      <li>
+                      <% if child.children_url =~ /features\/\d+/ %>
+                        <%= link_to child.children_title, child.children_url, {:target => "_blank", :title => child.children_title} %>
+                      <% else %>
+                        <%= link_to child.children_title, child.children_url.gsub("www", for_subdomain), {:target => "_blank", :title => child.children_title} %>
+
+                      <% end %>
+                      </li>
+                    <% end %>
+
+                  <% else %>
+                    <% a.relate_article_children.order("pos desc").each do |child| %>
+                      <li>
+                        <%= link_to child.children_title, child.children_url, {:target => "_blank", :title => child.children_title} %>
+                      </li>
+                    <% end %>
+                  <% end %>
+                </ul>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  if($.nbdslide){
+    $.nbdslide.init({
+      optDOMs:[{
+        selector:"#frontPageSlide",
+        style:"normal"
+      }],
+      indexDOM:"#frontPageIndex"
+    });
+  }
+</script>

@@ -6,7 +6,7 @@
   <%= f.fields_for :image, (@feature.image ? @feature.image : Image.new) do |image| %>
     <div>
       <% if @feature.image && !@feature.image.feature.nil? %>
-        <div class="imageThumbs"><%= image_tag(@feature.image.feature_url(:subdomain => "www"), :class => "thumbImage" ) %></div>
+        <div class="imageThumbs"><%= image_tag(@feature.image.feature_url(:subdomain => "image"), :class => "thumbImage" ) %></div>
       <% end %>
       <%= image.label "横幅图片:" %>
       <%= image.file_field :feature %>

@@ -1,5 +1,5 @@
 # encoding: utf-8
-
+require 'carrierwave/storage/sftp'
 class NewspaperUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or ImageScience support:
@@ -8,8 +8,9 @@ class NewspaperUploader < CarrierWave::Uploader::Base
   # include CarrierWave::ImageScience
 
   # Choose what kind of storage to use for this uploader:
-  storage :file
+  # storage :file
   # storage :fog
+  storage :sftp
 
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -45,5 +46,15 @@ class NewspaperUploader < CarrierWave::Uploader::Base
   # def filename
   #   "something.jpg" if original_filename
   # end
+
+  CarrierWave.configure do |config|
+    config.sftp_host = "#{Settings.remote_image_sftp_host}"
+    config.sftp_user = "#{Settings.remote_image_sftp_user}"
+    config.sftp_folder = "#{Settings.remote_image_sftp_folder}"
+    config.sftp_url = ""
+    config.sftp_options = {
+      :port     => 22
+    }
+  end
 
 end

@@ -10,6 +10,7 @@ class Payment < ActiveRecord::Base
   STATUS_SUCCESS = 1
   STATUS_WAITE = 0
   STATUS_FAILED = 2
+  STATUS_VERIFYING = 3
   STATUS_ALL = 9
   PAY_FROM_ALIPAY = 0
   PAY_FROM_CARD = 1
@@ -103,8 +104,12 @@ class Payment < ActiveRecord::Base
     self.payment_type == PAY_FROM_ALIPAY
   end
 
-  def out_trade_no
-    "#{Settings.app_env}_#{Time.now.to_i.to_s}_#{self.id}"
+  def out_trade_no(product = 'ttyj', device = 'web')
+    "#{product}_#{device}_#{Settings.app_env}_#{Time.now.to_i.to_s}_#{self.id}"
+  end
+
+  def verifying?
+    status == STATUS_VERIFYING
   end
 
 
@@ -173,7 +178,7 @@ class Payment < ActiveRecord::Base
         :return_url => ActiveMerchant::Billing::Integrations::Alipay::NOTIFY_URL
       }
       alipay_params[:subject] = if self.service_type == 'MnAccount'
-        "订阅每日经济新闻手机报服务 #{count}个月 手机号：#{self.service.phone_no}"
+        "订阅每日经济新闻天天赢家服务 #{count}个月 手机号：#{self.service.phone_no}"
       elsif self.service_type == 'GmsAccount'
         "购买投资宝股东大会实录#{GmsAccount::PLAN_TYPE[self.plan_type]} 用户信息：#{self.service.user.id} / #{self.service.user.nickname}"
       end
@@ -184,7 +189,8 @@ class Payment < ActiveRecord::Base
       alipay_params = {
         :format => "xml",
         :partner => ActiveMerchant::Billing::Integrations::Alipay::ACCOUNT,
-        :req_data => "<direct_trade_create_req><subject>订阅每日经济新闻手机报服务 #{count}个月 手机号：#{self.service.phone_no}</subject><out_trade_no>tzb_#{self.out_trade_no}</out_trade_no><total_fee>#{self.payment_total_fee.to_s}</total_fee><seller_account_name>#{ActiveMerchant::Billing::Integrations::Alipay::EMAIL}</seller_account_name><call_back_url>#{ActiveMerchant::Billing::Integrations::Alipay::WAP_NOTIFY_URL}</call_back_url><notify_url>#{ActiveMerchant::Billing::Integrations::Alipay::WAP_NOTIFY_URL}</notify_url></direct_trade_create_req>",
+        #TODO
+        :req_data => "<direct_trade_create_req><subject>订阅每日经济新闻天天赢家服务 #{count}个月 手机号：#{self.service.phone_no}</subject><out_trade_no>tzb_#{self.out_trade_no('ttyj','iphone')}</out_trade_no><total_fee>#{self.payment_total_fee.to_s}</total_fee><seller_account_name>#{ActiveMerchant::Billing::Integrations::Alipay::EMAIL}</seller_account_name><call_back_url>#{ActiveMerchant::Billing::Integrations::Alipay::WAP_NOTIFY_URL}</call_back_url><notify_url>#{ActiveMerchant::Billing::Integrations::Alipay::WAP_NOTIFY_URL}</notify_url></direct_trade_create_req>",
         :req_id => Time.now.to_i.to_s,
         :sec_id => "MD5",
         :service => Settings.wap_alipay_token_service,
@@ -192,5 +198,11 @@ class Payment < ActiveRecord::Base
       }
     end
     return alipay_params      
+  end
+
+  def self.get_preverify_payments
+    payments = Payment.waiting_payments.appstore
+    payments.update_all(:status => Payment::STATUS_VERIFYING)
+    return payments
   end
 end

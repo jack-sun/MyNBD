@@ -1,0 +1,17 @@
+<%
+recommend_css = "" if recommend_css.nil?
+%>
+
+<div class="gallery_recommend <%= recommend_css %>">
+  <ul>
+    <% galleries.each do |gallery| %>
+    <li>
+      <%= link_to(gallery_url(gallery), {:target => "_blank", :title => gallery.title}) do %>
+        <%= image_tag(gallery.thumb_url, {:alt => gallery.desc}) if gallery.thumb_url.present? %>
+        <div class="gallery_recommend_bg"></div>
+        <p><%= gallery.title %></p>
+      <% end %>
+    </li>
+    <% end %>
+  </ul>
+</div>

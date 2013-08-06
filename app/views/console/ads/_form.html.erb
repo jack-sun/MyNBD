@@ -6,7 +6,7 @@
   <%= f.fields_for :image, (@ad.image ? @ad.image : Image.new) do |image| %>
     <div class="formRightAlign">
       <% if @ad.image && !@ad.image.ad.nil? %>
-        <div class="imageThumbs"><%= image_tag(@ad.image.ad_url(:subdomain => "www"))%></div>
+        <div class="imageThumbs"><%= image_tag(@ad.image.ad_url(:subdomain => "image"))%></div>
       <% end %>
       <div>文件尺寸:
         <span id="imageSize">

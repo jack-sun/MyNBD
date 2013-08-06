@@ -5,7 +5,7 @@ module Sweepers
     def expire_touzibao_fragment(entry)
       expire_cache_object("touzibao", 'today') unless entry.nil?
       expire_cache_object("touzibao", 'latest') unless entry.nil?
-	  expire_cache_object(entry) unless entry.nil?
+  	  expire_cache_object(entry) unless entry.nil?
     end
 
     alias :after_save :expire_touzibao_fragment

@@ -12,6 +12,7 @@ class Article < ActiveRecord::Base
   HOT_COMMENT_ARTICLE_FRAGMENT_CACHE_KEY = "hot_comment_article_cache_fragment_key"
   IMAGE_NEWS_IN_HOME_PAGE_CACHE_KEY = "column_4_path_home_index_image_news"
   IMPORTANT_ARTICLE_CACHE_KEY = "views/articles/important_article_cache"
+  API_NEWSPAPER_CACHE_KEY = "views/newspaper/api_content_by_id_$newspaper_id"
 
   COPYRIGHT_FRAGMENT_CACHE_KEY = "copyright_fragment_cache_key"
 
@@ -22,7 +23,7 @@ class Article < ActiveRecord::Base
   include CacheCallback::HotResult
   include ActionView::Helpers
 
-  attr_accessor :c_id
+  attr_accessor :c_id, :prev_column_ids
 
   paginates_per Settings.count_per_page
 
@@ -90,6 +91,8 @@ class Article < ActiveRecord::Base
 
   belongs_to :image
 
+  belongs_to :gallery
+
   accepts_nested_attributes_for :pages, :allow_destroy => true#, :reject_if => lambda { |a| a[:content].blank? && a[:image_attributes].blank? }
   accepts_nested_attributes_for :image, :allow_destroy => true, :reject_if => :all_blank
 
@@ -105,6 +108,17 @@ class Article < ActiveRecord::Base
   before_save :parse_tags
   def parse_tags
     self.tags = NBD::Utils.parse_tags(self.tags).join(",") unless self.tags.blank?
+  end
+
+  before_save :validate_titles
+
+  def validate_titles
+    self.short_title = nil if self.read_attribute(:short_title).blank?
+    self.list_title = nil if self.read_attribute(:list_title).blank?
+  end
+  # before_save :set_prev_column_ids
+  def set_prev_column_ids
+    self.old_column_ids = columns.map(&:id) || []
   end 
 
   define_index do
@@ -117,10 +131,16 @@ class Article < ActiveRecord::Base
     indexes pages.content, :as => :content
 
     # attributes
+    #文章所属栏目id, by zhou 2013-07-18
+    has columns.id, :as => :column_ids
     has :id, status, created_at, updated_at
     
     # 声明使用实时索引    
     set_property :delta => true
+  end
+
+  def column_ids
+    self.columns.map(&:id)
   end
 
   def is_special?
@@ -150,7 +170,7 @@ class Article < ActiveRecord::Base
   
   def recommend_articles(limit)
     if self.tags.present?
-      {:articles => Article.search(self.tags.split(",").first, :page => 1, :per_page => limit, :order => :id, :sort_mode => :desc, :with => {:status => PUBLISHED}, :without => {:id => self.id}), :id => self.id}
+      {:articles => Article.search(self.tags.split(",").first, :page => 1, :per_page => limit, :order => :id, :sort_mode => :desc, :with => {:status => PUBLISHED}, :without => {:id => self.id, :column_ids => Column::SEARCHE_FORBID_COLUMN_IDS}), :id => self.id}
     else #如果没有填写文章关键词，就用‘热门文章’ 内容代替
       {:articles => Article.hot_articles(5), :id => self.id}
     end
@@ -163,6 +183,10 @@ class Article < ActiveRecord::Base
     else
       {}
     end
+  end
+
+  def first_column
+    self.columns.order("id asc").try(:to_a).try(:first)
   end
 
   before_create :init_slug
@@ -220,6 +244,12 @@ class Article < ActiveRecord::Base
   	else
   		read_attribute(:list_title)
   	end
+  end
+
+  def short_title
+    return read_attribute(:short_title) || list_title
+    # return read_attribute(:short_title) unless read_attribute(:short_title).blank?
+    # return list_title
   end
   
   def show_ori_source
@@ -303,6 +333,8 @@ class Article < ActiveRecord::Base
     # params[:tags] = NBD::Utils.parse_tags(params[:tags]).join(", ") if params[:tags].present?
     
     article = self.new(params)
+    article.prev_column_ids = []
+    column_ids.each {|column_id| article.prev_column_ids << column_id.to_i}
     self.transaction do
       unless article.save
         return article
@@ -450,10 +482,26 @@ class Article < ActiveRecord::Base
     Feature.search_with_tags(NBD::Utils.parse_tags(self.tags), limit) unless self.tags.blank?
   end
 
+  def static_article_path
+    "#{Settings.static_path.article_show}/#{created_at.strftime('%Y-%m-%d')}/#{id}.html"
+  end
+
+  def channel_ids
+    channels = []
+    columns.each do |column|
+      channels << column.parent_id
+    end
+    channels.uniq
+  end
+
   class << self
 
     def hot_articles(limit = 10, asso_hash = {})
       hot_objects("hot_cache:result:hot_article", limit, asso_hash)
+    end
+
+    def hot_column_articles(column_id, limit = 10, asso_hash = {})
+      hot_objects(CacheCallback::BaseCallback::HOT_COLUMN_ARTICLE_KEY + ":#{column_id}", limit, asso_hash)
     end
 
     def hot_comment_articles(limit = 10, asso_hash = {})
@@ -479,6 +527,14 @@ class Article < ActiveRecord::Base
 
     def record_hot_article?(article_id)
       (ArticlesColumn.where(:article_id => article_id, :status => PUBLISHED).select([:column_id]).map(&:column_id) & Column::NOT_RECORD_HOT_IDS).blank?
+    end
+
+    def article_columns(id)
+      article = Article.where(:id => id).first
+      if article.present?
+        article_columns = article.columns
+      end
+      article_columns
     end
 
   end

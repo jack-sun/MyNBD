@@ -1,0 +1,28 @@
+<%
+# DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED 
+# DEPRECATED DEPRECATED DEPRECATED DEPRECATED DEPRECATED 
+
+# articles
+%>
+<ul class="articles">
+  <% articles.each do |article| %>
+    <li class="articleMaterial">
+      <div class="clearfix f12">
+        <span class="r"><%= article.created_at.strftime("%H:%M") %></span>
+        <div class="columnBubble columnBubble-blue"><b></b>
+          <%= link_to article.columns.last.name, column_path(article.columns.last) %>
+        </div>
+      </div>
+      <h4 class="articleMaterial_title">
+        <%= block_article_list(article) %>
+      </h4>
+      <div class="articleMaterial_digest">
+        <p class="articleMaterial_digest_2row">
+          <%= article.show_digest %>
+        </p>
+      </div>
+    </li>
+  <% end %>
+</ul>
+
+<%= paginate articles %>

@@ -5,19 +5,19 @@ class Mobile::ColumnsController < ApplicationController
   
   before_filter :current_user
   
-  after_filter :only => [:show] do |c|
-    path = nbd_page_cache_path
-    write = nil
-    if params[:page]
-      write = params[:page].to_i < 11
-    else
-      write = true
-    end
-    if write and !File.exists?(path)
-      Resque.enqueue(Jobs::WritePageCache, response.body, path)
-      Resque.enqueue_in(Column::PAGE_CACHE_EXPIRE_TIME, Jobs::DeletePageCache, "column", path)
-    end
-  end
+  # after_filter :only => [:show] do |c|
+  #   path = nbd_page_cache_path
+  #   write = nil
+  #   if params[:page]
+  #     write = params[:page].to_i < 11
+  #   else
+  #     write = true
+  #   end
+  #   if write and !File.exists?(path)
+  #     Resque.enqueue(Jobs::WritePageCache, response.body, path)
+  #     Resque.enqueue_in(Column::PAGE_CACHE_EXPIRE_TIME, Jobs::DeletePageCache, "column", path)
+  #   end
+  # end
   PARENT_COLUMNS_INDEX = {1 => :home, 6 => :news, 10 => :market, 33 => :biz, 56 => :opinion}
   
   def show

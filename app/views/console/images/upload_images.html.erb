@@ -22,7 +22,7 @@
 			<div id="imageLib">
         <% @images.each do |image| %>
 					<div class="imageLibItem">
-          	<%= image_tag image.url_for_search(:x_large, "www"), :id => "image_#{image.id}", :alt => image.desc %>
+          	<%= image_tag image.url_for_search(:x_large, "image"), :id => "image_#{image.id}", :alt => image.desc %>
 					</div>
         <% end %>
 				<div class="clear"></div>
@@ -59,11 +59,6 @@
 		var jumpToLib = "<%= @current_tab %>";
 		
 		var tempBox = $("#tempBox");
-		
-    // Initialize the jQuery File Upload widget:
-    $('#fileupload').fileupload({
-			maxNumberOfFiles:1
-		});
 		
 		// search
     $("#searchImageBtn").click(function(){
@@ -118,13 +113,15 @@
 				// insert image
 				function afterUpdateImageData(){
 					
-					var image = $(".uploadedImage img").clone();
-					var desc = $(".uploadedImageDesc").val();
+					var image = $(".uploadedImage img");
+					// var desc = $(".uploadedImageDesc").val();
 					var imageStr;
 					
-					image.attr("alt", desc);
+					// image.attr("alt", desc);
 					tempBox.empty();
-					cleanImage(image);
+					image.each(function(i, img){
+						cleanImage($(img).clone());
+					});
 					
 					imageStr = tempBox.html();
 					confirmAndClose(imageStr);
@@ -136,13 +133,11 @@
 			
 			function uploadFromLibrary(){
 				var imageStr;
-				var imgArray = $("#imageLib .choosen img").map(function(){
-					return $(this);
-				});
+				var imgArray = $("#imageLib .choosen img");
 				
 				tempBox.empty();
 				imgArray.each(function(i, img){
-					cleanImage(img.clone());
+					cleanImage($(img).clone());
 				});
 				
 				imageStr = tempBox.html();

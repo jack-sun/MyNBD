@@ -1,0 +1,39 @@
+<%
+column_articles = [{236 => @movie_articles}, {251 => @drama_articles}, {237 => @performing_arts_articles}]
+%>
+
+<div class="story_shadow">
+  <div id="h_sh_2_21" class="story">
+    <h3 class="story_hd">
+      电影·话剧·演出
+    </h3>
+
+    <div class="story_bd">
+      <ul class="articles articles-sh">
+        <% column_articles.each_with_index do |column_article, index| %>
+        <% cache(column_show_content_key_by_id(column_article.keys.first)) do %>
+          <% articles = articles_of(column_article.values.first) %>
+          <% marticle = articles.first %>
+          <% unless marticle.blank? %>
+          <li class="articleMaterial <%if index == column_articles.length-1%>last<%end%>">
+            <div class="articleMaterial_digest">
+              <%= block_article_list(marticle, :subdomain => Settings.default_sub_domain, :with_image => true, :version => "thumb_vm") %>
+              <h4 class="articleMaterial_title">
+                <%= block_article_list(marticle) %>
+              </h4>
+              <ul class="unorderList unorderList-orange articleMaterial_digest_4row">
+                <% articles[1..4].each do |a| %>
+                  <li>
+                    <%= link_to a.list_title, article_url(a), {:target => "_blank", :title => a.list_title} %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+          </li>
+        <% end %>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

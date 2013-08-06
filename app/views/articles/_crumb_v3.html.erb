@@ -1,0 +1,20 @@
+<% for_subdomain = false unless for_subdomain %>
+
+<% if first_column %>
+  <div class="attachBar">
+    <div class="attachBar_crumb">
+      <span class="attachBar_label">您所在位置：</span>
+      <div class="attachBar_crumb_show">
+        <span><%= link_to "每经网", index_url %></span> &gt;
+        <% if for_subdomain %>
+          <span><%= link_to Column::SUBDOMAIN_NAME[for_subdomain], send("#{for_subdomain}_index_url") %></span> &gt;
+          <span><%= link_to first_column.name, send("#{for_subdomain}_column_url", first_column) %></span> &gt;
+        <% else %>
+          <span><%= link_to first_column.root.name, column_url(first_column.root) %></span> &gt;
+          <span><%= link_to first_column.name, column_url(first_column) %></span> &gt;
+        <% end %>
+        <span class="last"><strong>正文</strong></span>
+      </div>
+    </div>
+  </div>
+<% end %>

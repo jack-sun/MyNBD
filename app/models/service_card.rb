@@ -3,6 +3,11 @@ class ServiceCard < ActiveRecord::Base
   belongs_to :service, :polymorphic => :true  
   belongs_to :staff
   has_one :payment
+  belongs_to :card_sub_task, :class_name => "CardSubTask", :foreign_key => "task_id"
+  belongs_to :create_staff, :class_name => "Staff", :foreign_key => :staff_id
+  belongs_to :reviewed_staff, :class_name => "Staff", :foreign_key => :review_staff_id
+
+  STATUS_UNREVIEW = -1
   STATUS_UNACTIVATED  = 0
   STATUS_ACTIVATED = 1
 
@@ -10,8 +15,16 @@ class ServiceCard < ActiveRecord::Base
   TIME_3_MOUNTH = 1
   TIME_6_MOUNTH = 2
   TIME_12_MOUNTH = 3
+
   TIME_TYPE = {TIME_1_MOUNTH => 1, TIME_3_MOUNTH => 3, TIME_6_MOUNTH => 6, TIME_12_MOUNTH => 12}
+
+  CARD_TYPE_TTYJ = 0
+  CARD_TYPE_GMS = 1
+
+  CARD_TYPES = {CARD_TYPE_TTYJ => '天天赢家', CARD_TYPE_GMS => '股东大会实录'}
+
   STATUS_TYPE = {STATUS_ACTIVATED => "已使用", STATUS_UNACTIVATED => "未使用"}
+
   PASSWORD_PREFIX = 'nbd'
 
   def overdue?
@@ -75,6 +88,35 @@ class ServiceCard < ActiveRecord::Base
 
   def self.card_no_valid?(card_no)
     card = ServiceCard.where(:card_no => card_no).first && card.valid?
+  end
+
+  def self.generate_card_number_and_password
+    exist_cards = ServiceCard.select([:card_no, :password]) 
+    cards_infos = {}
+    exist_cards.each{|card| cards_infos.merge!({card.card_no => card.password})}
+
+    time = Time.now.strftime("%Y%m%d")
+    number = generate_random_str(time, 8) #card number always take time stamp as prefix
+    password = generate_random_str(PASSWORD_PREFIX, 13) #card password always take 'nbd' as prefix
+    while cards_infos.has_key?(number) do
+      number = generate_random_str(time, 8)
+    end
+    while cards_infos.has_value?(password) do
+      password = generate_random_str(PASSWORD_PREFIX, 13)
+    end
+    return number, password
+  end
+
+  def converted_card_type
+    CARD_TYPES[card_type]
+  end
+
+  def converted_plan_type
+    if card_type == CARD_TYPE_TTYJ
+      time_length_str
+    elsif card_type == CARD_TYPE_GMS
+      GmsAccount::PLAN_TYPE[plan_type]
+    end
   end
 
   private
