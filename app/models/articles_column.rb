@@ -1,21 +1,11 @@
 class ArticlesColumn < ActiveRecord::Base
-  # include ApplicationHelper
-  # include Cells::Rails::ActionController
-  # include Rails.application.routes.url_helpers # brings ActionDispatch::Routing::UrlFor
-  # include ActionView::Helpers::TagHelper
-
   paginates_per Settings.count_per_page
   belongs_to :article
   belongs_to :column
   belongs_to :column_for_stat, :class_name => "Column", :select => [:id,:parent_id], :foreign_key => "column_id"
   belongs_to :article_for_stat, :class_name => "Article", :select => [:id, :click_count], :foreign_key => "article_id"
 
-
   scope :published, where(:status => Article::PUBLISHED)
-
-  STATIC_RESOURCES = {4 => :image_news, 8 => :focus_articles, 5 => :featured_articles, 100 => :nbd_weekly_comment}
-
-  STATIC_COLUMN = STATIC_RESOURCES.keys.concat Column::FEATURE_COLUMN_HASH.values
 
   def article_stat
     [self.column_id, self.article_for_stat.try(:click_count) || 0]

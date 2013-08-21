@@ -1,0 +1,1078 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>汽车频道 | 每经网</title>
+    <link href="http://static.nbd.cn/stylesheets/reset.css?1356401080" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://static.nbd.cn/stylesheets/style_global.css?1364780437" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://static.nbd.cn/stylesheets/style_website.css?1363071767" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://static.nbd.cn/stylesheets/channel.css?1356401080" media="screen" rel="stylesheet" type="text/css" />
+    <script src="http://static.nbd.cn/javascripts/jquery.min.js?1356401080" type="text/javascript"></script>
+<script src="http://static.nbd.cn/javascripts/jquery_ujs.js?1356401080" type="text/javascript"></script>
+<script src="http://static.nbd.cn/javascripts/cookie.js?1356401080" type="text/javascript"></script>
+<script src="http://static.nbd.cn/javascripts/nbdtools.js?1364780304" type="text/javascript"></script>
+<script src="http://static.nbd.cn/javascripts/baidu_m.js?1358129544" type="text/javascript"></script>
+    <script src="http://static.nbd.cn/utilities/slideShow/slideShow.js?1358129544" type="text/javascript"></script><script src="http://static.nbd.cn/utilities/tabs/tabs.js?1356401080" type="text/javascript"></script>
+    <meta name="csrf-param" content="authenticity_token"/>
+<meta name="csrf-token" content="Sv50OOfWxSSulAiEwuh3h9wWei7sdFS2qtr9+&#47;9LfjQ="/>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <link rel="shortcut icon" href="http://static.nbd.com.cn/favicon.ico" type="image/x-icon"/>
+    <meta name="Keywords" content="财经新闻,财经报道,叶檀,道达,老法师看盘,股市直播,郑眼看盘,股市行情,财经证券,基金,荐股,股市内参,股吧,传闻,内幕,板块,个股,黑马,股市新闻,生活,汽车" />
+    <meta name="Description" content="24小时财经资讯平台，依托新锐财经日报《每日经济新闻》(National Business Daily)，打造中国最具影响力的经济、股票网站。覆盖宏观、股票、基金、期货、股指期货、外汇、债券、保险、银行、黄金、理财等全方位财经新闻。" />
+  </head>
+
+  <body id="body_site">
+
+		
+		
+    <div id="favoriteTip">
+	<div class="innerCenter">温馨提示：
+		<a id="addFav" href="javascript:void(0)">把每经网放入收藏夹吧！</a>
+		<a id="dontFavTip" style="margin-left:15px;" href="javascript:void(0)">我知道了</a>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(function(){
+		return; // for 18da
+
+		if(!$.cookie.get("favoriteTip")){
+			$("#favoriteTip").slideDown();
+		}
+		
+		$("body").keydown(function(e){
+			if ((e.ctrlKey||e.metaKey) && e.keyCode == 68) {
+				dontTip();
+			}
+		});
+		
+		$("#dontFavTip").click(function(){
+			dontTip();
+		});
+		
+		function dontTip(){
+			$.cookie.set("favoriteTip", true, {
+				expires:90,
+				domain:(location.href.indexOf("nbd.com.cn") != -1) ? "nbd.com.cn" : "nbd.cn",
+				path:"/"
+			});
+			$("#favoriteTip").slideUp();
+		}
+		
+		bookmarkApp();
+		
+		function bookmarkApp() {
+			var isIEmac = false; /*@cc_on @if(@_jscript&&!(@_win32||@_win16)&&(@_jscript_version<5.5)) isIEmac=true; @end @*/
+			var isMSIE = (-[1,]) ? false : true;
+			var cjTitle = "每经网";
+			var cjHref = "http://www.nbd.com.cn";
+			
+			addBookmark();
+			
+			//热键提示
+			function hotKeyTip() {
+				var ua = navigator.userAgent.toLowerCase();
+				var str = '';
+				var isWebkit = (ua.indexOf('webkit') != - 1);
+				var isMac = (ua.indexOf('mac') != - 1);
+				
+				if (ua.indexOf('konqueror') != - 1) {
+					str = 'CTRL + B'; // Konqueror
+				} else if (window.home || isWebkit || isIEmac || isMac) {
+					str = (isMac ? 'Command' : 'CTRL') + ' + D'; // Netscape, Safari, iCab, IE5/Mac
+				}
+				return ((str) ? '按下 <strong>' + str + '</strong>，把每经网放入收藏夹吧！' : str);
+			}
+	
+			function isIE8() {
+				var rv = -1;
+				if (navigator.appName == 'Microsoft Internet Explorer') {
+					var ua = navigator.userAgent;
+					var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+					if (re.exec(ua) != null) {
+						rv = parseFloat(RegExp.$1);
+					}
+				}
+				if (rv > - 1) {
+					if (rv >= 8.0) {
+						return true;
+					}
+				}
+				return false;
+			}
+	
+			function addBookmark() {
+				var addFavEvent;
+				
+				// Gecko (Mozilla)
+				if ((typeof window.sidebar == "object") && (typeof window.sidebar.addPanel == "function")) {
+					addFavEvent = function(){
+						window.sidebar.addPanel(cjTitle, cjHref, "");
+					};
+				
+				// IE	
+				}else if(isMSIE && typeof window.external == "object") {
+					// IE 8
+					if (isIE8()) {
+						addFavEvent = function(){
+							window.external.AddToFavoritesBar(cjHref, cjTitle); 
+						}
+					// IE <=7
+					} else { 
+						addFavEvent = function(){
+							window.external.AddFavorite(cjHref, cjTitle); 
+						}
+					}
+				
+				// OPERA	
+				} else if (window.opera) {
+					addFavEvent = function(){
+						$("#addFav").attr("href",cjHref);
+						$("#addFav").attr("title",cjTitle);
+						$("#addFav").attr("rel","sidebar");
+					}
+					
+				// WEBKIT
+				} else { 
+					$("#addFav").replaceWith("<span>"+hotKeyTip()+"</span>");
+				}
+				
+				if(addFavEvent){
+					$("#addFav").click(function(){
+						addFavEvent();
+						dontTip();
+					});
+				}
+			}
+			
+		};
+		
+	});
+</script>
+
+    <div id="top" class="dark"><div id="topStyle">
+      <div class="innerCenter">
+        <ul id="headerEntries">
+          <li class="first"><a href="http://www.nbd.cn/newspapers/today">今日报纸 (04月02日)</a></li>
+          <li><a href="http://auto.nbd.cn/mobiles/android">移动客户端</a></li>
+          <li><a href="http://club.nbd.cn">每经会</a></li>
+          <li><a href="http://www.nbd.com.cn/html/dingyue.html">订阅服务</a></li>
+          <li class="last"><a href="http://www.nbd.cn/premium/mobile_newspaper_account/introduce" style="color:#f60;font-weight:bold;">每经投资宝</a></li>
+        </ul>
+        <ul class="rf">
+            <li><a href="http://www.nbd.cn/user/sign_in">登录社区</a></li>
+            <li class="last"><a href="http://t.nbd.cn/%E6%AF%8F%E7%BB%8F%E7%BD%91%E5%AE%A2%E6%9C%8D">意见反馈</a></li>
+        </ul>
+      </div>
+    </div></div>
+
+    <div id="header">
+      <div class="innerCenter" id="logo">
+        <a id="logoSite" class="logo" href="/" title="每经网">每经网</a>
+        	<script type="text/javascript">
+		BAIDU_CLB_preloadSlots("349118","350299","349119","349120");
+	</script>
+	<!-- 广告位：全站_顶部四分之三通栏 -->
+	
+<div class="ad_global ad_header" style="">
+	<script type="text/javascript">BAIDU_CLB_fillSlot("349118");</script>
+</div>
+
+      </div>
+      <div id="mainNav">
+        <div class="navWrapper">
+          <ul class="lf">
+            <li class="first"><a href="http://www.nbd.cn" class="">首页</a></li>
+            <li><a href="http://news.nbd.cn" class="">资讯</a></li>  
+            <li><a href="http://stock.nbd.cn" class="">股票</a></li>  
+            <li><a href="http://company.nbd.cn" class="">公司</a></li> 
+            <li><a href="http://finance.nbd.cn" class="">金融</a></li>
+            <li><a href="http://auto.nbd.cn" class="highlight">汽车</a></li>   
+            <li><a href="http://www.nbd.cn/columns/47" class="">全球</a></li>  
+            <li><a href="http://ntt.nbd.cn" class="">智库</a></li>  
+            <li><a href="http://life.nbd.cn" class="">品味</a></li>  
+            <li><a href="http://bschool.nbd.cn" class="">管理</a></li>  
+            <li><a href="http://t.nbd.cn/" class="">社区</a></li>
+            <li><a href="http://west.nbd.cn">西部</a></li>
+          </ul>
+          <div class="searchBox rf">
+<form accept-charset="UTF-8" action="http://auto.nbd.cn/search/article_search" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>              <a href="javascript:void(0)" class="searchBtn" onclick="$(this).parents('form').submit();return false;"></a>
+              <input class="searchInput" id="q" name="q" type="text" value="" />
+</form>          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="wrapper">
+      
+
+
+<div class="subNavi">
+	<ul>
+		<li class="first current">
+				<a href="/columns/129">汽车</a><b>/</b>
+		</li>
+              <li class=" ">
+                <a href="/columns/140">热点</a>
+              </li>
+              <li class=" ">
+                <a href="/columns/133">行情</a>
+              </li>
+              <li class=" ">
+                <a href="/columns/134">测评</a>
+              </li>
+              <li class=" ">
+                <a href="/columns/135">导购</a>
+              </li>
+              <li class=" ">
+                <a href="/columns/136">自驾</a>
+              </li>
+              <li class=" ">
+                <a href="/columns/137">安全</a>
+              </li>
+              <li class=" last">
+                <a href="/columns/138">二手车</a>
+              </li>
+	</ul>
+</div>
+<style type="text/css">
+#body_site #wrapper {
+	margin-top: 0;
+}
+</style>
+
+<script type="text/javascript">
+/*
+	$(function(){
+		if($("#stockNewsContainer").length != 0){
+			$.nbdslide.init({
+				optDOMs:["#stockNewsContainer"],
+				prevDOM:"#upArrow",
+				nextDOM:"#downArrow",
+				style:"slide-y",
+				scrollSameTend:true,
+				speed:500,
+				interval:3000
+			});
+		}
+	});
+*/
+</script>
+
+<div class="leftCol">
+		
+<div id="headArticle">
+	<ul id="headArticleIndex">
+		<li><a href="javascript:void(0)">1</a></li>
+		<li><a href="javascript:void(0)">2</a></li>
+		<li><a href="javascript:void(0)">3</a></li>
+		<li slide-index-disable=true><a title="更多头条" href="/columns/130">…</a></li>
+	</ul>
+	<div id="headArticleContainer">
+		<div>
+			<a href="http://www.nbd.cn/articles/2013-03-11/721617.html" target="_blank"><img alt="2013年汽车品牌价值排行：丰田大众宝马分列前三" class="relativeImage" src="http://image.nbd.cn/uploads/articles/thumbnails/32421/____________.large_a.jpg" /></a>
+			<div class="paragraph">
+				<h2 class="headline" >
+					
+					<a href="http://www.nbd.cn/articles/2013-03-11/721617.html" target="_blank" title="2013年汽车品牌价值排行：丰田大众宝马分列前三">2013年汽车品牌价值排行：丰田大众宝马分列前三</a>
+				</h2>
+				<p id="headArticleDigest_0">
+					据英国品牌顾问公司BrandFinance发布的2013年度品牌价值排行榜，在汽车领域，丰田继续蝉联冠军，宝马下跌1位至第3名，大众则提升4个名次位居第2。
+				</p>
+				<div id="articleChildrenBox_0" class="additionalOpt">
+					<ul id="articleChildren_0" class="unorderList">
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div>
+			<a href="http://www.nbd.cn/articles/2013-03-10/721414.html" target="_blank"><img alt="斯巴鲁在华深陷故障门 十个月三召回问题汽车" class="relativeImage" src="http://image.nbd.cn/uploads/articles/thumbnails/32342/47841279762886857.large_a.jpg" /></a>
+			<div class="paragraph">
+				<h2 class="headline" >
+					
+					<a href="http://www.nbd.cn/articles/2013-03-10/721414.html" target="_blank" title="斯巴鲁在华深陷故障门 十个月三召回问题汽车">斯巴鲁在华深陷故障门 十个月三召回问题汽车</a>
+				</h2>
+				<p id="headArticleDigest_1">
+					汽车消费维权专家表示，即将于10月1日正式实施的《汽车三包条例》将能给以上车主们提供实质的维权法律保障。
+				</p>
+				<div id="articleChildrenBox_1" class="additionalOpt">
+					<ul id="articleChildren_1" class="unorderList">
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div>
+			<a href="http://www.nbd.cn/articles/2013-03-08/721023.html" target="_blank"><img alt="一嗨租车人事震荡：3个月内多名元老级高管离职" class="relativeImage" src="http://image2.nbd.cn/uploads/articles/thumbnails/32277/Img310612949.large_a.jpg" /></a>
+			<div class="paragraph">
+				<h2 class="headline" >
+					
+					<a href="http://www.nbd.cn/articles/2013-03-08/721023.html" target="_blank" title="一嗨租车人事震荡：三个月内多名“元老”级高管离职">一嗨租车人事震荡：3个月内多名元老级高管离职</a>
+				</h2>
+				<p id="headArticleDigest_2">
+					究竟是什么原因造成短时间高官密集离职？有离职高管昨日透露，一嗨目前的内部管理在高管间存在着争议和分歧。
+				</p>
+				<div id="articleChildrenBox_2" class="additionalOpt">
+					<ul id="articleChildren_2" class="unorderList">
+							<li>
+								<a href="http://www.nbd.com.cn/articles/2013-03-08/721116.html" target="_blank" title="影响有限">影响有限</a>
+							</li>
+							<li>
+								<a href="http://www.nbd.com.cn/articles/2013-03-08/721102.html" target="_blank" title="租车业老大烦恼：价格战将不休止">租车业老大烦恼：价格战将不休止</a>
+							</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="clear">
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	$(function(){
+		//autoSize digest height
+		for(var i = 0;i < $("#headArticle .paragraph").length;i++){
+			var fixedHeight = $('#articleChildrenBox_'+i).height();
+			var realHeight = $('#articleChildren_'+i).height();
+			if(fixedHeight > realHeight){
+				var digestHeight = $('#headArticleDigest_'+i).height();
+				$('#headArticleDigest_'+i).height(digestHeight + fixedHeight - realHeight);
+			}
+		}
+		
+		$.nbdslide.init({
+			optDOMs:["#headArticleContainer"],
+			indexDOM:"#headArticleIndex",
+			style:"slide-y",
+			interval:8000
+		});
+		
+	});
+</script>
+
+
+	<div class="subLeftCol">
+			<div class="sectionA " style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/140">热点</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/140">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-11/721728.html" target="_blank" title="李书福：国内排放标准太低 尾气标准要超欧美">李书福：国内排放标准太低 尾气标准要超欧美</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-11/721728.html" target="_blank"><img alt="李书福：国内排放标准太低 尾气标准要超欧美" height="60" src="http://image2.nbd.cn/uploads/articles/thumbnails/32472/_________.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  吉利汽车董事长李书福认为车企应该控制车内空气质量和尾气排放，并且把尾气排放标准提高到欧美之上。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-09/721332.html" target="_blank" title="迹象显示苹果欲携手汽车厂商打造iCar">迹象显示苹果欲携手汽车厂商打造iCar</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-09/721313.html" target="_blank" title="车企欲借“三包”政策翻身">车企欲借“三包”政策翻身</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-09/721311.html" target="_blank" title="张欣家族相中通用汽车大楼">张欣家族相中通用汽车大楼</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-08/721240.html" target="_blank" title="市场担忧新定价机制或致高油价：上调多于下调">市场担忧新定价机制或致高油价：上调多于下调</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-08/721205.html" target="_blank" title="丰田中国宣布连串人事调动">丰田中国宣布连串人事调动</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-08/721202.html" target="_blank" title="北京部分豪宅车位报价高达80万元 卖车位或成开发商又一暴利项目">卖车位或成北京开发商又一暴利项目</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-08/721195.html" target="_blank" title="工作日少致2月产销量假摔 乘联会预计3月汽车销量高增">乘联会预计3月汽车销量高增</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-08/721151.html" target="_blank" title="新能源汽车发展仍存三大难关">新能源汽车发展仍存三大难关</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-08/721057.html" target="_blank" title="经销商预言年度销量翻倍 长安福特供不应求">经销商预言年度销量翻倍 长安福特供不应求</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+	</div>
+	<div class="subRightCol">
+			<div class="sectionA " style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/132">新车</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/132">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-11/721659.html" target="_blank" title="新外观/内饰 新款别克君越3月25日上市">新外观/内饰 新款别克君越3月25日上市</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-11/721659.html" target="_blank"><img alt="新外观/内饰 新款别克君越3月25日上市" height="60" src="http://image2.nbd.cn/uploads/articles/thumbnails/32439/____________.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  编辑点评：新君越在外形及内饰方面更加偏向运动化，目标群体年轻化趋势有所体现，如果动力方面如之前信息显示的有所增强，将对其开拓新的消费群体有推动的作用。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-10/721432.html" target="_blank" title="东风雪铁龙新C5上市">东风雪铁龙新C5上市</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-06/720223.html" target="_blank" title="夏利N7上市 天津一汽进军SUV市场">夏利N7上市 天津一汽进军SUV市场</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-05/719961.html" target="_blank" title="力帆2013将发布三款新车 目标销量18万台">力帆2013将发布三款新车 目标销量18万台</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-04/719614.html" target="_blank" title="奥迪与宝马飚SUV阵营 六款新车将发布">奥迪与宝马飚SUV阵营 六款新车将发布</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-02-28/717811.html" target="_blank" title="PSA重新布局中国市场 标致301今年上市">PSA重新布局中国市场 标致301今年上市</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-02-28/717768.html" target="_blank" title="将引入合资入门新车 大众5万低端车领衔">将引入合资入门新车 大众5万低端车领衔</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-02-27/717157.html" target="_blank" title="新一代天籁全球首发 三款车型起售价19万-23万元">新一代天籁全球首发 三款车型起售价19万-23万元</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-02-20/715454.html" target="_blank" title="观致3轿车投产在即 今年挺进欧洲市场">观致3轿车投产在即 今年挺进欧洲市场</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-02-19/715091.html" target="_blank" title="上海车展上市 新甲壳虫敞篷版信息曝光">上海车展上市 新甲壳虫敞篷版信息曝光</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+	</div>
+	<div class="clear"></div>
+
+	<div class="subLeftCol">
+				<div class="sectionA " style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/133">行情</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/133">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-10/721437.html" target="_blank" title="斯巴鲁在华深陷故障门 十个月三召回问题汽车">斯巴鲁在华深陷故障门 十个月三召回问题汽车</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-10/721437.html" target="_blank"><img alt="斯巴鲁在华深陷故障门 十个月三召回问题汽车" height="60" src="http://image.nbd.cn/uploads/articles/thumbnails/32364/QQ______20130310113020.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  斯巴鲁汽车因遥控钥匙故障在北美召回四款车型，斯巴鲁公司表示，上述车型的钥匙一旦掉落，可能无意中启动引擎，增加了事故和伤亡的风险。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-02-28/717776.html" target="_blank" title="SolarCity携手本田提供低廉太阳能发电">SolarCity携手本田提供低廉太阳能发电</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-02-28/717772.html" target="_blank" title="北京汽车绅宝D系列获北京政府采购意向">北京汽车绅宝D系列获北京政府采购意向</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-02-19/715039.html" target="_blank" title="买辆新桑塔纳也要排队 车市现爆发式“开门红”">买辆新桑塔纳也要排队 车市现爆发式开门红</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-02-05/712927.html" target="_blank" title="日系三强1月在华销量回涨两成 呈复苏迹象">日系三强1月在华销量回涨两成 呈复苏迹象</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-01-31/711643.html" target="_blank" title="日系豪车在华受挫 英菲尼迪总裁强调国产化意义">日系豪车在华受挫 英菲尼迪总裁强调国产化意义</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-01-31/711632.html" target="_blank" title="翼虎加价销售 长安福特“走量”计划或受制产能">翼虎加价销售 长安福特“走量”计划或受制产能</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-01-13/706607.html" target="_blank" title="最高降幅近四成 日韩车系领降车市降价榜">最高降幅近四成 日韩车系领降车市降价榜</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-01-09/705774.html" target="_blank" title="厂家优惠政策欲回收 车市价格涨声四起">厂家优惠政策欲回收 车市价格涨声四起</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-01-08/705510.html" target="_blank" title="日本汽车厂商重拾对中国市场信心">日本汽车厂商重拾对中国市场信心</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+	</div>
+	<div class="subRightCol">
+			<div class="sectionA " style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/134">测评</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/134">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2012-11-29/697609.html" target="_blank" title="6779公里环越珠峰 海马骑士2013款深度试驾">6779公里环越珠峰 海马骑士2013款深度试驾</a>
+            </h5>
+            <div class="rcDigest">
+                
+
+                <p class="restrict" >
+                  近日，海马骑士“骑士之旅，环越珠峰”活动已经取得圆满结束，这是继2010年的“丝绸之路骑士之旅”和2011年的“万里走黄河”之后，海马骑士的又一次长途极限行走活动。今年“骑士之旅，环越珠峰”活动从拉萨出发，横穿青藏高原抵达珠峰北坡大本...
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-07-11/666310.html" target="_blank" title="试驾宝马6系Gran Coupe 640i">试驾宝马6系Gran Coupe 640i</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-07-10/665994.html" target="_blank" title="新一代凯迪拉克CTS路试谍照 2013年亮相">新一代凯迪拉克CTS路试谍照 2013年亮相</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-04-24/649611.html" target="_blank" title="评测全新长城哈弗H7">评测全新长城哈弗H7</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-04-13/647318.html" target="_blank" title="外观变速箱双双升级 试驾一汽大众全新速腾">外观变速箱双双升级 试驾一汽大众全新速腾</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-04-06/645555.html" target="_blank" title="新福美来参配全曝光 预计售价7.7万元起">新福美来参配全曝光 预计售价7.7万元起</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-03-02/638205.html" target="_blank" title="全新奔驰SLK 350 敞享美好生活">全新奔驰SLK 350 敞享美好生活</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-02-29/637237.html" target="_blank" title="试驾斯巴鲁XV 热情的翼豹表弟">试驾斯巴鲁XV 热情的翼豹表弟</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-02-19/634838.html" target="_blank" title="陆上头等舱 PCauto测试新奥迪A8L 3.0T">陆上头等舱 PCauto测试新奥迪A8L 3.0T</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-02-19/634837.html" target="_blank" title="试驾菲亚特菲跃 不是换标那么简单">试驾菲亚特菲跃 不是换标那么简单</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+	</div>
+	<div class="clear"></div>
+	
+	<!-- 广告位：全站_左通栏一 -->
+	
+<div class="ad_global ad_left_bar" style="">
+	<script type="text/javascript">BAIDU_CLB_fillSlot("350299");</script>
+</div>
+	
+	<div class="subLeftCol">
+			<div class="sectionA " style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/135">导购</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/135">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-07/720894.html" target="_blank" title="妇女节礼物&quot;三万元&quot;满足你女人的驾车欲">妇女节礼物&quot;三万元&quot;满足你女人的驾车欲</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-07/720894.html" target="_blank"><img alt="妇女节礼物&quot;三万元&quot;满足你女人的驾车欲" height="60" src="http://image1.nbd.cn/uploads/articles/thumbnails/32165/3______.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  三月的来临预示着“妇女节”马上快到了，作为一家之主的爷们或男朋友，选一辆适合自己老婆或女朋友的小型车也不失为一个好的礼物。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-06/720467.html" target="_blank" title="5款10万～50万元区间性能SUV推荐">5款10万～50万元区间性能SUV推荐</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-05/720072.html" target="_blank" title="30万元左右大空间SUV车型导购">30万元左右大空间SUV车型导购</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-04/719555.html" target="_blank" title="经销商库存上升 3月中下旬车价或走低">经销商库存上升 3月中下旬车价或走低</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-02-19/715108.html" target="_blank" title="进口SUV也经济 4款25万元级进口SUV车型导购">进口SUV也经济 4款25万元级进口SUV车型导购</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-01-30/711485.html" target="_blank" title="SUV依旧热销 4款20万元高品质SUV车型导购">4款20万元高品质SUV车型导购</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-01-17/708118.html" target="_blank" title="SUV更要注重油耗 11款高品质城市SUV车型导购">SUV更要注重油耗 11款高品质城市SUV车型导购</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-12-24/702839.html" target="_blank" title="8款25万元原装进口SUV导购 形动兼顾">8款25万元原装进口SUV导购 形动兼顾</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-12-04/698761.html" target="_blank" title="越野霸气难以抗拒 25万以内4款热门SUV车型导购">越野霸气难以抗拒 25万以内4款热门SUV车型导购</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-12-03/698416.html" target="_blank" title="要的就是经典 4款热门城市SUV车型推荐">要的就是经典 4款热门城市SUV车型推荐</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+	</div>
+	<div class="subRightCol">
+			<div class="sectionA " style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/136">自驾</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/136">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-07/720861.html" target="_blank" title="试驾国产奥迪Q3  品质如一性价比更高">试驾国产奥迪Q3  品质如一性价比更高</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-07/720861.html" target="_blank"><img alt="试驾国产奥迪Q3  品质如一性价比更高" height="60" src="http://image2.nbd.cn/uploads/articles/thumbnails/32154/Q3.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  中国成为当今世界第一大汽车市场，任何厂家只要在中国取得了成功，就意味着全球业绩的有力保障，这已成为一条铁律。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-01-15/707165.html" target="_blank" title="小型私家车无使用年限限制">小型私家车无使用年限限制</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-10-16/688101.html" target="_blank" title="八成人认同高速免费 三大建议应对下次免费大考">八成人认同高速免费 三大建议应对下次大考</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-09-29/685567.html" target="_blank" title="北京今日迎节前交通最高峰 5大重点高速路流量升25%">北京今日迎节前交通最高峰</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-09-28/685370.html" target="_blank" title="重庆美女自驾游美国11天只花650美元">重庆美女自驾游美国11天只花650美元</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-09-13/681792.html" target="_blank" title="自驾游市场火爆 租车基本靠“抢”">自驾游市场火爆 租车基本靠“抢”</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-07-11/666279.html" target="_blank" title="勿盲目超车紧急制动 山区自驾游驾驶技巧">勿盲目超车紧急制动 山区自驾游驾驶技巧</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-02-20/634995.html" target="_blank" title="早春二月 广东自驾寻花问“绿”">早春二月 广东自驾寻花问“绿”</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-02-20/634992.html" target="_blank" title="香港粤港自驾游下月30日接受申请">香港粤港自驾游下月30日接受申请</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-02-20/634990.html" target="_blank" title="春节自驾马来西亚八日线路推荐">春节自驾马来西亚八日线路推荐</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+	</div>
+	
+	<div class="clear"></div>
+	<div class="subLeftCol">
+			<div class="sectionA " style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/137">安全</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/137">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-11/721762.html" target="_blank" title="汽车行业知情者揭秘:汽车维修六大陷阱">汽车行业知情者揭秘:汽车维修六大陷阱</a>
+            </h5>
+            <div class="rcDigest">
+                
+
+                <p class="restrict" >
+                  车主汽车维修多青睐4S店，然而价高未必质高，偷换零件、偷工减料等消费陷阱密布，如何防范？
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-08/721239.html" target="_blank" title="宝马因熄火问题被诉 媒体称不是个案">宝马因熄火问题被诉 媒体称不是个案</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-08/721222.html" target="_blank" title="逾800位车主投诉长安新车惊现机油乳化">逾800位车主投诉长安新车惊现机油乳化</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-05/719945.html" target="_blank" title="因存在机油乳化风险 长安汽车花上千万召回CS35">有风险！长安汽车花上千万召回CS35</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-02-27/717232.html" target="_blank" title="铃木在华召回13227辆进口吉姆尼">铃木在华召回13227辆进口吉姆尼</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-02-17/714351.html" target="_blank" title="宝马在美召回超3万辆SUV 漏油隐患或致刹车失灵">宝马在美召回超3万辆SUV 漏油隐患或致刹车失灵</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-01-21/708703.html" target="_blank" title="本田因气囊隐患在北美召回77.7万辆汽车">本田因气囊隐患在北美召回77.7万辆汽车</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-01-15/707237.html" target="_blank" title="质检总局公布汽车三包政策">质检总局公布汽车三包政策</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-01-10/706229.html" target="_blank" title="乘客手机录像　大巴司机高速路上边开车边打牌　">乘客手机录像　大巴司机高速路上边开车边打牌</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-01-06/704897.html" target="_blank" title="东风悦达起亚K2被曝采用已淘汰铁质油箱隐患多">东风悦达起亚K2被曝采用已淘汰铁质油箱隐患多</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+	</div>
+	<div class="subRightCol">
+			<div class="sectionA " style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/138">二手车</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/138">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2012-08-06/672266.html" target="_blank" title="怎样辨别泡水车">怎样辨别泡水车</a>
+            </h5>
+            <div class="rcDigest">
+                
+
+                <p class="restrict" >
+                  暴雨过后慎选二手车教您怎样辨别泡水车
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-07-16/667284.html" target="_blank" title="车牌新政影响显现 二手车主联系中介&quot;割肉&quot;">车牌新政影响显现 二手车主联系中介&quot;割肉&quot;</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-07-11/666319.html" target="_blank" title="大众业务多元化 将销售吉利/奇瑞二手车">大众业务多元化 将销售吉利/奇瑞二手车</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-07-10/666046.html" target="_blank" title="7月恐成今年车市价格最低谷 二手车价格骤降">7月恐成今年车市价格最低谷 二手车价格骤降</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-07-10/666011.html" target="_blank" title="二手车评估国家标准首次面世">二手车评估国家标准首次面世</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-06-14/660845.html" target="_blank" title="京沪倒卖车牌形成产业链 二手车牌卖价15万">京沪倒卖车牌形成产业链 二手车牌卖价15万</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-06-05/658713.html" target="_blank" title="二手车交易猫腻多：车主爱修改里程等问题">二手车交易猫腻多：车主爱修改里程等问题</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-02-20/634983.html" target="_blank" title="节后成都低价位二手车受青睐">节后成都低价位二手车受青睐</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-02-20/634982.html" target="_blank" title="一口价买二手车 心理底线与消费习惯">一口价买二手车 心理底线与消费习惯</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2012-02-20/634981.html" target="_blank" title="二手车仪表盘你读懂多少">二手车仪表盘你读懂多少</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+
+	</div>
+	<div class="clear"></div>
+</div>
+<div class="rightCol">
+	<div class="sectionA  articleWallWrapper" style="margin-bottom:15px;">
+	<div class="title">
+		<h3><a href="/columns/131">汽车精选</a></h3>
+		<span class="opts"><a href="/columns/131">更多</a></span>
+	</div>
+	<div class="content">
+		<ul class="articleList unorderList">
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2013-03-11/721643.html" class="miniture" target="_blank" title="本田思铭陷高价窘境 上市一年月销仅1500台"><img alt="本田思铭陷高价窘境 上市一年月销仅1500台" height="90" src="http://image1.nbd.cn/uploads/articles/thumbnails/32432/____________.middle.jpg" width="120" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2013-03-11/721643.html" target="_blank" title="本田思铭陷高价窘境 上市一年月销仅1500台">本田思铭陷高价窘境 上市一年月销仅1500台</a>
+					</p>
+				</li>
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2013-03-05/719958.html" class="miniture" target="_blank" title="压力中前行 启辰汽车成自主品牌领头羊"><img alt="压力中前行 启辰汽车成自主品牌领头羊" height="90" src="http://image2.nbd.cn/uploads/articles/thumbnails/31819/______.middle.jpg" width="120" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2013-03-05/719958.html" target="_blank" title="压力中前行 启辰汽车成自主品牌领头羊">压力中前行 启辰汽车成自主品牌领头羊</a>
+					</p>
+				</li>
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2013-02-25/716767.html" class="miniture" target="_blank" title="济南对拥堵时闯绿灯行为开具罚单引争议"><img alt="济南对拥堵时闯绿灯行为开具罚单引争议" height="90" src="http://image2.nbd.cn/uploads/articles/thumbnails/30603/______.middle.jpg" width="120" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2013-02-25/716767.html" target="_blank" title="济南对拥堵时闯绿灯行为开具罚单引争议">济南对拥堵时闯绿灯行为开具罚单引争议</a>
+					</p>
+				</li>
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2013-01-29/711124.html" class="miniture" target="_blank" title="兰博基尼超跑齐亮相 庆祝50周年纪念日"><img alt="兰博基尼超跑齐亮相 庆祝50周年纪念日" height="90" src="http://image2.nbd.cn/uploads/articles/thumbnails/28298/1.middle.jpg" width="120" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2013-01-29/711124.html" target="_blank" title="兰博基尼超跑齐亮相 庆祝50周年纪念日">兰博基尼超跑齐亮相 庆祝50周年纪念日</a>
+					</p>
+				</li>
+		</ul>
+		<div class="clear">
+		</div>
+	</div>
+	<!--content-->
+</div>
+
+  	  	
+	
+    <div class="sectionA IPOResearch" style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/31">IPO调查</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/31">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend last">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-11/721537.html" target="_blank" title="年内29家拟上市公司A股折戟 斯菲尔电气过会仍“下课”">29家公司A股折戟 斯菲尔电气过会仍下课</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-11/721537.html" target="_blank"><img alt="29家公司A股折戟 斯菲尔电气过会仍下课" height="60" src="http://image1.nbd.cn/uploads/articles/thumbnails/32431/1.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  每经记者李智
+根据证监会3月8日最新公布的IPO企业情况表，3月以来又有7家公司被终止审查，至此，今年以来IPO申报企业被终止审查者已达29家。
+《每日经济新闻》记者注意到，早在2012年4月24日就已过会的江苏斯菲尔电气股份有...
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+  	
+        <div class="sectionA  articleWallWrapper" style="margin-bottom:10px;">
+	<div class="title">
+		<h3><a href="/columns/32">上市公司调查</a></h3>
+		<span class="opts"><a href="/columns/32">更多</a></span>
+	</div>
+	<div class="content">
+		<ul class="articleList unorderList">
+				<li class="articleFeature">
+					<h3 class='fTitle'>
+						<a href="http://www.nbd.com.cn/articles/2013-03-11/721538.html" target="_blank" title="*ST锌业今或上演末日交易">*ST锌业今或上演末日交易</a>
+					</h3>
+					
+					
+					<p class="fDigest" >
+						近期股价非但不跌，还走出远超大盘的行情，1月以来涨逾50%，其多次公告提示重整风险，反招资金疯狂豪赌。
+					</p>
+				</li>
+		</ul>
+		<div class="clear">
+		</div>
+	</div>
+	<!--content-->
+</div>
+
+  	
+    <div class="sectionA " style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/44">宏观要闻</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/44">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-11/721769.html" target="_blank" title="反腐立法时间表出炉的艰辛历程">反腐立法时间表出炉的艰辛历程</a>
+            </h5>
+            <div class="rcDigest">
+                
+
+                <p class="restrict" >
+                  全国人大常委会法工委副主任郎胜解读“未来5年的立法规划”时，提到“完善反腐败方面的立法，真正形成惩治和预防腐败体系”是今后5年的立法重点。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721748.html" target="_blank" title="港媒：中石油董事长蒋洁敏将任发改委党组书记">港媒：中石油董事长蒋洁敏将任发改委党组书记</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721701.html" target="_blank" title="中国石油净进口超美 中东战略地位更加突出">中国石油净进口超美 中东战略地位更加突出</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721689.html" target="_blank" title="委员提案聚焦空心村 估算中国村庄空置面积超过1亿亩">委员提案聚焦空心村</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721681.html" target="_blank" title="央企的高工资和“隐形福利”谁来管？">央企的高工资和“隐形福利”谁来管？</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+  
+	<!-- 广告位：全站_右边栏一 -->
+	
+<div class="ad_global ad_right_box" style="">
+	<script type="text/javascript">BAIDU_CLB_fillSlot("349119");</script>
+</div>
+  
+	
+
+        
+  <div id="hotArticles" class="sectionA" style="">
+    <div class="title">
+      <h3>热门文章</h3>
+      <ul id="hotTabsIndex" class="opts">
+        <li class="first current"><a href="#hotArticle-1">最热点击</a></li>
+      </ul>
+    </div>
+      <div id="hotTabsContent" class="content">
+        <div id="hotArticle-1">
+          <ol class="articleList">
+        </ol>
+      </div>
+    </div>
+  </div>
+<script type="text/javascript">
+  $(function(){
+      $("#hotArticles").nbdtabs({
+        tabsDOM:"#hotTabsIndex",
+        contentDOM:"#hotTabsContent",
+        symbolIndex:"hotArticle"
+      });
+  });
+</script>
+
+	
+
+<div class="sectionA" style="">
+	<div class="title">
+		<h3>移动客户端</h3>
+	</div>
+	<div class="content" id="nbdPromo" style="margin-bottom:5px">
+		<dl>
+			<dt class="thumbClients">每经网移动客户端</dt>
+			<dd >
+				<h3>每经网移动客户端</h3>
+				<p>
+					<a href="http://itunes.apple.com/cn/app/id413082888?mt=8" class="first" target="_blank">iPhone</a> | <a href="http://itunes.apple.com/cn/app/id440680920?mt=8" target="_blank">iPad</a> | <a href="http://auto.nbd.cn/mobiles/android" target="_blank">Android</a> | <a href="http://old.nbd.com.cn/mobile/" target="_blank">其他</a>
+				</p>
+			</dd>
+			<dt class="thumbMobileNewspaper">每经手机报</dt>
+			<dd class="last">
+				<h3>每经投资宝</h3>
+				<p>
+					<a href="http://www.nbd.cn/premium/mobile_newspaper_account/introduce" class="first" target="_blank">天天赢家</a> | 
+					<a href="http://www.nbd.com.cn/features/274" target="_blank">股东大会实录</a> | 
+					<a href="http://www.nbd.cn/premium/mobile_news/introduce" target="_blank">投资快讯</a> 
+				</p>
+			</dd>
+		</dl>
+	</div>
+</div>
+
+
+	
+</div>
+<div class="clear"></div>
+
+<!-- 广告位：全站_底部通栏 -->
+
+<div class="ad_global ad_footer" style="">
+	<script type="text/javascript">BAIDU_CLB_fillSlot("349120");</script>
+</div>
+
+    </div>
+
+    <div id="footer" class=>
+	<div class="nav">
+		<a href="http://old.nbd.com.cn/html/front/html/aboutus_new/index.htm" class="first">关于我们</a>
+		<a href="http://www.nbd.cn/copyright">版权声明</a>
+		<a href="http://www.nbd.cn/disclaimer">免责声明</a>
+		<a href="http://www.nbd.cn/advertisement">广告服务</a>
+		<a href="http://www.nbd.cn/contact">联系我们</a>
+		<a href="http://www.nbd.com.cn/corp/2013dingyue/index.html">订阅中心</a>
+		<a href="http://www.nbd.cn/links" class="last">友情链接</a>
+		<a href="http://www.nbd.cn/sitemap" class="last">网站地图</a>
+	</div>
+	<p>
+		Copyright © 2013 每日经济新闻报社版权所有，未经许可不得转载使用，违者必究<br/>
+		读者热线：400-889-0008　合作联系电话：86-21-60900099转688分机<br/>
+		<a href="http://www.miibeian.gov.cn/" style="margin-right: 10px; color:#787878" target="_blank">沪ICP备09000473号</a> <span>带宽提供：<a href="http://www.kwww.cn/" style="margin-right: 10px;" target="_blank">上海快网</a></span> <span><a href=" http://top.chinaz.com" target="_blank">网站排行榜</a></span>
+	</p>
+</div>
+    
+    
+  </body>
+
+</html>

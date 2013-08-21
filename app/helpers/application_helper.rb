@@ -2,25 +2,6 @@
 require 'nokogiri'
 
 module ApplicationHelper
-
-  # def t_cache(name = {}, options = nil, &block)
-  #   Rails.logger.info("--name:#{name}")    
-  #   keys = ["column_collected_articles_id_", "column_show_content_id_"]
-  #   keys.each do |key|
-  #     if name.include?(key)
-  #       if fragment_exist?(name, options)
-  #         cache(name, options , &block)
-  #       else
-  #         cache(name, options , &block)
-  #         File.open("public/static/featured_articles.html", "wb+") do |f|
-  #           f.write(read_fragment(key, options))
-  #         end
-  #       end
-  #     else
-  #       cache(name, options , &block)
-  #     end
-  #   end
-  # end
   
   def apply_form_for_options!(object_or_array, options) #:nodoc:
     object = object_or_array.is_a?(Array) ? object_or_array.last : object_or_array
@@ -44,8 +25,8 @@ module ApplicationHelper
       polymorphic_url(object_or_array)
   end
   
-  def customize_host_url(subdomain='preview')
-    Settings.host.gsub("preview", subdomain)
+  def customize_host_url(subdomain='www')
+    Settings.host.gsub("www", subdomain)
   end
   
   def live_url(live)
@@ -94,13 +75,13 @@ module ApplicationHelper
   
   def article_thumbnail_path(article, version=nil)
     if article and article.image
-      begin
-        article.image.thumbnail_url(version)
-      rescue
-        "/images/default-#{version}.gif"
-      end
+        begin
+          article.image.thumbnail_url(version)
+        rescue
+          "/images/default-#{version}.gif"
+        end
     else
-      "/images/default-#{version}.gif"
+        "/images/default-#{version}.gif"
     end
   end
 
@@ -196,10 +177,6 @@ module ApplicationHelper
     return "" if !time
     time = Time.parse(time) if time.class == String
     time.strftime('%m月%d日 %H:%M')
-  end
-
-  def nbd_time_f3(time)
-    time.strftime("%Y-%m-%d %H:%M:%S")
   end
 
   def require_fileUpload
@@ -391,16 +368,8 @@ module ApplicationHelper
     end
     return links_str.html_safe
   end  
-
-  def article_page_path(article, index, for_subdomain = false)
-    p_index = index == 1 ? '.html' : "_#{index}.html"
-    return "#{article_url(article, false)}#{p_index}" unless for_subdomain
-    prefix = send("#{for_subdomain}_article_url", article, false)
-    "#{prefix}#{p_index}" 
-  end
-
   
-  def article_page_path_x(article, index, for_subdomain = false)
+  def article_page_path(article, index, for_subdomain = false)
     return "#{article_url(article, false)}/page/#{index}" unless for_subdomain
     prefix = send("#{for_subdomain}_article_url", article, false)
     "#{prefix}/page/#{index}" 
@@ -522,124 +491,6 @@ module ApplicationHelper
     else
       return news_index_console_staff_staff_performance_logs_path(staff, find_method, options)
     end
-  end
+  end  
 
-  def ssi_include_file(root_tag, tag_name, replace = {})
-    file_path = StaticPage::Setting.instance.get_file_path(root_tag, tag_name)
-    replace.each do |key,value|
-      file_path = file_path.gsub("$#{key}",value.to_s)
-    end
-    file_path.empty? ? '' : "<!--#include file='#{file_path}'-->".html_safe
-  end
-
-  def article_detail_ssi_include_file(article, suffix = nil)
-    file_path = StaticPage::Setting.instance.get_static_article_fragment_path(Settings.default_sub_domain, article, suffix)
-    "<!--#include file='#{file_path}'-->".html_safe      
-  end
-
-  def is_special_skin_column_from_subdomain?(subdomain)
-    Column::SPECIAL_LAYOUT_COLUMN.include?(subdomain)
-  end
-
-  def is_special_skin_column_from_id?(id)
-    id_result = if params[:controller] == "columns"
-      (Column::SPECIAL_SKIN_COLUMN_IDS + Column::SPECIAL_SKIN_COLUMN_IDS.map do |column_id| 
-        Column::DIS_SUB_NAVS_FOR_SITEMAP[column_id]
-      end).flatten.include?(id.to_i)
-    # elsif params[:controller] == "articles"
-    #   columns = Article.article_columns(id)
-    #   article_column_subdomains = columns.map { |column| Column.column_id_to_subdomain(column) }
-    #   (Column::SPECIAL_LAYOUT_COLUMN & article_column_subdomains).present?
-    end
-    id_result
-  end
-
-  def nav
-    if is_special_skin_column_from_subdomain?(subdomain) || is_special_skin_column_from_id?(params[:id]) || @render_shanghai_skin
-      render "layouts/special_nav"
-    else
-      render "layouts/common_nav"
-    end
-  end
-
-  def logo
-    if subdomain == Settings.default_sub_domain
-      logo = "<a class='logo logo-home' href='/'><h1>每经网</h1></a>"
-      if params[:controller] == "columns" && params[:id].present? && params[:id] != 1
-        column_subdomain = Column.column_id_to_subdomain(params[:id])
-        logo = "<a class='logo logo-#{column_subdomain}' href='#{customize_host_url(column_subdomain)}'><h1>每经网 - '#{Column::SUBDOMAIN_NAME[column_subdomain]}'</h1></a>"
-      end
-    else
-      logo = "<a class='logo logo-#{subdomain}' href='#{customize_host_url(subdomain)}'><h1>每经网 - '#{Column::SUBDOMAIN_NAME[subdomain]}'</h1></a>"
-    end
-    logo.html_safe
-  end
-
-  def top_bar
-    if is_special_skin_column_from_subdomain?(subdomain) || is_special_skin_column_from_id?(params[:id]) || @render_shanghai_skin
-      render "layouts/special_top_bar"
-    else
-      render "layouts/common_top_bar"
-    end
-  end
-
-  def special_css
-    render "layouts/special_head_css" if is_special_skin_column_from_subdomain?(subdomain) || is_special_skin_column_from_id?(params[:id]) || @render_shanghai_skin
-  end
-
-  def block_article_list(article, options = {})
-    subdomain = options[:subdomain] || Settings.default_sub_domain
-    with_image = options[:with_image] || false
-    version = options[:version] || :thumb_hs
-    size = options[:size] || nil
-    is_show_default = options[:is_show_default] || false
-    # subdomain = Settings.default_sub_domain, with_image = false, version = :thumb_hs, size = nil, is_show_default = false)
-    size = thumb_size(version) if with_image && size.blank?
-    if with_image
-      if subdomain == Settings.ntt_sub_domain and (columnist = article.columnists.first) and columnist.image
-        link_to(image_tag(columnist_avatar_path(columnist), {:alt => columnist.name, :size => size}), ntt_columnist_url(columnist), {:target => "_blank"})
-      elsif subdomain == ""
-      else
-        if is_show_default
-          link_to(image_tag(article_thumbnail_path(article, version.to_s), {:alt => article.list_title, :size => size}), article_url(article), {:target => "_blank"})# if article.image.present?
-        else
-          link_to(image_tag(article_thumbnail_path(article, version.to_s), {:alt => article.list_title, :size => size}), article_url(article), {:target => "_blank"}) if article.image.present?
-        end
-      end
-    else
-      if subdomain and !(subdomain =~ WWW_EXP)
-        link_to(article.list_title, send("#{subdomain}_article_url", article), {:target => "_blank", :title => article.title})
-      else
-        link_to(article.list_title, article_url(article), {:target => "_blank", :title => article.title})
-      end
-    end
-  end
-
-  def thumb_size(version)
-    Image.version_name_and_size("thumbnail")[version.to_s]
-  end
-
-  def story_header(title, column_id, title_tail = "", subdomain = Settings.default_sub_domain)
-    if column_id.present?
-      column_link(title, column_id, subdomain, title_tail)
-    else
-      title
-    end
-  end
-
-  def story_opt(title, column_id, title_tail = "", subdomain = Settings.default_sub_domain, opt_content)
-    if column_id.present?
-      column_link(title, column_id, subdomain, title_tail)
-    elsif opt_content.present?
-      opt_content.html_safe
-    end
-  end
-
-  def column_link(title, column_id, subdomain, title_tail)
-    if subdomain != Settings.default_sub_domain
-      link_to(title, send("#{subdomain}_column_url", column_id)+title_tail)
-    else
-      link_to(title, column_url(column_id, :subdomain => SUBDOMAIN_EXP[WWW_EXP])+title_tail)
-    end
-  end
 end

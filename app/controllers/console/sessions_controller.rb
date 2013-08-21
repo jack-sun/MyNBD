@@ -4,8 +4,7 @@ class Console::SessionsController < ApplicationController
   USER_NAME = "savesparta"
   PASSWORD = "nbdanti9105"
 
-  # before_filter :authenticate
-  skip_before_filter :authenticate
+  before_filter :authenticate
   
   def new
     if session[:staff_id].present?

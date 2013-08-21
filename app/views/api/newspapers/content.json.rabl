@@ -15,11 +15,3 @@ end
 node :code do
   1
 end
-
-node :msg do
-  "success"
-end
-
-node :code do
-  1
-end

@@ -1,0 +1,46 @@
+/*------------------
+2013中国上市公司口碑榜
+-----------------*/
+@charset "utf-8";
+a { text-decoration:none; }
+
+/*base*/
+body , ul , li , p , h1 , h2 { margin:0; padding:0; }
+h1 , h2 { font-weight:normal; font-size:12px; }
+h1 { font-size:14px; }
+body { background:url(../images/koubeibang-candidates-bg.jpg) #fbefde repeat-x; padding:12px 0; font:12px/1.9 "\5FAE\8F6F\96C5\9ED1",Arial,"\5B8B\4F53"; }
+ul , li { float: left; list-style-type:none; }
+.red  { color:#ff0000; }
+/*header*/
+#header , #exsuse { background:url(../images/koubeibang-candidates-header.jpg) no-repeat top center; height:342px; width:100%;  margin:0 auto; }
+#header { background:url(../images/koubeibang-candidates-header.jpg) no-repeat top center; }
+#exsuse { background:url(../images/koubeibang-candidates-header_e.jpg) no-repeat top center; }
+
+.tabs { width:800px;  margin:0 auto 15px auto; }
+.menu { width: 800px;}
+.menu li {display:block; float:left; padding:8px 10px; text-align:center; cursor:pointer; background:#fff8ee; border:1px solid #f9e0bd; border-bottom:0; margin:0 10px 0 0; font-weight:bold; color:#666666; }
+.menu li.hover { background: #bf0000; color:#ffffff; }
+.main{ border:1px solid #f9e0bd; clear:both; padding:8px 0;	_padding:0px 0 16px 0; text-align:center; width:784px;	background:#FFFFff; overflow:hidden; }
+.main ul{display: none; }
+.main ul.block{display: block; }
+.main ul li { padding:3px 5px; width:163px; text-align:center; border:1px solid #fbecd9; margin:7px 10px; display:inline; }
+.main ul li strong { font-size:14px; }
+.main ul li a { color:#990000; text-decoration:none; }
+.main ul li span { margin: 0 5px; }
+
+.wrapper { width:770px; background:#fff8ee; border:1px solid #f9e0bd; padding:5px 15px 10px 15px; overflow:hidden; margin:0 auto 25px auto; }
+.wrapper h1 { color:#ff0000; background:url(../images/koubeibang-candidates-d.gif) no-repeat left center; padding-left:12px; margin-top:10px; }
+.wrapper h1 span { color:#ff7301; }
+.wrapper h2 { border-bottom:1px dashed #d9d9d9; padding:0 0 5px 12px; }
+.wrapper h2 span { color:#a6a6a6; padding-left:5px; }
+
+/*分页*/
+.nextPage { width:770px; color:#898989; line-height:25px; padding:15px 0 0 0; font-family:Arial; float:left; text-align:right; }
+.nextPage span { padding:0 0 0 6px; }
+.nextPage a { color:#898989; }
+.nextPage a:hover { color:#fc8e85; }
+
+/*footer*/
+#footer { width:144px; margin:0 auto; }
+#footer a { background:url(../images/koubeibang-candidates-btn.gif) no-repeat; height:57px; display:block; width:144px; }
+#footer a:hover { background-position:-144px 0; }

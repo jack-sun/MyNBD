@@ -1,0 +1,661 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>每经手机报 - 投资宝成功案例 | 每经网</title>
+    <link href="http://static.nbd.cn/stylesheets/reset.css?1356401080" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://static.nbd.cn/stylesheets/style_global.css?1364780437" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://static.nbd.cn/stylesheets/style_website.css?1363071767" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://static.nbd.cn/stylesheets/article_list.css?1356401080" media="screen" rel="stylesheet" type="text/css" />
+    <script src="http://static.nbd.cn/javascripts/jquery.min.js?1356401080" type="text/javascript"></script>
+<script src="http://static.nbd.cn/javascripts/jquery_ujs.js?1356401080" type="text/javascript"></script>
+<script src="http://static.nbd.cn/javascripts/cookie.js?1356401080" type="text/javascript"></script>
+<script src="http://static.nbd.cn/javascripts/nbdtools.js?1364780304" type="text/javascript"></script>
+<script src="http://static.nbd.cn/javascripts/baidu_m.js?1358129544" type="text/javascript"></script>
+    <script src="http://static.nbd.cn/utilities/tabs/tabs.js?1356401080" type="text/javascript"></script>
+    <meta name="csrf-param" content="authenticity_token"/>
+<meta name="csrf-token" content="PKVxrRm0zdbf4s1+rEChXGz5Xq3X9jnTJ6D0EM+V&#47;QI="/>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <link rel="shortcut icon" href="http://static.nbd.com.cn/favicon.ico" type="image/x-icon"/>
+    <meta name="Keywords" content="财经新闻,财经报道,叶檀,道达,老法师看盘,股市直播,郑眼看盘,股市行情,财经证券,基金,荐股,股市内参,股吧,传闻,内幕,板块,个股,黑马,股市新闻,生活,汽车" />
+    <meta name="Description" content="24小时财经资讯平台，依托新锐财经日报《每日经济新闻》(National Business Daily)，打造中国最具影响力的经济、股票网站。覆盖宏观、股票、基金、期货、股指期货、外汇、债券、保险、银行、黄金、理财等全方位财经新闻。" />
+  </head>
+
+  <body id="body_site">
+
+		
+		
+    <div id="favoriteTip">
+	<div class="innerCenter">温馨提示：
+		<a id="addFav" href="javascript:void(0)">把每经网放入收藏夹吧！</a>
+		<a id="dontFavTip" style="margin-left:15px;" href="javascript:void(0)">我知道了</a>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(function(){
+		return; // for 18da
+
+		if(!$.cookie.get("favoriteTip")){
+			$("#favoriteTip").slideDown();
+		}
+		
+		$("body").keydown(function(e){
+			if ((e.ctrlKey||e.metaKey) && e.keyCode == 68) {
+				dontTip();
+			}
+		});
+		
+		$("#dontFavTip").click(function(){
+			dontTip();
+		});
+		
+		function dontTip(){
+			$.cookie.set("favoriteTip", true, {
+				expires:90,
+				domain:(location.href.indexOf("nbd.com.cn") != -1) ? "nbd.com.cn" : "nbd.cn",
+				path:"/"
+			});
+			$("#favoriteTip").slideUp();
+		}
+		
+		bookmarkApp();
+		
+		function bookmarkApp() {
+			var isIEmac = false; /*@cc_on @if(@_jscript&&!(@_win32||@_win16)&&(@_jscript_version<5.5)) isIEmac=true; @end @*/
+			var isMSIE = (-[1,]) ? false : true;
+			var cjTitle = "每经网";
+			var cjHref = "http://www.nbd.com.cn";
+			
+			addBookmark();
+			
+			//热键提示
+			function hotKeyTip() {
+				var ua = navigator.userAgent.toLowerCase();
+				var str = '';
+				var isWebkit = (ua.indexOf('webkit') != - 1);
+				var isMac = (ua.indexOf('mac') != - 1);
+				
+				if (ua.indexOf('konqueror') != - 1) {
+					str = 'CTRL + B'; // Konqueror
+				} else if (window.home || isWebkit || isIEmac || isMac) {
+					str = (isMac ? 'Command' : 'CTRL') + ' + D'; // Netscape, Safari, iCab, IE5/Mac
+				}
+				return ((str) ? '按下 <strong>' + str + '</strong>，把每经网放入收藏夹吧！' : str);
+			}
+	
+			function isIE8() {
+				var rv = -1;
+				if (navigator.appName == 'Microsoft Internet Explorer') {
+					var ua = navigator.userAgent;
+					var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+					if (re.exec(ua) != null) {
+						rv = parseFloat(RegExp.$1);
+					}
+				}
+				if (rv > - 1) {
+					if (rv >= 8.0) {
+						return true;
+					}
+				}
+				return false;
+			}
+	
+			function addBookmark() {
+				var addFavEvent;
+				
+				// Gecko (Mozilla)
+				if ((typeof window.sidebar == "object") && (typeof window.sidebar.addPanel == "function")) {
+					addFavEvent = function(){
+						window.sidebar.addPanel(cjTitle, cjHref, "");
+					};
+				
+				// IE	
+				}else if(isMSIE && typeof window.external == "object") {
+					// IE 8
+					if (isIE8()) {
+						addFavEvent = function(){
+							window.external.AddToFavoritesBar(cjHref, cjTitle); 
+						}
+					// IE <=7
+					} else { 
+						addFavEvent = function(){
+							window.external.AddFavorite(cjHref, cjTitle); 
+						}
+					}
+				
+				// OPERA	
+				} else if (window.opera) {
+					addFavEvent = function(){
+						$("#addFav").attr("href",cjHref);
+						$("#addFav").attr("title",cjTitle);
+						$("#addFav").attr("rel","sidebar");
+					}
+					
+				// WEBKIT
+				} else { 
+					$("#addFav").replaceWith("<span>"+hotKeyTip()+"</span>");
+				}
+				
+				if(addFavEvent){
+					$("#addFav").click(function(){
+						addFavEvent();
+						dontTip();
+					});
+				}
+			}
+			
+		};
+		
+	});
+</script>
+
+    <div id="top" class="dark"><div id="topStyle">
+      <div class="innerCenter">
+        <ul id="headerEntries">
+          <li class="first"><a href="http://www./newspapers/today">今日报纸 (04月02日)</a></li>
+          <li><a href="http://192.168.11.34/mobiles/android">移动客户端</a></li>
+          <li><a href="http://club.nbd.cn">每经会</a></li>
+          <li><a href="http://www.nbd.com.cn/html/dingyue.html">订阅服务</a></li>
+          <li class="last"><a href="http://www.nbd.cn/premium/mobile_newspaper_account/introduce" style="color:#f60;font-weight:bold;">每经投资宝</a></li>
+        </ul>
+        <ul class="rf">
+            <li><a href="http://www./user/sign_in">登录社区</a></li>
+            <li class="last"><a href="http://t./%E6%AF%8F%E7%BB%8F%E7%BD%91%E5%AE%A2%E6%9C%8D">意见反馈</a></li>
+        </ul>
+      </div>
+    </div></div>
+
+    <div id="header">
+      <div class="innerCenter" id="logo">
+        <a id="logoSite" class="logo" href="/" title="每经网">每经网</a>
+        	<script type="text/javascript">
+		BAIDU_CLB_preloadSlots("349118", "349119", "349120");
+	</script>
+	<!-- 广告位：全站_顶部四分之三通栏 -->
+	
+<div class="ad_global ad_header" style="">
+	<script type="text/javascript">BAIDU_CLB_fillSlot("349118");</script>
+</div>
+
+      </div>
+      <div id="mainNav">
+        <div class="navWrapper">
+          <ul class="lf">
+            <li class="first"><a href="http://www.nbd.cn" class="">首页</a></li>
+            <li><a href="http://news.nbd.cn" class="">资讯</a></li>  
+            <li><a href="http://stock.nbd.cn" class="">股票</a></li>  
+            <li><a href="http://company.nbd.cn" class="">公司</a></li> 
+            <li><a href="http://finance.nbd.cn" class="">金融</a></li>
+            <li><a href="http://auto.nbd.cn" class="">汽车</a></li>   
+            <li><a href="http://192.168.11.34/columns/47" class="">全球</a></li>  
+            <li><a href="http://ntt.nbd.cn" class="">智库</a></li>  
+            <li><a href="http://life.nbd.cn" class="">品味</a></li>  
+            <li><a href="http://bschool.nbd.cn" class="">管理</a></li>  
+            <li><a href="http://t./" class="">社区</a></li>
+            <li><a href="http://west.nbd.cn">西部</a></li>
+          </ul>
+          <div class="searchBox rf">
+<form accept-charset="UTF-8" action="http://192.168.11.34/search/article_search" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>              <a href="javascript:void(0)" class="searchBtn" onclick="$(this).parents('form').submit();return false;"></a>
+              <input class="searchInput" id="q" name="q" type="text" value="" />
+</form>          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="wrapper">
+      
+
+<div class="subNavi">
+	<ul>
+		<li class="first ">
+				<a href="/columns/197">每经手机报</a><b>/</b>
+		</li>
+              <li class=" ">
+                <a href="/columns/198">投资快讯</a>
+              </li>
+              <li class="current last">
+                <a href="/columns/200">投资宝成功案例</a>
+              </li>
+	</ul>
+</div>
+<style type="text/css">
+#body_site #wrapper {
+	margin-top: 0;
+}
+</style>
+
+<script type="text/javascript">
+/*
+	$(function(){
+		if($("#stockNewsContainer").length != 0){
+			$.nbdslide.init({
+				optDOMs:["#stockNewsContainer"],
+				prevDOM:"#upArrow",
+				nextDOM:"#downArrow",
+				style:"slide-y",
+				scrollSameTend:true,
+				speed:500,
+				interval:3000
+			});
+		}
+	});
+*/
+</script>
+
+
+<div class="leftCol">
+	<div class="sectionA " style="">
+	<div class="title">
+		<h3>
+			每经手机报 - 投资宝成功案例
+		</h3>
+	</div>
+	<div class="content">
+		<ul class="articleList unorderList">
+				<li class="articleRecommend">
+					<h5 class='rcTitle'>
+						<a href="http://www.nbd.cn/articles/2013-03-07/720933.html" target="_blank" title="大盘今日上演大跳水 每经投资宝及时预警">大盘今日上演大跳水 每经投资宝及时预警</a>
+					</h5>
+					<p class="articleTime">
+					 <span>2013-03-07 15:52</span></p>
+					<div class="rcDigest">
+						
+						<p class="restrict2" >
+							对于今日大盘的跳水走势，《每经投资宝·天天赢家》今晨指出，主力态度不积极，短期不宜过分看涨。同时，每经投资宝近日报道的TCL集团和南方泵业持续上涨，短短几个交易日涨幅近15%。
+						</p>
+						<div class="clear"></div>
+					</div>
+				</li>
+				<li class="articleRecommend">
+					<h5 class='rcTitle'>
+						<a href="http://www.nbd.cn/articles/2013-03-01/718815.html" target="_blank" title="股指上演过山车  每经投资宝用户镇定自若">股指上演过山车  每经投资宝用户镇定自若</a>
+					</h5>
+					<p class="articleTime">
+					 <span>2013-03-01 16:22</span></p>
+					<div class="rcDigest">
+						
+						<p class="restrict2" >
+							上证指数盘中一度大跌35点，但每经投资宝的正式读者却镇定自若，原因是每经投资宝报道的个股均有精彩表演。如上海新梅短短六个交易日大涨38%，珠江钢琴三个交易日大涨20%。
+						</p>
+						<div class="clear"></div>
+					</div>
+				</li>
+				<li class="articleRecommend">
+					<h5 class='rcTitle'>
+						<a href="http://www.nbd.cn/articles/2013-02-28/717870.html" target="_blank" title="上海新梅股价涨三成 周六共探军工行业投资机会">上海新梅股价涨三成 周六共探军工行业投资机会</a>
+					</h5>
+					<p class="articleTime">
+					 <span>2013-02-28 16:33</span></p>
+					<div class="rcDigest">
+						
+						<p class="restrict2" >
+							每经投资宝近日发掘的上海新梅五个交易日大涨35%，同时昨日发掘的珠江钢琴今日涨停，而报道上海优质国资注入上市公司的相关概念股全线上涨。
+						</p>
+						<div class="clear"></div>
+					</div>
+				</li>
+				<li class="articleRecommend">
+					<h5 class='rcTitle'>
+						<a href="http://www.nbd.cn/articles/2013-02-26/717119.html" target="_blank" title="运20概念股再续升势 及时提示中航三鑫短期风险">运20概念股再续升势 及时提示中航三鑫短期风险</a>
+					</h5>
+					<p class="articleTime">
+					 <span>2013-02-26 16:28</span></p>
+					<div class="rcDigest">
+						
+						<p class="restrict2" >
+							虽然股指下跌，然而《每经投资宝·天天赢家》的正式读者却丝毫无惧。每经投资宝报道的“运-20”相关个股今日创出反弹新高，同时及时提示风险的中航三鑫盘中一度跌停。
+						</p>
+						<div class="clear"></div>
+					</div>
+				</li>
+				<li class="articleRecommend">
+					<h5 class='rcTitle'>
+						<a href="http://www.nbd.cn/articles/2013-02-25/716779.html" target="_blank" title="主编对话明确股指方向 中航三鑫收获三涨停">主编对话明确股指方向 中航三鑫收获三涨停</a>
+					</h5>
+					<p class="articleTime">
+					 <span>2013-02-25 17:03</span></p>
+					<div class="rcDigest">
+						
+						<p class="restrict2" >
+							每经投资宝今日明确指出大盘短期下行空间有限，同时报道市场可能炒作环保等题材，截至今日收盘，环保类多只个股涨停；另外，上周报道的中航三鑫收获三连板，涨幅超35%。
+						</p>
+						<div class="clear"></div>
+					</div>
+				</li>
+				<li class="articleRecommend">
+					<h5 class='rcTitle'>
+						<a href="http://www.nbd.cn/articles/2013-02-22/716184.html" target="_blank" title="资产注入预期及涉航空新材料 中航三鑫连续涨停">资产注入预期及涉航空新材料 中航三鑫连续涨停</a>
+					</h5>
+					<p class="articleTime">
+					 <span>2013-02-22 15:54</span></p>
+					<div class="rcDigest">
+						
+						<p class="restrict2" >
+							今日股市继续下跌，而每经投资宝重点发掘的中航三鑫连续两日涨停，涨幅超过20%。报道的舟山新区概念股涨幅也超过3%，表现明显优于大市。
+						</p>
+						<div class="clear"></div>
+					</div>
+				</li>
+				<li class="articleRecommend">
+					<h5 class='rcTitle'>
+						<a href="http://www.nbd.cn/articles/2013-02-21/715889.html" target="_blank" title="及时预警大盘下跌：大盘短线难言乐观">及时预警大盘下跌：大盘短线难言乐观</a>
+					</h5>
+					<p class="articleTime">
+					 <span>2013-02-21 15:23</span></p>
+					<div class="rcDigest">
+						
+						<p class="restrict2" >
+							“每经投资宝·天天赢家”近几个交易日持续提示大盘风险，今日凌晨更是明确表示：大盘短线不容乐观。截至今日收盘，上证指数较昨日大跌71.23点，合2.97%。
+						</p>
+						<div class="clear"></div>
+					</div>
+				</li>
+				<li class="articleRecommend">
+					<h5 class='rcTitle'>
+						<a href="http://www.nbd.cn/articles/2013-02-19/715093.html" target="_blank" title="借力多晶硅双反政策即将出台 海润光伏涨幅超两成">借力多晶硅双反政策即将出台 海润光伏涨幅超两成</a>
+					</h5>
+					<p class="articleTime">
+					 <span>2013-02-19 15:10</span></p>
+					<div class="rcDigest">
+						
+						<p class="restrict2" >
+							每经投资宝昨日报道“多晶硅双反政策即将出台”。重点指出的精功科技、海润光伏、东方日升三个股大涨。
+						</p>
+						<div class="clear"></div>
+					</div>
+				</li>
+				<li class="articleRecommend">
+					<h5 class='rcTitle'>
+						<a href="http://www.nbd.cn/articles/2013-02-18/714715.html" target="_blank" title="多晶硅双反政策即将出台 三个股齐涨停">多晶硅双反政策即将出台 三个股齐涨停</a>
+					</h5>
+					<p class="articleTime">
+					 <span>2013-02-18 15:00</span></p>
+					<div class="rcDigest">
+						
+						<p class="restrict2" >
+							每经投资宝今日报道“多晶硅双反政策即将出台”。重点指出的精功科技、海润光伏、东方日升三只个股强势涨停。
+						</p>
+						<div class="clear"></div>
+					</div>
+				</li>
+				<li class="articleRecommend">
+					<h5 class='rcTitle'>
+						<a href="http://www.nbd.cn/articles/2013-02-07/713561.html" target="_blank" title="最正宗北斗导航股发威  股价连续上涨">最正宗北斗导航股发威  股价连续上涨</a>
+					</h5>
+					<p class="articleTime">
+					 <span>2013-02-07 16:20</span></p>
+					<div class="rcDigest">
+						
+						<p class="restrict2" >
+							每经投资宝之前不仅报道了航天电子的基本面，又在2月6日对航天电子的北斗导航产品做了详细的报道，同时报道了控股股东一致行动人航天科技财务公司增持公司股份。截至今日收盘，航天电子涨幅超10%。
+						</p>
+						<div class="clear"></div>
+					</div>
+				</li>
+				<li class="articleRecommend">
+					<h5 class='rcTitle'>
+						<a href="http://www.nbd.cn/articles/2013-02-05/713008.html" target="_blank" title="机构连续抢筹中金岭南 股价大涨">机构连续抢筹中金岭南 股价大涨</a>
+					</h5>
+					<p class="articleTime">
+					 <span>2013-02-05 15:51</span></p>
+					<div class="rcDigest">
+						
+						<p class="restrict2" >
+							“每经投资宝·天天赢家”于2月1日报道机构游资竞相买进有色股，并重点指出机构扫货中金岭南（000060），短短三个交易日以来，中金岭南上涨幅度超过12%。
+						</p>
+						<div class="clear"></div>
+					</div>
+				</li>
+				<li class="articleRecommend">
+					<h5 class='rcTitle'>
+						<a href="http://www.nbd.cn/articles/2013-02-05/712998.html" target="_blank" title="鸡苗价格1月暴涨数倍 民和股份股价持续上涨">鸡苗价格1月暴涨数倍 民和股份股价持续上涨</a>
+					</h5>
+					<p class="articleTime">
+					 <span>2013-02-05 15:42</span></p>
+					<div class="rcDigest">
+						
+						<p class="restrict2" >
+							“每经投资宝·天天赢家”1月31日独家报道了“鸡苗价格1月份暴涨数倍”。当日报道后，民和股份大涨9%，今日又大涨8%，短短四个交易日涨幅达18%。
+						</p>
+						<div class="clear"></div>
+					</div>
+				</li>
+				<li class="articleRecommend">
+					<h5 class='rcTitle'>
+						<a href="http://www.nbd.cn/articles/2013-02-04/712392.html" target="_blank" title="受益业务范围拓展  招商证券涨幅近四成">受益业务范围拓展  招商证券涨幅近四成</a>
+					</h5>
+					<p class="articleTime">
+					 <span>2013-02-04 08:04</span></p>
+					<div class="rcDigest">
+						
+						<p class="restrict2" >
+							券商业务的拓展有望使券商业绩提高，消息促使券商股大涨，每经投资宝重点指出的招商证券5个交易日涨幅近40%。
+						</p>
+						<div class="clear"></div>
+					</div>
+				</li>
+				<li class="articleRecommend">
+					<h5 class='rcTitle'>
+						<a href="http://www.nbd.cn/articles/2013-01-31/711890.html" target="_blank" title="鸡苗价格1月份暴涨数倍 民和股份受益">鸡苗价格1月份暴涨数倍 民和股份受益</a>
+					</h5>
+					<p class="articleTime">
+					 <span>2013-01-31 18:53</span></p>
+					<div class="rcDigest">
+						
+						<p class="restrict2" >
+							“每经投资宝·天天赢家”今晨（1月31日）独家报道“鸡苗价格1月份暴涨数倍”，天天赢家指出，以商品代鸡苗销售为主营业务的民和股份（002234）将直接受益。截至收盘，民和股份上涨9.14%。
+						</p>
+						<div class="clear"></div>
+					</div>
+				</li>
+				<li class="articleRecommend">
+					<h5 class='rcTitle'>
+						<a href="http://www.nbd.cn/articles/2013-01-30/711559.html" target="_blank" title="巴菲特收购地产中介商  世联地产借势大涨">巴菲特收购地产中介商  世联地产借势大涨</a>
+					</h5>
+					<p class="articleTime">
+					 <span>2013-01-30 18:52</span></p>
+					<div class="rcDigest">
+						
+						<p class="restrict2" >
+							巴菲特旗下公司HomeServices正式收购PGR，每经投资宝指出，世联地产（002285）是A股首家地产综合服务商。截至今日收盘，世联地产股价大涨9%。
+						</p>
+						<div class="clear"></div>
+					</div>
+				</li>
+		</ul>
+		<div class="clear"></div>
+	</div><!--content-->
+</div>
+
+	  <div class="pagination">
+    
+    
+        <span class="page current">
+  1
+</span>
+
+        <span class="page">
+  <a href="http://192.168.11.34/columns/200/page/2" rel="next">2</a>
+</span>
+
+        <span class="page">
+  <a href="http://192.168.11.34/columns/200/page/3">3</a>
+</span>
+
+        <span class="page">
+  <a href="http://192.168.11.34/columns/200/page/4">4</a>
+</span>
+
+        <span class="page">
+  <a href="http://192.168.11.34/columns/200/page/5">5</a>
+</span>
+
+    <span class="next">
+  <a href="http://192.168.11.34/columns/200/page/2" rel="next">下一页 &raquo;</a>
+</span>
+
+    <span class="last">
+  <a href="http://192.168.11.34/columns/200/page/5">末页</a>
+</span>
+
+  </div>
+
+</div>
+
+<div class="rightCol">
+	
+        
+  <div id="hotArticles" class="sectionA" style="">
+    <div class="title">
+      <h3>热门文章</h3>
+      <ul id="hotTabsIndex" class="opts">
+        <li class="first current"><a href="#hotArticle-1">最热点击</a></li>
+      </ul>
+    </div>
+      <div id="hotTabsContent" class="content">
+        <div id="hotArticle-1">
+          <ol class="articleList">
+        </ol>
+      </div>
+    </div>
+  </div>
+<script type="text/javascript">
+  $(function(){
+      $("#hotArticles").nbdtabs({
+        tabsDOM:"#hotTabsIndex",
+        contentDOM:"#hotTabsContent",
+        symbolIndex:"hotArticle"
+      });
+  });
+</script>
+
+    
+	<!-- 广告位：全站_右边栏一 -->
+	
+<div class="ad_global ad_right_box" style="">
+	<script type="text/javascript">BAIDU_CLB_fillSlot("349119");</script>
+</div>
+	
+		<div class="sectionA " style="">
+    <div class="title">
+      <h3>
+            <a href="http://192.168.11.34/columns/8">媒体聚焦</a>
+      </h3>
+        <span class="opts">
+            <a href="http://192.168.11.34/columns/8">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-20/721772.html" target="_blank" title="测试文章2——debug">测试文章2——debug</a>
+            </h5>
+            <div class="rcDigest">
+                
+
+                <p class="restrict" >
+                  测试文章
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li  >
+            <span class="articleOpt">14:25</span>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721763.html" target="_blank" title="中国货币供应量逼近100万亿 被指推高物价房价">中国货币供应量逼近100万亿 被指推高物价房价</a></li>
+          <li  >
+            <span class="articleOpt">11:54</span>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721736.html" target="_blank" title="我国将建房产统一登记制度 资深房地产专家解读">房产统一登记制度欲建立 房地产专家解读</a></li>
+          <li  >
+            <span class="articleOpt">11:47</span>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721732.html" target="_blank" title="宗庆后:北漂应回家乡 中小城市竞争压力小">宗庆后:北漂应回家乡 中小城市竞争压力小</a></li>
+          <li  >
+            <span class="articleOpt">10:56</span>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721697.html" target="_blank" title="黄金奔驰跑车尽现奢华 盘点世界著名跑车品牌[组图]">黄金奔驰跑车尽现奢华 盘点世界著名跑车品牌[组图]</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+	<div class="divider" style="margin-bottom:10px"></div>
+	
+	
+
+<div class="sectionA" style="">
+	<div class="title">
+		<h3>移动客户端</h3>
+	</div>
+	<div class="content" id="nbdPromo" style="margin-bottom:5px">
+		<dl>
+			<dt class="thumbClients">每经网移动客户端</dt>
+			<dd >
+				<h3>每经网移动客户端</h3>
+				<p>
+					<a href="http://itunes.apple.com/cn/app/id413082888?mt=8" class="first" target="_blank">iPhone</a> | <a href="http://itunes.apple.com/cn/app/id440680920?mt=8" target="_blank">iPad</a> | <a href="http://192.168.11.34/mobiles/android" target="_blank">Android</a> | <a href="http://old.nbd.com.cn/mobile/" target="_blank">其他</a>
+				</p>
+			</dd>
+			<dt class="thumbMobileNewspaper">每经手机报</dt>
+			<dd class="last">
+				<h3>每经投资宝</h3>
+				<p>
+					<a href="http://www.nbd.cn/premium/mobile_newspaper_account/introduce" class="first" target="_blank">天天赢家</a> | 
+					<a href="http://www.nbd.com.cn/features/274" target="_blank">股东大会实录</a> | 
+					<a href="http://www.nbd.cn/premium/mobile_news/introduce" target="_blank">投资快讯</a> 
+				</p>
+			</dd>
+		</dl>
+	</div>
+</div>
+
+
+	<div class="divider" style="margin-bottom:10px;"></div>
+	
+	<div id="subsBox" class="sectionA" style="">
+	<div class="title">
+		<h3>订阅</h3>
+	</div>
+	<div class="content">
+		<dl>
+			<!--<dt><b class="icon16 rss"></b>RSS</dt>
+			<dd><a class="first" href="">今日焦点</a> | <a href="">滚动新闻</a> | <a href="">观点</a> | <a href="">今日报纸</a></dd>-->
+			<dt><b class="icon16 newspaper"></b>报刊</dt>
+			<dd class="last"><strong>《每日经济新闻》</strong> <a href="http://www./newspapers/today" class="first" target="_blank">文字版</a> | <a href="http://epaper.nbd.com.cn/" target="_blank">图文版</a> | <a href="http://old.nbd.com.cn/html/dingyue.html" target="_blank">订阅</a></dd>
+		</dl>
+	</div>
+</div>
+
+</div>
+
+<div class="clear"></div>
+
+<!-- 广告位：全站_底部通栏 -->
+
+<div class="ad_global ad_footer" style="">
+	<script type="text/javascript">BAIDU_CLB_fillSlot("349120");</script>
+</div>
+
+    </div>
+
+    <div id="footer" class=>
+	<div class="nav">
+		<a href="http://old.nbd.com.cn/html/front/html/aboutus_new/index.htm" class="first">关于我们</a>
+		<a href="http://www./copyright">版权声明</a>
+		<a href="http://www./disclaimer">免责声明</a>
+		<a href="http://www./advertisement">广告服务</a>
+		<a href="http://www./contact">联系我们</a>
+		<a href="http://www.nbd.com.cn/corp/2013dingyue/index.html">订阅中心</a>
+		<a href="http://www./links" class="last">友情链接</a>
+		<a href="http://www./sitemap" class="last">网站地图</a>
+	</div>
+	<p>
+		Copyright © 2013 每日经济新闻报社版权所有，未经许可不得转载使用，违者必究<br/>
+		读者热线：400-889-0008　合作联系电话：86-21-60900099转688分机<br/>
+		<a href="http://www.miibeian.gov.cn/" style="margin-right: 10px; color:#787878" target="_blank">沪ICP备09000473号</a> <span>带宽提供：<a href="http://www.kwww.cn/" style="margin-right: 10px;" target="_blank">上海快网</a></span> <span><a href=" http://top.chinaz.com" target="_blank">网站排行榜</a></span>
+	</p>
+</div>
+    
+    
+  </body>
+
+</html>

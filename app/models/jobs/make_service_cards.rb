@@ -1,5 +1,5 @@
 class Jobs::MakeServiceCards
-  @queue = :make_service_cards
+  @queue = :make_service_cards_queue
 
   # def make_card create_staff, reviewed_staff
   #   CardSubTask.transaction do

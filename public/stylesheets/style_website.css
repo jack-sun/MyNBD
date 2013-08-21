@@ -22,6 +22,7 @@ h4 { font-size:19px; }
 h5 { font-size:17px; }
 h6 { font-size:15px; }
 
+/* ps:color must be upcase. rule: bgF(bgFFF) g4D21A1 bF5(bF5F5F5) b121(b112211) */
 .bgF5 { background-color:#f5f5f5; }
 
 .bD { border:1px solid #ddd; }
@@ -41,8 +42,8 @@ h6 { font-size:15px; }
 .innerCenter { margin:0 auto; width:990px; }
 
 /* for top ad of baidu */
-/*ins { width:100% !important; background:#ddd url(../images/top-ad-bg.jpg) 0 0 repeat !important; }*/
-ins { width:100% !important; background:red url(http://www.nbd.com.cn/corp/jc_inbox/18th_bg.png) 50% 0 no-repeat !important; }
+/*ins { width:100% !important; background:red url(http://www.nbd.com.cn/corp/jc_inbox/18th_bg.png) 50% 0 no-repeat !important; }*/
+ins { width:100% !important; background:#ddd url(../images/top-ad-bg.jpg) 0 0 repeat !important; }
 ins ins { width:990px !important; margin:auto !important; background-color:transparent !important; }
 
 /* search result */
@@ -85,6 +86,33 @@ ins ins { width:990px !important; margin:auto !important; background-color:trans
 }
 .indexBox li { width:100%; /*for ie6*/ }
 .indexBox li a { line-height: 24px; font-size: 13px; }
+
+/* Bottom Navigation
+   ========================================================================== */
+
+.jumpNav { height:20px; padding:10px; background:#F2F5FA; margin: 20px 0 0;
+-webkit-border-radius: 3px;
+-moz-border-radius   : 3px;
+border-radius        : 3px;
+}
+
+.jumpNav .toHome{
+	float: left;
+}
+.jumpNav a b{
+	width: 20px; 
+	height: 20px;
+	opacity: 0.7;
+	background:url(../images/sprite-icons.gif) 0 0 no-repeat;
+}
+.jumpNav a:hover b{
+	opacity: 1;
+}
+.jumpNav .toHome b{ float:left; background-position: -139px -160px; margin-right: 5px;}
+.jumpNav .toTop2 { float: right; *width:90px; }
+.jumpNav .toTop2 b{ float:right; background-position: -139px -178px; margin-left: 5px; }
+/*.jumpNav .toNext { float: right; *width:128px; }
+.jumpNav .toNext b{ float:right; background-position: -139px -178px; margin-left: 5px; }*/
 
 /* Favor Tip
    ========================================================================== */
@@ -243,6 +271,7 @@ ins ins { width:990px !important; margin:auto !important; background-color:trans
 	border-bottom: 1px solid #f7f7f7;
 	line-height: 30px;
 	height: 30px;
+	overflow: hidden;
 	font-family: Arial, sans-serif;
 	background: url(../images/dot-3.gif) left bottom repeat-x;
 }
@@ -555,10 +584,10 @@ html>body #toTop { background:url(../images/to-top.png) 0 -50px no-repeat; }
 	margin-right: 10px;
 	margin-top: 2px;
 }
-#nbdPromo dt.thumbNewspappers { width:50px; background:url(../images/nbd_promo_newspaper.jpg) 0 0 no-repeat; }
-#nbdPromo dt.thumbClients { width:50px; background:url(../images/nbd_promo_clients.jpg) 0 0 no-repeat; }
+#nbdPromo dt.thumbNewspappers { width:50px; background:url(../images/sprite-icons.gif) -100px -200px no-repeat; }
+#nbdPromo dt.thumbClients { width:50px; background:url(../images/sprite-icons.gif) 0 -200px no-repeat; }
 #nbdPromo dt.thumbMobileNewspaper{
-	width: 50px; background: url(../images/nbd_promo_mobile_newspaper.jpg) 0 0 no-repeat;
+	width: 50px; background: url(../images/sprite-icons.gif) -50px -200px no-repeat;
 }
 #nbdPromo dd { overflow:hidden; margin-bottom: 7px; }
 #nbdPromo dd.last { margin-bottom: 0; }
@@ -568,6 +597,77 @@ html>body #toTop { background:url(../images/to-top.png) 0 -50px no-repeat; }
 #nbdPromo dd p a { color: #808080; margin: 0 3px; }
 #nbdPromo dd p a.first { margin-left: 0; }
 #nbdPromo dd p a:hover { color: #3060bf; }
+
+/* Weibo Live
+   ========================================================================== */
+
+.weiboLive .avatar{
+	display: block;
+	border: 1px solid #ccc;
+	padding: 1px;
+	width: 50px;
+	height: 50px;
+	float: left;
+	margin-right: 8px;
+}
+.weiboLive .weiboItemList .itemContent{
+	margin-left: 0;
+}
+.weiboLive .weiboItemList .itemContent p{
+	margin-bottom: 0;
+	height: 63px;
+	overflow: hidden;
+	padding: 0 5px;
+}
+.weiboLive .weiboItemList{
+	background-color: white;
+}
+.weiboLive .weiboItemList .itemBottom{
+	margin-top: 3px;
+	padding: 0 5px;
+}
+.weiboLive .weiboItemList li{
+	margin-bottom: 0;
+	padding: 7px 0;
+}
+.weiboLive .content{
+	padding: 5px;
+	background-color: #f2f5fa;
+	border-bottom: 1px solid #e5e5e5;
+}
+.weiboLiveCompereProfile{
+	padding-bottom: 5px;
+	margin-bottom: 0;
+	border-bottom: 1px solid #e5e5e5;
+}
+
+/* questions and answers */
+.weiboLive.weiboLiveQA .weiboItemList .itemContent, .weiboLive.weiboLiveQA .weiboItemList .itemBottom{
+	margin-left: 65px;
+}
+.weiboLive.weiboLiveQA .weiboItemList li .avatar{
+	margin-left: 7px;
+	margin-right: 0;
+}
+.weiboLive.weiboLiveQA .weiboItemList li b{
+	float: left;
+	width: 20px;
+	height: 20px;
+	background: url(../images/sprite-icons.gif) no-repeat;
+	margin-right: 3px;
+}
+.weiboLive.weiboLiveQA .weiboItemList li.question b{
+	background-position: -40px -80px;
+}
+.weiboLive.weiboLiveQA .weiboItemList li.answer b{
+	background-position: -60px -80px;
+}
+.weiboLive.weiboLiveQA .weiboItemList .itemContent p{
+	height: 64px;
+}
+.weiboLiveQA{
+	margin-bottom: 15px;
+}
 
 /* $drop (backup)
    ========================================================================== */
@@ -672,6 +772,12 @@ html>body #toTop { background:url(../images/to-top.png) 0 -50px no-repeat; }
 	*display:block;
 	width:auto;
 }
+/* main box can't be capped at fixed width when using display:table-cell; */
+/* so main-b is geared to this situation */
+.main-b{
+	display: block;
+	overflow: hidden;
+}
 .lCol{
 	float:left;
 	margin-right:20px;
@@ -685,8 +791,8 @@ html>body #toTop { background:url(../images/to-top.png) 0 -50px no-repeat; }
 	width:300px;
 }
 
-.lColBorder { padding-right:19px; border-right:1px solid #ccc; }
-.rColBorder { padding-left:19px; border-left:1px solid #ccc; }
+.lCol-line { padding-right:19px; border-right:1px solid #ccc; }
+.rCol-line { padding-left:19px; border-left:1px solid #ccc; }
 
 /* Top
    ========================================================================== */
@@ -781,15 +887,20 @@ html>body #toTop { background:url(../images/to-top.png) 0 -50px no-repeat; }
 #footer .nav a { padding:0 10px; border-left:1px solid #ccc; }
 #footer .nav a.first { border-left:0; }
 #footer .nav a.last { border-right:0; }
-#footer p { color: #787878; line-height:1.8; }
+#footer p { color: #787878; line-height:30px; }
+#footer .footer_label { margin-right:8px; color:white; padding: 2px 3px; }
+#footer .footer_label-red { background-color:#ef2224; }
+#footer .footer_label-blue { background-color:#0e67b6; }
 
 #footer.dark  { border:none; color:#787878 ; background:#000; }
 #footer.dark  a { color:#fff; }
 
 /* shanghai jubao */
 #sbblock { background:#eceff5; text-align:center; padding:0 0 20px 0; }
-#sbblock .sbItem { display: inline-block; width:142px; height:56px; font-size:0; line-height:0; }
-#sbblock #sb_sh { background:url(../images/sb-1.png); }
+#sbblock .sbItem { display: inline-block; margin:0 8px; font-size:0; line-height:0; background-repeat: no-repeat; }
+#sbblock #sb_sh { background:url(../images/sb/sb-1.png); width:142px; height:56px; }
+#sbblock #sb_police { background:url(../images/sb/police.gif); width:152px; height:52px; }
+#sbblock #sb_zx110 { background:url(../images/sb/zx110.gif); width:113px; height:50px; }
 
 
 
@@ -839,9 +950,15 @@ html>body #toTop { background:url(../images/to-top.png) 0 -50px no-repeat; }
 	background:url(../images/tou_zi_bao/tzb-promo.png) 0 0 no-repeat;
 }
 .tzbPromo .hd a, .tzbPromo .hd a:hover { color:#fff; }
-.tzbPromo .bd { padding:28px 7px 7px; border:1px solid #ccc; }
+.tzbPromo .bd { padding:3px 7px 7px; border:1px solid #ccc; }
 .tzbPromo .bd a { color:#606060; }
 .tzbPromo .bd a:hover { color:#303030; text-decoration:none; }
+#tzbPromoIndex { height:25px; line-height:1; }
+#tzbPromoIndex .tzbPromoIndexBox { background:#f2f2f2; }
+#tzbPromoIndex a { float:left; padding:3px 5px; }
+#tzbPromoIndex a:hover { background:#c3c3c3; color:#fff; }
+#tzbPromoIndex a.current { background:#e78600; color:#fff; }
+#tzbPromoContainer { height:72px; overflow:hidden; }
 
 /* Headline
    ========================================================================== */

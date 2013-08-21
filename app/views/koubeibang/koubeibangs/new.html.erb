@@ -1,0 +1,59 @@
+<% content_for :render_stylesheet do %>
+  <%= stylesheet_link_tag "koubeibang" %>
+<% end %>
+
+<% content_for :render_header do %>
+  <div id="header"></div>
+<% end %>
+
+<%= form_tag confirm_koubeibangs_url, :id => "koubeibangForm" do %>
+  <div class="wrapper">
+      <% if @kbbs.present? %>
+        <% for kbb in @kbbs %>
+          <h1><%= kbb.title %></h1>
+          <%= simple_format(kbb.desc) %>
+          <br />
+          <dl class="item">
+            <dt class="back">提名公司名称</dt>
+            <dt class="back">股票代码</dt>
+            <dd class="back">提名理由</dd>
+            <% 3.times do |time| %>
+              <dt>
+                <%= text_field_tag "[koubeibang_#{kbb.id}][candidates_#{time + 1}][stock_company]", "", :class => "companyName" %>
+              </dt>
+              <dt>
+                <%= text_field_tag "[koubeibang_#{kbb.id}][candidates_#{time + 1}][stock_code]" %>
+              </dt>
+              <dd>
+                <%= text_field_tag "[koubeibang_#{kbb.id}][candidates_#{time + 1}][comment]" %>
+              </dd>
+            <% end %>
+          </dl>
+        <% end %>
+      <% end %>
+  </div>
+  
+  <div id="footer">
+    <%= link_to "", "#", :class => "a2", :id => "submitBtn" %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $(function(){
+    var elemGroup = $('.item');
+    var btnSubmit = $('#submitBtn');
+    var form = $('#koubeibangForm');
+
+    btnSubmit.click(function(){
+      form.submit();
+      return false;
+    });
+
+    form.submit(function(){
+      if(!validate.all(elemGroup)){
+        alert(validate.tip);
+        return false;
+      }
+    });
+  });
+</script>

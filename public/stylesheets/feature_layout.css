@@ -187,7 +187,8 @@ body{
 .element_image_cell .content{
 	padding: 10px 0;
 }
-.element_image_cell .image_cell_list li { float:left; }
+.element_image_cell ul li { float:left; }
+.element_image_cell .imageDesc { padding:5px; }
 
 /* Comment */
 #commentsBlock{

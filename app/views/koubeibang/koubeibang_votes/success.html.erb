@@ -1,0 +1,21 @@
+<% content_for :render_stylesheet do %>
+  <%= stylesheet_link_tag "koubeibang_votes" %>
+<% end %>
+
+<% content_for :render_header do %>
+  <div id="header"></div>
+<% end %>
+
+<div id="wrapper" class="f14">
+    <p style="font-size:16px;"><strong>感谢您的支持还差最后一步哦！</strong></p>
+    <p>您已经完成全部榜单的投票工作，请下载系统自动生成的确认单
+      <%= link_to "（点击下载）", download_results_koubeibang_vote_url(current_kbb_account), :target => "_blank", :class => "red" %>
+      ，打印后加盖公司公章，回传至组委会（传真：028-86516389 ） 或 使用电子章后发送至组委会邮箱koubeibang@nbd.com.cn。</p>
+    <p>感谢您对2013中国上市公司口碑榜的参与以及对中国资本市场的大力支持，您的投票将汇总至《每日经济新闻》口碑榜组委会，最终的获奖榜单将于2013年11月隆重揭晓，敬请期待！</p>
+    <p>如有任何疑问，可直接致电口碑榜组委会，组委会电话：028-86511610</p>
+</div>
+<div id="footer">
+    <p>Copyright@2013 每日经济新闻报社版权所有，未经许可不得转载使用，违者必究</p>
+    <p>读者热线：400-889-0008　合作联系电话：86-21-60900099转688分机</p>
+    <p>沪ICP备09000473号</p>
+</div>

@@ -35,51 +35,6 @@
 .sectionA.columnSection .content{
 	padding-top: 0;
 }
-#weiboLive .avatar{
-	display: block;
-	border: 1px solid #ccc;
-	padding: 1px;
-	width: 50px;
-	height: 50px;
-	float: left;
-	margin-right: 8px;
-}
-#weiboLive .weiboItemList .itemContent{
-	margin-left: 0;
-}
-
-#weiboLive .weiboItemList .itemContent p{
-	margin-bottom: 0;
-	height: 63px;
-	overflow: hidden;
-	padding: 0 5px;
-}
-#weiboLive .weiboItemList{
-	background-color: white;
-}
-#weiboLive .weiboItemList .itemBottom{
-	margin-top: 3px;
-	padding: 0 5px;
-}
-#weiboLive .weiboItemList li{
-	margin-bottom: 0;
-	padding: 7px 0;
-}
-#weiboLive{
-	font-family: Arial, sans-serif;
-}
-#weiboLive .content{
-	padding: 5px;
-	background-color: #f2f5fa;
-	border-bottom: 1px solid #e5e5e5;
-}
-
-.weiboLiveCompereProfile{
-	padding-bottom: 5px;
-	margin-bottom: 0;
-	background-color: #F2F5FA;
-	border-bottom: 1px solid #e5e5e5;
-}
 
 /* Hot Comments */
 

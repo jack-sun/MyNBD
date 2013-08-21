@@ -30,7 +30,7 @@
 		<ul id="clubIndex">
                     <% head_articles.each_with_index do |article, index| %>
                       <li <% if index==head_articles.length-1%>class="last"<% end -%>>
-                        <%= image_tag(article_thumbnail_path(article, :thumb_hm), {:alt => article.list_title, :width => 120, :height => 90}) if article.image.present? %>
+                        <%= image_tag(article_thumbnail_path(article, :middle), {:alt => article.list_title, :width => 120, :height => 90}) if article.image.present? %>
                      </li>
                     <% end %>
 		</ul>

@@ -20,7 +20,7 @@ column_id = '' unless column_id
 		<ul class="articleList unorderList">
 			<% articles.each_with_index do |article,index| %>
 				<li class="articleWall">
-					<%= link_to(image_tag(article_thumbnail_path(article, :thumb_hm), :alt => article.list_title), article_url(article), {:class => "miniture", :target => "_blank", :title => article.title}) %>
+					<%= link_to(image_tag(article_thumbnail_path(article, :middle), :alt => article.list_title), article_url(article), {:class => "miniture", :target => "_blank", :title => article.title}) %>
 					<p class="headline">
 						<%= link_to "<b class=\"video\"></b>#{article.list_title}".html_safe, article_url(article), {:target => "_blank", :title => article.title} %>
 					</p>

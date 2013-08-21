@@ -60,7 +60,8 @@ td .dragHandler { display:none; top:0px; left:0px; width:22px; height:50px; padd
 li .dragHandler { display:block; top:0px; left:0px; width:35px; height:20px; background:url(../images/round-icon.gif) no-repeat; }
 
 /* operation (under tabs) */
-.operation { height:30px; margin:0 20px; color: #808080; padding:5px 0}
+.operation { height:30px; margin:0 20px; color: #808080; padding:10px 0}
+.rightColCenter .operation { margin:0; }
 .operation .lOpt>*{ float:left; margin-right:10px; }
 select.columnSelector { font-size: 14px; }
 
@@ -97,6 +98,12 @@ select.columnSelector { font-size: 14px; }
 .sectionA .title .opts a.btnGreen{
 	margin-top:16px;
 }
+
+.sectionA .title .opts a.btnGrayM,
+.sectionA .title .opts a.btnBlueM{
+	margin-top:10px;
+}
+
 .sectionA .title .opts a.btnBlueM { margin-top:10px; color: #fff; }
 .sectionA .content { padding: 10px 0; }
 
@@ -140,7 +147,8 @@ select.columnSelector { font-size: 14px; }
 	font-size: 14px;
 }
 .formA input[type='text'], .formB input[type='text'], .formC input[type='text'],
-.formA input[type='password'], .formB input[type='password'], .formC input[type='password']{
+.formA input[type='password'], .formB input[type='password'], .formC input[type='password'],
+.formA input[type='email'], .formB input[type='email'], .formC input[type='email']{
 	margin:0;
 	border: 1px solid #868686;
 	border-bottom-color: #bebebe;
@@ -154,11 +162,20 @@ form input.error { border: 1px solid red; }
 
 /* formA */
 .formA legend {font-weight: bold; }
-.formA label {float: left; width: 65px; padding-right:5px; text-align:right; }
+.formA label {float: left; width: 5em; padding-right:5px; text-align:right; }
 .formA p { margin:15px 0; }
 .formA div.block { margin:15px 0; }
 .formA input[type='radio'] { margin-left: 14px; }
-.formRightAlign { padding-left:72px; }
+.formA .formRightAlign { padding-left:5.4em; }
+
+.formA-6c label { width: 6em; }
+.formA-6c .formRightAlign { padding-left:6.4em; }
+.formA-7c label { width: 7em; }
+.formA-7c .formRightAlign { padding-left:7.4em; }
+.formA-8c label { width: 8em; }
+.formA-8c .formRightAlign { padding-left:8.4em; }
+.formA-9c label { width: 9em; }
+.formA-9c .formRightAlign { padding-left:9.4em; }
 
 /* formB */
 .btnRowM a { float: left; margin-right: 20px; }
@@ -251,31 +268,6 @@ table.formC .opt input { margin-left: 15px; }
 .tableA .itemStatus_2 { color: red; }
 .tableA .itemActions { width: 110px; line-height:14px; }
 
-/* itemActions */
-.itemActions a{
-	white-space: nowrap;
-	float: left;
-	margin-right: 10px;
-	margin-bottom: 7px;
-}
-.itemActions a b{
-	float: left;
-	width: 16px;
-	height: 16px;
-	background: url(../images/sprite-icons.gif) no-repeat;
-	margin-right: 2px;
-	opacity: 0.6;
-}
-.itemActions a:hover b { opacity: 1; }
-.itemActions a.actionDelete b { background-position: 0 -40px; }
-.itemActions a.actionEdit b { background-position: -16px -40px; }
-.itemActions a.actionChilden b { background-position: -32px -40px; }
-.itemActions a.actionUp b { background-position: -64px -40px; }
-.itemActions a.actionDown b { background-position: -80px -40px; }
-.itemActions a.actionBanned b { background-position: -96px -40px; }
-.itemActions a.actionPublish b { background-position: -112px -40px; }
-.itemActions a.actionRecord b { background-position: -128px -40px; }
-.itemActions a.actionNew b { background-position: -144px -40px; }
 .tableA .itemDate { width: 80px; }
 div.remove { display:none; }
 li.remove { display:none; }
@@ -301,6 +293,13 @@ li.remove { display:none; }
 .sortableList li { width:550px; }
 .sortableList .childActions{ font-size:12px; position:absolute; right: 0; top: 0; }
 .sortableList .childActions a { padding-left:5px; }
+
+/* Filter
+   ========================================================================== */
+
+.consoleFilter { margin:10px 0; padding-left:11px; height:21px; line-height:21px; font-size:12px; }
+.consoleFilter li { float:left; margin-right:15px; }
+.consoleFilter li.current a { color:#B00; font-weight:bolder; }
 
 
 
@@ -580,11 +579,8 @@ li.remove { display:none; }
    Feature_statistic
    ========================================================================== */
 
-#body_state .articleStateDateChoose .current { color:red; }
+/*#body_state .articleStateDateChoose .current { color:red; }*/
 #body_state .targetBox { width:300px; }
-#body_state .datePicker { margin:10px 0; padding-left:11px; height:21px; line-height:21px; font-size:12px; }
-#body_state .datePicker li { float:left; margin-right:15px; }
-#body_state .datePicker li.current a { color:#B00; font-weight:bolder; }
 #body_state .setTargetForm a { margin-left:5px; }
 
 

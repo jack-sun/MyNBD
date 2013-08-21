@@ -3,7 +3,7 @@
  * 
  * properties:
  * --slide-index-disable: true (此index不计入索引)
- * 
+ * 档动画效果为slide时，container必须定宽定高。其它效果可以不用
  ******************************************/
 
 ;if(!$.nbdslide)
@@ -28,14 +28,14 @@
 		//是否自动播放
 		interval:3000
 		//自动播放时间间隔（ms毫秒)
-	}
-	
+	};
+
 	var slide = {};
-	
+
 	slide.init = function(options){
-		
+
 		options = $.extend({}, defaults, options);
-		
+
 		var optDOMs = [];
 		var partialObjs = [];
 		var scrollSameTend = options.scrollSameTend;
@@ -49,8 +49,8 @@
 			$ratioDOM_c = $(options.ratioDOM[0]);
 			$ratioDOM_t = $(options.ratioDOM[1]);
 		}
-		
-		
+
+
 		if(typeof options.optDOMs[0] == "string"){
 			$.each(options.optDOMs,function(index,optDOM){
 				optDOMs.push({
@@ -61,14 +61,14 @@
 		}else {
 			optDOMs = options.optDOMs;
 		}
-		
+
 		$.each(optDOMs,function(i,optDOM){
-			var partialObj = new PartialSlide(optDOM,options); 
+			var partialObj = new PartialSlide(optDOM,options);
 			partialObjs.push(partialObj);
 		});
-		
+
 		$indexList.eq(0).addClass('current');
-		
+
 		$indexList.click(function(){
 			portfolioObj.clickIndexEvent($(this).index());
 		});
@@ -78,7 +78,7 @@
 		$nextDOM.click(function(){
 			portfolioObj.nextSlideEvent();
 		});
-		
+
 		//	return portfolioObj
 		var portfolioObj = new Portfolio();
 		portfolioObj.partialObjs = partialObjs;
@@ -118,9 +118,13 @@
 	$.extend(Portfolio.prototype, {
 		startAutoScroll:function(){
 			var that = this;
-			that.autoScrollObj = setInterval(function(){
-				that.nextSlideEvent(true);
-			}, that.interval);
+			function auto(){
+				that.autoScrollObj = setTimeout(function(){
+					that.nextSlideEvent(true);
+					auto();
+				}, that.interval);
+			}
+			auto(); // 用setTimeout，在chrome里，使用setInterval会有bug：只执行一次
 		},
 		stopAutoScroll:function(){
 			this.autoScrollObj && clearInterval(this.autoScrollObj);
@@ -171,6 +175,7 @@
 					that.animation(0,1);
 				},this.speed-100);
 			}else {
+
 				this.moveIndex++;
 				if(this.moveIndex == this.maxTime){
 					this.moveIndex = 0;
@@ -200,13 +205,12 @@
 		},
 		initilizeDOM:function(){
 			var that = this;
-			if(that.animation) alert("此对象已经初始化过了！");
 			
 			that.container.css("overflow","hidden");
 			if(that.container.css("position") == "static") that.container.css("position","relative");
 			that.toSlideList.css({
-				width:that.container.width(),
-				height:that.container.height(),
+				width:'100%',
+				height:'100%',
 				overflow:"hidden"
 			});
 			switch(that.style){
@@ -242,7 +246,14 @@
 			}
 			
 			function initSlideDOM(tend){
-				that.wrapper = $("<div></div>").append(that.toSlideList).appendTo(that.container);
+				// slide的时候，每个元素的宽高不能变，需要固定下来
+				that.toSlideList.css({
+					width:that.container.width(),
+		      height:that.container.height()
+				});
+
+				// 用于滚动的包裹元素
+				that.wrapper = $("<div></div>");
 				that.wrapper.css("position","absolute");
 				if(tend == "x"){
 					that.toSlideList.css("float","left");
@@ -257,6 +268,7 @@
 						"height":that.toSlideList.eq(0).outerHeight()*that.toSlideList.length
 					});
 				}
+				that.wrapper.append(that.toSlideList).appendTo(that.container);
 			}
 			
 			function animationForNormal(index){

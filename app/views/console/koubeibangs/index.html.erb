@@ -1,0 +1,13 @@
+<%= require_jqueryUI %>
+
+<div class="sectionA">
+  <div class="title">
+    <h1>口碑榜提名审核</h1>
+  </div>
+  <div id="subColumnTab" class="tabs"><%= render :partial => "list_koubeibang_comment_tabs"  %></div>
+  <div class="content rightColCenter">
+    <%=render :partial => "kbb_detail_operation_bar", :locals=>{ :koubeibang_details => @koubeibang_details} %>
+    <%=render :partial => "kbb_detail_list", :locals=>{ :koubeibang_details => @koubeibang_details} %>
+    <%=render :partial => "kbb_detail_operation_bar", :locals=>{ :koubeibang_details => @koubeibang_details} %>
+  </div>
+</div>

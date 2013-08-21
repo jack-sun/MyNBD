@@ -1,0 +1,2 @@
+module Koubeibang::KoubeibangVotesHelper
+end

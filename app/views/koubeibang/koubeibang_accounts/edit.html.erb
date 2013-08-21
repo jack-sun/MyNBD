@@ -1,0 +1,45 @@
+<% content_for :render_stylesheet do %>
+  <%= stylesheet_link_tag "koubeibang_votes" %>
+<% end %>
+
+<% content_for :render_header do %>
+  <div id="header"></div>
+<% end %>
+
+<div id="wrapper">
+	<h1>机构信息表</h1>
+  <%= simple_form_for @kbb_account do |f| %> 
+    <dl class="login information">
+      <%= f.input :phone_no, :label => '联系电话：', :input_html => { :class => "input_315" } %>
+    </dl>
+    <dl class="login information">
+      <%= f.input :real_name, :label => '填表人：', :input_html => { :class => "input_315" } %>
+    </dl>
+    <dl class="login information">
+      <%= f.input :email, :label => '填表人邮箱：', :input_html => { :class => "input_315" } %>
+    </dl>
+    <dl class="login information">
+      <%= f.input :inviter, :label => '与主办方《每日经济新闻》联系人（邀请贵机构的主办方人员）：', :input_html => { :class => "input_40" } %>
+    </dl>
+    <br />
+    <br />
+    <h1>保护投资者宣言</h1>
+    <h2>
+      <%= f.input :declaration, :as => :text, :label => false, :input_html => { :class => "input_500" } %>
+    </h2>
+    <h3>保护投资者宣言示例</h3>
+    <p>投资者是股市的主体，上市公司是股市的载体。我们应当宣扬价值投资理念，让投资主体更理性，同样，我们也应当严格上市公司监管，让投资载体更优秀。
+股市应具备价格发现、资源配置、直接融资和财富增值四大基本功能，但当前的中国股市除了融资外，其他功能几乎丧失殆尽，只圈钱不回报的股市，将丧失公众投资者的信任和支持，成为名副其实的赌场和寻租场。
+强力呼吁：打击作假、圈钱、内幕交易等不法行为，有效的保护二级市场投资者的利益，有效的发挥股市的价格发现、资源配置、直接融资和财富增值的基本功能。完善市场运作机制，切实保护投资人利益。
+    </p>
+    <h3>
+      <%= f.button :submit, '下一步', :class => "btn_mouseout", :onmouseover => "this.className='btn_mouseover'", :onmouseout => "this.className='btn_mouseout'" %>
+    </h3>
+  <% end %>
+</div>
+
+<div id="footer">
+  <p>Copyright@2013 每日经济新闻报社版权所有，未经许可不得转载使用，违者必究</p>
+  <p>读者热线：400-889-0008　合作联系电话：86-21-60900099转688分机</p>
+  <p>沪ICP备09000473号</p>
+</div>

@@ -1,0 +1,2 @@
+module KoubeibangCandidatesHelper
+end

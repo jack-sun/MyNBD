@@ -1,0 +1,2 @@
+module Koubeibang::SessionsHelper
+end

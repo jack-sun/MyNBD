@@ -22,11 +22,16 @@
 		image = Image.new
 	end
 %>
-<%= render :partial => "console/images/image_upload_form", :locals => {:image => image, :url_method => "feature", :multiple => false} %>
+<%= render :partial => "console/images/image_upload_form", :locals => {:image => image, :url_method => "feature"} %>
 
 
 <script type="text/javascript" charset="utf-8">
-    $(function () {				
+    $(function () {
+        // Initialize the jQuery File Upload widget:
+        $('#fileupload').fileupload({
+					maxNumberOfFiles:1
+				});
+				
         // Load existing files:
         $.getJSON($('#fileupload form').prop('action'), function (files) {
             var fu = $('#fileupload').data('fileupload');

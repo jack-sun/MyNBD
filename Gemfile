@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'http://ruby.taobao.org'
 
 #test
 gem 'rails', '3.0.9'
@@ -19,6 +19,7 @@ gem 'annotate'
 gem 'chinese_pinyin'
 
 gem 'carrierwave', '0.5.7'
+gem 'carrierwave-ftp', :git => "git://github.com/winterwhisper/carrierwave-ftp.git"
 
 gem 'mini_magick'
 
@@ -89,11 +90,20 @@ gem 'nokogiri'
 #   gem 'webrat'
 # end
 
-#group :development, :test do
-#  gem 'rspec-rails', "2.5.0"
+group :development, :test do
+  gem 'rspec-rails', "2.5.0"
+  gem 'factory_girl_rails'
+  gem 'pry'
+  gem 'pry-rails'
+  gem 'pry-debugger'
+  gem 'pry-remote'
+  gem 'hirb'
+  gem 'better_errors'
+  gem "binding_of_caller"
+  gem "bullet"
 #  gem 'livereload'
 #  gem 'guard-livereload'
-#  gem 'factory_girl'
+# gem 'factory_girl'
 #  gem 'database_cleaner'
 #  gem 'guard'
 #  gem 'guard-spork'
@@ -104,5 +114,5 @@ gem 'nokogiri'
 #  gem 'rb-fsevent' if RUBY_PLATFORM.downcase.include?("darwin")
 #  gem 'spork', "0.9.0.rc7"
 #  gem 'shoulda'
-#end
+end
 

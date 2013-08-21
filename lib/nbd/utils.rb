@@ -2,6 +2,7 @@
 # Vincent Tsao, Chengdu, 07/26/2011
 
 require 'digest/md5'
+require 'open-uri'
 
 module NBD
   module Utils
@@ -12,18 +13,26 @@ module NBD
    	# p NBD::Utils.parse_daily_news(RAILS_ROOT+'/doc/daily_news_sample.trs')
    	# 
    	def self.parse_daily_news(file)
-      
-      Rails.logger.debug "============= file: #{file.inspect}"
-      
+      # Rails.logger.debug "============= file: #{file.inspect}"
+
         str_array = ["r:gb2312", "r:gbk"]
         str = str_array.pop
+
+        File.open("#{Rails.root.to_s}/log/newspaper_parse.log", 'a') do |f|
+          f.puts "============= file: #{file.inspect}"
+          f.puts "============= #{str}"
+        end
+
         begin
-          File.open(file, str) do |f|
+          items = []
+          item = {}
+          open("#{::Settings.local_image_host}#{file}", str) do |f|
+          # File.open(file, str) do |f|
             
             f.gets #remove first line <REC>
             
-            items = []
-            item = {}
+            # items = []
+            # item = {}
             item["content"] = []
             
             while (line = f.gets)
@@ -36,12 +45,12 @@ module NBD
                   item["content"] = []
               
               else
-                  line =~ /^<(.+)>=(.*)/
+                  line.encode("utf-8") =~ /^<(.+)>=(.*)/
                   case $1
                       when '标题'
                           item['title'] = $2
                       when '作者'
-                          author_string = $2.gsub(/\u3000/, ' ')
+                          author_string = $2.encode("utf-8").gsub(/\u3000/, ' ')
                           item['ori_author'] = author_string
                       when '日期'
                           item['date'] = Time.parse($2)
@@ -54,7 +63,7 @@ module NBD
                       when '正文'
                           #item['content'] = $2
                       when '引题'
-                          item['list_title'] = $2.nil? ? nil : $2.gsub(/\u3000/, ' ').strip
+                          item['list_title'] = $2.nil? ? nil : $2.encode("utf-8").gsub(/\u3000/, ' ').strip
                       when '副题'
                           item['sub_title'] = $2
                       when '图像'
@@ -67,7 +76,7 @@ module NBD
                           item['ori_source'] = $2
                       else #正文续
                           # 全角空格转半角空格后，进行strip
-                          p = line.gsub(/\u3000/, ' ').strip
+                          p = line.encode("utf-8").gsub(/\u3000/, ' ').strip
                           item['content'] << p unless p.blank?
                   end
               end 
@@ -85,17 +94,24 @@ module NBD
               item['copyright'] = Article::COPYRIGHT_YES
             end.reject!{|item| item['content'].blank?}
             
-            return items
+            # return items
           end
+          return items
         rescue Encoding::InvalidByteSequenceError => e
           str = str_array.pop
           raise StandardError  if str.nil?
-          Rails.logger.info "Ecoding Error #{str}"
+          # Rails.logger.info "Ecoding Error #{str}"
+          File.open("#{Rails.root.to_s}/log/newspaper_parse.log", 'a') do |f|
+            f.puts "Ecoding Error #{str}"
+          end
           retry
         rescue ArgumentError => e
           str = str_array.pop
           raise StandardError  if str.nil?
-          Rails.logger.info "Argument Error #{str}"
+          # Rails.logger.info "Argument Error #{str}"
+          File.open("#{Rails.root.to_s}/log/newspaper_parse.log", 'a') do |f|
+            f.puts "Argument Error #{str}"
+          end
           retry
         end
    	end

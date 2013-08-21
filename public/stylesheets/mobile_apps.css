@@ -13,7 +13,7 @@ body { background:#daecf2; color:#808080; font-size:12px; font-family: Arial, sa
 
 /* Navigation
 -------------------------------------*/
-#mobileNavigation { margin:10px auto 0; width:320px; }
+#mobileNavigation { margin:20px auto 0; width:320px; }
 #mobileNavigation li, #mobileNavigation li a { float:left; width:80px; height:80px; text-align:center; }
 #mobileNavigation li a { color: #808080; }
 #mobileNavigation li a:hover { color: #606060; text-decoration:none; }
@@ -49,7 +49,26 @@ body { background:#daecf2; color:#808080; font-size:12px; font-family: Arial, sa
 #mobileDownload #downloadOpt {  top:284px; left:470px; width:240px; }
 #mobileDownload #downloadOpt a#downloadBtn { text-indent:-9999px; display: block; height:70px; background:url(../images/mobile_apps/download-button.png) 0 0 no-repeat; }
 #mobileDownload #downloadOpt a#downloadBtn:hover { display: block; height:70px; background-position: 0 -70px; }
-
+#iPhoneInstallIntro{
+	position:absolute;
+	text-align: left;
+	top:40px; left:430px;
+}
+#iPhoneInstallIntro h2{
+	font-size: 18px;
+	margin-bottom: .5em;
+}
+#iPhoneInstallIntro h3{
+	font-size: 14px;
+}
+#iPhoneInstallIntro ol{
+	padding-left: 20px;
+	list-style-type: decimal;
+	margin-bottom: 1.5em;
+}
+#iPhoneInstallIntro ol li{
+	line-height: 2;
+}
 /* Expo
 -------------------------------------*/
 #mobileAppExpo { padding: 40px 0 0 0; }

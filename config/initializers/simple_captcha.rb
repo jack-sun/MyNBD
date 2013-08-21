@@ -20,6 +20,6 @@ SimpleCaptcha.setup do |sc|
 
   # default: low
   # possible values: 'low', 'medium', 'high', 'random'
-  sc.distortion = 'high'
+  sc.distortion = 'medium'
 end
 

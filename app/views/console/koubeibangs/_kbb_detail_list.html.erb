@@ -1,0 +1,33 @@
+<% require_js "console_selectAll" %>
+<% require_popWin %>
+<table id="KbbDetailTable" class="tableA">
+  <thead>
+    <tr>
+      <th class="tdw200">口碑榜</th>
+      <th class="tdw200">公司</th>
+      <th class="tdw200">提名理由</th>
+      <th class="tdw20p">时间</th>
+      <th>状态</th>
+      <th>操作</th>
+    </tr>   
+  </thead>
+  <tbody>
+    <% koubeibang_details.each do |detail| %>
+      <% next unless detail.present? %>
+      <tr id="koubeibangdetail_<%= detail.id %>">
+        <td><%= detail.koubeibang_title %></td>
+        <td><%= detail.koubeibang_candidate.stock_code %>  (<%= detail.koubeibang_candidate.stock_company %>)</td>
+        <td><%= detail.comment %></td>
+        <td class="itemDate"><%= detail.created_at.strftime("%Y-%m-%d %H:%M:%S") %></td>
+        <td class="itemStatus_<%=detail.comment_status%>"><%= KoubeibangCandidateDetail::STATUS[detail.comment_status.to_i] %></td>
+        <td class="itemActions">
+          <% if !detail.is_banned? %>
+            <%= link_to("<b></b>屏蔽".html_safe, "javascript:void(0);", :class=>'actionBanned') %>
+          <% else %>
+            <%= link_to("<b></b>发布".html_safe, "javascript:void(0);", :class=>'actionPublish') %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

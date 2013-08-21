@@ -1,4 +1,4 @@
-Factory.define(:mention) do |f|
-  f.association :user
-  f.target :ori_weibo
-end
+# Factory.define(:mention) do |f|
+#   f.association :user
+#   f.target :ori_weibo
+# end

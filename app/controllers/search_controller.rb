@@ -13,7 +13,7 @@ class SearchController < ApplicationController
     #@global_hot_articles = Article.hot_articles(20)[0..9] #temp solution, Vincent 2011-12-05
     #@global_hot_comment_articles = Article.hot_comment_articles(20)[0..9] #temp solution, Vincent 2011-12-05
     
-    render :layout => "site_v3"
+    render :layout => "site"
   end
   
   def article_tag_search
@@ -23,7 +23,7 @@ class SearchController < ApplicationController
     #@global_hot_articles = Article.hot_articles(20)[0..9] #temp solution, Vincent 2011-12-05
     #@global_hot_comment_articles = Article.hot_comment_articles(20)[0..9] #temp solution, Vincent 2011-12-05
     
-    render :article_search, :layout => "site_v3"
+    render :article_search, :layout => "site"
   end
   
   def community_search

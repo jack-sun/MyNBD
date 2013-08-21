@@ -1,6 +1,4 @@
 #encoding:utf-8
-require 'nbd/utils'
-
 module Console
   class ArticlesController < ApplicationController
     layout "console"
@@ -9,9 +7,9 @@ module Console
     before_filter :authorize_staff
     before_filter :init_news_console, :except => [:stats, :top_stats]
     before_filter :init_common_console, :only => [:stats, :top_stats]
-   
-    cache_sweeper Sweepers::PageSweeper, Sweepers::ArticleSweeper, Sweepers::ColumnistSweeper, :only => [:destroy, :create, :update, :add_child_article, :remove_articles, :change_children_articles_pos, :change_status, :remove_child_article, :ban_by_ids]   
-
+    
+    cache_sweeper Sweepers::PageSweeper, Sweepers::ArticleSweeper, Sweepers::ColumnistSweeper, :only => [:destroy, :create, :update, :add_child_article, :remove_articles, :change_children_articles_pos, :change_status, :remove_child_article, :ban_by_ids]
+    
     def published
       @articles = @current_staff.articles.published.includes({:columns => :parent}, :staffs, :pages, :children_articles, :weibo).order('id desc').page params[:page]
       @category = Article::PUBLISHED
@@ -43,7 +41,6 @@ module Console
     
     def destroy
       @article = Article.find(params[:id])
-      @article.prev_column_ids = @article.columns.map(&:id) || []
       @article.columns.each do |c|
         c.updated_at = Time.now
         c.save!
@@ -105,15 +102,7 @@ module Console
     
     def create
       #@article = @current_staff.articles.create((params[:article]))
-
-      if (regex_result = NBD::Utils.parse_associate_url(params[:article][:redirect_to]))
-        gallery_id = regex_result[:id]
-        gallery = Gallery.where(:id => gallery_id).first
-        @article = @current_staff.create_article(params[:article].merge(:gallery_id => gallery.try(:id)))
-      else
-        @article = @current_staff.create_article(params[:article])
-      end
-
+      @article = @current_staff.create_article(params[:article])
       if @article.errors.size > 0
         column = Column.where(:id => params[:column_id]).first
         @selected_id = column.nil? ? -1 : column.id
@@ -144,7 +133,6 @@ module Console
     
     def update
       @article = Article.find(params[:id])
-      @article.prev_column_ids = @article.columns.map(&:id) || []
       old_status = @article.status
       @article = @article.update_self(params[:article])
       if old_status == Article::BANNDED and @article.status == Article::PUBLISHED
@@ -184,7 +172,6 @@ module Console
     # AJAX： 更改文章状态
     def change_status
       @article = Article.find(params[:id])
-      @article.prev_column_ids = @article.columns.map(&:id) || []
       old_status = @article.status
       
       unless @article.update_attributes(:status => params[:status])
@@ -314,46 +301,6 @@ module Console
       @filter_type = params[:filter] || "today"
       @record = Article.time_filter(@filter_type).includes(:staffs).page(params[:page]).per(30).order("click_count desc")
     end
-
-    private
-
-    def init_article_page(page_index = 1 , is_west = false)
-      # Rails.logger.info("Come on========is_west:#{is_west}")
-      @showed_live = Live.showed_lives(Rails.cache.read(Live::LIVE_SHOW_TYPE_KEY)||"1").order("id desc").first
-      @showed_live_talks = @showed_live.live_talks.where(:talk_type => LiveTalk::TYPE_TALK).includes([:weibo => :owner, :live_answers => {:weibo => :owner}]).order("id desc").limit(2) #直播
-      
-      @first_column = @article.columns.order("id asc").try(:to_a).try(:first)
-      
-      @comments = @article.comments.order("id DESC").includes(:owner)
-      
-      @reporters = @article.staffs.reporters
-      @editors_in_charge = @article.staffs.editors_in_charge
-      
-      @page = @article.pages.where(:p_index => page_index).first
-      
-      unless is_west
-        @related_articles = @article.related_articles(5) #相关文章 west hasn't
-        @recommend_articles = {:id => @article.id} #根据关键词 推荐的文章, 获取文章逻辑放到页面上  west hasn't
-      end
-      #@recommend_articles = @article.recommend_articles(5) #根据关键词 推荐的文章
-      
-      @column_top_picks = @article.relate_hot_articles #频道精选
-      
-      #@global_hot_articles = Article.hot_articles(20)[0..9] #temp solution, Vincent 2011-12-05 #全局热门文章
-      
-      @nbd_weekly_comment = {:articles => Article.of_column(100, 1), :id => 100} #每经一周评
-      
-      #@global_hot_comment_articles = Article.hot_comment_articles(20)[0..9] #全局热评文章
-      
-      @featured_articles = {:articles => Article.of_column(5,4), :id => 5} #全局每日精选
-      
-      @focus_articles = {:articles => Article.of_column(8, 5), :id => 8} #媒体聚焦
-      
-      @image_news = {:articles => Article.of_column(4, 5), :id => 4} #图片新闻
-      
-      @hot_topics = {:topics => Topic.hot_topics(1), :id => 'hot_topic'} #社区热议
- 
-    end    
 
   end
 end

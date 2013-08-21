@@ -39,7 +39,7 @@ column_id = '' unless column_id
 				</li>
 				<% else %>
 				<li class="articleWall">
-
+					<%= link_to(image_tag(article_thumbnail_path(article, :middle), {:alt => article.list_title, :width => "120", :height => "90"}), article_url(article), {:class => "miniture", :target => "_blank", :title => article.title}) %>
 					<p class="headline">
 						<%= link_to article.list_title, article_url(article), {:target => "_blank", :title => article.title} %>
 					</p>

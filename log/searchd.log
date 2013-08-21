@@ -1,0 +1,98 @@
+[Wed Jul 17 16:31:52.914 2013] [20017] accepting connections
+[Wed Jul 17 18:10:06.693 2013] [20017] caught SIGTERM, shutting down
+[Wed Jul 17 18:10:06.700 2013] [20017] shutdown complete
+[Thu Jul 18 10:20:18.349 2013] [10448] accepting connections
+[Thu Jul 18 17:11:38.669 2013] [10448] rotating indices (seamless=1)
+[Thu Jul 18 17:11:38.671 2013] [10448] rotating index 'weibo_delta': success
+[Thu Jul 18 17:11:38.680 2013] [10448] rotating index 'weibo_core': success
+[Thu Jul 18 17:11:38.682 2013] [10448] rotating index 'user_delta': success
+[Thu Jul 18 17:11:38.690 2013] [10448] rotating index 'user_core': success
+[Thu Jul 18 17:11:38.692 2013] [10448] rotating index 'image_delta': success
+[Thu Jul 18 17:11:38.694 2013] [10448] rotating index 'image_core': success
+[Thu Jul 18 17:11:38.695 2013] [10448] rotating index 'gallery_delta': success
+[Thu Jul 18 17:11:38.696 2013] [10448] rotating index 'gallery_core': success
+[Thu Jul 18 17:11:38.697 2013] [10448] rotating index 'feature_delta': success
+[Thu Jul 18 17:11:38.698 2013] [10448] rotating index 'feature_core': success
+[Thu Jul 18 17:11:38.699 2013] [10448] rotating index 'article_delta': success
+[Thu Jul 18 17:11:38.754 2013] [10448] rotating index 'article_core': success
+[Thu Jul 18 17:11:38.766 2013] [10448] rotating finished
+[Thu Jul 18 17:12:07.290 2013] [10448] caught SIGTERM, shutting down
+[Thu Jul 18 17:12:07.300 2013] [10448] shutdown complete
+[Thu Jul 18 17:12:07.360 2013] [27891] accepting connections
+[Thu Jul 18 18:05:17.873 2013] [27891] caught SIGTERM, shutting down
+[Thu Jul 18 18:05:17.882 2013] [27891] shutdown complete
+[Fri Jul 19 11:41:41.526 2013] [ 9544] accepting connections
+[Fri Jul 19 15:07:50.300 2013] [ 9544] rotating indices (seamless=1)
+[Fri Jul 19 15:07:50.321 2013] [ 9544] rotating index 'article_delta': success
+[Fri Jul 19 15:07:50.322 2013] [ 9544] rotating finished
+[Fri Jul 19 15:23:57.257 2013] [ 9544] rotating indices (seamless=1)
+[Fri Jul 19 15:23:57.258 2013] [ 9544] rotating index 'article_delta': success
+[Fri Jul 19 15:23:57.258 2013] [ 9544] rotating finished
+[Fri Jul 19 15:26:25.326 2013] [ 9544] rotating indices (seamless=1)
+[Fri Jul 19 15:26:25.327 2013] [ 9544] rotating index 'article_delta': success
+[Fri Jul 19 15:26:25.328 2013] [ 9544] rotating finished
+[Fri Jul 19 16:05:17.562 2013] [ 9544] rotating indices (seamless=1)
+[Fri Jul 19 16:05:17.564 2013] [ 9544] rotating index 'weibo_delta': success
+[Fri Jul 19 16:05:17.574 2013] [ 9544] rotating index 'weibo_core': success
+[Fri Jul 19 16:05:17.581 2013] [ 9544] rotating index 'user_delta': success
+[Fri Jul 19 16:05:17.591 2013] [ 9544] rotating index 'user_core': success
+[Fri Jul 19 16:05:17.593 2013] [ 9544] rotating index 'image_delta': success
+[Fri Jul 19 16:05:17.595 2013] [ 9544] rotating index 'image_core': success
+[Fri Jul 19 16:05:17.596 2013] [ 9544] rotating index 'feature_delta': success
+[Fri Jul 19 16:05:17.597 2013] [ 9544] rotating index 'feature_core': success
+[Fri Jul 19 16:05:17.598 2013] [ 9544] rotating index 'article_delta': success
+[Fri Jul 19 16:05:17.652 2013] [ 9544] rotating index 'article_core': success
+[Fri Jul 19 16:05:17.665 2013] [ 9544] rotating finished
+[Fri Jul 19 16:06:07.091 2013] [ 9544] caught SIGTERM, shutting down
+[Fri Jul 19 16:06:07.100 2013] [ 9544] shutdown complete
+[Fri Jul 19 16:06:07.251 2013] [19114] accepting connections
+[Fri Jul 19 16:12:48.429 2013] [19114] rotating indices (seamless=1)
+[Fri Jul 19 16:12:48.430 2013] [19114] rotating index 'article_delta': success
+[Fri Jul 19 16:12:48.431 2013] [19114] rotating finished
+[Fri Jul 19 18:11:31.548 2013] [19114] caught SIGTERM, shutting down
+[Fri Jul 19 18:11:31.585 2013] [19114] shutdown complete
+[Mon Jul 22 09:42:55.277 2013] [ 4271] accepting connections
+[Mon Jul 22 18:08:41.459 2013] [ 4271] caught SIGTERM, shutting down
+[Mon Jul 22 18:08:41.468 2013] [ 4271] shutdown complete
+[Tue Jul 23 09:40:39.625 2013] [ 3847] accepting connections
+[Tue Jul 23 10:34:21.370 2013] [ 3847] rotating indices (seamless=1)
+[Tue Jul 23 10:34:21.382 2013] [ 3847] rotating index 'article_delta': success
+[Tue Jul 23 10:34:21.382 2013] [ 3847] rotating finished
+[Tue Jul 23 10:34:21.886 2013] [ 3847] rotating indices (seamless=1)
+[Tue Jul 23 10:34:21.887 2013] [ 3847] rotating index 'weibo_delta': success
+[Tue Jul 23 10:34:21.887 2013] [ 3847] rotating finished
+[Tue Jul 23 18:06:51.386 2013] [ 3847] caught SIGTERM, shutting down
+[Tue Jul 23 18:06:51.395 2013] [ 3847] shutdown complete
+[Wed Jul 24 11:22:58.608 2013] [ 8802] accepting connections
+[Wed Jul 24 18:08:34.425 2013] [ 8802] caught SIGTERM, shutting down
+[Wed Jul 24 18:08:34.433 2013] [ 8802] shutdown complete
+[Thu Jul 25 09:35:56.963 2013] [ 3490] accepting connections
+[Thu Jul 25 10:46:02.830 2013] [ 3490] caught SIGTERM, shutting down
+[Thu Jul 25 10:46:02.841 2013] [ 3490] shutdown complete
+[Thu Jul 25 10:50:45.463 2013] [ 3140] accepting connections
+[Thu Jul 25 18:08:26.293 2013] [ 3140] caught SIGTERM, shutting down
+[Thu Jul 25 18:08:26.301 2013] [ 3140] shutdown complete
+[Mon Jul 29 15:06:53.511 2013] [16442] accepting connections
+[Mon Jul 29 17:23:23.723 2013] [16442] rotating indices (seamless=1)
+[Mon Jul 29 17:23:23.725 2013] [16442] rotating index 'article_delta': success
+[Mon Jul 29 17:23:23.725 2013] [16442] rotating finished
+[Mon Jul 29 17:23:24.239 2013] [16442] rotating indices (seamless=1)
+[Mon Jul 29 17:23:24.241 2013] [16442] rotating index 'weibo_delta': success
+[Mon Jul 29 17:23:24.241 2013] [16442] rotating finished
+[Mon Jul 29 18:09:23.967 2013] [16442] caught SIGTERM, shutting down
+[Mon Jul 29 18:09:23.975 2013] [16442] shutdown complete
+[Fri Aug  2 10:33:57.638 2013] [ 7114] accepting connections
+[Fri Aug  2 18:19:09.427 2013] [ 7114] caught SIGTERM, shutting down
+[Fri Aug  2 18:19:09.436 2013] [ 7114] shutdown complete
+[Thu Aug  8 11:10:03.370 2013] [ 6104] accepting connections
+[Thu Aug  8 17:04:05.458 2013] [ 6104] rotating indices (seamless=1)
+[Thu Aug  8 17:04:05.469 2013] [ 6104] rotating index 'user_delta': success
+[Thu Aug  8 17:04:05.469 2013] [ 6104] rotating finished
+[Thu Aug  8 17:06:08.397 2013] [ 6104] rotating indices (seamless=1)
+[Thu Aug  8 17:06:08.398 2013] [ 6104] rotating index 'user_delta': success
+[Thu Aug  8 17:06:08.398 2013] [ 6104] rotating finished
+[Thu Aug  8 17:16:11.438 2013] [ 6104] rotating indices (seamless=1)
+[Thu Aug  8 17:16:11.439 2013] [ 6104] rotating index 'user_delta': success
+[Thu Aug  8 17:16:11.439 2013] [ 6104] rotating finished
+[Thu Aug  8 17:53:02.352 2013] [ 6104] caught SIGTERM, shutting down
+[Thu Aug  8 17:53:02.367 2013] [ 6104] shutdown complete

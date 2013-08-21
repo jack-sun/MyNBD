@@ -1,8 +1,6 @@
 #encoding:utf-8
 class Api::ApiBaseController < ApplicationController
-
-  skip_filter [:current_user, :authenticate]
-
+  skip_filter :current_user
   def current_mn_account_by_token
     @mn_account ||= (MnAccount.where(:access_token => params[:access_token]).first if params[:access_token].present?)
   end
@@ -16,6 +14,5 @@ class Api::ApiBaseController < ApplicationController
     self.current_device = MnAccount::ACTIVE_FROM_APPLE if app_key == Settings.iphone_app_key
     self.current_device = MnAccount::ACTIVE_FROM_ANDROID if app_key == Settings.android_app_key
     return render :json => {:error => "invalid app key"} unless self.current_device.present?
-  end
-
+  end  
 end

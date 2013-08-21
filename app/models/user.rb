@@ -1,8 +1,10 @@
 # encoding: utf-8
 require 'nbd/utils'
+require 'concerns/encrypt_password'
+
 class User < ActiveRecord::Base
   
-  include CacheCallback::HotResult
+  include EncryptPassword, CacheCallback::HotResult
 
   #User.create(:nickname => "每经网专题", :password => "nbdnbd", :email => "zhuangti@nbd.com.cn", :status => 1, :user_type => 0)
   SYS_USERS = {:feature_user_id => 10348, :live_user_id => 10347}
@@ -61,7 +63,7 @@ class User < ActiveRecord::Base
     :message => '两次密码输入不匹配', :if => Proc.new{|u| !u.password.blank?}
   
   attr_accessor :password_confirmation
-  attr_reader   :password, :old_password
+  attr_reader   :old_password
   
   before_create { generate_token(:auth_token) } 
   
@@ -434,15 +436,6 @@ class User < ActiveRecord::Base
     logger.error "the weibo is not belong to curren user"
   end
   
-  def password=(password)
-    @password = password
-    
-    if password.present?
-      generate_salt
-      self.hashed_password = self.class.encrypt_password(password, salt)
-    end
-  end
-  
   def generate_s_key_for_new_user
     begin  
       self.s_key = SecureRandom.urlsafe_base64(24)  
@@ -670,10 +663,6 @@ class User < ActiveRecord::Base
       end
     end
     
-    def encrypt_password(password, salt)
-      NBD::Utils.to_md5(password + "nbd-system-2.0" + salt)
-    end
-    
     def recommend_users
       user_ids = ColumnsUser.all.map(&:user_id)
       
@@ -693,10 +682,6 @@ class User < ActiveRecord::Base
   end
   
   private
-  
-  def generate_salt
-    self.salt = self.object_id.to_s + rand.to_s
-  end
   
   def generate_token(column)  
     begin  

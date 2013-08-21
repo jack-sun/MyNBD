@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>2013中国上市公司口碑榜</title>
+  <%= yield :render_stylesheet %>
+  <%= javascript_include_tag "jquery.min" %>
+  <%= yield :auto_redirect %>
+  <script type="text/javascript">
+  	var validate = {
+  		tip: "所填内容有误, 提示:\n1.请至少填1家提名公司.\n2.公司名称和股票代码为必填内容.\n3.股票代码为6位字符.\n",
+
+  		item: function(item){
+	      var passed = [];
+	      var wrongFormate = false;
+	      var incomplete = false;
+	      var names = item.find('.companyName');
+
+	      names.each(function(i){
+	        var name = $(this);
+	        var code = name.parent().next().find('input');
+	        var nameLen = $.trim(name.val()).length;
+	        var codeLen = $.trim(code.val()).length;
+	        // console.log($.trim(name.val()).length, $.trim(code.val()).length);
+	        if( nameLen > 0 && codeLen === 6 ){
+	          passed.push(name.val());
+	        }
+
+	        if( nameLen*codeLen === 0 && (nameLen > 0 || codeLen > 0) ){
+	          incomplete = true;
+	        }
+
+	        if( codeLen > 0 && codeLen !== 6 ){
+	          wrongFormate = true;
+	        }
+	      });
+
+	      return (/*passed.length > 0 && */!incomplete && !wrongFormate) ? passed : false;
+    	},
+
+    	all: function(group){
+	      var pass = [];
+	      var gtOne = false;
+	      group.each(function(i){
+	        var result = validate.item($(this));
+	        if(result){
+	          if(result.length > 0) gtOne = true;
+	          pass.push(1);
+	        }
+	      });
+	      return (pass.length === group.length) && gtOne;
+    	}
+  	}
+  </script>
+</head>
+<body>
+  <%= yield :render_header %>
+  <%= yield %>
+</body>
+</html>

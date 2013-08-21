@@ -1,0 +1,82 @@
+/*------------------
+2013中国上市公司口碑榜
+-----------------*/
+@charset "utf-8";
+/*a*/
+a {  text-decoration:none; color:#666666; }
+a:hover { text-decoration:underline; color:#c00c00; }
+a.red { color:#ff0000; }
+
+/*base*/
+body , form , input , dl , dt , dd , p , h1 , h2 , h3 , h4 , h5 , ul , li { margin:0; padding:0; }
+body { background:#fefaf4; color:#666666; font:12px/2.2 "\5FAE\8F6F\96C5\9ED1",Arial,"\5B8B\4F53"; }
+#header , #wrapper , .wrapper , #footer { margin:0 auto; }
+input , textarea { outline: none; resize:none; }
+ul , li { float: left; list-style-type:none; }
+dl , dt , dd , dl.login dd div { float:left; }
+img { border:0; vertical-align:top; }
+.f14 { font-size:14px; }
+
+/*header*/
+#header { background:url(../images/koubeibang-votes-header.jpg) #9f030d no-repeat top center; height:248px; width:100%; border-bottom:5px solid #630006; }
+
+/*wrapper*/
+#wrapper { width:750px; padding:15px 25px 15px 25px; overflow:hidden; background:#ffffff; border:1px solid #f0e3cf; margin:30px auto; }
+h1 { font-size:16px; color:#ff0000; padding:5px 0 10px 0; text-align:center; }
+h1.mingdan { color:#333333; text-align:left; padding:10px 0 0 10px; border-bottom:1px dashed #e1e1e1; color:#873000; }
+h2 .input_500 { width:100%; height:150px; margin:15px 0; border:1px solid #f4dfc5; }
+h3 { width:100%; text-align:center; padding:0 0 10px 0; }
+h3.edit { padding:0 0 30px 0; }
+h4 { color:#ff0000;  border:1px solid #efe5d5; float:left; width:740px; font-weight:normal; padding:3px 8px; text-indent:2em; margin:10px 0; }
+h5 { font-size:12px; color:#ff0000; font-weight:normal; padding-top:10px; }
+p { text-indent:2em; padding:5px 0; }
+/*login*/
+dl.login { width:360px; margin:20px 195px; display:inline; line-height:35px; }
+dl.login dt { width:110px; text-align:right; font-size:14px; height:35px;}
+dl.login dd { width:245px; padding-left:5px;  }
+dl.login dd div { padding-right:10px;  }
+dl.login input { height:33px; padding:0 5px; font-size:12px; line-height:33px; background:#ffffff; border:1px solid #f4dfc5; }
+dl.login dd .input_215 { width:205px; }
+dl.login dd .input_40 { width:30px; }
+dl.login dd .btn_mouseout , .btn_mouseout { border:1px solid #d92b36; background:#d92b36; font-size:14px; color:#ffffff; height:35px;  padding:0 20px 3px 20px; letter-spacing:3px; cursor:pointer; font-family:"\5FAE\8F6F\96C5\9ED1",Arial,"\5B8B\4F53";  }
+dl.login dd .btn_mouseover , .btn_mouseover { border:1px solid #ff7800; background:#ff7800; font-size:14px; color:#ffffff; height:35px;  padding:0 20px 3px 20px; letter-spacing:3px; cursor:pointer; font-family:"\5FAE\8F6F\96C5\9ED1",Arial,"\5B8B\4F53";  }
+
+/*information*/
+dl.information { width:500px; margin:10px 125px; display:inline; line-height:35px; }
+dl.information dt { width:100px; }
+dl.information dd { width:395px; padding-left:5px; }
+dl.information dd .input_315 { width:305px; }
+dl.information .input_40 { width:50px; }
+
+
+ul.list { width:710px; padding:0 20px; }
+ul.list li { width:710px; }
+
+ul.md { width:710px; float:left; padding:0 0 20px 40px; }
+ul.md li { width:710px; padding:5px 0 0 0; color:#333333; }
+ul.md li span { font-weight:bold; color:#000000;  float:left; padding-left:5px; }
+ul.md li input { float:left; margin-top:8px; *margin-top:5px; background:#ffffff; }
+
+dl.item { width:748px; border-bottom:1px solid #dad2c7; border-left:1px solid #dad2c7; margin:10px 0 20px 0; }
+dl.item .back { background:#e9e4dc; text-align:center; }
+dl.item input { border:1px solid #cccccc; background:#ffffff; padding:5px; }
+dl.item dt , dl.item dd { padding:5px; border-top:1px solid #dad2c7; border-right:1px solid #dad2c7; } 
+dl.item dt { width:139px;}
+dl.item dt input { width:126px; }
+dl.item dd { width:437px; }
+dl.item dd input { width:424px; }
+
+.wrapper { width: 700px; background:#ffffff; border:1px solid #f0e3cf; padding: 15px 24px; overflow: hidden; margin: 25px auto; }
+.wrapper h2 { color: #ff0000; font-size:20px; float:left; width:700px; }
+.wrapper div { float:left; }
+.wrapper h2 a { float:left; font-size:12px; font-weight:normal; padding:0 5px; margin:10px 0 0 10px; }
+.wrapper h2 a:hover { color:#ffffff; background:#8dc540; text-decoration:none; }
+/*footer*/
+
+ul.roll { width:700px; }
+ul.roll li { padding:0 20px 0 0; }
+
+#footer { width:100%; background:#efe5d5; color:#aea28f; text-align:center; padding:20px 0; }
+
+
+

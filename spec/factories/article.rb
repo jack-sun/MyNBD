@@ -1,5 +1,5 @@
-Factory.define(:article) do |f|
-  f.title "lalalal"
-  f.type "Article"
-  f.slug "why"
-end
+# FactoryGirl.define(:article) do |f|
+#   f.title "lalalal"
+#   f.type "Article"
+#   f.slug "why"
+# end

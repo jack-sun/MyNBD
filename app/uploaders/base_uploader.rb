@@ -40,7 +40,7 @@ class BaseUploader < CarrierWave::Uploader::Base
 
   def resize_by_width(width)
     manipulate! do |img|
-      img.resize "#{width}x>"
+      img.resize "#{width}x"
       img
     end
   end
@@ -61,38 +61,6 @@ class BaseUploader < CarrierWave::Uploader::Base
     config.sftp_options = {
       :port     => 22
     }
-  end
-
-  protected
-
-  def is_height_or_width_over_500?(pic)
-    is_over_height_or_width?(pic, 500)    
-  end
-
-  def is_height_or_width_over_1280?(pic)
-    is_over_height_or_width?(pic, 1280)    
-  end
-
-  def is_over_height_or_width?(pic, threshold)
-    height, width = width_and_height(pic)
-    return (width > height && width > threshold) || (width < height && height > threshold)
-  end
-
-  def is_vertical?(pic)
-    height, width = width_and_height(pic)
-    return height > width
-  end
-
-  def is_horizontal?(pic)
-    height, width = width_and_height(pic)
-    return height < width
-  end
-
-  def width_and_height(pic)
-    image = MiniMagick::Image.open(pic.path)
-    height = image[:height]
-    width = image[:width]
-    return height, width
   end
 
 end

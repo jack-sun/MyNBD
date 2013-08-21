@@ -1,0 +1,15 @@
+(function(){
+	<% if params[:status].to_i == KoubeibangCandidateDetail::PUBLISHED %>
+      <% @objects.each do |o| %>
+        $("tr#koubeibangdetail_<%= o.id %> a.actionPublish").removeClass().addClass("actionBanned").html("<b></b>屏蔽");
+        $("tr#koubeibangdetail_<%= o.id %>").find("td.itemStatus_2").removeClass().addClass("itemStatus_1").html("已发布");
+      <% end %>
+	<% else %>
+      <% @objects.each do |o| %>
+        $("tr#koubeibangdetail_<%= o.id %> a.actionBanned").removeClass().addClass("actionPublish").html("<b></b>发布");
+        $("tr#koubeibangdetail_<%= o.id %>").find("td.itemStatus_1").removeClass().addClass("itemStatus_2").html("已屏蔽");
+      <% end %>
+	<% end %>
+	$(".tableA :checked").attr('checked', false);
+	_popWinForLoading.hide();
+})();

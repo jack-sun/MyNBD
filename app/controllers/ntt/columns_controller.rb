@@ -42,9 +42,12 @@ class Ntt::ColumnsController < ApplicationController
     @management_articles = {:articles => Article.of_column_for_ntt(107, 5), :id => 107} #公共治理
     @activities_articles = {:articles => Article.of_column_for_ntt(108, 5), :id => 108} #每经公告
     #@nbd_weekly_comment = {:articles => ArticlesColumn.where(:id => 100).order("id desc").first.try(:article), :id => 100} #每经一周评
-    @reporter_notes = {:articles => Article.of_column(60, 5), :id => 60 } #记者手记
+    @reporter_notes = {:articles => Article.of_column(60, 5), :id => 60 }  #记者手记
     @books = {:articles => Article.of_column_for_ntt(117, 2), :id => 117} #每经书会
     
+    @tech_articles = {:articles => Article.of_column_for_ntt(256, 5), :id => 256} #科技前沿
+    @life_articles = {:articles => Article.of_column_for_ntt(257, 5), :id => 257} #财富生活
+
     # features
     #@feature_2012 = {:articles => Article.of_column(113, 1), :id => 113 }  #2012中国经济展望
     #@feature_taiwan = {:articles => Article.of_column(114, 1), :id => 114 }  #走读台湾
@@ -53,13 +56,13 @@ class Ntt::ColumnsController < ApplicationController
     #@china_reform = {:articles => Article.of_column(144, 1), :id => 144 }  #改革方向论
     #@feature_southAsia = {:articles => Article.of_column(115, 1), :id => 115 }  #南亚投资观察
     
-    @house_observe = {:articles => Article.of_column(184, 1), :id => 184 } #楼市观察
-    @urbanization = {:articles => Article.of_column(211, 1), :id => 211 } #十字化的城镇路口
-    @huaerjie_observe = {:articles => Article.of_column(208, 1), :id => 208} #说不完的华尔街
-
+    @house_observe = {:articles => Article.of_column(184, 1), :id => 184 }  #楼市观察
     @internet_observe = {:articles => Article.of_column(182, 1), :id => 182 }  #互联网观察
-    #@feature_southAsia = {:articles => Article.of_column(115, 1), :id => 115 } #南亚投资观察
+    @urbanization = {:articles => Article.of_column(211, 1), :id => 211 }  #互联网观察
+
+    #@feature_southAsia = {:articles => Article.of_column(115, 1), :id => 115 }  #南亚投资观察
     #@reform_logic = {:articles => Article.of_column(174, 1), :id => 174 } #转型的逻辑
+    @huaerjie_observe = {:articles => Article.of_column(208, 1), :id => 208}
 
     @all_columnists = Columnist.select([:id, :name, :slug])
 

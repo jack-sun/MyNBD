@@ -1,0 +1,97 @@
+<% content_for :render_stylesheet do %>
+  <%= stylesheet_link_tag "koubeibang" %>
+<% end %>
+
+<% content_for :render_header do %>
+  <div id="header"></div>
+<% end %>
+
+<%= form_tag koubeibang_candidates_url, :id => "koubeibangForm" do %>
+  <% if @kbbs.present? %>
+    <% for kbb in @kbbs %>
+      <div class="wrapper">
+        <h2>
+          <div><%= kbb.title %></div>
+          <a href="javascript:;" class="btn-slide">修改</a>
+        </h2>
+        <ul class="roll">
+          <% 3.times do |time| %>
+            <li id=<%= "kbb_#{kbb.id}_candidate_#{time + 1}_stock_company" %>><%= instance_variable_get("@kbb_#{kbb.id}_candidate_#{time + 1}_stock_company") %></li>
+          <% end %>
+        </ul>
+        <div class="panel">
+          <dl class="item">
+            <dt class="back">提名公司名称</dt>
+            <dt class="back">股票代码</dt>
+            <dd class="back">提名理由</dd>
+            <% 3.times do |time| %>
+              <dt>
+                <%= text_field_tag "[koubeibang_#{kbb.id}][candidates_#{time + 1}][stock_company]", instance_variable_get("@kbb_#{kbb.id}_candidate_#{time + 1}_stock_company"), :class => "companyName" %>
+              </dt>
+              <dt>
+                <%= text_field_tag "[koubeibang_#{kbb.id}][candidates_#{time + 1}][stock_code]", instance_variable_get("@kbb_#{kbb.id}_candidate_#{time + 1}_stock_code") %>
+              </dt>
+              <dd>
+                <%= text_field_tag "[koubeibang_#{kbb.id}][candidates_#{time + 1}][comment]", instance_variable_get("@kbb_#{kbb.id}_candidate_#{time + 1}_comment") %>
+              </dd>
+            <% end %>
+          </dl>
+        </div>
+      </div>
+    <% end %>
+  <% end %>
+
+  <div id="footer">
+    <%= link_to "", "#", :class => "a4", :id => "submitBtn" %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    var t1, t2, t3;
+
+    $(".btn-slide").click(function(){
+      t1 = t2 = t3 = '';
+      var btn = $(this);
+      var panel = btn.closest('.wrapper').find('.panel');
+      var roll = panel.prev('.roll');
+      var isAnimate = panel.is(':animated');
+      if(isAnimate) return false;
+
+      var isShow = panel.is(':visible');
+      if(isShow){ // confirm
+        var validateResult = validate.item(panel);
+        if(validateResult) {
+          panel.stop(true, true).slideUp("slow");
+          btn.text('修改').removeClass('active');
+          roll.html('');
+          $.each(validateResult, function(i, v){
+            roll.append('<li>'+ v +'</li>');
+          })
+
+        }else {
+          alert(validate.tip);
+        }
+
+      }else { // edit
+        panel.stop(true, true).slideDown("slow");
+        btn.text('完成').addClass('active');
+      }
+
+      return false;
+    });
+
+    $('#submitBtn').click(function(){
+      if($('.panel:visible').length > 0){
+        alert('请先提交您的修改.')
+      }else {
+        if(!validate.all($('.item'))){
+          alert(validate.tip);
+        }else {
+          $('#koubeibangForm').submit();
+        }
+      }
+      return false;
+    });
+  });
+</script>

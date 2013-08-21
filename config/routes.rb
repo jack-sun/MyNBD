@@ -1,4 +1,5 @@
 Nbd::Application.routes.draw do
+  mount Resque::Server.new, :at => "/dog711/resque"
 
   get "test/test"
   
@@ -10,12 +11,15 @@ Nbd::Application.routes.draw do
   get "search/community_search", :as => :community_search
   get "search/user_search", :as => :user_search
   get "search/image_search", :as => :image_search
+  
+  get "dingyuecards" => "specials#dingyuecards"
  
-  resources:mobiles, :only => [] do
+  resources :mobiles, :only => [] do
     collection do
       get :android, :as => :android
       get :iphone, :as => :iphone
       get :ipad, :as => :ipad
+      get :upgrade, :as => :upgrade
     end
   end
   
@@ -62,6 +66,7 @@ Nbd::Application.routes.draw do
         #get "sign_up"
         get "account"
         post "payment_notify"
+        # match "payment_test" => "payment#payment_test"
         #get 'login'
         get 'log_out'
       end
@@ -76,6 +81,11 @@ Nbd::Application.routes.draw do
       resources :columnists, :only => [] do
         get :last_update, :on => :collection
         get :articles, :on => :member
+      end
+
+      resources :newspapers, :only => [] do
+        get :articles, :on => :collection
+        get :check_status, :on => :collection
       end
       resources :stock_lives, :controller => :lives, :l_type => Live::TYPE_STOCK, :only => [:show, :index] do
         get :today, :on => :collection
@@ -139,13 +149,51 @@ Nbd::Application.routes.draw do
       get "page/:page", :action => :show, :on => :member
     end
 
+    namespace :koubeibang, :as => "" do
+      resources :koubeibangs, :only => [:new], :path => "" do
+        collection do
+          get 'intro'
+          post 'confirm'
+          get 'success'
+        end
+      end
+      resources :koubeibang_candidates, :only => [:create, :index], :path => "candidates" do
+        member do
+          post 'thumb_up'
+          post 'thumb_down'
+        end
+      end
+      resources :koubeibang_candidate_details, :only => [:index], :path => "reasons"
+      resources :sessions, :only => [:new, :create], :as => "koubeibang_sessions", :path_names => { :new => "sign_in" }, :path => ""
+      resources :koubeibang_accounts, :only => [:edit, :update], :path => "accounts"
+      resources :koubeibang_votes, :only => [:new, :create], :path => "votes" do
+        get 'success', :on => :collection
+        get 'download_results', :on => :member
+      end
+    end
+
     namespace :premium do
+      match 'change_password' => "users#change_password"
+      match 'change_profile' => "users#change_profile"
+      get 'search_stock' => "gms_articles#search"
+      get 'question_stock' => "gms_articles#questions"
+      get 'gms_out_link' => "gms_articles#out_link"
+      post 'receive_credits_from_ttyj' => 'gms_accounts#receive_credits_from_ttyj'
+      get 'touzibao' => 'mobile_newspaper_accounts#home_page', :as => "touzibao_home_page"
+      get 'touzibao/gudongdahuishilu' => 'gms_articles#home_page'
+      get 'touzibao/tiantianyingjia' => 'mobile_newspaper_accounts#tiantianyingjia'
+      get 'touzibao/touzikuaixun' => 'mobile_newspaper_accounts#touzikuaixun'
+      get 'touzibao/help' => 'mobile_newspaper_accounts#help'
+
+
       resources :mobile_news, :only => [] do
         collection do
           get :introduce
         end
       end
       resource :mobile_newspaper_account, :only => [:new, :show] do
+        post :wap_plan_list
+        get :home_page
         get :introduce
         post :subscribe
         post :activate
@@ -153,14 +201,42 @@ Nbd::Application.routes.draw do
         get :failed
         get :waiting
         get :faq
+        get :new_mobile
+        post :wap_pay
+        get :failure
       end
+
+      resources :gms_articles, :only => [:show,:index] do
+        get :pay
+        post :buy
+        put :refund
+        # get :questions
+        # get :search, :on => :collection
+        # get :conflict_sign_out
+      end
+
+      resources :stock_comments
+
+      resource :gms_accounts, :only => [:new,:create] do
+        get :pay
+        post :buy_confirm
+        get :buy
+        get :success
+        get :failed
+        get :waiting
+        get :info
+      end
+
+      resource :credit_logs, :only => [:new,:create] 
 
       resources :touzibaos, :only => [:show] do
         collection do
           get :today
           get :yesterday
+          get :last_week
         end
       end
+
 
       resources :feedbacks, :only => [:create, :new] do
         collection do
@@ -171,6 +247,9 @@ Nbd::Application.routes.draw do
 
       resource :alipay, :only => [] do
         match "notify"
+        match "wap_notify"
+        match "notify_mobile"
+        match "notify_gms"
       end
     end
   
@@ -186,12 +265,15 @@ Nbd::Application.routes.draw do
       get "infomation_headline" => :infomation_headline, :as => :infomation_headline
       get "manage" => :manage, :as => :manage
       get "finace_life" => :finace_life, :as => :finace_life
+      get "nbd_headline" => :nbd_headline, :as => :nbd_headline
+      get "nbd_reporter" => :nbd_reporter, :as => :nbd_reporter
     end
     
     controller :general do
       get "/about" => :about, :as => :about
       get "/privacy" => :privacy, :as => :privacy
       get '/mobile_newspaper_privacy' => :mobile_newspaper_privacy, :as => :mobile_newspaper_privacy
+      get "/gms_privacy" => :gms_privacy, :as => :gms_privacy
       get "/copyright" => :copyright, :as => :copyright
       get "/copyright_2005" => :copyright_2005, :as => :copyright_2005
       get "/advertisement" => :advertisement, :as => :advertisement
@@ -222,10 +304,61 @@ Nbd::Application.routes.draw do
 
     namespace "console" do
 
+      resources :koubeibangs, :only => [:index] do
+        get "export_to_xls", :on => :collection
+        post "change_status", :on => :collection
+      end
+
+      resources :community_switch_logs, :only => [:index]
 
       namespace :premium do
+
+        resources :card_tasks, :only => [:index, :new, :create] do
+          member do
+            post :review
+            post :unreview
+            # post :make_card
+            get :show_cards
+            get :check_process_status
+            post :download_as_xls
+          end
+          collection do
+            post :batch_review
+            post :batch_unreview
+            get :batch_check_process_status
+            post :batch_make_card
+          end
+          resources :card_sub_tasks do
+            get :show_cards, :on => :member
+          end
+        end
+
+        get 'search_stock' => "gms_articles#search"
         resources :touzibao_cases do
         end
+
+        resources :gms_accounts, :only => [:index,:show] do
+          get 'search', :on => :collection
+        end
+
+        resources :stock_comments, :only => [:index,:destroy] do
+          put :ban, :on => :member
+          put :publish, :on => :member
+        end
+
+        resources :gms_articles, :except =>[:show] do
+          member do
+            put :publish
+            put :ban
+            put :refund
+            put :off_shelf
+            get :change_pos
+            get :to_top
+          end
+        end
+
+        resources :credit_logs, :only => [:show]
+
         resources :touzibaos do
           member do
             get :print
@@ -243,8 +376,14 @@ Nbd::Application.routes.draw do
         resources :feedbacks, :only => [:index] do
 
         end
-        resources :mobile_newspaper_accounts, :only => [:index] do
+        resources :mobile_newspaper_accounts, :only => [:index, :edit, :update, :show] do
+          member do 
+            post :verify
+            post :update_password#, as: "update_user_password"
+          end
+
           collection do
+            get :appstore_users
             get :plain
             get :search
           end
@@ -258,6 +397,7 @@ Nbd::Application.routes.draw do
             get :upload_file
             post :upload
             get :download_file
+            get :search
           end
         end
       end
@@ -286,10 +426,21 @@ Nbd::Application.routes.draw do
 
       resources :columnists
 
-      resources :staffs,  :only => [:index,:create,:edit,:update, :new]do 
+      resources :staffs,  :only => [:index,:create,:edit,:update, :new] do 
+        resources :staff_performance_logs, :only => [:update, :edit] do 
+          get "common_index(/:find_method)" => :common_index, :as => "common_index", :on => :collection
+          get "news_index(/:find_method)" => :news_index, :as => "news_index", :on => :collection
+          get "statistics_index(/:find_method)" => :statistics_index, :as => "statistics_index", :on => :collection
+        end
+        resources :staff_convert_logs, :except => [:new, :destroy, :index, :show] do
+          get '(/:date/new)' => :new, :as => "new", :on => :collection
+        end
+        get "statistics_index" => :statistics_index, :as => "statistics_index", :on => :collection
         post "ban_staff", :on => :member
         post "active_staff", :on => :member
-        get "show_articles", :on => :member
+        get "show_articles/(:date)" => :show_articles, :as => :show_articles, :on => :member
+        get "news_show_articles/(:date)" => :news_show_articles, :as => :news_show_articles, :on => :member
+        get "statistics_show_articles/(:date)" => :statistics_show_articles, :as => :statistics_show_articles, :on => :member
       end
 
       resource :staff ,:only =>[] do
@@ -311,6 +462,7 @@ Nbd::Application.routes.draw do
           get "/article_search" => :article_search, :as => :article_search
           get "/weibo_search" => :weibo_search, :as => :weibo_search  
           get "/image_search" => :image_search, :as => :image_search
+          # get "/gms_accounts_search"
         end
         
       end
@@ -322,7 +474,30 @@ Nbd::Application.routes.draw do
         post "destroy_comments", :on => :collection
       end
       
+      resources :column_performance_logs, :only => [] do
+        collection do
+          get "common_list"
+          get "news_list"
+          get "statistics_list"
+        end
+      end
+
       resources :columns, :only => [:show] do
+        controller :column_performance_logs do
+          collection do
+            get "/:column_id/common_show_articles/:date" => :common_show_articles, :as => "common_show_articles"
+            get "/:column_id/news_show_articles/:date" => :news_show_articles, :as => "news_show_articles"
+            get "/:column_id/statistics_show_articles/:date" => :statistics_show_articles, :as => "statistics_show_articles"
+          end
+        end
+        resources :column_performance_logs, :only => [] do 
+          collection do
+            get "common_index"
+            get "news_index"
+            get "statistics_index"
+          end
+        end
+        # get "(/:date)" => :show, :as => "", :on => :member
         get "expire_all_fragment", :on => :collection
         get "fragment_cache_manage", :on => :collection
         get "change_pos", :on => :member
@@ -330,6 +505,7 @@ Nbd::Application.routes.draw do
         post "remove_articles", :on => :member
         post "add_articles", :on => :member
         post "column_list" => :column_list, :as => "column_list", :on => :collection
+        post "change_charge_staff", :on => :collection
       end
       
       resources :newspapers do
@@ -441,6 +617,7 @@ Nbd::Application.routes.draw do
       end
       
       resources :weibos do
+        resources :weibo_logs, :only => [:index]
         member do
           delete "ban"
           post "unban"

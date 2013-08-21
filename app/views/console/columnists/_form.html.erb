@@ -9,7 +9,7 @@
   <%= f.fields_for :image, (@columnist.image ? @columnist.image : Image.new) do |image| %>
     <div class="formRightAlign">
       <% if @columnist.image && !@columnist.image.article.nil? %>
-        <div class="imageThumbs"><%= image_tag(columnist_avatar_path(@columnist, :thumb_hs))%></div>
+        <div class="imageThumbs"><%= image_tag(columnist_avatar_path(@columnist, :small))%></div>
       <% end %>
       <%= image.file_field :columnist %>
       <%= image.hidden_field :columnist_cache %>

@@ -44,6 +44,9 @@ module Nbd
     config.action_view.field_error_proc = Proc.new { |html_tag, instance| "#{html_tag}".html_safe }
 
     #ActiveSupport::XmlMini.backend = 'Nokogiri'
+    def mirror_redis_client
+        @mirror_client ||= Redis.new(Redis::Factory.convert_to_redis_client_options(Settings.mirror_redis_page_cache_store))
+    end    
   end
 end
 CLUB_EXP = /club/

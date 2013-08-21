@@ -1,133 +1,108 @@
-<%
-  multiple = true if multiple.nil?
-%>
-
-<% require_jqueryUI %>
-<% require_fileUpload %>
-<% require_popWin %>
-<%= javascript_include_tag "console_mana" %>
+<%= require_jqueryUI %>
+<%= require_fileUpload %>
 
 <div id="fileupload" style="margin-bottom:10px">
-  <%= simple_form_for([:console, image], :html => { :multipart => true }) do |f| %>
-    <div class="fileupload-buttonbar">
-      <label class="fileinput-button">
-        <% if image.new_record? %>
-          <span>添加图片...</span>
-        <% else %>
-          <span>替换图片...</span>
-        <% end %>
-        <% if multiple %>
-          <%= f.file_field url_method, :multiple => "multiple" %>
-        <% else %>
-          <%= f.file_field url_method %>
-        <% end %>
-      </label>
-      <!--<button type="submit" class="start">开始上传</button>
-      <button type="reset" class="cancel">取消上传</button>
-      <button type="button" class="delete">删除图片</button>-->
-    </div>
-    <%= hidden_field_tag :multiple, multiple %>
-  <% end %>
 
-  <div class="fileupload-content">
-    <%= hidden_field_tag "create_gallery_image", defined?(create_gallery_image) ? create_gallery_image : "" %>
-    <ul class="files">
-      <% unless image.new_record? %>
-        <li class="uploadedItem" id="oldImage">
-          <div class="uploadedImage">
-            <%= image_tag(image.send("#{url_method}_url", Image::URL_TYPE[url_method], :subdomain => "image")) %>
-          </div>
-          <input class="uploadedImageDesc textInput" type="text" value="<%= image.raw_desc %>" /> 
-          <%= hidden_field_tag "old_image_id", image.id, :class => "image_id" %>
-        </li>
-      <% end %>
-    </ul>
-    <!--<div class="fileupload-progressbar"></div>-->
-  </div>
+    <%= simple_form_for([:console, image], :html => { :multipart => true }) do |f| %>
+        <div class="fileupload-buttonbar">
+            <label class="fileinput-button">
+            	<% if image.new_record? %>
+                <span>添加图片...</span>
+							<% else %>
+								<span>替换图片...</span>
+							<% end %>
+                        <%= f.file_field url_method %>
+            </label>
+            <!--<button type="submit" class="start">开始上传</button>
+            <button type="reset" class="cancel">取消上传</button>
+            <button type="button" class="delete">删除图片</button>-->
+        </div>
+    <% end %>
+
+    <div class="fileupload-content">
+				<ul class="files">
+					<% unless image.new_record? %>
+					<li class="uploadedItem" id="oldImage">
+						<div class="uploadedImage">
+                                                  <%= image_tag(image.send("#{url_method}_url", Image::URL_TYPE[url_method], :subdomain => "image")) %>
+						</div>
+						<input class="uploadedImageDesc textInput" type="text" value="<%= image.desc %>" /> 
+						<%= hidden_field_tag "old_image_id", image.id, :class => "image_id" %>
+					</li>
+					<% end %>
+				</ul>
+        <!--<div class="fileupload-progressbar"></div>-->
+    </div>
 </div>
 
 
 <script id="template-upload" type="text/x-jquery-tmpl">
-  {{if error}}
-  
-  {{else}}
-    <li>上传中...</li>
-  {{/if}}
+		{{if error}}
+		
+		{{else}}
+			<li>上传中...</li>
+		{{/if}}
+		
 </script>
 
 <script id="template-download" type="text/x-jquery-tmpl">
-  <li class="uploadedItem template-download{{if error}} ui-state-error{{/if}}">
+	<li class="uploadedItem template-download{{if error}} ui-state-error{{/if}}">
     {{if error}}
-      ${name} 上传失败。
-        <div>Error:
+			${name} 上传失败。
+				<div>Error:
           {{if error === 1}}File exceeds upload_max_filesize (php.ini directive)
           {{else}}${error}
           {{/if}}
-        </div>
+				</div>
     {{else}}
-        <!--<span class="delete"><button data-type="${delete_type}" data-url="${delete_url}">Delete</button></span>-->
-        <div class="uploadedImage">
-          <a href="${url}" target="_blank"><img src="${url}" /></a>
-        </div>
-        <input class="uploadedImageDesc textInput" type="text" placeholder="图片描述" value="${image_desc}" /> 
-        <input type="hidden" class="image_id" value="${image_id}" />
+				<!--<span class="delete"><button data-type="${delete_type}" data-url="${delete_url}">Delete</button></span>-->
+				<div class="uploadedImage">
+					<a href="${url}" target="_blank"><img src="${url}" /></a>
+				</div>
+				<input class="uploadedImageDesc textInput" type="text" placeholder="图片描述" value="${image_desc}" /> 
+				<input type="hidden" class="image_id" value="${image_id}" />
     {{/if}}
-  </li>
+	</li>
 </script>
 
 <script type="text/javascript">
-  window._updateImageData = function(callback){
-    var imageData = {};
-    var returnData = [];
-    var isUpload = false;
-    var createGalleryImage = $("#create_gallery_image").attr("value");
-    $(".image_id").each(function(i,v){
-      var image_id =  parseInt($(this).val());
-      var image_desc = $(this).siblings(".uploadedImageDesc").val();
-      var image_src = $(this).siblings(".uploadedImage").find("img").attr("src");
-      imageData[image_id] = image_desc;
-      returnData.push( {id:image_id, desc:image_desc, src:image_src} );
-      isUpload = true;
-    });
-    
-    if(!isUpload){
-      alert("请先添加图片。");
-      return;
-    }
-    
-    _initLoadingWindow('请稍候');
-
-
-    // post image id and desc
-    $.ajax({
-      url:"<%= update_desc_console_images_url %>",
-      type:"POST",
-      data:{desc_params:imageData, create_gallery_image:createGalleryImage},
-      success:function(data){
-        _popWinForLoading.hide();
-        if(data === '0'){ // error
-          alert('更新图片出错.');
-        }else if(data === '1'){ // normal
-          callback(returnData); // returnData used in image_cell_frame.html.erb currently
-        }else { // gallery
-          callback(data);
-        }
-      }
-    });
-  }
-  
-  $(function(){
-    var isMultiple = <%= multiple %>;
-    var fileuploadSetting = {
-      autoUpload:true
-    };
-
-    if(!isMultiple) fileuploadSetting.maxNumberOfFiles = 1;
-
-    $('#fileupload').fileupload(fileuploadSetting);
-    
-    $('#fileupload').bind("fileuploadadd", function(){
-      $("#oldImage").length && $("#oldImage").remove();
-    });
-  });
+	window._updateImageData = function(callback){
+		var imageData = {};
+		var returnData = [];
+		var isUpload = false;
+		$(".image_id").each(function(i,v){
+			var image_id =  parseInt($(this).val());
+			var image_desc = $(this).siblings(".uploadedImageDesc").val();
+			var image_src = $(this).siblings(".uploadedImage").find("img").attr("src");
+			imageData[image_id] = image_desc;
+			returnData.push( {id:image_id, desc:image_desc, src:image_src} );
+			isUpload = true;
+		});
+		
+		if(!isUpload){
+			alert("请先添加图片。");
+			return;
+		}
+		
+		// post image id and desc
+		$.ajax({
+			url:"<%= update_desc_console_images_url %>",
+			type:"POST",
+			data:{desc_params:imageData},
+			success:function(data){
+				if(data == 1){
+					callback(returnData);
+				}
+			}
+		});
+	}
+	$(function(){
+		$('#fileupload').fileupload({
+			autoUpload:true
+		});
+		
+		$('#fileupload').bind("fileuploadadd", function(){
+			$("#oldImage").length && $("#oldImage").remove();
+		});
+	});
 </script>

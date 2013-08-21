@@ -1,0 +1,4 @@
+<ul>
+  <li <% if defined?(@koubeibang_comment_navs) and @koubeibang_comment_navs == "all" %>class="current"<%end%> ><%= link_to "所有提名", console_koubeibangs_url %></li>
+  <li <% if defined?(@koubeibang_comment_navs) and @koubeibang_comment_navs == "banned" %>class="current"<%end%> ><%= link_to "未通过审核", console_koubeibangs_url(:status => "banned") %></li>
+</ul>

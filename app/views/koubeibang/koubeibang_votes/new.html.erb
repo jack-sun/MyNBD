@@ -1,0 +1,183 @@
+<% content_for :render_stylesheet do %>
+  <%= stylesheet_link_tag "koubeibang_votes" %>
+<% end %>
+
+<% content_for :render_header do %>
+  <div id="header"></div>
+<% end %>
+
+<div id="jVote_form">
+  <%= form_tag koubeibang_votes_url do %>
+    <% if @kbbs.present? %>
+      <div id="wrapper">
+        <% for kbb in @kbbs %>
+          <div class="jVote_item" style="display:none;">
+            <h1><%= kbb.title %></h1>
+            <p><%= simple_format(kbb.desc) %></p>       
+            <h4>投票规则</h4>
+            <h1 class="mingdan">重点推荐</h1>
+            <h5>（如果以上没有您认可的候选上市公司，请在下面的“补充名单”中填写您认可获得该奖项的其他上市公司，您可以补充三家上市公司）</span></h5>
+            <dl class="item">
+              <dt class="back">公司名称</dt>
+              <dt class="back">股票代码</dt>
+              <dd class="back">获奖理由</dd>
+              <% 3.times do |time| %>
+                <dt>
+                  <%= text_field_tag "[koubeibang_#{kbb.id}][candidates_#{time + 1}][stock_company]", "", :class => "jVote_item_name" %>
+                </dt>
+                <dt>
+                  <%= text_field_tag "[koubeibang_#{kbb.id}][candidates_#{time + 1}][stock_code]" %>
+                </dt>
+                <dd>
+                  <%= text_field_tag "[koubeibang_#{kbb.id}][candidates_#{time + 1}][comment]" %>
+                </dd>
+              <% end %>
+            </dl>
+            <h1 class="mingdan">候选名单</h1>
+            <ul class="md">
+              <% instance_variable_get("@kbb_#{kbb.id}_vote_candidates").send(:each) do |candidate| %>
+                <li>
+                  <%= check_box_tag "[koubeibang_#{kbb.id}][vote_candidates][]", candidate.id, false, "data-name" => candidate.stock_company %>
+                  <span><%= candidate.stock_company %></span>：<%= candidate.koubeibang_candidate_details.last.comment %>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <h3>
+      <%= submit_tag '下一步', :id => "jVote_next", :class => "btn_mouseout", :onmouseover => "this.className='btn_mouseover'", :onmouseout => "this.className='btn_mouseout'" %>
+    </h3>
+    <h3>
+      <%= submit_tag '保存修改', :id => "jVote_save", :class => "btn_mouseout", :onmouseover => "this.className='btn_mouseover'", :onmouseout => "this.className='btn_mouseout'", :style => "display:none;" %>
+    </h3>
+  <% end %>
+</div>
+
+<% if @kbbs.present? %>
+  <div id="jVote_confirmList" style="display:none;">
+    <% for kbb in @kbbs %>
+      <div class="wrapper">
+        <h2><div><%= kbb.title %></div><a class="jVote_edit" href="#">修改</a></h2>
+        <ul class="roll"></ul>
+      </div>
+    <% end %>
+    <h3>
+      <%= submit_tag '下一步', :id => "jVote_complete", :class => "btn_mouseout", :onmouseover => "this.className='btn_mouseover'", :onmouseout => "this.className='btn_mouseout'" %>
+    </h3>
+  </div>
+<% end %>
+
+<div id="footer">
+    <p>Copyright@2013 每日经济新闻报社版权所有，未经许可不得转载使用，违者必究</p>
+    <p>读者热线：400-889-0008　合作联系电话：86-21-60900099转688分机</p>
+    <p>沪ICP备09000473号</p>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    var items = $('.jVote_item');
+    var boxConfirmList = $('#jVote_confirmList');
+    var boxForm = $('#jVote_form');
+    var btnNext = $('#jVote_next');
+    var btnSave = $('#jVote_save');
+    var btnComplete = $('#jVote_complete');
+
+    var curIndex = 0;
+
+    items.eq(curIndex).show();
+
+    btnNext.click(function(){
+      if(!updateCurItem()) return false;
+
+      if(curIndex === items.length-1){
+        toggleBox();
+        btnNext.hide();
+        btnSave.show();
+      }else {
+        curIndex++;
+        showCurItem();
+      }
+
+      return false;
+    });
+
+    btnSave.click(function(){
+      if(!updateCurItem()) return false;
+      toggleBox();
+      return false;
+    });
+
+    btnComplete.click(function(){
+      $('form').submit();
+    });
+
+    boxConfirmList.delegate('.jVote_edit', 'click', function(){
+      var box = $(this).closest('.wrapper');
+      curIndex = box.index();
+      toggleBox();
+      showCurItem();
+    });
+
+    function showCurItem(){
+      items.hide().eq(curIndex).show();
+      location.href = '#';
+    }
+
+    function toggleBox(){
+      boxConfirmList.toggle();
+      boxForm.toggle();
+      location.href = '#';
+    }
+
+    function updateCurItem(){
+      var curItem = items.eq(curIndex);
+      var checkResult = check(curItem);
+      var checkedItems = curItem.find(':checked');
+      var voted = [], elemUpdate;
+
+      if(!checkResult){
+        alert('请填写完整的表单.');
+        return false;
+      }
+
+      if(checkedItems.length !== 12){
+        alert('候选名单只能选12个.');
+        return false;
+      }
+
+      voted = checkedItems.map(function(i){
+        return $(this).data('name');
+      }).toArray();
+
+      voted = checkResult.concat(voted)
+
+      elemUpdate = boxConfirmList.find('.roll').eq(curIndex).empty();
+
+      $.each(voted, function(i, v){
+        elemUpdate.append('<li>'+v+'</li>');
+      });
+
+      return true;
+    }
+
+    function check(item){
+      var passed = [];
+      var names = item.find('.jVote_item_name');
+      names.each(function(i){
+        var name = $(this);
+        var code = name.parent().next().find('input');
+        var desc = code.parent().next().find('input');
+        var nameLen = $.trim(name.val()).length;
+        var codeLen = $.trim(code.val()).length;
+        var descLen = $.trim(desc.val()).length;
+        if( nameLen > 0 && codeLen === 6 && descLen > 0 ){
+          passed.push(name.val());
+        }
+      });
+
+      return passed.length === names.length  ? passed : false;
+    }
+  });
+</script>

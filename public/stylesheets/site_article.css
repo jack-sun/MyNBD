@@ -180,17 +180,21 @@ h1.articleTitle {
 }
 
 #myComment .itemContent{
+	*zoom:1;
 	margin-left: 65px;
 	font-size: 14px;
 	color: #303030;
 }
 
 #myComment .itemContent textarea {
-	width:560px;
+	box-sizing:border-box;
+	width:100%;
 	*width:555px;
 	height:66px;
 	margin-bottom:7px;
 }
+
+#myComment .itemContent textarea.ingms { *width:795px; }
 
 #articleContact {
 	margin-top: 20px;
@@ -232,7 +236,7 @@ h1.articleTitle {
 	width: 16px;
 	height: 16px;
 	margin-right: 2px;
-	background: url(../images/action-icons.png) -48px 0 no-repeat;
+	background: url(../images/sprite-icons.gif) -48px -40px no-repeat;
 	opacity: 0.5;
 }
 .printLink:hover b{
@@ -308,39 +312,14 @@ h1.articleTitle {
 	width: 20%;
 }
 
-/* Bottom Navigation */
-.jumpNav { height:20px; padding:10px; background:#F2F5FA; margin: 20px 0 0;
--webkit-border-radius: 3px;
--moz-border-radius   : 3px;
-border-radius        : 3px;
-}
-
-.jumpNav .toHome{
-	float: left;
-}
-.jumpNav a b{
-	width: 20px; 
-	height: 20px;
-	opacity: 0.7;
-	background:url(../images/sprite-icons.gif) 0 0 no-repeat;
-}
-.jumpNav a:hover b{
-	opacity: 1;
-}
-.jumpNav .toHome b{ float:left; background-position: -139px -160px; margin-right: 5px;}
-.jumpNav .toTop2 { float: right; *width:90px; }
-.jumpNav .toTop2 b{ float:right; background-position: -139px -178px; margin-left: 5px; }
-/*.jumpNav .toNext { float: right; *width:128px; }
-.jumpNav .toNext b{ float:right; background-position: -139px -178px; margin-left: 5px; }*/
-
 .itemContent label{
 	font-size: 12px;
 	color: #808080;
 }
 
 #body_site .weiboItemList li{
-	padding-bottom: 15px;
-	margin-bottom: 15px;
+/*	padding-bottom: 15px;
+	margin-bottom: 15px;*/
 	border-bottom-color: #D5DCEB;
 }
 .articleCopyright{

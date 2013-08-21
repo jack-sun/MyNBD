@@ -33,4 +33,20 @@ Nbd::Application.configure do
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
   config.action_controller.asset_host = "http://static.nbd.cn"
+
+  ##### config for bullet
+  config.after_initialize do
+    Bullet.enable = true # enable Bullet gem, otherwise do nothing
+    # Bullet.alert = true # pop up a JavaScript alert in the browser
+    Bullet.bullet_logger = true # log to the Bullet log file (Rails.root/log/bullet.log)
+    Bullet.console = true # log warnings to your browser's console.log (Safari/Webkit browsers or Firefox w/Firebug installed)
+    # Bullet.growl = true # pop up Growl warnings if your system has Growl installed. Requires a little bit of configuration
+    # Bullet.xmpp = { :account  => 'bullets_account@jabber.org',
+    #                 :password => 'bullets_password_for_jabber',
+    #                 :receiver => 'your_account@jabber.org',
+    #                 :show_online_status => true } # send XMPP/Jabber notifications to the receiver indicated
+    Bullet.rails_logger = true # add warnings directly to the Rails log
+    # Bullet.airbrake = true # add notifications to airbrake
+  end
+  #####
 end

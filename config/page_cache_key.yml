@@ -36,6 +36,9 @@ article:
   comment_area:
     parameters: "id"
     uniq: true
+  related_features:
+    parameters: "id"
+    uniq: false    
 feature:
   paginate_nav:
     parameters: "id, page_id"
@@ -55,3 +58,7 @@ newspaper:
   content:
     parameters: "id"
     uniq: false
+touzibao:
+  content:
+    parameters: "id"
+    uniq: true

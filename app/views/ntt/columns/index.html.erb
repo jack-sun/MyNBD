@@ -76,6 +76,19 @@
   <div class="clear"></div>
   <div class="divider" style="margin-bottom:5px;"></div>
 
+  <div class="subLeftCol">
+    <% cache(column_show_content_key_by_id(@tech_articles[:id])) do %>
+      <%= render :partial => "columns/article_list", :locals => {:list_title => "科技前沿", :digest_number => 1, :digest_restrict => true, :articles => (@tech_articles[:articles].map(&:article)||[]), :for_subdomain => Settings.ntt_sub_domain, :column_id => @tech_articles[:id]}%>
+    <% end %>
+  </div>
+  <div class="subRightCol">
+    <% cache(column_show_content_key_by_id(@life_articles[:id])) do %>
+      <%= render :partial => "columns/article_list", :locals => {:list_title => "财富生活", :digest_number => 1, :digest_restrict => true, :articles => (@life_articles[:articles].map(&:article)||[]), :for_subdomain => Settings.ntt_sub_domain, :column_id => @life_articles[:id]}%>
+    <% end %>
+  </div>
+  <div class="clear"></div>
+  <div class="divider" style="margin-bottom:5px;"></div>
+
   <div class="sectionA">
     <div class="title">
       <h3>每经书会</h3>

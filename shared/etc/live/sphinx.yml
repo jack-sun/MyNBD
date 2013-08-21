@@ -1,28 +1,37 @@
 test:
-  address: searchd.nbd.cn
-  port: 9312  
-  bin_path: /opt/coreseek/bin  
-  mem_limit: 128M  
-  config_file: config/test.sphinx.conf  
-  charset_type: zh_cn.utf-8  
-  charset_dictpath: <%=::Rails.root.to_s + "/fulltext_search_data "%>  
-  pid_file: "/tmp/searchd.test.pid"  
-  ngram_len: 0  
-  
-development:
   indexed_models:
     - User
     - Weibo
     - Article
+    - Feature
   address: searchd.nbd.cn
   port: 9312
   bin_path: /opt/coreseek/bin  
   mem_limit: 128M  
   config_file: config/development.sphinx.conf  
   charset_type: zh_cn.utf-8  
-  charset_dictpath: /shared/fulltext_search_data
+  charset_dictpath: <%=::Rails.root.to_s + "/fulltext_search_data "%>
   pid_file: "/tmp/searchd.development.pid"
   searchd_file_path: /shared/db/sphinx/development
+  ngram_len: 0
+  
+development:
+  indexed_models:
+    - User
+    - Weibo
+    - Article
+    - Feature
+  address: searchd.nbd.cn
+  port: 9312  
+  bin_path: /usr/local/bin
+  mem_limit: 128M  
+  charset_type: zh_cn.utf-8  
+  charset_dictpath: <%=::Rails.root.to_s + "/fulltext_search_data "%>
+  config_file: /opt/coreseek/etc/production.sphinx.conf
+  log: "/var/sphinx/logs/searchd.log"
+  query_log: "/var/sphinx/logs/query.log"
+  pid_file: "/var/sphinx/run/searchd.pid"
+  searchd_file_path: /data/sphinx/db/production
   ngram_len: 0
   
 production:
@@ -30,13 +39,16 @@ production:
     - User
     - Weibo
     - Article
+    - Feature
   address: searchd.nbd.cn
   port: 9312  
   bin_path: /usr/local/bin
   mem_limit: 128M  
-  config_file: config/production.sphinx.conf  
   charset_type: zh_cn.utf-8  
-  charset_dictpath: /shared/fulltext_search_data
-  pid_file: "/tmp/searchd.production.pid"
-  searchd_file_path: /shared/db/sphinx/production
+  charset_dictpath: <%=::Rails.root.to_s + "/fulltext_search_data "%>
+  config_file: /opt/coreseek/etc/production.sphinx.conf
+  log: "/var/sphinx/logs/searchd.log"
+  query_log: "/var/sphinx/logs/query.log"
+  pid_file: "/var/sphinx/run/searchd.pid"
+  searchd_file_path: /data/sphinx/db/production
   ngram_len: 0

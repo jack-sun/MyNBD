@@ -1,0 +1,519 @@
+/* ==========================================================================
+   Old Css From mobile_newspaper.css
+   ========================================================================== */
+
+.formA { padding:0; border:none; background:transparent; }
+
+.leftCol { width:570px; }
+.lCol { width:120px; margin-right:25px; }
+
+.mobileAccountInfo h2 { font-size:17px; }
+.mobileAccountInfo .block { margin:0 0 35px 20px; }
+.mobileAccountInfo table { margin:5px 0 10px; }
+.mobileAccountInfo th, .mobileAccountInfo td { padding: 3px; }
+.mobileAccountInfo th { font-size:14px; font-weight:bold; text-align:right; }
+
+/* terms of service */
+.tzbTOS { line-height:1.8; }
+.tzbTOS h2 { margin-top:20px; font-size:18px; }
+.tzbTOS li ul { margin-left:2em; }
+
+.tzbPayLabelItem .delInfo { text-decoration:line-through; }
+.tzbPayLabelItem .eq { display:inline-block; width:50px; }
+
+#mnBottomActions { padding-top:10px; border-top:2px dotted #ccc; }
+#mnBottomActions a { margin-right:10px; }
+#mnBottomActions .links { font-size:12px; }
+#topStyle .innerCenter{
+  width: 940px;
+}
+#top{
+  height: 36px;
+}
+#top.dark #topStyle{
+  background-color: #324760;
+  color: #fff;
+}
+#top.dark #topStyle ul{
+  margin-top: 10px;
+}
+#top.dark #topStyle ul li{
+  border-color: #3c5473;
+}
+#pageName{
+  padding-bottom:10px;
+  border-bottom:1px solid #ccc;
+  background:#fff;
+}
+/*.noBorder .title { border:none; background:none; }*/
+
+.gmsTipContainer { padding:0 30%; }
+.gmsArticleInfo { color: #606060; margin-bottom: 20px; }
+.gmsArticleInfo span { margin-right:10px; }
+
+#gmsArticleTable th { height:19px; vertical-align:middle; }
+#gmsArticleTable .refund, #gmsArticleTable .refund a { color:#888; }
+#gmsArticleTable .refund .title { text-decoration:line-through; }
+#gmsArticleTable .orderBtn { display:block; color:#303030; height:100%; }
+#gmsArticleTable .orderBtn span { float:left; margin-right:5px; }
+#gmsArticleTable .orderBtn b { float:left; width:16px; height:16px; background:url(../images/order.gif) 0 0 no-repeat;}
+#gmsArticleTable .orderBtn.asc b { background-position:0 -16px; }
+#gmsArticleTable .orderBtn.desc b { background-position:0 -32px; }
+
+/* ==========================================================================
+   Module Css
+   ========================================================================== */
+
+body{
+  background: #eee;
+  font-family: Arial, sans-serif;
+}
+
+/*img {
+  max-width: 100%;
+  width: auto 9;
+  height: auto;
+  vertical-align: middle;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}*/
+
+.whitePanel-tzb {
+  margin: 15px auto 15px;
+  padding: 20px;
+  width: 900px;
+}
+
+.tzbWrapper{
+  margin: 0 auto;
+  width: 940px;
+}
+.tzbWrapper-g { padding:30px 0;}
+.tzbBodyWrapper{
+  background: #fff;
+}
+
+.tzbFooter{
+  padding: 30px 0;
+  border-top: 1px solid #d5d5d5;
+  color:#a5a5a5;
+  background: #eee;
+}
+.tzbFooter_copyright{
+  font-size: 12px;
+}
+
+.tzbOperations { font-size: 0; letter-spacing:-4px; word-spacing:-2px; }
+.tzbOperations a,
+.tzbOperations span,
+.tzbOperations_item{
+  font-size:13px;
+  padding: 0 12px;
+  border-left: 1px solid #61b0e6;
+  border-right: 1px solid #2580bc;
+  color:#fff;
+  letter-spacing:normal;
+  word-spacing:normal;
+}
+.tzbOperations a.first,
+.tzbOperations span.first,
+.tzbOperations_item.first{
+  padding-left: 0;
+  border-left: none;
+}
+.tzbOperations a.last,
+.tzbOperations span.last,
+.tzbOperations_item.last{
+  padding-right: 0;
+  border-right: none;
+}
+.tzbOperations_item a, .tzbOperations_item span {
+  border: none !important;
+  padding: 0 !important;
+}
+.tzbOperations-footer{
+  margin-bottom: 15px;
+}
+.tzbOperations-footer a,
+.tzbOperations-footer span{
+  padding: 0 12px;
+  border-left: 1px solid #f5f5f5;
+  border-right: 1px solid #ccc;
+  color:#227fbb;
+}
+.tzbOperations-footer span { color:#a5a5a5; }
+
+/*replace end here*/
+
+.tzbSlideshow { position: relative; top: 0; left: 0; margin-bottom: 30px; height: 400px; }
+.tzbSlideshow_bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+.tzbSlideshow_bg div { height: 100%; background-repeat: no-repeat; background-position: center; background-color: #303030; }
+.tzbSlideshow_container { position: relative; top: 0; left: 0; margin: 0 auto; width: 940px; height: 100%; }
+.tzbSlideshow_intro { position: absolute; top: 40px; right: 0; width: 320px; height: 320px; /*background: #ccc;*/ }
+.tzbSlideshow_index { position: absolute; bottom: 10px; left: 0; }
+.tzbSlideshow_index a { display: inline-block; margin-right: 5px; width: 13px; height: 13px; overflow: hidden; background: url(../images/touzibao/slide-index.png) 0 -13px no-repeat; line-height: 9999px;/* ie bug when text-indent with inline-block*/ }
+.tzbSlideshow_index a.current { background-position: 0 0; }
+
+.slidebg-ttyj { background-image: url(../images/touzibao/bg-tiantian.png); }
+.slidebg-gms { background-image: url(../images/touzibao/bg-gudongdahuishilu.png); }
+.slidebg-tzkx { background-image: url(../images/touzibao/bg-touzikuaixun.png); }
+
+.tzbSlideintro { padding: 3px 17px 10px; color: #fff; line-height: 2; background: #d94532; }
+.tzbSlideintro a { color:#fff !important; }
+.tzbSlideintro_hd { font-size: 30px; }
+a.tzbSlideintro_detail { display: block; text-align: center; margin: 18px 0 21px; padding: 17px 0; line-height: 1; background: #cc412f; font-size: 22px; }
+a.tzbSlideintro_detail:hover span{
+  text-decoration: underline;
+}
+.tzbSlideintro_outlink { display: inline-block; padding-right: 35px; line-height: 26px;  background: url(../images/touzibao/outlink-red.png) right top no-repeat; }
+.tzbSlideintro_links { font-size: 12px; }
+.tzbSlideintro_links p { margin: 0 0 4px; }
+.tzbSlideintro_links a { margin-right: 15px; }
+
+.tzbPartner{
+  float: right;
+  padding-left: 30px;
+  background: #ddd url(/images/touzibao/partner.png) 7px 50% no-repeat;
+}
+.tzbPartner img{
+  display: block;
+}
+
+.tzbPhone {margin-bottom: 15px; font-size: 13px; color: #606060; font-weight: bold;}
+.tzbPhone b {font-weight: bold;}
+
+.tzbHome3col { width: 960px; }
+.tzbHome3col_col { float: left; width: 300px; margin-right: 20px; }
+
+.tzbColumnBg { *position: relative; background: #1e1e1e; height: 320px; overflow: hidden; }
+.tzbColumnBg img{
+  display: block;
+  position: relative;
+  top:0;
+  left: 50%;
+  margin-left:-800px;
+  width: 1600px;
+  height: 400px;
+}
+
+.tzbIntro { padding: 20px 0; line-height: 1.8; }
+.tzbIntro .layout .lCol { width:320px; }
+.tzbIntro_item { background: #fff; padding: 10px 15px; }
+.tzbIntro_item-interview { font-weight: bold; color: #808080; }
+.tzbIntro_item-interview a { color: #3060bf; }
+
+/* Table
+   ========================================================================== */
+
+.tableTianTian{
+  width: 100%;
+  text-align: left;
+  margin-bottom: 30px;
+  color: #808080;
+  font-size: 14px;
+  background: #fff;
+}
+.tableTianTian caption{
+  font-size: 16px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  text-align: left;
+  line-height: 30px;
+  color: #bb0000;
+}
+.tableTianTian th, .tableTianTian td{
+  border: 1px solid #ddd;
+  padding: 10px 12px;
+  vertical-align: top; 
+}
+.tableTianTian th{
+  color: #333;
+  font-weight: bold;
+}
+
+
+
+/* Box
+   ========================================================================== */
+
+.tzbBox { margin-bottom: 30px; }
+.tzbBox .hd{
+  margin:0;
+  padding: 0 10px;
+  line-height: 35px;
+  font-weight: bold;
+  font-size: 16px;
+  background: #33495f;
+  color:#fff;
+}
+.tzbBox .opt { float: right; font-size: 12px; color:#4a84ec; font-weight: normal; }
+.tzbBox .opt a{
+  display: inline-block;
+  _margin-top: 10px;
+  padding-right: 21px;
+  background: url(../images/touzibao/outlink-dark-blue.png) right top no-repeat;
+  line-height:16px;
+  color: #fff;
+}
+.tzbBox .bd { padding:5px 8px; border: 1px solid #e8e8ee; border-top: none; background: #fff; }
+
+/* Article List
+   ========================================================================== */
+
+.article-item { padding: 10px 0; }
+.article-item__title { font-size: 14px; color: #404040; font-weight: bold; height: 1.2em; line-height: 1.2; overflow: hidden; }
+.article-item__title a {color: #1a1a1a;}
+.article-item__digest { color: #808080; padding-top: 10px; height: 66px; line-height: 22px; overflow: hidden; font-size: 13px; }
+.article-item__digest img { float: left; margin-right: 7px; margin-top: 2px; }
+
+.article-list li { margin: 4px 0; height: 21px; overflow: hidden; }
+.article-list a { color: #1a1a1a; }
+
+/* Nav Bar
+   ========================================================================== */
+
+.tzbNavbar_container { padding-top: 20px; height: 60px; background: #2c96dd; }
+.tzbNavbar { line-height:42px; font-size: 16px;}
+.tzbNavbar_operations { float:right; }
+.tzbNavbar_operations a,
+.tzbNavbar_operations span{
+  color:#fff;
+}
+.tzbNavbar_operations a:hover { color:#fff; }
+
+.tzbLogo { float: left; margin:4px 25px 0 0; width:156px; height:33px; }
+
+.tzbNav { float: left; }
+.tzbNav li{
+  float: left;
+  margin-right: 3px;
+}
+.tzbNav a{
+  display:inline-block;
+  padding: 0 15px;
+  height: 40px;
+  overflow: hidden;
+  line-height: 42px;
+  color: #fff !important;
+  text-decoration: none !important;
+}
+.tzbNav a.current{
+  background: #237fbc;
+}
+.tzbNav a:hover{
+  background: #4ba6e3;
+}
+
+/* Sub Navigation
+   ========================================================================== */
+
+.tzbSubNav{
+  height: 80px;
+  line-height: 80px;
+  text-align: right;
+  background: #fff;
+  border-bottom: 1px solid #ccc;
+}
+.tzbSubNav h1{
+  float:left;
+  font-size: 30px;
+  line-height: 80px;
+  margin: 0;
+  padding: 0;
+  color: #222;
+}
+.tzbSubNav_placeholder{
+  height: 80px;
+}
+.tzbSubNav_index a{
+  margin-left: 25px;
+  color: #606060;
+}
+.tzbSubNav_index .outlink{
+  color:#fff;
+  background: #e94a35;
+  _margin-top:25px;
+}
+
+/* Introduce
+   ========================================================================== */
+
+.intro{
+  color: #606060;
+  background: #f1f1f1;
+}
+.intro .outlink{
+  float: right;
+  margin-top: 20px;
+  background: #9c56b8;
+}
+.intro .tzbWrapper{
+  padding: 20px 0;
+}
+.intro h2, .intro h3{
+  color: #1a1a1a;
+  font-weight: normal;
+}
+.intro h2{
+  margin: 20px 0;
+  font-size: 30px;
+  line-height: 40px;
+}
+.intro h3{
+  margin-bottom: 0;
+  font-size: 18px;
+  line-height: 40px;
+}
+.intro p{
+  margin-bottom: 20px;
+  font-size: 14px;
+  line-height: 30px;
+}
+.intro-white{
+  background: white;
+}
+.intro-blue{
+  background: #227ebb;
+  color: #fff;
+}
+/*.intro-blue .outlink{
+  background: #1f70a6;
+}
+.intro-blue .outlink span{
+  background-position: right -26px;
+}*/
+.intro-green{
+  background: #1aaf5d;
+  color: #fff;
+}
+.intro-gray{
+  background: #8f9da7;
+  color: #fff;
+}
+.intro-gray .outlink,
+.intro-blue .outlink{
+  background: #33495f;
+}
+.intro-gray .outlink span,
+.intro-blue .outlink span{
+  background-position: right top;
+}
+.intro-blue h2, .intro-blue h3,
+.intro-green h2, .intro-green h3,
+.intro-gray h2, .intro-gray h3{
+  color: #fff;
+}
+.intro-read{
+  padding-bottom: 350px;
+  background-image: url(../images/touzibao/intro-read.png);
+  background-position: center bottom;
+  background-repeat: no-repeat;
+}
+.intro-iphone .tzbWrapper{
+  background: url(../images/touzibao/intro-iphone.png) right bottom no-repeat;
+  padding-top: 40px;
+  padding-bottom: 140px;
+}
+.intro-android .tzbWrapper{
+  background: url(../images/touzibao/intro-android.png) right bottom no-repeat;
+  padding-top: 40px;
+  padding-bottom: 100px;
+}
+.intro-android .outlink{
+  background: #1ecd6d;
+}
+.intro-android .outlink span{
+  background-position: right -78px;
+}
+
+/* Outlink
+   ========================================================================== */
+
+.outlink{
+  display: inline-block;
+  padding: 12px 40px;
+  font-size: 20px;
+  line-height: 26px;
+  background: #666;
+  color: #fff !important;
+  *cursor: pointer;
+}
+.outlink span{
+  display: inline-block;
+  padding-right: 32px;
+  background: url(../images/touzibao/outlink.png) right -52px no-repeat;
+  overflow: hidden;
+}
+.outlink:hover span{
+  text-decoration: underline;
+}
+.outlink-s { padding: 6px 10px; font-size: 12px; line-height: 16px; }
+.outlink-s span{
+  padding-right: 20px;
+  background: url(../images/touzibao/outlink-s.png) right top no-repeat;
+  _padding-right: 0;
+  _background: none;
+}
+.outlink-s:hover span { text-decoration: underline; }
+
+/* ==========================================================================
+   GMS CSS
+   ========================================================================== */
+
+.viewAllGms{
+  display:block;
+  margin:10px auto 0;
+  width:282px;
+  height:38px;
+  line-height:38px;
+  color:#fff;
+  background:url('http://www.nbd.com.cn/corp/jc_inbox/f-gms-button.gif');
+  text-align:center;
+}
+.viewAllGms:active { color:#fff; }
+
+/* ==========================================================================
+   TouZiKuaiXun CSS
+   ========================================================================== */
+
+.tzkxIntro { width: 500px; }
+.tzkxIntro strong { color: #e94a35; }
+.tzkxIntro_container { position: relative; top: 0; left: 0; }
+.tzkxIntro_phone { position: absolute; bottom: 0; _bottom: 40px; right: 0; z-index: 999; width:340px; }
+.tzkxIntro_phone .phone{
+  margin:0 auto;
+  padding-top:1px;
+  width:340px;
+  height:666px;
+  background:url(../images/touzibao/phone-frame.png) 0 0 no-repeat;
+  _background:none;
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled=true, sizingMethod=crop, src="/images/touzibao/phone-frame.png");
+}
+.tzkxIntro_phone .phone .phoneScreen{
+  margin: 118px 0 0 28px;
+  *margin-top: 119px;
+  width:287px;
+  height:430px;
+  background:#f5f5f5;
+  word-wrap:break-word;
+  overflow:auto;
+}
+.tzkxIntro_phone .magzine { padding:10px; }
+.tzkxIntro_phone .magzine img { max-width: 100%; }
+
+/* ==========================================================================
+   Help Center CSS
+   ========================================================================== */
+
+.tzbHelpCenter { padding: 30px 0; background: #f1f1f1; }
+.tzbHelpCenter .lCol { width: 220px; }
+.tzbHelpCenter h2 { margin-top: 0; font-size: 24px; line-height: 30px; padding-top: 24px; border-top: 1px solid #e5e5e5;}
+.tzbHelpCenter_index { background: #fff; padding: 10px 15px; border:1px solid #ddd; color: #7e8c8d; }
+.tzbHelpCenter_index a { color:#227fbb; }
+.tzbHelpCenter_index li { margin: 8px 0; }
+
+
+
+
+
+

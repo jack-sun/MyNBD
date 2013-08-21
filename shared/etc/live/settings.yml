@@ -1,46 +1,68 @@
 defaults: &defaults
- count_per_page: 10
- redis_session_store: redis://cache.nbd.cn:6379/13
- redis_cache_store: redis://cache.nbd.cn:6379/12
- redis_page_cache_store: redis://cache.nbd.cn:6379/14
- redis_obj_store: redis://cache.nbd.cn:6379/15
- domain: www.nbd.com.cn
- host: http://www.nbd.com.cn
- ntt_host: http://ntt.nbd.com.cn
- western_host: http://west.nbd.com.cn
- club_host: http://club.nbd.com.cn
- old_host: http://old.nbd.com.cn
- session_domain: .nbd.com.cn
- weibo_host: http://t.nbd.com.cn
- domain_length: 2
- default_sub_domain: www
- weibo_sub_domain: t
- ntt_sub_domain: ntt
- western_sub_domain: west
- club_sub_domain: club
- asset_host: "http://static.nbd.com.cn"
- app_env: "live"
- apple_purchase_secret: "2bc29027447b4d08a42b72b1f4eee214"
- apple_bid: "com.nbd.TouZiBao"
- iphone_app_key: "2cfdbe40c3663ed11a3358fdd1fb3b5a"
- android_app_key: "aa551d8a948ada5ee2a102fbe93574f0"
- apple_product_ids:
-  product_0: "com.nbd.TouZiBao.consumable_one_month"
-  product_1: "com.nbd.TouZiBao.consumable_three_months"
-  product_2: "com.nbd.TouZiBao.consumable_six_months"
-  product_3: "com.nbd.TouZiBao.consumable_one_year"
+  count_per_page: 10
+  redis_session_store: redis://cache.nbd.cn:6379/13
+  redis_cache_store: redis://cache.nbd.cn:6379/12
+  redis_page_cache_store: redis://cache.nbd.cn:6379/14
+  mirror_redis_page_cache_store: redis://cache.nbd.cn:6379/10
+  redis_obj_store: redis://cache.nbd.cn:6379/15
+  domain: www.nbd.com.cn
+  host: http://www.nbd.com.cn
+  ntt_host: http://ntt.nbd.com.cn
+  western_host: http://west.nbd.com.cn
+  club_host: http://club.nbd.com.cn
+  old_host: http://old.nbd.com.cn
+  session_domain: .nbd.com.cn
+  weibo_host: http://t.nbd.com.cn
+  domain_length: 2
+  default_sub_domain: www
+  weibo_sub_domain: t
+  ntt_sub_domain: ntt
+  western_sub_domain: west
+  club_sub_domain: club
+  asset_host: "http://static.nbd.com.cn"
+  app_env: "live"
+  apple_purchase_secret: "2bc29027447b4d08a42b72b1f4eee214"
+  apple_bid: "com.nbd.TouZiBao"
+  iphone_app_key: "2cfdbe40c3663ed11a3358fdd1fb3b5a"
+  android_app_key: "aa551d8a948ada5ee2a102fbe93574f0"
+  apple_product_ids:
+    product_0: "cn.com.nbd.Touzibao.1_month"
+    product_1: "cn.com.nbd.Touzibao.3_months"
+    product_2: "cn.com.nbd.Touzibao.6_months"
+    product_3: "cn.com.nbd.Touzibao.1_year"
+  gms_articles_features_url: "http://www.nbd.com.cn/features/274"
+  wap_alipay_token_service: "alipay.wap.trade.create.direct"
+  wap_alipay_trade_service: "alipay.wap.auth.authAndExecute"
+  wap_alipay_gateway: "http://wappaygw.alipay.com/service/rest.htm"
+  xupeng_name: "xup"
+  local_image_host: http://bs-image1
+  remote_image_sftp_host: "bs-image1"
+  remote_image_sftp_user: "www"
+  remote_image_sftp_folder: "static"
  
 development:
- <<: *defaults
- recaptcha_public_key: "6Lcfo9ASAAAAACAD2HG1YvdpaP9KPJDcYRhYQxeU"
- recaptcha_private_key: "6Lcfo9ASAAAAAC34-f6CcXS8nopuogAxS7jtz8N_"
- apple_verify_url: "https://sandbox.itunes.apple.com/verifyReceipt"
+  <<: *defaults
+  recaptcha_public_key: "6Lcfo9ASAAAAACAD2HG1YvdpaP9KPJDcYRhYQxeU"
+  recaptcha_private_key: "6Lcfo9ASAAAAAC34-f6CcXS8nopuogAxS7jtz8N_"
+  apple_verify_url: "https://sandbox.itunes.apple.com/verifyReceipt"
+  card_task_create_staff_names:
+  - "jiangche"
+  - "winterwhisper"
+  - "yangx"
+  card_task_review_staff_names:
+  - "jiangche"
+  - "winterwhisper"
+  - "hejianc"
  
 test:
- <<: *defaults
+  <<: *defaults
  
 production:
- <<: *defaults
- recaptcha_public_key: "6LdSo9ASAAAAAKyfy_7ZdJWlCHDBab0tI69qJVDV"
- recaptcha_private_key: "6LdSo9ASAAAAAOGIaCo3qK4Kui5T8WEE1f9SBx0z"
- apple_verify_url: "https://sandbox.itunes.apple.com/verifyReceipt"
+  <<: *defaults
+  recaptcha_public_key: "6LdSo9ASAAAAAKyfy_7ZdJWlCHDBab0tI69qJVDV"
+  recaptcha_private_key: "6LdSo9ASAAAAAOGIaCo3qK4Kui5T8WEE1f9SBx0z"
+  apple_verify_url: "https://buy.itunes.apple.com/verifyReceipt"
+  card_task_create_staff_names:
+  - "yangx"
+  card_task_review_staff_names:
+  - "hejianc"

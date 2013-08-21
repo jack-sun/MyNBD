@@ -1,0 +1,80 @@
+<% content_for :render_stylesheet do %>
+  <%= stylesheet_link_tag "koubeibang_candidates" %>
+<% end %>
+
+<% content_for :render_header do %>
+  <div id="header"></div>
+<% end %>
+
+<script type="text/javascript">
+  function setTab(m,n){
+    var tli=document.getElementById("menu"+m).getElementsByTagName("li");
+    var mli=document.getElementById("main"+m).getElementsByTagName("ul");
+    for(i=0;i<tli.length;i++){
+    tli[i].className=i==n?"hover":"";
+    mli[i].style.display=i==n?"block":"none";
+    }
+  }
+</script>
+
+<% @kbbs.each_slice(4).with_index do |kbb_sliced_array, top_index| %>
+  <div class="tabs">
+    <ul class="menu" id="menu<%= top_index %>">
+      <% kbb_sliced_array.each_with_index do |kbb, index| %>
+        <li onclick="setTab(<%= top_index %>, <%= index %>)" class=<%= "hover" if index == 0 %>><%= kbb.title.delete("候选名单") %></li>
+      <% end %>
+    </ul>
+
+    <div class="main" id="main<%= top_index %>">
+      <% kbb_sliced_array.each_with_index do |kbb, index| %>
+    	  <ul class=<%= "block" if index == 0 %>>
+          <% kbb.koubeibang_candidates.each do |candidate| %>
+            <li>
+              <p><strong><%= "#{candidate.stock_company} (#{candidate.stock_code})" %></strong></p>
+              <p>被提名次数:<span class="red"><%= candidate.kbb_candidate_details_count %></span></p>
+              <p class="supportOpts">
+                <span>
+                  <%= link_to_unless @ori_cookies.include?(candidate.id.to_s), "赞同(#{candidate.thumb_up_count})", thumb_up_koubeibang_candidate_url(candidate.id) %>
+                </span>
+                <span>
+                  <%= link_to_unless @ori_cookies.include?(candidate.id.to_s), "反对(#{candidate.thumb_down_count})", thumb_down_koubeibang_candidate_url(candidate.id) %>
+                </span>
+              </p>
+              <p style="display:none;" class="loading">请稍候..</p>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<div id="footer">
+  <%= link_to "", feature_url(361)  %>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    $('.supportOpts').delegate('a', 'click', function(e){
+      var link = $(this);
+      var href = link.attr('href');
+      var group = link.closest('.supportOpts');
+      var loading = group.siblings('.loading');
+      var opts = group.find('a');
+
+      group.hide();
+      loading.show();
+
+      $.post(href, function(data){
+        if(data !== -1){
+          link.text( '您已' + link.text().replace(/\(\d+\)/,'('+data+')') );
+          opts.contents().unwrap();
+        }
+        loading.hide();
+        group.show();
+      });
+
+      return false;
+    })
+  })
+</script>

@@ -1,0 +1,70 @@
+<%= javascript_include_tag "jquery_ujs", "nbdtools" %>
+
+<% content_for :render_stylesheet do %>
+  <%= stylesheet_link_tag "koubeibang_votes" %>
+<% end %>
+
+<% content_for :render_header do %>
+  <div id="header"></div>
+<% end %>
+
+<div id="wrapper">
+  <%= form_tag koubeibang_sessions_url do %>
+    <center><%= flash[:alert] if flash[:alert] %></center>
+    <dl class="login">
+      <dt><%= label_tag :company_name, '机构名称：' %></dt>
+      <dd><%= text_field_tag :company_name, nil, :class => "input_215" %></dd>
+    </dl>
+    <dl class="login">
+      <dt><%= label_tag :name, '账号：' %></dt>
+      <dd><%= text_field_tag :name, nil, :class => "input_215" %></dd>
+    </dl>
+    <dl class="login">
+      <dt><%= label_tag :password, '密码：' %></dt>
+      <dd><%= password_field_tag :password, nil, :class => "input_215" %></dd>
+    </dl>
+    <dl class="login">
+      <dt><label for="captcha">验证码：</label></dt>
+      <dd>
+        <span id="simple_captcha">
+          <%= text_field_tag "captcha", "", :class => "textInput captchaInput", :style => "width:75px;" %>
+          <span class="captchaImage"></span>
+        </span>
+        <span class="error"><%= flash[:captcha_error] %></span>
+      </dd>
+    </dl>
+    <dl class="login">
+    	<dt></dt>
+      <dd><%= submit_tag '登录', :class => "btn_mouseout", :onmouseover => "this.className='btn_mouseover'", :onmouseout => "this.className='btn_mouseout'" %></dd>
+    </dl>
+  <% end %>
+</div>
+
+<div id="footer">
+    <p>Copyright@2013 每日经济新闻报社版权所有，未经许可不得转载使用，违者必究</p>
+    <p>读者热线：400-889-0008　合作联系电话：86-21-60900099转688分机</p>
+    <p>沪ICP备09000473号</p>
+</div>
+
+<script type="text/javascript">
+  $(function(){
+    var reloadCaptchaUrl = "<%= reload_captcha_url(:id => 'simple_captcha') %>";
+    var loadingHtml = "<span style='display:inline;margin:0;' class='loading'><span>正在获取验证码</span></span>";
+
+    $("#user_email").focus();
+
+    // captcha
+    $(".captchaInput").one("focus", function(){
+      $(".captchaImage").html(loadingHtml);
+      $.get(reloadCaptchaUrl, function(){
+        $("#simple_captcha .error").hide();
+      });
+    });
+    $("body").delegate(".changeCaptchaBtn", "click", function(){
+      $(this).closest(".captchaImage").html(loadingHtml);
+    });
+    _nbd.setPlaceholder($(".captchaInput"), "请输入验证码");
+
+
+  });
+</script>

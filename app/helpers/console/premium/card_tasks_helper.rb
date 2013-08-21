@@ -18,6 +18,10 @@ module Console::Premium::CardTasksHelper
     return service_card_type_options
   end
 
+  def card_task_create_time time
+    time.strftime("%Y-%m-%d %H:%M:%S")
+  end
+
   def card_sub_task_service_card_type service_card_type
     ServiceCard::CARD_TYPES[service_card_type]
   end

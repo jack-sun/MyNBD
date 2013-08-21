@@ -1,0 +1,133 @@
+2013-08-02 12:08:37[WARN] user: tony
+preview.nbd.cn/articles/2013-07-04/755406.html
+N+1 Query detected
+  ArticlesColumn => [:article]
+  Add to your finder: :include => [:article]
+N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  /home/tony/workspace/nbd/app/controllers/articles_base_controller.rb:62:in `init_article_page'
+  /home/tony/workspace/nbd/app/controllers/articles_controller.rb:31:in `show'2013-08-02 12:08:37[WARN] user: tony
+preview.nbd.cn/articles/2013-07-04/755406.html
+Unused Eager Loading detected
+  Page => [:image]
+  Remove from your finder: :include => [:image]2013-08-02 12:08:51[WARN] user: tony
+preview.nbd.cn/articles/2013-07-04/755406.html
+N+1 Query detected
+  ArticlesColumn => [:article]
+  Add to your finder: :include => [:article]
+N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  /home/tony/workspace/nbd/app/controllers/articles_base_controller.rb:62:in `init_article_page'
+  /home/tony/workspace/nbd/app/controllers/articles_controller.rb:31:in `show'2013-08-02 12:08:51[WARN] user: tony
+preview.nbd.cn/articles/2013-07-04/755406.html
+Unused Eager Loading detected
+  Page => [:image]
+  Remove from your finder: :include => [:image]2013-08-02 12:08:57[WARN] user: tony
+preview.nbd.cn/articles/2013-07-04/755406.html
+N+1 Query detected
+  ArticlesColumn => [:article]
+  Add to your finder: :include => [:article]
+N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  /home/tony/workspace/nbd/app/controllers/articles_base_controller.rb:62:in `init_article_page'
+  /home/tony/workspace/nbd/app/controllers/articles_controller.rb:31:in `show'2013-08-02 12:08:57[WARN] user: tony
+preview.nbd.cn/articles/2013-07-04/755406.html
+Unused Eager Loading detected
+  Page => [:image]
+  Remove from your finder: :include => [:image]2013-08-02 12:10:29[WARN] user: tony
+preview.nbd.cn/console/articles/published
+Unused Eager Loading detected
+  Article => [:pages, :children_articles]
+  Remove from your finder: :include => [:pages, :children_articles]2013-08-02 12:10:32[WARN] user: tony
+preview.nbd.cn/console/articles/published
+Unused Eager Loading detected
+  Article => [:pages, :children_articles]
+  Remove from your finder: :include => [:pages, :children_articles]2013-08-02 12:10:35[WARN] user: tony
+preview.nbd.cn/console/articles/published
+Unused Eager Loading detected
+  Article => [:pages, :children_articles]
+  Remove from your finder: :include => [:pages, :children_articles]2013-08-02 12:10:38[WARN] user: tony
+preview.nbd.cn/console/articles/published
+Unused Eager Loading detected
+  Article => [:pages, :children_articles]
+  Remove from your finder: :include => [:pages, :children_articles]2013-08-02 12:11:29[WARN] user: tony
+preview.nbd.cn/articles/2013-07-04/755406.html
+N+1 Query detected
+  ArticlesColumn => [:article]
+  Add to your finder: :include => [:article]
+N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  /home/tony/workspace/nbd/app/controllers/articles_base_controller.rb:62:in `init_article_page'
+  /home/tony/workspace/nbd/app/controllers/articles_controller.rb:31:in `show'2013-08-02 12:11:29[WARN] user: tony
+preview.nbd.cn/articles/2013-07-04/755406.html
+Unused Eager Loading detected
+  Page => [:image]
+  Remove from your finder: :include => [:image]2013-08-02 12:11:33[WARN] user: tony
+preview.nbd.cn/articles/2013-07-04/755406.html
+N+1 Query detected
+  ArticlesColumn => [:article]
+  Add to your finder: :include => [:article]
+N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  /home/tony/workspace/nbd/app/controllers/articles_base_controller.rb:62:in `init_article_page'
+  /home/tony/workspace/nbd/app/controllers/articles_controller.rb:31:in `show'2013-08-02 12:11:33[WARN] user: tony
+preview.nbd.cn/articles/2013-07-04/755406.html
+Unused Eager Loading detected
+  Page => [:image]
+  Remove from your finder: :include => [:image]2013-08-06 15:58:09[WARN] user: tony
+club1.nbd.cn/
+N+1 Query detected
+  ArticlesColumn => [:article]
+  Add to your finder: :include => [:article]
+N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  /home/tony/workspace/nbd/app/views/club/columns/index.html.erb:16:in `_app_views_club_columns_index_html_erb__4502643045475197124_69979585150760'2013-08-06 15:58:09[WARN] user: tony
+club1.nbd.cn/
+N+1 Query detected
+  Article => [:image]
+  Add to your finder: :include => [:image]
+N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  N+1 Query method call stack
+  /home/tony/workspace/nbd/app/views/club/columns/index.html.erb:18:in `block in _app_views_club_columns_index_html_erb__4502643045475197124_69979585150760'
+  /home/tony/workspace/nbd/app/views/club/columns/index.html.erb:17:in `each'
+  /home/tony/workspace/nbd/app/views/club/columns/index.html.erb:17:in `_app_views_club_columns_index_html_erb__4502643045475197124_69979585150760'2013-08-06 15:58:09[WARN] user: tony
+club1.nbd.cn/
+Unused Eager Loading detected
+  Page => [:image]
+  Remove from your finder: :include => [:image]2013-08-08 16:54:56[WARN] user: tony
+www.nbd.cn/
+Unused Eager Loading detected
+  Weibo => [:owner]
+  Remove from your finder: :include => [:owner]2013-08-19 16:17:53[WARN] user: tony
+www.nbd.cn/
+Unused Eager Loading detected
+  Weibo => [:owner]
+  Remove from your finder: :include => [:owner]

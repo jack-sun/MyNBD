@@ -1,0 +1,1303 @@
+===========verify payment id: 726====================
+user_id / last_trade_num : s95533 / 32odes
+plan_type : 3
+created_at : 2013-01-24 16:12:14
+payment_at : 2013-01-24 16:12:14
+appstore_response : {"status"=>21002, "exception"=>"java.lang.IllegalStateException"}
+status : 21002
+============== payment id: 726 status :失败 ===================
+===========verify payment id: 882====================
+user_id / last_trade_num : f5035383 / f1gqx8
+plan_type : 0
+created_at : 2013-02-27 18:15:07
+payment_at : 2013-02-27 18:15:07
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-02-27 02:16:28 America/Los_Angeles", "unique_identifier"=>"50c68106224f4bc37e5684aa78e796b7c873c7b2", "original_transaction_id"=>"70000041518138", "bvrs"=>"1.1.0", "app_item_id"=>"575805206", "transaction_id"=>"70000041518138", "quantity"=>"1", "unique_vendor_identifier"=>"FC029001-CB60-4042-BD24-C8B589D418A0", "product_id"=>"cn.com.nbd.Touzibao.1_month", "item_id"=>"585150340", "version_external_identifier"=>"13412693", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1361960188609", "purchase_date"=>"2013-02-27 10:16:28 Etc/GMT", "purchase_date_pst"=>"2013-02-27 02:16:28 America/Los_Angeles", "original_purchase_date"=>"2013-02-27 10:16:28 Etc/GMT", "original_purchase_date_ms"=>"1361960188609"}, "status"=>0}
+status : 0
+============== payment id: 882 status :成功 ===================
+===========verify payment id: 732====================
+user_id / last_trade_num :  / vzaueq
+plan_type : 3
+created_at : 2013-01-25 00:09:19
+payment_at : 2013-01-25 00:09:19
+appstore_response : {"status"=>21002, "exception"=>"java.lang.NumberFormatException"}
+status : 21002
+============== payment id: 732 status :失败 ===================
+===========verify payment id: 983====================
+user_id / last_trade_num : wuji317 / wbv5zp
+plan_type : 3
+created_at : 2013-03-08 09:30:29
+payment_at : 2013-03-10 08:37:50
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-03-09 16:39:14 America/Los_Angeles", "unique_identifier"=>"4816ab1b4128f204c8a41d1ffe74d6ef86a1bd55", "original_transaction_id"=>"450000025275098", "bvrs"=>"1.1.0", "app_item_id"=>"575805206", "transaction_id"=>"450000025275098", "quantity"=>"1", "unique_vendor_identifier"=>"056B4A09-9A13-44D4-B465-D328F7D0053E", "product_id"=>"cn.com.nbd.Touzibao.1_year", "item_id"=>"585152490", "version_external_identifier"=>"13412693", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1362875954405", "purchase_date"=>"2013-03-10 00:39:14 Etc/GMT", "purchase_date_pst"=>"2013-03-09 16:39:14 America/Los_Angeles", "original_purchase_date"=>"2013-03-10 00:39:14 Etc/GMT", "original_purchase_date_ms"=>"1362875954405"}, "status"=>0}
+status : 0
+============== payment id: 983 status :成功 ===================
+===========verify payment id: 638====================
+user_id / last_trade_num : tyfo / 1rvxby
+plan_type : 3
+created_at : 2013-01-17 18:11:54
+payment_at : 2013-01-18 22:26:35
+appstore_response : {"status"=>21002, "exception"=>"java.lang.NumberFormatException"}
+status : 21002
+============== payment id: 638 status :失败 ===================
+===========verify payment id: 230====================
+user_id / last_trade_num :  / j0s3ow
+plan_type : 0
+created_at : 2012-12-06 08:37:42
+payment_at : 2012-12-06 08:37:42
+appstore_response : {"status"=>21007}
+status : 21007
+============== payment id: 230 status :失败 ===================
+===========verify payment id: 836====================
+user_id / last_trade_num :  / h54e8b
+plan_type : 0
+created_at : 2013-02-23 13:13:56
+payment_at : 2013-02-23 13:13:56
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-02-22 21:15:16 America/Los_Angeles", "unique_identifier"=>"bb567a6860d84652b0c6f3c4ec9974b6d0a6a059", "original_transaction_id"=>"250000023605145", "bvrs"=>"1.1.0", "app_item_id"=>"575805206", "transaction_id"=>"250000023605145", "quantity"=>"1", "unique_vendor_identifier"=>"12864ED5-C28D-43AD-8DC1-BC19BEE560F1", "product_id"=>"cn.com.nbd.Touzibao.1_month", "item_id"=>"585150340", "version_external_identifier"=>"13412693", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1361596516247", "purchase_date"=>"2013-02-23 05:15:16 Etc/GMT", "purchase_date_pst"=>"2013-02-22 21:15:16 America/Los_Angeles", "original_purchase_date"=>"2013-02-23 05:15:16 Etc/GMT", "original_purchase_date_ms"=>"1361596516247"}, "status"=>0}
+status : 0
+============== payment id: 836 status :成功 ===================
+===========verify payment id: 829====================
+user_id / last_trade_num : yes163 / 7s84mn
+plan_type : 3
+created_at : 2013-02-21 18:26:28
+payment_at : 2013-02-21 18:26:33
+appstore_response : {"status"=>21002, "exception"=>"java.lang.NumberFormatException"}
+status : 21002
+============== payment id: 829 status :失败 ===================
+===========verify payment id: 1278====================
+user_id / last_trade_num : 测试 / hybxc4
+plan_type : 0
+created_at : 2013-05-31 12:02:59
+payment_at : 2013-05-31 12:02:59
+appstore_response : {"status"=>21007}
+status : 21007
+============== payment id: 1278 status :失败 ===================
+===========verify payment id: 1279====================
+user_id / last_trade_num : 测试 / yrzbxy
+plan_type : 0
+created_at : 2013-05-31 14:30:35
+payment_at : 2013-05-31 14:30:35
+appstore_response : {"status"=>21007}
+status : 21007
+============== payment id: 1279 status :失败 ===================
+===========verify payment id: 1280====================
+user_id / last_trade_num : 测试 / gdbpwe
+plan_type : 0
+created_at : 2013-05-31 14:44:31
+payment_at : 2013-05-31 14:44:31
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-05-30 23:44:30 America/Los_Angeles", "purchase_date_ms"=>"1369982670392", "unique_identifier"=>"666756422399b69fd8c6e1299f13e89ccc35be40", "original_transaction_id"=>"1000000075841839", "bvrs"=>"1.1.2", "transaction_id"=>"1000000075841839", "quantity"=>"1", "unique_vendor_identifier"=>"6DABB2F3-4E83-4D4A-85F9-BCBF9FA47122", "item_id"=>"655913963", "product_id"=>"cn.com.nbd.TouzibaoTTYJ.1_month", "purchase_date"=>"2013-05-31 06:44:30 Etc/GMT", "original_purchase_date"=>"2013-05-31 06:44:30 Etc/GMT", "purchase_date_pst"=>"2013-05-30 23:44:30 America/Los_Angeles", "bid"=>"cn.com.nbd.TouZiBao", "original_purchase_date_ms"=>"1369982670392"}, "status"=>0}
+status : 0
+============== payment id: 1280 status :成功 ===================
+===========verify payment id: 1281====================
+user_id / last_trade_num : qwertgfdsa / 4agk4i
+plan_type : 0
+created_at : 2013-05-31 15:20:32
+payment_at : 2013-05-31 15:20:32
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-05-31 00:20:30 America/Los_Angeles", "purchase_date_ms"=>"1369984830996", "unique_identifier"=>"666756422399b69fd8c6e1299f13e89ccc35be40", "original_transaction_id"=>"1000000075845285", "bvrs"=>"1.1.2", "transaction_id"=>"1000000075845285", "quantity"=>"1", "unique_vendor_identifier"=>"6DABB2F3-4E83-4D4A-85F9-BCBF9FA47122", "item_id"=>"655913963", "product_id"=>"cn.com.nbd.TouzibaoTTYJ.1_month", "purchase_date"=>"2013-05-31 07:20:30 Etc/GMT", "original_purchase_date"=>"2013-05-31 07:20:30 Etc/GMT", "purchase_date_pst"=>"2013-05-31 00:20:30 America/Los_Angeles", "bid"=>"cn.com.nbd.TouZiBao", "original_purchase_date_ms"=>"1369984830996"}, "status"=>0}
+status : 0
+============== payment id: 1281 status :成功 ===================
+===========verify payment id: 1282====================
+user_id / last_trade_num :  / 6mcn3l
+plan_type : 0
+created_at : 2013-05-31 15:37:36
+payment_at : 2013-05-31 15:37:36
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-05-31 00:37:36 America/Los_Angeles", "purchase_date_ms"=>"1369985856100", "unique_identifier"=>"666756422399b69fd8c6e1299f13e89ccc35be40", "original_transaction_id"=>"1000000075847170", "bvrs"=>"1.1.2", "transaction_id"=>"1000000075847170", "quantity"=>"1", "unique_vendor_identifier"=>"6DABB2F3-4E83-4D4A-85F9-BCBF9FA47122", "item_id"=>"655913963", "product_id"=>"cn.com.nbd.TouzibaoTTYJ.1_month", "purchase_date"=>"2013-05-31 07:37:36 Etc/GMT", "original_purchase_date"=>"2013-05-31 07:37:36 Etc/GMT", "purchase_date_pst"=>"2013-05-31 00:37:36 America/Los_Angeles", "bid"=>"cn.com.nbd.TouZiBao", "original_purchase_date_ms"=>"1369985856100"}, "status"=>0}
+status : 0
+============== payment id: 1282 status :成功 ===================
+===========verify payment id: 1283====================
+user_id / last_trade_num : qwertgfdsa / 37k6q4
+plan_type : 0
+created_at : 2013-05-31 15:40:10
+payment_at : 2013-05-31 15:40:10
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-05-31 00:40:09 America/Los_Angeles", "purchase_date_ms"=>"1369986009748", "unique_identifier"=>"666756422399b69fd8c6e1299f13e89ccc35be40", "original_transaction_id"=>"1000000075847284", "bvrs"=>"1.1.2", "transaction_id"=>"1000000075847284", "quantity"=>"1", "unique_vendor_identifier"=>"6DABB2F3-4E83-4D4A-85F9-BCBF9FA47122", "item_id"=>"655913963", "product_id"=>"cn.com.nbd.TouzibaoTTYJ.1_month", "purchase_date"=>"2013-05-31 07:40:09 Etc/GMT", "original_purchase_date"=>"2013-05-31 07:40:09 Etc/GMT", "purchase_date_pst"=>"2013-05-31 00:40:09 America/Los_Angeles", "bid"=>"cn.com.nbd.TouZiBao", "original_purchase_date_ms"=>"1369986009748"}, "status"=>0}
+status : 0
+============== payment id: 1283 status :成功 ===================
+===========verify payment id: 1284====================
+user_id / last_trade_num :  / yhfyc9
+plan_type : 0
+created_at : 2013-05-31 15:48:53
+payment_at : 2013-05-31 15:48:53
+appstore_response : {"status"=>21002}
+status : 21002
+============== payment id: 1284 status :失败 ===================
+===========verify payment id: 1285====================
+user_id / last_trade_num :  / yrgoiv
+plan_type : 0
+created_at : 2013-05-31 15:52:24
+payment_at : 2013-05-31 15:52:24
+appstore_response : {"status"=>21002}
+status : 21002
+============== payment id: 1285 status :失败 ===================
+===========verify payment id: 1286====================
+user_id / last_trade_num : qwertgfdsa / 76uevc
+plan_type : 0
+created_at : 2013-05-31 15:56:35
+payment_at : 2013-05-31 15:56:35
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-05-31 00:56:34 America/Los_Angeles", "purchase_date_ms"=>"1369986994836", "unique_identifier"=>"666756422399b69fd8c6e1299f13e89ccc35be40", "original_transaction_id"=>"1000000075850907", "bvrs"=>"1.1.2", "transaction_id"=>"1000000075850907", "quantity"=>"1", "unique_vendor_identifier"=>"6DABB2F3-4E83-4D4A-85F9-BCBF9FA47122", "item_id"=>"655913963", "product_id"=>"cn.com.nbd.TouzibaoTTYJ.1_month", "purchase_date"=>"2013-05-31 07:56:34 Etc/GMT", "original_purchase_date"=>"2013-05-31 07:56:34 Etc/GMT", "purchase_date_pst"=>"2013-05-31 00:56:34 America/Los_Angeles", "bid"=>"cn.com.nbd.TouZiBao", "original_purchase_date_ms"=>"1369986994836"}, "status"=>0}
+status : 0
+============== payment id: 1286 status :成功 ===================
+===========verify payment id: 1287====================
+user_id / last_trade_num : qwertgfdsa / pi2ee9
+plan_type : 0
+created_at : 2013-05-31 15:57:09
+payment_at : 2013-05-31 15:57:09
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-05-31 00:57:08 America/Los_Angeles", "purchase_date_ms"=>"1369987028668", "unique_identifier"=>"666756422399b69fd8c6e1299f13e89ccc35be40", "original_transaction_id"=>"1000000075850991", "bvrs"=>"1.1.2", "transaction_id"=>"1000000075850991", "quantity"=>"1", "unique_vendor_identifier"=>"6DABB2F3-4E83-4D4A-85F9-BCBF9FA47122", "item_id"=>"655913963", "product_id"=>"cn.com.nbd.TouzibaoTTYJ.1_month", "purchase_date"=>"2013-05-31 07:57:08 Etc/GMT", "original_purchase_date"=>"2013-05-31 07:57:08 Etc/GMT", "purchase_date_pst"=>"2013-05-31 00:57:08 America/Los_Angeles", "bid"=>"cn.com.nbd.TouZiBao", "original_purchase_date_ms"=>"1369987028668"}, "status"=>0}
+status : 0
+============== payment id: 1287 status :成功 ===================
+===========verify payment id: 1288====================
+user_id / last_trade_num :  / 14ah9m
+plan_type : 0
+created_at : 2013-05-31 15:58:33
+payment_at : 2013-05-31 15:58:33
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-05-31 00:58:32 America/Los_Angeles", "purchase_date_ms"=>"1369987112600", "unique_identifier"=>"666756422399b69fd8c6e1299f13e89ccc35be40", "original_transaction_id"=>"1000000075851521", "bvrs"=>"1.1.2", "transaction_id"=>"1000000075851521", "quantity"=>"1", "unique_vendor_identifier"=>"6DABB2F3-4E83-4D4A-85F9-BCBF9FA47122", "item_id"=>"655913963", "product_id"=>"cn.com.nbd.TouzibaoTTYJ.1_month", "purchase_date"=>"2013-05-31 07:58:32 Etc/GMT", "original_purchase_date"=>"2013-05-31 07:58:32 Etc/GMT", "purchase_date_pst"=>"2013-05-31 00:58:32 America/Los_Angeles", "bid"=>"cn.com.nbd.TouZiBao", "original_purchase_date_ms"=>"1369987112600"}, "status"=>0}
+status : 0
+============== payment id: 1288 status :成功 ===================
+===========verify payment id: 1289====================
+user_id / last_trade_num :  / dnyn21
+plan_type : 0
+created_at : 2013-05-31 16:00:14
+payment_at : 2013-05-31 16:00:14
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-05-31 01:00:13 America/Los_Angeles", "purchase_date_ms"=>"1369987213361", "unique_identifier"=>"666756422399b69fd8c6e1299f13e89ccc35be40", "original_transaction_id"=>"1000000075851792", "bvrs"=>"1.1.2", "transaction_id"=>"1000000075851792", "quantity"=>"1", "unique_vendor_identifier"=>"6DABB2F3-4E83-4D4A-85F9-BCBF9FA47122", "item_id"=>"655913963", "product_id"=>"cn.com.nbd.TouzibaoTTYJ.1_month", "purchase_date"=>"2013-05-31 08:00:13 Etc/GMT", "original_purchase_date"=>"2013-05-31 08:00:13 Etc/GMT", "purchase_date_pst"=>"2013-05-31 01:00:13 America/Los_Angeles", "bid"=>"cn.com.nbd.TouZiBao", "original_purchase_date_ms"=>"1369987213361"}, "status"=>0}
+status : 0
+============== payment id: 1289 status :成功 ===================
+===========verify payment id: 1290====================
+user_id / last_trade_num : poiuylkjh / wg8mwq
+plan_type : 1
+created_at : 2013-05-31 16:42:12
+payment_at : 2013-05-31 16:42:12
+appstore_response : {"status"=>21002}
+status : 21002
+============== payment id: 1290 status :失败 ===================
+===========verify payment id: 1291====================
+user_id / last_trade_num : poiuylkjh / sv1bfq
+plan_type : 1
+created_at : 2013-05-31 16:42:57
+payment_at : 2013-05-31 16:42:57
+appstore_response : {"status"=>21002}
+status : 21002
+============== payment id: 1291 status :失败 ===================
+===========verify payment id: 1294====================
+user_id / last_trade_num : poiuylkjh / g4c1dm
+plan_type : 1
+created_at : 2013-05-31 16:45:52
+payment_at : 2013-05-31 16:45:52
+appstore_response : {"status"=>21002}
+status : 21002
+============== payment id: 1294 status :失败 ===================
+===========verify payment id: 1295====================
+user_id / last_trade_num : qwertgfdsa / ocxiu2
+plan_type : 0
+created_at : 2013-05-31 17:14:41
+payment_at : 2013-05-31 17:14:41
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-05-31 02:14:39 America/Los_Angeles", "purchase_date_ms"=>"1369991679976", "unique_identifier"=>"666756422399b69fd8c6e1299f13e89ccc35be40", "original_transaction_id"=>"1000000075864370", "bvrs"=>"1.1.2", "transaction_id"=>"1000000075864370", "quantity"=>"1", "unique_vendor_identifier"=>"6DABB2F3-4E83-4D4A-85F9-BCBF9FA47122", "item_id"=>"655913963", "product_id"=>"cn.com.nbd.TouzibaoTTYJ.1_month", "purchase_date"=>"2013-05-31 09:14:39 Etc/GMT", "original_purchase_date"=>"2013-05-31 09:14:39 Etc/GMT", "purchase_date_pst"=>"2013-05-31 02:14:39 America/Los_Angeles", "bid"=>"cn.com.nbd.TouZiBao", "original_purchase_date_ms"=>"1369991679976"}, "status"=>0}
+status : 0
+============== payment id: 1295 status :成功 ===================
+===========verify payment id: 1297====================
+user_id / last_trade_num : 测试 / lj0ugk
+plan_type : 0
+created_at : 2013-06-03 10:36:20
+payment_at : 2013-06-03 10:36:20
+appstore_response : {"status"=>21007}
+status : 21007
+============== payment id: 1297 status :失败 ===================
+===========verify payment id: 1299====================
+user_id / last_trade_num : 测试 / lj0ugk
+plan_type : 2
+created_at : 2013-06-03 11:53:56
+payment_at : 2013-06-03 11:53:56
+appstore_response : {"status"=>21007}
+status : 21007
+============== payment id: 1299 status :失败 ===================
+===========verify payment id: 1292====================
+user_id / last_trade_num : poiuylkjh / g4c1dm
+plan_type : 1
+created_at : 2013-05-31 16:43:58
+payment_at : 2013-05-31 16:43:58
+appstore_response : {"status"=>21002}
+status : 21002
+============== payment id: 1292 status :失败 ===================
+===========verify payment id: 1277====================
+user_id / last_trade_num : 测试 / lj0ugk
+plan_type : 0
+created_at : 2013-05-31 11:54:35
+payment_at : 2013-05-31 11:54:35
+appstore_response : {"status"=>21007}
+status : 21007
+============== payment id: 1277 status :失败 ===================
+===========verify payment id: 1267====================
+user_id / last_trade_num :  / xwbb07
+plan_type : 3
+created_at : 2013-05-31 10:43:34
+payment_at : 2013-05-31 10:43:34
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1267 status :失败 ===================
+===========verify payment id: 1266====================
+user_id / last_trade_num :  / wpomcn
+plan_type : 1
+created_at : 2013-05-31 10:13:06
+payment_at : 2013-05-31 10:13:06
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1266 status :失败 ===================
+===========verify payment id: 1264====================
+user_id / last_trade_num :  / fvbz46
+plan_type : 1
+created_at : 2013-05-31 10:01:39
+payment_at : 2013-05-31 10:01:39
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1264 status :失败 ===================
+===========verify payment id: 107====================
+user_id / last_trade_num : yuping / 
+plan_type : 0
+created_at : 2012-11-16 15:00:34
+payment_at : 2012-11-16 15:00:34
+appstore_response : {"status"=>21007}
+status : 21007
+payment_status:3
+============== payment id: 107 status :失败 ===================
+===========verify payment id: 111====================
+user_id / last_trade_num : 测试 / lj0ugk
+plan_type : 0
+created_at : 2012-11-17 17:10:59
+payment_at : 2012-11-28 15:18:53
+appstore_response : {"status"=>21007}
+status : 21007
+payment_status:3
+============== payment id: 111 status :失败 ===================
+===========verify payment id: 208====================
+user_id / last_trade_num : jjbb / fl13wv
+plan_type : 2
+created_at : 2012-11-30 09:47:28
+payment_at : 2013-02-19 08:50:25
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-02-18 16:51:44 America/Los_Angeles", "unique_identifier"=>"864ae2b25268c77a05ff540bcc8e0d2f968d280f", "original_transaction_id"=>"540000003026833", "bvrs"=>"1.1.0", "app_item_id"=>"575805206", "transaction_id"=>"540000003026833", "quantity"=>"1", "unique_vendor_identifier"=>"54C51EB8-C09E-44F6-87D4-DA31F9100974", "product_id"=>"cn.com.nbd.Touzibao.6_months", "item_id"=>"585152240", "version_external_identifier"=>"13412693", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1361235104487", "purchase_date"=>"2013-02-19 00:51:44 Etc/GMT", "purchase_date_pst"=>"2013-02-18 16:51:44 America/Los_Angeles", "original_purchase_date"=>"2013-02-19 00:51:44 Etc/GMT", "original_purchase_date_ms"=>"1361235104487"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 208 status :成功 ===================
+===========verify payment id: 209====================
+user_id / last_trade_num : allen / noz300
+plan_type : 0
+created_at : 2012-11-30 15:33:05
+payment_at : 2013-01-10 16:26:26
+appstore_response : {"status"=>21007}
+status : 21007
+payment_status:3
+============== payment id: 209 status :失败 ===================
+===========verify payment id: 210====================
+user_id / last_trade_num :  / h095lc
+plan_type : 0
+created_at : 2012-11-30 15:40:04
+payment_at : 2012-11-30 15:40:04
+appstore_response : {"status"=>21007}
+status : 21007
+payment_status:3
+============== payment id: 210 status :失败 ===================
+===========verify payment id: 235====================
+user_id / last_trade_num : 测试 / lj0ugk
+plan_type : 2
+created_at : 2012-12-06 16:58:02
+payment_at : 2012-12-06 16:59:19
+appstore_response : {"status"=>21007}
+status : 21007
+payment_status:3
+============== payment id: 235 status :失败 ===================
+===========verify payment id: 236====================
+user_id / last_trade_num :  / lj0ugk
+plan_type : 0
+created_at : 2012-12-06 17:01:21
+payment_at : 2012-12-06 17:01:21
+appstore_response : {"status"=>21007}
+status : 21007
+payment_status:3
+============== payment id: 236 status :失败 ===================
+===========verify payment id: 290====================
+user_id / last_trade_num :  / ytdogo
+plan_type : 0
+created_at : 2012-12-13 07:17:24
+payment_at : 2012-12-13 07:17:24
+appstore_response : {"status"=>21007}
+status : 21007
+payment_status:3
+============== payment id: 290 status :失败 ===================
+===========verify payment id: 340====================
+user_id / last_trade_num : yzxzs / nr2pc9
+plan_type : 0
+created_at : 2012-12-20 07:55:39
+payment_at : 2013-02-26 07:45:42
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-02-25 15:47:03 America/Los_Angeles", "unique_identifier"=>"00e0b34e7e8128bbd0e43468d11110b1b8948fa0", "original_transaction_id"=>"300000014121556", "bvrs"=>"1.1.0", "app_item_id"=>"575805206", "transaction_id"=>"300000014121556", "quantity"=>"1", "unique_vendor_identifier"=>"9CCCB72D-C205-4B15-8261-5574D48EC902", "product_id"=>"cn.com.nbd.Touzibao.1_month", "item_id"=>"585150340", "version_external_identifier"=>"13412693", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1361836023515", "purchase_date"=>"2013-02-25 23:47:03 Etc/GMT", "purchase_date_pst"=>"2013-02-25 15:47:03 America/Los_Angeles", "original_purchase_date"=>"2013-02-25 23:47:03 Etc/GMT", "original_purchase_date_ms"=>"1361836023515"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 340 status :成功 ===================
+===========verify payment id: 350====================
+user_id / last_trade_num : gingko220 / ymrywm
+plan_type : 3
+created_at : 2012-12-21 15:20:50
+payment_at : 2012-12-21 15:23:19
+appstore_response : {"status"=>21002, "exception"=>"java.lang.IllegalStateException"}
+status : 21002
+payment_status:3
+============== payment id: 350 status :失败 ===================
+===========verify payment id: 427====================
+user_id / last_trade_num : 幸运儿 / 1v16c4
+plan_type : 3
+created_at : 2013-01-02 17:45:48
+payment_at : 2013-01-02 17:45:48
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-01-02 01:46:52 America/Los_Angeles", "unique_identifier"=>"4ceade9d5b5745b06b673faf3450147d23e22228", "original_transaction_id"=>"230000024105010", "bvrs"=>"1.0", "app_item_id"=>"575805206", "transaction_id"=>"230000024105010", "quantity"=>"1", "product_id"=>"cn.com.nbd.Touzibao.1_year", "item_id"=>"585152490", "version_external_identifier"=>"11840906", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1357120012188", "purchase_date"=>"2013-01-02 09:46:52 Etc/GMT", "purchase_date_pst"=>"2013-01-02 01:46:52 America/Los_Angeles", "original_purchase_date"=>"2013-01-02 09:46:52 Etc/GMT", "original_purchase_date_ms"=>"1357120012188"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 427 status :成功 ===================
+===========verify payment id: 440====================
+user_id / last_trade_num :  / rzt5fz
+plan_type : 0
+created_at : 2013-01-04 17:06:34
+payment_at : 2013-01-04 17:06:34
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-01-04 01:07:42 America/Los_Angeles", "unique_identifier"=>"a5d5b9b55478d4ae9657f9ff0a8ab60755524146", "original_transaction_id"=>"510000003094054", "bvrs"=>"1.0", "app_item_id"=>"575805206", "transaction_id"=>"510000003094054", "quantity"=>"1", "unique_vendor_identifier"=>"132230B3-DBFE-4173-A543-CB34F0587A93", "product_id"=>"cn.com.nbd.Touzibao.1_month", "item_id"=>"585150340", "version_external_identifier"=>"11840906", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1357290462511", "purchase_date"=>"2013-01-04 09:07:42 Etc/GMT", "purchase_date_pst"=>"2013-01-04 01:07:42 America/Los_Angeles", "original_purchase_date"=>"2013-01-04 09:07:42 Etc/GMT", "original_purchase_date_ms"=>"1357290462511"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 440 status :成功 ===================
+===========verify payment id: 445====================
+user_id / last_trade_num : 海凌 / r9vj65
+plan_type : 0
+created_at : 2013-01-04 22:03:43
+payment_at : 2013-01-04 22:03:43
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-01-03 16:43:41 America/Los_Angeles", "unique_identifier"=>"6ad764146f983f44f621ecb4c802efcf2e3fa2c9", "original_transaction_id"=>"700000002338457", "bvrs"=>"1.0", "app_item_id"=>"575805206", "transaction_id"=>"700000002338457", "quantity"=>"1", "unique_vendor_identifier"=>"D03C0010-A0BB-484E-AF6D-2E1EC74E8885", "product_id"=>"cn.com.nbd.Touzibao.1_month", "item_id"=>"585150340", "version_external_identifier"=>"11840906", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1357260221896", "purchase_date"=>"2013-01-04 00:43:41 Etc/GMT", "purchase_date_pst"=>"2013-01-03 16:43:41 America/Los_Angeles", "original_purchase_date"=>"2013-01-04 00:43:41 Etc/GMT", "original_purchase_date_ms"=>"1357260221896"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 445 status :成功 ===================
+===========verify payment id: 458====================
+user_id / last_trade_num : 不语杀手 / 61wkdc
+plan_type : 3
+created_at : 2013-01-06 23:31:15
+payment_at : 2013-01-06 23:31:15
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-01-06 07:27:48 America/Los_Angeles", "unique_identifier"=>"4ceade9d5b5745b06b673faf3450147d23e22228", "original_transaction_id"=>"230000024364378", "bvrs"=>"1.0", "app_item_id"=>"575805206", "transaction_id"=>"230000024364378", "quantity"=>"1", "product_id"=>"cn.com.nbd.Touzibao.1_year", "item_id"=>"585152490", "version_external_identifier"=>"11840906", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1357486068547", "purchase_date"=>"2013-01-06 15:27:48 Etc/GMT", "purchase_date_pst"=>"2013-01-06 07:27:48 America/Los_Angeles", "original_purchase_date"=>"2013-01-06 15:27:48 Etc/GMT", "original_purchase_date_ms"=>"1357486068547"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 458 status :成功 ===================
+===========verify payment id: 461====================
+user_id / last_trade_num : 睡虎 / ahg4sv
+plan_type : 0
+created_at : 2013-01-07 12:18:40
+payment_at : 2013-02-18 20:54:43
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-02-18 04:55:51 America/Los_Angeles", "unique_identifier"=>"849714ad1deecc72bf9f1759c7bf5dd9de4e5162", "original_transaction_id"=>"260000028288183", "bvrs"=>"1.0", "app_item_id"=>"575805206", "transaction_id"=>"260000028288183", "quantity"=>"1", "product_id"=>"cn.com.nbd.Touzibao.1_month", "item_id"=>"585150340", "version_external_identifier"=>"11840906", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1361192151785", "purchase_date"=>"2013-02-18 12:55:51 Etc/GMT", "purchase_date_pst"=>"2013-02-18 04:55:51 America/Los_Angeles", "original_purchase_date"=>"2013-02-18 12:55:51 Etc/GMT", "original_purchase_date_ms"=>"1361192151785"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 461 status :成功 ===================
+===========verify payment id: 463====================
+user_id / last_trade_num :  / 
+plan_type : 1
+created_at : 2013-01-07 17:14:21
+payment_at : 2013-01-07 17:14:21
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-01-07 01:15:29 America/Los_Angeles", "unique_identifier"=>"2a90a49d4c6dbda93fd3ea6f3a785444cdd1e8f8", "original_transaction_id"=>"100000034832150", "bvrs"=>"1.0", "app_item_id"=>"575805206", "transaction_id"=>"100000034832150", "quantity"=>"1", "unique_vendor_identifier"=>"7FCF4BF1-264D-4BB6-A411-06AC55CFFF3C", "product_id"=>"cn.com.nbd.Touzibao.3_months", "item_id"=>"585151483", "version_external_identifier"=>"11840906", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1357550129378", "purchase_date"=>"2013-01-07 09:15:29 Etc/GMT", "purchase_date_pst"=>"2013-01-07 01:15:29 America/Los_Angeles", "original_purchase_date"=>"2013-01-07 09:15:29 Etc/GMT", "original_purchase_date_ms"=>"1357550129378"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 463 status :成功 ===================
+===========verify payment id: 464====================
+user_id / last_trade_num : 商海浪子 / urdwh4
+plan_type : 0
+created_at : 2013-01-07 19:04:47
+payment_at : 2013-02-19 08:56:55
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-02-18 16:58:14 America/Los_Angeles", "unique_identifier"=>"2167685b61777fb26eb17478070059b22e29e162", "original_transaction_id"=>"400000026295890", "bvrs"=>"1.1.0", "app_item_id"=>"575805206", "transaction_id"=>"400000026295890", "quantity"=>"1", "unique_vendor_identifier"=>"1D41C310-A042-456B-B6C0-5D3CC24C8786", "product_id"=>"cn.com.nbd.Touzibao.1_month", "item_id"=>"585150340", "version_external_identifier"=>"13412693", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1361235494464", "purchase_date"=>"2013-02-19 00:58:14 Etc/GMT", "purchase_date_pst"=>"2013-02-18 16:58:14 America/Los_Angeles", "original_purchase_date"=>"2013-02-19 00:58:14 Etc/GMT", "original_purchase_date_ms"=>"1361235494464"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 464 status :成功 ===================
+===========verify payment id: 467====================
+user_id / last_trade_num : hatasun / 0v9abt
+plan_type : 1
+created_at : 2013-01-07 22:06:34
+payment_at : 2013-01-07 22:06:34
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-01-03 17:19:18 America/Los_Angeles", "unique_identifier"=>"82074527e826fbb2bf5be83944436c350ef072df", "original_transaction_id"=>"210000040979160", "bvrs"=>"1.0", "app_item_id"=>"575805206", "transaction_id"=>"210000040979160", "quantity"=>"1", "unique_vendor_identifier"=>"C45BB5CB-3B94-49F3-B7B7-529DB285A7C3", "product_id"=>"cn.com.nbd.Touzibao.3_months", "item_id"=>"585151483", "version_external_identifier"=>"11840906", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1357262358492", "purchase_date"=>"2013-01-04 01:19:18 Etc/GMT", "purchase_date_pst"=>"2013-01-03 17:19:18 America/Los_Angeles", "original_purchase_date"=>"2013-01-04 01:19:18 Etc/GMT", "original_purchase_date_ms"=>"1357262358492"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 467 status :成功 ===================
+===========verify payment id: 478====================
+user_id / last_trade_num : JAMM / 2yzyhb
+plan_type : 0
+created_at : 2013-01-08 21:55:53
+payment_at : 2013-01-08 21:55:53
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-01-08 05:50:32 America/Los_Angeles", "unique_identifier"=>"710bcad1d470b99bbb6c84e72fe01e3d6b0a8846", "original_transaction_id"=>"410000022054208", "bvrs"=>"1.0", "app_item_id"=>"575805206", "transaction_id"=>"410000022054208", "quantity"=>"1", "unique_vendor_identifier"=>"EBAA0437-F922-4774-BA02-04893F9613AC", "product_id"=>"cn.com.nbd.Touzibao.1_month", "item_id"=>"585150340", "version_external_identifier"=>"11840906", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1357653032389", "purchase_date"=>"2013-01-08 13:50:32 Etc/GMT", "purchase_date_pst"=>"2013-01-08 05:50:32 America/Los_Angeles", "original_purchase_date"=>"2013-01-08 13:50:32 Etc/GMT", "original_purchase_date_ms"=>"1357653032389"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 478 status :成功 ===================
+===========verify payment id: 495====================
+user_id / last_trade_num :  / 1ozjm2
+plan_type : 1
+created_at : 2013-01-10 09:44:10
+payment_at : 2013-01-10 09:44:10
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-01-09 17:45:00 America/Los_Angeles", "unique_identifier"=>"c6d65c19932777bbb2e009f430f3969564d5ca0d", "original_transaction_id"=>"60000037992635", "bvrs"=>"1.0", "app_item_id"=>"575805206", "transaction_id"=>"60000037992635", "quantity"=>"1", "product_id"=>"cn.com.nbd.Touzibao.3_months", "item_id"=>"585151483", "version_external_identifier"=>"11840906", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1357782300000", "purchase_date"=>"2013-01-10 01:45:00 Etc/GMT", "purchase_date_pst"=>"2013-01-09 17:45:00 America/Los_Angeles", "original_purchase_date"=>"2013-01-10 01:45:00 Etc/GMT", "original_purchase_date_ms"=>"1357782300000"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 495 status :成功 ===================
+===========verify payment id: 496====================
+user_id / last_trade_num :  / oja7ue
+plan_type : 1
+created_at : 2013-01-10 09:46:54
+payment_at : 2013-01-10 09:46:54
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-01-09 17:45:00 America/Los_Angeles", "unique_identifier"=>"c6d65c19932777bbb2e009f430f3969564d5ca0d", "original_transaction_id"=>"60000037992635", "bvrs"=>"1.0", "app_item_id"=>"575805206", "transaction_id"=>"60000037992635", "quantity"=>"1", "product_id"=>"cn.com.nbd.Touzibao.3_months", "item_id"=>"585151483", "version_external_identifier"=>"11840906", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1357782300000", "purchase_date"=>"2013-01-10 01:45:00 Etc/GMT", "purchase_date_pst"=>"2013-01-09 17:45:00 America/Los_Angeles", "original_purchase_date"=>"2013-01-10 01:45:00 Etc/GMT", "original_purchase_date_ms"=>"1357782300000"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 496 status :成功 ===================
+===========verify payment id: 497====================
+user_id / last_trade_num :  / lj0ugk
+plan_type : 0
+created_at : 2013-01-10 10:10:12
+payment_at : 2013-01-10 10:10:12
+appstore_response : {"status"=>21007}
+status : 21007
+payment_status:3
+============== payment id: 497 status :失败 ===================
+===========verify payment id: 503====================
+user_id / last_trade_num :  / dd6cw4
+plan_type : 2
+created_at : 2013-01-10 16:27:42
+payment_at : 2013-01-10 16:27:42
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-01-10 00:28:51 America/Los_Angeles", "unique_identifier"=>"970c3deb4917d6b14a4838c4a6be58fed58e8ebf", "original_transaction_id"=>"230000024563904", "bvrs"=>"1.0", "app_item_id"=>"575805206", "transaction_id"=>"230000024563904", "quantity"=>"1", "product_id"=>"cn.com.nbd.Touzibao.6_months", "item_id"=>"585152240", "version_external_identifier"=>"11840906", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1357806531674", "purchase_date"=>"2013-01-10 08:28:51 Etc/GMT", "purchase_date_pst"=>"2013-01-10 00:28:51 America/Los_Angeles", "original_purchase_date"=>"2013-01-10 08:28:51 Etc/GMT", "original_purchase_date_ms"=>"1357806531674"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 503 status :成功 ===================
+===========verify payment id: 504====================
+user_id / last_trade_num :  / dnsgyu
+plan_type : 0
+created_at : 2013-01-10 16:29:52
+payment_at : 2013-01-10 16:29:52
+appstore_response : {"status"=>21007}
+status : 21007
+payment_status:3
+============== payment id: 504 status :失败 ===================
+===========verify payment id: 515====================
+user_id / last_trade_num : test / gg4fum
+plan_type : 0
+created_at : 2013-01-11 15:05:41
+payment_at : 2013-01-11 15:05:41
+appstore_response : {"status"=>21007}
+status : 21007
+payment_status:3
+============== payment id: 515 status :失败 ===================
+===========verify payment id: 517====================
+user_id / last_trade_num : jsljsl / dz10cn
+plan_type : 1
+created_at : 2013-01-11 17:04:52
+payment_at : 2013-02-16 02:33:49
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-02-15 10:35:06 America/Los_Angeles", "unique_identifier"=>"46a0ad99c6a575b5e0bf64eafc4631397a1f2ef1", "original_transaction_id"=>"340000004526488", "bvrs"=>"1.1.0", "app_item_id"=>"575805206", "transaction_id"=>"340000004526488", "quantity"=>"1", "unique_vendor_identifier"=>"0EB2E7BA-FB9E-4B24-BD87-69A7C554B72A", "product_id"=>"cn.com.nbd.Touzibao.3_months", "item_id"=>"585151483", "version_external_identifier"=>"13412693", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1360953306486", "purchase_date"=>"2013-02-15 18:35:06 Etc/GMT", "purchase_date_pst"=>"2013-02-15 10:35:06 America/Los_Angeles", "original_purchase_date"=>"2013-02-15 18:35:06 Etc/GMT", "original_purchase_date_ms"=>"1360953306486"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 517 status :成功 ===================
+===========verify payment id: 532====================
+user_id / last_trade_num :  / u97r25
+plan_type : 3
+created_at : 2013-01-12 16:43:43
+payment_at : 2013-01-12 16:43:43
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-01-12 00:44:53 America/Los_Angeles", "unique_identifier"=>"d19c44d217608ade19e28f978f2d0e3b9fdfdaa4", "original_transaction_id"=>"470000013901541", "bvrs"=>"1.0", "app_item_id"=>"575805206", "transaction_id"=>"470000013901541", "quantity"=>"1", "product_id"=>"cn.com.nbd.Touzibao.1_year", "item_id"=>"585152490", "version_external_identifier"=>"11840906", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1357980293432", "purchase_date"=>"2013-01-12 08:44:53 Etc/GMT", "purchase_date_pst"=>"2013-01-12 00:44:53 America/Los_Angeles", "original_purchase_date"=>"2013-01-12 08:44:53 Etc/GMT", "original_purchase_date_ms"=>"1357980293432"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 532 status :成功 ===================
+===========verify payment id: 543====================
+user_id / last_trade_num : slowmouth / 7s3dkg
+plan_type : 3
+created_at : 2013-01-13 11:48:01
+payment_at : 2013-01-20 10:49:51
+appstore_response : {"status"=>21002, "exception"=>"java.lang.NumberFormatException"}
+status : 21002
+payment_status:3
+============== payment id: 543 status :失败 ===================
+===========verify payment id: 557====================
+user_id / last_trade_num : xjing106 / kgf6zc
+plan_type : 1
+created_at : 2013-01-14 11:40:25
+payment_at : 2013-02-17 11:26:44
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-02-16 19:27:55 America/Los_Angeles", "unique_identifier"=>"13884528fae43b17561af68577081be904e38963", "original_transaction_id"=>"180000046724712", "bvrs"=>"1.1.0", "app_item_id"=>"575805206", "transaction_id"=>"180000046724712", "quantity"=>"1", "product_id"=>"cn.com.nbd.Touzibao.3_months", "item_id"=>"585151483", "version_external_identifier"=>"13412693", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1361071675240", "purchase_date"=>"2013-02-17 03:27:55 Etc/GMT", "purchase_date_pst"=>"2013-02-16 19:27:55 America/Los_Angeles", "original_purchase_date"=>"2013-02-17 03:27:55 Etc/GMT", "original_purchase_date_ms"=>"1361071675240"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 557 status :成功 ===================
+===========verify payment id: 560====================
+user_id / last_trade_num :  / 6x0rge
+plan_type : 0
+created_at : 2013-01-14 12:32:19
+payment_at : 2013-01-14 12:32:19
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-01-13 20:33:29 America/Los_Angeles", "unique_identifier"=>"b3c05a4896de1f967f26f7218281b430ad2a3c32", "original_transaction_id"=>"430000021353674", "bvrs"=>"1.0", "app_item_id"=>"575805206", "transaction_id"=>"430000021353674", "quantity"=>"1", "product_id"=>"cn.com.nbd.Touzibao.1_month", "item_id"=>"585150340", "version_external_identifier"=>"11840906", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1358138009487", "purchase_date"=>"2013-01-14 04:33:29 Etc/GMT", "purchase_date_pst"=>"2013-01-13 20:33:29 America/Los_Angeles", "original_purchase_date"=>"2013-01-14 04:33:29 Etc/GMT", "original_purchase_date_ms"=>"1358138009487"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 560 status :成功 ===================
+===========verify payment id: 566====================
+user_id / last_trade_num : zw0917 / 6ubtz4
+plan_type : 3
+created_at : 2013-01-14 16:16:49
+payment_at : 2013-01-14 16:16:49
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-01-14 00:17:56 America/Los_Angeles", "unique_identifier"=>"a647abbe461d34d561c2a716db433309ec32fb5c", "original_transaction_id"=>"340000003364495", "bvrs"=>"1.0", "app_item_id"=>"575805206", "transaction_id"=>"340000003364495", "quantity"=>"1", "unique_vendor_identifier"=>"7B689CAF-3002-47C1-A771-D251C96F29A3", "product_id"=>"cn.com.nbd.Touzibao.1_year", "item_id"=>"585152490", "version_external_identifier"=>"11840906", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1358151476459", "purchase_date"=>"2013-01-14 08:17:56 Etc/GMT", "purchase_date_pst"=>"2013-01-14 00:17:56 America/Los_Angeles", "original_purchase_date"=>"2013-01-14 08:17:56 Etc/GMT", "original_purchase_date_ms"=>"1358151476459"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 566 status :成功 ===================
+===========verify payment id: 580====================
+user_id / last_trade_num :  / hag9q7
+plan_type : 3
+created_at : 2013-01-15 12:02:10
+payment_at : 2013-01-15 12:02:10
+appstore_response : {"status"=>21002, "exception"=>"java.lang.NumberFormatException"}
+status : 21002
+payment_status:3
+============== payment id: 580 status :失败 ===================
+===========verify payment id: 594====================
+user_id / last_trade_num : 捍卫 / 2rd0g6
+plan_type : 3
+created_at : 2013-01-15 21:18:01
+payment_at : 2013-01-15 21:18:01
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-01-15 05:19:12 America/Los_Angeles", "unique_identifier"=>"7a9db6861263d0ab40984f66cd5fe8c37cfd1fc7", "original_transaction_id"=>"410000022442651", "bvrs"=>"1.0", "app_item_id"=>"575805206", "transaction_id"=>"410000022442651", "quantity"=>"1", "unique_vendor_identifier"=>"179CFB84-AD50-44AF-B343-BF11531B6C9D", "product_id"=>"cn.com.nbd.Touzibao.1_year", "item_id"=>"585152490", "version_external_identifier"=>"11840906", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1358255952731", "purchase_date"=>"2013-01-15 13:19:12 Etc/GMT", "purchase_date_pst"=>"2013-01-15 05:19:12 America/Los_Angeles", "original_purchase_date"=>"2013-01-15 13:19:12 Etc/GMT", "original_purchase_date_ms"=>"1358255952731"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 594 status :成功 ===================
+===========verify payment id: 598====================
+user_id / last_trade_num :  / qlqjsx
+plan_type : 3
+created_at : 2013-01-16 07:09:05
+payment_at : 2013-01-16 07:09:05
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-01-15 15:10:15 America/Los_Angeles", "unique_identifier"=>"15fc49f0ea9fe5ef60d49c03eb99faae75cbcbb9", "original_transaction_id"=>"590000003277229", "bvrs"=>"1.0", "app_item_id"=>"575805206", "transaction_id"=>"590000003277229", "quantity"=>"1", "unique_vendor_identifier"=>"FE90D964-D6C4-449E-AE0C-857F04306F05", "product_id"=>"cn.com.nbd.Touzibao.1_year", "item_id"=>"585152490", "version_external_identifier"=>"11840906", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1358291415279", "purchase_date"=>"2013-01-15 23:10:15 Etc/GMT", "purchase_date_pst"=>"2013-01-15 15:10:15 America/Los_Angeles", "original_purchase_date"=>"2013-01-15 23:10:15 Etc/GMT", "original_purchase_date_ms"=>"1358291415279"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 598 status :成功 ===================
+===========verify payment id: 604====================
+user_id / last_trade_num : 尖嘴t / 6gd80r
+plan_type : 3
+created_at : 2013-01-16 10:01:35
+payment_at : 2013-01-17 17:28:29
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-01-17 01:29:25 America/Los_Angeles", "unique_identifier"=>"1bd344446605afcc4bf4e561da5b930367d3fb30", "original_transaction_id"=>"370000001813177", "bvrs"=>"1.0", "app_item_id"=>"575805206", "transaction_id"=>"370000001813177", "quantity"=>"1", "product_id"=>"cn.com.nbd.Touzibao.1_year", "item_id"=>"585152490", "version_external_identifier"=>"11840906", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1358414965000", "purchase_date"=>"2013-01-17 09:29:25 Etc/GMT", "purchase_date_pst"=>"2013-01-17 01:29:25 America/Los_Angeles", "original_purchase_date"=>"2013-01-17 09:29:25 Etc/GMT", "original_purchase_date_ms"=>"1358414965000"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 604 status :成功 ===================
+===========verify payment id: 630====================
+user_id / last_trade_num : 松竹 / 87unc9
+plan_type : 2
+created_at : 2013-01-17 11:44:04
+payment_at : 2013-01-17 11:44:04
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-01-16 19:45:09 America/Los_Angeles", "unique_identifier"=>"9cadd85d6adaf7d28f19b5073058294122af98d6", "original_transaction_id"=>"420000022043374", "bvrs"=>"1.0", "app_item_id"=>"575805206", "transaction_id"=>"420000022043374", "quantity"=>"1", "product_id"=>"cn.com.nbd.Touzibao.6_months", "item_id"=>"585152240", "version_external_identifier"=>"11840906", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1358394309997", "purchase_date"=>"2013-01-17 03:45:09 Etc/GMT", "purchase_date_pst"=>"2013-01-16 19:45:09 America/Los_Angeles", "original_purchase_date"=>"2013-01-17 03:45:09 Etc/GMT", "original_purchase_date_ms"=>"1358394309997"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 630 status :成功 ===================
+===========verify payment id: 645====================
+user_id / last_trade_num :  / adqqa7
+plan_type : 3
+created_at : 2013-01-18 07:40:02
+payment_at : 2013-01-18 07:40:02
+appstore_response : {"status"=>21007}
+status : 21007
+payment_status:3
+============== payment id: 645 status :失败 ===================
+===========verify payment id: 656====================
+user_id / last_trade_num :  / 0fcklt
+plan_type : 0
+created_at : 2013-01-18 20:24:35
+payment_at : 2013-01-18 20:24:35
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-01-18 04:25:47 America/Los_Angeles", "unique_identifier"=>"666b94d0f0b385f68bd1729d2b6f3ea38d9997bf", "original_transaction_id"=>"240000028160447", "bvrs"=>"1.1.0", "app_item_id"=>"575805206", "transaction_id"=>"240000028160447", "quantity"=>"1", "unique_vendor_identifier"=>"8A924395-BA08-4DAA-AD1E-F2F3DFA4D0D5", "product_id"=>"cn.com.nbd.Touzibao.1_month", "item_id"=>"585150340", "version_external_identifier"=>"13412693", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1358511947044", "purchase_date"=>"2013-01-18 12:25:47 Etc/GMT", "purchase_date_pst"=>"2013-01-18 04:25:47 America/Los_Angeles", "original_purchase_date"=>"2013-01-18 12:25:47 Etc/GMT", "original_purchase_date_ms"=>"1358511947044"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 656 status :成功 ===================
+===========verify payment id: 658====================
+user_id / last_trade_num : 优乐车品 / 9cykwr
+plan_type : 1
+created_at : 2013-01-18 22:04:57
+payment_at : 2013-02-18 16:23:41
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-02-18 00:24:57 America/Los_Angeles", "unique_identifier"=>"bb5d72bccae4b6dfce2d154048494d9735abb083", "original_transaction_id"=>"490000016143498", "bvrs"=>"1.1.0", "app_item_id"=>"575805206", "transaction_id"=>"490000016143498", "quantity"=>"1", "unique_vendor_identifier"=>"A94C1AB8-74BB-420D-9EAE-62CE975E220A", "product_id"=>"cn.com.nbd.Touzibao.3_months", "item_id"=>"585151483", "version_external_identifier"=>"13412693", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1361175897201", "purchase_date"=>"2013-02-18 08:24:57 Etc/GMT", "purchase_date_pst"=>"2013-02-18 00:24:57 America/Los_Angeles", "original_purchase_date"=>"2013-02-18 08:24:57 Etc/GMT", "original_purchase_date_ms"=>"1361175897201"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 658 status :成功 ===================
+===========verify payment id: 660====================
+user_id / last_trade_num : 600009 / 28weay
+plan_type : 1
+created_at : 2013-01-18 22:33:05
+payment_at : 2013-01-18 22:33:05
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 660 status :失败 ===================
+===========verify payment id: 663====================
+user_id / last_trade_num : 曹姐姐 / d1b1tp
+plan_type : 0
+created_at : 2013-01-19 13:55:36
+payment_at : 2013-02-21 08:01:24
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-02-20 16:02:41 America/Los_Angeles", "unique_identifier"=>"d9dd9022c8e56ef47b03f1bdcbe990aae9b30217", "original_transaction_id"=>"20000045824068", "bvrs"=>"1.0", "app_item_id"=>"575805206", "transaction_id"=>"20000045824068", "quantity"=>"1", "product_id"=>"cn.com.nbd.Touzibao.1_month", "item_id"=>"585150340", "version_external_identifier"=>"11840906", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1361404961932", "purchase_date"=>"2013-02-21 00:02:41 Etc/GMT", "purchase_date_pst"=>"2013-02-20 16:02:41 America/Los_Angeles", "original_purchase_date"=>"2013-02-21 00:02:41 Etc/GMT", "original_purchase_date_ms"=>"1361404961932"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 663 status :成功 ===================
+===========verify payment id: 676====================
+user_id / last_trade_num : 苦咖啡 / iji4ra
+plan_type : 2
+created_at : 2013-01-20 20:39:02
+payment_at : 2013-01-20 20:39:02
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-01-20 04:40:15 America/Los_Angeles", "unique_identifier"=>"b62db32df1a925c0557dfce785502bbd725662ec", "original_transaction_id"=>"600000003592112", "bvrs"=>"1.1.0", "app_item_id"=>"575805206", "transaction_id"=>"600000003592112", "quantity"=>"1", "unique_vendor_identifier"=>"7715147D-0AA5-4E22-B7CE-9DF175F560FE", "product_id"=>"cn.com.nbd.Touzibao.6_months", "item_id"=>"585152240", "version_external_identifier"=>"13412693", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1358685615101", "purchase_date"=>"2013-01-20 12:40:15 Etc/GMT", "purchase_date_pst"=>"2013-01-20 04:40:15 America/Los_Angeles", "original_purchase_date"=>"2013-01-20 12:40:15 Etc/GMT", "original_purchase_date_ms"=>"1358685615101"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 676 status :成功 ===================
+===========verify payment id: 680====================
+user_id / last_trade_num : AmChuse / l7o6px
+plan_type : 3
+created_at : 2013-01-21 05:51:45
+payment_at : 2013-01-21 05:51:45
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-01-20 13:52:56 America/Los_Angeles", "unique_identifier"=>"37cf3b669983bba83131d00dfc35cc5db18dd2a3", "original_transaction_id"=>"140000036843270", "bvrs"=>"1.1.0", "app_item_id"=>"575805206", "transaction_id"=>"140000036843270", "quantity"=>"1", "unique_vendor_identifier"=>"822B0DEF-2B86-4BBF-AA19-E09848A2B43E", "product_id"=>"cn.com.nbd.Touzibao.1_year", "item_id"=>"585152490", "version_external_identifier"=>"13412693", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1358718776520", "purchase_date"=>"2013-01-20 21:52:56 Etc/GMT", "purchase_date_pst"=>"2013-01-20 13:52:56 America/Los_Angeles", "original_purchase_date"=>"2013-01-20 21:52:56 Etc/GMT", "original_purchase_date_ms"=>"1358718776520"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 680 status :成功 ===================
+===========verify payment id: 685====================
+user_id / last_trade_num : 紫气东来 / egjzxf
+plan_type : 0
+created_at : 2013-01-21 11:27:56
+payment_at : 2013-01-21 11:27:56
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-01-20 19:29:08 America/Los_Angeles", "unique_identifier"=>"609979091e1818ce9f7ccc3de33fa4e6a82d054f", "original_transaction_id"=>"410000022781948", "bvrs"=>"1.1.0", "app_item_id"=>"575805206", "transaction_id"=>"410000022781948", "quantity"=>"1", "unique_vendor_identifier"=>"F55BA44B-D75D-4657-950B-50365CD16D4F", "product_id"=>"cn.com.nbd.Touzibao.1_month", "item_id"=>"585150340", "version_external_identifier"=>"13412693", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1358738948521", "purchase_date"=>"2013-01-21 03:29:08 Etc/GMT", "purchase_date_pst"=>"2013-01-20 19:29:08 America/Los_Angeles", "original_purchase_date"=>"2013-01-21 03:29:08 Etc/GMT", "original_purchase_date_ms"=>"1358738948521"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 685 status :成功 ===================
+===========verify payment id: 720====================
+user_id / last_trade_num :  / f99oo2
+plan_type : 3
+created_at : 2013-01-24 07:07:57
+payment_at : 2013-01-24 07:07:57
+appstore_response : {"status"=>21002, "exception"=>"java.lang.NumberFormatException"}
+status : 21002
+payment_status:3
+============== payment id: 720 status :失败 ===================
+===========verify payment id: 722====================
+user_id / last_trade_num :  / cqe9u8
+plan_type : 3
+created_at : 2013-01-24 09:04:03
+payment_at : 2013-01-24 09:04:03
+appstore_response : {"status"=>21002, "exception"=>"java.lang.NumberFormatException"}
+status : 21002
+payment_status:3
+============== payment id: 722 status :失败 ===================
+===========verify payment id: 730====================
+user_id / last_trade_num :  / kllqwv
+plan_type : 3
+created_at : 2013-01-24 23:45:14
+payment_at : 2013-01-24 23:45:14
+appstore_response : {"status"=>21002, "exception"=>"java.lang.NumberFormatException"}
+status : 21002
+payment_status:3
+============== payment id: 730 status :失败 ===================
+===========verify payment id: 738====================
+user_id / last_trade_num :  / zi9m69
+plan_type : 0
+created_at : 2013-01-25 15:52:03
+payment_at : 2013-01-25 15:52:03
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-01-24 23:53:14 America/Los_Angeles", "unique_identifier"=>"777835fc96b4a0a74b1fbfc15b61cd6ed795d107", "original_transaction_id"=>"320000018158662", "bvrs"=>"1.1.0", "app_item_id"=>"575805206", "transaction_id"=>"320000018158662", "quantity"=>"1", "unique_vendor_identifier"=>"E71D80CC-5FCC-4BC0-A914-B67F5B9F5164", "product_id"=>"cn.com.nbd.Touzibao.1_month", "item_id"=>"585150340", "version_external_identifier"=>"13412693", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1359100394976", "purchase_date"=>"2013-01-25 07:53:14 Etc/GMT", "purchase_date_pst"=>"2013-01-24 23:53:14 America/Los_Angeles", "original_purchase_date"=>"2013-01-25 07:53:14 Etc/GMT", "original_purchase_date_ms"=>"1359100394976"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 738 status :成功 ===================
+===========verify payment id: 745====================
+user_id / last_trade_num : lzx7811 / khli9i
+plan_type : 1
+created_at : 2013-01-28 07:40:58
+payment_at : 2013-01-28 07:40:58
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-01-27 15:42:12 America/Los_Angeles", "unique_identifier"=>"11b992c1664c5c7bb3b580432690e74f89571407", "original_transaction_id"=>"500000015375849", "bvrs"=>"1.1.0", "app_item_id"=>"575805206", "transaction_id"=>"500000015375849", "quantity"=>"1", "unique_vendor_identifier"=>"AF5F838E-9C1C-4FBD-8196-AEDB0EB74014", "product_id"=>"cn.com.nbd.Touzibao.3_months", "item_id"=>"585151483", "version_external_identifier"=>"13412693", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1359330132390", "purchase_date"=>"2013-01-27 23:42:12 Etc/GMT", "purchase_date_pst"=>"2013-01-27 15:42:12 America/Los_Angeles", "original_purchase_date"=>"2013-01-27 23:42:12 Etc/GMT", "original_purchase_date_ms"=>"1359330132390"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 745 status :成功 ===================
+===========verify payment id: 746====================
+user_id / last_trade_num : wy130 / f6i3lb
+plan_type : 3
+created_at : 2013-01-28 10:28:56
+payment_at : 2013-01-28 10:28:56
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-01-27 18:30:08 America/Los_Angeles", "unique_identifier"=>"37b492449362151464a3f8582636aa30c8e0685e", "original_transaction_id"=>"520000003945807", "bvrs"=>"1.1.0", "app_item_id"=>"575805206", "transaction_id"=>"520000003945807", "quantity"=>"1", "unique_vendor_identifier"=>"93D7B343-A238-4825-9F84-3CA445BF4000", "product_id"=>"cn.com.nbd.Touzibao.1_year", "item_id"=>"585152490", "version_external_identifier"=>"13412693", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1359340208746", "purchase_date"=>"2013-01-28 02:30:08 Etc/GMT", "purchase_date_pst"=>"2013-01-27 18:30:08 America/Los_Angeles", "original_purchase_date"=>"2013-01-28 02:30:08 Etc/GMT", "original_purchase_date_ms"=>"1359340208746"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 746 status :成功 ===================
+===========verify payment id: 760====================
+user_id / last_trade_num :  / ed70uy
+plan_type : 0
+created_at : 2013-01-30 18:41:45
+payment_at : 2013-01-30 18:41:45
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-01-30 02:43:00 America/Los_Angeles", "unique_identifier"=>"b96832f2a830b78310d02ef62ced7ef768d25f18", "original_transaction_id"=>"290000010688441", "bvrs"=>"1.1.0", "app_item_id"=>"575805206", "transaction_id"=>"290000010688441", "quantity"=>"1", "unique_vendor_identifier"=>"BFDEE130-A51E-469E-808F-0101B39F8090", "product_id"=>"cn.com.nbd.Touzibao.1_month", "item_id"=>"585150340", "version_external_identifier"=>"13412693", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1359542580132", "purchase_date"=>"2013-01-30 10:43:00 Etc/GMT", "purchase_date_pst"=>"2013-01-30 02:43:00 America/Los_Angeles", "original_purchase_date"=>"2013-01-30 10:43:00 Etc/GMT", "original_purchase_date_ms"=>"1359542580132"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 760 status :成功 ===================
+===========verify payment id: 774====================
+user_id / last_trade_num : aknife / mvs1fg
+plan_type : 3
+created_at : 2013-02-04 11:12:03
+payment_at : 2013-02-04 11:12:16
+appstore_response : {"status"=>21002, "exception"=>"java.lang.NumberFormatException"}
+status : 21002
+payment_status:3
+============== payment id: 774 status :失败 ===================
+===========verify payment id: 793====================
+user_id / last_trade_num : 大圣 / pcza6t
+plan_type : 2
+created_at : 2013-02-13 09:19:35
+payment_at : 2013-02-13 09:19:35
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-02-12 17:20:51 America/Los_Angeles", "unique_identifier"=>"cf0acc85d131e7ab551c604f6b55dd1d3971c71b", "original_transaction_id"=>"280000012989139", "bvrs"=>"1.1.0", "app_item_id"=>"575805206", "transaction_id"=>"280000012989139", "quantity"=>"1", "unique_vendor_identifier"=>"6580B66B-742A-454A-BCCD-6022730F40D7", "product_id"=>"cn.com.nbd.Touzibao.6_months", "item_id"=>"585152240", "version_external_identifier"=>"13412693", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1360718451134", "purchase_date"=>"2013-02-13 01:20:51 Etc/GMT", "purchase_date_pst"=>"2013-02-12 17:20:51 America/Los_Angeles", "original_purchase_date"=>"2013-02-13 01:20:51 Etc/GMT", "original_purchase_date_ms"=>"1360718451134"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 793 status :成功 ===================
+===========verify payment id: 808====================
+user_id / last_trade_num :  / iqk34c
+plan_type : 2
+created_at : 2013-02-18 16:27:10
+payment_at : 2013-02-18 16:27:10
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-02-18 00:28:23 America/Los_Angeles", "unique_identifier"=>"a87194486f64d50db80e6a11d31d68bc6c91f382", "original_transaction_id"=>"410000024491400", "bvrs"=>"1.1.0", "app_item_id"=>"575805206", "transaction_id"=>"410000024491400", "quantity"=>"1", "product_id"=>"cn.com.nbd.Touzibao.6_months", "item_id"=>"585152240", "version_external_identifier"=>"13412693", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1361176103386", "purchase_date"=>"2013-02-18 08:28:23 Etc/GMT", "purchase_date_pst"=>"2013-02-18 00:28:23 America/Los_Angeles", "original_purchase_date"=>"2013-02-18 08:28:23 Etc/GMT", "original_purchase_date_ms"=>"1361176103386"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 808 status :成功 ===================
+===========verify payment id: 820====================
+user_id / last_trade_num :  / of13rr
+plan_type : 1
+created_at : 2013-02-20 12:07:41
+payment_at : 2013-02-20 12:07:41
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-02-19 20:08:55 America/Los_Angeles", "unique_identifier"=>"0bba98f85499c4bb82c310ee506369d72f70de81", "original_transaction_id"=>"550000006898651", "bvrs"=>"1.1.0", "app_item_id"=>"575805206", "transaction_id"=>"550000006898651", "quantity"=>"1", "unique_vendor_identifier"=>"BAE20D8F-EB29-472B-945B-ADB0D5545903", "product_id"=>"cn.com.nbd.Touzibao.3_months", "item_id"=>"585151483", "version_external_identifier"=>"13412693", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1361333335061", "purchase_date"=>"2013-02-20 04:08:55 Etc/GMT", "purchase_date_pst"=>"2013-02-19 20:08:55 America/Los_Angeles", "original_purchase_date"=>"2013-02-20 04:08:55 Etc/GMT", "original_purchase_date_ms"=>"1361333335061"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 820 status :成功 ===================
+===========verify payment id: 825====================
+user_id / last_trade_num : 长红 / 93tu7u
+plan_type : 0
+created_at : 2013-02-20 19:29:26
+payment_at : 2013-02-20 19:29:26
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-01-13 17:55:43 America/Los_Angeles", "unique_identifier"=>"35332ba61128e759d926490a284ace65000e2a1e", "original_transaction_id"=>"430000021347133", "bvrs"=>"1.0", "app_item_id"=>"575805206", "transaction_id"=>"430000021347133", "quantity"=>"1", "unique_vendor_identifier"=>"E4ECFC60-8794-45EF-A9FB-3A3B6FB8CE24", "product_id"=>"cn.com.nbd.Touzibao.1_month", "item_id"=>"585150340", "version_external_identifier"=>"11840906", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1358128543000", "purchase_date"=>"2013-01-14 01:55:43 Etc/GMT", "purchase_date_pst"=>"2013-01-13 17:55:43 America/Los_Angeles", "original_purchase_date"=>"2013-01-14 01:55:43 Etc/GMT", "original_purchase_date_ms"=>"1358128543000"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 825 status :成功 ===================
+===========verify payment id: 826====================
+user_id / last_trade_num : sywgyq / tk2zdp
+plan_type : 1
+created_at : 2013-02-20 21:09:30
+payment_at : 2013-02-20 21:09:30
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-02-20 05:10:50 America/Los_Angeles", "unique_identifier"=>"1f62fd648769d0b98b4c4556bce94dbea72d0c60", "original_transaction_id"=>"320000020405697", "bvrs"=>"1.1.0", "app_item_id"=>"575805206", "transaction_id"=>"320000020405697", "quantity"=>"1", "unique_vendor_identifier"=>"3355E692-075D-4DDF-A171-616BBD968C1A", "product_id"=>"cn.com.nbd.Touzibao.3_months", "item_id"=>"585151483", "version_external_identifier"=>"13412693", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1361365850248", "purchase_date"=>"2013-02-20 13:10:50 Etc/GMT", "purchase_date_pst"=>"2013-02-20 05:10:50 America/Los_Angeles", "original_purchase_date"=>"2013-02-20 13:10:50 Etc/GMT", "original_purchase_date_ms"=>"1361365850248"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 826 status :成功 ===================
+===========verify payment id: 878====================
+user_id / last_trade_num : 天狼 / gjunl1
+plan_type : 2
+created_at : 2013-02-27 09:28:43
+payment_at : 2013-02-27 09:28:43
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-02-26 17:30:04 America/Los_Angeles", "unique_identifier"=>"9123bf63e606037f0e834a9fdc906491fa6be6a4", "original_transaction_id"=>"430000024234969", "bvrs"=>"1.1.0", "app_item_id"=>"575805206", "transaction_id"=>"430000024234969", "quantity"=>"1", "unique_vendor_identifier"=>"D0167F42-959F-4128-973A-F5D2B6CFA72E", "product_id"=>"cn.com.nbd.Touzibao.6_months", "item_id"=>"585152240", "version_external_identifier"=>"13412693", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1361928604153", "purchase_date"=>"2013-02-27 01:30:04 Etc/GMT", "purchase_date_pst"=>"2013-02-26 17:30:04 America/Los_Angeles", "original_purchase_date"=>"2013-02-27 01:30:04 Etc/GMT", "original_purchase_date_ms"=>"1361928604153"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 878 status :成功 ===================
+===========verify payment id: 891====================
+user_id / last_trade_num :  / sn80m9
+plan_type : 3
+created_at : 2013-02-28 01:02:19
+payment_at : 2013-02-28 01:02:19
+appstore_response : {"status"=>21002, "exception"=>"java.lang.NumberFormatException"}
+status : 21002
+payment_status:3
+============== payment id: 891 status :失败 ===================
+===========verify payment id: 903====================
+user_id / last_trade_num :  / v5np4j
+plan_type : 0
+created_at : 2013-02-28 23:34:05
+payment_at : 2013-02-28 23:34:05
+appstore_response : {"receipt"=>{"original_purchase_date_pst"=>"2013-02-28 07:35:26 America/Los_Angeles", "unique_identifier"=>"a9302b489eeaa26f29ca8b61039a95eb93a7c0d7", "original_transaction_id"=>"250000024016216", "bvrs"=>"1.1.0", "app_item_id"=>"575805206", "transaction_id"=>"250000024016216", "quantity"=>"1", "unique_vendor_identifier"=>"96C7227B-C683-40A3-A3BD-6AC114F98F2B", "product_id"=>"cn.com.nbd.Touzibao.1_month", "item_id"=>"585150340", "version_external_identifier"=>"13412693", "bid"=>"com.nbd.TouZiBao", "purchase_date_ms"=>"1362065726967", "purchase_date"=>"2013-02-28 15:35:26 Etc/GMT", "purchase_date_pst"=>"2013-02-28 07:35:26 America/Los_Angeles", "original_purchase_date"=>"2013-02-28 15:35:26 Etc/GMT", "original_purchase_date_ms"=>"1362065726967"}, "status"=>0}
+status : 0
+payment_status:3
+============== payment id: 903 status :成功 ===================
+===========verify payment id: 912====================
+user_id / last_trade_num : 8302612 / bbbjju
+plan_type : 3
+created_at : 2013-03-02 00:07:03
+payment_at : 2013-03-02 00:07:03
+appstore_response : {"status"=>21002, "exception"=>"java.lang.NumberFormatException"}
+status : 21002
+payment_status:3
+============== payment id: 912 status :失败 ===================
+===========verify payment id: 923====================
+user_id / last_trade_num :  / vlqoho
+plan_type : 3
+created_at : 2013-03-02 21:23:35
+payment_at : 2013-03-02 21:23:35
+appstore_response : {"status"=>21002, "exception"=>"java.lang.NumberFormatException"}
+status : 21002
+payment_status:3
+============== payment id: 923 status :失败 ===================
+===========verify payment id: 946====================
+user_id / last_trade_num :  / jpq1ld
+plan_type : 3
+created_at : 2013-03-05 19:29:56
+payment_at : 2013-03-05 19:29:56
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 946 status :失败 ===================
+===========verify payment id: 967====================
+user_id / last_trade_num :  / 4tommj
+plan_type : 3
+created_at : 2013-03-07 16:59:30
+payment_at : 2013-03-07 16:59:30
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 967 status :失败 ===================
+===========verify payment id: 1024====================
+user_id / last_trade_num :  / qe4rmx
+plan_type : 2
+created_at : 2013-03-28 09:37:03
+payment_at : 2013-03-28 09:37:03
+appstore_response : {"status"=>21002, "exception"=>"com.apple.jingle.foundation.exceptions.MZCodedException"}
+status : 21002
+payment_status:3
+============== payment id: 1024 status :失败 ===================
+===========verify payment id: 1036====================
+user_id / last_trade_num : 测试 / lj0ugk
+plan_type : 0
+created_at : 2013-04-18 15:08:57
+payment_at : 2013-04-18 15:08:57
+appstore_response : {"status"=>21007}
+status : 21007
+payment_status:3
+============== payment id: 1036 status :失败 ===================
+===========verify payment id: 1228====================
+user_id / last_trade_num :  / a8grj2
+plan_type : 3
+created_at : 2013-05-30 11:04:06
+payment_at : 2013-05-30 11:04:06
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1228 status :失败 ===================
+===========verify payment id: 1229====================
+user_id / last_trade_num :  / zy4cl8
+plan_type : 3
+created_at : 2013-05-30 11:14:00
+payment_at : 2013-05-30 11:14:00
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1229 status :失败 ===================
+===========verify payment id: 1231====================
+user_id / last_trade_num :  / 
+plan_type : 3
+created_at : 2013-05-30 13:24:30
+payment_at : 2013-05-30 13:24:30
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1231 status :失败 ===================
+===========verify payment id: 1232====================
+user_id / last_trade_num :  / 
+plan_type : 3
+created_at : 2013-05-30 13:26:17
+payment_at : 2013-05-30 13:26:17
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1232 status :失败 ===================
+===========verify payment id: 1235====================
+user_id / last_trade_num :  / 
+plan_type : 3
+created_at : 2013-05-30 14:44:07
+payment_at : 2013-05-30 14:44:07
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1235 status :失败 ===================
+===========verify payment id: 1236====================
+user_id / last_trade_num :  / 
+plan_type : 1
+created_at : 2013-05-30 14:53:38
+payment_at : 2013-05-30 14:53:38
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1236 status :失败 ===================
+===========verify payment id: 1237====================
+user_id / last_trade_num :  / 
+plan_type : 2
+created_at : 2013-05-30 14:57:39
+payment_at : 2013-05-30 14:57:39
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1237 status :失败 ===================
+===========verify payment id: 1238====================
+user_id / last_trade_num :  / 
+plan_type : 1
+created_at : 2013-05-30 15:02:04
+payment_at : 2013-05-30 15:02:04
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1238 status :失败 ===================
+===========verify payment id: 1239====================
+user_id / last_trade_num :  / 
+plan_type : 0
+created_at : 2013-05-30 15:17:47
+payment_at : 2013-05-30 15:17:47
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1239 status :失败 ===================
+===========verify payment id: 1240====================
+user_id / last_trade_num :  / wpomcn
+plan_type : 0
+created_at : 2013-05-30 15:29:20
+payment_at : 2013-05-30 15:29:20
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1240 status :失败 ===================
+===========verify payment id: 1241====================
+user_id / last_trade_num :  / wpomcn
+plan_type : 0
+created_at : 2013-05-30 15:43:10
+payment_at : 2013-05-30 15:43:10
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1241 status :失败 ===================
+===========verify payment id: 1242====================
+user_id / last_trade_num :  / wpomcn
+plan_type : 3
+created_at : 2013-05-30 15:45:16
+payment_at : 2013-05-30 15:45:16
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1242 status :失败 ===================
+===========verify payment id: 1243====================
+user_id / last_trade_num :  / wpomcn
+plan_type : 2
+created_at : 2013-05-30 15:48:21
+payment_at : 2013-05-30 15:48:21
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1243 status :失败 ===================
+===========verify payment id: 1244====================
+user_id / last_trade_num : 3041020671xx / gv4mbs
+plan_type : 0
+created_at : 2013-05-30 15:49:57
+payment_at : 2013-05-30 15:49:57
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1244 status :失败 ===================
+===========verify payment id: 1245====================
+user_id / last_trade_num : 3041020672ca / pu3dpx
+plan_type : 2
+created_at : 2013-05-30 15:56:58
+payment_at : 2013-05-30 15:56:58
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1245 status :失败 ===================
+===========verify payment id: 1246====================
+user_id / last_trade_num : 3041020671xx / gv4mbs
+plan_type : 1
+created_at : 2013-05-30 16:06:48
+payment_at : 2013-05-30 16:06:48
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1246 status :失败 ===================
+===========verify payment id: 1247====================
+user_id / last_trade_num : 3041020671xx / gv4mbs
+plan_type : 2
+created_at : 2013-05-30 16:07:47
+payment_at : 2013-05-30 16:07:47
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1247 status :失败 ===================
+===========verify payment id: 1248====================
+user_id / last_trade_num : 3041020671xx / gv4mbs
+plan_type : 2
+created_at : 2013-05-30 16:08:57
+payment_at : 2013-05-30 16:08:57
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1248 status :失败 ===================
+===========verify payment id: 1249====================
+user_id / last_trade_num : 3041020671xx / gv4mbs
+plan_type : 0
+created_at : 2013-05-30 16:09:32
+payment_at : 2013-05-30 16:09:32
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1249 status :失败 ===================
+===========verify payment id: 1250====================
+user_id / last_trade_num : 3041020671xx / gv4mbs
+plan_type : 0
+created_at : 2013-05-30 16:13:11
+payment_at : 2013-05-30 16:13:11
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1250 status :失败 ===================
+===========verify payment id: 1251====================
+user_id / last_trade_num : 财经你好 / wpomcn
+plan_type : 0
+created_at : 2013-05-30 16:16:25
+payment_at : 2013-05-30 16:16:25
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1251 status :失败 ===================
+===========verify payment id: 1252====================
+user_id / last_trade_num : 财经你好 / wpomcn
+plan_type : 1
+created_at : 2013-05-30 16:19:57
+payment_at : 2013-05-30 16:19:57
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1252 status :失败 ===================
+===========verify payment id: 1253====================
+user_id / last_trade_num : 财经你好 / wpomcn
+plan_type : 0
+created_at : 2013-05-30 16:29:34
+payment_at : 2013-05-30 16:29:34
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1253 status :失败 ===================
+===========verify payment id: 1254====================
+user_id / last_trade_num : 财经你好 / wpomcn
+plan_type : 1
+created_at : 2013-05-30 16:31:02
+payment_at : 2013-05-30 16:31:02
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1254 status :失败 ===================
+===========verify payment id: 1255====================
+user_id / last_trade_num :  / u57pis
+plan_type : 0
+created_at : 2013-05-30 16:32:06
+payment_at : 2013-05-30 16:32:06
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1255 status :失败 ===================
+===========verify payment id: 1256====================
+user_id / last_trade_num :  / u57pis
+plan_type : 1
+created_at : 2013-05-30 16:33:03
+payment_at : 2013-05-30 16:33:03
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1256 status :失败 ===================
+===========verify payment id: 1257====================
+user_id / last_trade_num :  / rinprj
+plan_type : 2
+created_at : 2013-05-30 16:38:03
+payment_at : 2013-05-30 16:38:03
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1257 status :失败 ===================
+===========verify payment id: 1258====================
+user_id / last_trade_num :  / l2nigk
+plan_type : 0
+created_at : 2013-05-30 16:41:36
+payment_at : 2013-05-30 16:41:36
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1258 status :失败 ===================
+===========verify payment id: 1259====================
+user_id / last_trade_num : 3091920671a / l2nigk
+plan_type : 1
+created_at : 2013-05-30 16:43:25
+payment_at : 2013-05-30 16:43:25
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1259 status :失败 ===================
+===========verify payment id: 1260====================
+user_id / last_trade_num :  / wpomcn
+plan_type : 0
+created_at : 2013-05-30 16:44:01
+payment_at : 2013-05-30 16:44:01
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1260 status :失败 ===================
+===========verify payment id: 1261====================
+user_id / last_trade_num : 测试 / lj0ugk
+plan_type : 0
+created_at : 2013-05-30 17:22:51
+payment_at : 2013-05-30 17:22:51
+appstore_response : {"status"=>21007}
+status : 21007
+payment_status:3
+============== payment id: 1261 status :失败 ===================
+===========verify payment id: 1262====================
+user_id / last_trade_num :  / 32ge0p
+plan_type : 0
+created_at : 2013-05-31 09:54:30
+payment_at : 2013-05-31 09:54:30
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1262 status :失败 ===================
+===========verify payment id: 1263====================
+user_id / last_trade_num :  / fvbz46
+plan_type : 0
+created_at : 2013-05-31 09:57:56
+payment_at : 2013-05-31 09:57:56
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1263 status :失败 ===================
+===========verify payment id: 1265====================
+user_id / last_trade_num :  / wpomcn
+plan_type : 0
+created_at : 2013-05-31 10:10:30
+payment_at : 2013-05-31 10:10:30
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1265 status :失败 ===================
+===========verify payment id: 1270====================
+user_id / last_trade_num :  / aaj3c0
+plan_type : 0
+created_at : 2013-05-31 11:23:22
+payment_at : 2013-05-31 11:23:22
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1270 status :失败 ===================
+===========verify payment id: 1274====================
+user_id / last_trade_num : 财经你好 / wpomcn
+plan_type : 2
+created_at : 2013-05-31 11:52:44
+payment_at : 2013-05-31 11:52:44
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1274 status :失败 ===================
+===========verify payment id: 1275====================
+user_id / last_trade_num : 财经你好 / wpomcn
+plan_type : 0
+created_at : 2013-05-31 11:53:06
+payment_at : 2013-05-31 11:53:06
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1275 status :失败 ===================
+===========verify payment id: 1276====================
+user_id / last_trade_num : 测试 / lj0ugk
+plan_type : 0
+created_at : 2013-05-31 11:54:21
+payment_at : 2013-05-31 11:54:21
+appstore_response : {"status"=>21007}
+status : 21007
+payment_status:3
+============== payment id: 1276 status :失败 ===================
+===========verify payment id: 1293====================
+user_id / last_trade_num : poiuylkjh / g4c1dm
+plan_type : 0
+created_at : 2013-05-31 16:44:42
+payment_at : 2013-05-31 16:44:42
+appstore_response : {"status"=>21002}
+status : 21002
+payment_status:3
+============== payment id: 1293 status :失败 ===================
+/articles/www/2013-06-08/74824
+0
+/articles/west/2013-06-08/74824
+0
+/articles/ntt/2013-06-08/74824
+0
+/articles/www/2013-06-08/74824
+0
+/articles/west/2013-06-08/74824
+0
+/articles/ntt/2013-06-08/74824
+0
+/home/tony/workspace/nbd/public/static/articles/www/2013-06-08/74824
+3
+/home/tony/workspace/nbd/public/static/articles/www/2013-06-08/74824
+2
+/home/tony/workspace/nbd/public/static/articles/west/2013-06-08/74824
+0
+/home/tony/workspace/nbd/public/static/articles/ntt/2013-06-08/74824
+0
+start---update_type:update_common_static_pages, column_ids:[5]
+start---update_type:column_top_picks_pages, column_ids:[5]
+start---update_type:update_common_static_pages, column_ids:[5]
+start---update_type:column_top_picks_pages, column_ids:[5]
+start---update_type:hot_articles, column_ids:
+start---update_type:update_common_static_pages, column_ids:[5]
+start---update_type:column_top_picks_pages, column_ids:[5]
+column_top_picks_pages
+start---update_type:update_common_static_pages, column_ids:[5]
+start---update_type:column_top_picks_pages, column_ids:[5]
+column_top_picks_pages
+start---update_type:update_common_static_pages, column_ids:[4, 5, 8]
+start---update_type:column_top_picks_pages, column_ids:[5]
+column_top_picks_pages
+start---update_type:update_common_static_pages, column_ids:[4, 5, 8]
+start---update_type:column_top_picks_pages, column_ids:[5]
+column_top_picks_pages
+start---update_type:common_static_pages, column_ids:[4, 5, 8]
+common_static_pages
+start---update_type:column_top_picks_pages, column_ids:[5]
+column_top_picks_pages
+start---update_type:common_static_pages, column_ids:[4, 5, 8]
+common_static_pages
+start---update_type:column_top_picks_pages, column_ids:[5]
+column_top_picks_pages
+start---update_type:common_static_pages, column_ids:[4, 5, 8]
+common_static_pages
+start---update_type:column_top_picks_pages, column_ids:[5]
+column_top_picks_pages
+file_path:/home/tony/data/static_pages/www/articles/2013-06-07/747899
+file_path:/home/tony/data/static_pages/west/articles/2013-06-07/747899
+file_path:/home/tony/data/static_pages/ntt/articles/2013-06-07/747899
+file_path:/home/tony/data/static_pages/preview/articles/2013-06-07/747899
+file_path:/home/tony/data/static_pages/www/articles/2013-06-07/747899
+remote:true
+remote here!
+file_path:/home/tony/data/static_pages/west/articles/2013-06-07/747899
+remote:true
+remote here!
+file_path:/home/tony/data/static_pages/ntt/articles/2013-06-07/747899
+remote:true
+remote here!
+file_path:/home/tony/data/static_pages/preview/articles/2013-06-07/747899
+remote:true
+remote here!
+file_path:/home/tony/data/static_pages/www/articles/2013-06-07/747899
+remote:false
+file_path:/home/tony/data/static_pages/west/articles/2013-06-07/747899
+remote:false
+file_path:/home/tony/data/static_pages/ntt/articles/2013-06-07/747899
+remote:false
+file_path:/home/tony/data/static_pages/preview/articles/2013-06-07/747899
+remote:false
+file_path:/home/tony/data/static_pages/www/articles/2013-06-07/747899
+file_path:/home/tony/data/static_pages/west/articles/2013-06-07/747899
+file_path:/home/tony/data/static_pages/ntt/articles/2013-06-07/747899
+file_path:/home/tony/data/static_pages/preview/articles/2013-06-07/747899
+/home/tony/data/static_pages/preview/articles/2013-06-07/747899.html
+here
+here command:curl -H 'Host: http://preview.nbd.cn' 127.0.0.1:80/articles/2013-07-03/750030.html &> /dev/null
+here command:curl -u preview:123456 -H 'Host: http://preview.nbd.cn' 127.0.0.1:80/articles/2013-07-03/750030.html &> /dev/null
+here command:curl -u preview:123456 -H 'Host: preview.nbd.cn' 127.0.0.1:80/articles/2013-07-03/750030.html &> /dev/null
+here command:curl -u preview:123456 -H 'Host: preview.nbd.cn' http://preview.nbd.cn/articles/2013-07-03/750030.html &> /dev/null
+------======-----start Time now:2013-07-29 15:55:03 +0800
+------======-----start Time now:2013-07-29 15:55:03 +0800
+------======-----start Time now:2013-07-29 15:55:08 +0800
+------======-----start Time now:2013-07-29 15:58:04 +0800
+------======-----start Time now:2013-07-29 15:58:09 +0800
+------======-----start Time now:2013-07-29 15:58:09 +0800
+------======-----start Time now:2013-07-29 15:59:05 +0800
+------======-----end Time now:2013-07-29 15:59:06 +0800
+------======-----start Time now:2013-07-29 15:59:11 +0800
+------======-----end Time now:2013-07-29 15:59:12 +0800
+------======-----start Time now:2013-07-29 15:59:12 +0800
+------======-----end Time now:2013-07-29 15:59:12 +0800
+------======-----start Time now:2013-07-29 16:01:22 +0800
+------======-----end Time now:2013-07-29 16:01:23 +0800
+------======-----start Time now:2013-07-29 16:01:23 +0800
+------======-----end Time now:2013-07-29 16:01:23 +0800
+------======-----start Time now:2013-07-29 16:01:28 +0800
+------======-----end Time now:2013-07-29 16:01:29 +0800
+------======-----start Time now:2013-07-29 16:02:59 +0800
+------======-----end Time now:2013-07-29 16:03:00 +0800
+------======-----start Time now:2013-07-29 16:03:00 +0800
+------======-----end Time now:2013-07-29 16:03:00 +0800
+------======-----start Time now:2013-07-29 16:03:00 +0800
+------======-----end Time now:2013-07-29 16:03:01 +0800

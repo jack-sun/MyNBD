@@ -1,0 +1,25 @@
+<% content_for :render_stylesheet do %>
+  <%= stylesheet_link_tag "koubeibang_candidates" %>
+<% end %>
+
+<% content_for :render_header do %>
+  <div id="exsuse"></div>
+<% end %>
+
+<div class="wrapper">
+  <% if @kbb_candidate_details.present? %>
+    <% for kbb_candidate_detail in @kbb_candidate_details %>
+    	<h1>提名<%= kbb_candidate_detail.koubeibang_candidate.stock_company %>为<span>#<%= kbb_candidate_detail.koubeibang_candidate.koubeibang.title %>#</span></h1>
+    	<h2>理由：<%= kbb_candidate_detail.comment %><span><%= nbd_time_f(kbb_candidate_detail.created_at) %></span></h2>
+    <% end %>
+  <% end %>
+
+
+  <div class="nextPage">
+    <%= paginate @kbb_candidate_details %>
+	</div>
+</div>
+
+<div id="footer">
+  <%= link_to "", feature_url(361)  %>
+</div>

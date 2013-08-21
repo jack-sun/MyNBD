@@ -1,0 +1,2 @@
+module KoubeibangsHelper
+end

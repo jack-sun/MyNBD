@@ -177,7 +177,7 @@
 					title: '插入图片',
 					onclick: function(){
 						var newWindowStatus = "width=700,height=700,top=200,left=" + ($(window).width() - 500) / 2 + ",toolbar=1,status=1,scrollbars=1";
-						var newWindowUrl = "<%= Settings.host + '/console/images/upload_images' %>";
+						var newWindowUrl = location.href.indexOf("nbd.com.cn") == -1 ? "http://www.nbd.cn/console/images/upload_images" : "http://www.nbd.com.cn/console/images/upload_images";
 						window.open(newWindowUrl, "imagesSelect", newWindowStatus);
 					}
 				});

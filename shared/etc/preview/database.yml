@@ -18,3 +18,11 @@ production:
   host: db.nbd.cn
   username: 'nbddog'
   password: 'nbd5290cd'
+
+nbdcms:
+  adapter: mysql2
+  database: nbdcms
+  port: 3306
+  host: 125.64.23.145
+  username: 'nbdadmin'
+  password: '65092nbd'

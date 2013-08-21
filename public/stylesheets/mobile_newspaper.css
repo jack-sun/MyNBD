@@ -1,13 +1,22 @@
-body { background:#f2f2f2; }
+/* 
+  ################### DEPRECATED #####################
+  ################### DEPRECATED #####################
+  ################### DEPRECATED #####################
+  ################### DEPRECATED #####################
+  ################### DEPRECATED #####################
+*/
+
+
+/*body { background:#f2f2f2; }*/
 
 /* Override
    ========================================================================== */
 
-#wrapper { padding:0; margin-top:20px; width:990px; background:#fff; font-family: arial, sans-serif; }
+/*#wrapper { padding:0; margin-top:20px; width:990px; background:#fff; font-family: arial, sans-serif; }
 #footer { border:none; background:transparent; }
 #footer a{
 	color: #606060;
-}
+}*/
 .formA { padding:0; border:none; background:transparent; }
 
 .leftCol { width:570px; }
@@ -16,7 +25,13 @@ body { background:#f2f2f2; }
 /* Module
    ========================================================================== */
 
-.tzbSideNav{
+.mobileAccountInfo h2 { font-size:17px; width:200px; }
+.mobileAccountInfo .block { margin:0 0 35px 20px; }
+.mobileAccountInfo table { margin:5px 0 10px; }
+.mobileAccountInfo th, .mobileAccountInfo td { padding: 3px; }
+.mobileAccountInfo th { font-size:14px; font-weight:bold; text-align:right; }
+
+/*.tzbSideNav{
   border:1px solid #a5b9cc;
   background:#e3e7ec;
   overflow:hidden;
@@ -49,17 +64,17 @@ body { background:#f2f2f2; }
 .tzbSideNav li b.qa { background-position:-60px 0; }
 .tzbSideNav li b.feedback { background-position:-90px 0; }
 .tzbSideNav li b.user { background-position:-120px 0; }
-.tzbSideNav li b.card { background-position:-150px 0; }
+.tzbSideNav li b.card { background-position:-150px 0; }*/
 
-#quickIntro {
+/*#quickIntro {
 	font-family: arial, sans-serif;
 	margin-top: 20px;
 	border: 1px solid #ddd;
 	background-color: white;
 	padding: 15px 20px;
-}
-#tzbBanner { margin:20px 0 0; }
-.tzbLeftColumn{float:left; width: 240px; overflow:hidden;}
+}*/
+/*#tzbBanner { margin:20px 0 0; }*/
+/*.tzbLeftColumn{float:left; width: 240px; overflow:hidden;}
 .tzbRightColumn{margin-left: 270px;}
 .tzbContainerTop { height:7px; background:url(../images/tou_zi_bao/box_top.png) 0 0 no-repeat; overflow:hidden; }
 .tzbContainerBtm { height:10px; background:url(../images/tou_zi_bao/box_bottom.png) 0 0 no-repeat; overflow:hidden; }
@@ -69,9 +84,9 @@ body { background:#f2f2f2; }
 .tzbNav li a { padding:0 20px; color:#606060; font-size:20px; font-weight:bold; text-decoration:none; }
 .tzbNav li a:hover, .tzbNav li.current a { color:#303030; }
 .tzbNav li.current { background:url(../images/tou_zi_bao/current_tab_left.png) #fff 0 0 no-repeat; }
-.tzbNav li.current a { background:url(../images/tou_zi_bao/current_tab_right.png) right top no-repeat; }
+.tzbNav li.current a { background:url(../images/tou_zi_bao/current_tab_right.png) right top no-repeat; }*/
 
-.phoneContainer { float:left; margin-right: 10px; }
+.phoneContainer { float:left; margin-right: 10px; width:360px; }
 .phoneContainer .phone { margin:0 auto; padding-top:1px; width:360px; height:580px; background:url(../images/tou_zi_bao/iPhone.jpg) 0 0 no-repeat; }
 .phoneContainer .phone .phoneScreen { margin: 98px 0 0 47px; *margin-top:99px; width:267px; height:367px; background:#f5f5f5; word-wrap:break-word;  overflow:auto; }
 
@@ -82,9 +97,6 @@ body { background:#f2f2f2; }
 .tzbInfo .highlightGray { color:#303030; }
 
 #magazineContent { padding:10px; }
-
-a.subscribeBtn { display:block; margin:0; width:228px; height:65px; background:url(../images/tou_zi_bao/buynow.png) 0 0 no-repeat; }
-a.subscribeBtn:hover { background-position:0 -65px; }
 
 /* terms of service */
 .tzbTOS { line-height:1.8; }
@@ -104,7 +116,26 @@ a.subscribeBtn:hover { background-position:0 -65px; }
 #pageName{
 	padding-bottom:10px;
 	border-bottom:1px solid #ccc;
-	width:910px;
 	background:#fff;
 }
-.noBorder .title { border:none; background:none; }
+/*.noBorder .title { border:none; background:none; }*/
+
+/* GMS
+   ========================================================================== */
+
+.gmsTipContainer { padding:0 30%; }
+.gmsArticleInfo { color: #606060; margin-bottom: 20px; }
+.gmsArticleInfo span { margin-right:10px; }
+
+#gmsArticleTable th { height:19px; vertical-align:middle; }
+#gmsArticleTable .refund, #gmsArticleTable .refund a { color:#888; }
+#gmsArticleTable .refund .title { text-decoration:line-through; }
+#gmsArticleTable .orderBtn { display:block; color:#303030; height:100%; }
+#gmsArticleTable .orderBtn span { float:left; margin-right:5px; }
+#gmsArticleTable .orderBtn b { float:left; width:16px; height:16px; background:url(../images/order.gif) 0 0 no-repeat;}
+#gmsArticleTable .orderBtn.asc b { background-position:0 -16px; }
+#gmsArticleTable .orderBtn.desc b { background-position:0 -32px; }
+
+
+
+

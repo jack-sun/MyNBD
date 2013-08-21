@@ -1,0 +1,2313 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>每经网 | 新闻决定影响力 |《每日经济新闻》报社旗下网站</title>
+    <link href="http://static.nbd.cn/stylesheets/reset.css?1356401080" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://static.nbd.cn/stylesheets/style_global.css?1363589550" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://static.nbd.cn/stylesheets/style_website.css?1363071767" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://static.nbd.cn/stylesheets/homepage.css?1362640777" media="screen" rel="stylesheet" type="text/css" />
+    <script src="http://static.nbd.cn/javascripts/jquery.min.js?1356401080" type="text/javascript"></script>
+<script src="http://static.nbd.cn/javascripts/jquery_ujs.js?1356401080" type="text/javascript"></script>
+<script src="http://static.nbd.cn/javascripts/cookie.js?1356401080" type="text/javascript"></script>
+<script src="http://static.nbd.cn/javascripts/nbdtools.js?1363071767" type="text/javascript"></script>
+<script src="http://static.nbd.cn/javascripts/baidu_m.js?1358129544" type="text/javascript"></script>
+    <script src="http://static.nbd.cn/utilities/loopScroll/loopScroll.js?1356401080" type="text/javascript"></script><script src="http://static.nbd.cn/utilities/slideShow/slideShow.js?1358129544" type="text/javascript"></script><script src="http://static.nbd.cn/utilities/tabs/tabs.js?1356401080" type="text/javascript"></script>
+    <meta name="csrf-param" content="authenticity_token"/>
+<meta name="csrf-token" content="RCXrxDlM+0HLvcEUhRg2wEzvh+EaH6AM7DI384IISn8="/>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <link rel="shortcut icon" href="http://static.nbd.com.cn/favicon.ico" type="image/x-icon"/>
+    <meta name="Keywords" content="财经新闻,财经报道,叶檀,道达,老法师看盘,股市直播,郑眼看盘,股市行情,财经证券,基金,荐股,股市内参,股吧,传闻,内幕,板块,个股,黑马,股市新闻,生活,汽车" />
+    <meta name="Description" content="24小时财经资讯平台，依托新锐财经日报《每日经济新闻》(National Business Daily)，打造中国最具影响力的经济、股票网站。覆盖宏观、股票、基金、期货、股指期货、外汇、债券、保险、银行、黄金、理财等全方位财经新闻。" />
+  </head>
+
+  <body id="body_site">
+
+			<!-- 广告位：首页_顶部头图 -->
+	<script type="text/javascript">
+		BAIDU_CLB_preloadSlots("331630","347411","347417","347421","347425","347426","347428","347430","347432","347433","347437");
+	</script>
+	<script type="text/javascript">BAIDU_CLB_fillSlot("331630");</script>
+
+		
+    <div id="favoriteTip">
+	<div class="innerCenter">温馨提示：
+		<a id="addFav" href="javascript:void(0)">把每经网放入收藏夹吧！</a>
+		<a id="dontFavTip" style="margin-left:15px;" href="javascript:void(0)">我知道了</a>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(function(){
+		return; // for 18da
+
+		if(!$.cookie.get("favoriteTip")){
+			$("#favoriteTip").slideDown();
+		}
+		
+		$("body").keydown(function(e){
+			if ((e.ctrlKey||e.metaKey) && e.keyCode == 68) {
+				dontTip();
+			}
+		});
+		
+		$("#dontFavTip").click(function(){
+			dontTip();
+		});
+		
+		function dontTip(){
+			$.cookie.set("favoriteTip", true, {
+				expires:90,
+				domain:(location.href.indexOf("nbd.com.cn") != -1) ? "nbd.com.cn" : "nbd.cn",
+				path:"/"
+			});
+			$("#favoriteTip").slideUp();
+		}
+		
+		bookmarkApp();
+		
+		function bookmarkApp() {
+			var isIEmac = false; /*@cc_on @if(@_jscript&&!(@_win32||@_win16)&&(@_jscript_version<5.5)) isIEmac=true; @end @*/
+			var isMSIE = (-[1,]) ? false : true;
+			var cjTitle = "每经网";
+			var cjHref = "http://www.nbd.com.cn";
+			
+			addBookmark();
+			
+			//热键提示
+			function hotKeyTip() {
+				var ua = navigator.userAgent.toLowerCase();
+				var str = '';
+				var isWebkit = (ua.indexOf('webkit') != - 1);
+				var isMac = (ua.indexOf('mac') != - 1);
+				
+				if (ua.indexOf('konqueror') != - 1) {
+					str = 'CTRL + B'; // Konqueror
+				} else if (window.home || isWebkit || isIEmac || isMac) {
+					str = (isMac ? 'Command' : 'CTRL') + ' + D'; // Netscape, Safari, iCab, IE5/Mac
+				}
+				return ((str) ? '按下 <strong>' + str + '</strong>，把每经网放入收藏夹吧！' : str);
+			}
+	
+			function isIE8() {
+				var rv = -1;
+				if (navigator.appName == 'Microsoft Internet Explorer') {
+					var ua = navigator.userAgent;
+					var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+					if (re.exec(ua) != null) {
+						rv = parseFloat(RegExp.$1);
+					}
+				}
+				if (rv > - 1) {
+					if (rv >= 8.0) {
+						return true;
+					}
+				}
+				return false;
+			}
+	
+			function addBookmark() {
+				var addFavEvent;
+				
+				// Gecko (Mozilla)
+				if ((typeof window.sidebar == "object") && (typeof window.sidebar.addPanel == "function")) {
+					addFavEvent = function(){
+						window.sidebar.addPanel(cjTitle, cjHref, "");
+					};
+				
+				// IE	
+				}else if(isMSIE && typeof window.external == "object") {
+					// IE 8
+					if (isIE8()) {
+						addFavEvent = function(){
+							window.external.AddToFavoritesBar(cjHref, cjTitle); 
+						}
+					// IE <=7
+					} else { 
+						addFavEvent = function(){
+							window.external.AddFavorite(cjHref, cjTitle); 
+						}
+					}
+				
+				// OPERA	
+				} else if (window.opera) {
+					addFavEvent = function(){
+						$("#addFav").attr("href",cjHref);
+						$("#addFav").attr("title",cjTitle);
+						$("#addFav").attr("rel","sidebar");
+					}
+					
+				// WEBKIT
+				} else { 
+					$("#addFav").replaceWith("<span>"+hotKeyTip()+"</span>");
+				}
+				
+				if(addFavEvent){
+					$("#addFav").click(function(){
+						addFavEvent();
+						dontTip();
+					});
+				}
+			}
+			
+		};
+		
+	});
+</script>
+
+    <div id="top" class="dark"><div id="topStyle">
+      <div class="innerCenter">
+        <ul id="headerEntries">
+          <li class="first"><a href="http://www.nbd.cn/newspapers/today">今日报纸 (03月21日)</a></li>
+          <li><a href="http://www.nbd.cn/mobiles/android">移动客户端</a></li>
+          <li><a href="http://club.nbd.cn">每经会</a></li>
+          <li><a href="http://www.nbd.com.cn/html/dingyue.html">订阅服务</a></li>
+          <li class="last"><a href="http://www.nbd.cn/premium/mobile_newspaper_account/introduce" style="color:#f60;font-weight:bold;">每经投资宝</a></li>
+        </ul>
+        <ul class="rf">
+            <li><a href="http://www.nbd.cn/user/sign_in">登录社区</a></li>
+            <li class="last"><a href="http://t.nbd.cn/%E6%AF%8F%E7%BB%8F%E7%BD%91%E5%AE%A2%E6%9C%8D">意见反馈</a></li>
+        </ul>
+      </div>
+    </div></div>
+
+    <div id="header">
+      <div class="innerCenter" id="logo">
+        <a id="logoSite" class="logo" href="/" title="每经网">每经网</a>
+        	<!-- 广告位：首页_顶部四分之三通栏 -->
+	
+<div class="ad_global ad_header" style="">
+	<script type="text/javascript">BAIDU_CLB_fillSlot("347411");</script>
+</div>
+
+      </div>
+      <div id="mainNav">
+        <div class="navWrapper">
+          <ul class="lf">
+            <li class="first"><a href="http://www.nbd.cn" class="highlight">首页</a></li>
+            <li><a href="http://news.nbd.cn" class="">资讯</a></li>  
+            <li><a href="http://stock.nbd.cn" class="">股票</a></li>  
+            <li><a href="http://company.nbd.cn" class="">公司</a></li> 
+            <li><a href="http://finance.nbd.cn" class="">金融</a></li>
+            <li><a href="http://auto.nbd.cn" class="">汽车</a></li>   
+            <li><a href="http://www.nbd.cn/columns/47" class="">全球</a></li>  
+            <li><a href="http://ntt.nbd.cn" class="">智库</a></li>  
+            <li><a href="http://life.nbd.cn" class="">品味</a></li>  
+            <li><a href="http://bschool.nbd.cn" class="">管理</a></li>  
+            <li><a href="http://t.nbd.cn/" class="">社区</a></li>
+            <li><a href="http://west.nbd.cn">西部</a></li>
+          </ul>
+          <div class="searchBox rf">
+<form accept-charset="UTF-8" action="http://www.nbd.cn/search/article_search" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>              <a href="javascript:void(0)" class="searchBtn" onclick="$(this).parents('form').submit();return false;"></a>
+              <input class="searchInput" id="q" name="q" type="text" value="" />
+</form>          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="wrapper">
+      
+
+
+
+
+
+
+
+
+<div class="leftCol">
+	<div id="scrollNewsHome" class="innerCenter">
+		<span class="label"><a href="http://www.nbd.cn/columns/6" target="_blank">滚动新闻:</a></span>
+		<div id="scrollNewsHomeWrapper">
+			<ul id="scrollNewsHomeList">
+	            <li>
+	            	
+	              	<a href="http://www.nbd.cn/articles/2013-03-20/721773.html" target="_blank">测试文章3——debug</a>
+	            </li>
+	            <li>
+	            	
+	              	<a href="http://www.nbd.cn/articles/2013-03-20/721772.html" target="_blank">测试文章2——debug</a>
+	            </li>
+	            <li>
+	            	
+	              	<a href="http://www.nbd.cn/articles/2013-03-20/721771.html" target="_blank">测试文章——debug</a>
+	            </li>
+	            <li>
+	            	
+	              	<a href="sdfsd" target="_blank">sdfsdf</a>
+	            </li>
+	            <li>
+	            	
+	              	<a href="http://www.nbd.cn/articles/2013-03-11/721769.html" target="_blank">反腐立法时间表出炉的艰辛历程</a>
+	            </li>
+	            <li>
+	            	
+	              	<a href="http://www.nbd.cn/articles/2013-03-11/721768.html" target="_blank">外滩22号陷租赁迷局：开业当天只展示不许售</a>
+	            </li>
+	            <li>
+	            	
+	              	<a href="http://www.nbd.cn/articles/2013-03-11/721767.html" target="_blank">去年四川上市公司分红金额达70亿</a>
+	            </li>
+	            <li>
+	            	
+	              	<a href="http://www.nbd.cn/articles/2013-03-11/721766.html" target="_blank">小米盒子节后已获广电批文 4月9日正式发布</a>
+	            </li>
+			</ul>
+		</div>
+	</div>
+	
+	  <div class="sectionA" id="headArticle2">
+	<!--<div class="title"><h3><a href="/columns/2">头条</a></h3><span class="opts"><a href="/columns/2">更多</a></span></div>-->
+	<div class="content">
+		<a href="http://www.nbd.cn/articles/2013-03-11/721564.html" target="_blank"><img alt="雾霾经济账：油品升级需500亿谁买单" height="176" src="http://image2.nbd.cn/uploads/articles/thumbnails/32423/1.large_b.jpg" width="310" /></a>
+		<h2 class="headline" >
+			
+              <a href="http://www.nbd.cn/articles/2013-03-11/721564.html" target="_blank" title="雾霾背后的经济账：油品升级或需500亿，谁买单？">雾霾经济账：油品升级需500亿谁买单</a>
+		</h2>
+		<div class="digest">
+			<p>在过去的5期报道里，我们先后回顾了中国的收入梦、颐养梦、教育梦、健康梦和安居梦。今天，我们推出第二部分“展望”的第一篇报道：环保梦。</p>
+			<div id="articleChildrenBox" class="additionalOpt">
+				<ul id="articleChildren" class="unorderList">
+						<li>
+							<a href="http://www.nbd.com.cn/articles/2013-03-11/721570.html" target="_blank" title="粮食安全有保证">粮食安全有保证</a>
+						</li>
+						<li>
+							<a href="http://www.nbd.com.cn/features/272" target="_blank" title="两会织造中国梦">两会织造中国梦</a>
+						</li>
+						<li>
+							<a href="http://www.nbd.com.cn/articles/2013-03-11/721565.html" target="_blank" title="污染敲响经济增长方式警钟">污染敲响经济增长方式警钟</a>
+						</li>
+				</ul>
+			</div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</div>
+
+		  
+  <div style="width:285px;margin-right:25px;" class="subLeftCol">
+      <div class="sectionA nttEntry" style="">
+    <div class="title">
+      	<h3>
+      		<a href="http://ntt.nbd.cn/">智库 &middot; 专栏</a>
+      	</h3>
+       	<span class="opts">
+            <a href="http://ntt.nbd.cn/">更多</a>
+    	</span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          	<li class="articleRecommend ">
+            	<h5 class='rcTitle'><a href="http://ntt.nbd.cn/articles/2013-03-11/721550.html" target="_blank" title="CPI上涨压力下货币政策能否转向">CPI上涨压力下货币政策能否转向</a></h5>
+            <div class="rcDigest">
+                <p class="restrict" >
+                  在国内通货膨胀上行压力较大的情况下，市场不用担心央行的货币政策会突然逆转或收紧，也不要幻想央行的货币政策会在新一届政府上任之后大幅度放松。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          	<li class="articleRecommend last">
+            	<h5 class='rcTitle'><a href="http://ntt.nbd.cn/articles/2013-03-08/721017.html" target="_blank" title="邓海建：“教育梦”期待更公平的“掏钱法则”">邓海建：教育梦期待更公平的“掏钱法则”</a></h5>
+            <div class="rcDigest">
+                <p class="restrict" >
+                  我国当前基本实现了基础教育的全覆盖，但教育资源分布不均，优质教育资源稀缺造成的“入学难”等问题依然突出，这些都是财政性教育经费需要重点投入的领域。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+   	</ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+      <div class="sectionA nttEntry" style="">
+  <div class="content">
+    <ul class="articleList unorderList">
+          	<li class="articleRecommend last">
+            	<h5 class='rcTitle'><a href="http://ntt.nbd.cn/articles/2013-03-11/721548.html" target="_blank" title="再无铁道部">叶檀：再无铁道部</a></h5>
+            <div class="rcDigest">
+                <a href="http://ntt.nbd.cn/columnists/ye_tan" target="_blank"><img alt="叶檀" height="50" src="http://image1.nbd.cn/uploads/columnists/3882/______.jpg" width="50" /></a>
+                <p class="restrict" >
+                  未来可能发生的情况，铁路运价除公益部分由发改委主导，其他部分将逐步推行市场定价，铁路运输价格尤其是货运价格提升，是大概率事件。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+   	</ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+    <div class="divider" style="margin-bottom:7px;"></div>
+      <div class="sectionA  articleWallWrapper" style="margin-bottom:0;">
+	<div class="title">
+		<h3><a href="/columns/5">每日精选</a></h3>
+		<span class="opts"><a href="/columns/5">更多</a></span>
+	</div>
+	<div class="content">
+		<ul class="articleList unorderList">
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2013-03-11/721657.html" class="miniture" target="_blank" title="关注钓鱼岛 日本战机曾在中国海监机前绕飞相距仅3米"><img alt="日本战机曾与中国海监机相距仅3米" height="90" src="http://image2.nbd.cn/uploads/articles/thumbnails/32437/1.middle.jpg" width="120" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2013-03-11/721657.html" target="_blank" title="关注钓鱼岛 日本战机曾在中国海监机前绕飞相距仅3米">日本战机曾与中国海监机相距仅3米</a>
+					</p>
+				</li>
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2013-03-11/721653.html" class="miniture" target="_blank" title="复旦自主考试面试题：《西游记》有多少个妖怪"><img alt="复旦自主考试面试题：《西游记》有多少个妖怪" height="90" src="http://image1.nbd.cn/uploads/articles/thumbnails/32436/1.middle.jpg" width="120" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2013-03-11/721653.html" target="_blank" title="复旦自主考试面试题：《西游记》有多少个妖怪">复旦自主考试面试题：《西游记》有多少个妖怪</a>
+					</p>
+				</li>
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2013-03-11/721648.html" class="miniture" target="_blank" title="卫生部计生委合并 准生证不再盖40多个章"><img alt="卫生部计生委合并 准生证不再盖40多个章" height="90" src="http://image.nbd.cn/uploads/articles/thumbnails/32435/1.middle.jpg" width="120" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2013-03-11/721648.html" target="_blank" title="卫生部计生委合并 准生证不再盖40多个章">卫生部计生委合并 准生证不再盖40多个章</a>
+					</p>
+				</li>
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2013-03-10/721468.html" class="miniture" target="_blank" title="广州民众送别跳江救人牺牲武警郑益龙"><img alt="广州民众送别跳江救人牺牲武警郑益龙" height="90" src="http://image.nbd.cn/uploads/articles/thumbnails/32385/24261340.middle.jpg" width="120" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2013-03-10/721468.html" target="_blank" title="广州民众送别跳江救人牺牲武警郑益龙">广州民众送别跳江救人牺牲武警郑益龙</a>
+					</p>
+				</li>
+		</ul>
+		<div class="clear">
+		</div>
+	</div>
+	<!--content-->
+</div>
+
+  </div>
+  <div style="width:340px;" class="subRightCol">
+      <div class="sectionA focusArticle" style="">
+    <div class="title">
+      <h3>
+          <a href="/columns/3">要闻</a>
+      </h3>
+        <span class="opts"><a href="/columns/3">更多</a></span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+        <li class="articleRecommend ">
+          <h5 class='rcTitle'>
+            
+              <a href="http://www.nbd.cn/articles/2013-03-07/720653.html" target="_blank" title="《每日经济新闻》严正声明 将起诉奇虎360公司">《每日经济新闻》严正声明 将起诉奇虎360</a>
+          </h5>
+          <div class="rcDigest" >
+            <p class="restrict" >
+              该报道是正常的新闻报道，客观真实，来源有据，不存在失实之处。
+            </p>
+            <div class="childrenArticles">
+              <ul class="unorderList">
+                  <li>
+                    <a href="http://www.nbd.com.cn/articles/2013-03-07/720703.html" target="_blank" title="360曾称将起诉4000名网友">360曾称将起诉4000名网友</a>
+                  </li>
+                  <li>
+                    <a href="http://www.nbd.com.cn/features/273" target="_blank" title="专题：360黑匣子之谜">专题：360黑匣子之谜</a>
+                  </li>
+              </ul>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </li>
+        <li class="articleRecommend ">
+          <h5 class='rcTitle'>
+            <span class="articleLabel red"><b>重磅</b></span>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721575.html" target="_blank" title="“天天赢家”多角度捕捉大盘反弹时点">“天天赢家”多角度捕捉大盘反弹时点</a>
+          </h5>
+          <div class="rcDigest" >
+            <p class="restrict" >
+              11月27日，上证指数跌破整理平台，在这样的逆境中，“天天赢家”率先发出市场“最后一跌”的呼声。
+            </p>
+            <div class="childrenArticles">
+              <ul class="unorderList">
+                  <li>
+                    <a href="http://www.nbd.com.cn/articles/2013-03-08/721046.html" target="_blank" title="深度挖掘飞机发动机“三剑客”">深度挖掘飞机发动机“三剑客”</a>
+                  </li>
+                  <li>
+                    <a href="http://www.nbd.com.cn/articles/2013-01-15/707349.html" target="_blank" title="军工牛股全揭秘">军工牛股全揭秘</a>
+                  </li>
+              </ul>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </li>
+        <li class="articleRecommend ">
+          <h5 class='rcTitle'>
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721752.html" target="_blank" title="中编办回应铁道部债务问题：留在下一步解决">中编办回应铁道部债务问题：留在下一步解决</a>
+          </h5>
+          <div class="rcDigest" >
+            <p class="restrict" >
+              王峰以西部地区铁路建设为例，例证其公益性。“所以国家就要通过适当的方式来扶持它。”王峰称。
+            </p>
+            <div class="childrenArticles">
+              <ul class="unorderList">
+                  <li>
+                    <a href="http://www.nbd.com.cn/articles/2013-03-11/721755.html" target="_blank" title="铁路投资不减">铁路投资不减</a>
+                  </li>
+                  <li>
+                    <a href="http://www.nbd.com.cn/articles/2013-03-11/721754.html" target="_blank" title="中编办：国家离不开发改委">中编办：国家离不开发改委</a>
+                  </li>
+              </ul>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </li>
+        <li class="articleRecommend ">
+          <h5 class='rcTitle'>
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721721.html" target="_blank" title="揭秘欧美奶粉限购  担忧补贴贴到海外宝宝身上">揭秘欧美奶粉限购  担忧补贴贴到海外宝宝身上</a>
+          </h5>
+          <div class="rcDigest" >
+            <p class="restrict" >
+              张先生日前在伦敦的Sainsburys超市购买奶粉时，被店员，怀疑他非法经营拒绝向其出售，强行将他赶出超市。
+            </p>
+            <div class="childrenArticles">
+              <ul class="unorderList">
+                  <li>
+                    <a href="http://www.nbd.com.cn/articles/2013-03-11/721727.html" target="_blank" title="深圳港货店奶粉涨价两三成">深圳港货店奶粉涨价两三成</a>
+                  </li>
+                  <li>
+                    <a href="http://www.nbd.com.cn/articles/2013-03-11/721726.html" target="_blank" title="新西兰大旱奶粉减产">新西兰大旱奶粉减产</a>
+                  </li>
+              </ul>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </li>
+        <li class="articleRecommend ">
+          <h5 class='rcTitle'>
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721702.html" target="_blank" title="上海松江漂浮千头死猪 与自来水厂取水口在一个范围">上海松江漂浮千头死猪 与自来水厂取水口在一个范围</a>
+          </h5>
+          <div class="rcDigest" >
+            <p class="restrict" >
+              记者采访了多名附近居民，这些人都表示，河面上出现死猪并不是第一次，但数量没有这次多。
+            </p>
+            <div class="childrenArticles">
+              <ul class="unorderList">
+                  <li>
+                    <a href="http://www.nbd.com.cn/articles/2013-03-11/721706.html" target="_blank" title="环保股逆市飘红">环保股逆市飘红</a>
+                  </li>
+                  <li>
+                    <a href="http://www.nbd.com.cn/articles/2013-03-11/721703.html" target="_blank" title="北方现大规模沙尘天气">北方现大规模沙尘天气</a>
+                  </li>
+              </ul>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </li>
+        <li class="articleRecommend last">
+          <h5 class='rcTitle'>
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721680.html" target="_blank" title="北京现代大量使用应淘汰铁油箱 成本低隐患大">北京现代大量使用应淘汰铁油箱 成本低隐患大</a>
+          </h5>
+          <div class="rcDigest" >
+            <p class="restrict" >
+              因碰撞时更容易产生火花，存在燃烧和爆炸的隐患，但铁油箱在北京现代的产品中正大量使用。
+            </p>
+            <div class="childrenArticles">
+              <ul class="unorderList">
+                  <li>
+                    <a href="http://www.nbd.com.cn/articles/2013-03-11/721690.html" target="_blank" title="新能源汽车新补贴政策将出">新能源汽车新补贴政策将出</a>
+                  </li>
+                  <li>
+                    <a href="http://www.nbd.com.cn/articles/2013-03-11/721685.html" target="_blank" title="北汽总经理被调离">北汽总经理被调离</a>
+                  </li>
+              </ul>
+            </div>
+            <div class="clear"></div>
+          </div>
+        </li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+  </div>
+  <div class="clear"></div>
+</div>
+<div class="rightCol">
+
+	    <div id="bulletin" class="roundCorner">
+	<a href="http://www.nbd.cn/columns/118" target="_blank" title="公告" class="label"><b class="icon16 bugle" style="margin-top:4px;"></b>公告:</a> 
+	<a href="http://www.nbd.cn/articles/2013-03-07/720653.html" target="_blank" title="《每日经济新闻》严正声明 将起诉奇虎360公司">《每日经济新闻》严正声明 将起诉奇虎360</a>
+</div>
+
+	<div class="divider" style="margin-bottom:2px;"></div>
+  <div class="tzbPromo mts mbm f12">
+	<div class="hd">
+    <a href="http://touzibao.nbd.com.cn" class="b" target="_blank">每经投资宝·精彩推荐</a>
+	</div>
+	<div class="bd">
+    <div id="tzbPromoIndex">
+    	<div class="tzbPromoIndexBox rf">
+	    	<a href="javascript:void(0)">1</a>
+	    	<a href="javascript:void(0)">2</a>
+	    	<a href="javascript:void(0)">3</a>
+    	</div>
+    </div>
+    <div id="tzbPromoContainer">
+          <a href="http://touzibao.nbd.com.cn" target="_blank">对于今日大盘的跳水走势，《每经投资宝·天天赢家》今晨指出，主力态度不积极，短期不宜过分看涨。同时，每经投资宝近日报道的TCL集团和南方泵业持续上涨，短短几个交易日涨幅近15%。</a>
+          <a href="http://touzibao.nbd.com.cn" target="_blank">上证指数盘中一度大跌35点，但每经投资宝的正式读者却镇定自若，原因是每经投资宝报道的个股均有精彩表演。如上海新梅短短六个交易日大涨38%，珠江钢琴三个交易日大涨20%。</a>
+          <a href="http://touzibao.nbd.com.cn" target="_blank">每经投资宝近日发掘的上海新梅五个交易日大涨35%，同时昨日发掘的珠江钢琴今日涨停，而报道上海优质国资注入上市公司的相关概念股全线上涨。</a>
+    </div>
+
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(function(){
+		$.nbdslide.init({
+			optDOMs:["#tzbPromoContainer"],
+			indexDOM:"#tzbPromoIndex div",
+			style:"slide-x",
+			interval:8000
+		});
+	});
+</script>
+
+
+  
+
+<div class="sectionA" style="">
+	<div class="content" id="nbdPromo" style="margin-bottom:5px">
+		<dl>
+			<dt class="thumbNewspappers">每日经济新闻</dt>
+			<dd>
+				<h3>&laquo;每日经济新闻&raquo; <span>(2013年03月21日)</span></h3>
+				<p>
+					<a href="http://www.nbd.cn/newspapers/today" class="first" target="_blank">文字版</a> | <a href="http://epaper.nbd.com.cn/" target="_blank">图文版</a> | <a href="http://old.nbd.com.cn/html/dingyue.html" target="_blank">订阅</a>
+				<p>
+			</dd>
+			<dt class="thumbMobileNewspaper">每经手机报</dt>
+			<dd class="last">
+				<h3>每经投资宝</h3>
+				<p>
+					<a href="http://www.nbd.cn/premium/mobile_newspaper_account/introduce" class="first" target="_blank">天天赢家</a> | 
+					<a href="http://www.nbd.com.cn/features/274" target="_blank">股东大会实录</a> | 
+					<a href="http://www.nbd.cn/premium/mobile_news/introduce" target="_blank">投资快讯</a> 
+				</p>
+			</dd>
+		</dl>
+	</div>
+</div>
+
+
+
+    <div class="sectionA NBDFeatures" style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/81">NBD特稿</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/81">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend last">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-11/721554.html" target="_blank" title="港大深圳医院门庭冷清 业内不看好“香港模式”">港大深圳医院门庭冷清业内不看好香港模式</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-11/721554.html" target="_blank"><img alt="港大深圳医院门庭冷清业内不看好香港模式" height="60" src="http://image.nbd.cn/uploads/articles/thumbnails/32428/1.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  卢宠茂解释称，一是医院设备尚未完全到位，导致诸多医疗项目无法开展；二是医院自身信息系统仍未完善。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+
+    <div class="sectionA IPOResearch" style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/31">IPO调查</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/31">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend last">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-11/721537.html" target="_blank" title="年内29家拟上市公司A股折戟 斯菲尔电气过会仍“下课”">29家公司A股折戟 斯菲尔电气过会仍下课</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-11/721537.html" target="_blank"><img alt="29家公司A股折戟 斯菲尔电气过会仍下课" height="60" src="http://image.nbd.cn/uploads/articles/thumbnails/32431/1.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  每经记者李智
+根据证监会3月8日最新公布的IPO企业情况表，3月以来又有7家公司被终止审查，至此，今年以来IPO申报企业被终止审查者已达29家。
+《每日经济新闻》记者注意到，早在2012年4月24日就已过会的江苏斯菲尔电气股份有...
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+
+    <div class="sectionA NBDConsumer" style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/82">商业消费</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/82">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend last">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-20/721771.html" target="_blank" title="测试文章——debug">测试文章——debug</a>
+            </h5>
+            <div class="rcDigest">
+                
+
+                <p class="restrict" >
+                  测试一下文章内容
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+  
+    <div class="sectionA NBDConsumer" style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/183">专题精选</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/183">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend last">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.com.cn/features/273" target="_blank" title="360黑匣子之谜——奇虎360大揭秘">360黑匣子之谜——奇虎360大揭秘</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.com.cn/features/273" target="_blank"><img alt="360黑匣子之谜——奇虎360大揭秘" height="60" src="http://image2.nbd.cn/uploads/articles/thumbnails/32152/1x_large.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  记者经过调查，并在微博名人“独立调查员”等一批程序“猿”的帮助下，揭开360层层内幕。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+  
+  <div class="divider" style="margin-bottom:0;"></div>
+  
+</div>
+<div class="clear">
+</div>
+
+<!-- 广告位：首页_左通栏一 首页_右通栏一 -->
+
+<div class="ad_global ad_col2" style="">
+	<div class="lf">
+		<script type="text/javascript">BAIDU_CLB_fillSlot("347417");</script>
+	</div>
+	<div class="rf">
+		<script type="text/javascript">BAIDU_CLB_fillSlot("347428");</script>
+	</div>
+	<div class="clear"></div>
+</div>
+
+<div class="block">
+  <div class="blockTitle">
+    <h2><a href="http://stock.nbd.cn">股票</a></h2>
+    <span class="opts">
+        <a href="/columns/23">个股</a>		
+        <a href="/columns/24">基金</a>		
+        <a href="/columns/26">外汇</a>		
+        <a href="/columns/27">大盘</a>		
+        <a href="/columns/37">机构</a>		
+        <a href="/columns/28">公告</a>		
+        <a href="/columns/29">对策</a>		
+        <a href="/columns/30">港股</a>		
+        <a href="/columns/31">IPO调查</a>		
+        <a href="/columns/32">上市公司调查</a>		
+    </span>
+  </div>
+  <div class="blockContent" style="padding-right: 0;">
+    <div class="leftCol">
+      <div class="subLeftCol">
+          <div class="sectionA marketIntegrate" style="margin-bottom:10px;">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/10">市场综合</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/10">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li  >
+            
+              <a href="/columns/23" class="columnLabel2" target="_blank"><span>个股</span></a>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721756.html" target="_blank" title="中科英华欲增发收购厚地稀土 复牌股价大涨">中科英华欲增发收购厚地稀土 复牌股价大涨</a></li>
+          <li  >
+            
+              <a href="/columns/23" class="columnLabel2" target="_blank"><span>个股</span></a>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721714.html" target="_blank" title="九芝堂营销改革风向大变 OEM产品夸大宣传？">九芝堂营销改革风向大变 OEM产品夸大宣传？</a></li>
+          <li  >
+            
+              <a href="/columns/23" class="columnLabel2" target="_blank"><span>个股</span></a>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721620.html" target="_blank" title="人人乐主业经营陷困境  7亿元购买理财产品">人人乐主业经营陷困境  7亿购买理财产品</a></li>
+          <li  >
+            
+              <a href="/columns/24" class="columnLabel2" target="_blank"><span>基金</span></a>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721615.html" target="_blank" title="泰达宏利高管或奔券商">泰达宏利高管或奔券商</a></li>
+          <li class="divider" >
+            
+              <a href="/columns/23" class="columnLabel2" target="_blank"><span>个股</span></a>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721612.html" target="_blank" title="携手煤企触网  上海钢联转型煤炭电商">携手煤企触网  上海钢联转型煤炭电商</a></li>
+          <li  >
+            
+              <a href="/columns/23" class="columnLabel2" target="_blank"><span>个股</span></a>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721596.html" target="_blank" title="天山股份净利骤降逾七成  新疆水泥业竞争白热化">天山股份净利骤降七成  新疆水泥业竞争加剧</a></li>
+          <li  >
+            
+              <a href="/columns/24" class="columnLabel2" target="_blank"><span>基金</span></a>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721595.html" target="_blank" title="信托式PE罕见现身 固定收益类产品风控模式引关注">信托式PE罕见现身 固定收益类产品风控模式引关注</a></li>
+          <li  >
+            
+              <a href="/columns/24" class="columnLabel2" target="_blank"><span>基金</span></a>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721588.html" target="_blank" title="上周基金大幅主动减仓">上周基金大幅主动减仓</a></li>
+          <li  >
+            
+              <a href="/columns/27" class="columnLabel2" target="_blank"><span>大盘</span></a>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721538.html" target="_blank" title="*ST锌业今或上演末日交易 众资金疯狂赌重整">*ST锌业今或上演末日交易 众资金疯狂赌重整</a></li>
+          <li  >
+            
+              <a href="/columns/27" class="columnLabel2" target="_blank"><span>大盘</span></a>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721537.html" target="_blank" title="年内29家拟上市公司A股折戟 斯菲尔电气过会仍“下课”">29家公司A股折戟 斯菲尔电气过会仍下课</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+
+      </div><div class="subRightCol">
+          <div class="sectionA " style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/12">行情快讯</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/12">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li  >
+            <span class="articleOpt">11:36</span>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721722.html" target="_blank" title="午盘：午后两市弱势震荡 金融股表现乏力">午盘：午后两市弱势震荡 金融股表现乏力</a></li>
+          <li  >
+            <span class="articleOpt">08:45</span>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721599.html" target="_blank" title="3月11日四大证券报精华摘要">3月11日四大证券报精华摘要</a></li>
+          <li  >
+            <span class="articleOpt">08:36</span>
+              <a href="http://t.nbd.com.cn/lives/2013-03-11/345" target="_blank" title="3月11日NBD股市直播">3月11日NBD股市直播</a></li>
+          <li  >
+            <span class="articleOpt">11:40</span>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721729.html" target="_blank" title="环保股盘中飙升 龙净环保涨逾4%">环保股盘中飙升 龙净环保涨逾4%</a></li>
+          <li class="divider" >
+            <span class="articleOpt">11:36</span>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721723.html" target="_blank" title="网络游戏概念涨2.78% 中科英华涨停">网络游戏概念涨2.78% 中科英华涨停</a></li>
+          <li  >
+            <span class="articleOpt">09:36</span>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721638.html" target="_blank" title="早盘：环保军工股发力 两市震荡向上翻红">早盘：环保军工股发力 两市震荡向上翻红</a></li>
+          <li  >
+            <span class="articleOpt">08:52</span>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721613.html" target="_blank" title="三基金公司2012战绩率先曝光 两亏一盈">三基金公司2012战绩曝光 两亏一盈</a></li>
+          <li  >
+            <span class="articleOpt">08:51</span>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721611.html" target="_blank" title="港澳台常住大陆居民4月起可投A股">港澳台常住大陆居民4月起可投A股</a></li>
+          <li  >
+            <span class="articleOpt">08:50</span>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721610.html" target="_blank" title="郭树清：证监会今年会继续改革 但要一步步来">郭树清：证监会今年会继续改革</a></li>
+          <li  >
+            <span class="articleOpt">08:50</span>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721608.html" target="_blank" title="大部制换来小政府">大部制换来小政府</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+
+      </div>
+      <div class="clear"></div>
+      <div class="subLeftCol">
+          <div class="sectionA columnSection " style="margin-bottom:5px;">
+	<div class="title">
+		<h3>
+			<a href="/columns/86">郑眼看盘</a>
+		</h3>
+		<span class="opts"><a href="/columns/86">更多</a></span>
+	</div>
+	<div class="content">
+		<ul class="articleList unorderList">
+				<li class="articleRecommend">
+					<div class="rcDigest">
+						<a href="/columns/86" target="_blank" title="郑眼看盘：短线杀涨买跌 中线寻机减持"><img alt="Column-86" src="http://static.nbd.cn/images/column-86.png?1356401080" /></a>
+						<p class="restrict">
+							<strong><a href="http://www.nbd.cn/articles/2013-03-11/721577.html" target="_blank" title="郑眼看盘：短线杀涨买跌 中线寻机减持">郑眼看盘：短线杀涨买跌 中线寻机减持</a></strong><br/>
+							每经记者郑步春
+上周五A股窄幅缩量震荡，全周A股呈现 “下跌-反弹-缩量企稳”走势。上周五沪综指收跌0.24%报2318.61点，全周下跌1.73%，深综指全周下跌1.96%。
+周末公布的2月份CPI同比涨3.2%，高于市场普遍...
+						</p>
+						<div class="clear"></div>
+					</div>
+				</li>
+					<li><a href="http://www.nbd.cn/articles/2013-03-08/721049.html" target="_blank" title="郑眼看盘：跌势暂难延续 可适当调仓">郑眼看盘：跌势暂难延续 可适当调仓</a></li>
+					<li><a href="http://www.nbd.cn/articles/2013-03-07/720585.html" target="_blank" title="郑眼看盘：市场回归理性 可适度参与">郑眼看盘：市场回归理性 可适度参与</a></li>
+					<li><a href="http://www.nbd.cn/articles/2013-03-06/720212.html" target="_blank" title="郑眼看盘：关注“两会”利好 可适度参与">郑眼看盘：关注“两会”利好 可适度参与</a></li>
+					<li><a href="http://www.nbd.cn/articles/2013-03-05/719791.html" target="_blank" title="郑眼看盘：不过分杀跌 关注后续政策">郑眼看盘：不过分杀跌 关注后续政策</a></li>
+		</ul>
+		<div class="clear"></div>
+	</div><!--content-->
+</div>
+
+      </div><div class="subRightCol">
+          <div class="sectionA columnSection " style="">
+	<div class="title">
+		<h3>
+			<a href="/columns/85">老法师操盘手记</a>
+		</h3>
+		<span class="opts"><a href="/columns/85">更多</a></span>
+	</div>
+	<div class="content">
+		<ul class="articleList unorderList">
+				<li class="articleRecommend">
+					<div class="rcDigest">
+						<a href="/columns/85" target="_blank" title="老法师看盘：仍需消化利空"><img alt="Column-85" src="http://static.nbd.cn/images/column-85.png?1356401080" /></a>
+						<p class="restrict">
+							<strong><a href="http://www.nbd.cn/articles/2013-03-11/721539.html" target="_blank" title="老法师看盘：仍需消化利空">老法师看盘：仍需消化利空</a></strong><br/>
+							每经记者曾子建
+上上周（3月1日当周），大盘探底回升，周K线收出阳线；而上周A股市场再次陷入宽幅震荡格局，周中沪指一度跌破2300点，最低跌至2259点，最终收出带长下影线的周阴线。上周五（3月8日）上证指数微跌5.68点，收于2...
+						</p>
+						<div class="clear"></div>
+					</div>
+				</li>
+					<li><a href="http://www.nbd.cn/articles/2013-03-08/721010.html" target="_blank" title="老法师看盘：消息面凌乱">老法师看盘：消息面凌乱</a></li>
+					<li><a href="http://www.nbd.cn/articles/2013-03-07/720619.html" target="_blank" title="老法师看盘：指数或震荡 关注个股行情">老法师看盘：指数或震荡 关注个股行情</a></li>
+					<li><a href="http://www.nbd.cn/articles/2013-03-06/720169.html" target="_blank" title="老法师看盘：反复折腾">老法师看盘：反复折腾</a></li>
+					<li><a href="http://www.nbd.cn/articles/2013-03-05/719748.html" target="_blank" title="老法师看盘：对策">老法师看盘：对策</a></li>
+		</ul>
+		<div class="clear"></div>
+	</div><!--content-->
+</div>
+
+      </div>
+      <div class="clear"></div>
+
+        <div class="sectionA">
+          <div class="title" style="margin-right:20px;">
+            <h3>对策</h3>
+            <span class="opts">
+            	<a href="http://ntt.nbd.cn/columns/29">更多</a>
+            </span>
+          </div>
+          <div class="content">
+            <div class="subLeftCol">
+              <div class="sectionA " style="">
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-11/721575.html" target="_blank" title="“天天赢家”多角度捕捉大盘反弹时点">“天天赢家”多角度捕捉大盘反弹时点</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-11/721575.html" target="_blank"><img alt="“天天赢家”多角度捕捉大盘反弹时点" height="60" src="http://image2.nbd.cn/uploads/articles/thumbnails/32413/11___28_____________________________________________.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  11月27日，上证指数跌破整理平台，在这样的逆境中，“天天赢家”率先发出市场“最后一跌”的呼声。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li class="articleRecommend last">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-09/721256.html" target="_blank" title="深入挖掘行业消息 “天天赢家”准确报道页岩气概念">天天赢家深挖行业消息  准确报道页岩气概念</a>
+            </h5>
+            <div class="rcDigest">
+                
+
+                <p class="restrict" >
+                  近两日“每经投资宝·天天赢家”继续向用户提示了大盘存在的系统性风险,并重点挖掘页岩气题材。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+            </div>
+            <div class="subRightCol">
+              <div class="sectionA " style="">
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-08/721233.html" target="_blank" title="本月召开两场页岩气大会 相关概念股借机炒作">本月召开两页岩气大会 相关概念股借机炒作</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-08/721233.html" target="_blank"><img alt="本月召开两页岩气大会 相关概念股借机炒作" height="60" src="http://image2.nbd.cn/uploads/articles/thumbnails/32287/capscr_______.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  《每经投资宝·天天赢家》昨日报道“本月将召开两场页岩气大会”并列举相关受益股，截至今日收盘，收益可观。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li class="articleRecommend last">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-08/721224.html" target="_blank" title="IPO开闸让股市炸锅 股民称好歹知道还有三个月玩">IPO开闸让股市炸锅 股民称好歹知道还有三个月玩</a>
+            </h5>
+            <div class="rcDigest">
+                
+
+                <p class="restrict" >
+                  中国寓言里“狼来了”的故事家喻户晓。当“狼来了”说得太多，大家都不会相信。然而，在A股市场，“IPO开闸”这匹“狼”却能屡试不爽制造恐慌，收效显著，昨日的大盘就是一个典型例证。证监会副主席上午表示IPO可能在三月底重启的消息，让沪深两...
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+            </div>
+            <div class="clear"></div>
+          </div>
+        </div><!-- sectionA -->
+
+    </div><!--leftCol-->
+    <div class="rightCol">
+
+        <div class="sectionA  articleWallWrapper" style="margin-bottom:10px;">
+	<div class="title">
+		<h3><a href="/columns/32">上市公司调查</a></h3>
+		<span class="opts"><a href="/columns/32">更多</a></span>
+	</div>
+	<div class="content">
+		<ul class="articleList unorderList">
+				<li class="articleFeature">
+					<h3 class='fTitle'>
+						<a href="http://www.nbd.com.cn/articles/2013-03-11/721538.html" target="_blank" title="*ST锌业今或上演末日交易">*ST锌业今或上演末日交易</a>
+					</h3>
+					
+					
+					<p class="fDigest" >
+						近期股价非但不跌，还走出远超大盘的行情，1月以来涨逾50%，其多次公告提示重整风险，反招资金疯狂豪赌。
+					</p>
+				</li>
+		</ul>
+		<div class="clear">
+		</div>
+	</div>
+	<!--content-->
+</div>
+
+
+      <div class="sectionA" style="margin-bottom:5px;">
+	<div class="title">
+		<h1>市场行情</h1>
+	</div>
+	<div class="content pam">
+		<iframe width="100%" height="205px" class="share_self"  frameborder="0" scrolling="no" src="http://finance.sina.com.cn/mini/cnr/global_market.shtml"></iframe>
+    <!-- <embed src="http://static.nbd.cn/media/market.swf?flashdzh_theme=White&amp;font=0&amp;flashdzh_aveLine=0&amp;stk_list=上证,1,000001,1,0;深市,2,399001,1,0;恒指,3,HSI,1,0&amp;resource_root=http://flashhq.gw.com.cn/" quality="high" width="300" height="210" align="middle" allowScriptAccess="always" allowFullScreen="true" mode="transparent" type="application/x-shockwave-flash"></embed> -->
+	</div>
+</div>
+
+
+        <div class="sectionA weiboLive">
+	<div class="title">
+		<h3>每经直播间</h3>
+	</div>
+	<div class="content">
+		<div class="weiboLiveCompereProfile">
+			<a href="http://t.nbd.cn/lives/2013-03-11/345" class="avatar lf"><img alt="每经网股市直播" height="50" src="http://image.nbd.cn/uploads/avatars/588/tan.middle.jpg" width="50" /></a>
+			<a href="http://t.nbd.cn/lives/2013-03-11/345" class="nickname">每经网股市直播</a><br/>
+			<a href="http://t.nbd.cn/lives/2013-03-11/345" class="btnGreen" style="margin-top:5px;"><span>收看直播</span></a>
+			<div class="clear"></div>
+		</div>
+		<ul class="weiboItemList">
+				<li  >
+					<div class="itemContent"> 
+						<p>姚记扑克今日高开高走，下午开盘后再度走高，股价逼近涨停，截至14：30，报26.55元，涨8.23%。2012年经济低迷，扑克牌却受益于“口红效应”。姚记扑克今日公布的年报显示，净利润大增32%，公司也慷慨地推出10转10派6.80...</p>
+					</div>
+					<div class="itemBottom">
+						<a href="http://t.nbd.cn/lives/2013-03-11/345">03月11日 14:31</a>
+					</div>
+				</li>
+				<li class="last" >
+					<div class="itemContent"> 
+						<p>周一午后，超导概念股突然大幅拉升，其中汉缆股份（002498）午后涨停、永鼎股份（600105）涨2.91%、法尔胜（000890）涨1.00%。  据相关报道，美国威斯康星大学材料科学与工程学教授Chang-BeomEom所带领的一...</p>
+					</div>
+					<div class="itemBottom">
+						<a href="http://t.nbd.cn/lives/2013-03-11/345">03月11日 14:31</a>
+					</div>
+				</li>
+		</ul>
+	</div><!--content-->
+</div>
+
+
+    </div><!--right column-->
+    <div class="clear">
+    </div>
+  </div>
+</div>
+
+<!-- 广告位：首页_左通栏二 首页_右通栏二 -->
+
+<div class="ad_global ad_col2" style="">
+	<div class="lf">
+		<script type="text/javascript">BAIDU_CLB_fillSlot("347421");</script>
+	</div>
+	<div class="rf">
+		<script type="text/javascript">BAIDU_CLB_fillSlot("347430");</script>
+	</div>
+	<div class="clear"></div>
+</div>
+
+<div class="block">
+  <div class="blockTitle">
+    <h2><a href="http://company.nbd.cn">公司</a></h2>
+    <span class="opts">
+        <a href="/columns/38">房产</a>		
+        <a href="/columns/39">科技</a>		
+        <a href="/columns/40">汽车</a>		
+        <a href="/columns/42">商讯</a>		
+        <a href="/columns/44">宏观要闻</a>		
+        <a href="/columns/45">消费品</a>		
+    </span>
+  </div>
+  <div class="blockContent" style="padding-right: 0;">
+    <div class="leftCol">
+      <div class="subLeftCol">
+          <div class="sectionA " style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/35">热公司</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/35">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-11/721764.html" target="_blank" title="无锡尚德3月底进入破产保护程序 重组由国资接盘">无锡尚德3月底进入破产保护程序</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-11/721764.html" target="_blank"><img alt="无锡尚德3月底进入破产保护程序" height="60" src="http://image.nbd.cn/uploads/articles/thumbnails/32497/_____________________.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  对海外投资者而言，无锡尚德也是尚德电力的主要贷款平台，若让无锡尚德破产，就能让上市公司债务得到极大缓解。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-11/721737.html" target="_blank" title="马明哲看不起银行：靠红利躺着吃饭 没理由做不好">马明哲看不起银行：靠红利吃饭 没理由做不好</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-11/721737.html" target="_blank"><img alt="马明哲看不起银行：靠红利吃饭 没理由做不好" height="60" src="http://image1.nbd.cn/uploads/articles/thumbnails/32477/___________________.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  平安银行奋起直追小微业务，而小微一向是民生银行的金牌业务。但邵平表示，平安想copy民生？绝对不是！
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721718.html" target="_blank" title="侯小强整合盛大文学：利益纠葛致“起点风波”难平">侯小强整合盛大文学：利益纠葛致风波难平</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721714.html" target="_blank" title="九芝堂营销改革风向大变 OEM产品夸大宣传？">九芝堂营销改革风向大变 OEM产品夸大宣传？</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721705.html" target="_blank" title="王老吉营收不及加多宝1/5 ">王老吉营收不及加多宝1/5 </a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721699.html" target="_blank" title="传中兴通讯裁员范围将扩大 约两成员工被“优化”">传中兴通讯裁员范围将扩大</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721687.html" target="_blank" title="传阿里巴巴将宣布新任CEO 陆兆禧成最大热门">传阿里巴巴将宣布新任CEO 陆兆禧成最大热门</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+          <div class="sectionA " style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/39">科技</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/39">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-11/721766.html" target="_blank" title="小米盒子节后已获广电批文 4月9日正式发布">小米盒子节后已获广电批文 4月9日正式发布</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-11/721766.html" target="_blank"><img alt="小米盒子节后已获广电批文 4月9日正式发布" height="60" src="http://image.nbd.cn/uploads/articles/thumbnails/32499/____________.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  CNTV春节之后已经获得广电放行小米盒子的相关批文，而小米方面也初步计划在4月9日“米粉节”上正式发布这一产品。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-11/721757.html" target="_blank" title="史玉柱砸3千万玩网游 或再引业界烧钱热">史玉柱砸3千万玩网游 或再引业界烧钱热</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-11/721757.html" target="_blank"><img alt="史玉柱砸3千万玩网游 或再引业界烧钱热" height="60" src="http://image.nbd.cn/uploads/articles/thumbnails/32490/_________.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  史玉柱今日将再度出招推广其“屌丝游戏”概念：该公司游戏《仙侠世界》斥资3000万元招募代言人。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721750.html" target="_blank" title="HTC新款Facebook手机曝光 定位中低端市场">HTC新款Facebook手机曝光 定位中低端市场</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721747.html" target="_blank" title="微信是什么？">微信是什么？</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721744.html" target="_blank" title="酷我5年变现探索">酷我5年变现探索</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721715.html" target="_blank" title="纳入眼睛滚屏 Galaxy S4或让iPhone相形见绌">纳入眼睛滚屏 Galaxy S4或让iPhone相形见绌</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721712.html" target="_blank" title="马化腾：微信国际化就一个机会">马化腾：微信国际化就一个机会</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+      </div>
+      <div class="subRightCol">
+          <div class="sectionA " style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/38">房产</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/38">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-11/721768.html" target="_blank" title="外滩22号陷租赁迷局：开业当天只展示不许售">外滩22号陷租赁迷局：开业当天只展示不许售</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-11/721768.html" target="_blank"><img alt="外滩22号陷租赁迷局：开业当天只展示不许售" height="60" src="http://image.nbd.cn/uploads/articles/thumbnails/32500/______22__________.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  “外滩22号”这栋始建于1906年的外滩百年历史保护建筑与一宗复杂的租赁纠纷联系在了一起。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-11/721753.html" target="_blank" title="年初楼市反常升温 房企业绩悉数飘红">年初楼市反常升温 房企业绩悉数飘红</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-11/721753.html" target="_blank"><img alt="年初楼市反常升温 房企业绩悉数飘红" height="60" src="http://image1.nbd.cn/uploads/articles/thumbnails/32489/______.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  昨日记者通过统计发现，在已公布前两月业绩的房企中，最高已经完成2013年全年目标的28%，除首开外，全部完成10%，
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721736.html" target="_blank" title="我国将建房产统一登记制度 资深房地产专家解读">房产统一登记制度欲建立 房地产专家解读</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721731.html" target="_blank" title="二手房市场上演“末路狂欢” 业主升房价">二手房市场上演“末路狂欢” 业主升房价</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721720.html" target="_blank" title="北京部分楼盘涨价明显 个别项目单价上涨近两万">北京部分楼盘涨价明显 个别项目单价上涨近两万</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721713.html" target="_blank" title="房地产改革已到攻坚时刻">房地产改革已到攻坚时刻</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721710.html" target="_blank" title="国房景气指数回升至97.92">国房景气指数回升至97.92</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+          <div class="sectionA " style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/140">汽车</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/140">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-11/721728.html" target="_blank" title="李书福：国内排放标准太低 尾气标准要超欧美">李书福：国内排放标准太低 尾气标准要超欧美</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-11/721728.html" target="_blank"><img alt="李书福：国内排放标准太低 尾气标准要超欧美" height="60" src="http://image2.nbd.cn/uploads/articles/thumbnails/32472/_________.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  吉利汽车董事长李书福认为车企应该控制车内空气质量和尾气排放，并且把尾气排放标准提高到欧美之上。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-09/721332.html" target="_blank" title="迹象显示苹果欲携手汽车厂商打造iCar">迹象显示苹果欲携手汽车厂商打造iCar</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-09/721332.html" target="_blank"><img alt="迹象显示苹果欲携手汽车厂商打造iCar" height="60" src="http://image1.nbd.cn/uploads/articles/thumbnails/32306/____________.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  苹果正在招聘与汽车业相关的工作人员，和法拉利公开讨论合作事宜，不断为iOS添加汽车友好功能。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-09/721313.html" target="_blank" title="车企欲借“三包”政策翻身">车企欲借“三包”政策翻身</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-09/721311.html" target="_blank" title="张欣家族相中通用汽车大楼">张欣家族相中通用汽车大楼</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-08/721240.html" target="_blank" title="市场担忧新定价机制或致高油价：上调多于下调">市场担忧新定价机制或致高油价：上调多于下调</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-08/721205.html" target="_blank" title="丰田中国宣布连串人事调动">丰田中国宣布连串人事调动</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-08/721202.html" target="_blank" title="北京部分豪宅车位报价高达80万元 卖车位或成开发商又一暴利项目">卖车位或成北京开发商又一暴利项目</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+      </div>
+      <div class="clear">
+      </div>
+    </div>
+    <div class="rightCol">
+
+        <div class="sectionA  articleWallWrapper" style="margin-bottom:15px;">
+	<div class="title">
+		<h3><a href="/columns/36">商业精选</a></h3>
+		<span class="opts"><a href="/columns/36">更多</a></span>
+	</div>
+	<div class="content">
+		<ul class="articleList unorderList">
+				<li class="articleFeature">
+					<h3 class='fTitle'>
+						<a href="http://www.nbd.cn/articles/2013-03-11/721765.html" target="_blank" title="标致雪铁龙救赎进行时 中国市场是关键">标致雪铁龙救赎进行时 中国市场是关键</a>
+					</h3>
+					<a href="http://www.nbd.cn/articles/2013-03-11/721765.html" class="fImageLink" target="_blank" title="标致雪铁龙救赎进行时 中国市场是关键"><img alt="标致雪铁龙救赎进行时 中国市场是关键" height="168" src="http://image1.nbd.cn/uploads/articles/thumbnails/32498/_______________.large_b.jpg" width="280" /></a>
+					
+					<p class="fDigest" >
+						巨亏阴影下的法国巨头能否实现自我救赎，中国市场是关键因素之一
+					</p>
+				</li>
+		</ul>
+		<div class="clear">
+		</div>
+	</div>
+	<!--content-->
+</div>
+
+
+          
+  <div id="hotArticles" class="sectionA" style="">
+    <div class="title">
+      <h3>热门文章</h3>
+      <ul id="hotTabsIndex" class="opts">
+        <li class="first current"><a href="#hotArticle-1">最热点击</a></li>
+      </ul>
+    </div>
+      <div id="hotTabsContent" class="content">
+        <div id="hotArticle-1">
+          <ol class="articleList">
+        </ol>
+      </div>
+    </div>
+  </div>
+<script type="text/javascript">
+  $(function(){
+      $("#hotArticles").nbdtabs({
+        tabsDOM:"#hotTabsIndex",
+        contentDOM:"#hotTabsContent",
+        symbolIndex:"hotArticle"
+      });
+  });
+</script>
+
+
+        <div class="sectionA " style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/84">活动会议</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/84">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-08/721160.html" target="_blank" title="杰克·韦尔奇4月来蓉向中国企业家传授成功秘籍">杰克·韦尔奇4月来蓉向中国企业家传授成功秘籍</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-06/720456.html" target="_blank" title="白酒巨头本月成都再聚首">白酒巨头本月成都再聚首</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-02-26/716801.html" target="_blank" title="聚焦京、沪、港、蓉四地财富文化 “财富双城记”系列走访报道活动正式启动">聚焦京、沪、港、蓉四地财富文化 “财富双城记”系列走访报道活动正式启动</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-01-27/710353.html" target="_blank" title="中国缺席史上最多元化达沃斯 参会规模缩小">中国缺席史上最多元化达沃斯</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+
+    </div>
+    <div class="clear">
+    </div>
+  </div>
+</div>
+
+<!-- 广告位：首页_左通栏三 首页_右通栏三 -->
+
+<div class="ad_global ad_col2" style="">
+	<div class="lf">
+		<script type="text/javascript">BAIDU_CLB_fillSlot("347425");</script>
+	</div>
+	<div class="rf">
+		<script type="text/javascript">BAIDU_CLB_fillSlot("347432");</script>
+	</div>
+	<div class="clear"></div>
+</div>
+
+<div class="leftCol">
+  <div class="block">
+    <div class="blockTitle">
+      <h2><a href="/columns/47">全球</a></h2>
+      <span class="opts">
+          <a href="/columns/49">美国</a>		
+          <a href="/columns/51">欧洲</a>		
+          <a href="/columns/53">美洲</a>		
+          <a href="/columns/54">亚洲</a>		
+          <a href="/columns/55">全球精选</a>		
+      </span>
+    </div>
+    <div class="blockContent">
+      <div class="subLeftCol">
+          <div class="sectionA " style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/48">全球快讯</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/48">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-11/721735.html" target="_blank" title="美媒：“中国反卫星试验碎片”撞坏俄罗斯卫星">美媒：“中国反卫星试验碎片”撞坏俄罗斯卫星</a>
+            </h5>
+            <div class="rcDigest">
+                
+
+                <p class="restrict" >
+                  来自美国的报道称，肇事者是“中国2007年进行反卫星试验时留下的卫星碎片”，不过，这种说法并没有得到俄罗斯和中国方面的证实。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-11/721668.html" target="_blank" title="巴菲特旗下铁路公司开始测试使用液化天然气">巴菲特旗下铁路公司开始测试使用液化天然气</a>
+            </h5>
+            <div class="rcDigest">
+                
+
+                <p class="restrict" >
+                  沃伦巴菲特所拥有的伯克希尔-哈撒韦公司旗下的BNSF铁路公司宣布将开始测试使用液化天然气，以取代传统的柴油燃料。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721628.html" target="_blank" title="美韩今起展开联合军演 朝鲜称已进入全面备战">美韩今起展开联合军演 朝鲜称已进入全面备战</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-10/721514.html" target="_blank" title="欧盟拟提议对上市公司高管薪酬予以控制">欧盟拟提议对上市公司高管薪酬予以控制</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-10/721502.html" target="_blank" title="挪威多法并举减少食品浪费">挪威多法并举减少食品浪费</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+      </div>
+      <div class="subRightCol">
+          <div class="sectionA " style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/55">全球精选</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/55">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-11/721671.html" target="_blank" title="新西兰遇干旱影响奶粉产量 或推高奶制品价格">新西兰遇干旱影响奶粉产量 或推高奶制品价格</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-11/721671.html" target="_blank"><img alt="新西兰遇干旱影响奶粉产量 或推高奶制品价格" height="60" src="http://image.nbd.cn/uploads/articles/thumbnails/32443/1.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  据《新西兰先驱报》10日报道，新西兰北岛遭遇的干旱继续恶化，成为70年来最严重的一次。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-10/721519.html" target="_blank" title="挪威石油基金2012年收益上涨13.4%">挪威石油基金2012年收益上涨13.4%</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-10/721519.html" target="_blank"><img alt="挪威石油基金2012年收益上涨13.4%" height="60" src="http://image1.nbd.cn/uploads/articles/thumbnails/32408/__________________.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  北京时间3月10日晚间消息，身为全球最大的投资者之一，挪威石油基金去年的收益上涨了13.4%，是有史以来表现第二好的一年。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-10/721486.html" target="_blank" title="默克尔盟友：希腊仍可能被迫退出欧元区">默克尔盟友：希腊仍可能被迫退出欧元区</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-10/721424.html" target="_blank" title="沙特王妃酒店&quot;逃单&quot;550万英镑 名下奢侈品被拍卖">沙特王妃酒店&quot;逃单&quot;550万英镑 名下奢侈品被拍卖</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-08/721141.html" target="_blank" title="美国减赤特工人手不够 免费白宫游叫停">美国减赤特工人手不够 免费白宫游叫停</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+      </div>
+      <div class="clear">
+      </div>
+    </div>
+  </div>
+  <div class="block">
+    <div class="blockTitle">
+      <h2><a href="http://ntt.nbd.cn/">智库</a></h2>
+      <span class="opts">
+          <a href="http://ntt.nbd.cn/columns/102">专家访谈</a>		
+          <a href="http://ntt.nbd.cn/columns/103">经济大势</a>		
+          <a href="http://ntt.nbd.cn/columns/117">每经书会</a>		
+          <a href="http://ntt.nbd.cn/columns/108">专家活动</a>		
+          <a href="http://ntt.nbd.cn/columns/60">记者手记</a>		
+      </span>
+    </div>
+    <div class="blockContent">
+    	
+<div class="sectionA">
+    <div class="title">
+      <h3>最近更新</h3>
+        <span class="opts"><a href="http://ntt.nbd.cn/columnists">更多</a></span>
+    </div>
+  <div class="content" style="padding:0;">
+    <table class="tankArticlesBox">
+        <tr>
+            <td>
+              <a href="http://ntt.nbd.cn/columnists/li_de_lin" class="expertAvatar" target="_blank"><img alt="李德林" height="100" src="http://image2.nbd.cn/uploads/columnists/3688/_________.jpg" width="100" /></a>
+              <a href="sdfsd" class="thinkTitle" target="_blank">sdfsdf</a>
+              <p class="articleDigest">sdfsdf</p>
+            </td>
+            <td>
+              <a href="http://ntt.nbd.cn/columnists/chen_si_jin" class="expertAvatar" target="_blank"><img alt="陈思进" height="100" src="http://image2.nbd.cn/uploads/columnists/3693/_________.jpg" width="100" /></a>
+              <a href="http://ntt.nbd.cn/articles/2013-03-11/721704.html" class="thinkTitle" target="_blank">陈思进：跨国界金融监管</a>
+              <p class="articleDigest">美国证券交易委员会前任主席玛丽·沙皮诺曾表示：“任何公司，旨在把贪婪凌驾于法律之上、企图以非法手段赢得业务，我们将不惜一切代价跨越国界进行侦查，并严厉惩罚这些非法行为。”</p>
+            </td>
+            <td>
+              <a href="http://ntt.nbd.cn/columnists/yu_feng_hui" class="expertAvatar" target="_blank"><img alt="余丰慧" height="100" src="http://image1.nbd.cn/uploads/columnists/5579/_______________.jpg" width="100" /></a>
+              <a href="http://ntt.nbd.cn/articles/2013-03-11/721700.html" class="thinkTitle" target="_blank">余丰慧：CPI创新高警示通胀抬头</a>
+              <p class="articleDigest">导致通胀抬头更加重要的是货币因素。从国内货币供应量来看，前两个月外贸顺差在扩大，热钱流入在加速，外汇占款创出历史最高，这些都使得央行被动发行基础货币量激增。</p>
+            </td>
+            <td>
+              <a href="http://ntt.nbd.cn/columnists/tan_hao_jun" class="expertAvatar" target="_blank"><img alt="谭浩俊" height="100" src="http://image.nbd.cn/uploads/columnists/6331/_________.jpg" width="100" /></a>
+              <a href="http://ntt.nbd.cn/articles/2013-03-11/721669.html" class="thinkTitle" target="_blank">谭浩俊：CPI跳升不能全归咎于节日</a>
+              <p class="articleDigest">今年2月份物价的跳升并非完全是节日因素所致，在很大程度上与价格管理不到位、蔬菜等产品的生产与供应不配套、市场调控失灵有关。</p>
+            </td>
+        </tr>
+    </table>
+    <div class="clear">
+    </div>
+  </div>
+</div>
+
+    	
+      	<div class="sectionA">
+      	  <div class="title">
+      	    <h3>专家访谈</h3>
+      	    <span class="opts">
+      	    	<a href="http://ntt.nbd.cn/columns/102">更多</a>
+      	    </span>
+      	  </div>
+      	  <div class="content">
+              <div class="subLeftCol">
+                <div class="sectionA " style="">
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend last">
+            <h5 class='rcTitle'>
+              
+                <a href="http://ntt.nbd.cn/articles/2013-03-11/721652.html" target="_blank" title="李荣融：将来国有股权比重将逐步下降">李荣融：将来国有股权比重将逐步下降</a>
+            </h5>
+            <div class="rcDigest">
+                
+
+                <p class="restrict" >
+                  国有企业发展有一个很重要的规律，就是要踏踏实实有责任去搞主业，搞主业的钱来得踏实，搞非主业不是投资，是投机，你去搞自己不擅长的业务，不是投机是什么？
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+              </div>
+              <div class="subRightCol">
+                <div class="sectionA " style="">
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend last">
+            <h5 class='rcTitle'>
+              
+                <a href="http://ntt.nbd.cn/articles/2013-03-09/721335.html" target="_blank" title="迟福林：既得利益者都不会轻易放手 改革阻力相当大">迟福林：既得利益者都不会轻易放手</a>
+            </h5>
+            <div class="rcDigest">
+                
+
+                <p class="restrict" >
+                  迟福林表示，我们现在的改革深化，涉及到深刻的利益关系调整，各部门、行业，尤其是既得利益者，都不会轻易“缩手”，改革阻力还是相当大的。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+              </div>
+      	    <div class="clear"></div>
+      	  </div>
+      	</div><!-- sectionA -->
+      	
+    </div>
+  </div>
+</div>
+<div class="rightCol">
+    
+    <div class="sectionA " style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/44">宏观要闻</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/44">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-11/721769.html" target="_blank" title="反腐立法时间表出炉的艰辛历程">反腐立法时间表出炉的艰辛历程</a>
+            </h5>
+            <div class="rcDigest">
+                
+
+                <p class="restrict" >
+                  全国人大常委会法工委副主任郎胜解读“未来5年的立法规划”时，提到“完善反腐败方面的立法，真正形成惩治和预防腐败体系”是今后5年的立法重点。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721748.html" target="_blank" title="港媒：中石油董事长蒋洁敏将任发改委党组书记">港媒：中石油董事长蒋洁敏将任发改委党组书记</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721701.html" target="_blank" title="中国石油净进口超美 中东战略地位更加突出">中国石油净进口超美 中东战略地位更加突出</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721689.html" target="_blank" title="委员提案聚焦空心村 估算中国村庄空置面积超过1亿亩">委员提案聚焦空心村</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-11/721681.html" target="_blank" title="央企的高工资和“隐形福利”谁来管？">央企的高工资和“隐形福利”谁来管？</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+
+    <div class="sectionA westEntry" style="">
+    <div class="title">
+      	<h3>
+      		<a href="http://west.nbd.cn/">西部频道</a>
+      	</h3>
+       	<span class="opts">
+            <a href="http://west.nbd.cn/">更多</a>
+    	</span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          	<li class="">
+          		<a href="http://west.nbd.cn/articles/2013-03-11/721745.html" target="_blank" title="昆明长水机场半年亏10亿 将尽快卖老机场土地">长水机场半年亏10亿 将尽快卖老机场土地</a>
+            </li>
+          	<li class="">
+          		<a href="http://west.nbd.cn/articles/2013-03-11/721733.html" target="_blank" title="习酒逆市涨价直逼五粮液 豪赌式营销风险大">习酒逆市涨价直逼五粮液 豪赌式营销风险大</a>
+            </li>
+          	<li class="last">
+          		<a href="http://news.chengdu.cn/content/2013-03/11/content_1175345.htm?node=583" target="_blank" title="人大代表看成都：财富论坛后产业将提升聚集">人大代表看成都：财富论坛后产业将提升聚集</a>
+            </li>
+   	</ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+ 
+
+  <iframe width="100%" height="450" style="margin-top:10px;" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=450&fansRow=1&ptype=1&speed=0&skin=1&isTitle=1&noborder=1&isWeibo=1&isFans=0&uid=1649173367&verifier=f479351c"></iframe>
+</div>
+<div class="clear">
+</div>
+
+<!-- 广告位：首页_左通栏四 首页_右通栏四 -->
+
+<div class="ad_global ad_col2" style="margin-top:0;">
+	<div class="lf">
+		<script type="text/javascript">BAIDU_CLB_fillSlot("347426");</script>
+	</div>
+	<div class="rf">
+		<script type="text/javascript">BAIDU_CLB_fillSlot("347433");</script>
+	</div>
+	<div class="clear"></div>
+</div>
+
+<div class="leftCol">
+  <div class="subLeftCol">
+    <div class="block">
+      <div class="blockTitle">
+        <h2><a href="http://life.nbd.cn">品味</a></h2>
+        <span class="opts">
+            <a href="/columns/63">娱乐</a>		
+            <a href="/columns/64">时尚</a>		
+            <a href="/columns/65">探索</a>		
+            <a href="/columns/66">奢侈品</a>		
+            <a href="/columns/67">理财</a>		
+            <a href="/columns/68">读书</a>		
+        </span>
+      </div>
+      <div class="blockContent">
+          <div class="sectionA " style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/63">娱乐</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/63">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-11/721719.html" target="_blank" title="凤凰传奇年入亿元 今年还要在美国亮嗓">凤凰传奇年入亿元 今年还要在美国亮嗓</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-11/721719.html" target="_blank"><img alt="凤凰传奇年入亿元 今年还要在美国亮嗓" height="60" src="http://image.nbd.cn/uploads/articles/thumbnails/32469/1.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  凤凰传奇在横扫各大卫视春节档期之后，身价已经暴涨到几首歌60万，上半年档期全部排满。去年，他们唱到美国，4月他们又将登上工体4万人体育场的舞台。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-11/721692.html" target="_blank" title="彭佳慧顶替尚雯婕 转盘选歌赛制赚足看点[组图]">彭佳慧顶替尚雯婕 转盘选歌赛制赚足看点[组图]</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-11/721692.html" target="_blank"><img alt="彭佳慧顶替尚雯婕 转盘选歌赛制赚足看点[组图]" height="60" src="http://image.nbd.cn/uploads/articles/thumbnails/32448/0C3F48ABF2C933361BF1BA6B69CA9F86.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  彭佳慧顶替尚雯婕转盘选歌赛制赚足看点[组图]昨晚，湖南卫视播出《我是歌手》第八场，本场比赛开始采用新的转盘选歌赛制，增加了很大偶然性，结果尚雯婕爆冷遭淘汰，下一场将由彭佳慧替补。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-10/721492.html" target="_blank" title="天天向上柳岩激情热舞露底 比基尼度假照大搜罗[组图]">天天向上柳岩激情热舞露底 比基尼度假照大搜罗[组图]</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-10/721470.html" target="_blank" title="爆灯女孩情牵四川“飘渺哥” 非诚舞台双方一见钟情[组图]">爆灯女孩情牵四川“飘渺哥” 非诚舞台双方一见钟情[组图]</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-10/721465.html" target="_blank" title="林峰带女友看三级片 机震门后再酿负面新风波[组图]">林峰带女友看三级片 机震门后再酿负面新风波[组图]</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+          <div class="sectionA " style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/64">时尚</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/64">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-10/721484.html" target="_blank" title="人海如潮！妇女节沈阳商场内衣秀惊爆眼球[组图]">人海如潮！妇女节沈阳商场内衣秀惊爆眼球[组图]</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-10/721484.html" target="_blank"><img alt="人海如潮！妇女节沈阳商场内衣秀惊爆眼球[组图]" height="60" src="http://image.nbd.cn/uploads/articles/thumbnails/32397/17C02C3CBB9C048092EBD734872D1C40.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  3月8日是三八妇女节，沈阳商场内举办内衣秀，数千名市民前来观看。模特火辣的身材配上时尚性感的内衣，给沈阳市民带来了一场视觉盛宴。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-07/720945.html" target="_blank" title="《葫芦兄弟》将拍真人版 融合经典故事与时尚造型">《葫芦兄弟》将拍真人版 融合经典故事与时尚造型</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-07/720945.html" target="_blank"><img alt="《葫芦兄弟》将拍真人版 融合经典故事与时尚造型" height="60" src="http://image2.nbd.cn/uploads/articles/thumbnails/32184/6075902_640x640_281.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  《葫芦兄弟》是一部在全国拥有众多粉丝、引发话题性强，一直为漫迷津津乐道的动画片。而这次，《葫芦兄弟》将联手国内外顶尖拍摄和后期制作团队，共同打造“真人版”《葫芦兄弟》，将经典故事与时尚造型相结合。从动画形象到真人版，无疑是一次很大的突破。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-06/720542.html" target="_blank" title="日本小姐出炉 25岁“高龄”模特荣膺桂冠[高清组图]">日本小姐出炉 25岁“高龄”模特荣膺桂冠[高清组图]</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-05/720112.html" target="_blank" title="河莉秀整容成瘾 爱美已经是一种病[组图]">河莉秀整容成瘾 爱美已经是一种病[组图]</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-03/719100.html" target="_blank" title="没有特效电影图凸显抽象思维与逻辑能力[组图]">没有特效电影图凸显抽象思维与逻辑能力[组图]</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+          <div class="sectionA " style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/65">探索</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/65">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-11/721763.html" target="_blank" title="中国货币供应量逼近100万亿 被指推高物价房价">中国货币供应量逼近100万亿 被指推高物价房价</a>
+            </h5>
+            <div class="rcDigest">
+                
+
+                <p class="restrict" >
+                  2002年初为16万亿，十多年里增长超5倍；分析称，货币超发冲击物价推高房价
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-11/721672.html" target="_blank" title="黄浦江上游漂浮900多死猪 现场狼藉令人作呕[组图]">黄浦江上游漂浮900多死猪 现场狼藉令人作呕[组图]</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-11/721672.html" target="_blank"><img alt="黄浦江上游漂浮900多死猪 现场狼藉令人作呕[组图]" height="60" src="http://image2.nbd.cn/uploads/articles/thumbnails/32444/95E98DD5E7BA2BD4CEA347DCF56ECA4D__1_.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  黄浦江上游松江横潦泾水面近日漂浮900多死猪。3月10日，新民网记者再次来到事发现场看到，虽经过连日打捞，但水面上仍不时可看到漂浮的死猪，河道上的打捞作业也仍在继续。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-10/721482.html" target="_blank" title="计划生育一票否决制继续实施 坚持完善计划生育政策">计划生育一票否决制继续实施 坚持完善计划生育政策</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-10/721461.html" target="_blank" title="泰山大火现场火势得以控制 天干物燥防火必不可少[组图]">泰山大火现场火势得以控制 防火必不可少</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-10/721425.html" target="_blank" title="美国女子头发长6.4米重113公斤 24年未理发(图)">美国女子头发长6.4米重113公斤 24年未理发(图)</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+      </div>
+    </div>
+  </div>
+  <div class="subRightCol">
+    <div class="block">
+      <div class="blockTitle">
+        <h2><a href="http://bschool.nbd.cn">管理</a></h2>
+        <span class="opts">
+            <a href="/columns/72">职场</a>		
+            <a href="/columns/73">人物</a>		
+            <a href="/columns/74">商学院</a>		
+            <a href="/columns/76">管理精选</a>		
+        </span>
+      </div>
+      <div class="blockContent">
+          <div class="sectionA " style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/72">职场</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/72">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-10/721476.html" target="_blank" title="李咏人事关系已调离央视 专家：“钱景”一片大好">李咏人事关系已调离央视</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-10/721476.html" target="_blank"><img alt="李咏人事关系已调离央视" height="60" src="http://image2.nbd.cn/uploads/articles/thumbnails/32392/re_513bf92092779.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  这位负责人明确表示，李咏回校已成定局，传媒大学人事部门和央视人事部门正在接洽，抓紧办理相关手续。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-10/721455.html" target="_blank" title="上市公司高管薪酬：金融家挣不过卖楼的">上市公司高管薪酬：金融家挣不过卖楼的</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-10/721455.html" target="_blank"><img alt="上市公司高管薪酬：金融家挣不过卖楼的" height="60" src="http://image.nbd.cn/uploads/articles/thumbnails/32376/124438519_11n.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  其中，点钞数钱的银行和炒股投资的券商高管收入均跑不赢盖楼卖房的地产商。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-09/721365.html" target="_blank" title="中国女性管理人员明显增加 理财意识超男性">中国女性管理人员明显增加 理财意识超男性</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-01/718820.html" target="_blank" title="女硕士年薪5万不敌农民工 网友支招职业规划[图]">女硕士年薪5万不敌农民工 网友支招职业规划[图]</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-02-28/717838.html" target="_blank" title="电商背面：我当快递员的日子">电商背面：我当快递员的日子</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+          <div class="sectionA " style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/73">人物</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/73">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-11/721732.html" target="_blank" title="宗庆后:北漂应回家乡 中小城市竞争压力小">宗庆后:北漂应回家乡 中小城市竞争压力小</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-11/721732.html" target="_blank"><img alt="宗庆后:北漂应回家乡 中小城市竞争压力小" height="60" src="http://image.nbd.cn/uploads/articles/thumbnails/32474/1362901372745.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  娃哈哈集团董事长宗庆后代表建议“北漂”应回家乡。“在家乡更容易受到尊重”引发热议。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-10/721520.html" target="_blank" title="企业家要学会分钱">企业家要学会分钱</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-10/721520.html" target="_blank"><img alt="企业家要学会分钱" height="60" src="http://image2.nbd.cn/uploads/articles/thumbnails/32409/_________.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  敢说、直言的慧聪集团董事局主席郭凡生昨日在“中国商界领袖经济论坛”上疾呼：“企业要想挣钱，应该先学会分钱”。
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-10/721490.html" target="_blank" title="铁道部被撤销 部长盛光祖畅谈感受称不遗憾[高清组图]">铁道部被撤销 铁道部长盛光祖不遗憾</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-10/721449.html" target="_blank" title="李嘉诚生财之道：套现香港抄底欧洲">李嘉诚生财之道：套现香港抄底欧洲</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-08/721197.html" target="_blank" title="“女二号”彭蕾：幕后15年 马云最坚定的执行者">女二号彭蕾：幕后15年 马云最坚定的执行者</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+          <div class="sectionA " style="">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/74">商学院</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/74">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-11/721749.html" target="_blank" title="周成建治货患：中国服装行业最核心危机是品牌力缺失">周成建治货患：中国服装行业最核心危机是品牌力缺失</a>
+            </h5>
+            <div class="rcDigest">
+                
+
+                <p class="restrict" >
+                  对于周成建和他一手创办的美特斯.邦威(下称“美邦”)而言，刚刚过去的2012年，不是个顺利的年份。
+这一年，中国的服装零售企业大面积陷入高库存危机。根据Wind的统计，2012年上半年，纺织服装行业87家上市公司的累计库存高达7...
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-11/721737.html" target="_blank" title="马明哲看不起银行：靠红利躺着吃饭 没理由做不好">马明哲看不起银行：靠红利吃饭 没理由做不好</a>
+            </h5>
+            <div class="rcDigest">
+                <a href="http://www.nbd.cn/articles/2013-03-11/721737.html" target="_blank"><img alt="马明哲看不起银行：靠红利吃饭 没理由做不好" height="60" src="http://image1.nbd.cn/uploads/articles/thumbnails/32477/___________________.small.jpg" width="80" /></a>
+
+                <p class="restrict" >
+                  平安银行奋起直追小微业务，而小微一向是民生银行的金牌业务。但邵平表示，平安想copy民生？绝对不是！
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-08/721226.html" target="_blank" title="西游票房接近12亿 比高集团不认为华谊为投资方">西游票房接近12亿 比高集团不认为华谊为投资方</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-08/721208.html" target="_blank" title="出租车拒载经济学">出租车拒载经济学</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-03-08/721024.html" target="_blank" title="海归博士后回蓉 造药物“种子库”">海归博士后回蓉 造药物“种子库”</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+      </div>
+    </div>
+  </div>
+  <div class="clear">
+  </div>
+</div>
+<div class="rightCol">
+
+  <div class="sectionA  articleWallWrapper" style="">
+	<div class="title">
+		<h3><a href="/columns/195">视听-每经财讯</a></h3>
+		<span class="opts"><a href="/columns/195">更多</a></span>
+	</div>
+	<div class="content">
+		<ul class="articleList unorderList">
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2012-08-24/676705.html" class="miniture" target="_blank" title="《每经财讯》：任志强、樊纲博鳌地产论坛论剑"><img alt="任志强、樊纲论剑：被政府抛弃活得更好" src="http://image1.nbd.cn/uploads/articles/thumbnails/18230/____________201282430899671.middle.jpg" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2012-08-24/676705.html" target="_blank" title="《每经财讯》：任志强、樊纲博鳌地产论坛论剑"><b class="video"></b>任志强、樊纲论剑：被政府抛弃活得更好</a>
+					</p>
+				</li>
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2012-08-21/675695.html" class="miniture" target="_blank" title="金地集团总裁黄俊灿：调结构显效 上半年业绩超预期"><img alt="金地集团总裁黄俊灿：调结构显效 上半年业绩超预期" src="http://image2.nbd.cn/uploads/articles/thumbnails/17945/_________.middle.jpg" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2012-08-21/675695.html" target="_blank" title="金地集团总裁黄俊灿：调结构显效 上半年业绩超预期"><b class="video"></b>金地集团总裁黄俊灿：调结构显效 上半年业绩超预期</a>
+					</p>
+				</li>
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2012-08-21/675674.html" class="miniture" target="_blank" title="卓越集团执行总裁张远：一个楼盘可能毁掉一个品牌"><img alt="张远：一个楼盘可能毁掉一个品牌" src="http://image.nbd.cn/uploads/articles/thumbnails/17946/______.middle.jpg" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2012-08-21/675674.html" target="_blank" title="卓越集团执行总裁张远：一个楼盘可能毁掉一个品牌"><b class="video"></b>张远：一个楼盘可能毁掉一个品牌</a>
+					</p>
+				</li>
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2012-08-21/675673.html" class="miniture" target="_blank" title="林木雄：除非经济出现大幅波动 否则调控政策会慢慢变成中期政策"><img alt="林木雄：调控政策会成中期政策" src="http://image.nbd.cn/uploads/articles/thumbnails/17947/_________.middle.jpg" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2012-08-21/675673.html" target="_blank" title="林木雄：除非经济出现大幅波动 否则调控政策会慢慢变成中期政策"><b class="video"></b>林木雄：调控政策会成中期政策</a>
+					</p>
+				</li>
+		</ul>
+		<div class="clear">
+		</div>
+	</div>
+	<!--content-->
+</div>
+
+
+<div class="divider" style="margin-bottom:15px;"></div>
+
+  <div class="sectionA  articleWallWrapper" style="">
+	<div class="title">
+		<h3><a href="/columns/194">视听-财经面对面</a></h3>
+		<span class="opts"><a href="/columns/194">更多</a></span>
+	</div>
+	<div class="content">
+		<ul class="articleList unorderList">
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2013-03-06/720267.html" class="miniture" target="_blank" title="《每经访谈》第一季:中国网络信息安全的现在与未来"><img alt="中国网络信息安全的现在与未来（下）" src="http://image.nbd.cn/uploads/articles/thumbnails/31913/____________.middle.jpg" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2013-03-06/720267.html" target="_blank" title="《每经访谈》第一季:中国网络信息安全的现在与未来"><b class="video"></b>中国网络信息安全的现在与未来（下）</a>
+					</p>
+				</li>
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2013-03-06/720262.html" class="miniture" target="_blank" title="《每经访谈》第一季:中国网络信息安全的现在与未来"><img alt="中国网络信息安全的现在与未来（中）" src="http://image.nbd.cn/uploads/articles/thumbnails/31912/____________.middle.jpg" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2013-03-06/720262.html" target="_blank" title="《每经访谈》第一季:中国网络信息安全的现在与未来"><b class="video"></b>中国网络信息安全的现在与未来（中）</a>
+					</p>
+				</li>
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2013-03-06/720252.html" class="miniture" target="_blank" title="《每经访谈》第一季:中国网络信息安全的现在与未来"><img alt="中国网络信息安全的现在与未来（上）" src="http://image.nbd.cn/uploads/articles/thumbnails/31908/____________.middle.jpg" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2013-03-06/720252.html" target="_blank" title="《每经访谈》第一季:中国网络信息安全的现在与未来"><b class="video"></b>中国网络信息安全的现在与未来（上）</a>
+					</p>
+				</li>
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2012-08-23/676352.html" class="miniture" target="_blank" title="《财经面对面》：如何解决旅游地产融资问题"><img alt="《财经面对面》之地产融资生态（三）" src="http://image.nbd.cn/uploads/articles/thumbnails/18102/yuanzhuo.middle.jpg" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2012-08-23/676352.html" target="_blank" title="《财经面对面》：如何解决旅游地产融资问题"><b class="video"></b>《财经面对面》之地产融资生态（三）</a>
+					</p>
+				</li>
+		</ul>
+		<div class="clear">
+		</div>
+	</div>
+	<!--content-->
+</div>
+
+
+<div class="divider" style="margin-bottom:15px;"></div>
+
+    <div class="sectionA  articleWallWrapper" style="">
+	<div class="title">
+		<h3><a href="/columns/4">图片新闻</a></h3>
+		<span class="opts"><a href="/columns/4">更多</a></span>
+	</div>
+	<div class="content">
+		<ul class="articleList unorderList">
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2013-03-20/721773.html" class="miniture" target="_blank" title="测试文章3——debug"><img alt="测试文章3——debug" height="90" src="http://static.nbd.cn/images/default-middle.gif?1356401080" width="120" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2013-03-20/721773.html" target="_blank" title="测试文章3——debug">测试文章3——debug</a>
+					</p>
+				</li>
+				<li class="articleWall">
+					<a href="sdfsd" class="miniture" target="_blank" title="sdf"><img alt="sdfsdf" height="90" src="http://static.nbd.cn/images/default-middle.gif?1356401080" width="120" /></a>
+					<p class="headline">
+						<a href="sdfsd" target="_blank" title="sdf">sdfsdf</a>
+					</p>
+				</li>
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2013-03-11/721736.html" class="miniture" target="_blank" title="我国将建房产统一登记制度 资深房地产专家解读"><img alt="房产统一登记制度欲建立 房地产专家解读" height="90" src="http://image2.nbd.cn/uploads/articles/thumbnails/32476/20130310051804509.middle.jpg" width="120" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2013-03-11/721736.html" target="_blank" title="我国将建房产统一登记制度 资深房地产专家解读">房产统一登记制度欲建立 房地产专家解读</a>
+					</p>
+				</li>
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2013-03-11/721732.html" class="miniture" target="_blank" title="宗庆后:北漂应回家乡 中小城市竞争压力小"><img alt="宗庆后:北漂应回家乡 中小城市竞争压力小" height="90" src="http://image1.nbd.cn/uploads/articles/thumbnails/32474/1362901372745.middle.jpg" width="120" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2013-03-11/721732.html" target="_blank" title="宗庆后:北漂应回家乡 中小城市竞争压力小">宗庆后:北漂应回家乡 中小城市竞争压力小</a>
+					</p>
+				</li>
+		</ul>
+		<div class="clear">
+		</div>
+	</div>
+	<!--content-->
+</div>
+
+
+</div>
+<div class="clear"></div>
+
+<!-- 广告位：首页_底部通栏 -->
+
+<div class="ad_global ad_footer" style="">
+	<script type="text/javascript">BAIDU_CLB_fillSlot("347437");</script>
+</div>
+
+<script type="text/javascript">
+	$(function(){
+		$("#scrollNewsHomeList").loopScroll();
+	});
+</script>
+
+    </div>
+
+    <div id="footer" class=>
+	<div class="nav">
+		<a href="http://old.nbd.com.cn/html/front/html/aboutus_new/index.htm" class="first">关于我们</a>
+		<a href="http://www.nbd.cn/copyright">版权声明</a>
+		<a href="http://www.nbd.cn/disclaimer">免责声明</a>
+		<a href="http://www.nbd.cn/advertisement">广告服务</a>
+		<a href="http://www.nbd.cn/contact">联系我们</a>
+		<a href="http://www.nbd.com.cn/corp/2013dingyue/index.html">订阅中心</a>
+		<a href="http://www.nbd.cn/links" class="last">友情链接</a>
+		<a href="http://www.nbd.cn/sitemap" class="last">网站地图</a>
+	</div>
+	<p>
+		Copyright © 2013 每日经济新闻报社版权所有，未经许可不得转载使用，违者必究<br/>
+		读者热线：400-889-0008　合作联系电话：86-21-60900099转688分机<br/>
+		<a href="http://www.miibeian.gov.cn/" style="margin-right: 10px; color:#787878" target="_blank">沪ICP备09000473号</a> <span>带宽提供：<a href="http://www.kwww.cn/" style="margin-right: 10px;" target="_blank">上海快网</a></span> <span><a href=" http://top.chinaz.com" target="_blank">网站排行榜</a></span>
+	</p>
+</div>
+      <p id="sbblock">
+    <a id="sb_police" class="sbItem" href="http://sh.cyberpolice.cn/" target="_blank">上海网警网络110</a>
+    <a id="sb_zx110" class="sbItem" href="http://www.zx110.org/" target="_blank">网络社会征信网</a>
+    <a id="sb_sh" class="sbItem" href="http://www.shjubao.cn/" target="_blank">上海举报中心</a>
+  </p>
+
+    
+  </body>
+
+</html>

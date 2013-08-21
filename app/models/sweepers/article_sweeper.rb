@@ -167,34 +167,20 @@ module Sweepers
     end
 
     def after_save(entry)
-      if entry.is_rolling_news_changed?
-        expire_cache_object("column", Column::ROLLING_COLUMN_ID)
-      end
       Rails.cache.delete(entry.newspaper.api_newspaper_cache_key) if entry.newspaper
       expire_cache_object(entry)
-      update_static_fragment_page(entry.id, entry.columns.map(&:id), entry.prev_column_ids)
+      # Resque.enqueue(Jobs::DeletePageCache, "article", entry.id)
       super 
     end
 
-
     def after_destroy(entry)
       if entry.is_rolling_news == 1
-        expire_cache_object("column", Column::ROLLING_COLUMN_ID)
+        expire_cache_object("column", "rolling_news")
       end
       Rails.cache.delete(entry.newspaper.api_newspaper_cache_key) if entry.newspaper
       expire_cache_object(entry)
-      update_static_fragment_page(entry.id, entry.columns.map(&:id), entry.prev_column_ids)
+      # Resque.enqueue(Jobs::DeletePageCache, "article", entry.id)
       super
-    end
-
-    private
-
-    def update_static_fragment_page(article_id, column_ids, old_column_ids)
-      old_column_ids ||= []
-      update_column_ids = (old_column_ids | column_ids) & Column::FEATURE_COLUMN_HASH.values
-      update_channel_ids = (old_column_ids | column_ids) & Column::COLUMN_PICTURE.values
-      params = {:column_top_picks_pages => update_column_ids, :column_picture_articles => update_channel_ids, :hot_picture_articles => update_channel_ids}
-      Resque.enqueue(Jobs::UpdateStaticFragmentPage, article_id, params)
     end
   end
 

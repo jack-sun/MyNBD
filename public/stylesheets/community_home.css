@@ -93,82 +93,6 @@ cursor: pointer;
 .subRightCol{
 	width: 390px;
 }
-#weiboLive .avatar{
-	display: block;
-	border: 1px solid #ccc;
-	padding: 1px;
-	width: 50px;
-	height: 50px;
-	float: left;
-	margin-right: 8px;
-}
-#weiboLive .weiboItemList .itemContent{
-	margin-left: 0; 
-}
-
-#weiboLive .weiboItemList .itemContent p{
-	margin-bottom: 0;
-	height: 105px;
-	overflow: hidden;
-	padding: 0 5px;
-}
-
-#weiboLive .weiboItemList .itemBottom{
-	padding: 0 5px;
-	margin-top: 3px;
-}
-
-#weiboLive .content{
-	padding: 5px;
-	background-color: #F2F5FA;
-	border-bottom: 1px solid #e5e5e5;
-}
-
-.weiboLiveCompereProfile{
-	margin-bottom: 0;
-	padding-bottom: 5px;
-	border-bottom: 1px solid #e5e5e5;
-}
-
-#weiboLive .weiboItemList{
-	background-color: white;
-}
-
-#weiboLive .weiboItemList li{
-	margin-bottom: 0;
-	padding: 7px 0;
-}
-
-/* questions and answers */
-
-#weiboLive.qa .weiboItemList .itemContent, #weiboLive.qa .weiboItemList .itemBottom{
-	margin-left: 65px;
-}
-
-#weiboLive.qa .weiboItemList li .avatar{
-	margin-left: 7px;
-	margin-right: 0;
-}
-
-#weiboLive.qa .weiboItemList li b{
-	float: left;
-	width: 20px;
-	height: 20px;
-	background: url(../images/sprite-icons.gif) no-repeat;
-	margin-right: 3px;
-}
-
-#weiboLive.qa .weiboItemList li.question b{
-	background-position: -40px -80px;
-}
-
-#weiboLive.qa .weiboItemList li.answer b{
-	background-position: -60px -80px;
-}
-
-#weiboLive.qa .weiboItemList .itemContent p{
-	height: 64px;
-}
 
 .block .blockTitle h1, .block .blockTitle h2, .block .blockTitle h3, .block .blockTitle h4, .block .blockTitle h5, .block .blockTitle h6 {
 	float: left;
@@ -192,11 +116,16 @@ cursor: pointer;
 }
 
 #hotComments .weiboItemList .avatar img {
-width: 30px;
-height: 30px;
+	width: 30px;
+	height: 30px;
 }
 
-.qa{
-	margin-bottom: 15px;
+/* weibo live override */
+.weiboLive .weiboItemList .itemContent p{
+	height: 68px;
 }
+.weiboLive.weiboLiveQA .weiboItemList .itemContent p{
+	height: 63px;
+}
+
 

@@ -3,13 +3,28 @@ queue_documents_for_indexing:
   class: "CacheCallback::BaseCallback"
   queue: high
   description: "This job queues all content for indexing in solr"
-queue_documents_for_jiujiuai:
-  cron: "0,30 9-17 4-6 5 *"
-  class: "Jiujiuai"
-  queue: high
-  description: "This job queues all jiujiuai"
-queue_documents_for_jiujiuai_8:
-  cron: "30 8 4-6 5 *"
-  class: "Jiujiuai"
-  queue: high
-  description: "This job queues all jiujiuai"
+active_touzibao_users_weekly_report:
+  cron: "0 0 * * 1 "
+  class: "Jobs::ActiveTouzibaoUsersWeeklyReport"
+  queue: touzibao
+  description: "send email about last week actie ttyj user to staffs"
+refresh_staff_and_column_performance_logs_data:
+  cron: "0 0 * * *"
+  class: "Jobs::RefreshStaffAndColumnPerformanceLogsData"
+  queue: performance_log
+  description: "Refresh staff and column performance logs data"
+check_apple_payment_verify_job:
+  cron: "0 0 * * *"
+  class: "Jobs::CheckApplePaymentVerifyJob"
+  queue: verify_apple_payment
+  description: "check payment status and verify apple payment whose status is waiting "  
+#queue_documents_for_jiujiuai:
+#  cron: "0,30 9-17 4-6 5 *"
+#  class: "Jiujiuai"
+#  queue: high
+#  description: "This job queues all jiujiuai"
+#queue_documents_for_jiujiuai_8:
+#  cron: "30 8 4-6 5 *"
+#  class: "Jiujiuai"
+#  queue: high
+#  description: "This job queues all jiujiuai"

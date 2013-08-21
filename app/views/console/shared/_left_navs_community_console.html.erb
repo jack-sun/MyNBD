@@ -36,4 +36,13 @@
 	<dd <% if defined?(@badkeywords_navs) and @badkeywords_navs %>class="current"<%end%>>
 		<%= link_to "敏感词", console_badkeywords_url %>
 	</dd>
+	<dt>
+		口碑榜
+	</dt>
+	<dd <% if defined?(@koubeibang_navs) and @koubeibang_navs == "review_comment" %>class="current"<%end%>>
+		<%= link_to "审核提名", console_koubeibangs_url %>
+	</dd>
+<!-- 	<dd <% if defined?(@koubeibang_navs) and @koubeibang_navs == "export_kbb_details" %>class="current"<%end%>>
+		<%= link_to "导出提名", export_to_xls_console_koubeibangs_url %>
+	</dd> -->
 </dl>

@@ -1,0 +1,883 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>GGGG | 每经网</title>
+    <link href="http://static.nbd.cn/stylesheets/reset.css?1356401080" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://static.nbd.cn/stylesheets/style_global.css?1370679926" media="screen" rel="stylesheet" type="text/css" />
+<link href="http://static.nbd.cn/stylesheets/style_website.css?1370679926" media="screen" rel="stylesheet" type="text/css" />
+    <link href="http://static.nbd.cn/stylesheets/site_article.css?1370662847" media="screen" rel="stylesheet" type="text/css" /><link href="http://static.nbd.cn/utilities/popWin/popWin.css?1358129544" media="screen" rel="stylesheet" type="text/css" /><link href="http://static.nbd.cn/utilities/autoComplete/autoComplete.css?1356401080" media="screen" rel="stylesheet" type="text/css" />
+    <script src="http://static.nbd.cn/javascripts/jquery.min.js?1356401080" type="text/javascript"></script>
+<script src="http://static.nbd.cn/javascripts/jquery_ujs.js?1356401080" type="text/javascript"></script>
+<script src="http://static.nbd.cn/javascripts/cookie.js?1356401080" type="text/javascript"></script>
+<script src="http://static.nbd.cn/javascripts/nbdtools.js?1370662847" type="text/javascript"></script>
+<script src="http://static.nbd.cn/javascripts/baidu_m.js?1358129544" type="text/javascript"></script>
+    <script src="http://static.nbd.cn/javascripts/speak_mana.js?1358129544" type="text/javascript"></script><script src="http://static.nbd.cn/javascripts/jquery.color.js?1356401080" type="text/javascript"></script><script src="http://static.nbd.cn/utilities/popWin/popWin.js?1358129544" type="text/javascript"></script>
+<script src="http://static.nbd.cn/utilities/popWin/popManager.js?1356401080" type="text/javascript"></script><script src="http://static.nbd.cn/utilities/fixedPosition/fixedPosition.js?1370662847" type="text/javascript"></script><script src="http://static.nbd.cn/utilities/adjustElement/adjustElement.js?1356401080" type="text/javascript"></script>
+<script src="http://static.nbd.cn/utilities/autoComplete/autoComplete.js?1356401080" type="text/javascript"></script><script src="http://static.nbd.cn/utilities/tabs/tabs.js?1356401080" type="text/javascript"></script>
+    <meta name="csrf-param" content="authenticity_token"/>
+<meta name="csrf-token" content="NBxxzrot3eOtZCUzNEzGpm8q6f927RavmGt9rIM75jQ="/>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta name="viewport" content="width=1000" />
+    <link rel="shortcut icon" href="http://static.nbd.com.cn/favicon.ico" type="image/x-icon" />
+    <meta name="Keywords" content="财经新闻,财经报道,叶檀,道达,老法师看盘,股市直播,郑眼看盘,股市行情,财经证券,基金,荐股,股市内参,股吧,传闻,内幕,板块,个股,黑马,股市新闻,生活,汽车" />
+    <meta name="Description" content="24小时财经资讯平台，依托新锐财经日报《每日经济新闻》(National Business Daily)，打造中国最具影响力的经济、股票网站。覆盖宏观、股票、基金、期货、股指期货、外汇、债券、保险、银行、黄金、理财等全方位财经新闻。" />
+  </head>
+
+  <body id="body_site">
+
+		
+		
+    <div id="favoriteTip">
+	<div class="innerCenter">温馨提示：
+		<a id="addFav" href="javascript:void(0)">把每经网放入收藏夹吧！</a>
+		<a id="dontFavTip" style="margin-left:15px;" href="javascript:void(0)">我知道了</a>
+	</div>
+</div>
+
+<script type="text/javascript">
+	$(function(){
+		return; // for 18da
+
+		if(!$.cookie.get("favoriteTip")){
+			$("#favoriteTip").slideDown();
+		}
+		
+		$("body").keydown(function(e){
+			if ((e.ctrlKey||e.metaKey) && e.keyCode == 68) {
+				dontTip();
+			}
+		});
+		
+		$("#dontFavTip").click(function(){
+			dontTip();
+		});
+		
+		function dontTip(){
+			$.cookie.set("favoriteTip", true, {
+				expires:90,
+				domain:(location.href.indexOf("nbd.com.cn") != -1) ? "nbd.com.cn" : "nbd.cn",
+				path:"/"
+			});
+			$("#favoriteTip").slideUp();
+		}
+		
+		bookmarkApp();
+		
+		function bookmarkApp() {
+			var isIEmac = false; /*@cc_on @if(@_jscript&&!(@_win32||@_win16)&&(@_jscript_version<5.5)) isIEmac=true; @end @*/
+			var isMSIE = (-[1,]) ? false : true;
+			var cjTitle = "每经网";
+			var cjHref = "http://www.nbd.com.cn";
+			
+			addBookmark();
+			
+			//热键提示
+			function hotKeyTip() {
+				var ua = navigator.userAgent.toLowerCase();
+				var str = '';
+				var isWebkit = (ua.indexOf('webkit') != - 1);
+				var isMac = (ua.indexOf('mac') != - 1);
+				
+				if (ua.indexOf('konqueror') != - 1) {
+					str = 'CTRL + B'; // Konqueror
+				} else if (window.home || isWebkit || isIEmac || isMac) {
+					str = (isMac ? 'Command' : 'CTRL') + ' + D'; // Netscape, Safari, iCab, IE5/Mac
+				}
+				return ((str) ? '按下 <strong>' + str + '</strong>，把每经网放入收藏夹吧！' : str);
+			}
+	
+			function isIE8() {
+				var rv = -1;
+				if (navigator.appName == 'Microsoft Internet Explorer') {
+					var ua = navigator.userAgent;
+					var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+					if (re.exec(ua) != null) {
+						rv = parseFloat(RegExp.$1);
+					}
+				}
+				if (rv > - 1) {
+					if (rv >= 8.0) {
+						return true;
+					}
+				}
+				return false;
+			}
+	
+			function addBookmark() {
+				var addFavEvent;
+				
+				// Gecko (Mozilla)
+				if ((typeof window.sidebar == "object") && (typeof window.sidebar.addPanel == "function")) {
+					addFavEvent = function(){
+						window.sidebar.addPanel(cjTitle, cjHref, "");
+					};
+				
+				// IE	
+				}else if(isMSIE && typeof window.external == "object") {
+					// IE 8
+					if (isIE8()) {
+						addFavEvent = function(){
+							window.external.AddToFavoritesBar(cjHref, cjTitle); 
+						}
+					// IE <=7
+					} else { 
+						addFavEvent = function(){
+							window.external.AddFavorite(cjHref, cjTitle); 
+						}
+					}
+				
+				// OPERA	
+				} else if (window.opera) {
+					addFavEvent = function(){
+						$("#addFav").attr("href",cjHref);
+						$("#addFav").attr("title",cjTitle);
+						$("#addFav").attr("rel","sidebar");
+					}
+					
+				// WEBKIT
+				} else { 
+					$("#addFav").replaceWith("<span>"+hotKeyTip()+"</span>");
+				}
+				
+				if(addFavEvent){
+					$("#addFav").click(function(){
+						addFavEvent();
+						dontTip();
+					});
+				}
+			}
+			
+		};
+		
+	});
+</script>
+
+    <div id="top" class="dark"><div id="topStyle">
+      <div class="innerCenter">
+        <ul id="headerEntries">
+          <li class="first"><a href="http://www.nbd.cn/newspapers/today">今日报纸 (06月08日)</a></li>
+          <li><a href="http://www.nbd.cn/mobiles/android">移动客户端</a></li>
+          <li><a href="http://club.nbd.cn">每经会</a></li>
+          <li><a href="http://www.nbd.com.cn/html/dingyue.html">订阅服务</a></li>
+          <li class="last"><a href="http://www.nbd.cn/premium/touzibao" style="color:#f60;font-weight:bold;">每经投资宝</a></li>
+        </ul>
+        <ul class="rf">
+            <li><a href="http://www.nbd.cn/user/sign_in">登录社区</a></li>
+            <li class="last"><a href="http://t.nbd.cn/%E6%AF%8F%E7%BB%8F%E7%BD%91%E5%AE%A2%E6%9C%8D">意见反馈</a></li>
+        </ul>
+      </div>
+    </div></div>
+
+    <div id="header">
+      <div class="innerCenter" id="logo">
+        <a id="logoSite" class="logo" href="/" title="每经网">每经网</a>
+        	<script type="text/javascript">
+		BAIDU_CLB_preloadSlots("347473","347491","347495","347499","347516");
+	</script>
+	<!-- 广告位：文章详情页_顶部四分之三通栏 -->
+	
+<div class="ad_global ad_header" style="">
+	<script type="text/javascript">BAIDU_CLB_fillSlot("347473");</script>
+</div>
+
+      </div>
+      <div id="mainNav">
+        <div class="navWrapper">
+          <ul class="lf">
+            <li class="first"><a href="http://www.nbd.cn" class="">首页</a></li>
+            <li><a href="http://news.nbd.cn" class="">资讯</a></li>  
+            <li><a href="http://stock.nbd.cn" class="">股票</a></li>  
+            <li><a href="http://company.nbd.cn" class="">公司</a></li> 
+            <li><a href="http://finance.nbd.cn" class="">金融</a></li>
+            <li><a href="http://auto.nbd.cn" class="">汽车</a></li>   
+            <li><a href="http://www.nbd.cn/columns/47" class="">全球</a></li>  
+            <li><a href="http://ntt.nbd.cn" class="">智库</a></li>  
+            <li><a href="http://life.nbd.cn" class="">品味</a></li>  
+            <li><a href="http://bschool.nbd.cn" class="">管理</a></li>  
+            <li><a href="http://t.nbd.cn/" class="">社区</a></li>
+            <li><a href="http://west.nbd.cn">西部</a></li>
+          </ul>
+          <div class="searchBox rf">
+<form accept-charset="UTF-8" action="http://www.nbd.cn/search/article_search" method="get"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /></div>              <a href="javascript:void(0)" class="searchBtn" onclick="$(this).parents('form').submit();return false;"></a>
+              <input class="searchInput" id="q" name="q" type="text" value="" />
+</form>          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="wrapper">
+      
+
+
+
+
+
+
+
+  <div class="subNavi">
+    <ul id="crumb">
+      <li class="first">您所在位置:</li>
+      <li><a href="http://www.nbd.cn/">每经网</a></li>
+          <li><a href="http://www.nbd.cn/columns/1">首页</a></li>
+          <li><a href="http://www.nbd.cn/columns/5">每日精选</a></li>
+      <li class="last"><strong>正文</strong></li>
+    </ul>
+  </div>
+  <style type="text/css">
+    #body_site #wrapper {
+      margin-top: 0;
+    }
+  </style>
+
+
+<div id="popwinLoginFormWrapper" style="display:none">
+	
+<div id="loginFormWrapper">
+<form accept-charset="UTF-8" action="http://www.nbd.cn/user/sign_in" class="formA roundCorner" method="post"><div style="margin:0;padding:0;display:inline"><input name="utf8" type="hidden" value="&#x2713;" /><input name="authenticity_token" type="hidden" value="NBxxzrot3eOtZCUzNEzGpm8q6f927RavmGt9rIM75jQ=" /></div>
+
+	<div class="title">
+		<h2>登录社区</h2>
+		<span class="titleOpts">还没有帐号？<a href="/user/sign_up">立刻注册 &raquo;</a></span>
+	</div>
+
+	
+	
+	<p>
+		<label for="email">邮箱或昵称:</label> <br />
+		<input class="textInput" id="email" name="email" size="40" type="text" />
+	</p>
+	<p style="margin-bottom:5px">
+		<label for="password">密码:</label>	<br />
+		<input autocomplete="off" class="textInput" id="password" name="password" size="40" type="password" />
+	</p>
+      <input id="come_back" name="come_back" type="hidden" value="1" />
+	<div class="block" style="width:345px;">
+		<span class="lf">
+			<input id="remember_me" name="remember_me" type="checkbox" value="1" />
+			<label for="remember_me" style="font-weight:normal;font-size:12px;">下次自动登录</label>
+		</span>
+		<a href="http://www.nbd.cn/password_resets/new" class="rf">忘记密码?</a>
+		<div class="clear"></div>
+	</div>
+	<div class="block btnRowM">
+		<input type="submit" class="hiddenSubmit" />
+		<a href="javascript:void(0)" onclick="$(this).parents('form').submit();return false;" class="btnBlueM"><span>登录</span></a>
+		<div class="clear"></div>		
+	</div>
+	<div class="otherAccess">
+		<p style="margin-bottom:5px;">或使用合作网站帐号登录?</p>
+		<p>
+            <span class="sinaAccess"><b></b><a href="/auth/weibo">用新浪微博登录</a></span>
+            <span class="qqAccess"><b></b><a href="/auth/qq_connect">用QQ登录</a></span>
+            
+		</p>
+	</div>
+</form></div>
+
+<script type="text/javascript">
+	$(function(){
+		$("#email").focus();
+	});
+</script>
+
+</div>
+</body>
+<script type="text/javascript">
+	var _registerPopWin;
+	function _popRegisterBox (){
+		var user_signed_in = false;
+		if (!user_signed_in) {
+			if(!_registerPopWin){
+				_registerPopWin = $.popWin.init({
+					follow:true,
+					title:"请先登录"
+				});
+				$('#popwinLoginFormWrapper').appendTo(_registerPopWin.content).show();
+			}
+			_registerPopWin.show();
+			return true;
+		}
+		return false;
+	}
+</script>
+
+<div id="articalMain">
+  <div class="leftCol">
+    
+<div id="articalContentWrapper">
+  <div id="articleTools">
+    <ul class="lf">
+      <li>
+        <a href="/articles/2013-06-08/721861/print" class="printLink"><b></b>打印</a>
+      </li>
+      <li id="aticleFontSize">
+        字号: <a href="javascript:void(0);" title="small">小</a>
+        <a class="current" href="javascript:void(0);" title="medium">中</a>
+        <a href="javascript:void(0);" title="large">大</a>
+      </li>
+    </ul>
+    
+    <!-- Bshare Button BEGIN -->
+    <a class="bshareDiv rf" href="http://www.bshare.cn/share">分享按钮</a>
+    <!-- Bshare Button END -->
+    
+    <!-- JiaThis Button BEGIN 
+    <div id="ckepop" style="float:right;">
+      <a href="http://www.jiathis.com/share?uid=1547109" class="jiathis jiathis_txt" target="_blank"><img src="http://v2.jiathis.com/code/images/btn/v1/jiathis1.gif" border="0" /></a>
+    </div>
+     JiaThis Button END -->
+    <div class="clear">
+    </div>
+  </div>
+  <h1 class="articleTitle">GGGG</h1>
+  <p class="articleTime">
+
+    <!-- source: ntt or else -->
+      <a href="http://www.nbd.com.cn">http://www.nbd.com.cn</a> 
+          
+    <!-- 发布时间 -->
+    <span>2013-06-08 16:31</span> 
+
+    <!-- 文章来源 -->
+
+  </p>
+
+
+  <!-- 文章配图 -->
+  
+
+  <!-- 正文内容 -->
+  <div id="articleContent" class="articleFontSize_medium">
+    <p>test</p>
+  </div>
+
+    <!-- 广告位：文章详情页_投资宝 -->
+    <div class="w100p ovh">
+      <script type="text/javascript">BAIDU_CLB_fillSlot("557753");</script>
+    </div>
+
+  <div class="childrenArticles mtl">
+    <ul class="unorderList">
+    </ul>
+    <div id="relatedFeatureTemp"></div>
+  </div>
+
+  
+  
+  <div id="articleInfo">
+      <span id="articleColumns">归类于: <a href="/columns/5">每日精选</a></span>
+      责任编辑: 周忠文
+  </div>
+  
+  <div class="articleShare">
+    <!-- Bshare Button BEGIN -->
+    <div class="bshare-custom">
+      <a title="分享到" href="http://www.bshare.cn/share" id="bshare-shareto" class="bshare-more">分享到</a>
+      <a title="分享到新浪微博" class="bshare-sinaminiblog"></a>
+      <a title="分享到开心网" class="bshare-kaixin001"></a>
+      <a title="分享到豆瓣" class="bshare-douban"></a>
+      <a title="分享到QQ微博" class="bshare-qqmb"></a>
+      <a title="分享到搜狐微博" class="bshare-sohuminiblog"></a>
+      <a title="分享到网易微博" class="bshare-neteasemb"></a>
+      <a title="分享到QQ空间" class="bshare-qzone"></a>
+      <a title="分享到人民微博" class="bshare-peoplemb"></a>
+       <!-- 在这里添加更多平台 -->
+       <a title="更多平台" id="bshare-more-icon" class="bshare-more"></a>
+    </div>
+    <!-- Bshare Button END -->
+  </div>
+  
+    <h3 class="moreTitle">延伸阅读</h3>
+    <div id="relatedArticlesWrapper">
+      <div class="subLeftCol">
+        <div class="sectionA " style="">
+    <div class="title">
+      <h3>
+          您可能感兴趣的更多新闻
+      </h3>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-06-08/721860.html" target="_blank" title="GGGG">GGGG</a>
+            </h5>
+            <div class="rcDigest">
+                
+
+                <p class="restrict" >
+                  test
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-06-08/721859.html" target="_blank" title="GGGG">GGGG</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-06-08/721858.html" target="_blank" title="GGGG">GGGG</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-06-08/721857.html" target="_blank" title="GGGG">GGGG</a></li>
+          <li  >
+            
+              <a href="http://www.nbd.cn/articles/2013-06-08/721844.html" target="_blank" title="fewfwef">fewfwef</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+      </div>
+      <div class="subRightCol">
+      <div class="sectionA " style="">
+    <div class="title">
+      <h3>
+          更多热门新闻
+      </h3>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+    </div>
+    <div class="clear">
+    </div>
+  </div>
+  <div id="relatedFeature">
+  </div>
+</div>
+
+<!-- Bshare Button BEGIN -->
+<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#ssc=true&uuid=dadcb6c1-00b3-41b4-ab78-9d31e05fdceb&style=10&bgcolor=#ffffff&bp=sinaminiblog,kaixin001,douban,qqmb,sohuminiblog,neteasemb,qzone,peoplemb,bsharesync"></script>
+<script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC1.js"></script>
+<script type="text/javascript" charset="utf-8">
+bShare.addEntry({
+    summary: "-"
+});
+</script>
+<!-- Bshare Button END -->
+
+<script type="text/javascript">
+  $(function(){
+    $("#relatedFeatureTemp").replaceWith($("#relatedFeature"));
+    $('#aticleFontSize a').click(function(e){
+      var linkEl = $(this);
+      linkEl.siblings().removeClass();
+      linkEl.addClass('current');
+      $('#articleDigest').attr('class', 'articleFontSize_'+linkEl.attr('title'));
+      $('#articleContent').attr('class', 'articleFontSize_'+linkEl.attr('title'));
+      return false;
+    });
+  });
+</script>
+
+    <p class="articleDeclare">
+	文章的评论功能未开启
+</p>
+<script type="text/javascript">
+	$(function(){
+		var $myConmemnt = $('#comment_content');
+		$('.articlCommentsBtn').live('click', function(){
+			var value = $myConmemnt.val();
+			var reg = /^回复\@.*\:/;
+			if (reg.test(value)) {
+				value = value.replace(reg, '回复@' + $(this).closest('li').find('.nickname').text() + " :");
+			}else {
+				value = '回复@' + $(this).closest('li').find('.nickname').text() + " :" + value;
+			}
+			$myConmemnt.focus();
+			$myConmemnt.val(value);
+			return false;
+		});
+		
+		$myConmemnt.focus(function(){
+			_popRegisterBox();
+		});
+	});
+</script>
+
+
+      <div class="sectionA  articleWallWrapper" style="margin:20px 0;">
+	<div class="title">
+		<h3><a href="/columns/4">每日好图</a></h3>
+		<span class="opts"><a href="/columns/4">更多</a></span>
+	</div>
+	<div class="content">
+		<ul class="articleList unorderList">
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2013-06-08/721856.html" class="miniture" target="_blank" title="yoyoy"><img alt="yoyoy" height="90" src="http://static.nbd.cn/images/default-middle.gif?1356401080" width="120" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2013-06-08/721856.html" target="_blank" title="yoyoy">yoyoy</a>
+					</p>
+				</li>
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2013-06-08/721855.html" class="miniture" target="_blank" title="yoyoy"><img alt="yoyoy" height="90" src="http://static.nbd.cn/images/default-middle.gif?1356401080" width="120" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2013-06-08/721855.html" target="_blank" title="yoyoy">yoyoy</a>
+					</p>
+				</li>
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2013-03-20/721773.html" class="miniture" target="_blank" title="测试文章3——debug"><img alt="测试文章3——debug" height="90" src="http://static.nbd.cn/images/default-middle.gif?1356401080" width="120" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2013-03-20/721773.html" target="_blank" title="测试文章3——debug">测试文章3——debug</a>
+					</p>
+				</li>
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2013-03-11/721736.html" class="miniture" target="_blank" title="我国将建房产统一登记制度 资深房地产专家解读"><img alt="房产统一登记制度欲建立 房地产专家解读" height="90" src="http://image.nbd.cn/uploads/articles/thumbnails/32476/20130310051804509.middle.jpg" width="120" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2013-03-11/721736.html" target="_blank" title="我国将建房产统一登记制度 资深房地产专家解读">房产统一登记制度欲建立 房地产专家解读</a>
+					</p>
+				</li>
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2013-03-11/721732.html" class="miniture" target="_blank" title="宗庆后:北漂应回家乡 中小城市竞争压力小"><img alt="宗庆后:北漂应回家乡 中小城市竞争压力小" height="90" src="http://image2.nbd.cn/uploads/articles/thumbnails/32474/1362901372745.middle.jpg" width="120" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2013-03-11/721732.html" target="_blank" title="宗庆后:北漂应回家乡 中小城市竞争压力小">宗庆后:北漂应回家乡 中小城市竞争压力小</a>
+					</p>
+				</li>
+		</ul>
+		<div class="clear">
+		</div>
+	</div>
+	<!--content-->
+</div>
+		
+
+	<div class="jumpNav">
+	<a href="/" class="toHome"><b></b>返回每经网首页</a>
+	<a href="#" id="toTop2" class="toTop2"><b></b>回到顶部</a>
+	<!--<a href="#" class="toNext"><b></b>随机浏览下一篇</a>-->
+</div>
+<script type="text/javascript">
+	$(function(){
+		$("#toTop2").click(function(){
+			$("html,body").animate({
+				scrollTop: 0
+			}, 400);
+		});
+	});
+</script>
+
+
+  </div> 
+
+  <div class="rightCol">
+    <div class="sectionA">
+      <div class="title"><h3>更多相关新闻</h3></div>
+      <div class="content" style="padding-top:0;" >
+		    
+<div class="ad_global ad_right_box" style="margin-top:0px;">
+	<script type="text/javascript">BAIDU_CLB_fillSlot("347491");</script>
+</div>
+      </div>
+    </div>
+    <!-- 广告位：文章详情页_右边栏一 -->
+    
+        <div class="sectionA  articleWallWrapper" style="">
+	<div class="title">
+		<h3><a href="/columns/5">频道推荐</a></h3>
+		<span class="opts"><a href="/columns/5">更多</a></span>
+	</div>
+	<div class="content">
+		<ul class="articleList unorderList">
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2013-06-08/721861.html" class="miniture" target="_blank" title="GGGG"><img alt="GGGG" height="90" src="http://static.nbd.cn/images/default-middle.gif?1356401080" width="120" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2013-06-08/721861.html" target="_blank" title="GGGG">GGGG</a>
+					</p>
+				</li>
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2013-06-08/721860.html" class="miniture" target="_blank" title="GGGG"><img alt="GGGG" height="90" src="http://static.nbd.cn/images/default-middle.gif?1356401080" width="120" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2013-06-08/721860.html" target="_blank" title="GGGG">GGGG</a>
+					</p>
+				</li>
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2013-06-08/721859.html" class="miniture" target="_blank" title="GGGG"><img alt="GGGG" height="90" src="http://static.nbd.cn/images/default-middle.gif?1356401080" width="120" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2013-06-08/721859.html" target="_blank" title="GGGG">GGGG</a>
+					</p>
+				</li>
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2013-06-08/721858.html" class="miniture" target="_blank" title="GGGG"><img alt="GGGG" height="90" src="http://static.nbd.cn/images/default-middle.gif?1356401080" width="120" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2013-06-08/721858.html" target="_blank" title="GGGG">GGGG</a>
+					</p>
+				</li>
+		</ul>
+		<div class="clear">
+		</div>
+	</div>
+	<!--content-->
+</div>
+
+
+    <div class="divider" style="margin-bottom:10px;"></div>
+
+        <div class="sectionA">
+	<div class="title" style="border:none; background:none;">
+		<h3>每经一周评</h3>
+		<!--<span class="opts"><a href="javascript:void(0)">更多</a></span>-->
+	</div>
+	<div class="content">
+		<div id="nttOneWord" class="roundCorner">
+			<div class="articleRecommend">
+				<h5 class='rcTitle'>
+					<a href="http://www.nbd.com.cn/features/192" target="_blank">每周经济汉字：稳</a>
+				</h5>
+				<div class="rcDigest">
+					<a href="http://www.nbd.com.cn/features/192" target="_blank"><img alt="每周经济汉字：稳" height="60" src="http://image.nbd.cn/uploads/articles/thumbnails/22105/80-60.small.jpg" width="80" /></a>
+					<p class="restrict">前期出台的一系列政策措施效果逐渐显现，国内需求回暖，企业信心回升。预计四季度可见温和回升。</p>
+				</div>
+				<div class="clear"></div>
+			</div>
+			<div class="triangle"></div>
+		</div>
+	</div>
+</div>
+
+
+    <div class="divider" style="margin-bottom:10px;"></div>
+
+    
+      <div class="sectionA weiboLive">
+	<div class="title">
+		<h3>每经直播间</h3>
+	</div>
+	<div class="content">
+		<div class="weiboLiveCompereProfile">
+			<a href="http://t.nbd.cn/lives/2013-03-11/345" class="avatar lf"><img alt="每经网股市直播" height="50" src="http://image2.nbd.cn/uploads/avatars/588/tan.middle.jpg" width="50" /></a>
+			<a href="http://t.nbd.cn/lives/2013-03-11/345" class="nickname">每经网股市直播</a><br/>
+			<a href="http://t.nbd.cn/lives/2013-03-11/345" class="btnGreen" style="margin-top:5px;"><span>收看直播</span></a>
+			<div class="clear"></div>
+		</div>
+		<ul class="weiboItemList">
+				<li  >
+					<div class="itemContent"> 
+						<p>test_2</p>
+					</div>
+					<div class="itemBottom">
+						<a href="http://t.nbd.cn/lives/2013-03-11/345">05月13日 15:02</a>
+					</div>
+				</li>
+				<li class="last" >
+					<div class="itemContent"> 
+						<p>test_1</p>
+					</div>
+					<div class="itemBottom">
+						<a href="http://t.nbd.cn/lives/2013-03-11/345">05月13日 15:01</a>
+					</div>
+				</li>
+		</ul>
+	</div><!--content-->
+</div>
+
+
+
+
+	  <div class="divider" style="margin-bottom:10px;"></div>
+
+        
+  <div id="hotArticles" class="sectionA" style="">
+    <div class="title">
+      <h3>热门文章</h3>
+      <ul id="hotTabsIndex" class="opts">
+        <li class="first current"><a href="#hotArticle-1">最热点击</a></li>
+      </ul>
+    </div>
+      <div id="hotTabsContent" class="content">
+        <div id="hotArticle-1">
+          <ol class="articleList">
+        </ol>
+      </div>
+    </div>
+  </div>
+<script type="text/javascript">
+  $(function(){
+      $("#hotArticles").nbdtabs({
+        tabsDOM:"#hotTabsIndex",
+        contentDOM:"#hotTabsContent",
+        symbolIndex:"hotArticle"
+      });
+  });
+</script>
+
+
+
+      <div class="sectionA  articleWallWrapper" style="margin-bottom:15px;">
+	<div class="title">
+		<h3><a href="/columns/5">每日精选</a></h3>
+		<span class="opts"><a href="/columns/5">更多</a></span>
+	</div>
+	<div class="content">
+		<ul class="articleList unorderList">
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2013-06-08/721861.html" class="miniture" target="_blank" title="GGGG"><img alt="GGGG" height="90" src="http://static.nbd.cn/images/default-middle.gif?1356401080" width="120" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2013-06-08/721861.html" target="_blank" title="GGGG">GGGG</a>
+					</p>
+				</li>
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2013-06-08/721860.html" class="miniture" target="_blank" title="GGGG"><img alt="GGGG" height="90" src="http://static.nbd.cn/images/default-middle.gif?1356401080" width="120" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2013-06-08/721860.html" target="_blank" title="GGGG">GGGG</a>
+					</p>
+				</li>
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2013-06-08/721859.html" class="miniture" target="_blank" title="GGGG"><img alt="GGGG" height="90" src="http://static.nbd.cn/images/default-middle.gif?1356401080" width="120" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2013-06-08/721859.html" target="_blank" title="GGGG">GGGG</a>
+					</p>
+				</li>
+				<li class="articleWall">
+					<a href="http://www.nbd.cn/articles/2013-06-08/721858.html" class="miniture" target="_blank" title="GGGG"><img alt="GGGG" height="90" src="http://static.nbd.cn/images/default-middle.gif?1356401080" width="120" /></a>
+					<p class="headline">
+						<a href="http://www.nbd.cn/articles/2013-06-08/721858.html" target="_blank" title="GGGG">GGGG</a>
+					</p>
+				</li>
+		</ul>
+		<div class="clear">
+		</div>
+	</div>
+	<!--content-->
+</div>
+
+
+      <div class="sectionA " style="margin-bottom:10px;">
+    <div class="title">
+      <h3>
+            <a href="http://www.nbd.cn/columns/8">媒体聚焦</a>
+      </h3>
+        <span class="opts">
+            <a href="http://www.nbd.cn/columns/8">更多</a>
+        </span>
+    </div>
+  <div class="content">
+    <ul class="articleList unorderList">
+          <li class="articleRecommend ">
+            <h5 class='rcTitle'>
+              
+                <a href="http://www.nbd.cn/articles/2013-03-20/721772.html" target="_blank" title="测试文章2——debug">测试文章2——debug</a>
+            </h5>
+            <div class="rcDigest">
+                
+
+                <p class="restrict" >
+                  测试文章
+                </p>
+              <div class="clear"></div>
+            </div>
+          </li>
+          <li  >
+            <span class="articleOpt">14:25</span>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721763.html" target="_blank" title="中国货币供应量逼近100万亿 被指推高物价房价">中国货币供应量逼近100万亿 被指推高物价房价</a></li>
+          <li  >
+            <span class="articleOpt">11:54</span>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721736.html" target="_blank" title="我国将建房产统一登记制度 资深房地产专家解读">房产统一登记制度欲建立 房地产专家解读</a></li>
+          <li  >
+            <span class="articleOpt">11:47</span>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721732.html" target="_blank" title="宗庆后:北漂应回家乡 中小城市竞争压力小">宗庆后:北漂应回家乡 中小城市竞争压力小</a></li>
+          <li  >
+            <span class="articleOpt">10:56</span>
+              <a href="http://www.nbd.cn/articles/2013-03-11/721697.html" target="_blank" title="黄金奔驰跑车尽现奢华 盘点世界著名跑车品牌[组图]">黄金奔驰跑车尽现奢华 盘点世界著名跑车品牌[组图]</a></li>
+    </ul>
+    <div class="clear"></div>
+  </div><!--content-->
+</div>
+
+
+    <!-- 广告位：文章详情页_右边栏二 -->
+		
+<div class="ad_global ad_right_box" style="">
+	<script type="text/javascript">BAIDU_CLB_fillSlot("347495");</script>
+</div>
+
+    
+
+<div class="sectionA" style="">
+	<div class="title">
+		<h3>移动客户端</h3>
+	</div>
+	<div class="content" id="nbdPromo" style="margin-bottom:5px">
+		<dl>
+			<dt class="thumbClients">每经网移动客户端</dt>
+			<dd >
+				<h3>每经网移动客户端</h3>
+				<p>
+					<a href="http://itunes.apple.com/cn/app/id413082888?mt=8" class="first" target="_blank">iPhone</a> | <a href="http://itunes.apple.com/cn/app/id440680920?mt=8" target="_blank">iPad</a> | <a href="http://www.nbd.cn/mobiles/android" target="_blank">Android</a> | <a href="http://old.nbd.com.cn/mobile/" target="_blank">其他</a>
+				</p>
+			</dd>
+			<dt class="thumbMobileNewspaper">每经手机报</dt>
+			<dd class="last">
+				<h3>每经投资宝</h3>
+				<p>
+					<a href="http://www.nbd.cn/premium/mobile_newspaper_account/introduce" class="first" target="_blank">天天赢家</a> | 
+					<a href="http://www.nbd.com.cn/features/274" target="_blank">股东大会实录</a> | 
+					<a href="http://www.nbd.cn/premium/mobile_news/introduce" target="_blank">投资快讯</a> 
+				</p>
+			</dd>
+		</dl>
+	</div>
+</div>
+
+
+    <div id="subsBox" class="sectionA" style="">
+	<div class="title">
+		<h3>订阅</h3>
+	</div>
+	<div class="content">
+		<dl>
+			<!--<dt><b class="icon16 rss"></b>RSS</dt>
+			<dd><a class="first" href="">今日焦点</a> | <a href="">滚动新闻</a> | <a href="">观点</a> | <a href="">今日报纸</a></dd>-->
+			<dt><b class="icon16 newspaper"></b>报刊</dt>
+			<dd class="last"><strong>《每日经济新闻》</strong> <a href="http://www.nbd.cn/newspapers/today" class="first" target="_blank">文字版</a> | <a href="http://epaper.nbd.com.cn/" target="_blank">图文版</a> | <a href="http://old.nbd.com.cn/html/dingyue.html" target="_blank">订阅</a></dd>
+		</dl>
+	</div>
+</div>
+
+
+  </div>
+
+  <div class="clear"></div>
+</div>
+
+<!-- 广告位：文章详情页_底部通栏 -->
+
+<div class="ad_global ad_footer" style="">
+	<script type="text/javascript">BAIDU_CLB_fillSlot("347499");</script>
+</div>
+
+<!-- 广告位：文章详情页_右下角漂浮 -->
+
+<div class="ad_global " style="">
+	<script type="text/javascript">BAIDU_CLB_fillSlot("347516");</script>
+</div>
+
+    </div>
+
+    <div id="footer" class=>
+	<div class="nav">
+		<a href="http://old.nbd.com.cn/html/front/html/aboutus_new/index.htm" class="first">关于我们</a>
+		<a href="http://www.nbd.cn/copyright">版权声明</a>
+		<a href="http://www.nbd.cn/disclaimer">免责声明</a>
+		<a href="http://www.nbd.cn/advertisement">广告服务</a>
+		<a href="http://www.nbd.cn/contact">联系我们</a>
+		<a href="http://www.nbd.com.cn/corp/2013dingyue/index.html">订阅中心</a>
+		<a href="http://www.nbd.cn/links" class="last">友情链接</a>
+		<a href="http://www.nbd.cn/sitemap" class="last">网站地图</a>
+	</div>
+	<p>
+		Copyright © 2013 每日经济新闻报社版权所有，未经许可不得转载使用，违者必究<br/>
+		读者热线：400-889-0008  广告热线：021-61283008 028-86612828<br/>
+		<a href="http://www.miibeian.gov.cn/" style="margin-right: 10px; color:#787878" target="_blank">沪ICP备09000473号</a> <span>带宽提供：<a href="http://www.kwww.cn/" style="margin-right: 10px;" target="_blank">上海快网</a></span> <span><a href=" http://top.chinaz.com" target="_blank">网站排行榜</a></span>
+	</p>
+</div>
+    
+    
+  </body>
+
+</html>

@@ -23,7 +23,7 @@ class Article < ActiveRecord::Base
   include CacheCallback::HotResult
   include ActionView::Helpers
 
-  attr_accessor :c_id, :prev_column_ids
+  attr_accessor :c_id
 
   paginates_per Settings.count_per_page
 
@@ -91,8 +91,6 @@ class Article < ActiveRecord::Base
 
   belongs_to :image
 
-  belongs_to :gallery
-
   accepts_nested_attributes_for :pages, :allow_destroy => true#, :reject_if => lambda { |a| a[:content].blank? && a[:image_attributes].blank? }
   accepts_nested_attributes_for :image, :allow_destroy => true, :reject_if => :all_blank
 
@@ -108,17 +106,6 @@ class Article < ActiveRecord::Base
   before_save :parse_tags
   def parse_tags
     self.tags = NBD::Utils.parse_tags(self.tags).join(",") unless self.tags.blank?
-  end
-
-  before_save :validate_titles
-
-  def validate_titles
-    self.short_title = nil if self.read_attribute(:short_title).blank?
-    self.list_title = nil if self.read_attribute(:list_title).blank?
-  end
-  # before_save :set_prev_column_ids
-  def set_prev_column_ids
-    self.old_column_ids = columns.map(&:id) || []
   end 
 
   define_index do
@@ -137,10 +124,6 @@ class Article < ActiveRecord::Base
     
     # 声明使用实时索引    
     set_property :delta => true
-  end
-
-  def column_ids
-    self.columns.map(&:id)
   end
 
   def is_special?
@@ -183,10 +166,6 @@ class Article < ActiveRecord::Base
     else
       {}
     end
-  end
-
-  def first_column
-    self.columns.order("id asc").try(:to_a).try(:first)
   end
 
   before_create :init_slug
@@ -244,12 +223,6 @@ class Article < ActiveRecord::Base
   	else
   		read_attribute(:list_title)
   	end
-  end
-
-  def short_title
-    return read_attribute(:short_title) || list_title
-    # return read_attribute(:short_title) unless read_attribute(:short_title).blank?
-    # return list_title
   end
   
   def show_ori_source
@@ -333,8 +306,6 @@ class Article < ActiveRecord::Base
     # params[:tags] = NBD::Utils.parse_tags(params[:tags]).join(", ") if params[:tags].present?
     
     article = self.new(params)
-    article.prev_column_ids = []
-    column_ids.each {|column_id| article.prev_column_ids << column_id.to_i}
     self.transaction do
       unless article.save
         return article
@@ -482,26 +453,10 @@ class Article < ActiveRecord::Base
     Feature.search_with_tags(NBD::Utils.parse_tags(self.tags), limit) unless self.tags.blank?
   end
 
-  def static_article_path
-    "#{Settings.static_path.article_show}/#{created_at.strftime('%Y-%m-%d')}/#{id}.html"
-  end
-
-  def channel_ids
-    channels = []
-    columns.each do |column|
-      channels << column.parent_id
-    end
-    channels.uniq
-  end
-
   class << self
 
     def hot_articles(limit = 10, asso_hash = {})
       hot_objects("hot_cache:result:hot_article", limit, asso_hash)
-    end
-
-    def hot_column_articles(column_id, limit = 10, asso_hash = {})
-      hot_objects(CacheCallback::BaseCallback::HOT_COLUMN_ARTICLE_KEY + ":#{column_id}", limit, asso_hash)
     end
 
     def hot_comment_articles(limit = 10, asso_hash = {})
@@ -527,14 +482,6 @@ class Article < ActiveRecord::Base
 
     def record_hot_article?(article_id)
       (ArticlesColumn.where(:article_id => article_id, :status => PUBLISHED).select([:column_id]).map(&:column_id) & Column::NOT_RECORD_HOT_IDS).blank?
-    end
-
-    def article_columns(id)
-      article = Article.where(:id => id).first
-      if article.present?
-        article_columns = article.columns
-      end
-      article_columns
     end
 
   end

@@ -1,0 +1,2 @@
+module Console::KoubeibangsHelper
+end

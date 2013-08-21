@@ -1,8 +1,5 @@
 require 'nbd/cache_filter'
 class Api::ArticlesController < ApplicationController
-
-  skip_before_filter :authenticate
-  
   include Nbd::CacheFilter
 
   include Api::ApiUtils

@@ -60,6 +60,11 @@
 		
 		var tempBox = $("#tempBox");
 		
+    // Initialize the jQuery File Upload widget:
+    $('#fileupload').fileupload({
+			maxNumberOfFiles:1
+		});
+		
 		// search
     $("#searchImageBtn").click(function(){
       window.location.href = search_url + "?q=" + $("#searchValue").val();
@@ -113,15 +118,13 @@
 				// insert image
 				function afterUpdateImageData(){
 					
-					var image = $(".uploadedImage img");
-					// var desc = $(".uploadedImageDesc").val();
+					var image = $(".uploadedImage img").clone();
+					var desc = $(".uploadedImageDesc").val();
 					var imageStr;
 					
-					// image.attr("alt", desc);
+					image.attr("alt", desc);
 					tempBox.empty();
-					image.each(function(i, img){
-						cleanImage($(img).clone());
-					});
+					cleanImage(image);
 					
 					imageStr = tempBox.html();
 					confirmAndClose(imageStr);
@@ -133,11 +136,13 @@
 			
 			function uploadFromLibrary(){
 				var imageStr;
-				var imgArray = $("#imageLib .choosen img");
+				var imgArray = $("#imageLib .choosen img").map(function(){
+					return $(this);
+				});
 				
 				tempBox.empty();
 				imgArray.each(function(i, img){
-					cleanImage($(img).clone());
+					cleanImage(img.clone());
 				});
 				
 				imageStr = tempBox.html();

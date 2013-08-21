@@ -3,80 +3,85 @@
 <%= require_fileUpload %>
 
 <div class="title">
-  <h1>页面元素编辑 - 图片</h1>
+	<h1>页面元素编辑 - 图片</h1>
 </div>
 
 <% 
-  unless @element.content && (image_id = JSON.parse(@element.content)["body"]["source"]) 
-    image = Image.new
-  else
-    image = Image.where(:id => image_id).first || Image.new
-  end
+	unless @element.content && (image_id = JSON.parse(@element.content)["body"]["source"]) 
+		image = Image.new
+	else
+		image = Image.where(:id => image_id).first || Image.new
+	end
 %>
-<%= render :partial => "console/images/image_upload_form", :locals => {:image => image, :url_method => "feature", :multiple => false} %>
+<%= render :partial => "console/images/image_upload_form", :locals => {:image => image, :url_method => "feature"} %>
 
 
 <script type="text/javascript" charset="utf-8">
-  $(function () {       
-    // Load existing files:
-    $.getJSON($('#fileupload form').prop('action'), function (files) {
-      var fu = $('#fileupload').data('fileupload');
-      fu._adjustMaxNumberOfFiles(-files.length);
-      fu._renderDownload(files)
-        .appendTo($('#fileupload .files'))
-        .fadeIn(function () {
-          // Fix for IE7 and lower:
-          $(this).show();
+    $(function () {
+        // Initialize the jQuery File Upload widget:
+        $('#fileupload').fileupload({
+					maxNumberOfFiles:1
+				});
+				
+        // Load existing files:
+        $.getJSON($('#fileupload form').prop('action'), function (files) {
+            var fu = $('#fileupload').data('fileupload');
+            fu._adjustMaxNumberOfFiles(-files.length);
+            fu._renderDownload(files)
+                .appendTo($('#fileupload .files'))
+                .fadeIn(function () {
+                    // Fix for IE7 and lower:
+                    $(this).show();
+                });
         });
     });
-  });
 </script>
 <%= simple_form_for([:console, @owner, @element], :html => {:id => "element_form"}) do |f| %>
-  <p style="display:none;">
-  <% if params[:title] %>
-    <%= f.input :title , :label => "标题:", :input_html => {:value => params[:title]} %>
-  <% else %>
-    <%= f.input :title , :label => "标题:"%>
-  <% end %>
-  </p>
-  <p>
-    <%= f.input :content, :as => :hidden %>
-  </p>
-    <% unless @element.new_record? %>
-      <p>
-      <%= label_tag "element_link", "图片链接:" %>
-      <%= text_field_tag :element_link, JSON.parse(@element.content)["body"]["url"]  %>
-      </p>
-      <p>
-      <%= label_tag "element_desc", "图片描述:" %>
-      <%= text_area_tag :element_desc, JSON.parse(@element.content)["body"]["desc"]  %>
-      </p>
-      <p>
-      <%= label_tag "element_position", "图片位置:" %>
-      <%= select_tag "element_position", options_for_select([["居上", "0"], ["居下", "1"], ["居左", "2"], ["居右", "3"]], JSON.parse(@element.content)["body"]["position"]) %>
-      </p>
+	<p style="display:none;">
+    <% if params[:title] %>
+      <%= f.input :title , :label => "标题:", :input_html => {:value => params[:title]} %>
     <% else %>
-      <p>
-      <%= label_tag "element_link", "图片链接:" %>
-      <%= text_field_tag :element_link, params[:link]%>
-      </p>
-      <p>
-      <%= label_tag "element_desc", "图片描述:" %>
-      <%= text_area_tag :element_desc, params[:link]%>
-      </p>
-      <p>
-      <%= label_tag "element_position", "图片位置:" %>
-      <%= select_tag "element_position", options_for_select([["居上", "0"], ["居下", "1"], ["居左", "2"], ["居右", "3"]], "0") %>
-      </p>
+      <%= f.input :title , :label => "标题:"%>
     <% end %>
-  <%= render "console/elements/element_editpage_actions" %>
+	</p>
+	<p>
+        <%= f.input :content, :as => :hidden %>
+	</p>
+        <% unless @element.new_record? %>
+          <p>
+            <%= label_tag "element_link", "图片链接:" %>
+            <%= text_field_tag :element_link, JSON.parse(@element.content)["body"]["url"]  %>
+          </p>
+          <p>
+            <%= label_tag "element_desc", "图片描述:" %>
+            <%= text_area_tag :element_desc, JSON.parse(@element.content)["body"]["desc"]  %>
+          </p>
+          <p>
+            <%= label_tag "element_position", "图片位置:" %>
+            <%= select_tag "element_position", options_for_select([["居上", "0"], ["居下", "1"], ["居左", "2"], ["居右", "3"]], JSON.parse(@element.content)["body"]["position"]) %>
+          </p>
+        <% else %>
+          <p>
+            <%= label_tag "element_link", "图片链接:" %>
+            <%= text_field_tag :element_link, params[:link]%>
+          </p>
+          <p>
+            <%= label_tag "element_desc", "图片描述:" %>
+            <%= text_area_tag :element_desc, params[:link]%>
+          </p>
+          <p>
+            <%= label_tag "element_position", "图片位置:" %>
+            <%= select_tag "element_position", options_for_select([["居上", "0"], ["居下", "1"], ["居左", "2"], ["居右", "3"]], "0") %>
+          </p>
+        <% end %>
+	<%= render "console/elements/element_editpage_actions" %>
 <%end%>
 
 <script type="text/javascript">
-  $(function(){
-    var txtaDesc = $("#element_desc");
+	$(function(){
+		var txtaDesc = $("#element_desc");
 
-    var tinymceConfigs = {
+ 		var tinymceConfigs = {
       // General options
       theme: "advanced",
       plugins:"media",
@@ -93,20 +98,20 @@
       invalid_elements : "iframe,script"
     }
 
-    txtaDesc.tinymce(tinymceConfigs);
+		txtaDesc.tinymce(tinymceConfigs);
 
-    $("#createNewElement").click(function(){
-      function submit(){
-        var link = $("#element_link").val();
-        var image_id = parseInt($(".image_id").val()) || parseInt($("#old_image_id").val());
-        var position = $("#element_position").val();
-        var desc = txtaDesc.val();
-        var body = {'body': {'url' : link, 'source' :image_id, 'desc' : desc, 'position' : position}}
-        $("#element_<%= @k_name %>_content").val(JSON.stringify(body));
-        $('form').submit();
-      }
-      
-      _updateImageData(submit);
-    });
-  });
+		$("#createNewElement").click(function(){
+			function submit(){
+				var link = $("#element_link").val();
+				var image_id = parseInt($(".image_id").val()) || parseInt($("#old_image_id").val());
+	      var position = $("#element_position").val();
+	      var desc = txtaDesc.val();
+				var body = {'body': {'url' : link, 'source' :image_id, 'desc' : desc, 'position' : position}}
+				$("#element_<%= @k_name %>_content").val(JSON.stringify(body));
+				$('form').submit();
+			}
+			
+			_updateImageData(submit);
+		});
+	});
 </script>

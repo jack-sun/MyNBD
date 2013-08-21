@@ -1,9 +1,6 @@
 #encoding: utf-8
 require 'nbd/cache_filter'
 class Api::NewspapersController < ApplicationController
-
-  skip_before_filter :authenticate
-  
   include Nbd::CacheFilter
 
   include Api::ApiUtils
@@ -32,6 +29,7 @@ class Api::NewspapersController < ApplicationController
   end
 
   def render_newspaper(newspaper)
+
     unless newspaper
       json = {:newspaper => {}, :msg => "抱歉，没有找到 #{@date} 的报纸", :code => 0}
       return render :text => compress_with_zip(json, true)

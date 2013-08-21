@@ -1,0 +1,2 @@
+module Koubeibang::KoubeibangAccountsHelper
+end

@@ -28,5 +28,10 @@ class UserMailer < ActionMailer::Base
     @subject = "[投资宝] 天天赢家-活跃用户上周（#{@start_date} ~ #{@end_date}）统计"
     mail(:to => recipients, :subject => @subject)
   end
+
+  def report_kbb_vote(company_name)
+    attachments["#{company_name} 口碑榜投票结果.xls"] = File.read("#{Rails.root}/tmp/#{company_name}_结果_回执单.xls")
+    mail(:to => 'winterwhisper.dev@gmail.com', :subject => "#{company_name} 口碑榜投票结果")
+  end
   
 end

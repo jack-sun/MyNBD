@@ -1,0 +1,8 @@
+<div class="operation">
+  <% if defined?(@koubeibang_comment_navs) and @koubeibang_comment_navs != "hot_rt"  %>
+    <%= paginate koubeibang_details %>
+  <%end%>
+  <div class='lOpt'>
+    <%= link_to "<span>导出提名</span>".html_safe, export_to_xls_console_koubeibangs_url, :class => "btnGray" %>
+  </div>
+</div>

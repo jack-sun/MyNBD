@@ -4,8 +4,7 @@ class Console::ImagesController < ApplicationController
 
   IMAGE_COUNT_PER_PAGE = 10
   
-  layout "console", :except => [:upload_images, :upload_gallery_images]
-
+  layout "console"
   skip_before_filter :current_user
   before_filter :current_staff
   before_filter :authorize_staff
@@ -52,11 +51,7 @@ class Console::ImagesController < ApplicationController
   # POST /console/images
   # POST /console/images.xml
   def create
-    if params[:multiple] == "false"
-      @image = Image.new(params[:image])
-    else
-      @image = Image.new({params[:image].keys.first => params[:image].values.first.first})
-    end
+    @image = Image.new(params[:image])
     type = @image.url_type
     #response.headers["Content-type"] = "text/plain"
     if @image.save
@@ -109,29 +104,10 @@ class Console::ImagesController < ApplicationController
 
   def update_desc
     params_hash = {}
-    gallery_id = params[:create_gallery_image]
     params[:desc_params].each do |k, v|
-      params_hash[k] = {:desc => v[0..254]}
+      params_hash[k] = {:desc => v}
     end
-    begin
-      Image.update(params_hash.keys, params_hash.values)
-      if gallery_id.present?
-        gallery = Gallery.where(:id => gallery_id).first
-        new_gallery_images = gallery.generate_gallery_image(params_hash) 
-      end
-    rescue ActiveRecord::Rollback
-      render :text => UPDATE_DESC_FAILD and return
-    end
-    if gallery_id.blank?
-      render :text => UPDATE_DESC_SUCCESS and return
-    else
-      return render :json => new_gallery_images.to_json(:methods => :thumb_s_url)
-    end
-  end
-
-  def upload_gallery_images
-    @gallery = Gallery.where(:id => params[:id]).first
-    @image = Image.new
-    render :layout => "image_insert"
+    Image.update(params_hash.keys, params_hash.values)
+    return render :text => UPDATE_DESC_SUCCESS
   end
 end

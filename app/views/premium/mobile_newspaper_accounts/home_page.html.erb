@@ -110,7 +110,7 @@
             <div class="article-item__title"> <%= link_to article.title, article_url(article), :target => '_blank' %> </div>
             <div class="article-item__digest">
               <a href="#">
-                <%= link_to image_tag(article_thumbnail_path(article, :thumb_hs), {:alt => article.list_title, :width => 80, :height => 60}),  article_url(article), {:target => "_blank"} if article.image.present? %>
+                <%= link_to image_tag(article_thumbnail_path(article, :small), {:alt => article.list_title, :width => 80, :height => 60}),  article_url(article), {:target => "_blank"} if article.image.present? %>
               </a>
               <%= article.digest %>
             </div>
@@ -142,7 +142,7 @@
             <div class="article-item__title"> <%= link_to article.title, article_url(article), :target => '_blank' %> </div>
             <div class="article-item__digest">
               <a href="#">
-                <%= link_to image_tag(article_thumbnail_path(article, :thumb_hs), {:alt => article.list_title, :width => 80, :height => 60}),  article_url(article), {:target => "_blank"} if article.image.present? %>
+                <%= link_to image_tag(article_thumbnail_path(article, :small), {:alt => article.list_title, :width => 80, :height => 60}),  article_url(article), {:target => "_blank"} if article.image.present? %>
               </a>
               <%= article.digest %>
             </div>
@@ -174,7 +174,7 @@
             <div class="article-item__title"> <%= link_to article.title, article_url(article), :target => '_blank' %> </div>
             <div class="article-item__digest">
               <a href="#">
-                <%= link_to image_tag(article_thumbnail_path(article, :thumb_hs), {:alt => article.list_title, :width => 80, :height => 60}),  article_url(article), {:target => "_blank"} if article.image.present? %>
+                <%= link_to image_tag(article_thumbnail_path(article, :small), {:alt => article.list_title, :width => 80, :height => 60}),  article_url(article), {:target => "_blank"} if article.image.present? %>
               </a>
               <%= article.digest %>
             </div>

@@ -2,8 +2,12 @@ require 'rubygems'
 #require 'action_mailer'
 require 'json'
 
+live_targets = ['live', 'quanzhou', 'baoshan']
+
 deploy_to, target = ARGV
 puts deploy_to
+
+target = 'live' if live_targets.include? target
 
 mapping = JSON.parse( File.read( "#{deploy_to}/current/shared/mapping.json" ) )
 

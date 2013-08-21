@@ -67,6 +67,16 @@
 				"right":basic.right
 			});
 		}
+
+		function scrollClass(num){
+			if(num == "1"){
+				that.removeClass("fpEnd");
+				that.addClass("fpScrolling");
+			}else {
+				that.addClass("fpEnd");
+				that.removeClass("fpScrolling");
+			}
+		}
 		
 		function scrollEvent(){
 			var scrollTop = $(document).scrollTop();
@@ -94,21 +104,26 @@
 				if (options.bottom != null) {
 					if(scrollTop+$(window).height() > options.end){
 						dynamicTop = options.end - that.outerHeight();
+						scrollClass(0);
 					}else {
 						bottomForIe6 = $(window).height() - (status.bottom + that.outerHeight());
 						dynamicTop = bottomForIe6 + scrollTop;
+						scrollClass(1);
 					}
 					position = "absolute";
 				}else {
 					if (scrollTop < options.start) {
 						dynamicTop = options.start;
 						position = basic.oPos;
+						scrollClass(0);
 					}else if (scrollTop > options.end) {
 						dynamicTop = options.end - that.outerHeight();
 						position = "absolute";
+						scrollClass(0);
 					}else {
 						dynamicTop = status.top + scrollTop;
 						position = "absolute";
+						scrollClass(1);
 					} 
 				}
 				that.css({
@@ -124,10 +139,12 @@
 						dynamicTop = options.end - that.outerHeight();
 						dynamicBottom = "auto";
 						position = "absolute";
+						scrollClass(0);
 					}else {
 						dynamicTop = "auto";
 						dynamicBottom = status.bottom;
 						position = "fixed";
+						scrollClass(1);
 					}
 					that.css({
 						"position":position,
@@ -140,12 +157,15 @@
 					if(scrollTop < options.start){
 						dynamicTop = options.start;
 						position = basic.oPos;
+						scrollClass(0);
 					}else if(scrollTop > options.end - that.outerHeight()){
 						dynamicTop = options.end - that.outerHeight();
 						position = "absolute";
+						scrollClass(0);
 					}else {
 						dynamicTop = status.top;
 						position = "fixed";
+						scrollClass(1);
 					}
 					that.css({
 						"position":position,
